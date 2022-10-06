@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on Hoxton</title>
-        <link>https://github.com/Hoxton019030/Hoxton019030.github.io/categories/</link>
+        <link>https://github.com/CaiJimmy/hugo-theme-stack/categories/</link>
         <description>Recent content in Categories on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Thu, 06 Oct 2022 23:16:34 +0800</lastBuildDate><atom:link href="https://github.com/Hoxton019030/Hoxton019030.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 06 Oct 2022 23:16:34 +0800</lastBuildDate><atom:link href="https://github.com/CaiJimmy/hugo-theme-stack/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>遊戲</title>
-        <link>https://github.com/Hoxton019030/Hoxton019030.github.io/categories/%E9%81%8A%E6%88%B2/</link>
+        <link>https://github.com/CaiJimmy/hugo-theme-stack/categories/%E9%81%8A%E6%88%B2/</link>
         <pubDate>Thu, 06 Oct 2022 23:16:34 +0800</pubDate>
         
-        <guid>https://github.com/Hoxton019030/Hoxton019030.github.io/categories/%E9%81%8A%E6%88%B2/</guid>
+        <guid>https://github.com/CaiJimmy/hugo-theme-stack/categories/%E9%81%8A%E6%88%B2/</guid>
         <description></description>
         </item>
         <item>
         <title>Test</title>
-        <link>https://github.com/Hoxton019030/Hoxton019030.github.io/categories/test/</link>
+        <link>https://github.com/CaiJimmy/hugo-theme-stack/categories/test/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://github.com/Hoxton019030/Hoxton019030.github.io/categories/test/</guid>
-        <description>&lt;img src="https://github.com/Hoxton019030/Hoxton019030.github.io/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        <guid>https://github.com/CaiJimmy/hugo-theme-stack/categories/test/</guid>
+        <description>&lt;img src="https://github.com/CaiJimmy/hugo-theme-stack/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
         </item>
         
     </channel>
