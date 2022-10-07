@@ -1342,12 +1342,12 @@
 </description>
         </item>
         <item>
-        <title>Java內的牌程器介紹</title>
-        <link>https://Hoxton019030.github.io/p/java%E5%85%A7%E7%9A%84%E7%89%8C%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</link>
+        <title>Java內的排程器介紹</title>
+        <link>https://Hoxton019030.github.io/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</link>
         <pubDate>Thu, 06 Oct 2022 23:14:21 +0800</pubDate>
         
-        <guid>https://Hoxton019030.github.io/p/java%E5%85%A7%E7%9A%84%E7%89%8C%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</guid>
-        <description>&lt;img src="https://i.imgur.com/9or5BzU.png" alt="Featured image of post Java內的牌程器介紹" /&gt;&lt;h1 id=&#34;springboot-scheduling&#34;&gt;SpringBoot-Scheduling&lt;/h1&gt;
+        <guid>https://Hoxton019030.github.io/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</guid>
+        <description>&lt;img src="https://i.imgur.com/9or5BzU.png" alt="Featured image of post Java內的排程器介紹" /&gt;&lt;h1 id=&#34;springboot-scheduling&#34;&gt;SpringBoot-Scheduling&lt;/h1&gt;
 &lt;p&gt;用來做定期任務的東西，有兩種&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Spring schedule：只適合處理簡單的計畫任務，不能處理分散式的任務，當任務太多時，可能出現阻塞、崩潰、延遲啟動等問題&lt;/li&gt;
