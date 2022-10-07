@@ -6,7 +6,481 @@
         <description>Recent content in Posts on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Fri, 07 Oct 2022 22:41:52 +0800</lastBuildDate><atom:link href="https://Hoxton019030.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 08 Oct 2022 01:02:04 +0800</lastBuildDate><atom:link href="https://Hoxton019030.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title>
+        <link>https://Hoxton019030.github.io/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link>
+        <pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate>
+        
+        <guid>https://Hoxton019030.github.io/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid>
+        <description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" /&gt;&lt;p&gt;最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p&gt;
+&lt;p&gt;圖片空間有Github跟imgur，就看你想要用哪個就用哪個吧，其實沒差太多，但imgur會稍微簡單一點點點點點點，以下是步驟&lt;/p&gt;
+&lt;h2 id=&#34;開始&#34;&gt;開始&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;先去安裝node.js，因為會需要裡面的npm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://nodejs.org/en/download/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://nodejs.org/en/download/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;安裝好可以用系統管理員身分打開cmd，並輸入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;node
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;如果有成功安裝的話應該會顯示&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*TJh1mXLciPRITGML.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接著安裝picGo-core&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install picgo -g
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*OURwrokLcSXsKhh7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;說出現錯誤，要我們執行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm audit fix -force
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*iJyRBtSoBBDDWCiL.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;執行完之後就安裝好了，接著輸入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;picgo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;來確認是否有安裝成功，有時候可能會出現&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;檔案未經數位簽署這個指令碼將不會在系統上執行
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;之類之類的句子，這時候可以輸入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Set-ExecutionPolicy RemoteSigned
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;來允許執行，這時候在輸入picgo應該就可以看到這樣子的畫面了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*5z4fiwasXjd5owxU.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;到這一步本地端的設定已經完成80%了，接下來就是要選擇要使用哪種圖片空間&lt;/p&gt;
+&lt;h2 id=&#34;github&#34;&gt;Github&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;首先先到Github創建一個&lt;strong&gt;公開&lt;/strong&gt;的Repository，名字隨意就好&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*Qtv_aOAy_jvvJmxS.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;接著把這個Repository的URL複製下來&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/Hoxton019030/Typora
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;右上角個人頭像點開，選擇Settings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*IvpN0zdI8lH7ArDz.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;左側選項最下面有一個Developer settings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*I0XbiRgEZbAqSl1P.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;選擇Personal access tokens&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*av4YXNmNeXapHaSQ.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;選擇 Generate new token&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*f4CIbfps52_y13UM.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;輸入這個token的名稱，隨便取就好，Expiration看個人喜好，我很懶，所以我選擇永久，下面的select scopes勾選repo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*OdCzsVJiqnSncFsR.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;接著會產生一組ghp開頭的token，這組序號&lt;strong&gt;只會在這裡以明碼出現一次，接下來永遠都不會再以明碼的方式呈現&lt;/strong&gt;所以請好好記起來&lt;/li&gt;
+&lt;li&gt;然後到Typora的偏好設定裡打開&lt;code&gt;開啟設定檔&lt;/code&gt;，通常會是用一個文本編輯器打開，通常都是vscode啦&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*TfGA65bOI7NQlTdO.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;接著把這串東西複製貼上去&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &amp;#34;picBed&amp;#34;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;current&amp;#34;: &amp;#34;github&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;uploader&amp;#34;: &amp;#34;github&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;github&amp;#34;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;repo&amp;#34;: &amp;#34;Hoxton019030/Typora&amp;#34;,  //這串對應的是使用者名稱+Repo名稱，改成自己的
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;token&amp;#34;: &amp;#34;ghp_xxxxxxxxxxxxxxxxxxxx&amp;#34;, //這邊把剛剛產生的token貼上去
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;path&amp;#34;: &amp;#34;data/&amp;#34;, //圖片要上傳到哪個資料夾，可以先不用設定，
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;customUrl&amp;#34;: &amp;#34;https://raw.githubusercontent.com/Hoxton019030/Typora/main&amp;#34;, //把Hoxton019030/Typora改成你自己的repo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;branch&amp;#34;: &amp;#34;main&amp;#34; //應該也不用動
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   },
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &amp;#34;picgoPlugins&amp;#34;: {}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;完成之後應該長這個樣子，接著按存檔&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*Jv9sK10wHg0dKTgj.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;接著回到設定，試著按看看測試圖片上傳&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*aBg4zeoUl5MUkCUB.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果成功的話就會出現這樣的畫面&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*jWdQ9Nc1dfG2Ju4g.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;就代表你成功了！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;如果你在按一次測試圖片上傳，由於上傳的圖片檔名一模一樣，會報錯，這樣是正常現象，請不要驚慌&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*W658xLMijQPg2W5M.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;imgur&#34;&gt;imgur&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;首先先辦帳號&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://api.imgur.com/oauth2/addclient&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://api.imgur.com/oauth2/addclient&lt;/a&gt; 點擊這個網址&lt;/li&gt;
+&lt;li&gt;老樣子，名字隨意取就好，然後Authorization type選擇第二個&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*X8N6pfp6RBxMrFUQ-7DMhg.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;接著會跳出畫面，會告訴你你的Client ID是什麼，請複製下來&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*BXo0QET3625yCZb3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;接著到偏好設定裡面打開開啟設定檔，通常會用vscode開啟&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*wcsfPRq4DONBo8WE.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;接著把這段複製貼上上去&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &amp;#34;picBed&amp;#34;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;current&amp;#34;: &amp;#34;imgur&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;uploader&amp;#34;: &amp;#34;imgur&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;imgur&amp;#34;:{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;clientId&amp;#34;: &amp;#34;XXXXXXXXXXX&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   },
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &amp;#34;picgoPlugins&amp;#34;: {}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;貼上去之後應該會長這個樣子&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*w6neiFt-pF_F7Xi5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;然後存檔之後，回到偏好設定，按「測試圖片上傳」&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*zVjvGlhqINfbk757.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*J3wT0Gdta9xwlTpd.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;img&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;跳出這個就代表成功上傳了！&lt;/p&gt;
+&lt;h2 id=&#34;小結&#34;&gt;小結&lt;/h2&gt;
+&lt;p&gt;這樣子只要在typora裡面貼上圖片，typora就會自動幫我們上傳圖片到圖片空間了。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>從入職到離職，事務所的日子之《該進事務所嗎？》</title>
+        <link>https://Hoxton019030.github.io/p/%E5%BE%9E%E5%85%A5%E8%81%B7%E5%88%B0%E9%9B%A2%E8%81%B7%E4%BA%8B%E5%8B%99%E6%89%80%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%8B%E8%A9%B2%E9%80%B2%E4%BA%8B%E5%8B%99%E6%89%80%E5%97%8E/</link>
+        <pubDate>Sat, 08 Oct 2022 00:36:13 +0800</pubDate>
+        
+        <guid>https://Hoxton019030.github.io/p/%E5%BE%9E%E5%85%A5%E8%81%B7%E5%88%B0%E9%9B%A2%E8%81%B7%E4%BA%8B%E5%8B%99%E6%89%80%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%8B%E8%A9%B2%E9%80%B2%E4%BA%8B%E5%8B%99%E6%89%80%E5%97%8E/</guid>
+        <description>&lt;img src="https://i.imgur.com/aHMlhAm.png" alt="Featured image of post 從入職到離職，事務所的日子之《該進事務所嗎？》" /&gt;&lt;p&gt;​		&lt;strong&gt;到底要不要進事務所？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我想一開始就給出解答&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果不知道做什麼就進事務所吧！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​		如果是會計系的學生，在大學期間一定有想過自己到底要不要進入所謂的四大（勤業、資誠、安侯、安永），我在大學的時候對於這個問題倒是沒太多想法，只覺得進入四大事務所好像很威風，出入信義區，西裝革履的樣子，名稱也是國際上有名公司，怎麼想都覺得很穩，能出什麼問題？&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/b0yPTz9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221008012440851&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;當然實際進去之後我就後悔了，發現這樣的生活根本不是自己想要的，索性的待到一月，把年終獎金還有到職獎金，以及政府的青年就業補助的錢領一領之後，就趕緊跑回高雄準備轉換跑道，做什麼都行，但這輩子絕對不會在做會計了。&lt;/p&gt;
+&lt;p&gt;但離職過後也快一年，轉換工作也算成功，但持續的一直有在Follow會計這個圈子，所以想說來分享一下自己的一些想法，希望可以幫助到一些會計系的學生。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;一份工作一定是有好有壞的，事務所的工作則是將好與壞的那非常極端，這篇文章先來講「我」覺得事務所好的地方，下一篇文章再來講我為什麼離職。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;事務所的名聲&#34;&gt;事務所的名聲&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;事務所的名聲是我在離職之後最直接的感受，在自我介紹或是之後轉換跑道的面試，第一個被問的問題都是&lt;/p&gt;
+&lt;p&gt;「你之前在資誠耶，很好的一間公司？怎麼會想要離職轉換跑道呢？」&lt;/p&gt;
+&lt;p&gt;誠然四大在會計系學生的眼中已經是臭到不能再臭的公司，但出了事務所之後，只要待的公司不是太鳥的那種，基本上四大的經歷即使不到亮眼，但也絕對不會是一個看不上眼的經歷。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;事務所是一家很大的公司&#34;&gt;事務所是一家很大的公司&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在離職之後第二個很深的感受是，四大確實是一間很大的公司，在信義區的精華地段裡有很多層樓的辦公室，有包場的尾牙，會請藝人來唱歌，還有很完善的公司分工制度。我現在的公司就是一家在中山區普通商辦大樓裡面的辦公室，員工數大概也就十來人左右，也沒什麼完整的分工制度，有時候感覺一個人要身兼多職。&lt;/p&gt;
+&lt;p&gt;而且我相信很多人離職之後，第二家公司的規模都不會再有四大那樣的規模，所以我覺得可以來四大體驗看看一家員工數破千的公司感覺是怎麼樣的。&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;事務所的工作強度&#34;&gt;事務所的工作強度&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;這點其實很諷刺，我之前在的組別是最近很夯的資誠A11 AKA 獨立所疊字組。說實話當時也沒覺得什麼地不地獄的，當你看同事在加班，組長在加班，經理們也在加班，其實當下也會覺得沒什麼，反正大家就一起加班，有時候晚上六點多，同事們相約訂餐的畫面總讓我想起國小在讀安親班的感覺。&lt;/p&gt;
+&lt;p&gt;我在事務所的上班的大概就是9月入職然後到1月初離職，唯一接觸到的忙季大概就是十月，那時候星期一到五大概都是9點10點那邊回家，差不多有三天是待到11點才走（11點就可以走是因為資誠是在國貿大樓，國貿大樓11點就要關門，所以才有機會回家Q_Q），星期六大概是10點11點進所內，然後可能晚上8、9點離開，至於星期天我是沒進過所內，快樂的小確幸～&lt;/p&gt;
+&lt;p&gt;在這樣中強度的加班強度下，我離職之後，不管待哪家公司我都覺得好爽，這可能也是事務所很諷刺的一個好處吧，畢竟從四大出來的，每個都是見過地獄的人，到哪裡都像是天堂一樣。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;哈哈，可能真的太久沒寫文章了，感覺原本腦中有很多想法，突然要寫就寫不出什麼東西來，自己寫完再回頭來看自己列的這幾點，發現真的是蠻無聊的幾個點，也不構成什麼吸引力，但要問我後悔進入事務所嗎？其實還蠻慶幸我有進入事務所的，因為世界上真的找不太到比那更爛的工作了，我也是在那段期間真的很想離職，有這樣的念頭之後才知道自己到底想做的是什麼，這可能就是所謂的「在極大的痛苦中感覺精神甦醒吧」，總之我想說的是，不管你是台政北或是私科會計，不知道做啥就是選事務所，進去之後就會知道原來有這麼爛的工作，就會強迫自己去想自己到底要做什麼，如果做得下去那也很好，事務所的履歷還是有一點點用的（但我都建議最好是待到組長會比較有用一點）。&lt;/p&gt;
+&lt;p&gt;接下來下一篇文章會聊聊我為什麼從事務所離職，應該蠻多可以談的～&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>基礎AOP介紹-Filter Interceptor AspectJ</title>
         <link>https://Hoxton019030.github.io/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link>
         <pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate>
