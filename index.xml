@@ -2,16 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Hoxton</title>
-        <link>https://Hoxton019030.github.io/</link>
+        <link>https://hoxtonhsu.com/</link>
         <description>Recent content on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Sat, 08 Oct 2022 03:13:34 +0800</lastBuildDate><atom:link href="https://Hoxton019030.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 08 Oct 2022 12:04:44 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>如何使用Hugo在Github上架設靜態網頁完整教學</title>
+        <link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/</link>
+        <pubDate>Sat, 08 Oct 2022 12:04:44 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/</guid>
+        <description>&lt;img src="https://i.imgur.com/WSwohcu.png " alt="Featured image of post 如何使用Hugo在Github上架設靜態網頁完整教學" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+&lt;h2 id=&#34;創建github-repository&#34;&gt;創建GitHub Repository&lt;/h2&gt;
+&lt;h3 id=&#34;submodule是什麼&#34;&gt;submodule是什麼?&lt;/h3&gt;
+&lt;h2 id=&#34;從hugo上下載自己想要的主題thmem&#34;&gt;從Hugo上下載自己想要的主題(thmem)&lt;/h2&gt;
+&lt;h3 id=&#34;如何在本機預覽hugo頁面&#34;&gt;如何在本機預覽Hugo頁面&lt;/h3&gt;
+&lt;h3 id=&#34;如何新增文章&#34;&gt;如何新增文章&lt;/h3&gt;
+&lt;h3 id=&#34;hugo的檔案結構介紹&#34;&gt;hugo的檔案結構介紹&lt;/h3&gt;
+&lt;h3 id=&#34;如何配置自己想要的模板configtoml&#34;&gt;如何配置自己想要的模板(config.toml)&lt;/h3&gt;
+&lt;h4 id=&#34;關於baseurl的細節&#34;&gt;關於baseURL的細節&lt;/h4&gt;
+&lt;h3 id=&#34;如何自定義文章模板&#34;&gt;如何自定義文章模板&lt;/h3&gt;
+&lt;h2 id=&#34;如何將自己的網站上傳到github上面&#34;&gt;如何將自己的網站上傳到GitHub上面&lt;/h2&gt;
+&lt;h3 id=&#34;如何push上去&#34;&gt;如何push上去&lt;/h3&gt;
+&lt;h3 id=&#34;在其他台電腦要怎麼clone下來&#34;&gt;在其他台電腦要怎麼clone下來&lt;/h3&gt;
+&lt;h2 id=&#34;如何建立留言功能&#34;&gt;如何建立留言功能&lt;/h2&gt;
+&lt;h3 id=&#34;gittalk&#34;&gt;GitTalk&lt;/h3&gt;
+&lt;h2 id=&#34;如何購買自己的dns&#34;&gt;如何購買自己的DNS&lt;/h2&gt;
+&lt;h3 id=&#34;google-domain&#34;&gt;Google Domain&lt;/h3&gt;
+</description>
+        </item>
+        <item>
         <title>十大經典魔獸小遊戲地圖</title>
-        <link>https://Hoxton019030.github.io/p/%E5%8D%81%E5%A4%A7%E7%B6%93%E5%85%B8%E9%AD%94%E7%8D%B8%E5%B0%8F%E9%81%8A%E6%88%B2%E5%9C%B0%E5%9C%96/</link>
+        <link>https://hoxtonhsu.com/p/%E5%8D%81%E5%A4%A7%E7%B6%93%E5%85%B8%E9%AD%94%E7%8D%B8%E5%B0%8F%E9%81%8A%E6%88%B2%E5%9C%B0%E5%9C%96/</link>
         <pubDate>Sat, 08 Oct 2022 03:13:34 +0800</pubDate>
         
-        <guid>https://Hoxton019030.github.io/p/%E5%8D%81%E5%A4%A7%E7%B6%93%E5%85%B8%E9%AD%94%E7%8D%B8%E5%B0%8F%E9%81%8A%E6%88%B2%E5%9C%B0%E5%9C%96/</guid>
+        <guid>https://hoxtonhsu.com/p/%E5%8D%81%E5%A4%A7%E7%B6%93%E5%85%B8%E9%AD%94%E7%8D%B8%E5%B0%8F%E9%81%8A%E6%88%B2%E5%9C%B0%E5%9C%96/</guid>
         <description>&lt;img src="https://i.imgur.com/RALUdJZ.png " alt="Featured image of post 十大經典魔獸小遊戲地圖" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/3iTZrU2.jpg&#34;
 	
@@ -191,10 +216,10 @@
         </item>
         <item>
         <title>Bioshock3心得</title>
-        <link>https://Hoxton019030.github.io/p/bioshock3%E5%BF%83%E5%BE%97/</link>
+        <link>https://hoxtonhsu.com/p/bioshock3%E5%BF%83%E5%BE%97/</link>
         <pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate>
         
-        <guid>https://Hoxton019030.github.io/p/bioshock3%E5%BF%83%E5%BE%97/</guid>
+        <guid>https://hoxtonhsu.com/p/bioshock3%E5%BF%83%E5%BE%97/</guid>
         <description>&lt;img src="https://i.imgur.com/h13vjaO.png" alt="Featured image of post Bioshock3心得" /&gt;&lt;h1 id=&#34;無雷心得&#34;&gt;無雷心得： 　&lt;/h1&gt;
 &lt;p&gt;2013年的作品了，最近特價才把它買回來玩，如果要講無雷心得的話，我會建議遊戲直接開最低難度就好，然後留聲機(遊戲裡面的文本訊息)多收集，沒有字幕，但是點進去會有逐字稿，強烈建議看一下，不要像我一樣什麼都沒看，會有蠻多地方不太清楚的，無雷心得我就講到這邊，因為這遊戲的劇情只要稍微提一下就會有暴雷的成分，遊戲時長約為10小時，算是很短了，推薦嗎？推薦，因為超多人都說劇情很神，300元當作看一場電影也不虧，適合你周末時買來玩。&lt;/p&gt;
 &lt;h1 id=&#34;有雷心得&#34;&gt;有雷心得：&lt;/h1&gt;
@@ -227,10 +252,10 @@
         </item>
         <item>
         <title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title>
-        <link>https://Hoxton019030.github.io/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link>
+        <link>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link>
         <pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate>
         
-        <guid>https://Hoxton019030.github.io/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid>
+        <guid>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid>
         <description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" /&gt;&lt;p&gt;最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p&gt;
 &lt;p&gt;圖片空間有Github跟imgur，就看你想要用哪個就用哪個吧，其實沒差太多，但imgur會稍微簡單一點點點點點點，以下是步驟&lt;/p&gt;
 &lt;h2 id=&#34;開始&#34;&gt;開始&lt;/h2&gt;
@@ -649,10 +674,10 @@
         </item>
         <item>
         <title>從入職到離職，事務所的日子之《該進事務所嗎？》</title>
-        <link>https://Hoxton019030.github.io/p/%E5%BE%9E%E5%85%A5%E8%81%B7%E5%88%B0%E9%9B%A2%E8%81%B7%E4%BA%8B%E5%8B%99%E6%89%80%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%8B%E8%A9%B2%E9%80%B2%E4%BA%8B%E5%8B%99%E6%89%80%E5%97%8E/</link>
+        <link>https://hoxtonhsu.com/p/%E5%BE%9E%E5%85%A5%E8%81%B7%E5%88%B0%E9%9B%A2%E8%81%B7%E4%BA%8B%E5%8B%99%E6%89%80%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%8B%E8%A9%B2%E9%80%B2%E4%BA%8B%E5%8B%99%E6%89%80%E5%97%8E/</link>
         <pubDate>Sat, 08 Oct 2022 00:36:13 +0800</pubDate>
         
-        <guid>https://Hoxton019030.github.io/p/%E5%BE%9E%E5%85%A5%E8%81%B7%E5%88%B0%E9%9B%A2%E8%81%B7%E4%BA%8B%E5%8B%99%E6%89%80%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%8B%E8%A9%B2%E9%80%B2%E4%BA%8B%E5%8B%99%E6%89%80%E5%97%8E/</guid>
+        <guid>https://hoxtonhsu.com/p/%E5%BE%9E%E5%85%A5%E8%81%B7%E5%88%B0%E9%9B%A2%E8%81%B7%E4%BA%8B%E5%8B%99%E6%89%80%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%8B%E8%A9%B2%E9%80%B2%E4%BA%8B%E5%8B%99%E6%89%80%E5%97%8E/</guid>
         <description>&lt;img src="https://i.imgur.com/aHMlhAm.png" alt="Featured image of post 從入職到離職，事務所的日子之《該進事務所嗎？》" /&gt;&lt;p&gt;​		&lt;strong&gt;到底要不要進事務所？&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;我想一開始就給出解答&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果不知道做什麼就進事務所吧！&lt;/strong&gt;&lt;/p&gt;
@@ -701,10 +726,10 @@
         </item>
         <item>
         <title>基礎AOP介紹-Filter Interceptor AspectJ</title>
-        <link>https://Hoxton019030.github.io/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link>
+        <link>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link>
         <pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate>
         
-        <guid>https://Hoxton019030.github.io/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</guid>
+        <guid>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</guid>
         <description>&lt;img src="https://i.imgur.com/B7GhSw1.png" alt="Featured image of post 基礎AOP介紹-Filter Interceptor AspectJ" /&gt;&lt;h1 id=&#34;目錄&#34;&gt;目錄&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;#Filter%28%e9%81%8e%e6%bf%be%e5%99%a8%29Interceptor%28%e6%94%94%e6%88%aa%e5%99%a8%29AOP%28%e5%89%96%e9%9d%a2%e5%b0%8e%e5%90%91%e7%a8%8b%e5%bc%8f%e8%a8%ad%e8%a8%88%29%e4%b9%8b%e5%b7%ae%e7%95%b0&#34; &gt;Filter(過濾器)Interceptor(攔截器)AOP(剖面導向程式設計)之差異&lt;/a&gt;
@@ -2036,10 +2061,10 @@
         </item>
         <item>
         <title>死亡擱淺心得，前面無雷，後面有雷</title>
-        <link>https://Hoxton019030.github.io/p/%E6%AD%BB%E4%BA%A1%E6%93%B1%E6%B7%BA%E5%BF%83%E5%BE%97%E5%89%8D%E9%9D%A2%E7%84%A1%E9%9B%B7%E5%BE%8C%E9%9D%A2%E6%9C%89%E9%9B%B7/</link>
+        <link>https://hoxtonhsu.com/p/%E6%AD%BB%E4%BA%A1%E6%93%B1%E6%B7%BA%E5%BF%83%E5%BE%97%E5%89%8D%E9%9D%A2%E7%84%A1%E9%9B%B7%E5%BE%8C%E9%9D%A2%E6%9C%89%E9%9B%B7/</link>
         <pubDate>Fri, 07 Oct 2022 02:44:36 +0800</pubDate>
         
-        <guid>https://Hoxton019030.github.io/p/%E6%AD%BB%E4%BA%A1%E6%93%B1%E6%B7%BA%E5%BF%83%E5%BE%97%E5%89%8D%E9%9D%A2%E7%84%A1%E9%9B%B7%E5%BE%8C%E9%9D%A2%E6%9C%89%E9%9B%B7/</guid>
+        <guid>https://hoxtonhsu.com/p/%E6%AD%BB%E4%BA%A1%E6%93%B1%E6%B7%BA%E5%BF%83%E5%BE%97%E5%89%8D%E9%9D%A2%E7%84%A1%E9%9B%B7%E5%BE%8C%E9%9D%A2%E6%9C%89%E9%9B%B7/</guid>
         <description>&lt;img src="https://i.imgur.com/mg2syAL.jpg" alt="Featured image of post 死亡擱淺心得，前面無雷，後面有雷" /&gt;&lt;p&gt;​		如果你是好奇死亡擱淺這款遊戲到底好不好玩，擔心對不到電波，怕買了浪費錢的人可以聽看看我的想法&amp;ndash;「我覺得很難歸納出哪種類型的人會喜歡死亡擱淺」 我只能說，會比較推薦給至少能撥出個1、2小時玩遊戲的人才會比較適合玩。&lt;/p&gt;
 &lt;p&gt;無雷心得：&lt;/p&gt;
 &lt;p&gt;　　我本身不是小島秀夫的粉絲，他的作品我也只玩過幻痛而已，而且 我覺得幻痛超級無聊，遊戲評分鼓勵你不殺，所以你很多裝備是不能用 的，而且地圖設計也稱不上有趣，荒漠和草原的地形空蕩到很空虛，不太能理解 為什麼硬要做成開放地圖，A任務做完要到B任務就只能自己過去、或是叫直升機等等的。看完了儀式之人的影片後也沒有覺得躍躍欲試的感覺，玩了20個小時後真的撐不下去就 不玩了，所以我在買死亡擱淺前其實猶豫很久，因為我知道我可能會Get不到遊戲有趣的點? 後來還是抱持著是驢是馬遛看看的心情買了下去。&lt;/p&gt;
@@ -2060,10 +2085,10 @@
         </item>
         <item>
         <title>黑暗靈魂1心得</title>
-        <link>https://Hoxton019030.github.io/p/%E9%BB%91%E6%9A%97%E9%9D%88%E9%AD%821%E5%BF%83%E5%BE%97/</link>
+        <link>https://hoxtonhsu.com/p/%E9%BB%91%E6%9A%97%E9%9D%88%E9%AD%821%E5%BF%83%E5%BE%97/</link>
         <pubDate>Thu, 06 Oct 2022 23:16:34 +0800</pubDate>
         
-        <guid>https://Hoxton019030.github.io/p/%E9%BB%91%E6%9A%97%E9%9D%88%E9%AD%821%E5%BF%83%E5%BE%97/</guid>
+        <guid>https://hoxtonhsu.com/p/%E9%BB%91%E6%9A%97%E9%9D%88%E9%AD%821%E5%BF%83%E5%BE%97/</guid>
         <description>&lt;img src="https://i.imgur.com/jQx4JF5.png" alt="Featured image of post 黑暗靈魂1心得" /&gt;&lt;p&gt;如果你沒有看過黑暗靈魂1代的任何影片，比如說boss介紹、地圖跑法之類的&lt;/p&gt;
 &lt;p&gt;也沒有玩過魂3，那我會覺得黑暗靈魂1代很值得玩
 但如果你已經看過很多實況主玩過黑暗靈魂，知道怎麼從傳火祭祀場走到灰燼湖
@@ -2098,10 +2123,10 @@
         </item>
         <item>
         <title>Java內的排程器介紹</title>
-        <link>https://Hoxton019030.github.io/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</link>
+        <link>https://hoxtonhsu.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</link>
         <pubDate>Thu, 06 Oct 2022 23:14:21 +0800</pubDate>
         
-        <guid>https://Hoxton019030.github.io/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</guid>
+        <guid>https://hoxtonhsu.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</guid>
         <description>&lt;img src="https://i.imgur.com/9or5BzU.png" alt="Featured image of post Java內的排程器介紹" /&gt;&lt;h1 id=&#34;springboot-scheduling&#34;&gt;SpringBoot-Scheduling&lt;/h1&gt;
 &lt;p&gt;用來做定期任務的東西，有兩種&lt;/p&gt;
 &lt;ul&gt;
@@ -3163,18 +3188,18 @@
         </item>
         <item>
         <title>Archives</title>
-        <link>https://Hoxton019030.github.io/archives/</link>
+        <link>https://hoxtonhsu.com/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://Hoxton019030.github.io/archives/</guid>
+        <guid>https://hoxtonhsu.com/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Search</title>
-        <link>https://Hoxton019030.github.io/search/</link>
+        <link>https://hoxtonhsu.com/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://Hoxton019030.github.io/search/</guid>
+        <guid>https://hoxtonhsu.com/search/</guid>
         <description></description>
         </item>
         

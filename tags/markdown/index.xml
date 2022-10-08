@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>markdown on Hoxton</title>
-        <link>https://Hoxton019030.github.io/tags/markdown/</link>
+        <link>https://hoxtonhsu.com/tags/markdown/</link>
         <description>Recent content in markdown on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Sat, 08 Oct 2022 01:02:04 +0800</lastBuildDate><atom:link href="https://Hoxton019030.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 08 Oct 2022 01:02:04 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/markdown/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title>
-        <link>https://Hoxton019030.github.io/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link>
+        <link>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link>
         <pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate>
         
-        <guid>https://Hoxton019030.github.io/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid>
+        <guid>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid>
         <description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" /&gt;&lt;p&gt;最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p&gt;
 &lt;p&gt;圖片空間有Github跟imgur，就看你想要用哪個就用哪個吧，其實沒差太多，但imgur會稍微簡單一點點點點點點，以下是步驟&lt;/p&gt;
 &lt;h2 id=&#34;開始&#34;&gt;開始&lt;/h2&gt;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>網頁 on Hoxton</title>
+        <link>https://hoxtonhsu.com/tags/%E7%B6%B2%E9%A0%81/</link>
+        <description>Recent content in 網頁 on Hoxton</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh</language>
+        <lastBuildDate>Sat, 08 Oct 2022 12:04:44 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/%E7%B6%B2%E9%A0%81/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>如何使用Hugo在Github上架設靜態網頁完整教學</title>
+        <link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/</link>
+        <pubDate>Sat, 08 Oct 2022 12:04:44 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/</guid>
+        <description>&lt;img src="https://i.imgur.com/WSwohcu.png " alt="Featured image of post 如何使用Hugo在Github上架設靜態網頁完整教學" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+&lt;h2 id=&#34;創建github-repository&#34;&gt;創建GitHub Repository&lt;/h2&gt;
+&lt;h3 id=&#34;submodule是什麼&#34;&gt;submodule是什麼?&lt;/h3&gt;
+&lt;h2 id=&#34;從hugo上下載自己想要的主題thmem&#34;&gt;從Hugo上下載自己想要的主題(thmem)&lt;/h2&gt;
+&lt;h3 id=&#34;如何在本機預覽hugo頁面&#34;&gt;如何在本機預覽Hugo頁面&lt;/h3&gt;
+&lt;h3 id=&#34;如何新增文章&#34;&gt;如何新增文章&lt;/h3&gt;
+&lt;h3 id=&#34;hugo的檔案結構介紹&#34;&gt;hugo的檔案結構介紹&lt;/h3&gt;
+&lt;h3 id=&#34;如何配置自己想要的模板configtoml&#34;&gt;如何配置自己想要的模板(config.toml)&lt;/h3&gt;
+&lt;h4 id=&#34;關於baseurl的細節&#34;&gt;關於baseURL的細節&lt;/h4&gt;
+&lt;h3 id=&#34;如何自定義文章模板&#34;&gt;如何自定義文章模板&lt;/h3&gt;
+&lt;h2 id=&#34;如何將自己的網站上傳到github上面&#34;&gt;如何將自己的網站上傳到GitHub上面&lt;/h2&gt;
+&lt;h3 id=&#34;如何push上去&#34;&gt;如何push上去&lt;/h3&gt;
+&lt;h3 id=&#34;在其他台電腦要怎麼clone下來&#34;&gt;在其他台電腦要怎麼clone下來&lt;/h3&gt;
+&lt;h2 id=&#34;如何建立留言功能&#34;&gt;如何建立留言功能&lt;/h2&gt;
+&lt;h3 id=&#34;gittalk&#34;&gt;GitTalk&lt;/h3&gt;
+&lt;h2 id=&#34;如何購買自己的dns&#34;&gt;如何購買自己的DNS&lt;/h2&gt;
+&lt;h3 id=&#34;google-domain&#34;&gt;Google Domain&lt;/h3&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -14,7 +14,7 @@
 到這一步本地端的設定已經完成80%了，接下來就是要選擇要使用哪種圖片空間
 Github 首先先到Github創建一個公開的Repository，名字隨意就好 接著把這個Repository的URL複製下來 1 https://github.com/Hoxton019030/Typora 右上角個人頭像點開，選擇Settings 左側選項最下面有一個Developer settings 選擇Personal access tokens 選擇 Generate new token 輸入這個token的名稱，隨便取就好，Expiration看個人喜好，我很懶，所以我選擇永久，下面的select scopes勾選repo 接著會產生一組ghp開頭的token，這組序號只會在這裡以明碼出現一次，接下來永遠都不會再以明碼的方式呈現所以請好好記起來 然後到Typora的偏好設定裡打開開啟設定檔，通常會是用一個文本編輯器打開，通常都是vscode啦 接著把這串東西複製貼上去 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 { &amp;#34;picBed&amp;#34;: { &amp;#34;current&amp;#34;: &amp;#34;github&amp;#34;, &amp;#34;uploader&amp;#34;: &amp;#34;github&amp;#34;, &amp;#34;github&amp;#34;: { &amp;#34;repo&amp;#34;: &amp;#34;Hoxton019030/Typora&amp;#34;, //這串對應的是使用者名稱&#43;Repo名稱，改成自己的 &amp;#34;token&amp;#34;: &amp;#34;ghp_xxxxxxxxxxxxxxxxxxxx&amp;#34;, //這邊把剛剛產生的token貼上去 &amp;#34;path&amp;#34;: &amp;#34;data/&amp;#34;, //圖片要上傳到哪個資料夾，可以先不用設定， &amp;#34;customUrl&amp;#34;: &amp;#34;https://raw.'><title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title>
 
-<link rel='canonical' href='https://Hoxton019030.github.io/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/'>
+<link rel='canonical' href='https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/'>
 
 <link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)'>
 <meta property='og:description' content='最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看
@@ -29,7 +29,7 @@ Github 首先先到Github創建一個公開的Repository，名字隨意就好 �
 1 Set-ExecutionPolicy RemoteSigned 來允許執行，這時候在輸入picgo應該就可以看到這樣子的畫面了
 到這一步本地端的設定已經完成80%了，接下來就是要選擇要使用哪種圖片空間
 Github 首先先到Github創建一個公開的Repository，名字隨意就好 接著把這個Repository的URL複製下來 1 https://github.com/Hoxton019030/Typora 右上角個人頭像點開，選擇Settings 左側選項最下面有一個Developer settings 選擇Personal access tokens 選擇 Generate new token 輸入這個token的名稱，隨便取就好，Expiration看個人喜好，我很懶，所以我選擇永久，下面的select scopes勾選repo 接著會產生一組ghp開頭的token，這組序號只會在這裡以明碼出現一次，接下來永遠都不會再以明碼的方式呈現所以請好好記起來 然後到Typora的偏好設定裡打開開啟設定檔，通常會是用一個文本編輯器打開，通常都是vscode啦 接著把這串東西複製貼上去 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 { &amp;#34;picBed&amp;#34;: { &amp;#34;current&amp;#34;: &amp;#34;github&amp;#34;, &amp;#34;uploader&amp;#34;: &amp;#34;github&amp;#34;, &amp;#34;github&amp;#34;: { &amp;#34;repo&amp;#34;: &amp;#34;Hoxton019030/Typora&amp;#34;, //這串對應的是使用者名稱&#43;Repo名稱，改成自己的 &amp;#34;token&amp;#34;: &amp;#34;ghp_xxxxxxxxxxxxxxxxxxxx&amp;#34;, //這邊把剛剛產生的token貼上去 &amp;#34;path&amp;#34;: &amp;#34;data/&amp;#34;, //圖片要上傳到哪個資料夾，可以先不用設定， &amp;#34;customUrl&amp;#34;: &amp;#34;https://raw.'>
-<meta property='og:url' content='https://Hoxton019030.github.io/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/'>
+<meta property='og:url' content='https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/'>
 <meta property='og:site_name' content='Hoxton'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='markdown' /><meta property='article:published_time' content='2022-10-08T01:02:04&#43;08:00'/><meta property='article:modified_time' content='2022-10-08T01:02:04&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/W6FAkN1.png' />
 <meta name="twitter:title" content="TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)">
@@ -768,6 +768,34 @@ if (!doNotTrack) {
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/WSwohcu.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/WSwohcu.png "/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">如何使用Hugo在Github上架設靜態網頁完整教學</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
