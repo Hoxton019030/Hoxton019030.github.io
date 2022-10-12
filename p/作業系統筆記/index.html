@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='作業系統的筆記'><title>作業系統筆記</title>
+
+<link rel='canonical' href='https://hoxtonhsu.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/'>
+
+<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='作業系統筆記'>
+<meta property='og:description' content='作業系統的筆記'>
+<meta property='og:url' content='https://hoxtonhsu.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/'>
+<meta property='og:site_name' content='Hoxton'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='作業系統' /><meta property='article:published_time' content='2022-10-08T03:02:43&#43;08:00'/><meta property='article:modified_time' content='2022-10-08T03:02:43&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/HJLk11O.png' />
+<meta name="twitter:title" content="作業系統筆記">
+<meta name="twitter:description" content="作業系統的筆記"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.imgur.com/HJLk11O.png' />
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-9N16MVLR0Q', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_3.png" width="300"
+                            height="301" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Hoxton</a></h1>
+            <h2 class="site-description">日常</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Hoxton019030'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.instagram.com/hoxton_8a31/'
+                        target="_blank"
+                        title="Instagram"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="4" />
+  <circle cx="12" cy="12" r="3" />
+  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/">
+                
+                    <img src="https://i.imgur.com/HJLk11O.png" loading="lazy" alt="Featured image of post 作業系統筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%A8%8B%E5%BC%8F/" >
+                程式
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/">作業系統筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            作業系統的筆記
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 08, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="operating-system">Operating-System</h1>
+<h1 id="第一節-總覽">第一節 總覽</h1>
+<h2 id="第一章-序言">第一章 序言</h2>
+<p>管理硬體的軟體就是作業系統，硬體包含CPU，Memory，I/O設備等等…作業系統就是負責管理這些硬體的系統。一個電腦系統可以被粗略的劃分成下面四個組件</p>
+<ul>
+<li>硬體(hardware)</li>
+<li>作業系統(operating system)</li>
+<li>應用程式(application programs)</li>
+<li>使用者(user)</li>
+</ul>
+<p><img src="https://i.imgur.com/PZiePn0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20220918222340597"
+	
+	
+></p>
+<h3 id="硬體hardware">硬體(hardware)</h3>
+<p>包括CPU(Central Processing Unit)，記憶體(Memory)，Input/output設備…提供給系統基本的計算資源</p>
+<h3 id="作業系統operating-system">作業系統(operating system)</h3>
+<p>負責協調硬體與應用程式，給不同的使用者</p>
+<h3 id="應用程式application-programs">應用程式(application programs)</h3>
+<p>例如Word，Excel，Chrome之類的應用程式，來處理使用者的計算問題(Computing Problems)</p>
+<h2 id="第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)</h2>
+<h3 id="os-service">OS Service</h3>
+<p>透過System Code去呼叫這些Service</p>
+<p><img src="https://i.imgur.com/RIMvaGk.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221008173129040"
+	
+	
+></p>
+<h3 id="os-application-interface最重要的">OS-Application Interface(最重要的)</h3>
+<ul>
+<li>System call (使用組合語言撰寫)</li>
+</ul>
+<p>Operating System本身就是一個提供Service的Software，提供Process conmtrol, FIle management, Device management, Information maintenance, Communications。而System Call則是OS的Interface，透過System Call去進行Software的Interrupt。</p>
+<ul>
+<li>API</li>
+</ul>
+<p>由於System call是使用組合語言來寫的，較不貼近人類，因此在多加一層API，來調用System call。這些API有些會使用到多個System Call，有些則連一個System Call都沒有，因為API本身就只是為了方面Programing，提供一個Interface去調用更底層的System call</p>
+<p><img src="https://i.imgur.com/qKgR7ax.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221008225805849"
+	
+	
+></p>
+<p>System Call傳送參數的三種方式</p>
+<ol>
+<li>透過Rigisters</li>
+<li>透過Pointer</li>
+</ol>
+<p><img src="https://i.imgur.com/L0RUgJ9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221009135803193"
+	
+	
+></p>
+<ol start="3">
+<li>透過Stack</li>
+</ol>
+<h3 id="os-structure-operating-system">OS Structure Operating-System</h3>
+<h4 id="simple-os-architecture">Simple OS Architecture</h4>
+<p><img src="https://i.imgur.com/GtaKA9x.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221009193532801"
+	
+	
+></p>
+<p>MS-DOS device driver和ROM BIOS device driver其實都是Driver，大部分的東西都還是塞在Resident system program裡面，也就是沒再分。</p>
+<h4 id="layer-os-architecture">Layer Os Architecture</h4>
+<p><img src="https://i.imgur.com/SXR7S2w.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221009193909302"
+	
+	
+></p>
+<p>基於Simple OS Architecture對於維護上的不便（所有東西都寫在一起），所以有人提出了分層的概念，在kerel依照subsystem的概念去劃分各個職責。外層的layer可以call裡面的layer，裡面的layer不能call外面的layer，概念有點像Mvc架構，這樣方便工程師去維護，但相對的也會帶來一些<strong>困難</strong>，比如說<strong>效能降低</strong>，因為需要由外面一層一層呼叫，因此效能會降低。另一方面，要去定義<strong>各個Layer</strong>也不是一件容易的事情。</p>
+<h4 id="microkernel-os">Microkernel OS</h4>
+<p><img src="https://i.imgur.com/lVO8ERV.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221009200319941"
+	
+	
+></p>
+<p>kernel的程式碼應該要越少越好，越少越小代表越Reliable。</p>
+<p>引入Modularize的概念，把Subsystem變成各種modular，中間的kernel是負責去溝通各種不同的Modular。</p>
+<p>kernel只負責去溝通和定義，但因為這個架構的每一個subsystem要溝通都要透過kernel，去interrupt它，效能又會在更低</p>
+<h4 id="modular-os-structure">Modular OS Structure</h4>
+<p><img src="https://i.imgur.com/MQWMMPO.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221009203643586"
+	
+	
+></p>
+<p>現在常見的作業系統大部分都遵循這個架構（linux），有點像OO的概念，把功能<strong>寫成各個在kernel</strong>裡面的Subsystem，可以去這張投影片下面的網址，會手把手教你怎麼撰寫kernel</p>
+<h4 id="virtual-machine">Virtual Machine</h4>
+<p><img src="https://i.imgur.com/nwp4ACJ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221009214443781"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/yqh2tao.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221009214705990"
+	
+	
+></p>
+<p><a class="link" href="https://youtu.be/7pAiJeldUfk?t=700"  target="_blank" rel="noopener"
+    >https://youtu.be/7pAiJeldUfk?t=700</a></p>
+<p>可以多看幾次。</p>
+<p>critical instruction：一個instruction在user mode跟kernel mode執行的結果會不一樣，比如說user mode可能是a+b，但在kernel mode執行的結果是a+b+b</p>
+<p>VM的好處</p>
+<ul>
+<li>隔離各個使用著，保護system resouce</li>
+<li>透過VM，可以在一台電腦因應不同的程式需求，建立不同的VM（window 98，windowXP）</li>
+<li>幫助R&amp;D測試開發，</li>
+</ul>
+<p>VM的技術</p>
+<ul>
+<li>Full Virtualization</li>
+</ul>
+<p><img src="https://i.imgur.com/UEXmsCg.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221009224922016"
+	
+	
+></p>
+<p>一個guest的作業系統，可以不用做任何修改就可以直接安裝在一個作業系統，VM不知道自己是個VM，以為自己就是一個完整的作業系統</p>
+<ul>
+<li>Para-virtualization</li>
+</ul>
+<p><img src="https://i.imgur.com/62vkO74.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010131253990"
+	
+	
+></p>
+<p>會有一個Global zone，負責去調度、協調各個VM，Guest的作業系統需要被修改</p>
+<h4 id="java-virtual-machine">Java Virtual Machine</h4>
+<p><img src="https://i.imgur.com/H4YbXj1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010132400382"
+	
+	
+></p>
+<h1 id="第二節-process-management-進程管理">第二節 Process Management (進程管理)</h1>
+<h2 id="第三章-processes-進程">第三章 Processes (進程)</h2>
+<h4 id="process-concept">Process Concept</h4>
+<p><img src="https://i.imgur.com/46QhD4h.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010162753190"
+	
+	
+></p>
+<ul>
+<li>Program：被動的，可被執行的程式就叫Program，存在硬碟裡面</li>
+<li>Process：主動的，一個程式正在執行就叫Process，是存在Memory裡面</li>
+</ul>
+<p><code>code segment</code>：把程式碼放到memory裡面的動作</p>
+<p><code>Data section</code>：globla variable存放的區域</p>
+<p><code>Stack</code>：區域變數及function存放的地方</p>
+<p><code>Heap</code>：(待補)</p>
+<p><img src="https://i.imgur.com/67apr7c.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010170803581"
+	
+	
+></p>
+<p>又稱做Lightweight process，是CPU的最小執行單位，它跟Process有八成像，Process可以被拆分成很多個Thread，許多Thread<strong>可以共用同一塊Memory Space</strong>。</p>
+<p>同一個Process下面的Thread，它的Code section，Data section，OS resource ，這三塊的memory空間是共用的。</p>
+<p><img src="https://i.imgur.com/P3yDybT.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010172926249"
+	
+	
+></p>
+<p>管理Thread的方式跟管理Process的方式都大同小異，區別不大，像Linux就沒有Process的概念。都只有Thread而已，當一個Process被執行起來時，會有下面這五個狀態</p>
+<p><img src="https://i.imgur.com/oPCYLp0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010175047577"
+	
+	
+></p>
+<ol>
+<li>New：當這個Process被created出來，把Program load 進 Memory裡面，然後initialization。</li>
+<li>Ready：把Process放進一個quoue裡面，等著被OS排程，放進CPU做使用。</li>
+<li>Running：送instructions到CPU裡面做使用</li>
+<li>Ｗating：有些instruction不需要CPU來做，例如IO，而等待其他事件執行完畢的這個過程就叫wating</li>
+<li>Terminated：釋放資源，把資源給其他的Process</li>
+</ol>
+<p><img src="https://i.imgur.com/A9jcaOI.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010180531411"
+	
+	
+></p>
+<p>管理Process的方式，就是會為每一個Process去建立一個<strong>Process Control Block</strong>，在Memory裡面紀錄這些Information，在Ready狀態的意思，就是只把PCB放進quoue的動作，這個PCB會存放下列資訊。</p>
+<ul>
+<li>
+<p>Process State</p>
+</li>
+<li>
+<p>Program counter（CPU中的Register，用於指示電腦在其程式序列中的位置）</p>
+</li>
+<li>
+<p>CPU Register（CPU中，用來暫存指令、數據和記憶體位址的電腦記憶體，暫存器的容量有限，但讀寫速度快的飛起）</p>
+</li>
+<li>
+<p>CPU Scheduling Information</p>
+</li>
+<li>
+<p>Memory-management information</p>
+</li>
+<li>
+<p>I/O status information</p>
+</li>
+<li>
+<p>Accounting Information</p>
+</li>
+</ul>
+<p>+++</p>
+<p><img src="https://i.imgur.com/s2ZFuvE.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010182705266"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/lOawJ5v.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010183709101"
+	
+	
+></p>
+<p>CPU被interrupt之後，把CPU上執行的Process切換成另一個Process的動作，就叫Context Switch，實際上就是在做PCB的Save還有Load的動作。</p>
+<p>Context Switch是一個overhead（浪費）的行為，但卻無可避免，因為我們要Share CPU 給所有的Process。</p>
+<p>提升Context Switch的速度有幾種方式</p>
+<ul>
+<li>提升momory的速度</li>
+<li>減少Register的數量，數量減少了，需要存儲的資料也少了，但這件事情在現代很難做到</li>
+</ul>
+<p>上面兩種都不是主流的方式</p>
+<ul>
+<li>Hardware Support，有好幾個set的Register，可以在hardware裡面紀錄好幾個程式的狀態，所以在做Context Switch的時候，只是從一個Register切換到另一個Register，減少對memory的access</li>
+</ul>
+<h4 id="process-scheduling">Process Scheduling</h4>
+<p><img src="https://i.imgur.com/zvU98FQ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010185905554"
+	
+	
+></p>
+<blockquote>
+<p>Process 也能產生 Process （parent跟child）</p>
+</blockquote>
+<p><img src="https://i.imgur.com/9GsCQX3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010230406358"
+	
+	
+></p>
+<p>CPU的數量很少，可能只有個位數或十幾個，但在Memory要執行的程式卻很多(multiProgram)，因此需要Scheduler，有分為三種Scheduler</p>
+<ul>
+<li>Short-term**(CPU Scheduler)**：選擇哪個Process要被執行，以及分配CPU</li>
+<li>Long-term**(Job Scheduler)**：決定哪些Processes能被Load進Memory，以及進入queue等待</li>
+<li>Medium-term：決定哪個Processes被丟回Memory（從Ready state 變成 Wait state）</li>
+</ul>
+<p><img src="https://i.imgur.com/XyXSPVP.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010232740246"
+	
+	
+></p>
+<h5 id="long-term-scheduler">Long-Term Scheduler</h5>
+<ul>
+<li>
+<p>控制 degree of multiprogramming：目前電腦上有幾個程式在Memory裡面</p>
+</li>
+<li>
+<p>執行的頻率相較Short-term來講較低（只在process離開系統，或是每隔幾分鐘執行一次）</p>
+</li>
+<li>
+<p>選擇什麼Processes也很重要，因為我們希望CPU跟I/O可以overlap，不要完全偏向CPU或是I/O，而讓另一方沒事情做。</p>
+</li>
+<li>
+<p>在現在的OS裡面，因為Memory已經足夠，因此Job Schduler的功能逐漸淡化，直接先load進memory再說，</p>
+</li>
+</ul>
+<h5 id="short-term-scheduler">Short-Term Scheduler</h5>
+<p><img src="https://i.imgur.com/uzdlYWX.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221010234018932"
+	
+	
+></p>
+<ul>
+<li>頻率極短(100ms)</li>
+<li>要非常有效率</li>
+</ul>
+<h5 id="medium-term-scheduler">Medium-Term Scheduler</h5>
+<p><img src="https://i.imgur.com/nYV5B7I.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221011010707793"
+	
+	
+></p>
+<p>負責在DisK及Memory之間切換的Scheduler</p>
+<p>Swap Out：把Processes移出記憶體</p>
+<p>Swap In：把Processes移入記憶體</p>
+<p><img src="https://i.imgur.com/PYbB6CD.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221012001702454"
+	
+	
+></p>
+<p>每個Processor都有自己的ID(Processor identifier <strong>pid</strong>)，<strong>整台電腦一開始在執行的時候只會有一個Process</strong>，這個Process再去Create其他的Process</p>
+<ul>
+<li>這個指令可以列出所有啟動的Processes</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps-ael 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/tdzYGmL.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221012003309571"
+	
+	
+></p>
+<h5 id="process-creation">Process Creation</h5>
+<p>Parent和Child雖然是兩隻不一樣的程式，但還是有某種程度上的關聯，這個關聯性的定義，分成下面三個比較重要的部分，<strong>這個關聯性是由OS的設計者去決定的</strong></p>
+<ol>
+<li>
+<p>Resource Sharing之間的關聯性</p>
+<ul>
+<li>Parent跟Child分享所有資源</li>
+<li>Global共享，但Dynamic的不共享</li>
+<li>全部都不分享</li>
+</ul>
+</li>
+<li>
+<p>Processes執行的順序，當Child被創建後，哪個Process有優先執行的權力</p>
+<ul>
+<li>讓OS自己來決定</li>
+<li>Chidren擁有較高的執行權</li>
+</ul>
+</li>
+<li>
+<p>Process Address Space的狀態</p>
+<ul>
+<li>
+<p>Child複製Parent的過去（連Code Counter，程式執行到哪一行都會複製過去，比如說Parent執行到第三行，那複製過去的Child就會從第三開始啟動。行為都一樣，但Address會不一樣）</p>
+</li>
+<li>
+<p>Child重新去Load Parent的程式碼。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/OygMp9G.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221012215807520"
+	
+	
+></p>
+<h5 id="unixlinux-process-creation">UNIX/Linux Process Creation</h5>
+<ul>
+<li>
+<p><strong>fork</strong> system Call</p>
+<ul>
+<li>創建新的Child Process</li>
+<li>是用複製(duplicates)的方式創建的</li>
+<li>執行無先後順序之分</li>
+<li>Fork的這個Code也是個System code，會return 一個 value，return的value會是它children的PID，若底下無children則return 0 （父母一定知道小孩是誰，但小孩不一定知道父母是誰）</li>
+</ul>
+</li>
+<li>
+<p><strong>execlp</strong> system call</p>
+<ul>
+<li>Parent跟Child是dupulicate，裡面的內容完完全全一模一樣，但今天create 一個新的process的目的不是為了做同樣的事情，因此execlp這個system call的目的，就是塞一個binary file（也就是program），就會把把child的process全部清空。**那為什麼不直接創造一個新的process？**因為需要跟OS註冊一個PID</li>
+</ul>
+</li>
+<li>
+<p><strong>wait</strong> system call</p>
+<ul>
+<li>因為執行順序是concurrently，因此需要用wait來做順序的控制</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/a5oWtwq.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221012222041627"
+	
+	
+></p>
+<blockquote>
+<p>這只是UNIX系統對Process的策略，不代表所有，實際還是要參照[Process Creation](# Process Creation)</p>
+</blockquote>
+<p>從A複製一份到A&rsquo;s child，之所以A&rsquo;s child會比較小的原因，主要是因為，如果是完整複製的話，其實大小是會一樣的，父Process有100 MB，子Process 就會有100MB，但這樣的事情很沒意義，因此現在會採用Copy-on-write，保存重要的資訊就好，其他的就不複製過去，比如說code counter，或是Local Variable都沒有變的話，則子Process會用一個Pointer指到父Process，但如果Runtime後發現不一樣，OS才真的會複製一份到子process。</p>
+<p><img src="https://i.imgur.com/W3myj7Q.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221012225909520"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/tH3YUq6.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221012231835420"
+	
+	
+></p>
+<blockquote>
+<p>恩，這邊不太清楚，要再回頭看 不懂</p>
+</blockquote>
+<h4 id="interprocess-communication">Interprocess Communication</h4>
+<p><img src="https://i.imgur.com/b6dna1d.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221012233401342"
+	
+	
+></p>
+<ul>
+<li>IPC：不同或相同的Process裡面的thread要互相溝通</li>
+</ul>
+<p><img src="https://i.imgur.com/EfY6Ymz.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221012234603052"
+	
+	
+></p>
+<blockquote>
+<p>讀投影片就是完整的筆記了</p>
+</blockquote>
+<p>資料量小的話用Shared memory，資料量大的話用Message passing（避免synchronization問題），</p>
+<p><img src="https://i.imgur.com/getfXBb.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221012235849010"
+	
+	
+></p>
+<ul>
+<li>Socket：透過IP和Port來辨認使用者，<strong>Port Number(8080,5432)就是Process</strong></li>
+</ul>
+<h2 id="第四章-thread--concurrency-執行序與併發">第四章 Thread &amp; Concurrency (執行序與併發)</h2>
+<h2 id="第五章-cpu-scheduling-cpu-行程">第五章 CPU Scheduling (CPU 行程)</h2>
+<h1 id="第三節-process-synchronization-進程同步">第三節 Process Synchronization (進程同步)</h1>
+<h2 id="第六章-synchronization-tools-同步工具">第六章 Synchronization Tools (同步工具)</h2>
+<h2 id="第七章-synchronization-examples-同步範例">第七章 Synchronization Examples (同步範例)</h2>
+<h2 id="第八章-deadlocks死鎖">第八章 Deadlocks(死鎖)</h2>
+<h1 id="第四節-memory-management記憶體管理">第四節 Memory Management(記憶體管理)</h1>
+<h2 id="第九章-main-memory主記憶體">第九章 Main Memory(主記憶體)</h2>
+<h2 id="第十章-virtual-memory虛擬記憶體">第十章 Virtual Memory(虛擬記憶體)</h2>
+<h1 id="第五節-storage-management儲存空間管理">第五節 Storage Management(儲存空間管理)</h1>
+<h2 id="第十一章-mass-storage-structure-大型儲存架構">第十一章 Mass-Storage Structure (大型儲存架構)</h2>
+<h2 id="第十二章-io-system-輸入輸出系統">第十二章 I/O System (輸入/輸出系統)</h2>
+<h1 id="第六節-file-system-檔案系統">第六節 File System (檔案系統)</h1>
+<h2 id="第十三章-file-system-interface-檔案系統介面">第十三章 File-System Interface (檔案系統介面)</h2>
+<h2 id="第十四章-file-system-implementation-檔案系統實作">第十四章 File-System Implementation (檔案系統實作)</h2>
+<h2 id="第十五章-file-system-internals-檔案系統內部">第十五章 File-System Internals (檔案系統內部)</h2>
+<h1 id="第七節-security-and-protected-安全性及保護">第七節 Security And Protected (安全性及保護)</h1>
+<h2 id="第十六章-security-安全性">第十六章 Security 安全性</h2>
+<h2 id="第十七章-protection-保護">第十七章 Protection 保護</h2>
+<h1 id="第八節-advenced-topics-進階主題">第八節 Advenced Topics (進階主題)</h1>
+<h2 id="第十八章-vitual-machines-虛擬機">第十八章 Vitual Machines (虛擬機)</h2>
+<h2 id="第十九章-networds-and-distributed-systems-網路與分配系統">第十九章 Networds and Distributed Systems (網路與分配系統)</h2>
+<h1 id="第九節-case-studies-案例學習">第九節 Case Studies (案例學習)</h1>
+<h2 id="第二十章-the-linux-system-linux系統">第二十章 The Linux System (Linux系統)</h2>
+<h2 id="第二十一章-windowswindows">第二十一章 Windows(Windows)</h2>
+<h1 id="第十節-appendices-附錄">第十節 Appendices (附錄)</h1>
+<h2 id="附錄a-influential-operating-system-有影響力的作業系統">附錄A Influential Operating System (有影響力的作業系統)</h2>
+<h2 id="附錄b-windowswindows">附錄B Windows(Windows)</h2>
+<h2 id="附錄c-bsd-unix">附錄C BSD UNIX</h2>
+<h2 id="附錄d-the-mach-system">附錄D The Mach System</h2>
+<h2 id="附錄a-influential-operating-system-有影響力的作業系統-1">附錄A Influential Operating System (有影響力的作業系統)</h2>
+<h2 id="附錄b-windowswindows-1">附錄B Windows(Windows)</h2>
+<h2 id="附錄c-bsd-unix-1">附錄C BSD UNIX</h2>
+<h2 id="附錄d-the-mach-system-1">附錄D The Mach System</h2>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/">作業系統</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/B7GhSw1.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/B7GhSw1.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基礎AOP介紹-Filter Interceptor AspectJ</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/9or5BzU.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/9or5BzU.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Java內的排程器介紹</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "bf152013e92e48c1495f",
+        clientSecret: "bed32f8438cb1e00d8628d9b6d148003bb4bf25d",
+        repo: "comment",
+        owner: "Hoxton019030",
+        admin: ["Hoxton019030"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Hoxton
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.14.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#第一章-序言">第一章 序言</a>
+      <ol>
+        <li><a href="#硬體hardware">硬體(hardware)</a></li>
+        <li><a href="#作業系統operating-system">作業系統(operating system)</a></li>
+        <li><a href="#應用程式application-programs">應用程式(application programs)</a></li>
+      </ol>
+    </li>
+    <li><a href="#第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)</a>
+      <ol>
+        <li><a href="#os-service">OS Service</a></li>
+        <li><a href="#os-application-interface最重要的">OS-Application Interface(最重要的)</a></li>
+        <li><a href="#os-structure-operating-system">OS Structure Operating-System</a>
+          <ol>
+            <li><a href="#simple-os-architecture">Simple OS Architecture</a></li>
+            <li><a href="#layer-os-architecture">Layer Os Architecture</a></li>
+            <li><a href="#microkernel-os">Microkernel OS</a></li>
+            <li><a href="#modular-os-structure">Modular OS Structure</a></li>
+            <li><a href="#virtual-machine">Virtual Machine</a></li>
+            <li><a href="#java-virtual-machine">Java Virtual Machine</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#第三章-processes-進程">第三章 Processes (進程)</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#process-concept">Process Concept</a></li>
+            <li><a href="#process-scheduling">Process Scheduling</a></li>
+            <li><a href="#interprocess-communication">Interprocess Communication</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#第四章-thread--concurrency-執行序與併發">第四章 Thread &amp; Concurrency (執行序與併發)</a></li>
+    <li><a href="#第五章-cpu-scheduling-cpu-行程">第五章 CPU Scheduling (CPU 行程)</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#第六章-synchronization-tools-同步工具">第六章 Synchronization Tools (同步工具)</a></li>
+    <li><a href="#第七章-synchronization-examples-同步範例">第七章 Synchronization Examples (同步範例)</a></li>
+    <li><a href="#第八章-deadlocks死鎖">第八章 Deadlocks(死鎖)</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#第九章-main-memory主記憶體">第九章 Main Memory(主記憶體)</a></li>
+    <li><a href="#第十章-virtual-memory虛擬記憶體">第十章 Virtual Memory(虛擬記憶體)</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#第十一章-mass-storage-structure-大型儲存架構">第十一章 Mass-Storage Structure (大型儲存架構)</a></li>
+    <li><a href="#第十二章-io-system-輸入輸出系統">第十二章 I/O System (輸入/輸出系統)</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#第十三章-file-system-interface-檔案系統介面">第十三章 File-System Interface (檔案系統介面)</a></li>
+    <li><a href="#第十四章-file-system-implementation-檔案系統實作">第十四章 File-System Implementation (檔案系統實作)</a></li>
+    <li><a href="#第十五章-file-system-internals-檔案系統內部">第十五章 File-System Internals (檔案系統內部)</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#第十六章-security-安全性">第十六章 Security 安全性</a></li>
+    <li><a href="#第十七章-protection-保護">第十七章 Protection 保護</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#第十八章-vitual-machines-虛擬機">第十八章 Vitual Machines (虛擬機)</a></li>
+    <li><a href="#第十九章-networds-and-distributed-systems-網路與分配系統">第十九章 Networds and Distributed Systems (網路與分配系統)</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#第二十章-the-linux-system-linux系統">第二十章 The Linux System (Linux系統)</a></li>
+    <li><a href="#第二十一章-windowswindows">第二十一章 Windows(Windows)</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#附錄a-influential-operating-system-有影響力的作業系統">附錄A Influential Operating System (有影響力的作業系統)</a></li>
+    <li><a href="#附錄b-windowswindows">附錄B Windows(Windows)</a></li>
+    <li><a href="#附錄c-bsd-unix">附錄C BSD UNIX</a></li>
+    <li><a href="#附錄d-the-mach-system">附錄D The Mach System</a></li>
+    <li><a href="#附錄a-influential-operating-system-有影響力的作業系統-1">附錄A Influential Operating System (有影響力的作業系統)</a></li>
+    <li><a href="#附錄b-windowswindows-1">附錄B Windows(Windows)</a></li>
+    <li><a href="#附錄c-bsd-unix-1">附錄C BSD UNIX</a></li>
+    <li><a href="#附錄d-the-mach-system-1">附錄D The Mach System</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

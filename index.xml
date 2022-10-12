@@ -6,15 +6,7 @@
         <description>Recent content on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Tue, 11 Oct 2022 01:12:38 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>實用的電腦配件</title>
-        <link>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84%E9%9B%BB%E8%85%A6%E9%85%8D%E4%BB%B6/</link>
-        <pubDate>Tue, 11 Oct 2022 01:12:38 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84%E9%9B%BB%E8%85%A6%E9%85%8D%E4%BB%B6/</guid>
-        <description>&lt;img src="https://i.imgur.com/S9WOSCR.png " alt="Featured image of post 實用的電腦配件" /&gt;</description>
-        </item>
-        <item>
+        <lastBuildDate>Sat, 08 Oct 2022 12:04:44 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>如何使用Hugo在Github上架設靜態網頁完整教學</title>
         <link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/</link>
         <pubDate>Sat, 08 Oct 2022 12:04:44 +0800</pubDate>
@@ -257,6 +249,631 @@
 &lt;p&gt;　　以上的內容濃縮起來就是，康斯姆托克的身份的伏筆不太好，結局也太快進結局，沒有適當的鋪陳告訴玩家為什麼康斯姆托克要是，且必須是布克。&lt;/p&gt;
 &lt;p&gt;　     回顧整個遊戲，其實最讓我覺得很棒的伏筆是遊戲一開始進入哥倫比亞時，兄妹倆人 會要你猜人頭還是字，當你做出選擇後，哥哥會拿出一個早已畫上許多記號的記分板再加上新的一筆，但當你破完後再回頭看這段，會發現那些計分板上的痕跡，就是許多平行世界的布克都曾經猜過硬幣，都曾經在這計分板上畫上過一筆。 　　&lt;/p&gt;
 &lt;p&gt;最後講一下結論，心得這種東西因人而異，我講的也只是我的看法而已，大家生長環境的解讀有出入是很正常的事情，我知道很多人都說生化奇兵3的劇情很神之類的，但我玩過之後真的覺得還好，我盡量把我覺得不滿意的地方寫出來，讓大家知道我不滿意的地方 在哪裡，僅代表個人意見而已。很多人覺得很爛的FF15我卻覺得結局很不錯，大家狂推的槍彈辯駁2我也覺得真的很神，綜上所述，如果還是有人對我有意見的話，我只想說「很抱歉，我就是爛，玩魔物獵人、惡魔獵人這種不用動腦的遊戲就好，不應該玩這種劇情遊戲」&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>作業系統筆記</title>
+        <link>https://hoxtonhsu.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/</link>
+        <pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/</guid>
+        <description>&lt;img src="https://i.imgur.com/HJLk11O.png" alt="Featured image of post 作業系統筆記" /&gt;&lt;h1 id=&#34;operating-system&#34;&gt;Operating-System&lt;/h1&gt;
+&lt;h1 id=&#34;第一節-總覽&#34;&gt;第一節 總覽&lt;/h1&gt;
+&lt;h2 id=&#34;第一章-序言&#34;&gt;第一章 序言&lt;/h2&gt;
+&lt;p&gt;管理硬體的軟體就是作業系統，硬體包含CPU，Memory，I/O設備等等…作業系統就是負責管理這些硬體的系統。一個電腦系統可以被粗略的劃分成下面四個組件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;硬體(hardware)&lt;/li&gt;
+&lt;li&gt;作業系統(operating system)&lt;/li&gt;
+&lt;li&gt;應用程式(application programs)&lt;/li&gt;
+&lt;li&gt;使用者(user)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/PZiePn0.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220918222340597&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;硬體hardware&#34;&gt;硬體(hardware)&lt;/h3&gt;
+&lt;p&gt;包括CPU(Central Processing Unit)，記憶體(Memory)，Input/output設備…提供給系統基本的計算資源&lt;/p&gt;
+&lt;h3 id=&#34;作業系統operating-system&#34;&gt;作業系統(operating system)&lt;/h3&gt;
+&lt;p&gt;負責協調硬體與應用程式，給不同的使用者&lt;/p&gt;
+&lt;h3 id=&#34;應用程式application-programs&#34;&gt;應用程式(application programs)&lt;/h3&gt;
+&lt;p&gt;例如Word，Excel，Chrome之類的應用程式，來處理使用者的計算問題(Computing Problems)&lt;/p&gt;
+&lt;h2 id=&#34;第二章-operating-system-strucutures作業系統架構&#34;&gt;第二章 Operating-System Strucutures(作業系統架構)&lt;/h2&gt;
+&lt;h3 id=&#34;os-service&#34;&gt;OS Service&lt;/h3&gt;
+&lt;p&gt;透過System Code去呼叫這些Service&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/RIMvaGk.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221008173129040&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;os-application-interface最重要的&#34;&gt;OS-Application Interface(最重要的)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;System call (使用組合語言撰寫)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Operating System本身就是一個提供Service的Software，提供Process conmtrol, FIle management, Device management, Information maintenance, Communications。而System Call則是OS的Interface，透過System Call去進行Software的Interrupt。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;API&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;由於System call是使用組合語言來寫的，較不貼近人類，因此在多加一層API，來調用System call。這些API有些會使用到多個System Call，有些則連一個System Call都沒有，因為API本身就只是為了方面Programing，提供一個Interface去調用更底層的System call&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/qKgR7ax.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221008225805849&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;System Call傳送參數的三種方式&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;透過Rigisters&lt;/li&gt;
+&lt;li&gt;透過Pointer&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/L0RUgJ9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221009135803193&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;透過Stack&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;os-structure-operating-system&#34;&gt;OS Structure Operating-System&lt;/h3&gt;
+&lt;h4 id=&#34;simple-os-architecture&#34;&gt;Simple OS Architecture&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/GtaKA9x.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221009193532801&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;MS-DOS device driver和ROM BIOS device driver其實都是Driver，大部分的東西都還是塞在Resident system program裡面，也就是沒再分。&lt;/p&gt;
+&lt;h4 id=&#34;layer-os-architecture&#34;&gt;Layer Os Architecture&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/SXR7S2w.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221009193909302&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;基於Simple OS Architecture對於維護上的不便（所有東西都寫在一起），所以有人提出了分層的概念，在kerel依照subsystem的概念去劃分各個職責。外層的layer可以call裡面的layer，裡面的layer不能call外面的layer，概念有點像Mvc架構，這樣方便工程師去維護，但相對的也會帶來一些&lt;strong&gt;困難&lt;/strong&gt;，比如說&lt;strong&gt;效能降低&lt;/strong&gt;，因為需要由外面一層一層呼叫，因此效能會降低。另一方面，要去定義&lt;strong&gt;各個Layer&lt;/strong&gt;也不是一件容易的事情。&lt;/p&gt;
+&lt;h4 id=&#34;microkernel-os&#34;&gt;Microkernel OS&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/lVO8ERV.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221009200319941&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;kernel的程式碼應該要越少越好，越少越小代表越Reliable。&lt;/p&gt;
+&lt;p&gt;引入Modularize的概念，把Subsystem變成各種modular，中間的kernel是負責去溝通各種不同的Modular。&lt;/p&gt;
+&lt;p&gt;kernel只負責去溝通和定義，但因為這個架構的每一個subsystem要溝通都要透過kernel，去interrupt它，效能又會在更低&lt;/p&gt;
+&lt;h4 id=&#34;modular-os-structure&#34;&gt;Modular OS Structure&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/MQWMMPO.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221009203643586&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;現在常見的作業系統大部分都遵循這個架構（linux），有點像OO的概念，把功能&lt;strong&gt;寫成各個在kernel&lt;/strong&gt;裡面的Subsystem，可以去這張投影片下面的網址，會手把手教你怎麼撰寫kernel&lt;/p&gt;
+&lt;h4 id=&#34;virtual-machine&#34;&gt;Virtual Machine&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/nwp4ACJ.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221009214443781&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/yqh2tao.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221009214705990&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://youtu.be/7pAiJeldUfk?t=700&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://youtu.be/7pAiJeldUfk?t=700&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;可以多看幾次。&lt;/p&gt;
+&lt;p&gt;critical instruction：一個instruction在user mode跟kernel mode執行的結果會不一樣，比如說user mode可能是a+b，但在kernel mode執行的結果是a+b+b&lt;/p&gt;
+&lt;p&gt;VM的好處&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;隔離各個使用著，保護system resouce&lt;/li&gt;
+&lt;li&gt;透過VM，可以在一台電腦因應不同的程式需求，建立不同的VM（window 98，windowXP）&lt;/li&gt;
+&lt;li&gt;幫助R&amp;amp;D測試開發，&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;VM的技術&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Full Virtualization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/UEXmsCg.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221009224922016&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一個guest的作業系統，可以不用做任何修改就可以直接安裝在一個作業系統，VM不知道自己是個VM，以為自己就是一個完整的作業系統&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Para-virtualization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/62vkO74.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010131253990&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;會有一個Global zone，負責去調度、協調各個VM，Guest的作業系統需要被修改&lt;/p&gt;
+&lt;h4 id=&#34;java-virtual-machine&#34;&gt;Java Virtual Machine&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/H4YbXj1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010132400382&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;第二節-process-management-進程管理&#34;&gt;第二節 Process Management (進程管理)&lt;/h1&gt;
+&lt;h2 id=&#34;第三章-processes-進程&#34;&gt;第三章 Processes (進程)&lt;/h2&gt;
+&lt;h4 id=&#34;process-concept&#34;&gt;Process Concept&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/46QhD4h.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010162753190&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Program：被動的，可被執行的程式就叫Program，存在硬碟裡面&lt;/li&gt;
+&lt;li&gt;Process：主動的，一個程式正在執行就叫Process，是存在Memory裡面&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;code segment&lt;/code&gt;：把程式碼放到memory裡面的動作&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Data section&lt;/code&gt;：globla variable存放的區域&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Stack&lt;/code&gt;：區域變數及function存放的地方&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Heap&lt;/code&gt;：(待補)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/67apr7c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010170803581&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;又稱做Lightweight process，是CPU的最小執行單位，它跟Process有八成像，Process可以被拆分成很多個Thread，許多Thread&lt;strong&gt;可以共用同一塊Memory Space&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;同一個Process下面的Thread，它的Code section，Data section，OS resource ，這三塊的memory空間是共用的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/P3yDybT.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010172926249&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;管理Thread的方式跟管理Process的方式都大同小異，區別不大，像Linux就沒有Process的概念。都只有Thread而已，當一個Process被執行起來時，會有下面這五個狀態&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/oPCYLp0.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010175047577&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;New：當這個Process被created出來，把Program load 進 Memory裡面，然後initialization。&lt;/li&gt;
+&lt;li&gt;Ready：把Process放進一個quoue裡面，等著被OS排程，放進CPU做使用。&lt;/li&gt;
+&lt;li&gt;Running：送instructions到CPU裡面做使用&lt;/li&gt;
+&lt;li&gt;Ｗating：有些instruction不需要CPU來做，例如IO，而等待其他事件執行完畢的這個過程就叫wating&lt;/li&gt;
+&lt;li&gt;Terminated：釋放資源，把資源給其他的Process&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/A9jcaOI.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010180531411&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;管理Process的方式，就是會為每一個Process去建立一個&lt;strong&gt;Process Control Block&lt;/strong&gt;，在Memory裡面紀錄這些Information，在Ready狀態的意思，就是只把PCB放進quoue的動作，這個PCB會存放下列資訊。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Process State&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Program counter（CPU中的Register，用於指示電腦在其程式序列中的位置）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CPU Register（CPU中，用來暫存指令、數據和記憶體位址的電腦記憶體，暫存器的容量有限，但讀寫速度快的飛起）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CPU Scheduling Information&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Memory-management information&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I/O status information&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Accounting Information&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;+++&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/s2ZFuvE.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010182705266&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/lOawJ5v.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010183709101&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;CPU被interrupt之後，把CPU上執行的Process切換成另一個Process的動作，就叫Context Switch，實際上就是在做PCB的Save還有Load的動作。&lt;/p&gt;
+&lt;p&gt;Context Switch是一個overhead（浪費）的行為，但卻無可避免，因為我們要Share CPU 給所有的Process。&lt;/p&gt;
+&lt;p&gt;提升Context Switch的速度有幾種方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;提升momory的速度&lt;/li&gt;
+&lt;li&gt;減少Register的數量，數量減少了，需要存儲的資料也少了，但這件事情在現代很難做到&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上面兩種都不是主流的方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hardware Support，有好幾個set的Register，可以在hardware裡面紀錄好幾個程式的狀態，所以在做Context Switch的時候，只是從一個Register切換到另一個Register，減少對memory的access&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;process-scheduling&#34;&gt;Process Scheduling&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/zvU98FQ.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010185905554&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Process 也能產生 Process （parent跟child）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/9GsCQX3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010230406358&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;CPU的數量很少，可能只有個位數或十幾個，但在Memory要執行的程式卻很多(multiProgram)，因此需要Scheduler，有分為三種Scheduler&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Short-term**(CPU Scheduler)**：選擇哪個Process要被執行，以及分配CPU&lt;/li&gt;
+&lt;li&gt;Long-term**(Job Scheduler)**：決定哪些Processes能被Load進Memory，以及進入queue等待&lt;/li&gt;
+&lt;li&gt;Medium-term：決定哪個Processes被丟回Memory（從Ready state 變成 Wait state）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/XyXSPVP.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010232740246&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h5 id=&#34;long-term-scheduler&#34;&gt;Long-Term Scheduler&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;控制 degree of multiprogramming：目前電腦上有幾個程式在Memory裡面&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;執行的頻率相較Short-term來講較低（只在process離開系統，或是每隔幾分鐘執行一次）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;選擇什麼Processes也很重要，因為我們希望CPU跟I/O可以overlap，不要完全偏向CPU或是I/O，而讓另一方沒事情做。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在現在的OS裡面，因為Memory已經足夠，因此Job Schduler的功能逐漸淡化，直接先load進memory再說，&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;short-term-scheduler&#34;&gt;Short-Term Scheduler&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/uzdlYWX.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221010234018932&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;頻率極短(100ms)&lt;/li&gt;
+&lt;li&gt;要非常有效率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;medium-term-scheduler&#34;&gt;Medium-Term Scheduler&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/nYV5B7I.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221011010707793&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;負責在DisK及Memory之間切換的Scheduler&lt;/p&gt;
+&lt;p&gt;Swap Out：把Processes移出記憶體&lt;/p&gt;
+&lt;p&gt;Swap In：把Processes移入記憶體&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/PYbB6CD.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221012001702454&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;每個Processor都有自己的ID(Processor identifier &lt;strong&gt;pid&lt;/strong&gt;)，&lt;strong&gt;整台電腦一開始在執行的時候只會有一個Process&lt;/strong&gt;，這個Process再去Create其他的Process&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;這個指令可以列出所有啟動的Processes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ps-ael 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/tdzYGmL.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221012003309571&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h5 id=&#34;process-creation&#34;&gt;Process Creation&lt;/h5&gt;
+&lt;p&gt;Parent和Child雖然是兩隻不一樣的程式，但還是有某種程度上的關聯，這個關聯性的定義，分成下面三個比較重要的部分，&lt;strong&gt;這個關聯性是由OS的設計者去決定的&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Resource Sharing之間的關聯性&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Parent跟Child分享所有資源&lt;/li&gt;
+&lt;li&gt;Global共享，但Dynamic的不共享&lt;/li&gt;
+&lt;li&gt;全部都不分享&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Processes執行的順序，當Child被創建後，哪個Process有優先執行的權力&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;讓OS自己來決定&lt;/li&gt;
+&lt;li&gt;Chidren擁有較高的執行權&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Process Address Space的狀態&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Child複製Parent的過去（連Code Counter，程式執行到哪一行都會複製過去，比如說Parent執行到第三行，那複製過去的Child就會從第三開始啟動。行為都一樣，但Address會不一樣）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Child重新去Load Parent的程式碼。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/OygMp9G.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221012215807520&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h5 id=&#34;unixlinux-process-creation&#34;&gt;UNIX/Linux Process Creation&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;fork&lt;/strong&gt; system Call&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;創建新的Child Process&lt;/li&gt;
+&lt;li&gt;是用複製(duplicates)的方式創建的&lt;/li&gt;
+&lt;li&gt;執行無先後順序之分&lt;/li&gt;
+&lt;li&gt;Fork的這個Code也是個System code，會return 一個 value，return的value會是它children的PID，若底下無children則return 0 （父母一定知道小孩是誰，但小孩不一定知道父母是誰）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;execlp&lt;/strong&gt; system call&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Parent跟Child是dupulicate，裡面的內容完完全全一模一樣，但今天create 一個新的process的目的不是為了做同樣的事情，因此execlp這個system call的目的，就是塞一個binary file（也就是program），就會把把child的process全部清空。**那為什麼不直接創造一個新的process？**因為需要跟OS註冊一個PID&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;wait&lt;/strong&gt; system call&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;因為執行順序是concurrently，因此需要用wait來做順序的控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/a5oWtwq.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221012222041627&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;這只是UNIX系統對Process的策略，不代表所有，實際還是要參照[Process Creation](# Process Creation)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;從A複製一份到A&amp;rsquo;s child，之所以A&amp;rsquo;s child會比較小的原因，主要是因為，如果是完整複製的話，其實大小是會一樣的，父Process有100 MB，子Process 就會有100MB，但這樣的事情很沒意義，因此現在會採用Copy-on-write，保存重要的資訊就好，其他的就不複製過去，比如說code counter，或是Local Variable都沒有變的話，則子Process會用一個Pointer指到父Process，但如果Runtime後發現不一樣，OS才真的會複製一份到子process。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/W3myj7Q.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221012225909520&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/tH3YUq6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221012231835420&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;恩，這邊不太清楚，要再回頭看 不懂&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;interprocess-communication&#34;&gt;Interprocess Communication&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/b6dna1d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221012233401342&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IPC：不同或相同的Process裡面的thread要互相溝通&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/EfY6Ymz.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221012234603052&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;讀投影片就是完整的筆記了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;資料量小的話用Shared memory，資料量大的話用Message passing（避免synchronization問題），&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/getfXBb.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221012235849010&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Socket：透過IP和Port來辨認使用者，&lt;strong&gt;Port Number(8080,5432)就是Process&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;第四章-thread--concurrency-執行序與併發&#34;&gt;第四章 Thread &amp;amp; Concurrency (執行序與併發)&lt;/h2&gt;
+&lt;h2 id=&#34;第五章-cpu-scheduling-cpu-行程&#34;&gt;第五章 CPU Scheduling (CPU 行程)&lt;/h2&gt;
+&lt;h1 id=&#34;第三節-process-synchronization-進程同步&#34;&gt;第三節 Process Synchronization (進程同步)&lt;/h1&gt;
+&lt;h2 id=&#34;第六章-synchronization-tools-同步工具&#34;&gt;第六章 Synchronization Tools (同步工具)&lt;/h2&gt;
+&lt;h2 id=&#34;第七章-synchronization-examples-同步範例&#34;&gt;第七章 Synchronization Examples (同步範例)&lt;/h2&gt;
+&lt;h2 id=&#34;第八章-deadlocks死鎖&#34;&gt;第八章 Deadlocks(死鎖)&lt;/h2&gt;
+&lt;h1 id=&#34;第四節-memory-management記憶體管理&#34;&gt;第四節 Memory Management(記憶體管理)&lt;/h1&gt;
+&lt;h2 id=&#34;第九章-main-memory主記憶體&#34;&gt;第九章 Main Memory(主記憶體)&lt;/h2&gt;
+&lt;h2 id=&#34;第十章-virtual-memory虛擬記憶體&#34;&gt;第十章 Virtual Memory(虛擬記憶體)&lt;/h2&gt;
+&lt;h1 id=&#34;第五節-storage-management儲存空間管理&#34;&gt;第五節 Storage Management(儲存空間管理)&lt;/h1&gt;
+&lt;h2 id=&#34;第十一章-mass-storage-structure-大型儲存架構&#34;&gt;第十一章 Mass-Storage Structure (大型儲存架構)&lt;/h2&gt;
+&lt;h2 id=&#34;第十二章-io-system-輸入輸出系統&#34;&gt;第十二章 I/O System (輸入/輸出系統)&lt;/h2&gt;
+&lt;h1 id=&#34;第六節-file-system-檔案系統&#34;&gt;第六節 File System (檔案系統)&lt;/h1&gt;
+&lt;h2 id=&#34;第十三章-file-system-interface-檔案系統介面&#34;&gt;第十三章 File-System Interface (檔案系統介面)&lt;/h2&gt;
+&lt;h2 id=&#34;第十四章-file-system-implementation-檔案系統實作&#34;&gt;第十四章 File-System Implementation (檔案系統實作)&lt;/h2&gt;
+&lt;h2 id=&#34;第十五章-file-system-internals-檔案系統內部&#34;&gt;第十五章 File-System Internals (檔案系統內部)&lt;/h2&gt;
+&lt;h1 id=&#34;第七節-security-and-protected-安全性及保護&#34;&gt;第七節 Security And Protected (安全性及保護)&lt;/h1&gt;
+&lt;h2 id=&#34;第十六章-security-安全性&#34;&gt;第十六章 Security 安全性&lt;/h2&gt;
+&lt;h2 id=&#34;第十七章-protection-保護&#34;&gt;第十七章 Protection 保護&lt;/h2&gt;
+&lt;h1 id=&#34;第八節-advenced-topics-進階主題&#34;&gt;第八節 Advenced Topics (進階主題)&lt;/h1&gt;
+&lt;h2 id=&#34;第十八章-vitual-machines-虛擬機&#34;&gt;第十八章 Vitual Machines (虛擬機)&lt;/h2&gt;
+&lt;h2 id=&#34;第十九章-networds-and-distributed-systems-網路與分配系統&#34;&gt;第十九章 Networds and Distributed Systems (網路與分配系統)&lt;/h2&gt;
+&lt;h1 id=&#34;第九節-case-studies-案例學習&#34;&gt;第九節 Case Studies (案例學習)&lt;/h1&gt;
+&lt;h2 id=&#34;第二十章-the-linux-system-linux系統&#34;&gt;第二十章 The Linux System (Linux系統)&lt;/h2&gt;
+&lt;h2 id=&#34;第二十一章-windowswindows&#34;&gt;第二十一章 Windows(Windows)&lt;/h2&gt;
+&lt;h1 id=&#34;第十節-appendices-附錄&#34;&gt;第十節 Appendices (附錄)&lt;/h1&gt;
+&lt;h2 id=&#34;附錄a-influential-operating-system-有影響力的作業系統&#34;&gt;附錄A Influential Operating System (有影響力的作業系統)&lt;/h2&gt;
+&lt;h2 id=&#34;附錄b-windowswindows&#34;&gt;附錄B Windows(Windows)&lt;/h2&gt;
+&lt;h2 id=&#34;附錄c-bsd-unix&#34;&gt;附錄C BSD UNIX&lt;/h2&gt;
+&lt;h2 id=&#34;附錄d-the-mach-system&#34;&gt;附錄D The Mach System&lt;/h2&gt;
+&lt;h2 id=&#34;附錄a-influential-operating-system-有影響力的作業系統-1&#34;&gt;附錄A Influential Operating System (有影響力的作業系統)&lt;/h2&gt;
+&lt;h2 id=&#34;附錄b-windowswindows-1&#34;&gt;附錄B Windows(Windows)&lt;/h2&gt;
+&lt;h2 id=&#34;附錄c-bsd-unix-1&#34;&gt;附錄C BSD UNIX&lt;/h2&gt;
+&lt;h2 id=&#34;附錄d-the-mach-system-1&#34;&gt;附錄D The Mach System&lt;/h2&gt;
 </description>
         </item>
         <item>
@@ -3202,6 +3819,15 @@
         
         <guid>https://hoxtonhsu.com/archives/</guid>
         <description></description>
+        </item>
+        <item>
+        <title>About</title>
+        <link>https://hoxtonhsu.com/about/</link>
+        <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://hoxtonhsu.com/about/</guid>
+        <description>&lt;p&gt;去過銀河系的各個角落，當過新世界的蒼藍星，也從許多殺手的手中修過無數台發電機，擊敗過月王，封印過輻光，也從奧杜因口中拯救過世界，還順便拯救了夏天的華盛頓，冬季的紐約，不只是傳火的薪王，也是雅南的上位古神。曾經居住在洛聖都、潘朵拉星球&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>Search</title>
