@@ -6,7 +6,236 @@
         <description>Recent content in 程式 on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Mon, 17 Oct 2022 18:09:43 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 23 Oct 2022 20:40:49 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>IntelliJ與Eclipse的比較</title>
+        <link>https://hoxtonhsu.com/p/intellij%E8%88%87eclipse%E7%9A%84%E6%AF%94%E8%BC%83/</link>
+        <pubDate>Sun, 23 Oct 2022 20:40:49 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/intellij%E8%88%87eclipse%E7%9A%84%E6%AF%94%E8%BC%83/</guid>
+        <description>&lt;img src="https://i.imgur.com/Fx9nanx.png" alt="Featured image of post IntelliJ與Eclipse的比較" /&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Eclipse&lt;/th&gt;
+&lt;th&gt;IntelliJ&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;是否付費&lt;/td&gt;
+&lt;td&gt;免費&lt;/td&gt;
+&lt;td&gt;企業版一年一次付清為$600鎂，JetBrain全家桶為$779鎂。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;搜尋&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/woK1CCB.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;search&#34;
+	
+	
+&gt;&lt;br /&gt;較為無用，關鍵字搜尋慢&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/VeRXfgk.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;search2&#34;
+	
+	
+&gt;&lt;br /&gt;快速列出所有可能，快速定位&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;切換分頁&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/ODWlM9q.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;switch&#34;
+	
+	
+&gt;&lt;br /&gt;需要手動切換。&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/T48Dr58.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;switch2&#34;
+	
+	
+&gt;&lt;br /&gt;預設快捷鍵，會列出最近開啟的分頁&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;選擇檔案&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/IkLtLcz.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;select&#34;
+	
+	
+&gt;&lt;br /&gt;需要手動切換&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/BbPhM43.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;select2&#34;
+	
+	
+&gt;ALT+F1切換至WorkTree，快速定位檔案，支援方向鍵，快速選擇想要的頁面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;變數提示&lt;/td&gt;
+&lt;td&gt;Eclipse無此功能&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/G3jidLk.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221023222353220&#34;
+	
+	
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;更好的程式碼撰寫提示&lt;/td&gt;
+&lt;td&gt;Eclipse無此功能&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://hoxtonhsu.com/C:%5cUsers%5cza546%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20221023225513970.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221023225513970&#34;
+	
+	
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;查看Spring 中的endpoint&lt;/td&gt;
+&lt;td&gt;Eclipse無此功能&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/XFaLMZe.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221024010124562&#34;
+	
+	
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;內建類SourceTree的功能&lt;/td&gt;
+&lt;td&gt;Eclipse無此功能&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/4jaP8bc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221024010210569&#34;
+	
+	
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;查看Class底下的Method以及Filed&lt;/td&gt;
+&lt;td&gt;Eclipse無此功能&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/usQdGSz.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221024010355852&#34;
+	
+	
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;提供方法的usages，找到相關的依賴&lt;/td&gt;
+&lt;td&gt;Eclipse無此功能&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/THRshAA.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221024010523190&#34;
+	
+	
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;快速選取區塊&lt;/td&gt;
+&lt;td&gt;Eclipse無此功能&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/sP0SaBd.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;selectWord&#34;
+	
+	
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;快速選取方法&lt;/td&gt;
+&lt;td&gt;Eclipse無此功能&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/4WVURXZ.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;SelectMethod&#34;
+	
+	
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;內建GitBlame功能&lt;/td&gt;
+&lt;td&gt;Eclipse無此功能&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/kvtETsi.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;GitBlame&#34;
+	
+	
+&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        <item>
         <title>CLion的MutilMain</title>
         <link>https://hoxtonhsu.com/p/clion%E7%9A%84mutilmain/</link>
         <pubDate>Mon, 17 Oct 2022 18:09:43 +0800</pubDate>
