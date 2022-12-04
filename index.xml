@@ -6,7 +6,270 @@
         <description>Recent content on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Thu, 10 Nov 2022 23:52:33 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 04 Dec 2022 22:22:06 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>淺談測試驅動開發</title>
+        <link>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</link>
+        <pubDate>Sun, 04 Dec 2022 22:22:06 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</guid>
+        <description>&lt;img src="https://i.imgur.com/2xteh3C.png" alt="Featured image of post 淺談測試驅動開發" /&gt;&lt;h2 id=&#34;何謂tdd&#34;&gt;何謂TDD&lt;/h2&gt;
+&lt;p&gt;TDD(Test-Driven Development)是一個軟體開發的模式，它的概念很簡單，就是&lt;strong&gt;先寫測試在寫程式&lt;/strong&gt;，&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/LgOetJJ.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205004202805&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;這樣的事情會讓我們覺得不可思議，因為我們一直以來寫程式的方式都是先寫程式，而測試則是有時間才再補的東西。那改成先寫測試會有什麼好處呢？這部分我們等等再來談，我們先討論TDD最核心的部分—&lt;strong&gt;單元測試(Unit Test)&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;單元測試在tdd的作用是什麼&#34;&gt;單元測試在TDD的作用是什麼&lt;/h2&gt;
+&lt;p&gt;​		一開始在認識單元測試的時候，許多人的想法都會認為說，單元測試可以避免Bug，可以提升程式碼的品質。確實這些都是Unit Test的好處，但卻不是最核心的關鍵，單元測試最重要的點在於幫助我們&lt;strong&gt;重構現有的程式架構&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;​		我們在經手一個項目的時候，第二個月的理解一定會比第一個月的理解更深，第三個月的理解也一定會比第二個月的理解更加深刻，可能三個月前所使用的架構，在三個月後，隨著業務規模的擴展、需求的增加，而需要去新增新的程式，或是改變原有的設計，因而漸漸不敷使用，在這樣的情形下，若沒有單元測試的保護支持我們重構，讓我們確保每一步的Design都沒有破壞原有程式的設計，工程師會變得去害怕修改舊有的程式碼，因而導致不敷使用的架構繼續生長下去。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/RUQ0j6E.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205010938974&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;(▲ 程式能跑，但還能在更好）&lt;/p&gt;
+&lt;p&gt;​		如果只是這樣子還沒什麼問題，畢竟就只是把東西一個接著一個地疊上去，頂多就是不好維護而已。但實際上的開發中，是很常出現改Ａ壞Ｂ這種情況的，在沒有單元測試的保護下，工程師在開發中是不會知道自己更新的這段程式碼會對某些程式造成影響，往往要等到合併後才能出現問題，所以會出現一種情況就是前期開發的都很順利，而越到後面Dead Line，效率就越發下降，&lt;strong&gt;因為工程師在開發的當下不知道自己新增的功能到底會不會對別人造成影響&lt;/strong&gt;。而有了測試的保護，我們可以在寫程式的時候就知道現在程式的運行狀況，今天這樣子的修改會不會導致其他程式跑不起來，如果跑不起來那單元測試就不會過，這樣的回饋是&lt;strong&gt;立即性&lt;/strong&gt;的回應，而不需要等到合併後大家才知道。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/4EMwAcp.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205010534318&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;(▲ 隨著開發時間的增加，TDD的優勢會更凸顯出來）&lt;/p&gt;
+&lt;h2 id=&#34;agile與tdd&#34;&gt;Agile與TDD&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;講到Agile就會講到瀑布式開發(WaterFall)，但你知道嗎？其實從來都沒有瀑布式開發這種事情喔。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;瀑布式開發是來自於Winston Royce在1970所提出的論文Managing the Development of Larger Software Systems被提出，但事實上這個開發模式在這篇論文的下一行就被Winston Royce否決了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6dBbaHc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205012708984&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/61MwhoA.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205012720794&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I believe in this concept, but the implementation described above is risky and nivites failure. The problem is illustrated in Figure 4 .&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/73usP4Z.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205012847815&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;​		(▲Figure 4)&lt;/p&gt;
+&lt;p&gt;The testing phase which occurs at the end of the development cycle is the first event for which timing, srotage, input/output trasfers,&lt;/p&gt;
+&lt;p&gt;好的TDD可以讓我們更有時間來維護我們的Code與品質&lt;/p&gt;
+&lt;p&gt;Feature Envy&lt;/p&gt;
+&lt;p&gt;Data Clump 最好不超過三個參數&lt;/p&gt;
+&lt;p&gt;Primitive Obssesion&lt;/p&gt;
+&lt;p&gt;單元測試幫助重構&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/I6ykhcb.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221204225916225&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/2yU7voC.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221204230032106&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Winston RoyCe的論文，瀑布模型從未發生，一直以來都只有敏捷開發&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/63Cd06c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221204230723075&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/KsBDVWZ.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221204230853226&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;單元測試的重點不在於保護產品品質，而在於支持重購，增進產品品質只是附帶的一個好處而已&lt;/p&gt;
+&lt;p&gt;測試難寫=程式爛&lt;/p&gt;
+&lt;p&gt;測試好寫不代表程式好&lt;/p&gt;
+&lt;p&gt;重構才有更好的設計&lt;/p&gt;
+&lt;p&gt;先寫程式還是先寫測試&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;先寫程式在寫測試也可以，只是先寫測試可以讓我們更專注在程式的行為而非細節上
+&lt;ul&gt;
+&lt;li&gt;Example：複式簿記&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/raUw7mp.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221204231623176&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/gStvy4v.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221204231710590&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ＱＡ有ＱＡ要做的　ＲＤ有ＲＤ要做的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/NQsqkPa.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221204232214092&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;什麼時候需要修改它，等需要改它、需要用到它的時候&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>如何將Junit的測試粒度控制在最小單元</title>
+        <link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</link>
+        <pubDate>Wed, 30 Nov 2022 13:30:27 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</guid>
+        <description>&lt;img src="https://i.imgur.com/4qePz5L.png " alt="Featured image of post 如何將Junit的測試粒度控制在最小單元" /&gt;&lt;p&gt;在Junit5中，有對一些Junit的測試的註解進行調整&lt;/p&gt;
+&lt;p&gt;比如說&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Junit4&lt;/th&gt;
+&lt;th&gt;Junit5&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;測試用框架的選擇&lt;/td&gt;
+&lt;td&gt;@RunWith(MockitoJUnitRunner.class)&lt;/td&gt;
+&lt;td&gt;@ExtendWith(MockitoExtension.class)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;當測試會使用到SprintBoot框架時，應該要使用@ExtendWith(SpringExtension.class)，@MockBean來調用&lt;/p&gt;
+&lt;p&gt;若測試不想涉及SprintBoot的時候@ExtendWith(MockitoExtension.class)，以及@Mock, @InjectMocks，並且使用MockMvcBuilders.standaloneSetup來設置獨立測試，以下是Code的示範&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;org.junit.jupiter.api.BeforeEach&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;org.junit.jupiter.api.extension.ExtendWith&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;org.mockito.InjectMocks&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;org.mockito.Mock&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;org.mockito.junit.jupiter.MockitoExtension&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;org.springframework.test.web.servlet.MockMvc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;org.springframework.test.web.servlet.setup.MockMvcBuilders&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/**
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; * @author Hoxton on 2022/11/30
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt; */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@ExtendWith&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MockitoExtension&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;UserControllerTest&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nd&#34;&gt;@Mock&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//Controller調用的Service
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;UserService&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;userService&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nd&#34;&gt;@InjectMocks&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//要測試的Cotroller
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;UserController&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;userController&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;MockMvc&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mockMvc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//模擬Mvc
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nd&#34;&gt;@BeforeEach&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;setMockMvc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;MockMvcBuilders&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;standaloneSetup&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;userController&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;build&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>IDEA的介紹</title>
         <link>https://hoxtonhsu.com/p/idea%E7%9A%84%E4%BB%8B%E7%B4%B9/</link>
         <pubDate>Thu, 10 Nov 2022 23:52:33 +0800</pubDate>
@@ -1169,6 +1432,283 @@
 &lt;p&gt;負責協調硬體與應用程式，給不同的使用者&lt;/p&gt;
 &lt;h3 id=&#34;應用程式application-programs&#34;&gt;應用程式(application programs)&lt;/h3&gt;
 &lt;p&gt;例如Word，Excel，Chrome之類的應用程式，來處理使用者的計算問題(Computing Problems)&lt;/p&gt;
+&lt;p&gt;補充：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Bare Machine(裸機): 純粹只有硬體組成，沒有OS及System Programs&lt;/li&gt;
+&lt;li&gt;Extended Machine: Bare Machine加上OS/system programs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/inlIZJo.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221029143145761&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In Memory
+&lt;ul&gt;
+&lt;li&gt;Command Interpreter(命令解譯器)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;multiprogramming-system&#34;&gt;Multiprogramming System&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;定義：系統允許多個Jobs(Process)同時執行，即是Multiprogramming&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;主要目的：提高CPU Utilization&lt;/li&gt;
+&lt;li&gt;作法：透過Job Scheduling or CPU Scheduling技術達成&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;example：當執行中的process  waiting for I/O completed, 則OS可將CPU切換給另一個process執行，避免CPU idle 。&lt;/p&gt;
+&lt;p&gt;即只要系統內有夠多的工作存在，則CPU IDLE的機會就下降&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Mulitiprogramming Degree之定義&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;系統內的Process的數目：一般而言，Degree越高，CPU利用率就越高。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;(Note：Virtual Memory Thrashing狀況除外)&lt;/strong&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;多個Process的定義、以及如何執行&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Concurrent execution(並行)：一顆CPU，大家一起輪番使用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/JUSKW04.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221102220045970&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Parallel execution(平行)：多顆CPU或是Multi-core(多核)，各自執行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CELncNq.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221102220202298&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;time-sharing-system分時系統&#34;&gt;Time-Sharing System(分時系統)&lt;/h3&gt;
+&lt;p&gt;定義：又叫Multitasking[恐龍本如是說]&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It&amp;rsquo;s a logical extension of Multiprogeamming system&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;與Multiprogramming的最大差異：&lt;strong&gt;CPU的切換頻率極高&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Time-Sharing System features
+&lt;ul&gt;
+&lt;li&gt;強調對&lt;strong&gt;User Response的時間&lt;/strong&gt;要&lt;strong&gt;短&lt;/strong&gt;(&amp;lt;1秒)&lt;/li&gt;
+&lt;li&gt;適用於user interactive的Computing/ Environment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Main Frame(主機)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/dHbi3Pr.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221102223550343&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU Scheduling採取RR的排班法則(第四章會介紹)&lt;/li&gt;
+&lt;li&gt;使用Virtual Memory的技術，擴展Logical Memory Space&lt;/li&gt;
+&lt;li&gt;使用Spooling的技術(不太會考)實現I/O Device的共用，類似現代的Buffering技術，讓每個user，皆以為自己有專屬的的Computer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;multiprocessors-system&#34;&gt;Multiprocessors System&lt;/h3&gt;
+&lt;p&gt;定義：又叫Multiprocessing or Paraller or Tightly-coupled system(緊密耦合系統)&lt;/p&gt;
+&lt;p&gt;faeture：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一個機器(or MotherBoard)內，有多個Processors(or CPUs)&lt;/li&gt;
+&lt;li&gt;這些CPUs彼此共享此機器的Memory,Bus,I/O-Device, power-supplier etc&amp;hellip;&lt;/li&gt;
+&lt;li&gt;通常受同一Clock之時脈控制&lt;/li&gt;
+&lt;li&gt;由同一個OS管理&lt;/li&gt;
+&lt;li&gt;processors之間的溝通大都採shared Memory方式&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/hvugyDq.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221106193948248&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Benefits(好處)：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Increased Throughput：產能增加&lt;/li&gt;
+&lt;li&gt;Increased Reliability：可靠度的提升&lt;/li&gt;
+&lt;li&gt;Economy Of Scale：運算能力的擴充比較好&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;　分析如下：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Increased Throughput：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可支持多個工作在不同CPU上平行執行(paraller Computing)，&lt;strong&gt;注意，N顆CPU之產能絕對小於1顆CPU產能xN倍&lt;/strong&gt;，意即CPU數量的提升與產能的提升並非線性成長。原因是因為&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Resource Contetion(資源的競爭)&lt;/li&gt;
+&lt;li&gt;Processors間的Communication會抵消產能&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Increased Reliability:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;某一顆CPU壞了，則System不會因此而停頓，因為其他CPU仍可運作&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Graceful degradation(漸進式的滅亡)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;System不至因為某些Hardward/Software之元件故障而停頓，仍然保有持續運作的能力，這性質就稱為fail-soft&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Fault-Tolerant system(容錯系統)&lt;strong&gt;考試不太會考&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;具有graceful degradation性質之系統就叫做Fault-Tolerant system，想要達成容錯的技術需要有兩件事情的支援&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;要有backup的系統，切換也要流暢&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Economy of Scale:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;運算能力擴充符合經濟效益&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;∵N顆CPU在一部機器內，與N部機器相比，成本較便宜∵這些CPUs共享同一機器之Memory, Bus, I/O-Device, etc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;multiprocessors-system可以再拆分成兩種subtypes&#34;&gt;Multiprocessors System可以再拆分成&lt;strong&gt;兩種&lt;/strong&gt;subTypes&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;SMP(Symmetric MultiProcessors) 對稱的&lt;/li&gt;
+&lt;li&gt;ASMP(Asymmetric MultiProcessors) 非對稱的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;SMP&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;定義：每個Processor的工作能力是相同的(Identical)，且每個CPU都有對等、平等的權利來存取資源&lt;/p&gt;
+&lt;p&gt;優點：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;可靠度較ASMP高，因工作能力相同，即使其中一個cpu掛了也可以被立刻取代&lt;/li&gt;
+&lt;li&gt;效能較高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缺點：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;SMP的OS設計開發較為複雜(互斥存取的機制設計,資源的競爭)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;ASMP&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;定義：每個Processor之工作能力&lt;strong&gt;不盡相同&lt;/strong&gt;，通常是採取&lt;strong&gt;Master-Slave&lt;/strong&gt;的架構(恐龍本有時候會寫成Boss-Employee&lt;/p&gt;
+&lt;p&gt;Master-Processor負責工作分派及資源分配，監督Slaves等管理工作&lt;/p&gt;
+&lt;p&gt;Slave Processors負責執行工作&lt;/p&gt;
+&lt;p&gt;優點：ASMP的OS設計開發較為Simple，∵與Simple-Cpu Os版類似&lt;/p&gt;
+&lt;p&gt;缺點：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;可靠度低，Master CPU如果壞了，就會停擺，直到另一顆CPU被Train接手&lt;/li&gt;
+&lt;li&gt;效能較低∵Master CPU是瓶頸&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/wo1RhWy.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221108212149764&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;multiprocessors-system-vs-multicores-cpu&#34;&gt;Multiprocessors System VS MultiCores CPU&lt;/h4&gt;
+&lt;p&gt;從作業系統來看差異不大，主要差異是&lt;strong&gt;硬體的差異(主要)&lt;/strong&gt;，以OS來看，你裝了一顆兩核的CPU，OS會視作兩顆CPU；裝四核的視作四顆CPU&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;MultiProcessors&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BhjZbvk.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221108214627937&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;MultiCores CPU&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/HNuJgLM.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221108214639509&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;優點&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Power Saving：相較MultiProcessor，在一個CPU上提供兩個Core的能源耗損會比在一張板子上提供兩顆CPU的能源耗損還來得低。&lt;/li&gt;
+&lt;li&gt;Speed比較快(∵處在同一個晶片內資料傳輸速度較快)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;distribute-system&#34;&gt;Distribute System&lt;/h3&gt;
+&lt;p&gt;定義：又叫Loosely-Coupled system(鬆散耦合系統)，主要的Feature如下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;多部機器彼此透過Network(or Bus)相互串連&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每部機器之CPU有各自私有的Memory, Bus, I/O-Device, etc 並非共享&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;各CPU之Clock時脈控制不一定相同&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;各CPU上之OS也不一定相同&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;各Processors之間的溝通大都採**&amp;ldquo;Message Passing&amp;rdquo;**方式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Message Passing (類似講電話)&lt;/p&gt;
+&lt;p&gt;Step&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;建立Communication Link&lt;/li&gt;
+&lt;li&gt;Message 相互傳輸&lt;/li&gt;
+&lt;li&gt;釋放Link&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6gSkGlg.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221110232152377&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;建構distribute-system之理由好處&#34;&gt;建構Distribute-System之理由(好處)&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Increased Throughput(支持Paraller Computing)&lt;/li&gt;
+&lt;li&gt;Increased Reliability(一個掛掉，還有其他可以擋)&lt;/li&gt;
+&lt;li&gt;Resource Sharing(資源共享因此成本降低)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;支持&amp;quot;Client-Server&amp;quot; Computing Model之實施&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Server(伺服器)：提供某些服務的機器 example: mail server, file server ,DNS,printer server, computing server &amp;hellip;&lt;/li&gt;
+&lt;li&gt;Client：本身不提供服務，且它需要某些服務時，則發請求至Server, Server服務完再將結果回傳Client&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;第二章-operating-system-strucutures作業系統架構&#34;&gt;第二章 Operating-System Strucutures(作業系統架構)&lt;/h2&gt;
 &lt;h3 id=&#34;os-service&#34;&gt;OS Service&lt;/h3&gt;
 &lt;p&gt;透過System Code去呼叫這些Service&lt;/p&gt;
@@ -1685,7 +2225,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;恩，這邊不太清楚，要再回頭看 不懂&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&#34;interprocess-communication&#34;&gt;Interprocess Communication&lt;/h4&gt;
+&lt;h4 id=&#34;interprocess-communicationipc&#34;&gt;Interprocess Communication(IPC)&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/b6dna1d.png&#34;
 	
 	
@@ -1696,6 +2236,7 @@
 	
 	
 &gt;&lt;/p&gt;
+&lt;p&gt;在OS的世界裡，有時候Process跟Thread是不分的&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;IPC：不同或相同的Process裡面的thread要互相溝通&lt;/li&gt;
 &lt;/ul&gt;
@@ -1712,6 +2253,17 @@
 &lt;blockquote&gt;
 &lt;p&gt;讀投影片就是完整的筆記了&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;溝通的方式有兩種&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Shared Memory&lt;/p&gt;
+&lt;p&gt;有一塊Memoryd空間是share的，兩個人都可以用pointer去access它(會有synchronization的問題)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Message Passing&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;​      跨電腦的訊息溝通是Message Passing&lt;/p&gt;
 &lt;p&gt;資料量小的話用Shared memory，資料量大的話用Message passing（避免synchronization問題），&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/getfXBb.png&#34;
 	
@@ -1723,9 +2275,214 @@
 	
 	
 &gt;&lt;/p&gt;
+&lt;p&gt;如何Message Passing呢？&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Socket：透過IP和Port來辨認使用者，&lt;strong&gt;Port Number(8080,5432)就是Process&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Socket：透過IP和Port來辨認使用者，&lt;strong&gt;Port Number(8080,5432)就是Process&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Process ID是一個Process獨一無二的ID，用來辨認不同Process&lt;/p&gt;
+&lt;p&gt;Port Number是作為網路連線的一部分&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Socket是個比較low level的傳遞方式，只能傳遞stream of bytes。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Remote Procedure Calls&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h5 id=&#34;shared-memory&#34;&gt;Shared Memory&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vVFc3gA.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221013223320680&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/pwAp55s.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015144503008&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/VX7VTFL.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015144924661&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;完全看不懂&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;message-passing&#34;&gt;Message Passing&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/zEPTisH.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015151426143&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/GjTgnUy.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015152045607&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用Memory copy的方式，溝通的方式有一點像打電話，有一個人要打電話(Send)另一個人要接電話(Receive)，訊息才可以交流，這一部分也隱含了同步化的操作，意即Message Passing雖然速度比較慢，但它其實幫你做了同步化這件事情。&lt;/p&gt;
+&lt;p&gt;為了要溝通，所以需要先建立一個communication link，並提供一個Send跟receive的function code，實作一個communication link有分成physical跟logical兩個部分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Physical&lt;/p&gt;
+&lt;p&gt;例如Shared memory, HW bus 或是 network的部分&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Logical(Program 在乎的事情)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;溝通的方向性(單向還是雙向)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;symmetric and asymmetric 對稱與非對稱&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Blocking or non-blocking&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;blocking：呼叫一個function，除非這個function全部做完才會做下一件事情，循序漸進的方法去執行程式&lt;/p&gt;
+&lt;p&gt;Non-Blocking：呼叫一個function，如果有資料就回傳資料，如果沒有資料回傳就會得到一個Error，並執行下一個程式（大概啦）&lt;/p&gt;
+&lt;p&gt;參考資料：&lt;a class=&#34;link&#34; href=&#34;https://medium.com/@clu1022/%E6%B7%BA%E8%AB%87i-o-model-32da09c619e6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;淺談I/O Model&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;hellip;. 參閱上面投影片&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/5xOl2Ks.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015154148903&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/DlWQ645.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015192600656&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/bq56vJz.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015192823026&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;傳遞訊息的時候，不是把訊息直接傳給一個人，而是放到一個Mail Box裡面，想要這個message的人自己到mailbox裡面拿，這種不知道雙方是誰的Communication就叫做indirect communication&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AOImSIi.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015231131458&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;MailBox所遇到的問題&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果很多人同時連線到MailBox該怎麼辦?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;解決方案&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;限制這個communication只能有兩個人同時使用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;同一時間只能有一個Receiver&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h4 id=&#34;mailbox不做限制要幾個人來都可以但當有人同時access的時候會有其中一方先被delay&#34;&gt;MailBox不做限制，要幾個人來都可以，但當有人同時Access的時候，會有其中一方先被Delay&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;synchronization&#34;&gt;Synchronization&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/cuNUaxt.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015232822207&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不懂，Buffer是啥&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Message在傳遞的時候一定是blocking或是non-blocking的狀態，要特別注意，Blcoking Send 不一定要對到Blocking Receive，它們之間沒有相對關係&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Blocking&lt;/th&gt;
+&lt;th&gt;NonBlock&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Send&lt;/td&gt;
+&lt;td&gt;在Message被收到之前，Sender都是被blocked住的&lt;/td&gt;
+&lt;td&gt;Sender送出Messager，不管有沒有人收到訊息，都直接去做自己的事&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Receive&lt;/td&gt;
+&lt;td&gt;Receiver被blocked住，直到收到訊息&lt;/td&gt;
+&lt;td&gt;Receiver收到一個valid Message或null(因為是nonBlock)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;sockets&#34;&gt;Sockets&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/yxrK8Tu.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015234703436&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Accept之後會產生一個thread，所以這整體是一個MultiThread的架構&lt;/p&gt;
+&lt;h4 id=&#34;remote-procedure-callsrpc&#34;&gt;Remote Procedure Calls：RPC&lt;/h4&gt;
 &lt;h2 id=&#34;第四章-thread--concurrency-執行序與併發&#34;&gt;第四章 Thread &amp;amp; Concurrency (執行序與併發)&lt;/h2&gt;
 &lt;h2 id=&#34;第五章-cpu-scheduling-cpu-行程&#34;&gt;第五章 CPU Scheduling (CPU 行程)&lt;/h2&gt;
 &lt;h1 id=&#34;第三節-process-synchronization-進程同步&#34;&gt;第三節 Process Synchronization (進程同步)&lt;/h1&gt;
@@ -4696,6 +5453,18 @@
     &gt;Quartz教學基礎&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.796t.com/content/1545519797.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;觸發器詳細定義&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>生命中的那些麻疹</title>
+        <link>https://hoxtonhsu.com/p/%E7%94%9F%E5%91%BD%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E9%BA%BB%E7%96%B9/</link>
+        <pubDate>Sat, 01 Oct 2022 21:57:13 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/%E7%94%9F%E5%91%BD%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E9%BA%BB%E7%96%B9/</guid>
+        <description>&lt;img src="https://i.imgur.com/kjG3kL7.png " alt="Featured image of post 生命中的那些麻疹" /&gt;&lt;blockquote&gt;
+&lt;p&gt;在成為大人前，該如何度過這段漫長討厭的時間呢？誰都無法告訴我們。似乎只能置之不理，就像出麻疹一樣。可是，也有人因麻疹而死、因麻疹而失明，放任不管是不對的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;　　有時候會躺在床上想著以前的事情，以前煩惱的事情，國小煩惱著回家後可不可以打電腦，國中在煩惱下課之後可不可以不要再去導師室罰站，高中在煩惱上路對線技巧，大學時再煩惱她怎麼不喜歡自己。每個階段都有不同煩惱的事情，當時這些煩惱有大有小，但現在回頭來看&lt;/p&gt;
 </description>
         </item>
         <item>

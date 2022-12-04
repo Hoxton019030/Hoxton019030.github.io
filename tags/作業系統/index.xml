@@ -38,6 +38,283 @@
 &lt;p&gt;負責協調硬體與應用程式，給不同的使用者&lt;/p&gt;
 &lt;h3 id=&#34;應用程式application-programs&#34;&gt;應用程式(application programs)&lt;/h3&gt;
 &lt;p&gt;例如Word，Excel，Chrome之類的應用程式，來處理使用者的計算問題(Computing Problems)&lt;/p&gt;
+&lt;p&gt;補充：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Bare Machine(裸機): 純粹只有硬體組成，沒有OS及System Programs&lt;/li&gt;
+&lt;li&gt;Extended Machine: Bare Machine加上OS/system programs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/inlIZJo.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221029143145761&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In Memory
+&lt;ul&gt;
+&lt;li&gt;Command Interpreter(命令解譯器)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;multiprogramming-system&#34;&gt;Multiprogramming System&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;定義：系統允許多個Jobs(Process)同時執行，即是Multiprogramming&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;主要目的：提高CPU Utilization&lt;/li&gt;
+&lt;li&gt;作法：透過Job Scheduling or CPU Scheduling技術達成&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;example：當執行中的process  waiting for I/O completed, 則OS可將CPU切換給另一個process執行，避免CPU idle 。&lt;/p&gt;
+&lt;p&gt;即只要系統內有夠多的工作存在，則CPU IDLE的機會就下降&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Mulitiprogramming Degree之定義&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;系統內的Process的數目：一般而言，Degree越高，CPU利用率就越高。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;(Note：Virtual Memory Thrashing狀況除外)&lt;/strong&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;多個Process的定義、以及如何執行&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Concurrent execution(並行)：一顆CPU，大家一起輪番使用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/JUSKW04.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221102220045970&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Parallel execution(平行)：多顆CPU或是Multi-core(多核)，各自執行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CELncNq.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221102220202298&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;time-sharing-system分時系統&#34;&gt;Time-Sharing System(分時系統)&lt;/h3&gt;
+&lt;p&gt;定義：又叫Multitasking[恐龍本如是說]&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It&amp;rsquo;s a logical extension of Multiprogeamming system&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;與Multiprogramming的最大差異：&lt;strong&gt;CPU的切換頻率極高&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Time-Sharing System features
+&lt;ul&gt;
+&lt;li&gt;強調對&lt;strong&gt;User Response的時間&lt;/strong&gt;要&lt;strong&gt;短&lt;/strong&gt;(&amp;lt;1秒)&lt;/li&gt;
+&lt;li&gt;適用於user interactive的Computing/ Environment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Main Frame(主機)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/dHbi3Pr.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221102223550343&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU Scheduling採取RR的排班法則(第四章會介紹)&lt;/li&gt;
+&lt;li&gt;使用Virtual Memory的技術，擴展Logical Memory Space&lt;/li&gt;
+&lt;li&gt;使用Spooling的技術(不太會考)實現I/O Device的共用，類似現代的Buffering技術，讓每個user，皆以為自己有專屬的的Computer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;multiprocessors-system&#34;&gt;Multiprocessors System&lt;/h3&gt;
+&lt;p&gt;定義：又叫Multiprocessing or Paraller or Tightly-coupled system(緊密耦合系統)&lt;/p&gt;
+&lt;p&gt;faeture：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一個機器(or MotherBoard)內，有多個Processors(or CPUs)&lt;/li&gt;
+&lt;li&gt;這些CPUs彼此共享此機器的Memory,Bus,I/O-Device, power-supplier etc&amp;hellip;&lt;/li&gt;
+&lt;li&gt;通常受同一Clock之時脈控制&lt;/li&gt;
+&lt;li&gt;由同一個OS管理&lt;/li&gt;
+&lt;li&gt;processors之間的溝通大都採shared Memory方式&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/hvugyDq.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221106193948248&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Benefits(好處)：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Increased Throughput：產能增加&lt;/li&gt;
+&lt;li&gt;Increased Reliability：可靠度的提升&lt;/li&gt;
+&lt;li&gt;Economy Of Scale：運算能力的擴充比較好&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;　分析如下：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Increased Throughput：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可支持多個工作在不同CPU上平行執行(paraller Computing)，&lt;strong&gt;注意，N顆CPU之產能絕對小於1顆CPU產能xN倍&lt;/strong&gt;，意即CPU數量的提升與產能的提升並非線性成長。原因是因為&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Resource Contetion(資源的競爭)&lt;/li&gt;
+&lt;li&gt;Processors間的Communication會抵消產能&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Increased Reliability:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;某一顆CPU壞了，則System不會因此而停頓，因為其他CPU仍可運作&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Graceful degradation(漸進式的滅亡)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;System不至因為某些Hardward/Software之元件故障而停頓，仍然保有持續運作的能力，這性質就稱為fail-soft&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Fault-Tolerant system(容錯系統)&lt;strong&gt;考試不太會考&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;具有graceful degradation性質之系統就叫做Fault-Tolerant system，想要達成容錯的技術需要有兩件事情的支援&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;要有backup的系統，切換也要流暢&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Economy of Scale:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;運算能力擴充符合經濟效益&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;∵N顆CPU在一部機器內，與N部機器相比，成本較便宜∵這些CPUs共享同一機器之Memory, Bus, I/O-Device, etc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;multiprocessors-system可以再拆分成兩種subtypes&#34;&gt;Multiprocessors System可以再拆分成&lt;strong&gt;兩種&lt;/strong&gt;subTypes&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;SMP(Symmetric MultiProcessors) 對稱的&lt;/li&gt;
+&lt;li&gt;ASMP(Asymmetric MultiProcessors) 非對稱的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;SMP&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;定義：每個Processor的工作能力是相同的(Identical)，且每個CPU都有對等、平等的權利來存取資源&lt;/p&gt;
+&lt;p&gt;優點：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;可靠度較ASMP高，因工作能力相同，即使其中一個cpu掛了也可以被立刻取代&lt;/li&gt;
+&lt;li&gt;效能較高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缺點：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;SMP的OS設計開發較為複雜(互斥存取的機制設計,資源的競爭)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;ASMP&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;定義：每個Processor之工作能力&lt;strong&gt;不盡相同&lt;/strong&gt;，通常是採取&lt;strong&gt;Master-Slave&lt;/strong&gt;的架構(恐龍本有時候會寫成Boss-Employee&lt;/p&gt;
+&lt;p&gt;Master-Processor負責工作分派及資源分配，監督Slaves等管理工作&lt;/p&gt;
+&lt;p&gt;Slave Processors負責執行工作&lt;/p&gt;
+&lt;p&gt;優點：ASMP的OS設計開發較為Simple，∵與Simple-Cpu Os版類似&lt;/p&gt;
+&lt;p&gt;缺點：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;可靠度低，Master CPU如果壞了，就會停擺，直到另一顆CPU被Train接手&lt;/li&gt;
+&lt;li&gt;效能較低∵Master CPU是瓶頸&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/wo1RhWy.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221108212149764&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;multiprocessors-system-vs-multicores-cpu&#34;&gt;Multiprocessors System VS MultiCores CPU&lt;/h4&gt;
+&lt;p&gt;從作業系統來看差異不大，主要差異是&lt;strong&gt;硬體的差異(主要)&lt;/strong&gt;，以OS來看，你裝了一顆兩核的CPU，OS會視作兩顆CPU；裝四核的視作四顆CPU&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;MultiProcessors&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BhjZbvk.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221108214627937&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;MultiCores CPU&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/HNuJgLM.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221108214639509&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;優點&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Power Saving：相較MultiProcessor，在一個CPU上提供兩個Core的能源耗損會比在一張板子上提供兩顆CPU的能源耗損還來得低。&lt;/li&gt;
+&lt;li&gt;Speed比較快(∵處在同一個晶片內資料傳輸速度較快)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;distribute-system&#34;&gt;Distribute System&lt;/h3&gt;
+&lt;p&gt;定義：又叫Loosely-Coupled system(鬆散耦合系統)，主要的Feature如下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;多部機器彼此透過Network(or Bus)相互串連&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每部機器之CPU有各自私有的Memory, Bus, I/O-Device, etc 並非共享&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;各CPU之Clock時脈控制不一定相同&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;各CPU上之OS也不一定相同&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;各Processors之間的溝通大都採**&amp;ldquo;Message Passing&amp;rdquo;**方式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Message Passing (類似講電話)&lt;/p&gt;
+&lt;p&gt;Step&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;建立Communication Link&lt;/li&gt;
+&lt;li&gt;Message 相互傳輸&lt;/li&gt;
+&lt;li&gt;釋放Link&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6gSkGlg.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221110232152377&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;建構distribute-system之理由好處&#34;&gt;建構Distribute-System之理由(好處)&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Increased Throughput(支持Paraller Computing)&lt;/li&gt;
+&lt;li&gt;Increased Reliability(一個掛掉，還有其他可以擋)&lt;/li&gt;
+&lt;li&gt;Resource Sharing(資源共享因此成本降低)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;支持&amp;quot;Client-Server&amp;quot; Computing Model之實施&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Server(伺服器)：提供某些服務的機器 example: mail server, file server ,DNS,printer server, computing server &amp;hellip;&lt;/li&gt;
+&lt;li&gt;Client：本身不提供服務，且它需要某些服務時，則發請求至Server, Server服務完再將結果回傳Client&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;第二章-operating-system-strucutures作業系統架構&#34;&gt;第二章 Operating-System Strucutures(作業系統架構)&lt;/h2&gt;
 &lt;h3 id=&#34;os-service&#34;&gt;OS Service&lt;/h3&gt;
 &lt;p&gt;透過System Code去呼叫這些Service&lt;/p&gt;
@@ -554,7 +831,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;恩，這邊不太清楚，要再回頭看 不懂&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&#34;interprocess-communication&#34;&gt;Interprocess Communication&lt;/h4&gt;
+&lt;h4 id=&#34;interprocess-communicationipc&#34;&gt;Interprocess Communication(IPC)&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/b6dna1d.png&#34;
 	
 	
@@ -565,6 +842,7 @@
 	
 	
 &gt;&lt;/p&gt;
+&lt;p&gt;在OS的世界裡，有時候Process跟Thread是不分的&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;IPC：不同或相同的Process裡面的thread要互相溝通&lt;/li&gt;
 &lt;/ul&gt;
@@ -581,6 +859,17 @@
 &lt;blockquote&gt;
 &lt;p&gt;讀投影片就是完整的筆記了&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;溝通的方式有兩種&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Shared Memory&lt;/p&gt;
+&lt;p&gt;有一塊Memoryd空間是share的，兩個人都可以用pointer去access它(會有synchronization的問題)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Message Passing&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;​      跨電腦的訊息溝通是Message Passing&lt;/p&gt;
 &lt;p&gt;資料量小的話用Shared memory，資料量大的話用Message passing（避免synchronization問題），&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/getfXBb.png&#34;
 	
@@ -592,9 +881,214 @@
 	
 	
 &gt;&lt;/p&gt;
+&lt;p&gt;如何Message Passing呢？&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Socket：透過IP和Port來辨認使用者，&lt;strong&gt;Port Number(8080,5432)就是Process&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Socket：透過IP和Port來辨認使用者，&lt;strong&gt;Port Number(8080,5432)就是Process&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Process ID是一個Process獨一無二的ID，用來辨認不同Process&lt;/p&gt;
+&lt;p&gt;Port Number是作為網路連線的一部分&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Socket是個比較low level的傳遞方式，只能傳遞stream of bytes。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Remote Procedure Calls&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h5 id=&#34;shared-memory&#34;&gt;Shared Memory&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vVFc3gA.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221013223320680&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/pwAp55s.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015144503008&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/VX7VTFL.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015144924661&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;完全看不懂&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;message-passing&#34;&gt;Message Passing&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/zEPTisH.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015151426143&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/GjTgnUy.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015152045607&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用Memory copy的方式，溝通的方式有一點像打電話，有一個人要打電話(Send)另一個人要接電話(Receive)，訊息才可以交流，這一部分也隱含了同步化的操作，意即Message Passing雖然速度比較慢，但它其實幫你做了同步化這件事情。&lt;/p&gt;
+&lt;p&gt;為了要溝通，所以需要先建立一個communication link，並提供一個Send跟receive的function code，實作一個communication link有分成physical跟logical兩個部分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Physical&lt;/p&gt;
+&lt;p&gt;例如Shared memory, HW bus 或是 network的部分&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Logical(Program 在乎的事情)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;溝通的方向性(單向還是雙向)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;symmetric and asymmetric 對稱與非對稱&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Blocking or non-blocking&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;blocking：呼叫一個function，除非這個function全部做完才會做下一件事情，循序漸進的方法去執行程式&lt;/p&gt;
+&lt;p&gt;Non-Blocking：呼叫一個function，如果有資料就回傳資料，如果沒有資料回傳就會得到一個Error，並執行下一個程式（大概啦）&lt;/p&gt;
+&lt;p&gt;參考資料：&lt;a class=&#34;link&#34; href=&#34;https://medium.com/@clu1022/%E6%B7%BA%E8%AB%87i-o-model-32da09c619e6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;淺談I/O Model&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;hellip;. 參閱上面投影片&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/5xOl2Ks.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015154148903&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/DlWQ645.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015192600656&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/bq56vJz.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015192823026&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;傳遞訊息的時候，不是把訊息直接傳給一個人，而是放到一個Mail Box裡面，想要這個message的人自己到mailbox裡面拿，這種不知道雙方是誰的Communication就叫做indirect communication&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AOImSIi.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015231131458&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;MailBox所遇到的問題&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果很多人同時連線到MailBox該怎麼辦?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;解決方案&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;限制這個communication只能有兩個人同時使用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;同一時間只能有一個Receiver&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h4 id=&#34;mailbox不做限制要幾個人來都可以但當有人同時access的時候會有其中一方先被delay&#34;&gt;MailBox不做限制，要幾個人來都可以，但當有人同時Access的時候，會有其中一方先被Delay&lt;/h4&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;synchronization&#34;&gt;Synchronization&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/cuNUaxt.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015232822207&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不懂，Buffer是啥&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Message在傳遞的時候一定是blocking或是non-blocking的狀態，要特別注意，Blcoking Send 不一定要對到Blocking Receive，它們之間沒有相對關係&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Blocking&lt;/th&gt;
+&lt;th&gt;NonBlock&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Send&lt;/td&gt;
+&lt;td&gt;在Message被收到之前，Sender都是被blocked住的&lt;/td&gt;
+&lt;td&gt;Sender送出Messager，不管有沒有人收到訊息，都直接去做自己的事&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Receive&lt;/td&gt;
+&lt;td&gt;Receiver被blocked住，直到收到訊息&lt;/td&gt;
+&lt;td&gt;Receiver收到一個valid Message或null(因為是nonBlock)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;sockets&#34;&gt;Sockets&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/yxrK8Tu.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221015234703436&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Accept之後會產生一個thread，所以這整體是一個MultiThread的架構&lt;/p&gt;
+&lt;h4 id=&#34;remote-procedure-callsrpc&#34;&gt;Remote Procedure Calls：RPC&lt;/h4&gt;
 &lt;h2 id=&#34;第四章-thread--concurrency-執行序與併發&#34;&gt;第四章 Thread &amp;amp; Concurrency (執行序與併發)&lt;/h2&gt;
 &lt;h2 id=&#34;第五章-cpu-scheduling-cpu-行程&#34;&gt;第五章 CPU Scheduling (CPU 行程)&lt;/h2&gt;
 &lt;h1 id=&#34;第三節-process-synchronization-進程同步&#34;&gt;第三節 Process Synchronization (進程同步)&lt;/h1&gt;

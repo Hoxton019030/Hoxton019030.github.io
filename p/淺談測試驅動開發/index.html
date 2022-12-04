@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='來聊聊我對TDD(Test-Driven Development)的一些想法吧'><title>淺談測試驅動開發</title>
+
+<link rel='canonical' href='https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/'>
+
+<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='淺談測試驅動開發'>
+<meta property='og:description' content='來聊聊我對TDD(Test-Driven Development)的一些想法吧'>
+<meta property='og:url' content='https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/'>
+<meta property='og:site_name' content='Hoxton'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='心得' /><meta property='article:published_time' content='2022-12-04T22:22:06&#43;08:00'/><meta property='article:modified_time' content='2022-12-04T22:22:06&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/2xteh3C.png' />
+<meta name="twitter:title" content="淺談測試驅動開發">
+<meta name="twitter:description" content="來聊聊我對TDD(Test-Driven Development)的一些想法吧"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.imgur.com/2xteh3C.png' />
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-9N16MVLR0Q', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_3.png" width="300"
+                            height="301" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Hoxton</a></h1>
+            <h2 class="site-description">師承葦名一心，曾征戰銀河系的各個角落，當過新世界的蒼藍星，也從許多殺手的手中修過無數台發電機，擊敗過月王，封印過輻光，也從奧杜因口中拯救過世界，還順便拯救了夏天的華盛頓，冬季的紐約，不只是傳火的薪王，也是雅楠的上位古神。曾經居住在洛聖都、潘朵拉星球，也曾居住廢棄礦坑裡頭，在經歷了一切之後，選擇在這裡記錄下自己的一些事情</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Hoxton019030'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.instagram.com/hoxton_8a31/'
+                        target="_blank"
+                        title="Instagram"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="4" />
+  <circle cx="12" cy="12" r="3" />
+  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/">
+                
+                    <img src="https://i.imgur.com/2xteh3C.png" loading="lazy" alt="Featured image of post 淺談測試驅動開發" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%A8%8B%E5%BC%8F/" >
+                程式
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/">淺談測試驅動開發</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            來聊聊我對TDD(Test-Driven Development)的一些想法吧
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 04, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="何謂tdd">何謂TDD</h2>
+<p>TDD(Test-Driven Development)是一個軟體開發的模式，它的概念很簡單，就是<strong>先寫測試在寫程式</strong>，</p>
+<p><img src="https://i.imgur.com/LgOetJJ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221205004202805"
+	
+	
+></p>
+<p>這樣的事情會讓我們覺得不可思議，因為我們一直以來寫程式的方式都是先寫程式，而測試則是有時間才再補的東西。那改成先寫測試會有什麼好處呢？這部分我們等等再來談，我們先討論TDD最核心的部分—<strong>單元測試(Unit Test)</strong>。</p>
+<h2 id="單元測試在tdd的作用是什麼">單元測試在TDD的作用是什麼</h2>
+<p>​		一開始在認識單元測試的時候，許多人的想法都會認為說，單元測試可以避免Bug，可以提升程式碼的品質。確實這些都是Unit Test的好處，但卻不是最核心的關鍵，單元測試最重要的點在於幫助我們<strong>重構現有的程式架構</strong>。</p>
+<p>​		我們在經手一個項目的時候，第二個月的理解一定會比第一個月的理解更深，第三個月的理解也一定會比第二個月的理解更加深刻，可能三個月前所使用的架構，在三個月後，隨著業務規模的擴展、需求的增加，而需要去新增新的程式，或是改變原有的設計，因而漸漸不敷使用，在這樣的情形下，若沒有單元測試的保護支持我們重構，讓我們確保每一步的Design都沒有破壞原有程式的設計，工程師會變得去害怕修改舊有的程式碼，因而導致不敷使用的架構繼續生長下去。</p>
+<p><img src="https://i.imgur.com/RUQ0j6E.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221205010938974"
+	
+	
+></p>
+<p>(▲ 程式能跑，但還能在更好）</p>
+<p>​		如果只是這樣子還沒什麼問題，畢竟就只是把東西一個接著一個地疊上去，頂多就是不好維護而已。但實際上的開發中，是很常出現改Ａ壞Ｂ這種情況的，在沒有單元測試的保護下，工程師在開發中是不會知道自己更新的這段程式碼會對某些程式造成影響，往往要等到合併後才能出現問題，所以會出現一種情況就是前期開發的都很順利，而越到後面Dead Line，效率就越發下降，<strong>因為工程師在開發的當下不知道自己新增的功能到底會不會對別人造成影響</strong>。而有了測試的保護，我們可以在寫程式的時候就知道現在程式的運行狀況，今天這樣子的修改會不會導致其他程式跑不起來，如果跑不起來那單元測試就不會過，這樣的回饋是<strong>立即性</strong>的回應，而不需要等到合併後大家才知道。</p>
+<p><img src="https://i.imgur.com/4EMwAcp.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221205010534318"
+	
+	
+></p>
+<p>(▲ 隨著開發時間的增加，TDD的優勢會更凸顯出來）</p>
+<h2 id="agile與tdd">Agile與TDD</h2>
+<blockquote>
+<p>講到Agile就會講到瀑布式開發(WaterFall)，但你知道嗎？其實從來都沒有瀑布式開發這種事情喔。</p>
+</blockquote>
+<p>瀑布式開發是來自於Winston Royce在1970所提出的論文Managing the Development of Larger Software Systems被提出，但事實上這個開發模式在這篇論文的下一行就被Winston Royce否決了。</p>
+<p><img src="https://i.imgur.com/6dBbaHc.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221205012708984"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/61MwhoA.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221205012720794"
+	
+	
+></p>
+<blockquote>
+<p>I believe in this concept, but the implementation described above is risky and nivites failure. The problem is illustrated in Figure 4 .</p>
+</blockquote>
+<p><img src="https://i.imgur.com/73usP4Z.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221205012847815"
+	
+	
+></p>
+<p>​		(▲Figure 4)</p>
+<p>The testing phase which occurs at the end of the development cycle is the first event for which timing, srotage, input/output trasfers,</p>
+<p>好的TDD可以讓我們更有時間來維護我們的Code與品質</p>
+<p>Feature Envy</p>
+<p>Data Clump 最好不超過三個參數</p>
+<p>Primitive Obssesion</p>
+<p>單元測試幫助重構</p>
+<p><img src="https://i.imgur.com/I6ykhcb.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204225916225"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/2yU7voC.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204230032106"
+	
+	
+></p>
+<p>Winston RoyCe的論文，瀑布模型從未發生，一直以來都只有敏捷開發</p>
+<p><img src="https://i.imgur.com/63Cd06c.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204230723075"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/KsBDVWZ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204230853226"
+	
+	
+></p>
+<p>單元測試的重點不在於保護產品品質，而在於支持重購，增進產品品質只是附帶的一個好處而已</p>
+<p>測試難寫=程式爛</p>
+<p>測試好寫不代表程式好</p>
+<p>重構才有更好的設計</p>
+<p>先寫程式還是先寫測試</p>
+<ul>
+<li>先寫程式在寫測試也可以，只是先寫測試可以讓我們更專注在程式的行為而非細節上
+<ul>
+<li>Example：複式簿記</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/raUw7mp.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204231623176"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/gStvy4v.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204231710590"
+	
+	
+></p>
+<p>ＱＡ有ＱＡ要做的　ＲＤ有ＲＤ要做的</p>
+<p><img src="https://i.imgur.com/NQsqkPa.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204232214092"
+	
+	
+></p>
+<p>什麼時候需要修改它，等需要改它、需要用到它的時候</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%BF%83%E5%BE%97/">心得</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/4qePz5L.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/4qePz5L.png "/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">如何將Junit的測試粒度控制在最小單元</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/intellij%E8%88%87eclipse%E7%9A%84%E6%AF%94%E8%BC%83/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/Fx9nanx.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/Fx9nanx.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">IntelliJ與Eclipse的比較</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/clion%E7%9A%84mutilmain/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/aGwtINt.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/aGwtINt.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CLion的MutilMain</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/HJLk11O.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/HJLk11O.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">作業系統筆記</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/B7GhSw1.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/B7GhSw1.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基礎AOP介紹-Filter Interceptor AspectJ</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "bf152013e92e48c1495f",
+        clientSecret: "bed32f8438cb1e00d8628d9b6d148003bb4bf25d",
+        repo: "comment",
+        owner: "Hoxton019030",
+        admin: ["Hoxton019030"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Hoxton
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.14.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#何謂tdd">何謂TDD</a></li>
+    <li><a href="#單元測試在tdd的作用是什麼">單元測試在TDD的作用是什麼</a></li>
+    <li><a href="#agile與tdd">Agile與TDD</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
