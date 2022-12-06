@@ -277,7 +277,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -291,7 +291,14 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h2 id="何謂tdd">何謂TDD</h2>
+    <h2 id="序言">序言</h2>
+<p>參考資料：</p>
+<p><a class="link" href="https://youtu.be/t4D6GW2c8G8?list=LL"  target="_blank" rel="noopener"
+    >Agile Hsinchu 2022.11 - 〈你就是不寫測試，才會沒時間〉線上導讀</a></p>
+<p><a class="link" href="https://youtu.be/wTpsxjP0t7M"  target="_blank" rel="noopener"
+    >測試有時間再寫？你就是不寫才會沒時間！</a></p>
+<p><a class="link" href="https://ithelp.ithome.com.tw/users/20107429/ironman/3897"  target="_blank" rel="noopener"
+    >你就是都不寫測試才會沒時間：Kuma 的 30 天 Unit Test 手把手教學，從理論到實戰 （Java 篇）</a></p>
 <p>TDD(Test-Driven Development)是一個軟體開發的模式，它的概念很簡單，就是<strong>先寫測試在寫程式</strong>，</p>
 <p><img src="https://i.imgur.com/LgOetJJ.png"
 	
@@ -356,7 +363,8 @@ if (!doNotTrack) {
 	
 ></p>
 <blockquote>
-<p>I believe in this concept, but the implementation described above is risky and nivites failure. The problem is illustrated in Figure 4 .</p>
+<p>I believe in this concept, but the implementation described above is risky and inivites failure. The problem is illustrated in Figure 4 .</p>
+<p>我相信這個概念，但照著這上面的流程做的話是高風險且易導致錯誤的，原因就如第四張圖所示</p>
 </blockquote>
 <p><img src="https://i.imgur.com/73usP4Z.png"
 	
@@ -369,7 +377,51 @@ if (!doNotTrack) {
 	
 ></p>
 <p>​		(▲Figure 4)</p>
-<p>The testing phase which occurs at the end of the development cycle is the first event for which timing, srotage, input/output trasfers,</p>
+<blockquote>
+<p><strong>The testing phase which occurs at the end of the development cycle</strong> is the first event for which timing, stotage, input/output transfers, etc, are experienced as distinguished from analyzed. These phenomena are not precisely analyzable. There phenomena are not precisely analyzable. They are not the solutions or the satndard partial differential quations of mathematical physics for instatnce. Yet if there phenomena fail to satisfy the  various external constraints, then invariablt a major redesign is required . A simple octal patch or redo of some isolated code will not fix there kinds of difficulties. The required design changes are likely to be so disruptive that the software requiremnets upon which the design is based and which provides the rationale for everything  are violated. <strong>Either the requirements must be modified, or a substantial change in the design is required.</strong> <strong>In effect the development process has returned to the origin and one can expect up to a 100-percent overrun in schedule and/or costs</strong></p>
+<p>在開發流程的最後一個階段-測試，第一個遇到的事情就是時序、儲存，輸出輸入，這些現象情況無法準確的分析，這些不像數學物理的解答，或是標準偏微方程，然而，如果存在不能滿足各種外部約束的現象，則不可避免地需要進行重大的重新設計，一個簡單的八進制補丁或一些孤立代碼的重做不會解決這些困難，所需的設計更改可能會造成破壞，以至於違反了設計所基於的以及為所有事情提供基本原理的軟件要求。 要么必須修改要求，要么需要對設計進行實質性更改。 實際上，開發過程已經回到原點，預計進度和/或成本會超支 100%。</p>
+</blockquote>
+<p>Winston Royce在瀑布模型提出的當下其實就否認了它的意義，但後續被一些人拿來當作開發的窠臼，也導致了這種開發模式往往會在完工時出現重大的危害。Winston Royce認為，<strong>在最後的測試階段是充滿著未知與不確定性</strong>，到最後會反覆著在<strong>測試、程式修改、確認需求</strong>這三個階段來回擺盪，這樣三個階段的來回擺盪是不是有點似曾相似呢？沒錯，就是TDD的概念</p>
+<h2 id="什麼是tdd">什麼是TDD</h2>
+<p><img src="https://i.imgur.com/Iwmr8mT.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221207000519492"
+	
+	
+></p>
+<p>TDD<strong>是一個開發模式</strong>而不是測試模式，TDD的測試模式是由</p>
+<ul>
+<li>寫一個會錯的測試</li>
+<li>寫一個剛好會過的程式</li>
+<li>重構</li>
+</ul>
+<p>​		這三者循環，對應Winston Royce對瀑布模型提出的弊端，也就是<strong>測試、修改程式、確認需求</strong>，也因此TDD是一個可以讓<strong>問題早期浮上水面的開發方式</strong>，為什麼？因為這樣的開發方式要求我們對業務邏輯的需求有充分的了解，這樣我們才可以寫測試，一旦需求明確了，那麼寫出程式就只是時間的問題了。</p>
+<p>​		另一方面，也是因為TDD的開發模式，我們每一個Code都有單元測試的保護，我們可以<strong>隨時重構</strong>我們的程式碼而毋須擔心程式被我們改錯，是的，沒錯，TDD的一個核心概念就在於<strong>任何時候都可以重構我們的程式碼</strong>，因為人對於系統的了解，會隨著開發時間的增加而了解的越深刻，半年前的Code到了現在可能越看越不順眼，另一方面，隨著業務規模的提升，我們早期的設計可能也會越不敷使用，若沒有單元測試的保護，我們重構的成本會隨著產品的規模的提升而提升，而發展到一定規模的情況下，<strong>重構變成遙不可及的夢想</strong>。</p>
+<p>​		也是因為有單元測試的保護，我們才可以<strong>真正的去設計我們的程式</strong>，常見的S.O.L.I.D，以及23種設計模式的使用，如何根據不同的情境套用不同的設計模式，這就是工程師有價值的地方，可以說單元測試的撰寫完整了整個物件導向的程式設計。</p>
+<p><img src="https://i.imgur.com/NQsqkPa.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204232214092"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/I6ykhcb.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204225916225"
+	
+	
+></p>
 <p>好的TDD可以讓我們更有時間來維護我們的Code與品質</p>
 <p>Feature Envy</p>
 <p>Data Clump 最好不超過三個參數</p>
@@ -460,6 +512,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>什麼時候需要修改它，等需要改它、需要用到它的時候</p>
+<p>ㄈ</p>
 
 </section>
 
@@ -752,9 +805,10 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#何謂tdd">何謂TDD</a></li>
+    <li><a href="#序言">序言</a></li>
     <li><a href="#單元測試在tdd的作用是什麼">單元測試在TDD的作用是什麼</a></li>
     <li><a href="#agile與tdd">Agile與TDD</a></li>
+    <li><a href="#什麼是tdd">什麼是TDD</a></li>
   </ol>
 </nav>
         </div>
