@@ -3149,7 +3149,89 @@ Note：目的</p>
 </ul>
 <h4 id="priority法則">Priority法則</h4>
 <ul>
-<li>定義：<strong>可參數化的法則</strong>具有Highest Priority之Process，優先取得CPU，若多個Process權值相同，則以<strong>FIFO</strong>為準。</li>
+<li>
+<p>定義：<strong>可參數化的法則</strong>，具有Highest Priority之Process，優先取得CPU，若多個Process權值相同，則以<strong>FIFO</strong>為準，也有分成Non-preemptive, Preemptive的差異。</p>
+</li>
+<li>
+<p>舉例：不可插隊</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>CPU time</th>
+<th>Priority No.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>10</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>5</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>且，Priority No越小，優先權越大The Smaller Priority No. Implies the higher priority。求Avg waiting Time</strong></p>
+</li>
+<li>
+<p>分析：</p>
+<ol>
+<li>
+<p>是一個具參數化的法則，即給予不同的priority高低定義，可展現出不同的排班行為。</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Priority定義</th>
+<th>行為</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>抵達時間越早，優先權更高</td>
+<td>FIFO</td>
+</tr>
+<tr>
+<td>CPU　Time越小，優先權越高</td>
+<td>SJF</td>
+</tr>
+<tr>
+<td>剩餘時間越小，優先權越高</td>
+<td>SRTF</td>
+</tr>
+</tbody>
+</table></div>
+<p>因此FIFO, SJF, SRTF都是屬於Priority的一種</p>
+</li>
+<li>
+<p>不公平</p>
+</li>
+<li>
+<p>會有Starvation (可用Aging去解決)</p>
+</li>
+<li>
+<p>分為Non-preemptive, preemptive兩種</p>
+</li>
+</ol>
+</li>
 </ul>
 <h3 id="process-concept">Process Concept</h3>
 <h1 id="第一節-總覽">第一節 總覽</h1>
