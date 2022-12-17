@@ -277,7 +277,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    4 minute read
+                    18 minute read
                 </time>
             </div>
         
@@ -292,9 +292,9 @@ if (!doNotTrack) {
     
     
     <h1 id="operating-system">Operating-System</h1>
-<h1 id="第一節-總覽">第一節 總覽</h1>
-<h2 id="第一章-序言">第一章 序言</h2>
-<p>管理硬體的軟體就是作業系統，硬體包含CPU，Memory，I/O設備等等…作業系統就是負責管理這些硬體的系統。一個電腦系統可以被粗略的劃分成下面四個組件</p>
+<h1 id="洪毅作業系統筆記區">洪毅作業系統筆記區</h1>
+<h2 id="chapter1-intruduction">Chapter1 Intruduction</h2>
+<p>管理硬體的軟體就是作業系統，硬體包含CPU，Memory，I/O設備等等…作業系統就是負責管理這些硬體的系統。一個電腦系統可以被粗略的劃分成下面四個組件：</p>
 <ul>
 <li>硬體(hardware)</li>
 <li>作業系統(operating system)</li>
@@ -311,11 +311,11 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="硬體hardware">硬體(hardware)</h3>
+<h3 id="hardware">Hardware</h3>
 <p>包括CPU(Central Processing Unit)，記憶體(Memory)，Input/output設備…提供給系統基本的計算資源</p>
-<h3 id="作業系統operating-system">作業系統(operating system)</h3>
+<h3 id="operating-system-1">Operating System</h3>
 <p>負責協調硬體與應用程式，給不同的使用者</p>
-<h3 id="應用程式application-programs">應用程式(application programs)</h3>
+<h3 id="application-programs">Application Programs</h3>
 <p>例如Word，Excel，Chrome之類的應用程式，來處理使用者的計算問題(Computing Problems)</p>
 <p>補充：</p>
 <ol>
@@ -387,17 +387,20 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="time-sharing-system分時系統">Time-Sharing System(分時系統)</h3>
+<h3 id="time-sharing-system">Time-Sharing System</h3>
+<p>分時系統</p>
 <p>定義：又叫Multitasking[恐龍本如是說]</p>
 <blockquote>
 <p>It&rsquo;s a logical extension of Multiprogeamming system</p>
 </blockquote>
 <p>與Multiprogramming的最大差異：<strong>CPU的切換頻率極高</strong></p>
 <ul>
-<li>Time-Sharing System features
+<li>
+<p>Time-Sharing System features</p>
 <ul>
 <li>強調對<strong>User Response的時間</strong>要<strong>短</strong>(&lt;1秒)</li>
 <li>適用於user interactive的Computing/ Environment</li>
+<li>對每一個process都公平</li>
 </ul>
 </li>
 </ul>
@@ -474,7 +477,7 @@ if (!doNotTrack) {
 <ul>
 <li>∵N顆CPU在一部機器內，與N部機器相比，成本較便宜∵這些CPUs共享同一機器之Memory, Bus, I/O-Device, etc</li>
 </ul>
-<h4 id="multiprocessors-system可以再拆分成兩種subtypes">Multiprocessors System可以再拆分成<strong>兩種</strong>subTypes</h4>
+<h4 id="two-subtype-in-multiprocessors-system">Two SubType in Multiprocessors System</h4>
 <ol>
 <li>SMP(Symmetric MultiProcessors) 對稱的</li>
 <li>ASMP(Asymmetric MultiProcessors) 非對稱的</li>
@@ -581,7 +584,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h4 id="建構distribute-system之理由好處">建構Distribute-System之理由(好處)</h4>
+<h4 id="advantage-of-distribute-system">Advantage of Distribute-System</h4>
 <ol>
 <li>Increased Throughput(支持Paraller Computing)</li>
 <li>Increased Reliability(一個掛掉，還有其他可以擋)</li>
@@ -594,16 +597,2451 @@ if (!doNotTrack) {
 <li>Client：本身不提供服務，且它需要某些服務時，則發請求至Server, Server服務完再將結果回傳Client</li>
 </ol>
 </blockquote>
-<h2 id="第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)</h2>
-<h3 id="os-service">OS Service</h3>
+<blockquote>
+<p>Note</p>
+<p>Peer-to-Peer model：peer意指同時具有server及Client的角色，英文意思是同等的、對等的</p>
+</blockquote>
+<ol start="4">
+<li>Remote sites Communication的需求被滿足 example：email, FTP via Internet</li>
+</ol>
+<h3 id="real-time-system">Real-Time System</h3>
+<p>(即時系統)</p>
+<p>分成兩種</p>
+<ol>
+<li>Hard real-time System</li>
+<li>Soft real-time System</li>
+</ol>
+<h4 id="hard-real-time-system">Hard real-time system</h4>
+<p>定義：This system must ensure the critical tasks complete on time，即工作必須在規定的時間限制內完成，否則即算失敗</p>
+<p>舉例：軍事防衛系統、核能安控系統、工廠自動化生產&hellip;</p>
+<p><img src="https://i.imgur.com/cPuSbro.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221114224122357"
+	
+	
+></p>
+<p>設計考量：</p>
+<ul>
+<li><strong>所有時間延遲之因素皆須納入考量</strong> eg：sensor data 傳輸速度、運算速度、Signal的傳輸 etc，確保這些時間的加總能夠滿足時間deadline的要求</li>
+<li>所有會造成處理時間過久或無法預測之設備或機制，盡量少採用或不用 eg：<strong>Disk</strong>不用或少用、<strong>Virtual Memory 絕對不採用</strong></li>
+<li>就CPU Scheduling設計(Ch4)而言，需先考量Schedulable與否，再進行排程(eg rate-monotonic, EDF scheduling)，確定CPU能負荷再進行排程</li>
+<li><strong>Time Sharing system 無法與之並存(Time sharing是屬於Multitasking，可以同時執行多個程序，並透過一些風勢去優先執行某些程序，而Hard real-time比較像單運算系統，要求在指定時間內完成，因此更專注於單一程序的執行，由於這兩個系統有這樣的差異，因此無法共榮)</strong></li>
+<li>OS所造成的Dispatch latency etc. 宜降低(interrupt的處理, system call的請求)，一般實務上，hard-real-time system，鮮少有OS的存在(幾乎不存在)，尤其是embedded real-time system，因需要<strong>及時的響應</strong></li>
+<li>現行的商用OS<u>不支援</u>Hard real-time features 通常都是客製化的特殊設計eg : Linux, Unix, Window, Apple Os, Solaris etc</li>
+</ul>
+<p>​</p>
+<h4 id="soft-real-time-system">Soft real-time system</h4>
+<p>定義：<strong>This system must ensure the real-time process get the hightest priority than the others and retain(維持) this priority level unit it completed</strong></p>
+<p>舉例：Multimedia System, Simulation system, VR system, etc</p>
+<p>設計考量：</p>
+<ul>
+<li>就 CPU Scheduling 設計(ch4)而言，
+<ol>
+<li>必須支持preemptive priority scheduling</li>
+<li><strong>不可提供Aging技術</strong>(活得越久，priority越高)</li>
+</ol>
+</li>
+<li>盡量降低kernel的Dispatch latency time</li>
+<li>可支援virtual memory 並存，但前提是real-time-process的全部pages必須皆待在memory中，直到完工，高優先權的Process不要使用virtual memory</li>
+<li>與Time-sharing system 可以並存，eg：solaris</li>
+<li>一般商用OS都支援Soft-real-time system</li>
+</ul>
+<h4 id="batch-system">Batch System</h4>
+<p>定義：將一些較不緊急，定期性、非交談互動性的Job，累積成堆，再分批次，送入系統處理</p>
+<p>舉例：庫存系統、報稅系統、掃毒、磁碟重組、清算系統&hellip;</p>
+<p>主要目的：提高resource utilization，<strong>尤其是在冷門時段</strong>，不適合用在real-time-system, user-interactive application eg：電腦遊戲</p>
+<h4 id="hand-held--system">Hand Held  system</h4>
+<p>定義：單手可掌握操作的系統</p>
+<ul>
+<li>Hardware 天生之限制，帶來software必須配合之處</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Hardware天生限制</th>
+<th>Software必須配合之設計</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><u>Slower</u> processor<br />(背後之限制)<br />1. power 供應的問題，電供不足<br />2. 散熱系統的設計</td>
+<td>運算不能太複雜，要簡單</td>
+</tr>
+<tr>
+<td>Memory空間有限</td>
+<td>程式的Size要小，不用的記憶體要立刻釋放</td>
+</tr>
+<tr>
+<td>DisplayMonitor很小</td>
+<td>顯示的內容要有所刪減</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="chapter2-computer-system-architecture">Chapter2 Computer System Architecture</h2>
+<h3 id="io-operating-and-hardware-resources-protection">I/O Operating And Hardware Resources Protection</h3>
+<ul>
+<li>學習路線</li>
+</ul>
+<blockquote>
+<p>I/O運作方式</p>
+<blockquote>
+<p>Polling I/O</p>
+<p>Interrupted I/O</p>
+<p>DMA</p>
+</blockquote>
+<p>Interrupt機制處理與種類</p>
+<p>HW Resource Protection</p>
+<blockquote>
+<p>基礎建設</p>
+<blockquote>
+<p>Dual Model Operation</p>
+<p>Privileged Instruction</p>
+</blockquote>
+<p>I/O</p>
+<p>Memory Protection</p>
+<p>CPU</p>
+</blockquote>
+</blockquote>
+<h3 id="io-operating">I/O Operating</h3>
+<h4 id="polling-io-io">Polling I/O I/O</h4>
+<p>Polling(輪巡,詢問式) I/O</p>
+<p>定義：又叫Busy_waiting I/O or Programmed I/O</p>
+<p>步驟如下</p>
+<ol>
+<li>I/O Request 給 OS (執行中的Process不會自己做I/O)</li>
+<li>OS收到請求後，(可能)會暫停此Process執行，並執行對應的System Calls.</li>
+<li>Kernel 的 <u>I/O-subsystem</u>(專門用來處理I/O的請求，只是個過水而已)會Pass此請求給<u>Device driver</u></li>
+<li>Divice Driver 依此請求，設定對應的I/O Commands參數給<u>Device Controller</u></li>
+<li>Device Controller 啟動監督I/O-Device之I/O運作進行</li>
+<li>在這段時間內，OS(可能)將CPU切給另一個process執行</li>
+<li><strong>然而，沒人主動去告訴CPU I/O的執行狀況，因此CPU在執行process工作過程中，卻要不斷去Polling Device Controller，已確定I/O運作是否完成或有I/O error</strong></li>
+</ol>
+<p><img src="https://i.imgur.com/PrvPBLP.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221116231017998"
+	
+	
+></p>
+<p>缺點：</p>
+<ul>
+<li>CPU耗費大量時間用於polling I/O Device Controller上，並未全用於process execute上，故<u>CPU utilization低</u>、<u>throughput不高</u></li>
+</ul>
+<h4 id="interrupted-io">Interrupted I/O</h4>
+<p>Interrupted (中斷,中斷式)I/O I/O</p>
+<p>定義：</p>
+<p>步驟如下：</p>
+<ol>
+<li>
+<p>I/O Request 給 OS (執行中的Process不會自己做I/O)</p>
+</li>
+<li>
+<p>OS收到請求後，(可能)會暫停此Process執行，並執行對應的System Calls.</p>
+</li>
+<li>
+<p>Kernel 的 <u>I/O-subsystem</u>(專門用來處理I/O的請求，只是個過水而已)會Pass此請求給<u>Device driver</u></p>
+</li>
+<li>
+<p>Divice Driver 依此請求，設定對應的I/O Commands參數給<u>Device Controller</u></p>
+</li>
+<li>
+<p>Device Controller 啟動監督I/O-Device之I/O運作進行</p>
+</li>
+<li>
+<p>在這段時間內，OS(可能)將CPU切給另一個process執行</p>
+</li>
+<li>
+<p><strong>當I/O運作完成，Device Controller 會發出 I/O-Completed Interrupt 通知OS(CPU)</strong></p>
+</li>
+<li>
+<p><strong>OS收到中斷後(可能)會暫停目前Process的執行(因有些Interrupt優先權可能很低，可以先暫時不處理)</strong></p>
+</li>
+<li>
+<p><strong>OS必須查詢 <u>Interrupt Vector</u>，確認何種中斷發生，同時也要找到該中斷的服務處理程式(ISR：Interrupt Service Routine)的位址(每一個中斷都有一個對應的中斷處理服務程式</strong></p>
+</li>
+<li>
+<p>Jump to ISR位址 執行ISR</p>
+</li>
+<li>
+<p>ISR完成後，return control to <u>kernel</u>，kernel也許做一些通知工作</p>
+</li>
+<li>
+<p>恢復(resume)原先中斷前的工作執行或交由CPU Scheduler決定</p>
+</li>
+</ol>
+<p>優點：CPU<u>不須</u>耗費時間用於Polling I/O-Device，而是可以用於Process execute上，CPU utilization提升，throughout提高，improve the system performance</p>
+<p>缺點：</p>
+<ol>
+<li>Interrupt之處理仍需耗費CPU time，如果 I/O運作時間 <strong>小於</strong> Interrupt處理時間，則使用Interrupt I/O就不划算，不如使用polling I/O</li>
+<li>若<strong>中斷的頻率過高</strong>，則大量的中斷處理會占用幾乎全部的CPU Time，則<strong>系統效能會很差</strong></li>
+<li>CPU仍需耗費一些時間用於監督I/O-Divice與Memory之間的Data Transfer過程</li>
+</ol>
+<h4 id="dma-direct-memory-access-io">DMA (Direct Memory Access) I/O</h4>
+<ul>
+<li>定義：DMA Controller 負責 I/O-Device(設備)與Memory 之間的Data transfer(傳輸)工作，<strong>過程中不需CPU之參與監督，因此CPU有更多時間用於Process execute上</strong></li>
+</ul>
+<p>優點：</p>
+<ol>
+<li>CPU Utilization更高</li>
+<li>適合用在<strong>Block-Transfer oriented <strong>I/O-Device上(代表中斷發生的頻率不致於過高 eg:Disk, 磁碟的控制器會和DMA的控制器兩個會相互合作，磁碟控制器會去指揮磁碟的運作，讀出來的資料會通知DMA的控制器，DMA會把資料輸進Memory裡) 不是用於</strong>Byte-transger oriented I/O-Device</strong></li>
+</ol>
+<p>缺點：</p>
+<ol>
+<li>引進DMA Controller會增加HW設計複雜度(Complicated the HW design)</li>
+</ol>
+<blockquote>
+<p>原因：DMA的Controller會跟CPU競爭爭奪Memory(記憶體)、Bus(匯流排)的使用權，若DMC Controller 占用了memory , Bus 時，CPU要被迫等待</p>
+<p>補充：DMA Controller通常採用&quot;Cycle Stealing&quot;技術 (or Interleaving)與CPU 輪番(交替)使用memory跟Bus，如果CPU與DMA Controller發生conflict(同時要用Memory 與 bus)，則會<strong>給DMA較高的的優先權</strong></p>
+</blockquote>
+<ol start="2">
+<li>
+<p>通常系統會給予「對該資源需求量、頻率等較<strong>小</strong>」的對象有較高的優先權，這樣會獲得</p>
+<ol>
+<li>平均等待時間較小</li>
+<li>平均產能較高</li>
+</ol>
+<p>的好處</p>
+</li>
+<li>
+<p>機器指令的Stages (CPU執行的幾個階段)</p>
+</li>
+</ol>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>IF</th>
+<th>DE</th>
+<th>FO</th>
+<th>EX</th>
+<th>WM</th>
+</tr>
+</thead>
+</table></div>
+<ol>
+<li>IF：Instruction Fetch <code>抓指令：根據Programming Counter的值，到記憶體去把指令抓出來  </code></li>
+<li>DE：Decode <code>解碼：知道這條指令到底做什麼事情</code></li>
+<li>FO：Fetch Operands <code>抓取運算元：運算元可能來自記憶體、也可能來自暫存器</code></li>
+<li>Ex：Execution　<code>執行</code></li>
+<li>WM：Write Result to Memory　<code>將結果寫入記憶體</code></li>
+</ol>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>CPU會不會Memory Access（到記憶體抓東西）</th>
+<th>DMA要用Memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IF</td>
+<td>會</td>
+<td>衝突(Conflict)</td>
+</tr>
+<tr>
+<td>DE</td>
+<td>不會（指令已經拿出來放到IR<code>instructor registor</code>)</td>
+<td>OK，歡迎</td>
+</tr>
+<tr>
+<td>FO</td>
+<td>可能  (運算元有可能在Registor，也有可能放在Memory)</td>
+<td>OK，或有衝突</td>
+</tr>
+<tr>
+<td>EX</td>
+<td>不會 (ALU去做了)</td>
+<td>OK，歡迎</td>
+</tr>
+<tr>
+<td>WM</td>
+<td>可能 (結果有可能寫回Memory也有可能是暫存器)</td>
+<td>OK，或有衝突</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cycle Stealing：當CPU會使用或不會使用Memory Access時，DMA都會去爭奪Memory的使用權，亦為Stealing(偷)，因為DMA擁有最高使用權。</p>
+<h4 id="dma-six-steps">DMA Six Steps</h4>
+<p><code>(早:中央、清華、交大)</code></p>
+<ol>
+<li>Device Driver <code>User Process 告訴 I/O subsystem(kernel)告訴 Device Driver</code>is told to transfer Disk data to Buffer address X</li>
+<li>Device Driver tells disk controller to transfer C bytes from disk to Buffer at address X<code>從磁碟讀C byte的量，分配到記憶體位址X的地方</code></li>
+<li>Disk controller initiates DMA Transfer</li>
+<li>Disk controller sends each byte to DMA controller</li>
+<li>DMA transfer bytes to Buffer X in creasing memory address and decreasing Counter utill Counter =0</li>
+<li>When C=0, DMA interrupts CPU to signal transfer compeletion</li>
+</ol>
+<p><img src="https://i.imgur.com/0T7eX0t.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221119122438718"
+	
+	
+></p>
+<h4 id="life-cycle-of-io-request-via-interrupted-io">Life cycle of I/O-request via Interrupted I/O</h4>
+<p><img src="https://i.imgur.com/nDEmUKK.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221119161000584"
+	
+	
+></p>
+<h4 id="blocking-and-non-blocking-io">Blocking and Non-Blocking I/O</h4>
+<p>Blocking(會暫停的) and Non-Blocking(不會暫停的)I/O</p>
+<blockquote>
+<p>所謂的Blocking的意思是，當User process發出I/O請求之後，接下來這個prcess就會suspend，直到這個I/O被完成</p>
+</blockquote>
+<h5 id="blocking-io">Blocking-I/O:</h5>
+<p>(等於Synchronous)：Process suspended until I/O completeed</p>
+<ul>
+<li>優：Easy to use and understand, process在waiting的時候，可以把CPU放出去給其他process做使用</li>
+<li>缺：Insufficient for some needs</li>
+</ul>
+<p><img src="https://i.imgur.com/WXgFJ0f.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221119221052160"
+	
+	
+></p>
+<h5 id="non-blocking-io">Non-Blocking I/O：</h5>
+<p>I/O calls returns as much as available <strong>I/O請求發出去後，控制權立刻返回給user process</strong></p>
+<ul>
+<li>example：user interface, data copy</li>
+<li>Implemented via multi-threading</li>
+<li><strong>Returns quickly with count of Bytes read or written</strong></li>
+</ul>
+<h5 id="asynchronous-io">Asynchronous-I/O:</h5>
+<p>(屬於Non-blocking)：Process runs while, I/O executes</p>
+<ul>
+<li>Difficult to use</li>
+<li>I/O subsystem signals process when I/O-completed</li>
+</ul>
+<p><img src="https://i.imgur.com/Z3p4rBK.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221119221104281"
+	
+	
+></p>
+<h5 id="asynchronous與non-blocking的小差異">Asynchronous與Non-Blocking的小差異</h5>
+<p>Asynchronous I/O：整個I/O完成，才通知Process</p>
+<p>Non-Blocking I/O：I/O完成Data return as much as possible (能回傳就回傳， 少量即可回傳)</p>
+<p>舉例說明：userProcess發出100 byte的I/O請求</p>
+<ul>
+<li>Asynchronous的方式，會將100byte的I/O做完後，才告訴Process做完了</li>
+<li>Non-Blocking的方式，每讀25Byte就通知一次， 逐步回報給Process，會發出比較多次的Interrupt</li>
+</ul>
+<h3 id="interrupt-policy-and">Interrupt Policy and</h3>
+<ol>
+<li>當Interrupt發生，OS之處理Steps如下：
+<ol>
+<li>OS收到中斷後(若此中斷要被立即處理，則OS會暫停目前Process之執行，且保存其Status and Registers Contents)</li>
+<li>OS會依照Interrupt ID(No.)查詢Interrupt Vector中斷向量表，確認何種Interrupt發生，且找出其ISR的位址</li>
+<li>Jump to ISR 位址，執行ISR</li>
+<li>ISR完成後，控制權返回Kernel</li>
+<li>OS會恢復(resume)中斷之前Process之執行</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/fWGVXob.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221121000410540"
+	
+	
+></p>
+<ol start="2">
+<li>
+<p>Interrupt種類</p>
+<ol>
+<li>
+<p>早期恐龍分為三種</p>
+<ol>
+<li>External Interrupt：CPU以外的周邊設備、控制卡、etc，所發出的中斷</li>
+</ol>
+<p>例：I/O-Completed, I/O-error, Machine-check,</p>
+<ol start="2">
+<li>Internal Interrupt：CPU在執行Process過程中，遭遇重大錯誤而引發</li>
+</ol>
+<p>例：Divide-by-zero除以零、執行非法的特權指令、etc</p>
+<ol start="3">
+<li>Software Interrupt：user process 在執行中，若須要OS提供服務時，發出此類型的中斷，目的是<strong>通知作業系統</strong>，請它執行對應的服務請求</li>
+</ol>
+<p>例：I/O-request <code>好比是KTV的服務鈕，按下去就會有人過來問你要幹嘛</code></p>
+</li>
+<li>
+<p>現在恐龍分為兩種</p>
+<ol>
+<li>Interrupt：硬體所產生就叫Interrupt</li>
+<li>Trap：軟體所產生的就叫Trap</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/Gw1lwWA.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221121003713007"
+	
+	
+></p>
+<p>例：設備發出I/O-Completed,I/O-Error,Machine-check,etc及Time-out by Timer</p>
+<p>用途主要有二</p>
+<ul>
+<li>Catch the arithematic  error</li>
+</ul>
+<p>例：Divide-by-zero, 執行非法特權指令, illegal memory access</p>
+<ul>
+<li>user process 執行需要OS提供服務時，也會發trap通知OS</li>
+</ul>
+<p>例：I/O　Request</p>
+<ol start="3">
+<li>分成兩類<code>背後哲學：中斷之間也有優先權高低之分</code>
+<ol>
+<li>Maskable Interrupt遮罩：此類中斷發生後，可被Ignored或<strong>延後處理不一定要馬上處理</strong>
+<ul>
+<li>例如：Software-interrupt</li>
+</ul>
+</li>
+<li>Non-Maskable不可遮罩：此類中斷必須立刻處理
+<ul>
+<li>Internal interrupt(重大error), I/O-error,etc</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="hardware-resources-protection">Hardware Resources Protection</h3>
+<ul>
+<li>基礎建設
+<ul>
+<li>Dual-modes operation(雙重模式)</li>
+<li>Privilege instructions</li>
+</ul>
+</li>
+</ul>
+<h4 id="dual-modes-operation">Dual-modes operation</h4>
+<p>定義：System之運作模式<strong>至少</strong>(可再往下分，依照系統設計的必要性)可被區分為2種modes</p>
+<ol>
+<li>kernel mode</li>
+<li>user mode</li>
+</ol>
+<p><strong>kernel mode</strong></p>
+<p>又叫做system mode, supervisor mode, privileged mode, monitor mode(早期有，現移除)，代表此刻是kernel取得系統控制(取得CPU執行權)，<strong>允許</strong>privilege instructions(特權指令)在此mode下執行</p>
+<p><strong>user mode</strong></p>
+<p>代表user process取得CPU執行，在此mode,<strong>不允許</strong>執行privilege instructions(特權指令)，若執行則會發生trap的重大錯誤</p>
+<p>此外，<strong>Dual-modes必須要有HW的支持</strong>，才可實現</p>
+<p>例如：CPU內會有Mode Bit，用以區分現在是哪個mode<code>當CPU在執行機器指令時，IF、DE...之類的階段，若解碼完發現是個特權指令，這時候Control unit就要檢查目前的mode bit，判斷是否可不可以執行，若不行就丟出一個interrupt，不允許執行</code></p>
+<h4 id="priveleged-instruction特權指令">Priveleged instruction(特權指令)</h4>
+<p>定義：任何可能會造成系統重大危害的指令，可設為特權指令(端看工程師如何設計)，<strong>只可以</strong>在Kernel Mode去執行，不可以再User mode下執行，一旦在User Mode下執行，會發<strong>Trap</strong>通知OS，將此user process terminates.</p>
+<p><code>如果把所有的指令設為特權指令，好處就只有超級安全，因為這些指令都只有OS可以做，如果user想做就只能委託OS執行，但這樣performance會很差，因為所有事情都要給OS處理</code></p>
+<p>例如：</p>
+<ul>
+<li>
+<p>Turn-off(Disable) interrupt, clear memory, I/O instruction(for I/O protection),Timer值 set/change (for CPU protect)</p>
+</li>
+<li>
+<p>Base/Limit register 修改/set (for memory protection)</p>
+</li>
+<li>
+<p><strong>Change mode from user mode to kernel mode</strong></p>
+</li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">1). Set value of Timer
+</span></span><span class="line"><span class="cl">2). Read the clock
+</span></span><span class="line"><span class="cl">3). Claer memory
+</span></span><span class="line"><span class="cl">4). Turn-off interrupt
+</span></span><span class="line"><span class="cl">5). Switch from user to monitor mode
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">哪些是特權指令?
+</span></span><span class="line"><span class="cl">1,3,4,5
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. Change to user mode
+</span></span><span class="line"><span class="cl">2. Change to monitor mode
+</span></span><span class="line"><span class="cl">3. Read from monitor memory
+</span></span><span class="line"><span class="cl">4. Write into monitor memory
+</span></span><span class="line"><span class="cl">5. Fetch an instruction from memory
+</span></span><span class="line"><span class="cl">6. Turn on timer interrupt 
+</span></span><span class="line"><span class="cl">7. Turn off timer interrupt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">哪些是特權指令?
+</span></span><span class="line"><span class="cl">2,4,7
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">詳解：
+</span></span><span class="line"><span class="cl">6. 本身就是打開的，因為要做CPU的保護
+</span></span><span class="line"><span class="cl">7. 但關掉不是
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">有爭議的部分
+</span></span><span class="line"><span class="cl">3. user process去讀kernel process的資料，恐龍認為是，因為kernel裡面掌管所有Process的information，而process間不應該各個process的狀態
+</span></span><span class="line"><span class="cl">5. 從Monitor memory(Kernel)裡面去讀指令出來，恐龍認為不是，因為就算抓了，但你的mode不是Privilege instruction就會把你擋掉
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="為什麼dual-mode跟privilege-isntruction可以構成保護基礎">為什麼Dual-mode跟Privilege Isntruction可以構成保護基礎</h4>
+<p>所有會危害OS的操作都是在Kernel 發生，因此不可以放任user可以直接操作Kernel</p>
+<p><img src="https://i.imgur.com/ouBgLdK.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221122221832833"
+	
+	
+></p>
+<h4 id="io-protection">I/O-Protection</h4>
+<p>目的：由於I/O運作較為繁瑣複雜，為了<strong>降低user processes 操控I/O之複雜度</strong>`，讓user processes去處理應用的問題，I/O則交由OS去處理；及避免user process對I/O-Devices之不當操作，胡搞瞎搞，因此才有I/O protection。簡單來講就是不要讓user processes去操作I/O</p>
+<p>作法：把所有I/O指令皆設為privileged instruction配合Dual-modes, 一律讓user process委託 kernel執行I/O運作</p>
+<h4 id="memory-protection">Memory Protection</h4>
+<p>目的：防止user process 存取其他user processes 之 memory area 及 kernel memory area</p>
+<p>作法：(以 contiguous Memory Allocatation 為例) 針對每個Process, kernel會提供一套Registers：叫base/limit register, 其中</p>
+<ul>
+<li>Base register紀錄Process之<strong>起始位址</strong></li>
+<li>Limit register紀錄Process之<strong>大小</strong></li>
+</ul>
+<p>將來Process執行，會進行下列的Checking</p>
+<p><img src="https://i.imgur.com/Ys8xRSh.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221122234041249"
+	
+	
+></p>
+<blockquote>
+<p>為什麼Address的判斷是由Hardware來做而不是OS來做呢？</p>
+<p>因為交給OS來做就會產生中斷interrupt，又因程式在執行的時候對記憶體的存取是很頻繁的，兩個影響之下會導致你的CPU一直被interrupt打擾，因此交給Hardware來做會比較符合成本一點。</p>
+</blockquote>
+<p>並且，還要將 Base與Limit register 值之set/change須設為&quot;Privilege Code(特權指令)&quot;，避免user Process把Base跟Limit的位址直接改成無限，這樣就完成了Memory的<strong>Protection</strong></p>
+<h4 id="cpu-protection">CPU Protection</h4>
+<p>目的：防止user process無限期/長期佔用CPU而不釋放</p>
+<p>作法：利用<strong>Timer</strong>實施，同時OS會規定Process使用CPU time之最大配額值(MAX. Time Quantum)</p>
+<p>當process 取得CPU後，Timer初值即設為Max Time Qauntum值，隨著Process執行 time增加, <strong>Timer值會逐步遞減</strong>，直到Timer值為0,  Timer會發出 <strong>Time-out</strong>的interrupt通知OS，OS便可強迫此process放掉CPU，此外，Timer值之set/change 也須設為特權指令</p>
+<h3 id="os-structure-operating-system">OS Structure Operating-System</h3>
+<blockquote>
+<p>OS之Development</p>
+<blockquote>
+<p>OS應提供的服務項目</p>
+<p>OS之<strong>服務元件</strong>種類</p>
+<p><strong>System Calls之介紹</strong>(使用者程式跟OS之間溝通的介面)</p>
+<p>OS之Structure種類</p>
+<blockquote>
+<p>Simple</p>
+<p>More Complex than simple</p>
+<p>Layered Approach</p>
+<p><strong>Microkernel</strong></p>
+<p>Module</p>
+<p>Hybrid(混合?)</p>
+</blockquote>
+<p>設計原則：Policy與Mechanism <code>policy管行為,比較常變，例如數值的變動; mechanism負責處理how,比較不會變,例如邏輯的判斷 </code></p>
+<p>Virtual Machine介紹</p>
+</blockquote>
+</blockquote>
+<h4 id="system-call">System Call</h4>
+<p>定義：作為執行中user process與kernel之間的溝通界面，當user process需要OS提供某種服務時，會先trap通知OS，並帶入<strong>System call</strong> ID(No)及<strong>所需參數</strong>，然後OS執行對應的System call</p>
+<blockquote>
+<p>It&rsquo;s a programming Interface to the services privided by the OS</p>
+</blockquote>
+<p>用舉例來講的話</p>
+<ul>
+<li>Trap = 服務紐</li>
+<li>System call = 服務項目</li>
+</ul>
+<p>System Call的種類(中央考過類似的題目)</p>
+<blockquote>
+<ol>
+<li>Process Control eg：建立、終止、暫停、恢復執行process, set/read attribute</li>
+<li>File Management eg：建立、read, write, open, close, delete &hellip;</li>
+<li>Device Management eg：建立、read, write, open, close, delete &hellip;</li>
+<li>Information of Maintenance eg：取得系統日期/時間、取得Process屬性 etc</li>
+<li>Communications eg: Processes之間的通訊而且只針對Message Processing方式提供服務</li>
+<li>Protection　eg: Hw resources protection, File access contorller, etc</li>
+</ol>
+</blockquote>
+<p><img src="https://i.imgur.com/VvdLNs0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221124224120796"
+	
+	
+></p>
+<p>System Call的參數(Parameters)傳遞方式：3種方式</p>
+<ol>
+<li>利用暫存器(<strong>Registers</strong>)保存參數
+<ul>
+<li>優點：
+<ol>
+<li>最簡單</li>
+<li>存取速度最快( without memory access)</li>
+</ol>
+</li>
+<li>缺點:
+<ol>
+<li>不適用於大量參數之情況</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>利用<strong>Memory</strong>，以一個Block(Table)儲存這些參數，並將這些表格的起始位址置於1個Register中，Pass給OS
+<ul>
+<li>優點:
+<ol>
+<li>適用於大量參數</li>
+</ol>
+</li>
+<li>缺點:
+<ol>
+<li>存取速度較慢，且操作較為麻煩</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>利用<strong>Stack</strong>將參數push入此Stack, OS再pop from stack, 以取得參數
+<ul>
+<li>優點:
+<ol>
+<li>適用於大量參數之情況</li>
+<li>也很簡單</li>
+</ol>
+</li>
+<li>缺點:
+<ol>
+<li>Stack的空間須要預先準備，避免stackoverflow</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="os之系統架構分類">OS之系統架構分類</h4>
+<p>OS之Structure種類</p>
+<blockquote>
+<p>Simple: MS-DOS系統</p>
+<p>More Complex than simple: UNIX系統</p>
+<ul>
+<li>Limited by Hardware functionality</li>
+<li>The original UNIX had limited structuring</li>
+<li>The UNIX 包含兩個Separate parts
+<ol>
+<li>System Programs</li>
+<li>The Kernel</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/luyuYF4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221125013311284"
+	
+	
+></p>
+<ul>
+<li><strong>Beyond simple but not fully layered</strong>(分層)</li>
+</ul>
+<p>Layered Approach</p>
+<ul>
+<li>
+<p>定義：採取<strong>Top-Down</strong>方式，切割系統功能/元件，以降低複雜度。元件/模組之間呼叫關係分層</p>
+<p>即<strong>上層可以使用下層的功能，但下層不可以使用上層的功能</strong>。完成後要使用<strong>Bottom-up</strong>方式進行測試，debugging(由底層一路往外測)</p>
+</li>
+<li>
+<p>層次的劃分沒有明確規定</p>
+<p><img src="https://i.imgur.com/dkCQyVV.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221125014733544"
+	
+	
+></p>
+</li>
+<li>
+<p>優點：</p>
+<ul>
+<li>降低設計複雜度</li>
+<li>有助於分工</li>
+<li>測試、除錯、維護容易</li>
+</ul>
+</li>
+<li>
+<p>缺點：</p>
+<ul>
+<li>很難做到精準的分層劃分</li>
+<li>若Layer數太多，則System performance is very poor( 切到四層剛好、五層太多，極限中的極限是七層)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Microkernel</strong>(微核心)：由CMU(卡內基-美隆大學)率先提出，代表產品：<strong>Mach o.s</strong>。它們認為UNIX的服務項目太多、太龐大，不利移植</p>
+<ul>
+<li>定義：將Kernel中一些Non-essential services<code>(比較不是那麼基本、重要、必要)</code>，自Kernel當中移除，改成在User Mode(Site)提供這些服務，以System programs方式存在，如此一來，可以得到一個比較小的kernel，稱之為microkernel, 一般而言，Microkernel提供下列三個minimum service：</li>
+</ul>
+<ol>
+<li>Porcess Controll</li>
+<li>Memory Management(不包括Virtual memory)</li>
+<li>Process Communications(提供message Processing服務而已)</li>
+</ol>
+<p><img src="https://i.imgur.com/R7XWIb1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221126165547853"
+	
+	
+></p>
+<ul>
+<li>Benefits(好處)</li>
+</ul>
+<ol>
+<li>Easier to extend a microkernel
+<ul>
+<li>服務的增加/刪除是容易的，<strong>因為這些服務是在user site執行</strong>，所以服務的增、刪不需要牽扯到Kernel也要變更，即使要，也是少量</li>
+</ul>
+</li>
+<li>Easier to port the OS to new architectures
+<ul>
+<li>因為Kernel很小，所以移植到新的硬體平台之更改幅度不大(因為只有三個服務run在kernel)</li>
+</ul>
+</li>
+<li>More Reliable
+<ul>
+<li>萬一某一個服務在執行中掛掉了，充其量只是相當於一個user process死掉而已，所以對HW, kernel, 其他user process沒有不良影響，因為把大部分的服務移到user mode去做了，因此更加安全、可靠</li>
+</ul>
+</li>
+<li>More secure
+<ul>
+<li>萬一某一個服務在執行中掛掉了，充其量只是相當於一個user process死掉而已，所以對HW, kernel, 其他user process沒有不良影響，因為把大部分的服務移到user mode去做了，因此更加安全、可靠</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>缺點</li>
+</ul>
+<ol>
+<li>Performance overhead of user space to kernel space communication(效能較差)，因為process Communication充斥大量訊息傳遞</li>
+</ol>
+<blockquote>
+<p>Note：microkernel的<strong>相反詞</strong>：<strong>Monolithic kernel</strong></p>
+<p>定義：所有的Services皆須Run in kernel mode，大部分的商用OS幾乎都是Monolithic kernel，因為如果把所有的service移到user site去做，那它的控制就會很低。當這個控制力很低的時候，user或program就可以自己去Inhence一些東西，影響OS</p>
+<p>優點、缺點：和microkernel相反</p>
+</blockquote>
+<p>Module</p>
+<ul>
+<li>Many OS implement <strong>loadable</strong>(有需要才載入) kernel modules</li>
+<li>use Object-oriented approach</li>
+<li>Each core  component is <strong>separate</strong></li>
+<li>Each talks to the others over known interface</li>
+<li>Each is  loadable as heeded within the Kernel</li>
+<li>簡而言之：similar to Layers but with <strong>more flexible, 效能更好</strong></li>
+</ul>
+<p><img src="https://i.imgur.com/epQ0WDz.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221126173047816"
+	
+	
+></p>
+<p>例如：Linux, solaris, etc &hellip;</p>
+<p>Hybrid(混合?)：現在作業系統很難純粹歸屬於某一型</p>
+<ul>
+<li><strong>Linux</strong>(中央考過) and Solaris 是 Monolithic (所有東西都run在kernel mode)，且也是<strong>Modular for dynamic loading</strong></li>
+<li>例：windows mostly monolithic，有時針對不同客戶需求，會再加上microkernel for subsystem</li>
+<li>例：Apple Mac Os 也是混合的</li>
+</ul>
+<p>kernel 包含</p>
+<blockquote>
+<p>Mach microkernel</p>
+<p>部分的BSD UNIX</p>
+<p>I/O Kit</p>
+<p><strong>dynamic Loadable module(叫做 kernel extension)</strong></p>
+</blockquote>
+<p><img src="https://i.imgur.com/5JwG18g.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221126175630716"
+	
+	
+></p>
+</blockquote>
+<h4 id="virtual-machine">Virtual Machine</h4>
+<p>定義：利用sofeware技術模擬出一份與底層HW一模一樣的功能介面之抽象代理器(abstract machine)，稱之Virtual Machine<code>模擬的方式類似於CPU schdueling </code></p>
+<p>名詞解析：</p>
+<p><strong>Host</strong>：undelying hardware system, os</p>
+<p><strong>VMM(Virtual Machine Manage)或Hypervisor</strong>：creates and managing/ runs virtual machines</p>
+<p><strong>Guest</strong>：process provided with virtual copy of the host</p>
+<blockquote>
+<p>恐龍本之其他英文</p>
+<ul>
+<li>Abstract hardware of a single computer into several different execution environments</li>
+<li>Similar to layered approach, But layer crates virtual machine(VM)</li>
+</ul>
+</blockquote>
+<p><strong>優點</strong></p>
+<ul>
+<li>
+<p>作為測試開發中的OS，提供一個良好的負載平台，具有下列好處：</p>
+<ol>
+<li>其他user, user processes工作，仍可持續運作，不須暫停</li>
+<li>萬一測試中的OS不穩定、掛掉/失敗了，也不會影響host Hw, OS, 其他user  processes 之工作，因為只是相當於一個user process fails而已，不會對system有重大危害</li>
+</ol>
+<p><img src="https://i.imgur.com/cxdDMTi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221126221141028"
+	
+	
+></p>
+<ol start="3">
+<li>
+<p>同一部Host Hardware上可以執行多個OS running on 多個virtual machines，<strong>這樣可以節省成本</strong></p>
+</li>
+<li>
+<p><strong>Consolidation(合併)</strong>：在 Cloud computing environment，我們會用<strong>有限的</strong>機器，建立為數注眾多的virtual machines，我們可以依VM上的Applications之執行負擔輕重，<strong>調用Host machines資源，做因應的支援</strong>，有需要就在加開，沒需要就關掉，做資源的合併與調度</p>
+</li>
+<li>
+<p>VM較為安全(如果VM被病毒入侵，不致擴散，因為各VM之間是相互獨立的)</p>
+</li>
+<li>
+<p>可以Freeze, suspend, running VM, 及Clone(複製) VM</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/wQovoui.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221126223550540"
+	
+	
+></p>
+</li>
+</ul>
+<p><strong>VMM的Implementation</strong></p>
+<p><code>Hypervisor : 虛擬機管理程式</code></p>
+<ol>
+<li>
+<p>Type0 Hypervisor(硬體層次)：</p>
+<ol>
+<li><strong>Hardware</strong>-based solutions via firmware
+<ul>
+<li>例如：IBM LPARS and Oracle LDOMs</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Type1 Hypervisor(Kernel Mode層次)</p>
+<ol>
+<li>
+<p>OS-like software</p>
+<ul>
+<li>例：<strong>VMware ESX</strong>, Joyent SmartOS, Crtrix XenServer</li>
+</ul>
+</li>
+<li>
+<p>general purpose OS that provide VMM  functions (services)</p>
+<ul>
+<li>例如Microsoft Window Server with HyperV, Redhat Linux with KVM</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Type2  Hypervisor(user mode層次)：</p>
+<ol start="3">
+<li>
+<p><strong>Applications</strong> level provides VMM functionality</p>
+<p>eg. <strong>Paraller</strong> <strong>Desktop</strong>, Oracle VirtualBox</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>還有一些其他的<strong>變形</strong><code>上面那三類都是要創造跟底層硬體(Host HW)一樣的Virtual Machine，但下面這些卻不是</code></p>
+<ol start="4">
+<li>
+<p><strong>Paravirtualization☆考試重點</strong></p>
+<ul>
+<li>The guest OS need modify to work in cooperation with VMM to optimize performance</li>
+<li><strong>presents guest(run 在virtual Machine上的都叫guest) with similar but Not identical to Host Hardware</strong></li>
+<li>Guest <strong>must be modified(必須要被修改才可以用)</strong> to Run ON Paravirtualization virtual hardware</li>
+</ul>
+</li>
+<li>
+<p>Programming-environment virtualization</p>
+<ul>
+<li>
+<p>VMMs do not virtualize, HW but instead <strong>create on optimized virtual system .</strong>(創造全新的Virtual Machine)</p>
+<p>eg. Java virtual machine(JVM), Microsoft .NET</p>
+<p><strong>JVM is a SPECification(規格), not an implementation</strong></p>
+<p>規範</p>
+<ol>
+<li>Class Loader(把bype code load下來)</li>
+<li>Class verifier(驗證器，驗證byte Code安不安全，比如是否包含pointer)</li>
+<li>Java interpreter(執行byte code)</li>
+</ol>
+<p><img src="https://i.imgur.com/gZivz4w.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221128233907844"
+	
+	
+></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Emulators</strong>：Allow application written for one HW to run on a very different HW such as different  type of CPU。例：PS4模擬器、3DS模擬器</p>
+</li>
+<li>
+<p><strong>Application containment (底層沒有Virtual Machine，而是 創造執行環境，而不是模擬)</strong></p>
+<p>eg. Oracle Solaris Zones BSD Jails, IBM AIX WPARs application</p>
+<p><img src="https://i.imgur.com/EVk8fjP.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221127130242062"
+	
+	
+></p>
+<p><strong>Policy(政策、策略 ) 與 Mechanism</strong></p>
+<ol>
+<li>
+<p>Policy定義</p>
+<ol>
+<li><strong>&ldquo;What&rdquo; to be proovided</strong></li>
+<li><strong>經常改變、朝令夕改</strong></li>
+</ol>
+</li>
+<li>
+<p>Mechanism定義</p>
+<ol>
+<li><strong>How to do that</strong></li>
+<li>The underlying(基本的) mechanism甚少改變或不變</li>
+</ol>
+</li>
+<li>
+<p>設計原則：</p>
+<p>Policy與Mechanism宜separate，以增進system flexibility</p>
+</li>
+<li>
+<p>舉例</p>
+<ol>
+<li></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<pre><code>     + 運用Timer作為CPU protection &gt; Mechanism 
+     + Max.Time Quantum大小制定 &gt; Policy
+
+  2. 
+
+     + CPU排版採Priority Scheduling 排班 &gt; Mechanism
+     + Priority大小之定義 &gt; Policy
+</code></pre>
+<h2 id="chapter4--process-management-and-thread-management">Chapter4  Process Management And Thread Management</h2>
+<blockquote>
+<p>Process 定義與Progeam比較</p>
+<p><strong>PCB內容 考試重點</strong></p>
+<p><strong>Process State Transition Diagram (S.T.D)考試重點</strong></p>
+<p>Scheduler的種類(解釋名詞)</p>
+<blockquote>
+<p>長期</p>
+<p>短期</p>
+<p>中期</p>
+</blockquote>
+<p>Context Switching (解釋名詞)</p>
+<p>Dispatcher, Dispatch latency(較少考)</p>
+<p><strong>Process Controller Operations(UNIX, System Call為主的程式追蹤) 考試重點</strong></p>
+<p><strong>評估CPU Scheduling 效能的好或不好的5個Criteria(清大喜歡考)</strong></p>
+<p><strong>各種CPU 排班法則(7個)介紹及相關名詞(Starvation,Aging,Preemptive,Non-preemptive,Convoy effect) 考試重點</strong></p>
+<p>特定System的排班設計</p>
+<blockquote>
+<p>MultiProcessors System</p>
+<p>Real-time System</p>
+<blockquote>
+<p>Soft (考申論題)</p>
+<p>Hard(考計算題)</p>
+</blockquote>
+</blockquote>
+<p>Thread Management</p>
+</blockquote>
+<h3 id="process-definition">Process Definition</h3>
+<p>定義：A program in execution[恐]</p>
+<ul>
+<li>Process 建立後，其主要組成有：
+<ul>
+<li><strong>Process No(ID)</strong>: Process被生成出來時，會有一個Process Id，作為識別</li>
+<li>Process State</li>
+<li>Code Section, Data Section：Process占用的 Memory Space</li>
+<li>Programming Counter(PC)：程式計數器，告訴我們現在這個Process執行到哪裡，裡面放下一條指令的位址</li>
+<li>Stack</li>
+<li>CPU Register value</li>
+<li>是OS 分配 **Resource(CPU,I/O-Divice, Memory) **之對象單位：跟Thread的差別</li>
+</ul>
+</li>
+<li>與Program(程式)的比較</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>Program</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>執行中的程式</td>
+<td>Just a <strong>File</strong> stored in storage device</td>
+</tr>
+<tr>
+<td>&ldquo;Active&rdquo; entity(活動中、執行中)</td>
+<td>&ldquo;Passive&rdquo; entity(沒有活動的)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="process-control-block">Process Control Block</h3>
+<p>(PCB內容)</p>
+<p>定義：OS為了管理所有Processes，會在Kernel memory中，替每個Process，各自準備一個Block(Table, 表格)，用來記錄Process之所有相關資訊</p>
+<p><strong>PCB的主要內容有(要背，考選擇)：</strong></p>
+<ol>
+<li>
+<p><strong>Process No(ID)：是Unique(唯一的)</strong></p>
+</li>
+<li>
+<p><strong>Process state：eg. ready, running, wait, etc</strong></p>
+</li>
+<li>
+<p><strong>Programming Counter：內放 the next instruction&rsquo;s address</strong></p>
+</li>
+<li>
+<p>**CPU Registers：eg. 紀錄使用到的暫存器的值 eq. Accumulator, PSW(Process Status Word), Stack  Top ,etc **</p>
+</li>
+<li>
+<p><strong>CPU Scheduling Info：eg. Process 的優先權，First-In First-Out(FIFO)</strong></p>
+</li>
+<li>
+<p><strong>Memory Management Info(隨OS的記憶體管理方法不同，紀錄不同資訊)：eg. Base/Limit register或 Page Table 或 Segment Table</strong></p>
+</li>
+<li>
+<p><strong>Accounting Info：eg. Process已使用了多少CPU Time, 哪些資源, 還剩多少資源,多少CPU Time可以用</strong>
+Note：目的</p>
+<blockquote>
+<p>計算使用量，記帳、收＄</p>
+<p>Administrator 調教Performance的依據</p>
+</blockquote>
+</li>
+<li>
+<p><strong>I/O Status Info：eg. process已經發出多少I/O-Request, 完成 狀況如何，占用那些I/O Resource(目前還沒釋放的)</strong></p>
+</li>
+</ol>
+<h3 id="process-state-transition-diagram">Process State Transition Diagram</h3>
+<p>狀態轉換圖(S.T.D)</p>
+<p>目的：描述Process之Life Cycle，用來記錄Process建立，到它被終止之間，所發生的事</p>
+<p>各個版本的STD定義都不太一樣</p>
+<blockquote>
+<ol>
+<li>[恐] 5個State的STD</li>
+<li>[Stalling]7個State STD (比恐龍多兩個狀態)</li>
+<li>[Stalling] UNIX的STD</li>
+</ol>
+</blockquote>
+<h4 id="5-steps-of-state-transition-diagram">5 Steps of State Transition Diagram</h4>
+<p>要會畫，會說明，超基礎，考出來是送分題</p>
+<p><img src="https://i.imgur.com/WlbrMCp.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204010203958"
+	
+	
+></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New(Create)</td>
+<td>Process被建立，已分得PCB的空間，<strong>尚未載入記憶體、未取得記憶體資源</strong>，因應Batch的系統</td>
+</tr>
+<tr>
+<td>Ready</td>
+<td>Process在記憶體了，且OS已經把它<strong>放到Ready Queue內，且具有資格爭奪CPU</strong></td>
+</tr>
+<tr>
+<td>Running</td>
+<td>Process取得CPU 執行中</td>
+</tr>
+<tr>
+<td>Wait(Block)</td>
+<td>表示Process待在waiting Queue中，Waiting For I/O-Completed or event occurs, <strong>不會與其他Processes 競爭CPU</strong></td>
+</tr>
+<tr>
+<td>Exit(Terminate)(Zombie)(Abort)</td>
+<td>Process完成工作，<strong>正常結束</strong>或<strong>異常終止</strong>，可能其PCB尚未回收，因為要等其<strong>父親(Parent Process)Collect 該子process之成果後</strong>，才會回收PCB Space其他資源(Memory, CPU, I/O-Devices)已回收</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Transition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>也叫Admit，當Memory Space足夠時，可由<strong>Long-term Scheduler(in Batch System，因為放在Job Queue裡頭)，決定將此Job載入到Memory中</strong></td>
+</tr>
+<tr>
+<td>2.</td>
+<td>也叫<strong>Dispatch</strong>,由short-term scheduler(CPU Scheduler)決定，讓高優先權的Process取得CPU控制權</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>也叫<strong>Time-Out/Interrupt</strong>，執行中的Process會因某些事件發生而<strong>被迫放棄(不是自願的)CPU，回去Ready Queue, eg. Time-Out, Interrupt發生,更高優先權的Process到達，插隊</strong></td>
+</tr>
+<tr>
+<td>4.</td>
+<td>叫wait for I/O-Completed or event occurs(自願放棄CPU)</td>
+</tr>
+<tr>
+<td>5.</td>
+<td>I/O-Completed 或 Event occurs</td>
+</tr>
+<tr>
+<td>6.</td>
+<td>Process完工或異常終止 (自願放棄CPU)</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="7-steps-of-state-transition-diagramstalling">7 Steps of State Transition Diagram[Stalling]</h4>
+<p><code>補上Middel Term Scheduler</code></p>
+<p>為了解決一個問題</p>
+<p><code>當記憶體被占滿了，有一個更高優先權的Process近來，該如何處理？</code></p>
+<p>把wait狀態的process踢出去，放到磁碟去保存</p>
+<p><img src="https://i.imgur.com/3fqSWLb.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204120509402"
+	
+	
+></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blocked/Suspend</td>
+<td>Process被Swap Out到 Disk中暫存，即Blocked(asleep) in Disk</td>
+</tr>
+<tr>
+<td>Ready/Suspend</td>
+<td>event occurs or I/O-Completed, <strong>READY IN DISK</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Transition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Suspend(Swap Out)</td>
+<td>當Memory空間不足，又有其他高優先度的Process需更多Memory空間時，會由Medium-Term Scheduler決定將Blocked Process或低優先權的Process Swap out到Disk，以空出Memory Space</td>
+</tr>
+<tr>
+<td>Activate(Swap In)</td>
+<td>當Memory space有空，Medium-term scheduler可將它們Swap In回memory中，Ready for execution</td>
+</tr>
+<tr>
+<td>Suspend(Swap Out)</td>
+<td>支持此Transition之理由有二<br />1.所有Blocked Processes皆Swap out後，Memory Space仍不足時<br />2. 所有Blocked State Processes之優先權，皆高於Ready State Process時</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="https://i.imgur.com/t6Albzn.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204120421430"
+	
+	
+></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Transition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>把從在磁碟睡覺的process拉到記憶體裡面睡覺，<code>This is a poor design，但仍可支持，理由如下：若所有</code>Blocked/suspend` state之Processes優先權皆高於ready/ suspend processes, 且OS believes them will become ready soon</td>
+</tr>
+<tr>
+<td>2</td>
+<td>It&rsquo;s also a poor design 但可支持之理由如下：若有一個高優先權的process從blocked/suspend變成ready/suspend時，則OS可以強迫低優先權但已執行的process放棄CPU的使用以及Memory的空間，供高優先權使用</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="unix-stdstalling">UNIX STD[Stalling]</h4>
+<p><img src="https://i.imgur.com/OWW8dof.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221204131334041"
+	
+	
+></p>
+<h3 id="scheduler-typeimportant">Scheduler Type(Important)</h3>
+<blockquote>
+<ol>
+<li>
+<p>Long-term Scheduler</p>
+<ul>
+<li>定義：又叫Job Scheduler，目的是從Job Queue中挑選一些Jobs載入到Memory中</li>
+<li>特色：
+<ol>
+<li>執行頻率最低，所以才叫長期</li>
+<li>可以調控Multiprogramming Degree</li>
+<li>可以調控 I/O-Bound Job與CPU-Bound Job之混合比例(下面有解釋)</li>
+<li>Batch System採用，但是real-time system以及time-sharing不會採用這種機制。因為real-time系統處理的process都是比較緊急的，因此就需要直接丟進memory去執行。而time-sharing系統要求對每一個user公平，沒有優先度需要處理，如果memory不夠則調用virtual memory，因此time-sharing系統只存在medium-term以及short-term</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Short-term Scheduler：</p>
+<ul>
+<li>定義：又叫<strong>CPU Schduler</strong>或<strong>Process Scheduler</strong>，目的是從<strong>Ready Queue</strong>中挑出一個高優先權的process，分派CPU，給CPU執行</li>
+<li>特色：
+<ol>
+<li>執行速度是三者裡面最高的</li>
+<li><strong>無法調控Multiprogramming Degree，因為它不是負責將程式load進memory與Swap out出去的人</strong></li>
+<li><strong>無法調控I/O-Bound Job與CPU-Bound Job之混合比例，頂多決定誰要先做，不能決定比例</strong></li>
+<li><strong>所有的 System採用</strong></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Medium-term Scheduler(最常被考)：</p>
+<ul>
+<li>
+<p>定義：<strong>Time-Sharing System採用</strong>，當<strong>Memory空間不足</strong>，且<strong>又有其他高優先權Processes需要Memory Space時</strong>，此Scheduler會啟動，它會挑選一些Processes(eg. Blocked Process, 低優先Process) 將其Swap Out到Disk中，保存，以空出Memory Space，供其他Process使用，將來等到有足夠的Memory Space released後，此Scheduler可再將它們Swap In 回Memory, ready for execution</p>
+</li>
+<li>
+<p>特色：</p>
+<ol>
+<li>
+<p>執行速度是三者裡面居中的</p>
+</li>
+<li>
+<p><strong>可以調控Multiprogramming Degree，因為它不是負責將程式load進memory與Swap out出去的人</strong></p>
+</li>
+<li>
+<p><strong>可以法調控I/O-Bound Job與CPU-Bound Job之混合比例，頂多決定誰要先做，不能決定比例</strong></p>
+</li>
+<li>
+<p><strong>Time-Sharing System採用</strong></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p><code>Multiprogramming Degree：系統內的Process的數目：一般而言，Degree越高，CPU利用率就越高。</code></p>
+<h4 id="io-bound-job與cpu-bound-job">I/O-Bound Job與CPU-Bound Job</h4>
+<ol>
+<li>
+<p>I/O-Bound(受限) Job</p>
+<p>定義：此類型工作大都是需要大量的I/O operation(resource)，但對於CPU Time(Computation)需求很少，<strong>因為其工作效能受限於I/O-Device之速度，稱之I/O-Bound</strong>，對CPU有最高優先權，因為它占用CPU的時間最短</p>
+<p>例如：Data Base Management, 財報的處理列印</p>
+</li>
+<li>
+<p>CPU-Bound(受限) Job</p>
+<p>定義：需要大量的CPU計算，產生數筆資料，對I/O有最高優先權，因為它占用CPU的時間最短</p>
+<p>例如：氣象預估、科學模擬</p>
+</li>
+</ol>
+<p><strong>如果OS發現I/O-Bound過多，則會透過Schduler來調控兩者之間的比例</strong></p>
+<h3 id="context-switching">Context Switching</h3>
+<ul>
+<li>
+<p>定義：當CPU要從Running Process切給另一個Process使用之前，Kernel必須**保存(Store) Running Process的目前狀態資訊(eg. Programming Counter的值，Stack的值，CPU Register的值，etc)，即存回此Process之PCB **。且要載入(restore)另一個Process之狀態資訊from此Process PCB，<strong>這樣的行為就叫做Context Switching</strong>，Context Switch本身是一個額外的負擔，因為需要花CPU的時間去做切換，不能用在Process的執行上，因此時間大多取決於硬體的因素居多(eg. Register的數量夠不夠，Memory存取指令速度</p>
+</li>
+<li>
+<p>如何將低Context Switching負擔</p>
+<ol>
+<li>如果Register的數量足夠多，則可以讓每一個Process皆有自己的(Private) Register Set，OS只要切換Point指向另一個process之Register Set 即可完成Context Swtitching without memory store/restore ，因為速度夠快。但這個方法不太切實際，因為Register的成本關係</li>
+<li>使用<strong>Multithreading</strong>機制。</li>
+<li>讓System process及User Process各自擁有自己的Register set，如此兩者之切換只要Registers Set的Pointer即可</li>
+</ol>
+</li>
+</ul>
+<h3 id="dispatcher-and-dispatch-latency">Dispatcher And Dispatch Latency</h3>
+<p><code>分派器與分派延遲</code></p>
+<ul>
+<li>
+<p>定義：Dispatcher，此一模組的目的是要將CPU控制權授予經由CPU Scheduler依據CPU排班法則所選出之Process，選好後CPU Scheduler會將工作交給CPU Dispatcher，主要的工作項有下列三項</p>
+<ol>
+<li>Context Switching</li>
+<li>Change Mode from to Kernel mode to User Mode</li>
+<li>Jump to the execution entry of that selected proces</li>
+</ol>
+<p>上述這三個工作所耗費的時間總和就是<strong>Dispatch Latency</strong></p>
+</li>
+<li>
+<p>希望<strong>Dispatch Latency越短越好</strong>，這些Process可以盡早開工</p>
+</li>
+</ul>
+<h3 id="process-control-operations">Process Control Operations☆☆☆☆☆</h3>
+<h4 id="lession-1-theory">Lession 1 Theory</h4>
+<ul>
+<li>
+<p>定義：Process建立、終止、暫停、恢復執行、設定／修改／讀取 Process Attributes值 etc.</p>
+<p><strong>上述這些皆是OS應該提供的服務(i.e System Call)</strong></p>
+</li>
+<li>
+<p>Procss是可以建立自己的Process(Child Process)，<strong>目的是要Child Process做工作</strong></p>
+</li>
+<li>
+<p>Child Process所做的工作，可以分為2類：</p>
+<ol>
+<li><strong>與Parent 相同的工作(子承父業)</strong></li>
+<li>特定工作(與Parent不同)</li>
+</ol>
+</li>
+<li>
+<p>Parent與Child之間的互動關係為：</p>
+<blockquote>
+<ol>
+<li>Concurrent execution(交錯使用，通常是執行第一類的工作(子承父業))</li>
+<li>Parent waits for Child until child terminated(等著收割Child的成果)</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>Child Process 所須的資源由何處取得?</p>
+<blockquote>
+<ol>
+<li><strong>OS供應</strong>(這種情況OS會去限制每個process最大可產生多少個Child Process)</li>
+<li>Parent供應(整個家族Process的資源都是共享，Parent Process的Sharing Time有一小時，那麼整個家族的Sharing Time 就是一個小時</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>Parent 若終止，則Child Process會如何處理?</p>
+<blockquote>
+<ol>
+<li>
+<p><strong>一併終止(最常被使用)</strong> ：稱之為Cascading(層疊的) termination</p>
+</li>
+<li>
+<p>Parent Process死了，但Child Process存活，那Child的資源由以下兩者提供</p>
+<blockquote>
+<ul>
+<li>
+<p>向OS取得資源</p>
+</li>
+<li>
+<p>向祖先Process取得資源</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h4 id="lession-2-example---unix-system-call">Lession 2 Example - UNIX System Call</h4>
+<ul>
+<li>fork()：此System call. 用以建立 Child Process，而fork()之傳回結果，對象如下</li>
+</ul>
+<blockquote>
+<p>失敗：因為資源不足<code>(記憶體不夠，PCB也不夠)</code>，無法建立，<strong>會傳回負值(-1)給OS, then Pass to parent process</strong>，通常失敗的話，OS也會順便把Parent process砍死</p>
+<p>成功：OS會傳回一個值，用以區分child or parent：</p>
+<blockquote>
+<p>0值：給child process</p>
+<p>.&gt; 0值：給Parent，且此值為Child Process ID</p>
+</blockquote>
+</blockquote>
+<p><img src="https://i.imgur.com/Hkeq0GX.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221205225943369"
+	
+	
+></p>
+<ul>
+<li>
+<p>wait()：此System Call用以<strong>暫停</strong>Process execute, 直到某個事件發生，eg. 父等子直到子終止 。</p>
+</li>
+<li>
+<p>exit()：此System Call用以終止Process的執行，回收其資源<code>但PCB的空間可能還留著，直到父把子的結果回收回來才回收</code>通常exit(0)表示正常終止，<strong>exit(-1)表示異常終止</strong>。<strong>子Process做完工作後，子Process要自己發出一個exit的System Call，讓OS來殺掉子Process。</strong></p>
+</li>
+<li>
+<p>execlp()<code>或exec(), execve()</code>：此system call用於請OS載入特定的binary code(可執行的檔案)，來執行。這個System call可以交由子process執行，讓子process執行特定的工作，<strong>去執行之後就不會再回來執行原程式下面的指令了，因為已經去執行特定的工作了</strong></p>
+<p>eg. execlp(&ldquo;目錄名稱&rdquo;,&ldquo;檔名&rdquo;,參數)</p>
+</li>
+<li>
+<p>getpid()：此System Call用以取得Prcess的Id</p>
+</li>
+</ul>
+<p>​		說明：</p>
+<p><img src="https://i.imgur.com/73BPWL6.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221205232325242"
+	
+	
+></p>
+<p>​	OS會配置child process memory space, 此空間是占用不同的記憶體空間，且子process的Data section 及 	code section內容均來自父process的copy, initially。</p>
+<p>​	<strong>若子process所作之工作與父process相同，則fork()完，就已經達成目的。</strong></p>
+<p>​	<strong>若子process要做特定工作(與父process不同)，則子process必須執行execlp()這個system call</strong></p>
+<p>​	<img src="https://i.imgur.com/FVrCZfE.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221205233942669"
+	
+	
+></p>
+<h4 id="lession3-programming">Lession3 Programming</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//例題1；建立Child process執行ls命令檔，且父等子完成後才列印Child completed
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;fork fails </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//爸爸自己自殺
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//兒子要做的事情
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">execlp</span><span class="p">(</span><span class="s">&#34;/bin/ls&#34;</span><span class="p">,</span><span class="s">&#34;ls&#34;</span><span class="p">,</span><span class="n">null</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exit</span><span class="p">();</span> <span class="c1">//這段code不會執行，原因是因為execlp()會把process指向/bin/ls的binary code，接著就是去執行那段binary code了，就不會回來執行這個exit();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span><span class="k">else</span> <span class="c1">//pid &gt;0{
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//爸爸要做的事情
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">wait</span><span class="p">();</span> <span class="c1">//父Process子Process直到子Process終止 子Process做完工作後，子Process要自己發出一個exit的System Call，讓OS來殺掉子Process。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;child Completed&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//不管怎樣都會執行的地方
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>	
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/lNzxZM0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221206002505232"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//例題2 假設Parent, child 之process ID為2600, 2603 求line A, B, C, D 印出值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span><span class="o">-</span><span class="n">t</span> <span class="n">pid</span><span class="p">,</span> <span class="n">pid1</span><span class="p">;</span> <span class="c1">//pid-t: 一個名為pid 的type，就是整數，是C語言的寫法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pid</span><span class="o">-</span><span class="n">fork</span><span class="p">();</span> <span class="c1">//pid 放的是子process的ID， pid1放的是自己process的ID
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pid1</span><span class="o">=</span><span class="n">getpid</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span> <span class="c1">//A 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="n">pid1</span><span class="p">);</span> <span class="c1">//B 2603
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pid1</span><span class="o">=</span><span class="n">getpid</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span> <span class="c1">//C 2603
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="n">pid1</span><span class="p">);</span> <span class="c1">//D 2600
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/3vEaYqb.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221212233944674"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">//例題3  問A的值value是多少 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">value</span> <span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span><span class="o">-</span><span class="n">t</span> <span class="n">pid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">value</span> <span class="o">+=</span><span class="mi">15</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">print</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>  <span class="c1">//A=5 就算是global的變數，也是只能在自己的process作用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//例題4 求列印結果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span><span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;A</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="c1">//pid &gt;0{
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;B</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Ans</span><span class="p">:</span> <span class="err">父與子是並行的，因為父</span><span class="n">process沒有wait</span><span class="p">(),</span> <span class="err">因此答案可能是</span><span class="n">AB或BA</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">2.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span><span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;A</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="c1">//pid &gt;0{
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;B</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">wait</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;C</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Ans</span><span class="p">:</span> <span class="n">ACBC</span><span class="p">,</span><span class="n">ABCC</span><span class="p">,</span><span class="n">BACC</span><span class="p">,</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//例題5 假設Count，是一個父與子Process的共享變數 ，初值為5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span><span class="o">=</span><span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="mf">.6</span><span class="p">,</span><span class="mi">5</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mf">2.</span><span class="p">)</span> <span class="c1">//父與子並行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span><span class="o">=</span><span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">     <span class="n">printf</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="p">.</span> <span class="mi">45</span><span class="p">,</span><span class="mi">54</span><span class="p">,</span><span class="mi">55</span> <span class="c1">//這是基本情況
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="c1">//以高階程式語言的角度來看，count++實際上是兩條code
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//count+1跟count=count+1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//先加然後再附值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//如果以組合語言的角度來看，就是三行code
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//LOAD R1, Count
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//INC R1, 1;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//STORE Count,R1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//但Process沒有辦法保證這三條Code會連續做完，有可能做到一半就被另一個Process搶走了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//所以還有一種情況是+1完之後，還來不及Assign，CPU就被另一個Process搶走了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">Ans</span><span class="mf">.66</span><span class="p">,</span><span class="mi">44</span><span class="p">,</span><span class="mi">46</span><span class="p">,</span><span class="mi">64</span>
+</span></span><span class="line"><span class="cl">    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/PScmSWQ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221213223929951"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">//例題6
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span> <span class="n">How</span> <span class="n">mant</span> <span class="n">processes</span> <span class="n">are</span> <span class="n">created</span><span class="o">?</span> <span class="p">(</span><span class="n">include</span> <span class="n">main</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="mf">.8</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">2.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span> <span class="c1">//等同於 pid=fork(); if(pid ==0) ....
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="mf">.10</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">3.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span> <span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="mf">.14</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">4.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="mf">.729</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">5.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">6.</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">a</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">a</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">i</span><span class="p">.)</span> <span class="n">printf</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="err">共做了幾次</span><span class="o">?</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">ii</span><span class="p">.)</span><span class="err">印出</span><span class="mi">0</span><span class="err">的有幾次</span><span class="o">?</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">iii</span><span class="p">)</span><span class="err">印出</span><span class="mi">1</span><span class="err">的有幾次</span><span class="o">?</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">iiii</span><span class="p">.)</span><span class="err">印出</span><span class="mi">2</span><span class="err">的有幾次</span><span class="o">?</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例題1</p>
+<p><img src="https://i.imgur.com/P7KPC3a.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221213224958887"
+	
+	
+></p>
+<p>例題2</p>
+<p><img src="https://i.imgur.com/sxHVION.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221213230321504"
+	
+	
+></p>
+<p>例題3</p>
+<p><img src="https://i.imgur.com/928uNym.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221213231138167"
+	
+	
+></p>
+<p>例題4</p>
+<p>parse1<img src="https://i.imgur.com/B8YeFxw.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221213233229409"
+	
+	
+></p>
+<p>parse2</p>
+<p><img src="https://i.imgur.com/z5Udxxt.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221213233442414"
+	
+	
+></p>
+<p>parse3</p>
+<p><img src="https://i.imgur.com/jBQDnnR.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221213233645680"
+	
+	
+></p>
+<p>例題5</p>
+<p>parse1</p>
+<p><img src="https://i.imgur.com/QNOoXgC.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221213235008337"
+	
+	
+></p>
+<p>parse2,3</p>
+<p><img src="https://i.imgur.com/VLdy9Wu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221213235124681"
+	
+	
+></p>
+<p>例題6</p>
+<p><img src="https://i.imgur.com/vNkpGIt.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221214001735125"
+	
+	
+></p>
+<h3 id="evalue-cpu-scheduling-performance-5-criteria">Evalue CPU Scheduling Performance 5 criteria</h3>
+<blockquote>
+<ol>
+<li>
+<p>CPU utilization：cpu花在Process exec time / CPU <strong>total time(process exec time + context switching time+ idle time)</strong></p>
+<ul>
+<li>舉例：Process平均花5ms在exec上 ,context switching = 1ms,則CPU utilization = 5/5+1 =5/6</li>
+</ul>
+</li>
+<li>
+<p>Throughput(產能)：單位時間內完成的Job數目</p>
+</li>
+<li>
+<p><strong>Waiting Time(等待時間，考試重點)</strong>：process花在ready queue中等待獲得CPU之等待時間加總</p>
+<p><img src="https://i.imgur.com/owdeLYf.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221214224920098"
+	
+	
+></p>
+</li>
+<li>
+<p>Turnaroud Time(完成時間)：從Process進入(到達)到它工作完成的這段時間差值</p>
+<p><img src="https://i.imgur.com/1F9T30z.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221214225625777"
+	
+	
+></p>
+</li>
+<li>
+<p>Response Time(回應時間)：自user(user process) input 命令/Data 給系統到系統產生<strong>第一個回應</strong>的時間差，沒有一個特定的量法去量它，稱之Time-sharing system, user-mteractive, <strong>application特別重視這一塊</strong></p>
+</li>
+</ol>
+</blockquote>
+<p>由上述得知，排班的目標必是，**利用度越高、產能越高，時間相關的東西越短越好 **</p>
+<h3 id="cpu排班法則行為介紹">CPU排班法則行為介紹</h3>
+<blockquote>
+<ol>
+<li>FIFO</li>
+<li>SJF</li>
+<li>SRTF</li>
+<li>Priority</li>
+<li>RR</li>
+<li>Multilevel Queues</li>
+<li>Multilevel Feedback Queues (MFQs)</li>
+</ol>
+</blockquote>
+<h4 id="fifo法則">FIFO法則</h4>
+<ul>
+<li>
+<p>定義：到達時間最小的process，優先取得CPU</p>
+</li>
+<li>
+<p>例如：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>CPU(burst) Time 要花的CPU time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>24</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table></div>
+<p>到達時間皆為0(從一開始就到了)</p>
+<p>到達順序為：P1, P2, P3(擺到ready queue的順序)</p>
+<p>Question</p>
+<ol>
+<li>畫出Gantt Chart</li>
+<li>求Avg. waiting time</li>
+<li>求Avg. Turnaround Time</li>
+</ol>
+<p><img src="https://i.imgur.com/5S4T8z9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221214235730530"
+	
+	
+></p>
+</li>
+<li>
+<p>分析</p>
+<ol>
+<li>
+<p>排班效能最差，即<strong>Waiting time &amp; Turnaround time 最長</strong></p>
+</li>
+<li>
+<p>可能會有**Convoy Effect(護衛效應：許多Processes 均在等待一個需要很長CPU time之process 完成工作，才能取得CPU，造成Avg waiting time 很長之不良效應) **</p>
+</li>
+<li>
+<p>公平</p>
+</li>
+<li>
+<p>No Starvation</p>
+<ul>
+<li>(沒有<strong>飢餓現象：Process因為長期無法取得完工所需各式資源，導致它遲遲無法完工，形成Indefinite Blocking 現象，稱之Starvation，容易發生在不公平對待之環境，若再加上Preemptive機制，則更是容易發生，補償方案：&ldquo;Aging(老化)&ldquo;技術，隨著Process待在System內的時間逐漸增加，我們也逐步提高此process的優先權，故可取得Process Resources完工，因為不會Starvation</strong>。注意：Soft real-time System不採用Aging，因為Soft real-time system是為了確保real-time process取得最高優先權，如果加入Aging機制，就有可能有process的priority高於real time process)</li>
+</ul>
+</li>
+<li>
+<p>Non-preemptive(不可插隊；不可搶奪)法則</p>
+<ul>
+<li>
+<p>版本1(白話文)</p>
+<ol>
+<li>
+<p>Non-preemptive法則</p>
+<ul>
+<li>定義：除非執行中的process<strong>自願放掉CPU</strong>，其他Process才會有機會取得CPU，否則就只能wait，不可逕自搶奪CPU</li>
+<li>例如：完成工作、Wait for I/O-completed after issue I/O-request</li>
+<li>優點：
+<ol>
+<li>Context Switching的次數比較少，因為不可插隊，所以Switching的頻率小很多</li>
+<li>process之完工時間點較可預期(Predictable)，因為不可插隊</li>
+<li>比較不會有Race Condition Problem</li>
+</ol>
+</li>
+<li>缺點：
+<ol>
+<li>排班的效能較差，因為可能有Convoy effect</li>
+<li>不適合用在Time-sharing System, Real time System，因為這兩個都需要插隊的機制</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Preemptive法則</p>
+<ul>
+<li>定義：執行中的Process有可能<strong>被迫放棄CPU</strong>，回到ready Queue，將CPU切給別人使用，eg. Time-out, interrupt etc</li>
+<li>優點：
+<ol>
+<li>排班效益較佳，平均waiting/ turnound Time較小，可以把耗時較長的Process Preemptive掉</li>
+<li>適用於Real-time sysem(要能夠把real time 的process插入進去) 及Time-Sharing System</li>
+</ol>
+</li>
+<li>缺點：
+<ol>
+<li>完工時間較不可預期</li>
+<li>Context Switching次數多，負擔較重</li>
+<li>須注意Race Condition之發生</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>版本2：從CPU排班決策(啟動)之時機點來做區分(可以參考 State Transition，以下是五種情況做解說)</p>
+<blockquote>
+<ol>
+<li>Running &mdash;&gt; Block eg: wait for I/O completed [自願放棄]</li>
+<li>Running &mdash;&gt; Ready eg: time-out [被迫放棄]</li>
+<li>Wait  &mdash;&gt; Ready eg: I/O-completed [尊爵不凡的process醒來了，所以要啟動CPU scheduling，獲得CPU，低優先權的process被迫放棄CPU]</li>
+<li>Running &mdash;&gt; Exit eg:完成工作 [自願放棄]</li>
+</ol>
+</blockquote>
+<p>所以若排班決策之啟動點只包含1,4，未包含2,4，則為Non-preemptive,否則preempt。</p>
+<p>Note：凡是 xxx &mdash;&gt; ready 皆列入preemptive元素(選項)，所以</p>
+<p>ready/suspend &mdash;&gt; ready</p>
+<p>New &mdash;&gt; Ready</p>
+<p>皆列入preemptive</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="sjfshortest-job-first法則">SJF(Shortest Job First)法則</h4>
+<ul>
+<li>
+<p>定義：具有最小的CPU TIME之Process，優先取得CPU，若都一樣小，則採FIFO。</p>
+</li>
+<li>
+<p>例如：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>CPU Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>6</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>8</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>7</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>3</td>
+</tr>
+</tbody>
+</table></div>
+<p>Process到達時間皆為0，求Avg waiting time</p>
+<p><img src="https://i.imgur.com/VKxulnL.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221217132504544"
+	
+	
+></p>
+</li>
+<li>
+<p>分析：</p>
+<ol>
+<li>
+<p><strong>排班效益最佳(optimal)，即Avg waiting/ turnaround time最小</strong></p>
+<ul>
+<li>
+<p>說明：Why optimal?</p>
+<p><img src="https://i.imgur.com/tZPVenF.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221217133256469"
+	
+	
+></p>
+<p>因為Short Job所減少的等待時間必定&gt;= Long-Job所增加的等待時間，因為平均等待時間會最小</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>不公平，偏好short Job</strong></p>
+</li>
+<li>
+<p><strong>可能會Starvation(for long Job)</strong></p>
+</li>
+<li>
+<p>可以分成</p>
+<blockquote>
+<p>Non-preemptive &mdash;&gt; SJF做代表</p>
+<p>Preemptive &mdash;&gt; 另外<strong>叫做SRTF法則</strong></p>
+</blockquote>
+</li>
+<li>
+<p>較不適合用在Short-term scheduler(比較不恰當啦，但你要用也是可，因為Short-term scheduler執行頻率太高，所以很難在極短的時間間隔內去預估出精確的CPU Burst time for each process 且排出最小值，不易真正呈現出SJF之行為，反倒是<strong>適合用long-term scheduler</strong></p>
+<p><code>Short time scheduler是指專門負責處理短暫的工作的計劃程序。這些工作通常會在短短的時間內完成，並且有許多工作要求同時進行。在這種情況下，使用short job first（SJF）法則來處理工作可能不是最佳選擇。這是因為SJF法則是基於工作預計完成時間的，並假設工作的預計完成時間是可以預先知道的。但是，在short time scheduler中，大多數工作的預計完成時間都是未知的，因此無法準確地應用SJF法則。另一個原因是，SJF法則會將短工作放在優先執行的位置，因此會把許多短工作排在一起。在short time scheduler中，這可能會導致許多短工作之間的競爭，從而導致效率降低。總的來說，short time scheduler更適合使用其他計劃策略，例如基於先進先出（FIFO）或基於最短剩餘時間（SRT）的策略，來處理短暫的工作。)</code></p>
+<blockquote>
+<p>如何評估process之the next cpu burst time?</p>
+<ol>
+<li>
+<p><strong>公式(加權指數平均公式)</strong></p>
+<p><img src="https://i.imgur.com/oysceoz.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221217153209006"
+	
+	
+></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>t0</th>
+<th>t1</th>
+<th>t2</th>
+<th>t3</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>實際值</td>
+<td>20</td>
+<td>10</td>
+<td>40</td>
+<td>20</td>
+<td></td>
+</tr>
+<tr>
+<td>預估值</td>
+<td><strong>20</strong>(一開始還沒預估，所以都是抓t0的值)</td>
+<td></td>
+<td></td>
+<td></td>
+<td>?</td>
+</tr>
+<tr>
+<td></td>
+<td>T0</td>
+<td>T1</td>
+<td>T2</td>
+<td>T3</td>
+<td>T4</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="https://i.imgur.com/8wvBUc8.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221217154217150"
+	
+	
+></p>
+</li>
+<li>
+<p>意義:　</p>
+<p><img src="https://i.imgur.com/Gx7aClO.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221217160852665"
+	
+	
+></p>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="process-concept">Process Concept</h3>
+<h1 id="第一節-總覽">第一節 總覽</h1>
+<h2 id="第一章-序言">第一章 序言</h2>
+<h2 id="第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)★</h2>
+<h3 id="os-service"><strong>OS</strong> Service</h3>
 <p>透過System Code去呼叫這些Service</p>
 <p><img src="https://i.imgur.com/RIMvaGk.png"
 	
 	
 	
 	loading="lazy"
-	
-		alt="image-20221008173129040"
 	
 	
 ></p>
@@ -644,7 +3082,8 @@ if (!doNotTrack) {
 <ol start="3">
 <li>透過Stack</li>
 </ol>
-<h3 id="os-structure-operating-system">OS Structure Operating-System</h3>
+<blockquote>
+</blockquote>
 <h4 id="simple-os-architecture">Simple OS Architecture</h4>
 <p><img src="https://i.imgur.com/GtaKA9x.png"
 	
@@ -695,7 +3134,6 @@ if (!doNotTrack) {
 	
 ></p>
 <p>現在常見的作業系統大部分都遵循這個架構（linux），有點像OO的概念，把功能<strong>寫成各個在kernel</strong>裡面的Subsystem，可以去這張投影片下面的網址，會手把手教你怎麼撰寫kernel</p>
-<h4 id="virtual-machine">Virtual Machine</h4>
 <p><img src="https://i.imgur.com/nwp4ACJ.png"
 	
 	
@@ -768,7 +3206,73 @@ if (!doNotTrack) {
 ></p>
 <h1 id="第二節-process-management-進程管理">第二節 Process Management (進程管理)</h1>
 <h2 id="第三章-processes-進程">第三章 Processes (進程)</h2>
-<h4 id="process-concept">Process Concept</h4>
+<h4 id="process-management--thread-management">Process Management &amp; Thread Management</h4>
+<blockquote>
+<p>Process 定義與Progeam比較</p>
+<p><strong>PCB內容 考試重點</strong></p>
+<p><strong>Process State Transition Diagram (S.T.D)考試重點</strong></p>
+<p>Scheduler的種類(解釋名詞)</p>
+<blockquote>
+<p>長期</p>
+<p>短期</p>
+<p>中期</p>
+</blockquote>
+<p>Context Switching (解釋名詞)</p>
+<p>Dispatcher, Dispatch latency(較少考)</p>
+<p><strong>Process Controller Operations(UNIX, System Call為主的程式追蹤) 考試重點</strong></p>
+<p><strong>評估CPU Scheduling 效能的好或不好的5個Criteria(清大喜歡考)</strong></p>
+<p><strong>各種CPU 排班法則(7個)介紹及相關名詞(Starvation,Aging,Preemptive,Non-preemptive,Convoy effect) 考試重點</strong></p>
+<p>特定System的排班設計</p>
+<blockquote>
+<p>MultiProcessors System</p>
+<p>Real-time System</p>
+<blockquote>
+<p>Soft (考申論題)</p>
+<p>Hard(考計算題)</p>
+</blockquote>
+</blockquote>
+<p>Thread Management</p>
+</blockquote>
+<h4 id="process">Process</h4>
+<p>定義：A program in execution[恐]</p>
+<ul>
+<li>Process 建立後，其主要組成有：
+<ul>
+<li><strong>Process No(ID)</strong>: Process被生成出來時，會有一個Process Id，作為識別</li>
+<li>Process State</li>
+<li>Code Section, Data Section：Process占用的 Memory Space</li>
+<li>Programming Counter(PC)：程式計數器，告訴我們現在這個Process執行到哪裡，裡面放下一條指令的位址</li>
+<li>Stack</li>
+<li>CPU Register value</li>
+<li>是OS 分配 **Resource(CPU,I/O-Divice, Memory) **之對象單位：跟Thread的差別</li>
+</ul>
+</li>
+<li>與Program(程式)的比較</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>Program</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>執行中的程式</td>
+<td>Just a <strong>File</strong> stored in storage device</td>
+</tr>
+<tr>
+<td>&ldquo;Active&rdquo; entity(活動中、執行中)</td>
+<td>&ldquo;Passive&rdquo; entity(沒有活動的)</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="process-control-block-1">Process Control Block</h4>
+<p>(PCB內容)</p>
+<p>定義：OS為了管理所有Processes，會在Kernel memory中，替每個Process，各自準備一個Block(Table, 表格)，用來記錄Process之所有相關資訊</p>
+<p>PCB的主要內容有：</p>
+<p>Process</p>
+<h4 id="process-concept-1">Process Concept</h4>
 <p><img src="https://i.imgur.com/46QhD4h.png"
 	
 	
@@ -1694,37 +4198,115 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#第一章-序言">第一章 序言</a>
+    <li><a href="#chapter1-intruduction">Chapter1 Intruduction</a>
       <ol>
-        <li><a href="#硬體hardware">硬體(hardware)</a></li>
-        <li><a href="#作業系統operating-system">作業系統(operating system)</a></li>
-        <li><a href="#應用程式application-programs">應用程式(application programs)</a></li>
+        <li><a href="#hardware">Hardware</a></li>
+        <li><a href="#operating-system-1">Operating System</a></li>
+        <li><a href="#application-programs">Application Programs</a></li>
         <li><a href="#multiprogramming-system">Multiprogramming System</a></li>
-        <li><a href="#time-sharing-system分時系統">Time-Sharing System(分時系統)</a></li>
+        <li><a href="#time-sharing-system">Time-Sharing System</a></li>
         <li><a href="#multiprocessors-system">Multiprocessors System</a>
           <ol>
-            <li><a href="#multiprocessors-system可以再拆分成兩種subtypes">Multiprocessors System可以再拆分成<strong>兩種</strong>subTypes</a></li>
+            <li><a href="#two-subtype-in-multiprocessors-system">Two SubType in Multiprocessors System</a></li>
             <li><a href="#multiprocessors-system-vs-multicores-cpu">Multiprocessors System VS MultiCores CPU</a></li>
           </ol>
         </li>
         <li><a href="#distribute-system">Distribute System</a>
           <ol>
-            <li><a href="#建構distribute-system之理由好處">建構Distribute-System之理由(好處)</a></li>
+            <li><a href="#advantage-of-distribute-system">Advantage of Distribute-System</a></li>
+          </ol>
+        </li>
+        <li><a href="#real-time-system">Real-Time System</a>
+          <ol>
+            <li><a href="#hard-real-time-system">Hard real-time system</a></li>
+            <li><a href="#soft-real-time-system">Soft real-time system</a></li>
+            <li><a href="#batch-system">Batch System</a></li>
+            <li><a href="#hand-held--system">Hand Held  system</a></li>
           </ol>
         </li>
       </ol>
     </li>
-    <li><a href="#第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)</a>
+    <li><a href="#chapter2-computer-system-architecture">Chapter2 Computer System Architecture</a>
       <ol>
-        <li><a href="#os-service">OS Service</a></li>
-        <li><a href="#os-application-interface最重要的">OS-Application Interface(最重要的)</a></li>
+        <li><a href="#io-operating-and-hardware-resources-protection">I/O Operating And Hardware Resources Protection</a></li>
+        <li><a href="#io-operating">I/O Operating</a>
+          <ol>
+            <li><a href="#polling-io-io">Polling I/O I/O</a></li>
+            <li><a href="#interrupted-io">Interrupted I/O</a></li>
+            <li><a href="#dma-direct-memory-access-io">DMA (Direct Memory Access) I/O</a></li>
+            <li><a href="#dma-six-steps">DMA Six Steps</a></li>
+            <li><a href="#life-cycle-of-io-request-via-interrupted-io">Life cycle of I/O-request via Interrupted I/O</a></li>
+            <li><a href="#blocking-and-non-blocking-io">Blocking and Non-Blocking I/O</a></li>
+          </ol>
+        </li>
+        <li><a href="#interrupt-policy-and">Interrupt Policy and</a></li>
+        <li><a href="#hardware-resources-protection">Hardware Resources Protection</a>
+          <ol>
+            <li><a href="#dual-modes-operation">Dual-modes operation</a></li>
+            <li><a href="#priveleged-instruction特權指令">Priveleged instruction(特權指令)</a></li>
+            <li><a href="#為什麼dual-mode跟privilege-isntruction可以構成保護基礎">為什麼Dual-mode跟Privilege Isntruction可以構成保護基礎</a></li>
+            <li><a href="#io-protection">I/O-Protection</a></li>
+            <li><a href="#memory-protection">Memory Protection</a></li>
+            <li><a href="#cpu-protection">CPU Protection</a></li>
+          </ol>
+        </li>
         <li><a href="#os-structure-operating-system">OS Structure Operating-System</a>
+          <ol>
+            <li><a href="#system-call">System Call</a></li>
+            <li><a href="#os之系統架構分類">OS之系統架構分類</a></li>
+            <li><a href="#virtual-machine">Virtual Machine</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#chapter4--process-management-and-thread-management">Chapter4  Process Management And Thread Management</a>
+      <ol>
+        <li><a href="#process-definition">Process Definition</a></li>
+        <li><a href="#process-control-block">Process Control Block</a></li>
+        <li><a href="#process-state-transition-diagram">Process State Transition Diagram</a>
+          <ol>
+            <li><a href="#5-steps-of-state-transition-diagram">5 Steps of State Transition Diagram</a></li>
+            <li><a href="#7-steps-of-state-transition-diagramstalling">7 Steps of State Transition Diagram[Stalling]</a></li>
+            <li><a href="#unix-stdstalling">UNIX STD[Stalling]</a></li>
+          </ol>
+        </li>
+        <li><a href="#scheduler-typeimportant">Scheduler Type(Important)</a>
+          <ol>
+            <li><a href="#io-bound-job與cpu-bound-job">I/O-Bound Job與CPU-Bound Job</a></li>
+          </ol>
+        </li>
+        <li><a href="#context-switching">Context Switching</a></li>
+        <li><a href="#dispatcher-and-dispatch-latency">Dispatcher And Dispatch Latency</a></li>
+        <li><a href="#process-control-operations">Process Control Operations☆☆☆☆☆</a>
+          <ol>
+            <li><a href="#lession-1-theory">Lession 1 Theory</a></li>
+            <li><a href="#lession-2-example---unix-system-call">Lession 2 Example - UNIX System Call</a></li>
+            <li><a href="#lession3-programming">Lession3 Programming</a></li>
+          </ol>
+        </li>
+        <li><a href="#evalue-cpu-scheduling-performance-5-criteria">Evalue CPU Scheduling Performance 5 criteria</a></li>
+        <li><a href="#cpu排班法則行為介紹">CPU排班法則行為介紹</a>
+          <ol>
+            <li><a href="#fifo法則">FIFO法則</a></li>
+            <li><a href="#sjfshortest-job-first法則">SJF(Shortest Job First)法則</a></li>
+          </ol>
+        </li>
+        <li><a href="#process-concept">Process Concept</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#第一章-序言">第一章 序言</a></li>
+    <li><a href="#第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)★</a>
+      <ol>
+        <li><a href="#os-service"><strong>OS</strong> Service</a></li>
+        <li><a href="#os-application-interface最重要的">OS-Application Interface(最重要的)</a>
           <ol>
             <li><a href="#simple-os-architecture">Simple OS Architecture</a></li>
             <li><a href="#layer-os-architecture">Layer Os Architecture</a></li>
             <li><a href="#microkernel-os">Microkernel OS</a></li>
             <li><a href="#modular-os-structure">Modular OS Structure</a></li>
-            <li><a href="#virtual-machine">Virtual Machine</a></li>
             <li><a href="#java-virtual-machine">Java Virtual Machine</a></li>
           </ol>
         </li>
@@ -1737,7 +4319,10 @@ if (!doNotTrack) {
       <ol>
         <li>
           <ol>
-            <li><a href="#process-concept">Process Concept</a></li>
+            <li><a href="#process-management--thread-management">Process Management &amp; Thread Management</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#process-control-block-1">Process Control Block</a></li>
+            <li><a href="#process-concept-1">Process Concept</a></li>
             <li><a href="#process-scheduling">Process Scheduling</a></li>
             <li><a href="#interprocess-communicationipc">Interprocess Communication(IPC)</a></li>
             <li><a href="#mailbox不做限制要幾個人來都可以但當有人同時access的時候會有其中一方先被delay">MailBox不做限制，要幾個人來都可以，但當有人同時Access的時候，會有其中一方先被Delay</a></li>
