@@ -3434,7 +3434,7 @@ Note：目的&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;priority法則&#34;&gt;Priority法則&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;定義：具有Highest Priority之Process，優先取得CPU，若多個Process權值相同，則以FIFO為準。&lt;/li&gt;
+&lt;li&gt;定義：&lt;strong&gt;可參數化的法則&lt;/strong&gt;具有Highest Priority之Process，優先取得CPU，若多個Process權值相同，則以&lt;strong&gt;FIFO&lt;/strong&gt;為準。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;process-concept&#34;&gt;Process Concept&lt;/h3&gt;
 &lt;h1 id=&#34;第一節-總覽&#34;&gt;第一節 總覽&lt;/h1&gt;
