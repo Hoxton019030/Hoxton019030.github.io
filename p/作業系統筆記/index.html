@@ -81,7 +81,7 @@ if (!doNotTrack) {
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">Hoxton</a></h1>
-            <h2 class="site-description">師承葦名一心，曾征戰銀河系的各個角落，當過新世界的蒼藍星，也從許多殺手的手中修過無數台發電機，擊敗過月王，封印過輻光，也從奧杜因口中拯救過世界，還順便拯救了夏天的華盛頓，冬季的紐約，不只是傳火的薪王，也是雅楠的上位古神。曾經居住在洛聖都、潘朵拉星球，也曾居住廢棄礦坑裡頭，在經歷了一切之後，選擇在這裡記錄下自己的一些事情</h2>
+            <h2 class="site-description">快樂的CRUD Boy, API Caller</h2>
         </div>
     </header><ol class="social-menu">
             
@@ -3031,6 +3031,98 @@ Note：目的</p>
 </ol>
 </li>
 </ul>
+<h4 id="srtfsrjfsrtn-shortest-remaining-time-job-firstnext">SRTF,SRJF,SRTN( Shortest Remaining-Time Job First(Next))</h4>
+<ul>
+<li>
+<p>定義：<strong>即為Preemptive-SJF法則</strong>，即剩餘CPU Burst Time(CPU完成一次短時間工作所需的時間)最小的 Process，取得CPU。也就是若新到達的Process其CPU Burst TIme 小於目前執行中process剩下的CPU time, 則新到達之Process可以**插隊(preemption)**執行。</p>
+</li>
+<li>
+<p>舉例：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>到達時間</th>
+<th>CPU Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>0</td>
+<td>8</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>9</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>3</td>
+<td>5</td>
+</tr>
+</tbody>
+</table></div>
+<p>求Avg waiting Time for</p>
+<ol>
+<li>
+<p>SRTF</p>
+<p><img src="https://i.imgur.com/enr3uhw.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221217234802588"
+	
+	
+></p>
+</li>
+<li>
+<p>SJF(不可插隊)</p>
+<p><img src="https://i.imgur.com/mMRP8xo.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221217235757038"
+	
+	
+></p>
+</li>
+<li>
+<p>FIFO</p>
+<p><img src="https://i.imgur.com/rVUHVGE.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221217235808248"
+	
+	
+></p>
+</li>
+</ol>
+</li>
+<li>
+<p>分析：</p>
+<ol>
+<li>與SJF相比，SRTF之平均waiting/Turnaround time會比較小(SRTF是SJF的一個子類，因為SRTF<strong>可插隊</strong>，所以會有最小的waiting time, 但是付出較大的Context Switching的overhead(負擔)</li>
+<li>不公平，偏好Short remaining-time Job</li>
+<li>會有Starvation的問題</li>
+<li>Preemptive法則</li>
+</ol>
+</li>
+<li></li>
+</ul>
 <h3 id="process-concept">Process Concept</h3>
 <h1 id="第一節-總覽">第一節 總覽</h1>
 <h2 id="第一章-序言">第一章 序言</h2>
@@ -4289,6 +4381,7 @@ Note：目的</p>
           <ol>
             <li><a href="#fifo法則">FIFO法則</a></li>
             <li><a href="#sjfshortest-job-first法則">SJF(Shortest Job First)法則</a></li>
+            <li><a href="#srtfsrjfsrtn-shortest-remaining-time-job-firstnext">SRTF,SRJF,SRTN( Shortest Remaining-Time Job First(Next))</a></li>
           </ol>
         </li>
         <li><a href="#process-concept">Process Concept</a></li>

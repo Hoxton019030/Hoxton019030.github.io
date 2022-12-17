@@ -4157,6 +4157,98 @@ Note：目的&lt;/p&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h4 id=&#34;srtfsrjfsrtn-shortest-remaining-time-job-firstnext&#34;&gt;SRTF,SRJF,SRTN( Shortest Remaining-Time Job First(Next))&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定義：&lt;strong&gt;即為Preemptive-SJF法則&lt;/strong&gt;，即剩餘CPU Burst Time(CPU完成一次短時間工作所需的時間)最小的 Process，取得CPU。也就是若新到達的Process其CPU Burst TIme 小於目前執行中process剩下的CPU time, 則新到達之Process可以**插隊(preemption)**執行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;舉例：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Process&lt;/th&gt;
+&lt;th&gt;到達時間&lt;/th&gt;
+&lt;th&gt;CPU Time&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;求Avg waiting Time for&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;SRTF&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/enr3uhw.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221217234802588&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SJF(不可插隊)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/mMRP8xo.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221217235757038&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;FIFO&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/rVUHVGE.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221217235808248&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分析：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;與SJF相比，SRTF之平均waiting/Turnaround time會比較小(SRTF是SJF的一個子類，因為SRTF&lt;strong&gt;可插隊&lt;/strong&gt;，所以會有最小的waiting time, 但是付出較大的Context Switching的overhead(負擔)&lt;/li&gt;
+&lt;li&gt;不公平，偏好Short remaining-time Job&lt;/li&gt;
+&lt;li&gt;會有Starvation的問題&lt;/li&gt;
+&lt;li&gt;Preemptive法則&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;process-concept&#34;&gt;Process Concept&lt;/h3&gt;
 &lt;h1 id=&#34;第一節-總覽&#34;&gt;第一節 總覽&lt;/h1&gt;
 &lt;h2 id=&#34;第一章-序言&#34;&gt;第一章 序言&lt;/h2&gt;
