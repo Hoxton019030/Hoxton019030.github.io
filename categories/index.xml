@@ -12,7 +12,7 @@
         <pubDate>Sun, 04 Dec 2022 22:22:06 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</guid>
-        <description></description>
+        <description>&lt;img src="https://i.imgur.com/EhEyOZK.png" alt="Featured image of post 程式" /&gt;</description>
         </item>
         <item>
         <title>生活</title>
@@ -44,7 +44,7 @@
         <pubDate>Sat, 08 Oct 2022 03:13:34 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/categories/%E9%81%8A%E6%88%B2/</guid>
-        <description></description>
+        <description>&lt;img src="https://i.imgur.com/BNeilgr.png" alt="Featured image of post 遊戲" /&gt;</description>
         </item>
         <item>
         <title>日常</title>
@@ -60,7 +60,7 @@
         <pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/categories/java/</guid>
-        <description></description>
+        <description>&lt;img src="https://i.imgur.com/t2KoEkt.png" alt="Featured image of post Java" /&gt;</description>
         </item>
         <item>
         <title>心得</title>
@@ -68,15 +68,7 @@
         <pubDate>Sat, 01 Oct 2022 21:57:13 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/categories/%E5%BF%83%E5%BE%97/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Test</title>
-        <link>https://hoxtonhsu.com/categories/test/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://hoxtonhsu.com/categories/test/</guid>
-        <description>&lt;img src="https://hoxtonhsu.com/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        <description>&lt;img src="https://i.imgur.com/qLQ4m8X.png" alt="Featured image of post 心得" /&gt;</description>
         </item>
         
     </channel>
