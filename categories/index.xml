@@ -15,12 +15,20 @@
         <description>&lt;img src="https://i.imgur.com/EhEyOZK.png" alt="Featured image of post 程式" /&gt;</description>
         </item>
         <item>
+        <title>SpringBoot</title>
+        <link>https://hoxtonhsu.com/categories/springboot/</link>
+        <pubDate>Wed, 30 Nov 2022 13:30:27 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/categories/springboot/</guid>
+        <description>&lt;img src="https://i.imgur.com/ojLu6tH.png" alt="Featured image of post SpringBoot" /&gt;</description>
+        </item>
+        <item>
         <title>生活</title>
         <link>https://hoxtonhsu.com/categories/%E7%94%9F%E6%B4%BB/</link>
         <pubDate>Thu, 13 Oct 2022 11:53:43 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/categories/%E7%94%9F%E6%B4%BB/</guid>
-        <description></description>
+        <description>&lt;img src="https://i.imgur.com/0YIkXyt.png" alt="Featured image of post 生活" /&gt;</description>
         </item>
         <item>
         <title>Hugo</title>
@@ -28,7 +36,7 @@
         <pubDate>Sat, 08 Oct 2022 12:04:44 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/categories/hugo/</guid>
-        <description></description>
+        <description>&lt;img src="https://i.imgur.com/1LDQ0Zb.png" alt="Featured image of post Hugo" /&gt;</description>
         </item>
         <item>
         <title>教學</title>
@@ -36,7 +44,7 @@
         <pubDate>Sat, 08 Oct 2022 12:04:44 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</guid>
-        <description></description>
+        <description>&lt;img src="https://i.imgur.com/my6wMwn.png" alt="Featured image of post 教學" /&gt;</description>
         </item>
         <item>
         <title>遊戲</title>
@@ -60,7 +68,7 @@
         <pubDate>Sat, 08 Oct 2022 00:36:13 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/categories/%E6%97%A5%E5%B8%B8/</guid>
-        <description></description>
+        <description>&lt;img src="https://i.imgur.com/kLBX6WV.png" alt="Featured image of post 日常" /&gt;</description>
         </item>
         <item>
         <title>Java</title>
