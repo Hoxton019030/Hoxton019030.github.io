@@ -302,7 +302,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    18 minute read
+                    19 minute read
                 </time>
             </div>
         
@@ -2726,7 +2726,7 @@ Note：目的</p>
 ></p>
 </li>
 <li>
-<p>Turnaroud Time(完成時間)：從Process進入(到達)到它工作完成的這段時間差值</p>
+<p>Turnaround Time(完成時間)：從Process進入(到達)到它工作完成的這段時間差值</p>
 <p><img src="https://i.imgur.com/1F9T30z.png"
 	
 	
@@ -3233,6 +3233,278 @@ Note：目的</p>
 </ol>
 </li>
 </ul>
+<h4 id="rrround-robin法則考試重點">RR(Round Robin)法則(考試重點)</h4>
+<ul>
+<li>
+<p>定義：<strong>Time-Sharing System採用</strong>，OS會規定一個CPU time Quantun(or Slice)，當Process取得CPU執行後，若未能在此Quantum內完成工作，則Timer會發出&quot;Time-out&rdquo; interrupt通知OS，OS會<strong>強迫</strong>此process放掉CPU，且回到ready queue中，等待下一輪再取得CPU執行，每一輪之中，process是以FIFO排隊方式取得CPU</p>
+</li>
+<li>
+<p>舉例1：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>Cpu time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>8</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>9</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>5</td>
+</tr>
+</tbody>
+</table></div>
+<p>到達時間皆為0，順序是P1~P4, 使用RR(Quantum=4), 求Avg waiting time</p>
+<p><img src="https://i.imgur.com/RLPckKA.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221218124859568"
+	
+	
+></p>
+<p>舉例2:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>Arrival Time</th>
+<th>Cpu Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>0</td>
+<td>10</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>7</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>13</td>
+<td>8</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="https://i.imgur.com/enClm5v.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221218130748491"
+	
+	
+></p>
+</li>
+</ul>
+<p>舉例3:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>Arrival time</th>
+<th>行為</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>0</td>
+<td>5CPU+6I/O+4CPU</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>3</td>
+<td>15CPU</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>8</td>
+<td>3CPU+10I/O+9CPU</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>14</td>
+<td>8CPU</td>
+</tr>
+</tbody>
+</table></div>
+<p>Quantum= 5，問turnaound time ? waiting time ?</p>
+<p><img src="https://i.imgur.com/l8iAsbF.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221218200907489"
+	
+	
+></p>
+<ul>
+<li>注意：有些題目是<strong>有爭議的</strong></li>
+</ul>
+<p>​	eg.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>到達</th>
+<th>CPU time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>0</td>
+<td>6</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>4</td>
+<td>9</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>8</td>
+<td>6</td>
+</tr>
+</tbody>
+</table></div>
+<p>​	採RR(Q=4)</p>
+<p>​	<img src="https://i.imgur.com/n0mJ6DI.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221218201710742"
+	
+	
+></p>
+<ul>
+<li>
+<p>分析：</p>
+<ol>
+<li>Time-sharing System 採用</li>
+<li>也是一個可參數化的法則(ie. Quantum)</li>
+<li>公平</li>
+<li>No starvation</li>
+<li>preemptive法則(Real-Time, Time-Sharing適用，RR超過Quantum time後會<strong>被迫</strong>回到ready</li>
+</ol>
+</li>
+<li>
+<p>舉例2</p>
+<p>Quantum=∞</p>
+<p>則RR會變成<strong>FIFO</strong>法則&mdash;&gt; 排班效能很差</p>
+<p>注意：也因此，FIFO屬於RR的一種</p>
+</li>
+<li>
+<p>舉例3</p>
+<p>Quantum =極小值</p>
+<p>則Context Switching太頻繁，CPU Utilization會很低</p>
+<p>依經驗法則，若Quantum值能讓**80%**的Job在Quantum內完成，效能較佳。</p>
+</li>
+<li>
+<p>補充：RR雖然是公平的，但也可支持差異化(優先權差異)之實現，How do you achieve this?</p>
+<p>Ans.</p>
+<ol>
+<li>針對高優先權Process在ready Queue中<strong>置入多個PCB pointer 指向此Process</strong>，使得每一輪當中，它有多次取得CPU之機會</li>
+<li>針對<strong>高優先權Process給予較大的Time Quantum</strong></li>
+</ol>
+</li>
+</ul>
+<h4 id="multilevel-queues多層佇列法則">MultiLevel Queues(多層佇列)法則</h4>
+<ul>
+<li>
+<p>定義：</p>
+<ol>
+<li>將原本單一一條ready queue變成多條ready queues且高、低優先權不同</li>
+<li>Queues之間的排班法則，通常採取<strong>Preemptive and Priority</strong>法則</li>
+<li>每個Queue 可以有自己的排班法則 eg. RR</li>
+<li>Process一旦被置入於某個Queue中，<strong>就不可(不允許)在不同ready queues之間移動</strong></li>
+</ol>
+</li>
+<li>
+<p>舉例：I/O-Bound與CPU-Bound Job你會置於哪個Queue中?</p>
+<p>Ans：<strong>I/O-Bound Job &mdash;&gt;Q1</strong></p>
+</li>
+</ul>
+<p>​     　　　<strong>CPU-Bound Job &mdash;&gt;Q3</strong></p>
+<ul>
+<li>
+<p>分析：</p>
+<ol>
+<li>
+<p><strong>可參數化的項目眾多</strong><code>1. Queue的數目 2. Queue之間的排班法則 3. 每個Queue自己的排班法則 4. Process被放入哪個Queue之Criteria </code>，有助於排班設計及效能調校之Flexibility</p>
+</li>
+<li>
+<p><strong>不公平</strong></p>
+</li>
+<li>
+<p>有<strong>Starvation(被放在Q3 的Process永世不得翻身，因為Process一旦被置入於某個Queue中，就不可(不允許)在不同ready queues之間移動☆☆☆☆☆</strong></p>
+</li>
+<li>
+<p><strong>Preemptive</strong></p>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="multilevel-feedback-queuesmfqs多層回饋佇列">MultiLevel Feedback Queues(MFQs)(多層回饋佇列)</h4>
+<ul>
+<li>定義：與MultiLevel Queue相似，<strong>差別：允許Process 在不同Queues 之間移動，可採取類似Aging技術</strong>，甚至可以搭配降級的做法，來<strong>避免Starvation</strong></li>
+<li>分析：
+<ol>
+<li><strong>可參數化的項目眾多</strong><code>1. Queue的數目 2. Queue之間的排班法則 3. 每個Queue自己的排班法則 4. Process被放入哪個Queue之Criteria 5.Process在不同佇列之間移動的規則</code>，有助於排班設計及效能調校之Flexibility</li>
+<li><strong>不公平</strong></li>
+<li>不會有<strong>Starvation(被放在Q3 的Process永世不得翻身，因為Process一旦被置入於某個Queue中，就不可(不允許)在不同ready queues之間移動☆☆☆☆☆</strong></li>
+<li><strong>Preemptive</strong></li>
+</ol>
+</li>
+</ul>
+<h4 id="小結">小結</h4>
+<ol>
+<li>
+<p>哪些是Non-preemptive法則</p>
+<p>Ans.  FIFO,SJF,SRTF, Non-preemptive priority</p>
+</li>
+<li>
+<p>哪些是No Starvation</p>
+<p>Ans. FIFO, RR, MFQs</p>
+</li>
+<li>
+<p>哪些包含於(∊)關係是錯的</p>
+</li>
+</ol>
+<p>​	A. FIFO ∊ Priority</p>
+<p>​	B. SJF ∊ Priority</p>
+<p>​	C. FIFO ∊ RR</p>
+<p>​	D. SJF ∊ RR</p>
+<p>​	E.  RR ∊ MFQs <code>是喔，MFQs的參數可以設定成一條Queue</code></p>
+<p>​	Ans. (D)</p>
 <h3 id="process-concept">Process Concept</h3>
 <h1 id="第一節-總覽">第一節 總覽</h1>
 <h2 id="第一章-序言">第一章 序言</h2>
@@ -4493,6 +4765,10 @@ Note：目的</p>
             <li><a href="#sjfshortest-job-first法則">SJF(Shortest Job First)法則</a></li>
             <li><a href="#srtfsrjfsrtn-shortest-remaining-time-job-firstnext">SRTF,SRJF,SRTN( Shortest Remaining-Time Job First(Next))</a></li>
             <li><a href="#priority法則">Priority法則</a></li>
+            <li><a href="#rrround-robin法則考試重點">RR(Round Robin)法則(考試重點)</a></li>
+            <li><a href="#multilevel-queues多層佇列法則">MultiLevel Queues(多層佇列)法則</a></li>
+            <li><a href="#multilevel-feedback-queuesmfqs多層回饋佇列">MultiLevel Feedback Queues(MFQs)(多層回饋佇列)</a></li>
+            <li><a href="#小結">小結</a></li>
           </ol>
         </li>
         <li><a href="#process-concept">Process Concept</a></li>
