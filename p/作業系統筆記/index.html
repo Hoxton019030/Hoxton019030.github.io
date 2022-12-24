@@ -302,7 +302,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    19 minute read
+                    21 minute read
                 </time>
             </div>
         
@@ -3505,6 +3505,491 @@ Note：目的</p>
 <p>​	D. SJF ∊ RR</p>
 <p>​	E.  RR ∊ MFQs <code>是喔，MFQs的參數可以設定成一條Queue</code></p>
 <p>​	Ans. (D)</p>
+<h4 id="補充-cpu-utilization計算">補充 CPU Utilization計算</h4>
+<p>例1.</p>
+<p>假設採RR排班</p>
+<p>Time Quantum值= <strong>Q</strong></p>
+<p>Context Switch Time = S</p>
+<p>Process 平均執行每隔<strong>T</strong>時間會發出I/O-request, 求下列Case之CPU Utilization<code>(cpu花在Process exec time / CPU **total time(process exec time + context switching time+ idle time)**  )</code></p>
+<ol>
+<li>
+<p>0 &lt; S &lt; T &laquo;Q</p>
+<p><img src="https://i.imgur.com/mGdVm6a.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221219205831174"
+	
+	
+></p>
+</li>
+<li>
+<p>0&lt;S&lt;Q&laquo;T</p>
+</li>
+</ol>
+<p>​	<img src="https://i.imgur.com/QyGgbtd.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221219210325226"
+	
+	
+></p>
+<ol start="3">
+<li>
+<p>0&lt;S=Q &laquo;T</p>
+<p><img src="https://i.imgur.com/9ZIQrps.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221219211653789"
+	
+	
+></p>
+</li>
+<li>
+<p>Q非常小</p>
+<p><img src="https://i.imgur.com/vmguH7P.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221219211707198"
+	
+	
+></p>
+</li>
+</ol>
+<p>例2. [恐] (看不懂)</p>
+<p>10個I/O-Bound Tasks(很花I/O)</p>
+<p>1  個CPU-Bound Tasks(很花CPU)</p>
+<p>I/O-Bound task執行每隔1ms 發出 I/O-request，每個I/O-運作花10ms</p>
+<p>Context Switching Time = 0.1 ms, 求CPU utilization, 採<strong>RR</strong>法則</p>
+<ol>
+<li>
+<p>Quantum = 1ms</p>
+<p><img src="https://i.imgur.com/DW7jDRF.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221219215757814"
+	
+	
+></p>
+</li>
+<li>
+<p>Quantum = 10ms</p>
+<p><img src="https://i.imgur.com/qr7YiH4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221219220609086"
+	
+	
+></p>
+</li>
+</ol>
+<p>​		寫完之後會發現有個info沒有用到「每個I/O-運作花10ms 」，因為有CPU-Bound的存在，所以不存在idle Time，如果不存在CPU-Bound，則可能存在idle的情形，就需要考慮這種情形</p>
+<h3 id="特殊系統之排班設計考量">特殊系統之排班設計考量</h3>
+<h4 id="multiprocessors-system-1">Multiprocessors System</h4>
+<ol>
+<li>
+<p>Multiprocessors分為</p>
+<ol>
+<li>
+<p>ASMP(非對稱的，Master-slave架構)  &mdash;&gt; 沒有什麼特殊設計，嘻嘻，因為只有Master這個CPU去看ready queue以及job的assign，所以其實沒啥特殊設計</p>
+</li>
+<li>
+<p>SMP(對稱式) &mdash;&gt;</p>
+<ol>
+<li>
+<p>每個CPU<strong>共享</strong>同一條Ready Queue，當CPU完成某Process後，就去存取ready Queue，取走一個Process執行。<strong>設計重點：必須提供ready queue的互斥存取機制，若未提供，則可能發生Process重複執行或Process被ignored(無人執行)之錯誤</strong>。</p>
+<p><img src="https://i.imgur.com/DSHiQrv.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221220225037817"
+	
+	
+></p>
+<p>例如：CPU去取得Process之工作如下</p>
+<p>1. 取得(read) Ready Queue, Frond End的process之PCB Pointer
+1. 刪除此Process Pointer from Queue</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>CPU1</th>
+<th>CPU2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1: step1: 取得P1 PCB pointer</td>
+<td>T2:step1取得P1 PCB pointer</td>
+</tr>
+<tr>
+<td>T3: Dequeue執行</td>
+<td>T4: Dequeue執行</td>
+</tr>
+</tbody>
+</table></div>
+<p>設計重點：</p>
+<ol>
+<li>必須提供ready Queue的互斥存取機制</li>
+<li>不須考量Load Balancing</li>
+</ol>
+</li>
+<li>
+<p>每個CPU有<strong>自己</strong>的Ready Queue</p>
+<p>每個CPU只會檢查自己的ready Queue, 有工作就執行，無工作就idle</p>
+<p>設計重點：</p>
+<ol>
+<li>不須有互斥存取的考量，一旦發生idle，則把其他CPU的queue調整過來</li>
+<li>需考量Load Balancing，避免有CPU沒事，有CPU很忙。通常使用兩種機制來調整CPU Loading
+<ol>
+<li>Push migration(移轉)</li>
+<li>Pull migration(移轉)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="processor-affinity">Processor affinity</h4>
+<ul>
+<li>定義：在multiprocessors system中，當process已決定某CPU上執行，則在他執行過程當中，盡<strong>量不要將之移轉到其他CPU上執行</strong>(除非有其必要，eg. processor BAD, load Balancing, etc)避免CPU內之cache等內容要複製，且刪除，影響到效能表現，可以有
+<ol>
+<li>Hard affinity：規定process不可移轉</li>
+<li>Soft affinity：盡可能不轉，但不強制限制，若有需要還是可以轉</li>
+</ol>
+</li>
+</ul>
+<h3 id="real-time-system排班設計考量">Real-Time System排班設計考量</h3>
+<h4 id="hard-real-time-system-1">Hard real-time system</h4>
+<ul>
+<li>
+<p>排班設計考量</p>
+<p>Step</p>
+<ol>
+<li>
+<p>先確定這些工作是否schedulable(可排程化，CPU可以負荷的了)</p>
+</li>
+<li>
+<p>確定可schedulable後，然後在考慮是否可以滿足各工作的DeadLine</p>
+<p>兩個排班法則</p>
+<ol>
+<li>Rate-Montonic scheduling</li>
+<li>EDF(Earliest Deadline First)法則</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Schedulable與否之判斷公式：</p>
+<p><img src="https://i.imgur.com/YGIRHX0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221221220452472"
+	
+	
+></p>
+<p>例：有下列4個Real-time event. 其CPU burst time,Period Time 分別是：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>CPU Burst Time</th>
+<th>Period Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20ms</td>
+<td>80ms</td>
+</tr>
+<tr>
+<td>50ms</td>
+<td>100ms</td>
+</tr>
+<tr>
+<td>30ms</td>
+<td>30ms</td>
+</tr>
+<tr>
+<td>Xms</td>
+<td>1Sec</td>
+</tr>
+</tbody>
+</table></div>
+<p>，則在Schedulable要求下，x不可超過?ms</p>
+<p>Ans</p>
+<p><img src="https://i.imgur.com/Uz4llsU.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221221222752875"
+	
+	
+></p>
+</li>
+<li>
+<p>怎麼排程以滿足個工作DeadLine after Schedulable?</p>
+<ul>
+<li>
+<p>Rate-Monotonic法則</p>
+<ol>
+<li>
+<p>採取Static priority(一旦process的優先權高低順序訂定了，就不會再改變) 且 preemptive 法則</p>
+</li>
+<li>
+<p>Period Time愈小，優先權越高</p>
+</li>
+<li>
+<p>舉例</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>Period Time</th>
+<th>CPU time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>50</td>
+<td>20</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>100</td>
+<td>35</td>
+</tr>
+</tbody>
+</table></div>
+<p>Q1. schedulable與否?</p>
+<p><img src="https://i.imgur.com/b4Hvzog.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221221233303344"
+	
+	
+></p>
+<p>Q2. 若規定P2的優先高，且preemptive, 這樣是否滿足DeadLine?<code>這題感覺怪怪的，不懂</code></p>
+<p>​	<img src="https://i.imgur.com/kspYKY2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221222001538807"
+	
+	
+></p>
+<p>Q3. 採用Rate-Monotonic, 是否滿足Deadline?</p>
+<p>​	<img src="https://i.imgur.com/W1WG2Gm.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221222001627140"
+	
+	
+></p>
+</li>
+<li>
+<p>分析：</p>
+<ol>
+<li><strong>並不保證可以滿足DeadLine</strong></li>
+<li><strong>在Static priority要求下，它是Optimal(若它無法滿足DeadLine,其他Static priority 法則也是無法滿足</strong></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>EDF(Earliest Deadline First)</p>
+<ul>
+<li>
+<p>定義：採用Dynamic priority 且Preemptive</p>
+</li>
+<li>
+<p>規定：DeadLine越小(早)優先權越高</p>
+</li>
+<li>
+<p>舉例：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>Period</th>
+<th>CPU Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>50</td>
+<td>25</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>80</td>
+<td>35</td>
+</tr>
+</tbody>
+</table></div>
+<p>是否滿足Deadline?</p>
+<ol>
+<li>
+<p>Rate-Monotonic</p>
+<p><img src="https://i.imgur.com/37nWeoT.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221222222736843"
+	
+	
+></p>
+</li>
+<li>
+<p>EDF</p>
+<p><img src="https://i.imgur.com/RMT98Qy.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221222231738347"
+	
+	
+></p>
+</li>
+</ol>
+</li>
+<li>
+<p>分析：</p>
+<ol>
+<li>EDF保證是optimal in the schedulable case(任何工作都可以滿足 DeadLine)</li>
+<li>理論上，CPU utilization 可達100%，<strong>但實際上不可能</strong>，因為有Context switching, interrupt handling 等額外負擔</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="soft-real-time-system-1">Soft real-time system</h4>
+<ul>
+<li>
+<p>定義：這個系統要確保real-time的process取得最高優先權，同時，這個real-time的process priority不能做衰減</p>
+</li>
+<li>
+<p>就CPU Scheduling Design 而言，必須</p>
+<ol>
+<li>支援preemptive-priority</li>
+<li>不支援Aging技術</li>
+<li>盡可能降低Kernel Dispatch latency time, 使得real-time process可以及早開工</li>
+</ol>
+</li>
+<li>
+<p><strong>降低kernel Dispatch latency</strong></p>
+<ol>
+<li>
+<p>困難度(緣由) ：<strong>大部分的OS，皆不允許當kernel正在執行System Call or 其他System processes時，被user process任意插隊(preemption)，目的是為了確保kernel Data Structures的正確性(即不要有Race Condition)，然而此種做法，對於Soft real-time system極為不利</strong></p>
+<p>eg. 假設目前kernel 正在執行一個Long-time system call(eg. I/O operation)，而此時real-time process到達/fork(),它必須等到kernel完成此long-time system call後，才能取得CPU，<strong>所以</strong></p>
+<p><strong>Dispache latency太長，要解決此一問題，原則是: 必須插隊kernel 且要保障kernel Data Structure之正確性</strong></p>
+<p>方法</p>
+<ol>
+<li>
+<p>Preemption Point：</p>
+<ul>
+<li>定義：在此System calls code中，加入一些Preemption Point(在此時點插隊時，Kernel是安全的)將來，<strong>System call執行時若遇到Preemption Point ，System call會先暫停，Kernel會檢查此時是否還有real-time process存在/到達，若有，則Kernel system call暫停執行，CPU分派給real-time Process使用</strong>，若無，則System Call繼續執行，直到遇見下一個Preemption Point</li>
+<li>缺點：System Call中可以加入的Preemption Point數目不夠多，因為Dispatch Latency仍然很長。</li>
+</ul>
+</li>
+<li>
+<p>Kernel可隨時被real-time process插隊，但要對於Kernel的共享Data Structure/resoruce提供嚴謹的互斥存取(Synchronization 機制)，以確保資料之正確性(當P1對某個Data進行操作，執行到一半時被real-time process給搶走，此時會把該Data給Lock住，不讓real-time process操作該Data，以保護資料)</p>
+<ul>
+<li>
+<p>缺點：可能造成Priority Inversion問題(優先權反轉)，高優先權的Process所須的共享Data/resources恰好被一些低優先權的Process<u>把持</u>，無法存取(所以互斥存取控制之故)，造成高優先權等待低優先權Process之情況(即高process要等低process釋放這些共享Data/resource)</p>
+<p><img src="https://i.imgur.com/tJ80NeW.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221225000043643"
+	
+	
+></p>
+<p>當高優先權的Process因為遲遲等不到Lock解除，會因為time-out的關係而放棄CPU，此時可能有其他中優先權的Process取得CPU的使用權，因此低優先權的Process完成不了，進而完成對共享Data/resources之使用進而Release, 所以高優先權process被迫要等一段很久的時間</p>
+</li>
+<li>
+<p>解決方法：Priority Inheritance</p>
+<ul>
+<li>定義：讓低優先權的Process暫時<strong>繼承</strong>高優先權之權值，使得低優先權Process可以很快取得CPU完成對共享Data/Resouce之使用，並release them. 同時，也立刻恢復其原本的低權值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="real-time-system之dispatch-latency-組成">Real-time system之Dispatch Latency 組成</h4>
+<p><img src="/C:%5cUsers%5cza546%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20221225005405637.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221225005405637"
+	
+	
+></p>
+<p>Dispatch Latency有兩個phase組成</p>
+<ol>
+<li><strong>Conflict Phase：</strong>
+<ol>
+<li><strong>Preempts kernel</strong></li>
+<li><strong>低優先權realse高優先權所需之Data/resource</strong></li>
+</ol>
+</li>
+<li><strong>Dispatch Phase</strong>
+<ol>
+<li><strong>Context Switching</strong></li>
+<li><strong>Change mode to user Mode</strong></li>
+<li><strong>Jump</strong></li>
+</ol>
+</li>
+</ol>
 <h3 id="process-concept">Process Concept</h3>
 <h1 id="第一節-總覽">第一節 總覽</h1>
 <h2 id="第一章-序言">第一章 序言</h2>
@@ -4769,6 +5254,20 @@ Note：目的</p>
             <li><a href="#multilevel-queues多層佇列法則">MultiLevel Queues(多層佇列)法則</a></li>
             <li><a href="#multilevel-feedback-queuesmfqs多層回饋佇列">MultiLevel Feedback Queues(MFQs)(多層回饋佇列)</a></li>
             <li><a href="#小結">小結</a></li>
+            <li><a href="#補充-cpu-utilization計算">補充 CPU Utilization計算</a></li>
+          </ol>
+        </li>
+        <li><a href="#特殊系統之排班設計考量">特殊系統之排班設計考量</a>
+          <ol>
+            <li><a href="#multiprocessors-system-1">Multiprocessors System</a></li>
+            <li><a href="#processor-affinity">Processor affinity</a></li>
+          </ol>
+        </li>
+        <li><a href="#real-time-system排班設計考量">Real-Time System排班設計考量</a>
+          <ol>
+            <li><a href="#hard-real-time-system-1">Hard real-time system</a></li>
+            <li><a href="#soft-real-time-system-1">Soft real-time system</a></li>
+            <li><a href="#real-time-system之dispatch-latency-組成">Real-time system之Dispatch Latency 組成</a></li>
           </ol>
         </li>
         <li><a href="#process-concept">Process Concept</a></li>
