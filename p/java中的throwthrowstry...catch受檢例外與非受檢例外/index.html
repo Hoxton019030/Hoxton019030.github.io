@@ -312,7 +312,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <p>Java中的例外分為受檢例外與非受檢例外(RuntimeExcetption)兩大類，可以先看到這張圖。</p>
+    <h2 id="開頭">開頭</h2>
+<p>Java中的例外分為受檢例外與非受檢例外(RuntimeExcetption)兩大類，可以先看到這張圖。</p>
 <p><img src="https://i.imgur.com/apUx0mu.png"
 	
 	
@@ -334,6 +335,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
+<h2 id="何謂受檢例外與非受檢例外">何謂受檢例外與非受檢例外</h2>
 <p>受檢例外之所以叫受檢例外，就在於這些例外是工程師必須明確檢查並處理的例外，例如讀取檔案時發生的FileNotFoundException，這類的Exception，JVM沒有辦法進行處理，因此需要工程師去做處理。而RumtimeException則是指那些工程師不需要去明確處理的Exception，比如說NullPointerException, ArrayIndexOutOfBoundsException，這類的例外都是繼承自RuntimeException，可以由JVM進行處理，當然要處理也是可以的，比如說這樣</p>
 <p><img src="https://i.imgur.com/9drhRUY.png"
 	
@@ -643,7 +645,39 @@ if (!doNotTrack) {
             >
 
             </main>
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#開頭">開頭</a></li>
+    <li><a href="#何謂受檢例外與非受檢例外">何謂受檢例外與非受檢例外</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
         </div>
         <script 
