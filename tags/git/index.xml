@@ -12,7 +12,7 @@
         <pubDate>Fri, 06 Jan 2023 14:15:51 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/</guid>
-        <description>&lt;img src="https://i.imgur.com/nCGDuUc.png " alt="Featured image of post 實用的Git指令" /&gt;&lt;h2 id=&#34;範例&#34;&gt;範例&lt;/h2&gt;
+        <description>&lt;img src="https://i.imgur.com/nCGDuUc.png " alt="Featured image of post 實用的Git指令" /&gt;&lt;h2 id=&#34;gitcheckout-head1&#34;&gt;GitCheckout HEAD~1&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;退回到上一個Commit，數字可以更改，1就是上一次，改成三的話就是三次前的Commit&lt;/li&gt;
 &lt;/ol&gt;
@@ -34,6 +34,7 @@
 	
 	
 &gt;&lt;/p&gt;
+&lt;h2 id=&#34;gitcheckout--&#34;&gt;GitCheckout -&lt;/h2&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;退回上一次的Commit，重複輸入的話會往復循環&lt;/li&gt;
 &lt;/ol&gt;
