@@ -6,7 +6,15 @@
         <description>Recent content in Tags on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Tue, 27 Dec 2022 15:12:58 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 06 Jan 2023 14:15:51 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Git</title>
+        <link>https://hoxtonhsu.com/tags/git/</link>
+        <pubDate>Fri, 06 Jan 2023 14:15:51 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/tags/git/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Java</title>
         <link>https://hoxtonhsu.com/tags/java/</link>
         <pubDate>Tue, 27 Dec 2022 15:12:58 +0800</pubDate>
