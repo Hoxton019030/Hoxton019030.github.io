@@ -312,7 +312,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h2 id="gitcheckout-head1">GitCheckout HEAD~1</h2>
+    <h2 id="前言">前言</h2>
+<p>整理一下工作上有用過，並覺得實用、比較少人提過的一些Git指令。</p>
+<h2 id="git指令">Git指令</h2>
 <ol>
 <li>退回到上一個Commit，數字可以更改，1就是上一次，改成三的話就是三次前的Commit</li>
 </ol>
@@ -334,7 +336,6 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="gitcheckout--">GitCheckout -</h2>
 <ol start="2">
 <li>退回上一次的Commit，重複輸入的話會往復循環</li>
 </ol>
@@ -356,7 +357,18 @@ if (!doNotTrack) {
 	
 	
 ></p>
-
+<ol start="3">
+<li>將本次修改合併至上次Commit，如果有漏掉的提交會常用這個指令</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit --amend --no-edit
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -648,8 +660,8 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#gitcheckout-head1">GitCheckout HEAD~1</a></li>
-    <li><a href="#gitcheckout--">GitCheckout -</a></li>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#git指令">Git指令</a></li>
   </ol>
 </nav>
         </div>
