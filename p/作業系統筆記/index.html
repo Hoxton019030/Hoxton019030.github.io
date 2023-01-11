@@ -302,7 +302,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    21 minute read
+                    29 minute read
                 </time>
             </div>
         
@@ -3990,7 +3990,1968 @@ Note：目的</p>
 </ol>
 </li>
 </ol>
-<h3 id="process-concept">Process Concept</h3>
+<h3 id="thread-management貝多芬">Thread Management(貝多芬)</h3>
+<blockquote>
+<p>Thread( or Multithreading)定義、優點</p>
+<p>Process(Single-Threaded) vs Thread (Multithreading)</p>
+<p>user-level thread 與 kernel-level thread</p>
+<p>Multithreading Model(3種)</p>
+<p>Multithreading issue</p>
+<blockquote>
+<p>fork()</p>
+<p>signal delivery</p>
+<p>Threads pool</p>
+</blockquote>
+<p>程式追蹤(PThread  library)</p>
+</blockquote>
+<h4 id="thread">Thread</h4>
+<ul>
+<li>
+<p>定義：又叫lightweight-process(傳統的process就叫heavyweight process)，是OS<strong>分配CPU time</strong> 之對象單位**(恐：It&rsquo;s a basic unit of CPU Library)**</p>
+</li>
+<li>
+<p>Thread 建立後，其私有的(private)內容組成包含有(都是與執行相關的)</p>
+<ol>
+<li><strong>Programming Counter</strong></li>
+<li><strong>CPU registers value</strong></li>
+<li><strong>Stack</strong></li>
+<li>Thread ID, State, etc &hellip;(Note: record in TCB[Thread Control Block])此外，同一個Process內不同之Threads彼此共享此Process的
+<ol>
+<li><strong>Code Section(合稱Memory space, address space)</strong></li>
+<li><strong>Data Section(合稱Memory space, address space)</strong></li>
+<li><strong>other OS resources eg. open files, I/O resources ,singal, etc &hellip;</strong></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>圖示</p>
+<ol>
+<li>
+<p>MultiThreading Model</p>
+<p><img src="https://i.imgur.com/bJe15zy.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221225124253929"
+	
+	
+></p>
+</li>
+<li>
+<p>Process = Single-Threaded Model</p>
+<p><img src="https://i.imgur.com/gXamqw8.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221225125053668"
+	
+	
+></p>
+<p>Note: 類比</p>
+<p>Process &mdash;&gt; 汽車</p>
+<p>Thread &mdash;&gt; 引擎</p>
+<p>汽車會有一個引擎，也可以有很多，MutliThread就像是一部車子有多個引擎，然後共享車子有的配件(儀表板、方向盤等等)。CPU Time是以Thread為對象在畫分</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>優點(Benefits)</strong></p>
+<ol>
+<li><strong>Responsiveness</strong>：當Process內執行中的Thread被Blocked，則CPU可以切給此Process內其他available Threads 執行，<strong>故整個Process不會被Blocked</strong>，仍持續Going, 所以Multithreading用在user-interactive application, 可增加對User 之回應程度</li>
+<li><strong>Resource Sharing</strong>：因為Process內之多條Threads 共享此Process code section，所以在同一個Memory space上可有多個工作同時執行</li>
+<li><strong>Economy</strong>：因為同一個Process內之不同Threads彼此共享此Process的memory 及 other OS resources, 因為<strong>Thread 之 私有成分量</strong>少，故<strong>Thread之Creation, Context Switching fast, Thread management cost is cheap</strong>(fork一個Process的成本遠大於複製一個Thread)</li>
+<li><strong>Scalability(Utilization of Multiprocessors Architecture)</strong>：可以做到同一個Process內之不同Threads可以在不同CPUs上平行執行，所以可以增加對Multiprocessors System之效益(平行程度)提升</li>
+</ol>
+</li>
+</ul>
+<h4 id="process-vs-thread">Process Vs Thread</h4>
+<blockquote>
+<p>其實是在比Singal Thread and MultiThread</p>
+</blockquote>
+<p>Thread的的優點</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>Thread</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Heavyweight process</td>
+<td>Lightweight process</td>
+</tr>
+<tr>
+<td>Single-Threaded Model</td>
+<td>MultiThreading Model</td>
+</tr>
+<tr>
+<td>是OS分配Resource之對象單位</td>
+<td>是OS分配CPU Time之對象單位</td>
+</tr>
+<tr>
+<td>不同的Process不會有共享的Memory及Other Resources (除了Shared Memory溝通之外)</td>
+<td>同一個Process內之Threads彼此共享此Process之memory 及Other Resources</td>
+</tr>
+<tr>
+<td>若Process內的single Thread is Blocked, 則整個Process亦Blocked</td>
+<td>只要Process內尚有Available Thread可執行，則整個Process不會被Blocked</td>
+</tr>
+<tr>
+<td>Process之Creation context Switching慢，管理成本高</td>
+<td>Thread快，成本低</td>
+</tr>
+<tr>
+<td>對於MultiProcessors架構之效益發揮較差</td>
+<td>較佳</td>
+</tr>
+</tbody>
+</table></div>
+<p>Thread的的缺點</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Process</th>
+<th>Thread</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Process無此議題(除非是採用Shared Memory溝通)</td>
+<td>因為同一個Process內之Threads彼此共享此process Data Section，因此必須對共享的Data 提供互斥存取機制，防止race Condition</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="philosophy">Philosophy</h4>
+<p><strong>Process與Thread沒有功能差異，只有效能差異</strong>(你會的，我也可以，你不會的，我也不會)。</p>
+<p>哪些工作適合用MultiThreads?</p>
+<p>Ans. <strong>一個時間點有多個工作要執行。例：Client-server Model(同時有人過來要檔案，看檔案)</strong></p>
+<p>哪些工作不適合用MultiThreads?</p>
+<p>Ans. 一個時間點最多只有一個工作可以做。例：命令解譯器(eg. UNIX 之 Shell)</p>
+<h3 id="thread分類user-thread與kernel-thread">Thread分類：user-Thread與Kernel-Thread</h3>
+<p>區分角度：**Thread Management工作(如：Thread Creation, Destroy, Suspend, wakeup, Scheduling, Context Switching, etc)**由誰負責</p>
+<ol>
+<li>
+<p>User-Level Thread</p>
+<ul>
+<li>定義：Thread Management是由在User Site之Thread Library提供APIs, 供User Process呼叫使用，進而管理，稱之</li>
+<li>Kernel 完全不知道(is Unaware of) Use-Level Threads 之存在Note：只知有Process(Singal-Threaded)<img src="https://i.imgur.com/E6QHraV.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221227215115098"
+	
+	
+></li>
+<li>Thread management不須Kernel介入干預**(kernel unware user-thread)**</li>
+<li>優點：There creation, context switching 等，Management is fast 成本較低</li>
+<li>缺點：
+<ol>
+<li>當Process內某條執行中的user-thread is blocked(eg. i/o)，會導致整個Process亦被Blocked(即使process內還有其他available threads)<code>這個process都是user Thread，發出一個blocking的system call, kernel會認為是這個Single process發出的請求，因為kernel不知道process裡頭還有其他user Thread的存在，於是就把整個process block住，CPU切到其他process去執行</code></li>
+<li><strong>MultiProcessors架構效益發揮較差</strong>(因為無法做到process內之多條user-threads平行執行，但這樣也是有好處的，整個thread的管理不需要kernel的干預，不需要再user, kernel間切換，降低管理的成本)</li>
+</ol>
+</li>
+<li>例：舉凡Thread library皆是user-threads(eg. POSIX 的 PThread library<code>是規格，只在UNIX系統上</code>, Mach的C-Thread Library, Solaris2以上的 UI Thread Library及Green Thread Library).</li>
+</ul>
+</li>
+<li>
+<p>Kernel-Level Thread</p>
+<ul>
+<li>
+<p>定義：Thread Management完全由kernel負責，Kernel知道每一條Thread之存在並進行管理</p>
+</li>
+<li>
+<p>優缺點與user-thread相反</p>
+</li>
+<li>
+<p>例：大部分OS皆支援 (Windos系列 etc. 2000, Xp, UNIX, LINUX, Solaris)</p>
+</li>
+<li>
+<p>舉例：[Module版]</p>
+<p><img src="https://i.imgur.com/3WceJA7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221227221417715"
+	
+	
+></p>
+<ul>
+<li>CPU Time依分配對象數，平均分配(10個人就分10%，20個人就分5%)</li>
+<li>則Pa, Pb各分到?%CPU Time，if All Threads are
+<ol>
+<li>User Thread：kernel只知道有兩個Process要來搶CPU，來分CPU Time，Pa,Pb各分50%</li>
+<li>Kernel Thread：kernel知道有5條Thread要分CPU time，1條分20%，Pa分到3條，所以是60%, Pb是40%</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="multithreading-model-恐龍本獨有">MultiThreading Model [恐龍本獨有]</h3>
+<p>恐龍本用來詮釋user Thread跟Kernel Thread的見解</p>
+<p>[user thread mapping kernel thread的數目]</p>
+<blockquote>
+<ol>
+<li>Many-to-One Model</li>
+<li>One-to-One Model</li>
+<li>Many-to-Many Model</li>
+</ol>
+</blockquote>
+<ol>
+<li>Many-to-One</li>
+</ol>
+<p><img src="https://i.imgur.com/xsaND6K.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221228220250841"
+	
+	
+></p>
+<ul>
+<li>定義：This model maps <strong>many</strong> use threads to one kernel Thread. Thread Management is done in <strong>use space</strong></li>
+<li>優、缺點：如同user thread</li>
+<li>例：thread library皆是</li>
+<li>圖示：</li>
+</ul>
+<p><img src="https://i.imgur.com/sqCg5Xc.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221228220049555"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/lhpbH4A.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221229212527117"
+	
+	
+></p>
+<ol start="2">
+<li>One-to-One Model</li>
+</ol>
+<ul>
+<li>定義：This model maps <strong>each</strong> use Threads to <strong>a</strong> kernel Thread. Thread Management is done in <strong>use space</strong></li>
+<li>優點：同kernel thread</li>
+<li>缺點：
+<ol>
+<li>Slower</li>
+<li>Process每建立一條user-thread, system就必須配合生一條kernel thread與之，所以user thread數目眾多，系統負擔會很重，耗資源</li>
+</ol>
+</li>
+<li>例：Window NT, Window2000, OS/2, <strong>Linux</strong>(個人電腦系列幾乎都是ONE-TO-ONE)</li>
+</ul>
+<p><img src="https://i.imgur.com/IGGT876.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221229220124154"
+	
+	
+></p>
+<ol start="3">
+<li>Many to Many</li>
+</ol>
+<ul>
+<li>定義：This model maps <strong>many</strong> use Threads to <strong>a small or equal number of</strong> kernel Thread. Thread Management is done in <strong>use space</strong></li>
+<li>優點：同前述kernel thread, 負擔也不像one to one的model來的重</li>
+<li>缺點：1. slower 2. 製作設計上，較為複雜</li>
+</ul>
+<p><img src="https://i.imgur.com/suqnx3Q.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221229222340644"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/9IyKGLf.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221229224155328"
+	
+	
+></p>
+<h3 id="multithreading-issue">MultiThreading Issue</h3>
+<p>原本Single Thread沒這問題</p>
+<ol>
+<li>fork() issue</li>
+</ol>
+<p><img src="https://i.imgur.com/7BGxfOx.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221229230232766"
+	
+	
+></p>
+<ol start="2">
+<li>
+<p>Signal delivery(傳送) issue</p>
+<ol>
+<li><strong>Signal：it is used in UNIX to notify(通知) the <u>process</u> that a particular event has occurred</strong></li>
+</ol>
+<p><img src="https://i.imgur.com/yqINM2g.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221229231422602"
+	
+	
+></p>
+<p>當process收到signal通知後，它必須處理(可由process自己處理或交給default signal handler處理)</p>
+<p><img src="https://i.imgur.com/g1UOlQ6.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221229232030659"
+	
+	
+></p>
+<ol start="2">
+<li>
+<p>Signal的種類</p>
+<ol>
+<li>Synchronous signal[自作自受，這件事情是由你這個Process發生的，所以Signal就是發給你]eg. Divide-by-zero, illegal memory access,</li>
+<li>Asynchronous signal[池魚之殃，事情不是你做的，但別人發出，卻是砍你] eg. ctrl-c by administrator, time-out by timer</li>
+</ol>
+<p><img src="https://i.imgur.com/gXweQBH.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221229233929050"
+	
+	
+></p>
+<ol start="3">
+<li>
+<p>Signal Delivery issue</p>
+<p>4個options</p>
+<ol>
+<li>發給那個thread</li>
+</ol>
+<p><img src="https://i.imgur.com/3sQwWIo.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221230220600034"
+	
+	
+></p>
+<ol start="2">
+<li>
+<p>發給大家</p>
+<p><img src="https://i.imgur.com/ug5ei8O.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221230220706683"
+	
+	
+></p>
+</li>
+<li>
+<p>發給一些threads</p>
+<p><img src="https://i.imgur.com/2KO94EM.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221230220735243"
+	
+	
+></p>
+</li>
+<li>
+<p>發給一個thread，這個thread再把signal轉派給大家</p>
+<p><img src="https://i.imgur.com/sZLZfZc.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20221230220744830"
+	
+	
+></p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Threads Pool</p>
+<ul>
+<li>緣由：在Client-Server Model中，當Server 收到Client&rsquo;s request後，Server才<strong>建立Thread去服務</strong>此一請求，然而<strong>Thread creation 仍須耗用一些時間</strong>，所以對client 之回應<strong>不是那麼迅速</strong></li>
+<li>解法：採用Thread pool機制，process(server)先建立一些Threads，置於threads pool中，當收到Client&rsquo;s request後，就從Thread pool中指派一條 available thread去服務此請求，不須creation回應較fast，當此Thread 完成工作以後，再回到Threads pool中Stand By 如果Threads Pool中無可用的Threads，<u>則Client&rsquo;s request 須等待</u></li>
+<li>缺點：
+<ol>
+<li>萬一Process事先生出過多的Threads in the Thread pool, 對System resource耗用很高，<code>Note:通常ＯＳ會限制Threads pool size</code></li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="thread程式追蹤">Thread程式追蹤</h3>
+<p>(以PThread library為例)</p>
+<p>例：P4-49</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Pthread.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">runner</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">param</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">upper</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span><span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Pthread</span><span class="o">-</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//thraed終止
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Pthread</span><span class="o">-</span><span class="n">t</span> <span class="n">tid</span><span class="p">;</span> <span class="c1">//tid就代表Thread的id
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Pthread</span><span class="o">-</span><span class="n">attr_t</span> <span class="n">arrt</span><span class="p">;</span> <span class="c1">//代表attribute屬性 Thread attributes set
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">   <span class="n">Pthread</span><span class="o">-</span><span class="n">attr</span><span class="o">-</span><span class="n">init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">)</span> <span class="p">;</span><span class="c1">//取得attr 初始值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="err">★</span><span class="n">Pthread</span><span class="o">-</span><span class="n">create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span> <span class="n">runner</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">//根據attr 屬性值建立一條Thread，Id記在tid中，執行runner()副程式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">Pthread</span><span class="o">-</span><span class="n">join</span><span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span> <span class="c1">//main() thread 在此等待，直到tid thread結束
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">printf</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/E96wJWE.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230101163345552"
+	
+	
+></p>
+<p>例：P4-50 程式二</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pthread</span><span class="o">-</span><span class="n">t</span> <span class="n">tid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Pthread_arrt_t</span> <span class="n">attr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span> <span class="c1">//create child process
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span> <span class="c1">//子prcess要做的事情
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">attr</span> <span class="p">,</span> <span class="n">runner</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span> <span class="c1">//子Process去create一條thread
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="n">value</span><span class="p">);</span> <span class="c1">//line C   
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">value</span><span class="p">);</span> <span class="c1">//line P
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">runner</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">value</span> <span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pthread_exit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/RN22I2X.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230101164807174"
+	
+	
+></p>
+<p>例 p4-70</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">shared by threads
+</span></span><span class="line"><span class="cl">A. static local variables(共享)
+</span></span><span class="line"><span class="cl">B. program text/exec, binary (code sec)共享
+</span></span><span class="line"><span class="cl">C. register value of CPU(私有)
+</span></span><span class="line"><span class="cl">D. heap memory (code+ Data sec memory space)共享
+</span></span><span class="line"><span class="cl">E. Programming Counter (私有)
+</span></span><span class="line"><span class="cl">F. Stack memory(私有)
+</span></span><span class="line"><span class="cl">G. Open Files(共享)
+</span></span><span class="line"><span class="cl">H. I/O resources(共享)
+</span></span><span class="line"><span class="cl">I. local variable(私有)
+</span></span><span class="line"><span class="cl">J. Global variables(共享)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="chapter-5-deadlock">Chapter 5 DeadLock</h2>
+<ul>
+<li>
+<p>定義：<strong>成立的四個必要條件</strong>，例子, <strong>與Starvation做比較</strong></p>
+</li>
+<li>
+<p><strong>Deadlock的處理方法</strong></p>
+<blockquote>
+<ol>
+<li>Deadlock Prevention ★★★★</li>
+<li>Deadlock Avoidance(Banker&rsquo;s Algo★★★★★)</li>
+<li>Deadlock Detection and Recovery★★</li>
+<li>Ignores it .</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>定理★★★★★：</p>
+</li>
+<li>
+<p>相關圖形</p>
+<blockquote>
+<p>Resource Allocation Graph(RAG)+3點結論★★★★★</p>
+<p>Claim edgy+RAG(for Avoidance)</p>
+<p>wait for Graph(for Detection)★</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="deadlock">DeadLock</h3>
+<ul>
+<li>
+<p>定義：系統中存在一組Processes彼此形成<strong>循環等待</strong>之情況，造成這些Processes皆<strong>無法往下執行(和starvation不同，Starvation還有一絲可能會做到)</strong>，並降低Throughput之現象。</p>
+</li>
+<li>
+<p>死結成立的4個必要條件(4 necessary condition)，即缺一個，死結就不會發生. Ex. if there 4 conditions are true, then the deadlock <strong>will</strong> arise. Ans. <strong>False</strong>，都有不代表一定會發生</p>
+<ol>
+<li>
+<p><strong>Mutual Exclusion</strong></p>
+<p>互斥性質，<strong>這是對Resource(正在搶奪的資源)而言</strong>，具有此性質的Resouce，<strong>在任何時間點最多只允許一個Process持有使用</strong>，不可多個process同時持有/使用。</p>
+<p>例：大多數的資源皆具此性質，eg. CPU, Memory, Disk, printer, etc &hellip;</p>
+<p>例：read-only file：不具互斥性質</p>
+</li>
+<li>
+<p><strong>Hold &amp; wait</strong></p>
+<p><strong>持有並等待，Process持有部分資源，且又在等待其他Process持有的資源</strong></p>
+</li>
+<li>
+<p><strong>No preemption</strong></p>
+<p>不可搶奪，**Process不可以任意剝奪其他Process所持有的資源，**必須等到對方釋放資源後才有機會取得資源<code>若可Preemption，則必無DeadLock，頂多只有Starvation</code></p>
+</li>
+<li>
+<p><strong>Circular Waiting</strong></p>
+<p>循環等待，系統中存在一組Processes形成循環等待之情況，eg.</p>
+<p><img src="https://i.imgur.com/KZA7hIH.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230102162108560"
+	
+	
+></p>
+</li>
+</ol>
+<p>恐龍本：4 implies 2</p>
+<p>其他版本：4 implies 1,2,3eeeee</p>
+<p>ex. Why Singl-process不會造成DeadLock?</p>
+<p>A：因為Circular waiting 不存在，只少要有兩個process才可以形成循環等待，因此四個必要條件有一個不符合，即不會造成DeadLock</p>
+</li>
+<li>
+<p>例子：</p>
+<p><img src="https://i.imgur.com/dAckLzV.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230102163619321"
+	
+	
+></p>
+<ul>
+<li>
+<p>與Starvatiom比較</p>
+<p>不同點：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>DeadLock</th>
+<th>Starvation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一組Processes形成Circular waiting，造成這些Processes皆無法往下執行，<strong>Waiting forever</strong></td>
+<td>Process因為長期無法取得完工所需的各式資源，造成它遲遲無法完工，<strong>有完工的機會喔，只是機會渺茫</strong></td>
+</tr>
+<tr>
+<td>會連帶造成throughput低落</td>
+<td>與throughput高低無關</td>
+</tr>
+<tr>
+<td>有4個必要條件，其中一定是No preemptive</td>
+<td>容易發生在Preemption的環境(沒有一定，只是容易)</td>
+</tr>
+<tr>
+<td>解法有prevention, Avoidance, Detection &amp; recovery</td>
+<td>採用Aging技術防止</td>
+</tr>
+</tbody>
+</table></div>
+<p>相同點：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>DeadLock 7 Starvation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>皆是資源分配管理機制設計不恰當相關。</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="resource-allocation-graphrag">Resource Allocation Graph(R.A.G)</h3>
+<blockquote>
+<p>資源分配圖</p>
+</blockquote>
+<ul>
+<li>
+<p>定義：令Ｇ=&lt;V,E&gt; 有向圖代表RAG，其中</p>
+<ol>
+<li>
+<p>Vertex(頂點)：有兩個類型：</p>
+<ol>
+<li>
+<p>Process：以O來表示</p>
+</li>
+<li>
+<p>Resource：以<img src="https://i.imgur.com/EnZNLpN.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230102171928690"
+	
+	
+>表示</p>
+<p>其中&rdquo;·&ldquo;數目代表The Number of instances</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Edge(邊)：分為２種edge：</p>
+<ol>
+<li>Allocation Edge：<img src="https://i.imgur.com/dpQ8jWe.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230102172625471"
+	
+	
+></li>
+<li>Requset Edge：<img src="https://i.imgur.com/8JBHEw8.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230102172716745"
+	
+	
+></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>例子 ：</p>
+<p><img src="https://i.imgur.com/7QY3f61.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230102173423507"
+	
+	
+></p>
+</li>
+</ul>
+<h3 id="rag的三點結論必考">RAG的三點結論☆☆☆☆☆必考</h3>
+<ol>
+<li>No Cycle則No DeadLock</li>
+<li>有Cycle<strong>不一定</strong>有死結 例：<img src="https://i.imgur.com/9d3b4lv.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230102175224638"
+	
+	
+>因為P3一定可以完工，會釋放1個R2, 可佩給P2，此時圖無Cycle，No DeadLock</li>
+<li>除非(若)每一類型的資源，皆為Single instance(單一數量)，則有Cycle必為死結</li>
+</ol>
+<h3 id="deadlock處理方式">DeadLock處理方式</h3>
+<blockquote>
+<ol>
+<li>DeadLock Prevention</li>
+<li>DeadLock Avoidance(避免) Banker&rsquo;s Algo</li>
+<li>DeadLock Detection &amp; Recovery</li>
+</ol>
+</blockquote>
+<p>1.2</p>
+<ul>
+<li>
+<p>優點：</p>
+<ol>
+<li>保證System is Deadlock free (or never enters the deadlock state)</li>
+</ol>
+</li>
+<li>
+<p>缺點：</p>
+<ol>
+<li>對Resource的使用/取得限制多，因為resource utilization 偏低，連帶throughput 也偏低</li>
+<li><strong>可能造成Starvation</strong></li>
+</ol>
+</li>
+</ul>
+<p>3</p>
+<ul>
+<li>優點：
+<ol>
+<li>Resources utilization相對較高. throughput也連帶較高</li>
+</ol>
+</li>
+<li>缺點：
+<ol>
+<li>System有可能進入DeadLock state</li>
+<li>Detection &amp; Recovery之cost相當高</li>
+</ol>
+</li>
+</ul>
+<h3 id="deadlock-prevention">DeadLock Prevention</h3>
+<ul>
+<li>原則：破除4個必要條件之其中一個，則死結必不發生</li>
+</ul>
+<ol>
+<li>
+<p>破除 &ldquo;Mutual Exclusion&rdquo; -&gt; 兩個字「<strong>辦不到</strong>」！因為這是Resource<strong>與生俱來</strong>(inheritance)的性質</p>
+</li>
+<li>
+<p>破除 &ldquo;Hold &amp; wait &quot; - &gt; 兩個方法(protocols)可用，想辦法讓Hold不成立，或是讓Wait不成立</p>
+<ol>
+<li>OS實施規定：<strong>除非Process可一次取得全部所需資源，才准許持有資源，否則不得持有任何資源</strong>，但這樣子會有資源利用度低的問題(明明可用，但卻要等到全部都可以用才可以使用)</li>
+<li>OS實施規定：Process可先持有部分資源，但當Process要申請其他資源時，必須Release持有的全部資源(不再Hold)，才可提出申請。但資源利用率一樣很低，因為有可能會把即將要使用的資源釋放出去</li>
+</ol>
+</li>
+<li>
+<p>破除&quot;No preemption&rdquo;　-&gt; 改為&quot;preemption&rdquo; 即可, eg. based on priority-level</p>
+</li>
+<li>
+<p>☆☆☆☆☆破除&quot;Circular waiting&quot; -&gt; 方法叫做&quot;resource ordering&quot; ，</p>
+<ol>
+<li>
+<p>OS會賦予每一個類型資源一個Unique(唯一的)Resource id</p>
+</li>
+<li>
+<p>OS會規定Process必須按照Resource Id Ascending(遞增、遞減都行，你爽就好)的方式對資源提出申請</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>持有的</th>
+<th>欲申請的</th>
+<th>允許或不允許</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>R3</td>
+<td>允許</td>
+</tr>
+<tr>
+<td>R5</td>
+<td>R3</td>
+<td>必須先放到R5，才可提R3(因為不符合遞增)</td>
+</tr>
+<tr>
+<td>R1,R5</td>
+<td>R3</td>
+<td>必須先放到R5，才可提R3(因為不符合遞增)</td>
+</tr>
+</tbody>
+</table></div>
+<p>WHY?</p>
+<p>pf：假設在這樣的規定下，系統仍存在一組Processes形成Circular waiting如下</p>
+<p><img src="https://i.imgur.com/vWfXi5r.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230103215842475"
+	
+	
+></p>
+<p>依規定，我們可以推導出資源ID大小關係如下</p>
+<p>r0 &lt; r1 &lt; r2 &lt; &hellip; &lt;rn &lt; r0</p>
+<p>竟推出 r0 &lt;r此一矛盾式子，因此Circular waiting必不存在</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="deadlock-avoidance">Deadlock Avoidance</h3>
+<ul>
+<li>
+<p>定義：當某個Process提出某些資源申請時，則OS必須執行<strong>Banker&rsquo;s Algorithm</strong>，以確定<strong>倘若分配給process其申請資源後，System未來處於safe state</strong>，若Safe則核准其申請，否則(unsage)則否決其申請，process必須等一段時間後，再重提申請。</p>
+<p><img src="https://i.imgur.com/TG6PUR9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230103223800287"
+	
+	
+></p>
+</li>
+<li>
+<p>Deadlock是unsafe之subset</p>
+</li>
+</ul>
+<h3 id="bankers-algo-">Banker&rsquo;s Algo ☆☆☆☆☆</h3>
+<p><code>本章的計算題都在這 Banker's Alog and Safety Algo</code></p>
+<ul>
+<li>
+<p>定義：使用的Data Structures</p>
+</li>
+<li>
+<p>看不懂的話直接看下面範例比較快</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">假設
+</span></span><span class="line"><span class="cl">n：process個數
+</span></span><span class="line"><span class="cl">m:  resource種類數
+</span></span><span class="line"><span class="cl">1. Request i ：［1..m］of int
+</span></span><span class="line"><span class="cl">	-&gt; Pi提出之各式資源申請量
+</span></span><span class="line"><span class="cl">2. Allocation : n*m martrix 
+</span></span><span class="line"><span class="cl">	-&gt; 各個process目前持有的各式資源數量
+</span></span><span class="line"><span class="cl">3. MAX: n*m martrix
+</span></span><span class="line"><span class="cl">	-&gt; 各process完工所需之各式資源最大數量
+</span></span><span class="line"><span class="cl">4. Need：n*m martrix(自己算)
+</span></span><span class="line"><span class="cl">	-&gt; 各process尚須(欠)各式資源數量才能完工，因此Need= MAX -Allocation
+</span></span><span class="line"><span class="cl">5. Avaliable：[1..m]of int 
+</span></span><span class="line"><span class="cl">	-&gt; 系統目前可用的，各式資源數量，因此Available=資源總量-Allocation
+</span></span><span class="line"><span class="cl">舉例說明：假設有人來貸款3,000萬，那麼Requesti =3000萬、Allocation就是自己的存款，假設這邊是2,000萬，想買一棟9,000萬的房子，這9,000萬就是他的MAX，那麼Need= 9,000-2,000= 7,000萬，Available 就是銀行目前金庫裡能借給你的錢，這邊假設是10,000萬。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Step1. Check Request &lt;= Need ?若成立，則往下執行，若不成立，則終止Process。
+</span></span><span class="line"><span class="cl">Request=3,000萬，Need= 7,000萬。這樣就是合理的，但假設你今天需求7,000萬，可是卻貸了3,000兆，遠超於你的需求，那就有問題了
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Step2. Check Request &lt;=Available?若成立，則往下執行，若不成立，則Pi waits until resouce availalbe
+</span></span><span class="line"><span class="cl">概念就是你去貸3,000萬，可是銀行金庫目前的錢不夠，需要你稍等一下
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Step3 (試算)
+</span></span><span class="line"><span class="cl">假設貸款成功
+</span></span><span class="line"><span class="cl">Allocation = Allocation + Request
+</span></span><span class="line"><span class="cl">Need = Need - Request
+</span></span><span class="line"><span class="cl">Available = Available - Request
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Step4 依上述試算值，必須執行 &#34;safety&#34; algo，若回傳&#34;Safe&#34; state則核准Pi此次申請。若回傳&#34;unsafe&#34; state，則否決Pi此次申請。Pi必須等一段時間再重提申請
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="safety-algorithm">Safety Algorithm</h3>
+<ol>
+<li>
+<p>Data Structures used 除上述之外，另外加入</p>
+<ol>
+<li>
+<p>Work:[1..m] of int -&gt; 表系統目前可用Resources之累計數量</p>
+</li>
+<li>
+<p>Finish:[1..m] of Boolean -&gt; 針對Process</p>
+<p>Finish[i]=</p>
+<p>True: 表Pi可完工</p>
+<p>False: 表Pi尚未完工</p>
+<p>∀1&lt;=i&lt;=n</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Procedures</p>
+<p>Step</p>
+<ol>
+<li>
+<p>設定初值</p>
+<p>Work = Available</p>
+<p>Finish[i]皆為False</p>
+<p>∀1&lt;=i&lt;=n</p>
+</li>
+<li>
+<p>看可否找到Pi滿足：</p>
+<ol>
+<li>Finish[i]為False且</li>
+<li>Needi &lt;= Work (我所需要的資源，)</li>
+</ol>
+<p>若可找到，則進3,否則則進4</p>
+</li>
+<li>
+<p>設定Finish[i]=True，且Work= Work + Allocationi, then, 回到2</p>
+</li>
+<li>
+<p>Check Finish Array, 若皆為True，則傳回Safe State，否則傳回Unsafe state</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>範例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">5個Process(P0,P1,P2,P3,P4)
+</span></span><span class="line"><span class="cl">3種resource(A,B,C)
+</span></span><span class="line"><span class="cl">資源量(A,B,C) = (10,5,7)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1. 求出Need及Available
+</span></span><span class="line"><span class="cl">2. P1提出(A,B,C)= (1,0,2)申請，是否核准?Why?
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Ans.</p>
+<ul>
+<li>Allocation-各個Process身上所持有的資源</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>MAX- Process完成工作最多所需要的資源數量分別是多少</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>7</td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>9</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Need= <strong>MAX-Allocation</strong></li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>7-0=7</td>
+<td>5-1=4</td>
+<td>3-0=3</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>3-2=1</td>
+<td>2-0=2</td>
+<td>2-0=2</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Available= 系統目前還剩的可用資源數，資源總量()-已經配置出去的(Allocation出去的)</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10-(2+3+2)=3</td>
+<td>5-(1+1)=3</td>
+<td>7-(2+1+2)=2</td>
+</tr>
+</tbody>
+</table></div>
+<p>Request=(1,0,2), Banker&rsquo;s Algo</p>
+<ol>
+<li>
+<p>Check Request &lt;= Need ? (你所要求的小於你真正需要的，亦即你買東西只要500，不能跟銀行借到500萬)</p>
+<p><img src="https://i.imgur.com/5QkkGo9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230107115630812"
+	
+	
+></p>
+</li>
+<li>
+<p>Check  Request &lt;= Available (你要的借的錢是否小於銀行本身所持有的錢，亦即如果你要借1億，但銀行只有一百萬)?</p>
+<p><img src="https://i.imgur.com/rEVlV70.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230107120047287"
+	
+	
+></p>
+</li>
+<li>
+<p>(試算)</p>
+<p>P1:</p>
+<p>Allocation = &lt;2,0,0&gt;+&lt;1,0,2&gt;(申請量) = <strong>&lt;3,0,2&gt;</strong></p>
+<p>Need = &lt;1,2,2&gt; - &lt; 1,0,2&gt;(申請量) = <strong>&lt;0,2,0&gt;</strong></p>
+<p>Available = &lt;3,3,2&gt; - &lt;1,0,2&gt;(申請量) = <strong>&lt;2,3,0&gt;</strong></p>
+</li>
+<li>
+<p>依上述調整值，來執行&quot;Safety&quot; Algo</p>
+</li>
+</ol>
+<ul>
+<li>Allocation</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P1(要調整)</td>
+<td><u><strong>3</strong></u></td>
+<td><strong><u>0</u></strong></td>
+<td><u><strong>2</strong></u></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>MAX</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>7</td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>9</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Need</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>7</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P1(要調整)</td>
+<td>0</td>
+<td>2</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Available</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></div>
+<p>Safety Algo</p>
+<ol>
+<li>
+<p>初值的設定</p>
+<ul>
+<li>
+<p>Work = Abailable = &lt;2,3,0&gt;</p>
+</li>
+<li>
+<p>Finish</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+<p>尋找有沒有Process還沒完成工作，並且它的needi &lt;= work的</p>
+</li>
+<li>
+<p>可找到P1滿足Finish[i]= False且Need &lt;=work</p>
+</li>
+</ol>
+<p>​	<img src="https://i.imgur.com/9uFiGp9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230107123442941"
+	
+	
+></p>
+<ol start="3">
+<li>設定Finish[i]=True，且Work= Work+Allocation = (2,3,0) + (3,0,2) = (5,3,2) , then goto 2</li>
+<li>work = <del>(2,3,0)</del> &gt; (5,3,2)</li>
+</ol>
+<p>​	<img src="https://i.imgur.com/qn6JXjh.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230107123951216"
+	
+	
+></p>
+<ol start="5">
+<li>
+<p>選擇P3滿足 Need&lt;= Work，且Finish[i] = False</p>
+</li>
+<li>
+<p>設定Finishj[3]=True，且Work=(5,3,2) +(2,1,1) = (7,4,3), then goto 2</p>
+</li>
+<li>
+<p>&hellip; 以此類推，P0, P2, P4皆可Finish，直到大家都Finish，因此大家都滿足了。</p>
+</li>
+<li>
+<p>Check Finish陣列，因為皆為True，所以<strong>傳回Safe State</strong>，<strong>因此核准P1此次的申請</strong></p>
+</li>
+<li>
+<p>列出上述其中一組<strong>Safe Sequence</strong><code>Safe Sequence/ Safe State定義：至少可以找到&gt;=1組，Safe Sequence，成為Safe State，否則unsafe state。代表OS未來依此Processes順序可分配各Process所need的資源，使得大家皆可順利完工</code></p>
+<p>Ans. P1,P3,P0,P2,P4</p>
+</li>
+<li>
+<p>依現在狀況，若P4提出(3,3,0)申請，是否核准?why? <strong>(練習題)</strong></p>
+<p>Ans. Banker&rsquo;s algo</p>
+<ol>
+<li>
+<p>Check Request (3,3,0) &lt;= Need(4,3,1) <strong>通過</strong></p>
+<ul>
+<li>Need</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>7</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>0</td>
+<td>2</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ol>
+</li>
+</ol>
+<p>​		2. Check Request4(3,3,0) &lt;= Available (2,3,0)?</p>
+<p>​			不成立，因為無法核准，<strong>可用資源不足</strong></p>
+<ol start="11">
+<li>
+<p>依現在情況，若P0提出(0,2,0)，是否核准? Ｗhy?</p>
+<p>Ans. Banker&rsquo;s Algo</p>
+<ol>
+<li>
+<p>快速跑過，確認可以過，資源分配改變如下</p>
+<ul>
+<li>
+<p>Allocation</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Need</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>7</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P3`</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Available</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+</li>
+<li>
+<p>執行Safety&rsquo;s algo</p>
+<ol>
+<li>設定初值，Work=(2,1,0)</li>
+<li>找尋是否有符合Needi &lt;= Work 的Process，且還有Process為False**(不通過)**，所以unsafe</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>範例二</p>
+<ul>
+<li>
+<p>Allocation</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Need</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>7</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>Available</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>1</td>
+<td><strong>x</strong></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+<p>求x的最小值，使其成為Safety</p>
+<ol>
+<li>設置初值，work= (2,1,x)</li>
+<li>找尋 Need &lt;= work</li>
+<li>找到了，P3，先暫定x=1 (2,1,1)</li>
+<li>P3因為可以完成，完成後資源就可以釋放出來，因此work (2,1,1) &gt; (4,2,2)</li>
+<li>繼續找尋Need &lt;=work</li>
+<li>找到了，P1</li>
+<li>P1因為可以完成，完成後資源就可以釋放出來，因此work(4,2,2) &gt; (7,2,4)</li>
+<li>&hellip;往復循環，以此類推</li>
+</ol>
+<p>​</p>
+<p>x= 1;</p>
+<p><img src="https://i.imgur.com/mo7FIyC.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230107194309689"
+	
+	
+></p>
+<h3 id="bankers-algo-之-time-complexity">Banker&rsquo;s Algo 之 Time Complexity</h3>
+<p>先講結論，<strong>複雜度就是O(n^2*m)</strong></p>
+<p>(n: Process 數目, m:resource 種類數)</p>
+<p>Banker&rsquo;s Algo Time Complexity</p>
+<p>Step</p>
+<ol>
+<li>O(m)<code>Check Request &lt;= Need </code></li>
+<li>O(m)<code> Check Request &lt;=Available</code></li>
+<li>O(m)<code>試算</code></li>
+<li>Run safety algo</li>
+<li>設置初值work -&gt; 1~m的一維陣列，因此複雜度為O(m)。Finish -&gt;1~n的一維陣列，因此複雜度為 O(n)</li>
+<li>先來看看Safety&rsquo;s algo的步驟<img src="https://i.imgur.com/sIe7W3D.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230109221851317"
+	
+	
+></li>
+</ol>
+<p>​		第一次最多會檢查n次，再來第二次檢查n-1次&hellip;</p>
+<p>​		=(n+1)n/2個Processes。每次檢查Need &lt;=Work 花O(m)的時	間，最多花O(n^2*m) time</p>
+<ol start="7">
+<li>花O(n) Check Finish</li>
+</ol>
+<p>因此<strong>複雜度就是O(n^2*m)</strong></p>
+<h3 id="針對每一項類型資源皆為single-instance情況下有較簡易的avoidance作法">針對每一項類型資源，皆為Single-instance情況下，有較簡易的Avoidance作法</h3>
+<ol>
+<li>
+<p>利用RAG，搭配<strong>Claim edge(宣告邊)使用</strong></p>
+</li>
+<li>
+<p>Claim edge:</p>
+<p><img src="https://i.imgur.com/DbUNSBR.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230110213506269"
+	
+	
+></p>
+<p>代表Pi未來會對Rj提出申請(即表MAX/NEED之意義)</p>
+</li>
+<li>
+<p>Steps：</p>
+<p><code>當Pi提出Rj申請後</code></p>
+<ol>
+<li>
+<p>檢查有無Pi對Rj的這條宣告邊(Claim edge)存在，若有，則goto2否則，終止Pi</p>
+</li>
+<li>
+<p>Check Rj是否Available，若是，則goto3，否則<strong>Pi waits</strong>(變成申請邊)</p>
+</li>
+<li>
+<p>(試算)暫時把宣告邊改為配置邊<img src="https://i.imgur.com/45EmEs2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230110234601069"
+	
+	
+></p>
+</li>
+<li>
+<p>執行safety&rsquo;s Algo, check 圖中是否有cycle存在</p>
+<p>若沒有，則為safe -&gt; 可核准</p>
+<p>有Cycle，則為unsafe -&gt; 否決</p>
+</li>
+</ol>
+</li>
+<li>
+<p>例：</p>
+<p><img src="https://i.imgur.com/aTNbxz5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230110233244192"
+	
+	
+></p>
+<ol>
+<li>
+<p>若P1提出R2之申請，是否核准?</p>
+<p>Ans.</p>
+<p><img src="https://i.imgur.com/sE32Vh1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230110235023904"
+	
+	
+></p>
+</li>
+<li>
+<p>若P2提出R2之申請，是否核准?</p>
+<p><img src="https://i.imgur.com/VDS6Lz1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230111000113366"
+	
+	
+></p>
+</li>
+</ol>
+</li>
+</ol>
+<p>補充：<strong>Deadlock是unsafe之subset(或unsafe有可能導致死結，也有可能不會導致死結)</strong></p>
+<p><img src="https://i.imgur.com/BSN7MhD.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230111001212290"
+	
+	
+></p>
+<ol>
+<li>
+<p>可能<strong>不會</strong>死結</p>
+<p>ans. 搞不好P1在提出R2的申請時，就使用完R1了，這時就不會有死結。或是P2在P1提出申請之前就使用完R2了，此時也不會有死結。</p>
+</li>
+<li>
+<p>可能<strong>會有</strong>死結</p>
+<p>ans. P1立刻對R2提出申請，此時RAG有Cycle，且資源都是Single Instance</p>
+</li>
+</ol>
+<p>也就是說死結產生與否取決於宣告邊在哪個moment提出申請</p>
+<p>​</p>
+<h3 id="定理">定理</h3>
+<p>系統若有<u>n</u>個processes，m個resource量(單一種類)滿足下列2個條件：</p>
+<ol>
+<li>
+<p>1&lt;=MAXi&lt;=m</p>
+</li>
+<li>
+<p>且
+$$
+\sum_{i=1}^nMAXi&lt;n+m
+$$</p>
+</li>
+</ol>
+<h1 id="process-co-ncept">Process Co ncept</h1>
 <h1 id="第一節-總覽">第一節 總覽</h1>
 <h2 id="第一章-序言">第一章 序言</h2>
 <h2 id="第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)★</h2>
@@ -4231,7 +6192,7 @@ Note：目的</p>
 <p>定義：OS為了管理所有Processes，會在Kernel memory中，替每個Process，各自準備一個Block(Table, 表格)，用來記錄Process之所有相關資訊</p>
 <p>PCB的主要內容有：</p>
 <p>Process</p>
-<h4 id="process-concept-1">Process Concept</h4>
+<h4 id="process-concept">Process Concept</h4>
 <p><img src="https://i.imgur.com/46QhD4h.png"
 	
 	
@@ -4907,6 +6868,44 @@ Note：目的</p>
             
                 
 <article class="has-image">
+    <a href="/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/nCGDuUc.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/nCGDuUc.png "/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">實用的Git指令</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/dwbYvaF.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/dwbYvaF.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Java中的throw,throws,try...catch，受檢例外與非受檢例外</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/">
         
         
@@ -4962,44 +6961,6 @@ Note：目的</p>
 </article>
 
             
-                
-<article class="has-image">
-    <a href="/p/clion%E7%9A%84mutilmain/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/aGwtINt.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/aGwtINt.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">CLion的MutilMain</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/B7GhSw1.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/B7GhSw1.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">基礎AOP介紹-Filter Interceptor AspectJ</h2>
-        </div>
-    </a>
-</article>
-
-            
         </div>
     </div>
 </aside>
@@ -5046,7 +7007,7 @@ Note：目的</p>
         
             2020 - 
         
-        2022 Hoxton
+        2023 Hoxton
     </section>
     
     <section class="powerby">
@@ -5270,7 +7231,32 @@ Note：目的</p>
             <li><a href="#real-time-system之dispatch-latency-組成">Real-time system之Dispatch Latency 組成</a></li>
           </ol>
         </li>
-        <li><a href="#process-concept">Process Concept</a></li>
+        <li><a href="#thread-management貝多芬">Thread Management(貝多芬)</a>
+          <ol>
+            <li><a href="#thread">Thread</a></li>
+            <li><a href="#process-vs-thread">Process Vs Thread</a></li>
+            <li><a href="#philosophy">Philosophy</a></li>
+          </ol>
+        </li>
+        <li><a href="#thread分類user-thread與kernel-thread">Thread分類：user-Thread與Kernel-Thread</a></li>
+        <li><a href="#multithreading-model-恐龍本獨有">MultiThreading Model [恐龍本獨有]</a></li>
+        <li><a href="#multithreading-issue">MultiThreading Issue</a></li>
+        <li><a href="#thread程式追蹤">Thread程式追蹤</a></li>
+      </ol>
+    </li>
+    <li><a href="#chapter-5-deadlock">Chapter 5 DeadLock</a>
+      <ol>
+        <li><a href="#deadlock">DeadLock</a></li>
+        <li><a href="#resource-allocation-graphrag">Resource Allocation Graph(R.A.G)</a></li>
+        <li><a href="#rag的三點結論必考">RAG的三點結論☆☆☆☆☆必考</a></li>
+        <li><a href="#deadlock處理方式">DeadLock處理方式</a></li>
+        <li><a href="#deadlock-prevention">DeadLock Prevention</a></li>
+        <li><a href="#deadlock-avoidance">Deadlock Avoidance</a></li>
+        <li><a href="#bankers-algo-">Banker&rsquo;s Algo ☆☆☆☆☆</a></li>
+        <li><a href="#safety-algorithm">Safety Algorithm</a></li>
+        <li><a href="#bankers-algo-之-time-complexity">Banker&rsquo;s Algo 之 Time Complexity</a></li>
+        <li><a href="#針對每一項類型資源皆為single-instance情況下有較簡易的avoidance作法">針對每一項類型資源，皆為Single-instance情況下，有較簡易的Avoidance作法</a></li>
+        <li><a href="#定理">定理</a></li>
       </ol>
     </li>
   </ol>
@@ -5301,7 +7287,7 @@ Note：目的</p>
             <li><a href="#process-management--thread-management">Process Management &amp; Thread Management</a></li>
             <li><a href="#process">Process</a></li>
             <li><a href="#process-control-block-1">Process Control Block</a></li>
-            <li><a href="#process-concept-1">Process Concept</a></li>
+            <li><a href="#process-concept">Process Concept</a></li>
             <li><a href="#process-scheduling">Process Scheduling</a></li>
             <li><a href="#interprocess-communicationipc">Interprocess Communication(IPC)</a></li>
             <li><a href="#mailbox不做限制要幾個人來都可以但當有人同時access的時候會有其中一方先被delay">MailBox不做限制，要幾個人來都可以，但當有人同時Access的時候，會有其中一方先被Delay</a></li>

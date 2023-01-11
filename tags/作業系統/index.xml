@@ -3686,7 +3686,1968 @@ Note：目的&lt;/p&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;process-concept&#34;&gt;Process Concept&lt;/h3&gt;
+&lt;h3 id=&#34;thread-management貝多芬&#34;&gt;Thread Management(貝多芬)&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Thread( or Multithreading)定義、優點&lt;/p&gt;
+&lt;p&gt;Process(Single-Threaded) vs Thread (Multithreading)&lt;/p&gt;
+&lt;p&gt;user-level thread 與 kernel-level thread&lt;/p&gt;
+&lt;p&gt;Multithreading Model(3種)&lt;/p&gt;
+&lt;p&gt;Multithreading issue&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;fork()&lt;/p&gt;
+&lt;p&gt;signal delivery&lt;/p&gt;
+&lt;p&gt;Threads pool&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;程式追蹤(PThread  library)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;thread&#34;&gt;Thread&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定義：又叫lightweight-process(傳統的process就叫heavyweight process)，是OS&lt;strong&gt;分配CPU time&lt;/strong&gt; 之對象單位**(恐：It&amp;rsquo;s a basic unit of CPU Library)**&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Thread 建立後，其私有的(private)內容組成包含有(都是與執行相關的)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Programming Counter&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CPU registers value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stack&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Thread ID, State, etc &amp;hellip;(Note: record in TCB[Thread Control Block])此外，同一個Process內不同之Threads彼此共享此Process的
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Code Section(合稱Memory space, address space)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Section(合稱Memory space, address space)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;other OS resources eg. open files, I/O resources ,singal, etc &amp;hellip;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;圖示&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;MultiThreading Model&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/bJe15zy.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221225124253929&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Process = Single-Threaded Model&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/gXamqw8.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221225125053668&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Note: 類比&lt;/p&gt;
+&lt;p&gt;Process &amp;mdash;&amp;gt; 汽車&lt;/p&gt;
+&lt;p&gt;Thread &amp;mdash;&amp;gt; 引擎&lt;/p&gt;
+&lt;p&gt;汽車會有一個引擎，也可以有很多，MutliThread就像是一部車子有多個引擎，然後共享車子有的配件(儀表板、方向盤等等)。CPU Time是以Thread為對象在畫分&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;優點(Benefits)&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Responsiveness&lt;/strong&gt;：當Process內執行中的Thread被Blocked，則CPU可以切給此Process內其他available Threads 執行，&lt;strong&gt;故整個Process不會被Blocked&lt;/strong&gt;，仍持續Going, 所以Multithreading用在user-interactive application, 可增加對User 之回應程度&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resource Sharing&lt;/strong&gt;：因為Process內之多條Threads 共享此Process code section，所以在同一個Memory space上可有多個工作同時執行&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Economy&lt;/strong&gt;：因為同一個Process內之不同Threads彼此共享此Process的memory 及 other OS resources, 因為&lt;strong&gt;Thread 之 私有成分量&lt;/strong&gt;少，故&lt;strong&gt;Thread之Creation, Context Switching fast, Thread management cost is cheap&lt;/strong&gt;(fork一個Process的成本遠大於複製一個Thread)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalability(Utilization of Multiprocessors Architecture)&lt;/strong&gt;：可以做到同一個Process內之不同Threads可以在不同CPUs上平行執行，所以可以增加對Multiprocessors System之效益(平行程度)提升&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;process-vs-thread&#34;&gt;Process Vs Thread&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其實是在比Singal Thread and MultiThread&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Thread的的優點&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Process&lt;/th&gt;
+&lt;th&gt;Thread&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Heavyweight process&lt;/td&gt;
+&lt;td&gt;Lightweight process&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Single-Threaded Model&lt;/td&gt;
+&lt;td&gt;MultiThreading Model&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;是OS分配Resource之對象單位&lt;/td&gt;
+&lt;td&gt;是OS分配CPU Time之對象單位&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;不同的Process不會有共享的Memory及Other Resources (除了Shared Memory溝通之外)&lt;/td&gt;
+&lt;td&gt;同一個Process內之Threads彼此共享此Process之memory 及Other Resources&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;若Process內的single Thread is Blocked, 則整個Process亦Blocked&lt;/td&gt;
+&lt;td&gt;只要Process內尚有Available Thread可執行，則整個Process不會被Blocked&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Process之Creation context Switching慢，管理成本高&lt;/td&gt;
+&lt;td&gt;Thread快，成本低&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;對於MultiProcessors架構之效益發揮較差&lt;/td&gt;
+&lt;td&gt;較佳&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Thread的的缺點&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Process&lt;/th&gt;
+&lt;th&gt;Thread&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Process無此議題(除非是採用Shared Memory溝通)&lt;/td&gt;
+&lt;td&gt;因為同一個Process內之Threads彼此共享此process Data Section，因此必須對共享的Data 提供互斥存取機制，防止race Condition&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;philosophy&#34;&gt;Philosophy&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Process與Thread沒有功能差異，只有效能差異&lt;/strong&gt;(你會的，我也可以，你不會的，我也不會)。&lt;/p&gt;
+&lt;p&gt;哪些工作適合用MultiThreads?&lt;/p&gt;
+&lt;p&gt;Ans. &lt;strong&gt;一個時間點有多個工作要執行。例：Client-server Model(同時有人過來要檔案，看檔案)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;哪些工作不適合用MultiThreads?&lt;/p&gt;
+&lt;p&gt;Ans. 一個時間點最多只有一個工作可以做。例：命令解譯器(eg. UNIX 之 Shell)&lt;/p&gt;
+&lt;h3 id=&#34;thread分類user-thread與kernel-thread&#34;&gt;Thread分類：user-Thread與Kernel-Thread&lt;/h3&gt;
+&lt;p&gt;區分角度：**Thread Management工作(如：Thread Creation, Destroy, Suspend, wakeup, Scheduling, Context Switching, etc)**由誰負責&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;User-Level Thread&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定義：Thread Management是由在User Site之Thread Library提供APIs, 供User Process呼叫使用，進而管理，稱之&lt;/li&gt;
+&lt;li&gt;Kernel 完全不知道(is Unaware of) Use-Level Threads 之存在Note：只知有Process(Singal-Threaded)&lt;img src=&#34;https://i.imgur.com/E6QHraV.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221227215115098&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;Thread management不須Kernel介入干預**(kernel unware user-thread)**&lt;/li&gt;
+&lt;li&gt;優點：There creation, context switching 等，Management is fast 成本較低&lt;/li&gt;
+&lt;li&gt;缺點：
+&lt;ol&gt;
+&lt;li&gt;當Process內某條執行中的user-thread is blocked(eg. i/o)，會導致整個Process亦被Blocked(即使process內還有其他available threads)&lt;code&gt;這個process都是user Thread，發出一個blocking的system call, kernel會認為是這個Single process發出的請求，因為kernel不知道process裡頭還有其他user Thread的存在，於是就把整個process block住，CPU切到其他process去執行&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MultiProcessors架構效益發揮較差&lt;/strong&gt;(因為無法做到process內之多條user-threads平行執行，但這樣也是有好處的，整個thread的管理不需要kernel的干預，不需要再user, kernel間切換，降低管理的成本)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;例：舉凡Thread library皆是user-threads(eg. POSIX 的 PThread library&lt;code&gt;是規格，只在UNIX系統上&lt;/code&gt;, Mach的C-Thread Library, Solaris2以上的 UI Thread Library及Green Thread Library).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kernel-Level Thread&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定義：Thread Management完全由kernel負責，Kernel知道每一條Thread之存在並進行管理&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;優缺點與user-thread相反&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;例：大部分OS皆支援 (Windos系列 etc. 2000, Xp, UNIX, LINUX, Solaris)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;舉例：[Module版]&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/3WceJA7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221227221417715&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU Time依分配對象數，平均分配(10個人就分10%，20個人就分5%)&lt;/li&gt;
+&lt;li&gt;則Pa, Pb各分到?%CPU Time，if All Threads are
+&lt;ol&gt;
+&lt;li&gt;User Thread：kernel只知道有兩個Process要來搶CPU，來分CPU Time，Pa,Pb各分50%&lt;/li&gt;
+&lt;li&gt;Kernel Thread：kernel知道有5條Thread要分CPU time，1條分20%，Pa分到3條，所以是60%, Pb是40%&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;multithreading-model-恐龍本獨有&#34;&gt;MultiThreading Model [恐龍本獨有]&lt;/h3&gt;
+&lt;p&gt;恐龍本用來詮釋user Thread跟Kernel Thread的見解&lt;/p&gt;
+&lt;p&gt;[user thread mapping kernel thread的數目]&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Many-to-One Model&lt;/li&gt;
+&lt;li&gt;One-to-One Model&lt;/li&gt;
+&lt;li&gt;Many-to-Many Model&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Many-to-One&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/xsaND6K.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221228220250841&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定義：This model maps &lt;strong&gt;many&lt;/strong&gt; use threads to one kernel Thread. Thread Management is done in &lt;strong&gt;use space&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;優、缺點：如同user thread&lt;/li&gt;
+&lt;li&gt;例：thread library皆是&lt;/li&gt;
+&lt;li&gt;圖示：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/sqCg5Xc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221228220049555&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/lhpbH4A.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221229212527117&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;One-to-One Model&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;定義：This model maps &lt;strong&gt;each&lt;/strong&gt; use Threads to &lt;strong&gt;a&lt;/strong&gt; kernel Thread. Thread Management is done in &lt;strong&gt;use space&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;優點：同kernel thread&lt;/li&gt;
+&lt;li&gt;缺點：
+&lt;ol&gt;
+&lt;li&gt;Slower&lt;/li&gt;
+&lt;li&gt;Process每建立一條user-thread, system就必須配合生一條kernel thread與之，所以user thread數目眾多，系統負擔會很重，耗資源&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;例：Window NT, Window2000, OS/2, &lt;strong&gt;Linux&lt;/strong&gt;(個人電腦系列幾乎都是ONE-TO-ONE)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/IGGT876.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221229220124154&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Many to Many&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;定義：This model maps &lt;strong&gt;many&lt;/strong&gt; use Threads to &lt;strong&gt;a small or equal number of&lt;/strong&gt; kernel Thread. Thread Management is done in &lt;strong&gt;use space&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;優點：同前述kernel thread, 負擔也不像one to one的model來的重&lt;/li&gt;
+&lt;li&gt;缺點：1. slower 2. 製作設計上，較為複雜&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/suqnx3Q.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221229222340644&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/9IyKGLf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221229224155328&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;multithreading-issue&#34;&gt;MultiThreading Issue&lt;/h3&gt;
+&lt;p&gt;原本Single Thread沒這問題&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;fork() issue&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/7BGxfOx.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221229230232766&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Signal delivery(傳送) issue&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Signal：it is used in UNIX to notify(通知) the &lt;u&gt;process&lt;/u&gt; that a particular event has occurred&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/yqINM2g.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221229231422602&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;當process收到signal通知後，它必須處理(可由process自己處理或交給default signal handler處理)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/g1UOlQ6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221229232030659&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Signal的種類&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Synchronous signal[自作自受，這件事情是由你這個Process發生的，所以Signal就是發給你]eg. Divide-by-zero, illegal memory access,&lt;/li&gt;
+&lt;li&gt;Asynchronous signal[池魚之殃，事情不是你做的，但別人發出，卻是砍你] eg. ctrl-c by administrator, time-out by timer&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/gXweQBH.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221229233929050&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Signal Delivery issue&lt;/p&gt;
+&lt;p&gt;4個options&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;發給那個thread&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/3sQwWIo.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221230220600034&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;發給大家&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ug5ei8O.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221230220706683&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;發給一些threads&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/2KO94EM.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221230220735243&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;發給一個thread，這個thread再把signal轉派給大家&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/sZLZfZc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221230220744830&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Threads Pool&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;緣由：在Client-Server Model中，當Server 收到Client&amp;rsquo;s request後，Server才&lt;strong&gt;建立Thread去服務&lt;/strong&gt;此一請求，然而&lt;strong&gt;Thread creation 仍須耗用一些時間&lt;/strong&gt;，所以對client 之回應&lt;strong&gt;不是那麼迅速&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;解法：採用Thread pool機制，process(server)先建立一些Threads，置於threads pool中，當收到Client&amp;rsquo;s request後，就從Thread pool中指派一條 available thread去服務此請求，不須creation回應較fast，當此Thread 完成工作以後，再回到Threads pool中Stand By 如果Threads Pool中無可用的Threads，&lt;u&gt;則Client&amp;rsquo;s request 須等待&lt;/u&gt;&lt;/li&gt;
+&lt;li&gt;缺點：
+&lt;ol&gt;
+&lt;li&gt;萬一Process事先生出過多的Threads in the Thread pool, 對System resource耗用很高，&lt;code&gt;Note:通常ＯＳ會限制Threads pool size&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;thread程式追蹤&#34;&gt;Thread程式追蹤&lt;/h3&gt;
+&lt;p&gt;(以PThread library為例)&lt;/p&gt;
+&lt;p&gt;例：P4-49&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;Pthread.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;runner&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;upper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;Pthread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//thraed終止
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;Pthread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//tid就代表Thread的id
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;Pthread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;attr_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arrt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//代表attribute屬性 Thread attributes set
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;n&#34;&gt;Pthread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;attr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;init&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;attr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//取得attr 初始值
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;err&#34;&gt;★&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Pthread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;attr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;runner&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//根據attr 屬性值建立一條Thread，Id記在tid中，執行runner()副程式
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;n&#34;&gt;Pthread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;join&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//main() thread 在此等待，直到tid thread結束
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;   &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/E96wJWE.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230101163345552&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;例：P4-50 程式二&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pid&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;pthread&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;Pthread_arrt_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;attr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;pid&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fork&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//create child process
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//子prcess要做的事情
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;pthread_create&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;attr&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;runner&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//子Process去create一條thread
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//line C   
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pid&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;wait&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//line P
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;runner&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;pthread_exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/RN22I2X.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230101164807174&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;例 p4-70&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shared by threads
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A. static local variables(共享)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B. program text/exec, binary (code sec)共享
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C. register value of CPU(私有)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;D. heap memory (code+ Data sec memory space)共享
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;E. Programming Counter (私有)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;F. Stack memory(私有)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;G. Open Files(共享)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;H. I/O resources(共享)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;I. local variable(私有)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;J. Global variables(共享)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;chapter-5-deadlock&#34;&gt;Chapter 5 DeadLock&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定義：&lt;strong&gt;成立的四個必要條件&lt;/strong&gt;，例子, &lt;strong&gt;與Starvation做比較&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Deadlock的處理方法&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Deadlock Prevention ★★★★&lt;/li&gt;
+&lt;li&gt;Deadlock Avoidance(Banker&amp;rsquo;s Algo★★★★★)&lt;/li&gt;
+&lt;li&gt;Deadlock Detection and Recovery★★&lt;/li&gt;
+&lt;li&gt;Ignores it .&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;定理★★★★★：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;相關圖形&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Resource Allocation Graph(RAG)+3點結論★★★★★&lt;/p&gt;
+&lt;p&gt;Claim edgy+RAG(for Avoidance)&lt;/p&gt;
+&lt;p&gt;wait for Graph(for Detection)★&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;deadlock&#34;&gt;DeadLock&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定義：系統中存在一組Processes彼此形成&lt;strong&gt;循環等待&lt;/strong&gt;之情況，造成這些Processes皆&lt;strong&gt;無法往下執行(和starvation不同，Starvation還有一絲可能會做到)&lt;/strong&gt;，並降低Throughput之現象。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;死結成立的4個必要條件(4 necessary condition)，即缺一個，死結就不會發生. Ex. if there 4 conditions are true, then the deadlock &lt;strong&gt;will&lt;/strong&gt; arise. Ans. &lt;strong&gt;False&lt;/strong&gt;，都有不代表一定會發生&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Mutual Exclusion&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;互斥性質，&lt;strong&gt;這是對Resource(正在搶奪的資源)而言&lt;/strong&gt;，具有此性質的Resouce，&lt;strong&gt;在任何時間點最多只允許一個Process持有使用&lt;/strong&gt;，不可多個process同時持有/使用。&lt;/p&gt;
+&lt;p&gt;例：大多數的資源皆具此性質，eg. CPU, Memory, Disk, printer, etc &amp;hellip;&lt;/p&gt;
+&lt;p&gt;例：read-only file：不具互斥性質&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Hold &amp;amp; wait&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;持有並等待，Process持有部分資源，且又在等待其他Process持有的資源&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;No preemption&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;不可搶奪，**Process不可以任意剝奪其他Process所持有的資源，**必須等到對方釋放資源後才有機會取得資源&lt;code&gt;若可Preemption，則必無DeadLock，頂多只有Starvation&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Circular Waiting&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;循環等待，系統中存在一組Processes形成循環等待之情況，eg.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/KZA7hIH.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230102162108560&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;恐龍本：4 implies 2&lt;/p&gt;
+&lt;p&gt;其他版本：4 implies 1,2,3eeeee&lt;/p&gt;
+&lt;p&gt;ex. Why Singl-process不會造成DeadLock?&lt;/p&gt;
+&lt;p&gt;A：因為Circular waiting 不存在，只少要有兩個process才可以形成循環等待，因此四個必要條件有一個不符合，即不會造成DeadLock&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;例子：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/dAckLzV.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230102163619321&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;與Starvatiom比較&lt;/p&gt;
+&lt;p&gt;不同點：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;DeadLock&lt;/th&gt;
+&lt;th&gt;Starvation&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;一組Processes形成Circular waiting，造成這些Processes皆無法往下執行，&lt;strong&gt;Waiting forever&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Process因為長期無法取得完工所需的各式資源，造成它遲遲無法完工，&lt;strong&gt;有完工的機會喔，只是機會渺茫&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;會連帶造成throughput低落&lt;/td&gt;
+&lt;td&gt;與throughput高低無關&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;有4個必要條件，其中一定是No preemptive&lt;/td&gt;
+&lt;td&gt;容易發生在Preemption的環境(沒有一定，只是容易)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;解法有prevention, Avoidance, Detection &amp;amp; recovery&lt;/td&gt;
+&lt;td&gt;採用Aging技術防止&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;相同點：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;DeadLock 7 Starvation&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;皆是資源分配管理機制設計不恰當相關。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;resource-allocation-graphrag&#34;&gt;Resource Allocation Graph(R.A.G)&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;資源分配圖&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定義：令Ｇ=&amp;lt;V,E&amp;gt; 有向圖代表RAG，其中&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Vertex(頂點)：有兩個類型：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Process：以O來表示&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Resource：以&lt;img src=&#34;https://i.imgur.com/EnZNLpN.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230102171928690&#34;
+	
+	
+&gt;表示&lt;/p&gt;
+&lt;p&gt;其中&amp;rdquo;·&amp;ldquo;數目代表The Number of instances&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Edge(邊)：分為２種edge：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Allocation Edge：&lt;img src=&#34;https://i.imgur.com/dpQ8jWe.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230102172625471&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;Requset Edge：&lt;img src=&#34;https://i.imgur.com/8JBHEw8.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230102172716745&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;例子 ：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/7QY3f61.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230102173423507&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;rag的三點結論必考&#34;&gt;RAG的三點結論☆☆☆☆☆必考&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;No Cycle則No DeadLock&lt;/li&gt;
+&lt;li&gt;有Cycle&lt;strong&gt;不一定&lt;/strong&gt;有死結 例：&lt;img src=&#34;https://i.imgur.com/9d3b4lv.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230102175224638&#34;
+	
+	
+&gt;因為P3一定可以完工，會釋放1個R2, 可佩給P2，此時圖無Cycle，No DeadLock&lt;/li&gt;
+&lt;li&gt;除非(若)每一類型的資源，皆為Single instance(單一數量)，則有Cycle必為死結&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;deadlock處理方式&#34;&gt;DeadLock處理方式&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;DeadLock Prevention&lt;/li&gt;
+&lt;li&gt;DeadLock Avoidance(避免) Banker&amp;rsquo;s Algo&lt;/li&gt;
+&lt;li&gt;DeadLock Detection &amp;amp; Recovery&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1.2&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;優點：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;保證System is Deadlock free (or never enters the deadlock state)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;缺點：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;對Resource的使用/取得限制多，因為resource utilization 偏低，連帶throughput 也偏低&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可能造成Starvation&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;優點：
+&lt;ol&gt;
+&lt;li&gt;Resources utilization相對較高. throughput也連帶較高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;缺點：
+&lt;ol&gt;
+&lt;li&gt;System有可能進入DeadLock state&lt;/li&gt;
+&lt;li&gt;Detection &amp;amp; Recovery之cost相當高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;deadlock-prevention&#34;&gt;DeadLock Prevention&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;原則：破除4個必要條件之其中一個，則死結必不發生&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;破除 &amp;ldquo;Mutual Exclusion&amp;rdquo; -&amp;gt; 兩個字「&lt;strong&gt;辦不到&lt;/strong&gt;」！因為這是Resource&lt;strong&gt;與生俱來&lt;/strong&gt;(inheritance)的性質&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;破除 &amp;ldquo;Hold &amp;amp; wait &amp;quot; - &amp;gt; 兩個方法(protocols)可用，想辦法讓Hold不成立，或是讓Wait不成立&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;OS實施規定：&lt;strong&gt;除非Process可一次取得全部所需資源，才准許持有資源，否則不得持有任何資源&lt;/strong&gt;，但這樣子會有資源利用度低的問題(明明可用，但卻要等到全部都可以用才可以使用)&lt;/li&gt;
+&lt;li&gt;OS實施規定：Process可先持有部分資源，但當Process要申請其他資源時，必須Release持有的全部資源(不再Hold)，才可提出申請。但資源利用率一樣很低，因為有可能會把即將要使用的資源釋放出去&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;破除&amp;quot;No preemption&amp;rdquo;　-&amp;gt; 改為&amp;quot;preemption&amp;rdquo; 即可, eg. based on priority-level&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;☆☆☆☆☆破除&amp;quot;Circular waiting&amp;quot; -&amp;gt; 方法叫做&amp;quot;resource ordering&amp;quot; ，&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;OS會賦予每一個類型資源一個Unique(唯一的)Resource id&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;OS會規定Process必須按照Resource Id Ascending(遞增、遞減都行，你爽就好)的方式對資源提出申請&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;持有的&lt;/th&gt;
+&lt;th&gt;欲申請的&lt;/th&gt;
+&lt;th&gt;允許或不允許&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;R1&lt;/td&gt;
+&lt;td&gt;R3&lt;/td&gt;
+&lt;td&gt;允許&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R5&lt;/td&gt;
+&lt;td&gt;R3&lt;/td&gt;
+&lt;td&gt;必須先放到R5，才可提R3(因為不符合遞增)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R1,R5&lt;/td&gt;
+&lt;td&gt;R3&lt;/td&gt;
+&lt;td&gt;必須先放到R5，才可提R3(因為不符合遞增)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;WHY?&lt;/p&gt;
+&lt;p&gt;pf：假設在這樣的規定下，系統仍存在一組Processes形成Circular waiting如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vWfXi5r.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230103215842475&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;依規定，我們可以推導出資源ID大小關係如下&lt;/p&gt;
+&lt;p&gt;r0 &amp;lt; r1 &amp;lt; r2 &amp;lt; &amp;hellip; &amp;lt;rn &amp;lt; r0&lt;/p&gt;
+&lt;p&gt;竟推出 r0 &amp;lt;r此一矛盾式子，因此Circular waiting必不存在&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;deadlock-avoidance&#34;&gt;Deadlock Avoidance&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定義：當某個Process提出某些資源申請時，則OS必須執行&lt;strong&gt;Banker&amp;rsquo;s Algorithm&lt;/strong&gt;，以確定&lt;strong&gt;倘若分配給process其申請資源後，System未來處於safe state&lt;/strong&gt;，若Safe則核准其申請，否則(unsage)則否決其申請，process必須等一段時間後，再重提申請。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/TG6PUR9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230103223800287&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Deadlock是unsafe之subset&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;bankers-algo-&#34;&gt;Banker&amp;rsquo;s Algo ☆☆☆☆☆&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;本章的計算題都在這 Banker&#39;s Alog and Safety Algo&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定義：使用的Data Structures&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;看不懂的話直接看下面範例比較快&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;假設
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;n：process個數
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;m:  resource種類數
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1. Request i ：［1..m］of int
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	-&amp;gt; Pi提出之各式資源申請量
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2. Allocation : n*m martrix 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	-&amp;gt; 各個process目前持有的各式資源數量
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3. MAX: n*m martrix
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	-&amp;gt; 各process完工所需之各式資源最大數量
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4. Need：n*m martrix(自己算)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	-&amp;gt; 各process尚須(欠)各式資源數量才能完工，因此Need= MAX -Allocation
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;5. Avaliable：[1..m]of int 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	-&amp;gt; 系統目前可用的，各式資源數量，因此Available=資源總量-Allocation
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;舉例說明：假設有人來貸款3,000萬，那麼Requesti =3000萬、Allocation就是自己的存款，假設這邊是2,000萬，想買一棟9,000萬的房子，這9,000萬就是他的MAX，那麼Need= 9,000-2,000= 7,000萬，Available 就是銀行目前金庫裡能借給你的錢，這邊假設是10,000萬。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step1. Check Request &amp;lt;= Need ?若成立，則往下執行，若不成立，則終止Process。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Request=3,000萬，Need= 7,000萬。這樣就是合理的，但假設你今天需求7,000萬，可是卻貸了3,000兆，遠超於你的需求，那就有問題了
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step2. Check Request &amp;lt;=Available?若成立，則往下執行，若不成立，則Pi waits until resouce availalbe
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;概念就是你去貸3,000萬，可是銀行金庫目前的錢不夠，需要你稍等一下
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step3 (試算)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;假設貸款成功
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Allocation = Allocation + Request
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Need = Need - Request
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Available = Available - Request
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Step4 依上述試算值，必須執行 &amp;#34;safety&amp;#34; algo，若回傳&amp;#34;Safe&amp;#34; state則核准Pi此次申請。若回傳&amp;#34;unsafe&amp;#34; state，則否決Pi此次申請。Pi必須等一段時間再重提申請
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;safety-algorithm&#34;&gt;Safety Algorithm&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Data Structures used 除上述之外，另外加入&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Work:[1..m] of int -&amp;gt; 表系統目前可用Resources之累計數量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finish:[1..m] of Boolean -&amp;gt; 針對Process&lt;/p&gt;
+&lt;p&gt;Finish[i]=&lt;/p&gt;
+&lt;p&gt;True: 表Pi可完工&lt;/p&gt;
+&lt;p&gt;False: 表Pi尚未完工&lt;/p&gt;
+&lt;p&gt;∀1&amp;lt;=i&amp;lt;=n&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Procedures&lt;/p&gt;
+&lt;p&gt;Step&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;設定初值&lt;/p&gt;
+&lt;p&gt;Work = Available&lt;/p&gt;
+&lt;p&gt;Finish[i]皆為False&lt;/p&gt;
+&lt;p&gt;∀1&amp;lt;=i&amp;lt;=n&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;看可否找到Pi滿足：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Finish[i]為False且&lt;/li&gt;
+&lt;li&gt;Needi &amp;lt;= Work (我所需要的資源，)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;若可找到，則進3,否則則進4&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;設定Finish[i]=True，且Work= Work + Allocationi, then, 回到2&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check Finish Array, 若皆為True，則傳回Safe State，否則傳回Unsafe state&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;範例&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;5個Process(P0,P1,P2,P3,P4)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3種resource(A,B,C)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;資源量(A,B,C) = (10,5,7)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1. 求出Need及Available
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2. P1提出(A,B,C)= (1,0,2)申請，是否核准?Why?
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Ans.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Allocation-各個Process身上所持有的資源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;MAX- Process完成工作最多所需要的資源數量分別是多少&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Need= &lt;strong&gt;MAX-Allocation&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;7-0=7&lt;/td&gt;
+&lt;td&gt;5-1=4&lt;/td&gt;
+&lt;td&gt;3-0=3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1&lt;/td&gt;
+&lt;td&gt;3-2=1&lt;/td&gt;
+&lt;td&gt;2-0=2&lt;/td&gt;
+&lt;td&gt;2-0=2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Available= 系統目前還剩的可用資源數，資源總量()-已經配置出去的(Allocation出去的)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;10-(2+3+2)=3&lt;/td&gt;
+&lt;td&gt;5-(1+1)=3&lt;/td&gt;
+&lt;td&gt;7-(2+1+2)=2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Request=(1,0,2), Banker&amp;rsquo;s Algo&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Check Request &amp;lt;= Need ? (你所要求的小於你真正需要的，亦即你買東西只要500，不能跟銀行借到500萬)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/5QkkGo9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230107115630812&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check  Request &amp;lt;= Available (你要的借的錢是否小於銀行本身所持有的錢，亦即如果你要借1億，但銀行只有一百萬)?&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/rEVlV70.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230107120047287&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(試算)&lt;/p&gt;
+&lt;p&gt;P1:&lt;/p&gt;
+&lt;p&gt;Allocation = &amp;lt;2,0,0&amp;gt;+&amp;lt;1,0,2&amp;gt;(申請量) = &lt;strong&gt;&amp;lt;3,0,2&amp;gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Need = &amp;lt;1,2,2&amp;gt; - &amp;lt; 1,0,2&amp;gt;(申請量) = &lt;strong&gt;&amp;lt;0,2,0&amp;gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Available = &amp;lt;3,3,2&amp;gt; - &amp;lt;1,0,2&amp;gt;(申請量) = &lt;strong&gt;&amp;lt;2,3,0&amp;gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;依上述調整值，來執行&amp;quot;Safety&amp;quot; Algo&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Allocation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1(要調整)&lt;/td&gt;
+&lt;td&gt;&lt;u&gt;&lt;strong&gt;3&lt;/strong&gt;&lt;/u&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;&lt;u&gt;0&lt;/u&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;u&gt;&lt;strong&gt;2&lt;/strong&gt;&lt;/u&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;MAX&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Need&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1(要調整)&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;0&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Available&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Safety Algo&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;初值的設定&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Work = Abailable = &amp;lt;2,3,0&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finish&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;尋找有沒有Process還沒完成工作，並且它的needi &amp;lt;= work的&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可找到P1滿足Finish[i]= False且Need &amp;lt;=work&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;​	&lt;img src=&#34;https://i.imgur.com/9uFiGp9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230107123442941&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;設定Finish[i]=True，且Work= Work+Allocation = (2,3,0) + (3,0,2) = (5,3,2) , then goto 2&lt;/li&gt;
+&lt;li&gt;work = &lt;del&gt;(2,3,0)&lt;/del&gt; &amp;gt; (5,3,2)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;​	&lt;img src=&#34;https://i.imgur.com/qn6JXjh.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230107123951216&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;選擇P3滿足 Need&amp;lt;= Work，且Finish[i] = False&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;設定Finishj[3]=True，且Work=(5,3,2) +(2,1,1) = (7,4,3), then goto 2&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;hellip; 以此類推，P0, P2, P4皆可Finish，直到大家都Finish，因此大家都滿足了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check Finish陣列，因為皆為True，所以&lt;strong&gt;傳回Safe State&lt;/strong&gt;，&lt;strong&gt;因此核准P1此次的申請&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;列出上述其中一組&lt;strong&gt;Safe Sequence&lt;/strong&gt;&lt;code&gt;Safe Sequence/ Safe State定義：至少可以找到&amp;gt;=1組，Safe Sequence，成為Safe State，否則unsafe state。代表OS未來依此Processes順序可分配各Process所need的資源，使得大家皆可順利完工&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Ans. P1,P3,P0,P2,P4&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;依現在狀況，若P4提出(3,3,0)申請，是否核准?why? &lt;strong&gt;(練習題)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ans. Banker&amp;rsquo;s algo&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Check Request (3,3,0) &amp;lt;= Need(4,3,1) &lt;strong&gt;通過&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Need&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;0&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;​		2. Check Request4(3,3,0) &amp;lt;= Available (2,3,0)?&lt;/p&gt;
+&lt;p&gt;​			不成立，因為無法核准，&lt;strong&gt;可用資源不足&lt;/strong&gt;&lt;/p&gt;
+&lt;ol start=&#34;11&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;依現在情況，若P0提出(0,2,0)，是否核准? Ｗhy?&lt;/p&gt;
+&lt;p&gt;Ans. Banker&amp;rsquo;s Algo&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;快速跑過，確認可以過，資源分配改變如下&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Allocation&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Need&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3`&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Available&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;執行Safety&amp;rsquo;s algo&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;設定初值，Work=(2,1,0)&lt;/li&gt;
+&lt;li&gt;找尋是否有符合Needi &amp;lt;= Work 的Process，且還有Process為False**(不通過)**，所以unsafe&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;範例二&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Allocation&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Need&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P0&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P2&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P3&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P4&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Available&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;x&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;求x的最小值，使其成為Safety&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;設置初值，work= (2,1,x)&lt;/li&gt;
+&lt;li&gt;找尋 Need &amp;lt;= work&lt;/li&gt;
+&lt;li&gt;找到了，P3，先暫定x=1 (2,1,1)&lt;/li&gt;
+&lt;li&gt;P3因為可以完成，完成後資源就可以釋放出來，因此work (2,1,1) &amp;gt; (4,2,2)&lt;/li&gt;
+&lt;li&gt;繼續找尋Need &amp;lt;=work&lt;/li&gt;
+&lt;li&gt;找到了，P1&lt;/li&gt;
+&lt;li&gt;P1因為可以完成，完成後資源就可以釋放出來，因此work(4,2,2) &amp;gt; (7,2,4)&lt;/li&gt;
+&lt;li&gt;&amp;hellip;往復循環，以此類推&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;p&gt;x= 1;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/mo7FIyC.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230107194309689&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;bankers-algo-之-time-complexity&#34;&gt;Banker&amp;rsquo;s Algo 之 Time Complexity&lt;/h3&gt;
+&lt;p&gt;先講結論，&lt;strong&gt;複雜度就是O(n^2*m)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;(n: Process 數目, m:resource 種類數)&lt;/p&gt;
+&lt;p&gt;Banker&amp;rsquo;s Algo Time Complexity&lt;/p&gt;
+&lt;p&gt;Step&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;O(m)&lt;code&gt;Check Request &amp;lt;= Need &lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;O(m)&lt;code&gt; Check Request &amp;lt;=Available&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;O(m)&lt;code&gt;試算&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Run safety algo&lt;/li&gt;
+&lt;li&gt;設置初值work -&amp;gt; 1~m的一維陣列，因此複雜度為O(m)。Finish -&amp;gt;1~n的一維陣列，因此複雜度為 O(n)&lt;/li&gt;
+&lt;li&gt;先來看看Safety&amp;rsquo;s algo的步驟&lt;img src=&#34;https://i.imgur.com/sIe7W3D.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230109221851317&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;​		第一次最多會檢查n次，再來第二次檢查n-1次&amp;hellip;&lt;/p&gt;
+&lt;p&gt;​		=(n+1)n/2個Processes。每次檢查Need &amp;lt;=Work 花O(m)的時	間，最多花O(n^2*m) time&lt;/p&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;花O(n) Check Finish&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因此&lt;strong&gt;複雜度就是O(n^2*m)&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;針對每一項類型資源皆為single-instance情況下有較簡易的avoidance作法&#34;&gt;針對每一項類型資源，皆為Single-instance情況下，有較簡易的Avoidance作法&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;利用RAG，搭配&lt;strong&gt;Claim edge(宣告邊)使用&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Claim edge:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/DbUNSBR.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230110213506269&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;代表Pi未來會對Rj提出申請(即表MAX/NEED之意義)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Steps：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;當Pi提出Rj申請後&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;檢查有無Pi對Rj的這條宣告邊(Claim edge)存在，若有，則goto2否則，終止Pi&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check Rj是否Available，若是，則goto3，否則&lt;strong&gt;Pi waits&lt;/strong&gt;(變成申請邊)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(試算)暫時把宣告邊改為配置邊&lt;img src=&#34;https://i.imgur.com/45EmEs2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230110234601069&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;執行safety&amp;rsquo;s Algo, check 圖中是否有cycle存在&lt;/p&gt;
+&lt;p&gt;若沒有，則為safe -&amp;gt; 可核准&lt;/p&gt;
+&lt;p&gt;有Cycle，則為unsafe -&amp;gt; 否決&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/aTNbxz5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230110233244192&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;若P1提出R2之申請，是否核准?&lt;/p&gt;
+&lt;p&gt;Ans.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/sE32Vh1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230110235023904&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;若P2提出R2之申請，是否核准?&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/VDS6Lz1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230111000113366&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;補充：&lt;strong&gt;Deadlock是unsafe之subset(或unsafe有可能導致死結，也有可能不會導致死結)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BSN7MhD.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230111001212290&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;可能&lt;strong&gt;不會&lt;/strong&gt;死結&lt;/p&gt;
+&lt;p&gt;ans. 搞不好P1在提出R2的申請時，就使用完R1了，這時就不會有死結。或是P2在P1提出申請之前就使用完R2了，此時也不會有死結。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可能&lt;strong&gt;會有&lt;/strong&gt;死結&lt;/p&gt;
+&lt;p&gt;ans. P1立刻對R2提出申請，此時RAG有Cycle，且資源都是Single Instance&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;也就是說死結產生與否取決於宣告邊在哪個moment提出申請&lt;/p&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;h3 id=&#34;定理&#34;&gt;定理&lt;/h3&gt;
+&lt;p&gt;系統若有&lt;u&gt;n&lt;/u&gt;個processes，m個resource量(單一種類)滿足下列2個條件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;1&amp;lt;=MAXi&amp;lt;=m&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;且
+$$
+\sum_{i=1}^nMAXi&amp;lt;n+m
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;process-co-ncept&#34;&gt;Process Co ncept&lt;/h1&gt;
 &lt;h1 id=&#34;第一節-總覽&#34;&gt;第一節 總覽&lt;/h1&gt;
 &lt;h2 id=&#34;第一章-序言&#34;&gt;第一章 序言&lt;/h2&gt;
 &lt;h2 id=&#34;第二章-operating-system-strucutures作業系統架構&#34;&gt;第二章 Operating-System Strucutures(作業系統架構)★&lt;/h2&gt;
@@ -3927,7 +5888,7 @@ Note：目的&lt;/p&gt;
 &lt;p&gt;定義：OS為了管理所有Processes，會在Kernel memory中，替每個Process，各自準備一個Block(Table, 表格)，用來記錄Process之所有相關資訊&lt;/p&gt;
 &lt;p&gt;PCB的主要內容有：&lt;/p&gt;
 &lt;p&gt;Process&lt;/p&gt;
-&lt;h4 id=&#34;process-concept-1&#34;&gt;Process Concept&lt;/h4&gt;
+&lt;h4 id=&#34;process-concept&#34;&gt;Process Concept&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/46QhD4h.png&#34;
 	
 	
