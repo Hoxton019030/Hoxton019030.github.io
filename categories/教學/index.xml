@@ -6,7 +6,31 @@
         <description>Recent content in 教學 on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Sat, 08 Oct 2022 12:04:44 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 11 Jan 2023 23:27:27 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>你知道嗎?現在Github上也可以使用Vscode喔！</title>
+        <link>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</link>
+        <pubDate>Wed, 11 Jan 2023 23:27:27 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</guid>
+        <description>&lt;img src="https://i.imgur.com/45wUgwO.png" alt="Featured image of post 你知道嗎?現在Github上也可以使用Vscode喔！" /&gt;&lt;h3 id=&#34;heading&#34;&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;heading-1&#34;&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;heading-2&#34;&gt;&lt;/h3&gt;
+&lt;p&gt;前陣子在網路上找看看有沒有什麼實用的Git指令，無意間看到這個功能。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/NltXKuw.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;只要在Github的頁面按下 &amp;gt; ，就可以開啟網頁版的Vscode囉，不過有個小缺點就是，Vscode開啟時介面語言是依據你瀏覽器的語言所決定，所以如果想要使用英文版的Vscode就要把Chrome的語言設定成英文喔。&lt;/p&gt;
+&lt;p&gt;這樣開啟後最直觀的好處就是可以直接在Github上以Vscode編輯程式碼，做快速的修改，瀏覽起來也比較快，不然原本網頁在看的話速度非常的慢！並且也可以在上面做衝突的處理。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>如何使用Hugo在Github上架設靜態網頁完整教學</title>
         <link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/</link>
         <pubDate>Sat, 08 Oct 2022 12:04:44 +0800</pubDate>
