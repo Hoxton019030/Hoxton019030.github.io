@@ -5942,15 +5942,17 @@ Note：目的</p>
 <p>系統若有<u>n</u>個processes，m個resource量(單一種類)滿足下列2個條件：</p>
 <ol>
 <li>
-<p>1&lt;=MAXi&lt;=m</p>
+<p>1&lt;=MAXi&lt;=m(每個process的最大需求量至少要有1個，最多不超過m)</p>
 </li>
 <li>
-<p>且
-$$
-\sum_{i=1}^nMAXi&lt;n+m
+<p>且所有n個process的Maxi加總，小於n+m</p>
+<p>$$
+\sum_{i=1}^nMAXi&lt;(n+m)
 $$</p>
+<p>則System is <strong>Deadlock free</strong>.</p>
 </li>
 </ol>
+<p>例1. 有6部printers被process使用，每個process最多需要2部printers才可以完工，則System 最多允許?個process執行以確保deadlock Free</p>
 <h1 id="process-co-ncept">Process Co ncept</h1>
 <h1 id="第一節-總覽">第一節 總覽</h1>
 <h2 id="第一章-序言">第一章 序言</h2>

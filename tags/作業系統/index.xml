@@ -5638,15 +5638,17 @@ Note：目的&lt;/p&gt;
 &lt;p&gt;系統若有&lt;u&gt;n&lt;/u&gt;個processes，m個resource量(單一種類)滿足下列2個條件：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;1&amp;lt;=MAXi&amp;lt;=m&lt;/p&gt;
+&lt;p&gt;1&amp;lt;=MAXi&amp;lt;=m(每個process的最大需求量至少要有1個，最多不超過m)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;且
-$$
-\sum_{i=1}^nMAXi&amp;lt;n+m
+&lt;p&gt;且所有n個process的Maxi加總，小於n+m&lt;/p&gt;
+&lt;p&gt;$$
+\sum_{i=1}^nMAXi&amp;lt;(n+m)
 $$&lt;/p&gt;
+&lt;p&gt;則System is &lt;strong&gt;Deadlock free&lt;/strong&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;例1. 有6部printers被process使用，每個process最多需要2部printers才可以完工，則System 最多允許?個process執行以確保deadlock Free&lt;/p&gt;
 &lt;h1 id=&#34;process-co-ncept&#34;&gt;Process Co ncept&lt;/h1&gt;
 &lt;h1 id=&#34;第一節-總覽&#34;&gt;第一節 總覽&lt;/h1&gt;
 &lt;h2 id=&#34;第一章-序言&#34;&gt;第一章 序言&lt;/h2&gt;
