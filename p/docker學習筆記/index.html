@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='一直跳出MultiMain的錯誤'><title>CLion的MutilMain</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Docker的一些學習筆記，想到啥就寫啥'><title>Docker學習筆記</title>
 
-<link rel='canonical' href='https://hoxtonhsu.com/p/clion%E7%9A%84mutilmain/'>
+<link rel='canonical' href='https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/'>
 
-<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='CLion的MutilMain'>
-<meta property='og:description' content='一直跳出MultiMain的錯誤'>
-<meta property='og:url' content='https://hoxtonhsu.com/p/clion%E7%9A%84mutilmain/'>
+<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='Docker學習筆記'>
+<meta property='og:description' content='Docker的一些學習筆記，想到啥就寫啥'>
+<meta property='og:url' content='https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/'>
 <meta property='og:site_name' content='Hoxton'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2022-10-17T18:09:43&#43;08:00'/><meta property='article:modified_time' content='2022-10-17T18:09:43&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/aGwtINt.png' />
-<meta name="twitter:title" content="CLion的MutilMain">
-<meta name="twitter:description" content="一直跳出MultiMain的錯誤"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://i.imgur.com/aGwtINt.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Docker' /><meta property='article:published_time' content='2023-01-18T21:47:50&#43;08:00'/><meta property='article:modified_time' content='2023-01-18T21:47:50&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/JdDwgHn.png ' />
+<meta name="twitter:title" content="Docker學習筆記">
+<meta name="twitter:description" content="Docker的一些學習筆記，想到啥就寫啥"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.imgur.com/JdDwgHn.png ' />
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
@@ -239,9 +239,9 @@ if (!doNotTrack) {
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/clion%E7%9A%84mutilmain/">
+            <a href="/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/">
                 
-                    <img src="https://i.imgur.com/aGwtINt.png" loading="lazy" alt="Featured image of post CLion的MutilMain" />
+                    <img src="https://i.imgur.com/JdDwgHn.png%20" loading="lazy" alt="Featured image of post Docker學習筆記" />
                 
             </a>
         </div>
@@ -260,12 +260,12 @@ if (!doNotTrack) {
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/clion%E7%9A%84mutilmain/">CLion的MutilMain</a>
+            <a href="/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/">Docker學習筆記</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            一直跳出MultiMain的錯誤
+            Docker的一些學習筆記，想到啥就寫啥
         </h3>
         
     </div>
@@ -283,7 +283,7 @@ if (!doNotTrack) {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Oct 17, 2022</time>
+                <time class="article-time--published">Jan 18, 2023</time>
             </div>
         
 
@@ -312,63 +312,182 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <p>最近在研究C++，但發現我的CLion不知道為什麼只能有一個Main方法，後來網路上查了一下之後發現好像是因為CMake的關係。</p>
-<p><img src="https://i.imgur.com/F5hZpXH.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221017181210022"
-	
-	
-></p>
-<blockquote>
-<p>錯誤訊息</p>
-</blockquote>
-<p>後來研究了一下，發現只要在Project底下的CMakeList.txt加上這段就可以了</p>
+    <h2 id="常用指令">常用指令</h2>
+<ol>
+<li>
+<p>查看目前的image</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">file (GLOB files *.cpp)
-</span></span><span class="line"><span class="cl">foreach (file ${files})
-</span></span><span class="line"><span class="cl">    string(REGEX REPLACE &#34;.+/(.+)\\..*&#34; &#34;\\1&#34; exe ${file})
-</span></span><span class="line"><span class="cl">    add_executable (${exe} ${file})
-</span></span><span class="line"><span class="cl">    message (\ \ \ \ --\ src/${exe}.cpp\ will\ be\ compiled\ to\ bin/${exe})
-</span></span><span class="line"><span class="cl">endforeach ()
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker image ls
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://i.imgur.com/qKhhlaq.png"
+</div><p>或是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker images
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>執行docker image</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run <span class="o">[</span>imageName<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>打包成docker image</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker build -t drink-more-water .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>-t 是 tag的縮寫，hello-docker是這個tag的名稱，.代表所有檔案(吧?</p>
+<p><img src="https://i.imgur.com/c5XdkHr.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20221017181342487"
+		alt="image-20230118215347469"
 	
 	
 ></p>
-<blockquote>
-<p>完整的圖片如上</p>
-</blockquote>
-<p>加入之後記得要Reload CMake Project</p>
-<p><img src="https://i.imgur.com/DrQHwR8.png"
+</li>
+</ol>
+<p>​</p>
+<ol start="4">
+<li>
+<p>查看目前運作中的Container</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/C1jS3jN.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20221017181404785"
+		alt="image-20230118222647084"
 	
 	
 ></p>
+<p>或是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps -a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看底下全部的Container不論啟動與否</p>
+<p><img src="https://i.imgur.com/sIt29w1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230118222751647"
+	
+	
+></p>
+</li>
+</ol>
+<p>​</p>
+<h2 id="在docker啟動ubuntu">在Docker啟動Ubuntu</h2>
+<ol>
+<li>
+<p>下載 ubuntu 的image</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull ubuntu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或是可以</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run ubuntu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就會自動從docker hub載下來了，但這樣只是把ubuntu的image拉到我們的docker裡面，它本身是沒有啟動的</p>
+<p><img src="https://i.imgur.com/MMDiSRt.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230118222929032"
+	
+	
+></p>
+</li>
+<li>
+<p>在docker中運行ubuntu</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -it ubuntu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/IMZCVGx.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt=" "
+	
+	
+></p>
+</li>
+<li>
+<p>使用apt(advanced package tool)安裝nano(Linux text editor)</p>
+<p>用apt載任何東西前都建議先update</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">apt update
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">apt install nano
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
 
 </section>
 
@@ -377,7 +496,7 @@ if (!doNotTrack) {
     
     <section class="article-tags">
         
-            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+            <a href="/tags/docker/">Docker</a>
         
     </section>
 
@@ -408,25 +527,6 @@ if (!doNotTrack) {
     <h2 class="section-title">Related content</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/JdDwgHn.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/JdDwgHn.png "/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Docker學習筆記</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="has-image">
@@ -499,6 +599,25 @@ if (!doNotTrack) {
 
         <div class="article-details">
             <h2 class="article-title">如何將Junit的測試粒度控制在最小單元</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/intellij%E8%88%87eclipse%E7%9A%84%E6%AF%94%E8%BC%83/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/Fx9nanx.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/Fx9nanx.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">IntelliJ與Eclipse的比較</h2>
         </div>
     </a>
 </article>
@@ -639,7 +758,39 @@ if (!doNotTrack) {
             >
 
             </main>
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#常用指令">常用指令</a></li>
+    <li><a href="#在docker啟動ubuntu">在Docker啟動Ubuntu</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
         </div>
         <script 
