@@ -34,10 +34,31 @@
         <guid>https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid>
         <description>&lt;img src="https://i.imgur.com/JdDwgHn.png " alt="Featured image of post Docker學習筆記" /&gt;&lt;h2 id=&#34;名詞解釋&#34;&gt;名詞解釋&lt;/h2&gt;
 &lt;h3 id=&#34;container&#34;&gt;Container&lt;/h3&gt;
+&lt;p&gt;Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。它使用操作系統級別的虛擬化，可以在單一的物理主機上運行多個容器，並且每個容器都有自己的運行環境和資源。&lt;/p&gt;
+&lt;p&gt;Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。容器具有輕量級、可移植性和隔離性等特點。容器是通過在操作系統內核中運行的容器引擎來實現的。&lt;/p&gt;
+&lt;p&gt;Docker容器主要是使用了Linux 的 Namespaces 和 Control groups（cgroups） 技術來實現隔離，這兩種技術可以將一個實體主機上的資源限制給每個容器，而容器內部則是共用一個kernel，因此容器比虛擬機器輕量且速度較快。&lt;/p&gt;
+&lt;p&gt;Docker容器是基於鏡像(Image)來建立與運行的，一個鏡像可以是一個基礎鏡像或是由其他鏡像所建立而來。當執行docker run 指令時，會從鏡像建立一個容器，並在容器內執行指定的應用程式或服務。&lt;/p&gt;
+&lt;p&gt;不僅如此，Docker容器還支援網路、儲存卷的映射，使得容器可以與外部通訊，也可以存取本地端的資料。&lt;/p&gt;
+&lt;p&gt;透過Docker容器,我們可以將應用程式、服務和其所需的環境打包在一起，並且可以在不同的環境中運行，提高了應用程式的可移植性和彈性。&lt;/p&gt;
+&lt;h3 id=&#34;image&#34;&gt;Image&lt;/h3&gt;
+&lt;p&gt;Docker Image 是 Docker 容器的基礎，它是一個只讀的模板，包含了容器運行所需的所有檔案、設定和程式。當執行 &lt;code&gt;docker run&lt;/code&gt; 指令時，Docker 會從 Image 建立一個新的容器並在其中執行指定的應用程式或服務。&lt;/p&gt;
+&lt;p&gt;Docker Image 可以通過構建或下載的方式創建，構建的方式可以使用 Dockerfile 來描述如何構建一個 Image。而下載的方式則可以從 Docker Hub 或其他的 registry 下載。&lt;/p&gt;
+&lt;h3 id=&#34;volume&#34;&gt;Volume&lt;/h3&gt;
+&lt;p&gt;Docker Volume 是 Docker 的一種功能，用於管理容器中的數據。容器本身是輕量級的，數據是不能永久存在的，而 Volume 則是可以永久存在的。&lt;/p&gt;
+&lt;p&gt;Docker Volume 可以被掛載到容器上，並且可以在容器內部存儲數據。當容器停止運行或者被刪除時，Volume 中的數據仍然可以保留下來。這樣就可以在重啟容器或建立新容器時，繼續使用之前存儲的數據。&lt;/p&gt;
+&lt;p&gt;並且Volume裡面的資料是可以和Host分享的，兩邊的資料呈現鏡像的雙向對應，在Host新增的東西會在Container出現，Container新增的資料也會在Host裡面出現&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/pw664cD.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230121163302976&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;常用指令&#34;&gt;常用指令&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;查看目前的image&lt;/p&gt;
+&lt;h3 id=&#34;查看目前的image&#34;&gt;查看目前的image&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -55,9 +76,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker images
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;查看目前運行的Container&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;查看目前運行的container&#34;&gt;查看目前運行的Container&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -76,9 +95,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker container ls
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;​	&lt;img src=&#34;https://i.imgur.com/WCJdgXl.gif&#34;
+&lt;/div&gt;&lt;p&gt;​	&lt;img src=&#34;https://i.imgur.com/WCJdgXl.gif&#34;
 	
 	
 	
@@ -88,9 +105,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;執行docker image&lt;/p&gt;
+&lt;h3 id=&#34;執行docker-image&#34;&gt;執行docker image&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -110,9 +125,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;後面的:latest是版本號，可加可不加，沒加的話預設就是latest&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在Detached mode下執行&lt;/p&gt;
+&lt;h3 id=&#34;在detached-mode下執行&#34;&gt;在Detached mode下執行&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -148,9 +161,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;打包成docker image&lt;/p&gt;
+&lt;h3 id=&#34;打包成docker-image&#34;&gt;打包成docker image&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -170,12 +181,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
 &lt;p&gt;​&lt;/p&gt;
-&lt;ol start=&#34;5&#34;&gt;
-&lt;li&gt;
-&lt;p&gt;查看目前運作中的Container&lt;/p&gt;
+&lt;h3 id=&#34;查看目前運作中running的container&#34;&gt;查看目前運作中(running)的Container&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -214,9 +221,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;停止Container&lt;/p&gt;
+&lt;h3 id=&#34;停止container&#34;&gt;停止Container&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -235,9 +240,37 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
 &lt;p&gt;​&lt;/p&gt;
+&lt;h3 id=&#34;刪除container&#34;&gt;刪除Container&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker rm &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;ContainerId&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;or&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;NAMEs&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/RrMc8BN.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;也可以輸入很多個Id，一次刪個爽&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/rL9pJaN.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230121155539947&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;在docker啟動ubuntu&#34;&gt;在Docker啟動Ubuntu&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -404,6 +437,201 @@
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;image-20230121153324975&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;container的管理&#34;&gt;Container的管理&lt;/h2&gt;
+&lt;p&gt;當我們啟動、並Stop一個Container，實際上如果依照我們剛剛的作法，我們是不斷的創造新的Container，輸入docker ps -a 即可看到目前存在的Container(不論running or Stopping)，或是在Desktop docker裡面也都可以看到&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/y6X5rl3.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/myW3tLy.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230121154505315&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我們可以透過&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker rm &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;ContainerId&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;來真正意義上的移除Container，而不是停止它&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/RrMc8BN.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;可以使用docker ps -aq ，這個指令只會秀出ContainerId，可以刪更爽，直接複製貼上就好&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;還有更爽的方式，用$(docker ps -aq)的方式 傳遞參數&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6awXQYd.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;為container命名&#34;&gt;為Container命名&lt;/h2&gt;
+&lt;p&gt;建議命名一下，比較好找，只支援英文，不支援中文&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run --name hoxtonPractice -d -p 8080:80 nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ibwUXZi.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ivVF2QW.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230121161417305&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;volume的使用&#34;&gt;Volume的使用&lt;/h2&gt;
+&lt;p&gt;讓資訊可以在host與Container共享的一個功能&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/gFztGx2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230121171102777&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;範例：&lt;/p&gt;
+&lt;p&gt;首先在桌面上創建一個名為website的資料夾，裡面有個index.html，內容如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;hello docker and volume&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/E9IOBy2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230121172021418&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接著將terminal切至/website底下，然後輸入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run --name website -v &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;PWD&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;:/usr/share/nginx/html:ro -d -p 8080:80 nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;-v是 Docker 中的 volume 指令，它用於將主機上的目錄或檔案掛載到容器中。配合後面的${PWD}:/usr/share/nginx/html，意思就是將當前目錄的內容掛載(Mount)到容器中的 /usr/share/nginx/html 目錄下。這樣設定後，當主機上的目錄內容變更時，容器中的 /usr/share/nginx/html 目錄內的內容也會隨之更新。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;:ro 是指將主機上的目錄或檔案掛載到容器中的目錄或檔案，並設定為只讀模式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	這意味著在容器中將無法寫入或修改掛載的目錄或檔案，只能讀取。這可以避免對主機上的檔案造成損壞或不	必要的變更。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;/usr/share/nginx/html 是 Nginx 預設的網站根目錄。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;結果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/JWE1ngP.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;也因為Volume是鏡像對應，因此修改host的檔案，container的內容物也會同步更新&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/xr4Ps97.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;我們可以用以下的指令來訪問看看Nginx的檔案&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it website bash 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;docker exec 是 Docker 的命令行工具，用於在運行中的容器內執行命令。&lt;/li&gt;
+&lt;li&gt;-it 這兩個選項表示要互動式地執行命令，並且讓輸入和輸出保持連接。&lt;/li&gt;
+&lt;li&gt;website 是容器的名稱或 ID。&lt;/li&gt;
+&lt;li&gt;bash 是要在容器內執行的命令，這裡是啟動 Bash shell。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vfD46ft.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在Nginx裡面新增檔案，移除檔案，會發現host的資料夾檔案也同步更新&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CxISdYl.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
 	
 	
 &gt;&lt;/p&gt;

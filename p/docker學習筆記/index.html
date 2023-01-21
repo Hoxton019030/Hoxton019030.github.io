@@ -298,7 +298,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -314,10 +314,31 @@ if (!doNotTrack) {
     
     <h2 id="名詞解釋">名詞解釋</h2>
 <h3 id="container">Container</h3>
+<p>Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。它使用操作系統級別的虛擬化，可以在單一的物理主機上運行多個容器，並且每個容器都有自己的運行環境和資源。</p>
+<p>Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。容器具有輕量級、可移植性和隔離性等特點。容器是通過在操作系統內核中運行的容器引擎來實現的。</p>
+<p>Docker容器主要是使用了Linux 的 Namespaces 和 Control groups（cgroups） 技術來實現隔離，這兩種技術可以將一個實體主機上的資源限制給每個容器，而容器內部則是共用一個kernel，因此容器比虛擬機器輕量且速度較快。</p>
+<p>Docker容器是基於鏡像(Image)來建立與運行的，一個鏡像可以是一個基礎鏡像或是由其他鏡像所建立而來。當執行docker run 指令時，會從鏡像建立一個容器，並在容器內執行指定的應用程式或服務。</p>
+<p>不僅如此，Docker容器還支援網路、儲存卷的映射，使得容器可以與外部通訊，也可以存取本地端的資料。</p>
+<p>透過Docker容器,我們可以將應用程式、服務和其所需的環境打包在一起，並且可以在不同的環境中運行，提高了應用程式的可移植性和彈性。</p>
+<h3 id="image">Image</h3>
+<p>Docker Image 是 Docker 容器的基礎，它是一個只讀的模板，包含了容器運行所需的所有檔案、設定和程式。當執行 <code>docker run</code> 指令時，Docker 會從 Image 建立一個新的容器並在其中執行指定的應用程式或服務。</p>
+<p>Docker Image 可以通過構建或下載的方式創建，構建的方式可以使用 Dockerfile 來描述如何構建一個 Image。而下載的方式則可以從 Docker Hub 或其他的 registry 下載。</p>
+<h3 id="volume">Volume</h3>
+<p>Docker Volume 是 Docker 的一種功能，用於管理容器中的數據。容器本身是輕量級的，數據是不能永久存在的，而 Volume 則是可以永久存在的。</p>
+<p>Docker Volume 可以被掛載到容器上，並且可以在容器內部存儲數據。當容器停止運行或者被刪除時，Volume 中的數據仍然可以保留下來。這樣就可以在重啟容器或建立新容器時，繼續使用之前存儲的數據。</p>
+<p>並且Volume裡面的資料是可以和Host分享的，兩邊的資料呈現鏡像的雙向對應，在Host新增的東西會在Container出現，Container新增的資料也會在Host裡面出現</p>
+<p><img src="https://i.imgur.com/pw664cD.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121163302976"
+	
+	
+></p>
 <h2 id="常用指令">常用指令</h2>
-<ol>
-<li>
-<p>查看目前的image</p>
+<h3 id="查看目前的image">查看目前的image</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -335,9 +356,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker images
 </span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-<li>
-<p>查看目前運行的Container</p>
+</div><h3 id="查看目前運行的container">查看目前運行的Container</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -356,9 +375,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker container ls
 </span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-</ol>
-<p>​	<img src="https://i.imgur.com/WCJdgXl.gif"
+</div><p>​	<img src="https://i.imgur.com/WCJdgXl.gif"
 	
 	
 	
@@ -368,9 +385,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<ol start="3">
-<li>
-<p>執行docker image</p>
+<h3 id="執行docker-image">執行docker image</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -390,9 +405,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>後面的:latest是版本號，可加可不加，沒加的話預設就是latest</p>
-</li>
-<li>
-<p>在Detached mode下執行</p>
+<h3 id="在detached-mode下執行">在Detached mode下執行</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -428,9 +441,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-</li>
-<li>
-<p>打包成docker image</p>
+<h3 id="打包成docker-image">打包成docker image</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -450,12 +461,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-</li>
-</ol>
 <p>​</p>
-<ol start="5">
-<li>
-<p>查看目前運作中的Container</p>
+<h3 id="查看目前運作中running的container">查看目前運作中(running)的Container</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -494,9 +501,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-</li>
-<li>
-<p>停止Container</p>
+<h3 id="停止container">停止Container</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -515,9 +520,37 @@ if (!doNotTrack) {
 	
 	
 ></p>
-</li>
-</ol>
 <p>​</p>
+<h3 id="刪除container">刪除Container</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker rm <span class="o">[</span>ContainerId<span class="o">]</span>or<span class="o">[</span>NAMEs<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/RrMc8BN.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>也可以輸入很多個Id，一次刪個爽</p>
+<p><img src="https://i.imgur.com/rL9pJaN.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121155539947"
+	
+	
+></p>
 <h2 id="在docker啟動ubuntu">在Docker啟動Ubuntu</h2>
 <ol>
 <li>
@@ -684,6 +717,201 @@ if (!doNotTrack) {
 	loading="lazy"
 	
 		alt="image-20230121153324975"
+	
+	
+></p>
+<h2 id="container的管理">Container的管理</h2>
+<p>當我們啟動、並Stop一個Container，實際上如果依照我們剛剛的作法，我們是不斷的創造新的Container，輸入docker ps -a 即可看到目前存在的Container(不論running or Stopping)，或是在Desktop docker裡面也都可以看到</p>
+<p><img src="https://i.imgur.com/y6X5rl3.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/myW3tLy.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121154505315"
+	
+	
+></p>
+<p>我們可以透過</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker rm <span class="o">[</span>ContainerId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>來真正意義上的移除Container，而不是停止它</p>
+<p><img src="https://i.imgur.com/RrMc8BN.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p><code>可以使用docker ps -aq ，這個指令只會秀出ContainerId，可以刪更爽，直接複製貼上就好</code></p>
+<p>還有更爽的方式，用$(docker ps -aq)的方式 傳遞參數</p>
+<p><img src="https://i.imgur.com/6awXQYd.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<h2 id="為container命名">為Container命名</h2>
+<p>建議命名一下，比較好找，只支援英文，不支援中文</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name hoxtonPractice -d -p 8080:80 nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/ibwUXZi.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/ivVF2QW.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121161417305"
+	
+	
+></p>
+<h2 id="volume的使用">Volume的使用</h2>
+<p>讓資訊可以在host與Container共享的一個功能</p>
+<p><img src="https://i.imgur.com/gFztGx2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121171102777"
+	
+	
+></p>
+<p>範例：</p>
+<p>首先在桌面上創建一個名為website的資料夾，裡面有個index.html，內容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>hello docker and volume<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/E9IOBy2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121172021418"
+	
+	
+></p>
+<p>接著將terminal切至/website底下，然後輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name website -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/usr/share/nginx/html:ro -d -p 8080:80 nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>-v是 Docker 中的 volume 指令，它用於將主機上的目錄或檔案掛載到容器中。配合後面的${PWD}:/usr/share/nginx/html，意思就是將當前目錄的內容掛載(Mount)到容器中的 /usr/share/nginx/html 目錄下。這樣設定後，當主機上的目錄內容變更時，容器中的 /usr/share/nginx/html 目錄內的內容也會隨之更新。</p>
+</li>
+<li>
+<p>:ro 是指將主機上的目錄或檔案掛載到容器中的目錄或檔案，並設定為只讀模式。</p>
+</li>
+</ul>
+<p>​	這意味著在容器中將無法寫入或修改掛載的目錄或檔案，只能讀取。這可以避免對主機上的檔案造成損壞或不	必要的變更。</p>
+<ul>
+<li>/usr/share/nginx/html 是 Nginx 預設的網站根目錄。</li>
+</ul>
+<p>結果如下：</p>
+<p><img src="https://i.imgur.com/JWE1ngP.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>也因為Volume是鏡像對應，因此修改host的檔案，container的內容物也會同步更新</p>
+<p><img src="https://i.imgur.com/xr4Ps97.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>我們可以用以下的指令來訪問看看Nginx的檔案</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it website bash 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>docker exec 是 Docker 的命令行工具，用於在運行中的容器內執行命令。</li>
+<li>-it 這兩個選項表示要互動式地執行命令，並且讓輸入和輸出保持連接。</li>
+<li>website 是容器的名稱或 ID。</li>
+<li>bash 是要在容器內執行的命令，這裡是啟動 Bash shell。</li>
+</ul>
+<p><img src="https://i.imgur.com/vfD46ft.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>在Nginx裡面新增檔案，移除檔案，會發現host的資料夾檔案也同步更新</p>
+<p><img src="https://i.imgur.com/CxISdYl.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
 	
 	
 ></p>
@@ -982,11 +1210,27 @@ if (!doNotTrack) {
     <li><a href="#名詞解釋">名詞解釋</a>
       <ol>
         <li><a href="#container">Container</a></li>
+        <li><a href="#image">Image</a></li>
+        <li><a href="#volume">Volume</a></li>
       </ol>
     </li>
-    <li><a href="#常用指令">常用指令</a></li>
+    <li><a href="#常用指令">常用指令</a>
+      <ol>
+        <li><a href="#查看目前的image">查看目前的image</a></li>
+        <li><a href="#查看目前運行的container">查看目前運行的Container</a></li>
+        <li><a href="#執行docker-image">執行docker image</a></li>
+        <li><a href="#在detached-mode下執行">在Detached mode下執行</a></li>
+        <li><a href="#打包成docker-image">打包成docker image</a></li>
+        <li><a href="#查看目前運作中running的container">查看目前運作中(running)的Container</a></li>
+        <li><a href="#停止container">停止Container</a></li>
+        <li><a href="#刪除container">刪除Container</a></li>
+      </ol>
+    </li>
     <li><a href="#在docker啟動ubuntu">在Docker啟動Ubuntu</a></li>
     <li><a href="#exposing-port">Exposing Port</a></li>
+    <li><a href="#container的管理">Container的管理</a></li>
+    <li><a href="#為container命名">為Container命名</a></li>
+    <li><a href="#volume的使用">Volume的使用</a></li>
   </ol>
 </nav>
         </div>
