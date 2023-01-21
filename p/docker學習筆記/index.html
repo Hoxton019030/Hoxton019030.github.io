@@ -312,7 +312,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h2 id="常用指令">常用指令</h2>
+    <h2 id="名詞解釋">名詞解釋</h2>
+<h3 id="container">Container</h3>
+<h2 id="常用指令">常用指令</h2>
 <ol>
 <li>
 <p>查看目前的image</p>
@@ -335,16 +337,98 @@ if (!doNotTrack) {
 </div>
 </div></li>
 <li>
+<p>查看目前運行的Container</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>ps是process status的意思</code></p>
+<p>或是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker container ls
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>​	<img src="https://i.imgur.com/WCJdgXl.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<ol start="3">
+<li>
 <p>執行docker image</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run <span class="o">[</span>imageName<span class="o">]</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run <span class="o">[</span>imageName<span class="o">][</span>:tag<span class="o">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div></li>
+</div><p><img src="https://i.imgur.com/s140pSv.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121123518172"
+	
+	
+></p>
+<p>後面的:latest是版本號，可加可不加，沒加的話預設就是latest</p>
+</li>
+<li>
+<p>在Detached mode下執行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所謂的Detached mode亦即<strong>啟動後會不會占用你的terminal</strong>，可以看一下下面的git，可以比較兩者間的差異</p>
+<ul>
+<li>沒有-d</li>
+</ul>
+<p><img src="https://i.imgur.com/ehYrPax.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<ul>
+<li>有-d</li>
+</ul>
+<p><img src="https://i.imgur.com/kRVrhXQ.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+</li>
 <li>
 <p>打包成docker image</p>
 <div class="highlight"><div class="chroma">
@@ -369,7 +453,7 @@ if (!doNotTrack) {
 </li>
 </ol>
 <p>​</p>
-<ol start="4">
+<ol start="5">
 <li>
 <p>查看目前運作中的Container</p>
 <div class="highlight"><div class="chroma">
@@ -407,6 +491,27 @@ if (!doNotTrack) {
 	loading="lazy"
 	
 		alt="image-20230118222751647"
+	
+	
+></p>
+</li>
+<li>
+<p>停止Container</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker stop <span class="o">[</span>ContainerId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/dziz1MR.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121125714796"
 	
 	
 ></p>
@@ -488,6 +593,100 @@ if (!doNotTrack) {
 </div>
 </div></li>
 </ol>
+<h2 id="exposing-port">Exposing Port</h2>
+<p>輸入<code>docker ps</code>可以看到以下資訊</p>
+<p><img src="https://i.imgur.com/jkFwePC.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121144512601"
+	
+	
+></p>
+<p>其中的PORTS 80/tcp的意思，容器對外公開的網路端口是 80/tcp，表示這個容器對外公開的網路端口是80，並且是基於TCP協議的。這意味著當外部網路瀏覽器連接到<a class="link" href="http://xn--localhosthttp-cs9z//"  target="_blank" rel="noopener"
+    >http://localhost或http://</a><IP address>時，將會連接到容器內部的 Nginx Web 伺服器。想要讓容器的端口對外開放，就需要exposing它，否則直接打localhost:80是沒有用的。</p>
+<p><img src="https://i.imgur.com/ZD37kgp.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>我們可以使用以下的方式將8080 連接到80/TCP</p>
+<p><img src="https://i.imgur.com/6NmgZGj.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121144820173"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d -p 8080:80 nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中的8080:80的意思是指將主機的 8080 端口映射到容器的 80 端口。也就是說，當外部網路瀏覽器連接到 <a class="link" href="http://localhost:8080/"  target="_blank" rel="noopener"
+    >http://localhost:8080</a> 時，將會連接到容器內部的 Nginx Web 伺服器。</p>
+<p><img src="https://i.imgur.com/uv9msjJ.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/qRzMKUP.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121152744371"
+	
+	
+></p>
+<p>你也可以不只Exposing一個Port，可以Exposing多個port給80</p>
+<p><img src="https://i.imgur.com/udQnP6Q.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121153052811"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker  run -d -p 8080:80 -p 3000:80  nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/RAElKnV.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121153324975"
+	
+	
+></p>
 
 </section>
 
@@ -780,8 +979,14 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
+    <li><a href="#名詞解釋">名詞解釋</a>
+      <ol>
+        <li><a href="#container">Container</a></li>
+      </ol>
+    </li>
     <li><a href="#常用指令">常用指令</a></li>
     <li><a href="#在docker啟動ubuntu">在Docker啟動Ubuntu</a></li>
+    <li><a href="#exposing-port">Exposing Port</a></li>
   </ol>
 </nav>
         </div>
