@@ -915,6 +915,151 @@ if (!doNotTrack) {
 	
 	
 ></p>
+<h3 id="不同的container使用相同的volume">不同的Container使用相同的Volume</h3>
+<p><img src="https://i.imgur.com/sF6Jpws.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122000944184"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/M0VVEdM.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122000515311"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name website-copy --volumes-from website -d -p 8081:80 nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>&ndash;volumes-from [ContainerName]：將這次要啟動的Container使用和website一樣的Volume</li>
+</ul>
+<p><img src="https://i.imgur.com/138uiD1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122000709771"
+	
+	
+></p>
+<h2 id="dockerfile">Dockerfile</h2>
+<p>Dockerfile是一個文本文件，它包含了創建Docker image所需的指令。這些指令可以包括例如：</p>
+<ul>
+<li>從哪個基礎鏡像建立新鏡像</li>
+<li>安裝需要的軟體</li>
+<li>設置環境變量</li>
+<li>添加應用程序文件</li>
+<li>定義容器啟動時執行的命令</li>
+</ul>
+<p>透過Dockerfile, 可以自動化的建立一個環境，方便在不同的環境上部署，使用者可以更方便的管理環境，以及減少部署錯誤的機會。</p>
+<p>例如，如果你有一個Java應用程序需要在多個不同的服務器上運行，你可以使用Dockerfile創建一個包含Java執行時環境的镜像，然後在每個服務器上執行這個镜像，這樣就能保證每個服務器上都有相同的環境。</p>
+<p>試著把剛剛寫的volume打包成一個image，首先在/website的資料夾裡面新增一個名稱一定要是dockerfile的檔案</p>
+<p>裡面的檔案結構長的像這樣子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> nginx:latest</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> . /usr/share/nginx/html<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>FROM：指定了基礎Image是nginx，後面的latest是指版本號。Dockerfile中必須要有FROM指令，它是一切的根本，它指定了基礎Image環境。舉例來說，這邊指定用最新版的nginx，那麼我們的鏡像會基於這個最新版的nginx環境運行</li>
+<li>ADD：將本地目錄中的文件複製到鏡像中的指定目錄。在這個例子中是將本地目錄中的所有文件複製到鏡像中的/usr/share/nginx/html目錄。它的功能跟COPY有點像，但是COPY用法比較單純，只能複製本地文件和目錄到鏡像中，而ADD指令還可以解壓縮tar文件並將其中的文件複製到鏡像中。</li>
+</ul>
+<p>​	值得注意的是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">ADD</span> .   /usr/share/nginx/html<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>這行指的是，將當前目錄的所有東西(以一個.表示)加入至Container中的/usr/share/nginx/html目錄中。在這個例子中就是將</p>
+<p><img src="https://i.imgur.com/xhF8sgi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122005758339"
+	
+	
+></p>
+<p>這些東西ADD進/usr/share/nginx/html裡面。</p>
+<p>當Dockerfile寫好後，要開始bulid它，步驟如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl">docker build website:latest .<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>這個命令是在使用 Docker 建立一個新的鏡像檔，並標記為 &ldquo;website:latest&rdquo;。 &ldquo;.&rdquo; 表示當前目錄下的 Dockerfile 檔案將會被用來建立映像檔。這個命令將會建立一個名為 &ldquo;website&rdquo; 並且標記為 &ldquo;latest&rdquo; 的鏡像檔。</li>
+</ul>
+<p>Build完後就會出現一個image了，輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker images 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就可以查看目前擁有的images</p>
+<p><img src="https://i.imgur.com/fjUHVh9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122023400655"
+	
+	
+></p>
+<p>並且可以這個image可以運行我們剛剛對index的設定，輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name website -p 8080:80 -d website:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：這邊不需要再為website設置volume，因為我們已經將需要的東西打包進image裡面了。</p>
+<p>輸入完後，在URL的地方輸入localhost:8080就可以看到我們剛剛設置的東西了。</p>
+<p>gif如下</p>
+<p><img src="https://i.imgur.com/XvOfKcm.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>​</p>
 
 </section>
 
@@ -1230,7 +1375,12 @@ if (!doNotTrack) {
     <li><a href="#exposing-port">Exposing Port</a></li>
     <li><a href="#container的管理">Container的管理</a></li>
     <li><a href="#為container命名">為Container命名</a></li>
-    <li><a href="#volume的使用">Volume的使用</a></li>
+    <li><a href="#volume的使用">Volume的使用</a>
+      <ol>
+        <li><a href="#不同的container使用相同的volume">不同的Container使用相同的Volume</a></li>
+      </ol>
+    </li>
+    <li><a href="#dockerfile">Dockerfile</a></li>
   </ol>
 </nav>
         </div>

@@ -635,6 +635,151 @@
 	
 	
 &gt;&lt;/p&gt;
+&lt;h3 id=&#34;不同的container使用相同的volume&#34;&gt;不同的Container使用相同的Volume&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/sF6Jpws.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230122000944184&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/M0VVEdM.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230122000515311&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run --name website-copy --volumes-from website -d -p 8081:80 nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&amp;ndash;volumes-from [ContainerName]：將這次要啟動的Container使用和website一樣的Volume&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/138uiD1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230122000709771&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
+&lt;p&gt;Dockerfile是一個文本文件，它包含了創建Docker image所需的指令。這些指令可以包括例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;從哪個基礎鏡像建立新鏡像&lt;/li&gt;
+&lt;li&gt;安裝需要的軟體&lt;/li&gt;
+&lt;li&gt;設置環境變量&lt;/li&gt;
+&lt;li&gt;添加應用程序文件&lt;/li&gt;
+&lt;li&gt;定義容器啟動時執行的命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;透過Dockerfile, 可以自動化的建立一個環境，方便在不同的環境上部署，使用者可以更方便的管理環境，以及減少部署錯誤的機會。&lt;/p&gt;
+&lt;p&gt;例如，如果你有一個Java應用程序需要在多個不同的服務器上運行，你可以使用Dockerfile創建一個包含Java執行時環境的镜像，然後在每個服務器上執行這個镜像，這樣就能保證每個服務器上都有相同的環境。&lt;/p&gt;
+&lt;p&gt;試著把剛剛寫的volume打包成一個image，首先在/website的資料夾裡面新增一個名稱一定要是dockerfile的檔案&lt;/p&gt;
+&lt;p&gt;裡面的檔案結構長的像這樣子&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; nginx:latest&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ADD&lt;/span&gt; . /usr/share/nginx/html&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;FROM：指定了基礎Image是nginx，後面的latest是指版本號。Dockerfile中必須要有FROM指令，它是一切的根本，它指定了基礎Image環境。舉例來說，這邊指定用最新版的nginx，那麼我們的鏡像會基於這個最新版的nginx環境運行&lt;/li&gt;
+&lt;li&gt;ADD：將本地目錄中的文件複製到鏡像中的指定目錄。在這個例子中是將本地目錄中的所有文件複製到鏡像中的/usr/share/nginx/html目錄。它的功能跟COPY有點像，但是COPY用法比較單純，只能複製本地文件和目錄到鏡像中，而ADD指令還可以解壓縮tar文件並將其中的文件複製到鏡像中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	值得注意的是&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ADD&lt;/span&gt; .   /usr/share/nginx/html&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;這行指的是，將當前目錄的所有東西(以一個.表示)加入至Container中的/usr/share/nginx/html目錄中。在這個例子中就是將&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/xhF8sgi.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230122005758339&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;這些東西ADD進/usr/share/nginx/html裡面。&lt;/p&gt;
+&lt;p&gt;當Dockerfile寫好後，要開始bulid它，步驟如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker build website:latest .&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;這個命令是在使用 Docker 建立一個新的鏡像檔，並標記為 &amp;ldquo;website:latest&amp;rdquo;。 &amp;ldquo;.&amp;rdquo; 表示當前目錄下的 Dockerfile 檔案將會被用來建立映像檔。這個命令將會建立一個名為 &amp;ldquo;website&amp;rdquo; 並且標記為 &amp;ldquo;latest&amp;rdquo; 的鏡像檔。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Build完後就會出現一個image了，輸入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker images 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;就可以查看目前擁有的images&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/fjUHVh9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230122023400655&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;並且可以這個image可以運行我們剛剛對index的設定，輸入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run --name website -p 8080:80 -d website:latest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注意：這邊不需要再為website設置volume，因為我們已經將需要的東西打包進image裡面了。&lt;/p&gt;
+&lt;p&gt;輸入完後，在URL的地方輸入localhost:8080就可以看到我們剛剛設置的東西了。&lt;/p&gt;
+&lt;p&gt;gif如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/XvOfKcm.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;​&lt;/p&gt;
 </description>
         </item>
         
