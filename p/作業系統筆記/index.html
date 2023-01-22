@@ -302,7 +302,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    29 minute read
+                    31 minute read
                 </time>
             </div>
         
@@ -2186,19 +2186,19 @@ Note：目的</p>
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span> <span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;fork fails </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//爸爸自己自殺
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;fork fails </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//爸爸自己自殺
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">==</span><span class="mi">0</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//兒子要做的事情
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">execlp</span><span class="p">(</span><span class="s">&#34;/bin/ls&#34;</span><span class="p">,</span><span class="s">&#34;ls&#34;</span><span class="p">,</span><span class="n">null</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">exit</span><span class="p">();</span> <span class="c1">//這段code不會執行，原因是因為execlp()會把process指向/bin/ls的binary code，接著就是去執行那段binary code了，就不會回來執行這個exit();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">execlp</span><span class="p">(</span><span class="s">&#34;/bin/ls&#34;</span><span class="p">,</span><span class="s">&#34;ls&#34;</span><span class="p">,</span><span class="n">null</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">exit</span><span class="p">();</span> <span class="c1">//這段code不會執行，原因是因為execlp()會把process指向/bin/ls的binary code，接著就是去執行那段binary code了，就不會回來執行這個exit();
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span><span class="k">else</span> <span class="c1">//pid &gt;0{
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//爸爸要做的事情
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">wait</span><span class="p">();</span> <span class="c1">//父Process子Process直到子Process終止 子Process做完工作後，子Process要自己發出一個exit的System Call，讓OS來殺掉子Process。
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;child Completed&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">exit</span><span class="p">();</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">wait</span><span class="p">();</span> <span class="c1">//父Process子Process直到子Process終止 子Process做完工作後，子Process要自己發出一個exit的System Call，讓OS來殺掉子Process。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;child Completed&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">exit</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">};</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//不管怎樣都會執行的地方
@@ -2237,15 +2237,15 @@ Note：目的</p>
 <pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//例題2 假設Parent, child 之process ID為2600, 2603 求line A, B, C, D 印出值
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="n">pid</span><span class="o">-</span><span class="n">t</span> <span class="n">pid</span><span class="p">,</span> <span class="n">pid1</span><span class="p">;</span> <span class="c1">//pid-t: 一個名為pid 的type，就是整數，是C語言的寫法
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pid</span><span class="o">-</span><span class="n">fork</span><span class="p">();</span> <span class="c1">//pid 放的是子process的ID， pid1放的是自己process的ID
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pid</span><span class="o">-</span><span class="nf">fork</span><span class="p">();</span> <span class="c1">//pid 放的是子process的ID， pid1放的是自己process的ID
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">pid1</span><span class="o">=</span><span class="n">getpid</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span> <span class="c1">//A 0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="n">pid1</span><span class="p">);</span> <span class="c1">//B 2603
+</span></span><span class="line"><span class="cl">        <span class="n">pid1</span><span class="o">=</span><span class="nf">getpid</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span> <span class="c1">//A 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">printf</span><span class="p">(</span><span class="n">pid1</span><span class="p">);</span> <span class="c1">//B 2603
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">pid1</span><span class="o">=</span><span class="n">getpid</span><span class="p">();</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span> <span class="c1">//C 2603
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="n">pid1</span><span class="p">);</span> <span class="c1">//D 2600
+</span></span><span class="line"><span class="cl">        <span class="n">pid1</span><span class="o">=</span><span class="nf">getpid</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span> <span class="c1">//C 2603
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">printf</span><span class="p">(</span><span class="n">pid1</span><span class="p">);</span> <span class="c1">//D 2600
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
@@ -2284,13 +2284,13 @@ Note：目的</p>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">value</span> <span class="o">=</span><span class="mi">5</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="n">pid</span><span class="o">-</span><span class="n">t</span> <span class="n">pid</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span> <span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">==</span><span class="mi">0</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="n">value</span> <span class="o">+=</span><span class="mi">15</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">print</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>  <span class="c1">//A=5 就算是global的變數，也是只能在自己的process作用
+</span></span><span class="line"><span class="cl">        <span class="nf">wait</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">print</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>  <span class="c1">//A=5 就算是global的變數，也是只能在自己的process作用
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -2327,27 +2327,27 @@ Note：目的</p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//例題4 求列印結果
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span><span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span><span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;A</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;A</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="c1">//pid &gt;0{
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;B</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;B</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="nl">Ans</span><span class="p">:</span> <span class="err">父與子是並行的，因為父</span><span class="n">process沒有wait</span><span class="p">(),</span> <span class="err">因此答案可能是</span><span class="n">AB或BA</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Ans</span><span class="p">:</span> <span class="err">父與子是並行的，因為父</span><span class="n">process</span><span class="err">沒有</span><span class="n">wait</span><span class="p">(),</span> <span class="err">因此答案可能是</span><span class="n">AB</span><span class="err">或</span><span class="n">BA</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">2.</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span><span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span><span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;A</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;A</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="c1">//pid &gt;0{
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;B</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	    <span class="n">wait</span><span class="p">();</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;B</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	    <span class="nf">wait</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;C</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;C</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nl">Ans</span><span class="p">:</span> <span class="n">ACBC</span><span class="p">,</span><span class="n">ABCC</span><span class="p">,</span><span class="n">BACC</span><span class="p">,</span>
 </span></span></code></pre></td></tr></table>
@@ -2398,29 +2398,29 @@ Note：目的</p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//例題5 假設Count，是一個父與子Process的共享變數 ，初值為5
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pid</span><span class="o">=</span><span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span><span class="o">=</span><span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">wait</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="o">--</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="mf">.6</span><span class="p">,</span><span class="mi">5</span>
 </span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="mf">2.</span><span class="p">)</span> <span class="c1">//父與子並行
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pid</span><span class="o">=</span><span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span><span class="o">=</span><span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="o">++</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="o">--</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">     <span class="n">printf</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="nf">printf</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="p">.</span> <span class="mi">45</span><span class="p">,</span><span class="mi">54</span><span class="p">,</span><span class="mi">55</span> <span class="c1">//這是基本情況
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
@@ -2526,75 +2526,75 @@ Note：目的</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">//例題6
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span> <span class="n">How</span> <span class="n">mant</span> <span class="n">processes</span> <span class="n">are</span> <span class="n">created</span><span class="o">?</span> <span class="p">(</span><span class="n">include</span> <span class="n">main</span><span class="p">())</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span> <span class="n">How</span> <span class="n">mant</span> <span class="n">processes</span> <span class="n">are</span> <span class="n">created</span><span class="o">?</span> <span class="p">(</span><span class="n">include</span> <span class="nf">main</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">fork</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">fork</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="mf">.8</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">2.</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span> <span class="c1">//等同於 pid=fork(); if(pid ==0) ....
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">fork</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nf">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span> <span class="c1">//等同於 pid=fork(); if(pid ==0) ....
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="mf">.10</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">3.</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">fork</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">fork</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span> <span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">fork</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nf">fork</span><span class="p">()</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nf">fork</span><span class="p">()</span> <span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="mf">.14</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">4.</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nf">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="n">Ans</span><span class="mf">.729</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">5.</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">                <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nf">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nf">fork</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="nf">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">            <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mf">6.</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="o">--</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nf">fork</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">            <span class="n">a</span><span class="o">--</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">printf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">fork</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">a</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">fork</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">            <span class="n">printf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">fork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">printf</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">i</span><span class="p">.)</span> <span class="n">printf</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="err">共做了幾次</span><span class="o">?</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">i</span><span class="p">.)</span> <span class="nf">printf</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="err">共做了幾次</span><span class="o">?</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">ii</span><span class="p">.)</span><span class="err">印出</span><span class="mi">0</span><span class="err">的有幾次</span><span class="o">?</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">iii</span><span class="p">)</span><span class="err">印出</span><span class="mi">1</span><span class="err">的有幾次</span><span class="o">?</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">iiii</span><span class="p">.)</span><span class="err">印出</span><span class="mi">2</span><span class="err">的有幾次</span><span class="o">?</span>
@@ -4465,17 +4465,17 @@ Note：目的</p>
 </span></span><span class="line"><span class="cl">    <span class="n">sum</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">upper</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="n">sum</span><span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Pthread</span><span class="o">-</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//thraed終止
+</span></span><span class="line"><span class="cl">        <span class="n">Pthread</span><span class="o">-</span><span class="nf">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//thraed終止
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl"><span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Pthread</span><span class="o">-</span><span class="n">t</span> <span class="n">tid</span><span class="p">;</span> <span class="c1">//tid就代表Thread的id
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Pthread</span><span class="o">-</span><span class="n">attr_t</span> <span class="n">arrt</span><span class="p">;</span> <span class="c1">//代表attribute屬性 Thread attributes set
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Pthread</span><span class="o">-</span><span class="kt">attr_t</span> <span class="n">arrt</span><span class="p">;</span> <span class="c1">//代表attribute屬性 Thread attributes set
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">...</span>
-</span></span><span class="line"><span class="cl">   <span class="n">Pthread</span><span class="o">-</span><span class="n">attr</span><span class="o">-</span><span class="n">init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">)</span> <span class="p">;</span><span class="c1">//取得attr 初始值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="err">★</span><span class="n">Pthread</span><span class="o">-</span><span class="n">create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span> <span class="n">runner</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">//根據attr 屬性值建立一條Thread，Id記在tid中，執行runner()副程式
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">Pthread</span><span class="o">-</span><span class="n">join</span><span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span> <span class="c1">//main() thread 在此等待，直到tid thread結束
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">printf</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">Pthread</span><span class="o">-</span><span class="n">attr</span><span class="o">-</span><span class="nf">init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">)</span> <span class="p">;</span><span class="c1">//取得attr 初始值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="err">★</span><span class="n">Pthread</span><span class="o">-</span><span class="nf">create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">attr</span><span class="p">,</span> <span class="n">runner</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">//根據attr 屬性值建立一條Thread，Id記在tid中，執行runner()副程式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">Pthread</span><span class="o">-</span><span class="nf">join</span><span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span> <span class="c1">//main() thread 在此等待，直到tid thread結束
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">printf</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -4517,18 +4517,18 @@ Note：目的</p>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pid</span> <span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">pthread</span><span class="o">-</span><span class="n">t</span> <span class="n">tid</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Pthread_arrt_t</span> <span class="n">attr</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span> <span class="c1">//create child process
+</span></span><span class="line"><span class="cl">    <span class="n">pid</span> <span class="o">=</span> <span class="nf">fork</span><span class="p">();</span> <span class="c1">//create child process
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">pid</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span> <span class="c1">//子prcess要做的事情
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">attr</span> <span class="p">,</span> <span class="n">runner</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span> <span class="c1">//子Process去create一條thread
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="n">value</span><span class="p">);</span> <span class="c1">//line C   
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">attr</span> <span class="p">,</span> <span class="n">runner</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span> <span class="c1">//子Process去create一條thread
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">printf</span><span class="p">(</span><span class="n">value</span><span class="p">);</span> <span class="c1">//line C   
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">wait</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="n">value</span><span class="p">);</span> <span class="c1">//line P
+</span></span><span class="line"><span class="cl">        <span class="nf">wait</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="n">value</span><span class="p">);</span> <span class="c1">//line P
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">runner</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="n">value</span> <span class="o">=</span><span class="mi">5</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pthread_exit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">pthread_exit</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -5966,7 +5966,556 @@ $$</p>
 $$</p>
 <p>​		所以2n&lt;n+6，n&lt;6，Ans:　最多５個processes</p>
 <p>​</p>
-<h1 id="process-co-ncept">Process Co ncept</h1>
+<p>詳解</p>
+<ol>
+<li>
+<p>所謂死結的發生，就是系統已經將所有的資源都投入下去，但依然沒有產出，不會有一個系統是佔據著資源不分配，看著底下的Process進入Deadlock還很開心</p>
+<p><img src="https://i.imgur.com/60Ndyr2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230112221927497"
+	
+	
+></p>
+</li>
+<li>
+<p>應此將資源分配下去後，就是長這樣</p>
+<p><img src="https://i.imgur.com/9rc68RH.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230112222025831"
+	
+	
+></p>
+</li>
+<li>
+<p>Process取得2個Resource後就可以執行，執行完後又釋放2個Resource給其他的Process使用</p>
+<p><img src="https://i.imgur.com/VDXlZBP.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230112222203015"
+	
+	
+></p>
+</li>
+<li>
+<p>持續的把Resource分配給Process&hellip; 往復循環，即可完成。</p>
+</li>
+<li>
+<p>若很不幸的是，如果今天是6個Process，就會發生死結</p>
+<p><img src="https://i.imgur.com/k3fiqJr.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230112222340478"
+	
+	
+></p>
+</li>
+<li>
+<p>推導公式，若今天題目改成，每個Process需要3台印表機，現在有10部列表機，最多能允許幾個Process(MAX=3, m=10)</p>
+<p><code>3n&lt;n+10</code></p>
+<p><code>=2n&lt;10</code></p>
+<p><code>=n&lt;5</code></p>
+</li>
+</ol>
+<p>​	ans. n=4</p>
+<p>例2. 證明：</p>
+<p>​	proof：假設資源全部配置出去</p>
+<p>$$
+即\sum_{i=1}^n Allocationi = m
+$$</p>
+<p>​	又因為</p>
+<p>$$
+\sum_{i=1}^nNeedi = \sum_{i=1}^nMaxi-\sum_{i=1}^n Allocationi(Banker&rsquo;s Algo) \
+= \sum_{i=1}^nMaxi-m \
+∴\sum_{i=1}^nMaxi=\sum_{i=1}^nNeedi+m
+$$</p>
+<p>​</p>
+<p>​	再依據條件(2)</p>
+<p>$$
+\sum_{i=1}^nMaxi &lt; (n+m) \
+∴\sum_{i=1}^nNeedi+m&lt;(n+m)  \
+$$</p>
+<p>​	得出這個結論</p>
+<p>$$
+∴ \sum_{i=1}^nNeedi &lt; n
+$$</p>
+<p>​	此事代表至少有&gt;=1個Process之Needi為0，代表Process可以完工，且Pi至少會Release出&gt;=1個Resource**(∵條件(1) -&gt; MAX&gt;=1,而Needi=0 ∴Allocation &gt;=1)**使得剩下的Process當中又會有&gt;=1個process之Need為0又可以完工。使得剩下的process中又會有&gt;=1個Process之Need為0又可以完工，依此類推，所有Process皆可完工，∴Deadlock Free</p>
+<p>解釋的數學式子如下，類似離散的鴿籠原理</p>
+<p>$$
+\sum_{i=1}^{n-1}Needi&lt;n-1
+$$</p>
+<h3 id="deadlock-detection--recovery">Deadlock Detection &amp; Recovery</h3>
+<ol>
+<li>
+<p>如果放任resource使用較無限制，雖然Utilization高，<strong>但是System有可能進入死結而不自知。<strong>因為需要有一個</strong>死結偵測演算法</strong>，及萬一偵測出有死結，如何破除這個死結(recovery)的作法。</p>
+</li>
+<li>
+<p>Recovery做法：</p>
+<blockquote>
+<ol>
+<li>
+<p><strong>Kill</strong> Process in the deadlock</p>
+<blockquote>
+<p>方法一：<strong>Kill All Processes in the deadlock</strong>寸草不生，眼不見為淨</p>
+<p>缺點：成本太高，先前的工作成果全部作廢。</p>
+<p>方法二：<strong>Kill processes one by one</strong>，<strong>Kill一個之後，須再跑偵測Algo，若死結仍存在，再Repeat上述步驟</strong></p>
+<p>缺點：<strong>成本太高</strong>，Loop次數*偵測成本</p>
+</blockquote>
+</li>
+<li>
+<p>Resource Preemption</p>
+<blockquote>
+<p>步驟一：選擇&quot;Victim&quot; process(假設此Process擁有資源A,B,C)</p>
+<p>步驟二：剝奪他們身上的資源(剝奪B，保留A,B，這是最基本的情況)</p>
+<p>步驟三：<strong>回復此Victim process當初未取得此剝奪資源的狀態(這一步非常困難，成本極高，也不一定做得好，此外也可能有Starvation的問題)</strong></p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<h3 id="deadlock-detection-algorithm考比較多的是bankerdetection稍微知道就好">Deadlock Detection Algorithm(考比較多的是Banker,Detection稍微知道就好)</h3>
+<ol>
+<li>
+<p>Data Structures used</p>
+<p>n：process數</p>
+<p>m：resource種類</p>
+<ol>
+<li>Allocation：n*m matrix</li>
+<li>Availavle：[1&hellip;m] of int <code>目前可用資源數量</code></li>
+<li>Work: [1&hellip;m] of int</li>
+<li>Finish：[1&hellip;n] of Boolean</li>
+<li><strong>Request：n*m matrix</strong>，各process目前提出之各式資源申請量</li>
+</ol>
+<p>Note：</p>
+<p>1. Avoidance(Banker&rsquo;s Algo)含有<u>未來(Future)</u>info(MAX,Need)
+1. Detection：只有現在(Current)info</p>
+</li>
+<li>
+<p>Procedures</p>
+<p>步驟一：初值設定</p>
+<p>Work=Available</p>
+<p>Finish[i]= True: <strong>if Allocation ==0</strong></p>
+<p>​				False: **if Allocation ≠0 **</p>
+<p>步驟二：看可否找到Pi滿足：</p>
+<ol>
+<li>Finish[i]為False</li>
+<li>Requesti ≦ Work</li>
+</ol>
+<p>若<strong>找到</strong>，則進入步驟三，否則進入步驟四</p>
+<p>步驟三：設定Finish[i]=True，且Work=Work+Allocationi, then 回到步驟二，找不到則回到第四步</p>
+<p>步驟四：Check Finish Array，若皆為True，<strong>因此目前無死結</strong>，否則則有死結，且Finish[i]= False者，即為陷入死結中</p>
+</li>
+<li>
+<p>Time：O(n^2 *m) &ndash;&gt; 死結偵測一次，cost很高，再加上<strong>乘以偵測頻率</strong></p>
+</li>
+</ol>
+<p>範例1：</p>
+<ul>
+<li>Allocation</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Request</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Available</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></div>
+<p>偵測目前有哪些死結?</p>
+<p>若有，那些process in the Deadlock</p>
+<p>Ans.</p>
+<ol>
+<li>
+<p>Work = Available = (0,0,0)</p>
+<p>Finish</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+</tbody>
+</table></div>
+<p>因為Allocation皆≠(0,0,0)</p>
+</li>
+<li>
+<p>∵可以找到P0滿足Finish[0]為F，且Request≤work ∴到第三步驟</p>
+</li>
+<li>
+<p>設定Finish[0]為True，且Work=(0,0,0)+(0,1,0)=(0,1,0)，回到第二步驟</p>
+</li>
+<li>
+<p>∵可以找到P2滿足Finish[2]為F，且Request2 ≤ Work，∴到第三步驟</p>
+</li>
+<li>
+<p>設定Finsh[2]為True，且Work=(0,1,0)+(3,0,3)=(3,1,3)，回到第三步驟</p>
+</li>
+<li>
+<p>在步驟二與步驟三之間抽插，往復循環，P1, P3, P4皆可Finished</p>
+</li>
+<li>
+<p>Check Finish Array ∵皆為True，∴目前無死結</p>
+</li>
+</ol>
+<h3 id="若每一類型資源資源皆為single-instance則有較簡化的detection作法-使用wait-for-graph">若每一類型資源資源皆為Single-instance，則有較簡化的Detection作法-使用Wait-For Graph</h3>
+<ul>
+<li>定義：令G=&lt;V,E&gt;有向圖，代表Wait-For Graph，其中</li>
+</ul>
+<ol>
+<li>Vertex：只有Process Only，沒有Resource頂點</li>
+<li>Edge：Pi <code>等待</code>&mdash;&gt;Pj，稱之為wait edge</li>
+</ol>
+<ul>
+<li>
+<p><strong>是從RAG簡化而得</strong>，即若RAG中存在：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph LR;
+</span></span><span class="line"><span class="cl">Pi --申請--&gt; R --配置--&gt; Pj
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>則在Wait-For Graph 以</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph  LR;
+</span></span><span class="line"><span class="cl">Pi --等待--&gt; Pj
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>呈現</p>
+</li>
+<li>
+<p>偵測作法：<strong>在Wait-For Graph中，若有Cycle，則目前有死結，否則目前無死結</strong></p>
+</li>
+<li>
+<p>例：RAG如下</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/8OxjTRA.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230115163340361"
+	
+	
+></p>
+<ol>
+<li>
+<p>化成Wait-For Graph</p>
+</li>
+<li>
+<p>目前有無死結</p>
+<p>Ans.∵有Cycle，∴<strong>目前有死結</strong></p>
+<p><img src="https://i.imgur.com/Fq0Ku1V.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230115163349303"
+	
+	
+></p>
+</li>
+</ol>
+<h2 id="chapter-6-process-synchronization">Chapter 6 Process Synchronization</h2>
+<p><code>Process Communication</code>,<code>Inter Processes Communication; IPC</code></p>
+<p>Process的關係就兩種</p>
+<ol>
+<li>Independent</li>
+<li><strong>Cooperating</strong>(有資訊交換的需求)</li>
+</ol>
+<p>何謂同步(Synchronization)？Process在執行的過程當中，因為某件事情的發生或沒有發生，導致它必須停下來，等對方完成，才可以接著往下做，符合這些事情的就是同步。</p>
+<blockquote>
+<ul>
+<li>
+<p>Process Communication兩大方式</p>
+<ol>
+<li>
+<p>Shared Memory</p>
+</li>
+<li>
+<p>Message Passing</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Race Condition Problem</p>
+</li>
+<li>
+<p>解決Race Condition之兩大策略</p>
+<ol>
+<li>Disable interrupt</li>
+<li>Critical section design</li>
+</ol>
+</li>
+<li>
+<p>C.S.Design 必須滿足的3個Criteria(Mutual Exclustion, Progress, Bounded Waiting)</p>
+</li>
+<li>
+<p>C.S Design 方法(架構)</p>
+<ul>
+<li>SoftWare Solutions</li>
+<li>HardWare Instructions Support(Test-and-Set, SWAP)</li>
+<li><strong>semaphore☆☆☆☆☆</strong>(號誌)</li>
+<li><strong>Monitor</strong></li>
+<li>解決著名的同步問題
+<ul>
+<li>Producer-Consumer Problem</li>
+<li>Reader/Writer Problem
+<ol>
+<li>First</li>
+<li>Second</li>
+</ol>
+</li>
+<li>The Sleeping Barber problem</li>
+<li>The Dining-Philosophers Problem</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Message Passing 溝通方式(較少考)</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="process-communication之兩大方式">Process communication之兩大方式</h3>
+<h4 id="shared-memory本篇重點">Shared Memory(本篇重點)</h4>
+<p>定義：Processes透過共享變數(shared Variable)之存(Write)取(Read)達到溝通(Info exchange)之目的</p>
+<p><img src="https://i.imgur.com/sklBx0M.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122193004264"
+	
+	
+></p>
+<p>分析：</p>
+<ol>
+<li><strong>適用於大量Data(message)傳輸之狀況</strong></li>
+<li><strong>傳輸速度較快(因為不須kernel介入干預/支持，Shared memory是Programmer的責任，Programmer要負責去處理互斥的問題)</strong></li>
+<li><strong>不適合用於Distributed System</strong></li>
+<li><strong>Kernel不需提供額外的支援(頂多供應Shared memory space)</strong></li>
+<li><strong>是Programmer的負擔，必須寫額外的程式碼防止Race Condition的發生</strong></li>
+</ol>
+<h4 id="message-passing">Message Passing</h4>
+<p>定義：Process雙方要溝通必須遵循下列Steps</p>
+<ol>
+<li>建立Communication Link</li>
+<li>訊息可雙向傳輸</li>
+<li>傳輸完畢，必須Release</li>
+</ol>
+<p>分析：</p>
+<ol>
+<li>
+<p><strong>適用於少量Data(message)傳輸之情況</strong></p>
+</li>
+<li>
+<p><strong>傳輸速度較慢(因為需要kernel支持)</strong></p>
+</li>
+<li>
+<p><strong>適合用於Distribute System</strong></p>
+</li>
+<li>
+<p><strong>Kernel必須提供額外的支援</strong></p>
+<p><strong>例：send/recevice system call, Communication Link管理，Message lost之偵測、例外狀況之處理</strong></p>
+</li>
+<li>
+<p><strong>Programmer沒有什麼負擔，只要會用send/receive的System Call就好</strong></p>
+</li>
+</ol>
+<h3 id="race-condition-problem">Race Condition problem</h3>
+<p>in shared memory Communication</p>
+<p>定義：<strong>In shared memory Communication, 若未對共享變數存取提供任何互斥存取控制之Synchronization機制，則會造成&quot;共享變數的最終結果值會因為Process之間的執行順序不同而有不同的結果值&quot;</strong>，此種Data inconsistency情況，稱之為Race Condition</p>
+<p>例子：Ｃ是共享變數，初值=5，此時有2個Process</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td>C=C+1</td>
+<td>C=C-1</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+</tbody>
+</table></div>
+<p>Pi，Pj各執行一次，則C的最終值<strong>可能是5 or 4 or 6</strong> ，這種稱之為Race Condition</p>
+<ul>
+<li>
+<p>結果為5，執行順序可能為</p>
+<p>T1= Pi = C =C+1</p>
+<p>T2= Pj = C =C -1</p>
+<p>or</p>
+<p>T1 = Pj = C = C - 1</p>
+<p>T2 = Pi = C = C + 1</p>
+</li>
+<li>
+<p>結果為4，執行順序可能為</p>
+<p>T1：Pi執行C+1，得到6，但尚未Assign給C，只是先放在一個佔存器</p>
+<p>T2：Pj執行C-1，得到4，尚未Assign回C</p>
+<p>T3：Pi 6 assign回C</p>
+<p>T4：Pj 4 assign回C</p>
+<p>C的結果為4</p>
+</li>
+<li>
+<p>結果為6，執行順序可能為</p>
+<p>T1：Pi執行C+1，得到6，但尚未Assign給C，只是先放在一個佔存器</p>
+<p>T2：Pj執行C-1，得到4，尚未Assign回C</p>
+<p>T3：Pj 4 assign回C</p>
+<p>T4：Pi 6 assign回C</p>
+<p>結果為6</p>
+</li>
+</ul>
 <h1 id="第一節-總覽">第一節 總覽</h1>
 <h2 id="第一章-序言">第一章 序言</h2>
 <h2 id="第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)★</h2>
@@ -6647,7 +7196,7 @@ $$</p>
 <blockquote>
 <p>完全看不懂</p>
 </blockquote>
-<h5 id="message-passing">Message Passing</h5>
+<h5 id="message-passing-1">Message Passing</h5>
 <p><img src="https://i.imgur.com/zEPTisH.png"
 	
 	
@@ -6883,6 +7432,25 @@ $$</p>
             
                 
 <article class="has-image">
+    <a href="/p/docker_desktop_starting%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/xgUpP8O.png%29" loading="lazy" data-key="" data-hash="https://i.imgur.com/xgUpP8O.png)"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker_Desktop_Starting問題解決</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/">
         
         
@@ -6952,25 +7520,6 @@ $$</p>
 
         <div class="article-details">
             <h2 class="article-title">淺談測試驅動開發</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/4qePz5L.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/4qePz5L.png "/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">如何將Junit的測試粒度控制在最小單元</h2>
         </div>
     </a>
 </article>
@@ -7272,6 +7821,20 @@ $$</p>
         <li><a href="#bankers-algo-之-time-complexity">Banker&rsquo;s Algo 之 Time Complexity</a></li>
         <li><a href="#針對每一項類型資源皆為single-instance情況下有較簡易的avoidance作法">針對每一項類型資源，皆為Single-instance情況下，有較簡易的Avoidance作法</a></li>
         <li><a href="#定理">定理</a></li>
+        <li><a href="#deadlock-detection--recovery">Deadlock Detection &amp; Recovery</a></li>
+        <li><a href="#deadlock-detection-algorithm考比較多的是bankerdetection稍微知道就好">Deadlock Detection Algorithm(考比較多的是Banker,Detection稍微知道就好)</a></li>
+        <li><a href="#若每一類型資源資源皆為single-instance則有較簡化的detection作法-使用wait-for-graph">若每一類型資源資源皆為Single-instance，則有較簡化的Detection作法-使用Wait-For Graph</a></li>
+      </ol>
+    </li>
+    <li><a href="#chapter-6-process-synchronization">Chapter 6 Process Synchronization</a>
+      <ol>
+        <li><a href="#process-communication之兩大方式">Process communication之兩大方式</a>
+          <ol>
+            <li><a href="#shared-memory本篇重點">Shared Memory(本篇重點)</a></li>
+            <li><a href="#message-passing">Message Passing</a></li>
+          </ol>
+        </li>
+        <li><a href="#race-condition-problem">Race Condition problem</a></li>
       </ol>
     </li>
   </ol>
