@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' 最近覺得我創太多筆記型的Repo了，想好好的整理成一個部落格，先來寫個草稿吧！'><title>如何使用Hugo在Github上架設靜態網頁完整教學</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='22世紀，如何將筆記統整成電子格式，以利後面的複習?'><title>如何製作會計的電子筆記？Markdown的介紹</title>
 
-<link rel='canonical' href='https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/'>
+<link rel='canonical' href='https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/'>
 
-<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='如何使用Hugo在Github上架設靜態網頁完整教學'>
-<meta property='og:description' content=' 最近覺得我創太多筆記型的Repo了，想好好的整理成一個部落格，先來寫個草稿吧！'>
-<meta property='og:url' content='https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/'>
+<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='如何製作會計的電子筆記？Markdown的介紹'>
+<meta property='og:description' content='22世紀，如何將筆記統整成電子格式，以利後面的複習?'>
+<meta property='og:url' content='https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/'>
 <meta property='og:site_name' content='Hoxton'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Google Analytics' /><meta property='article:tag' content='網頁' /><meta property='article:published_time' content='2022-10-08T12:04:44&#43;08:00'/><meta property='article:modified_time' content='2022-10-08T12:04:44&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/WSwohcu.png ' />
-<meta name="twitter:title" content="如何使用Hugo在Github上架設靜態網頁完整教學">
-<meta name="twitter:description" content=" 最近覺得我創太多筆記型的Repo了，想好好的整理成一個部落格，先來寫個草稿吧！"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://i.imgur.com/WSwohcu.png ' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Markdown' /><meta property='article:published_time' content='2023-01-22T23:15:25&#43;08:00'/><meta property='article:modified_time' content='2023-01-22T23:15:25&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/JX87vay.png' />
+<meta name="twitter:title" content="如何製作會計的電子筆記？Markdown的介紹">
+<meta name="twitter:description" content="22世紀，如何將筆記統整成電子格式，以利後面的複習?"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.imgur.com/JX87vay.png' />
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
@@ -239,9 +239,9 @@ if (!doNotTrack) {
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/">
+            <a href="/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/">
                 
-                    <img src="https://i.imgur.com/WSwohcu.png%20" loading="lazy" alt="Featured image of post 如何使用Hugo在Github上架設靜態網頁完整教學" />
+                    <img src="https://i.imgur.com/JX87vay.png" loading="lazy" alt="Featured image of post 如何製作會計的電子筆記？Markdown的介紹" />
                 
             </a>
         </div>
@@ -255,21 +255,17 @@ if (!doNotTrack) {
                 教學
             </a>
         
-            <a href="/categories/hugo/" style="background-color: #2a9d8f; color: #fff;">
-                Hugo
-            </a>
-        
     </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/">如何使用Hugo在Github上架設靜態網頁完整教學</a>
+            <a href="/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/">如何製作會計的電子筆記？Markdown的介紹</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-             最近覺得我創太多筆記型的Repo了，想好好的整理成一個部落格，先來寫個草稿吧！
+            22世紀，如何將筆記統整成電子格式，以利後面的複習?
         </h3>
         
     </div>
@@ -287,7 +283,7 @@ if (!doNotTrack) {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Oct 08, 2022</time>
+                <time class="article-time--published">Jan 22, 2023</time>
             </div>
         
 
@@ -316,24 +312,322 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="前言">前言</h1>
-<p>一直以來都把GitHub當成自己的筆記本在用，上傳了很多筆記，但最近心血來潮想把這些東西整理起來。最原先的想法是上傳到Medium，但發現Medium居然不支援Markdown的語法，索性放棄，後來某天看到之前高中同學有在用github.io的方式寫blog，於是也稍微研究了一下，原先以為可能一兩天就處理好，但最後發現弄了也快一個禮拜，於是想把這些坑記錄下來。</p>
-<h2 id="創建github-repository">創建GitHub Repository</h2>
-<h3 id="submodule是什麼">submodule是什麼?</h3>
-<h2 id="從hugo上下載自己想要的主題thmem">從Hugo上下載自己想要的主題(thmem)</h2>
-<h3 id="如何在本機預覽hugo頁面">如何在本機預覽Hugo頁面</h3>
-<h3 id="如何新增文章">如何新增文章</h3>
-<h3 id="hugo的檔案結構介紹">hugo的檔案結構介紹</h3>
-<h3 id="如何配置自己想要的模板configtoml">如何配置自己想要的模板(config.toml)</h3>
-<h4 id="關於baseurl的細節">關於baseURL的細節</h4>
-<h3 id="如何自定義文章模板">如何自定義文章模板</h3>
-<h2 id="如何將自己的網站上傳到github上面">如何將自己的網站上傳到GitHub上面</h2>
-<h3 id="如何push上去">如何push上去</h3>
-<h3 id="在其他台電腦要怎麼clone下來">在其他台電腦要怎麼clone下來</h3>
-<h2 id="如何建立留言功能">如何建立留言功能</h2>
-<h3 id="gittalk">GitTalk</h3>
-<h2 id="如何購買自己的dns">如何購買自己的DNS</h2>
-<h3 id="google-domain">Google Domain</h3>
+    <h2 id="前言">前言</h2>
+<p>年假回老家實在是太無聊了，想把這幾年學到的東西分享一下，希望可以幫助一些莘莘學子，能用更有效率的方式來整理筆記。</p>
+<p>記得大二或是大三的時候很沉迷於作筆記這件事情，最喜歡做的事情，就是用一兩個下午把那個禮拜所上的成會或是中會整理成筆記，以利後面的複習。不得不說當時這樣做的回饋還不錯，當時中會跟成會的成績都還算不錯。</p>
+<p><img src="https://i.imgur.com/CFebBUe.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122232625364"
+	
+	
+></p>
+<p>（當時很認真的筆記）</p>
+<h2 id="紙本筆記的缺點">紙本筆記的缺點</h2>
+<p>這樣的筆記在當時應付期中考期末考還行，因為這些筆記可能都是一兩個月寫的，都還算有印象，但是當我準備研究所的時候就發現幾個問題了，首先</p>
+<ol>
+<li>難以搜尋：面對海量的資料，我很難在第一時間找到我需要的資訊，比如說我想要找一個利息資本化的定義，以及它的細項，我除非前一陣子剛寫，或是我版面真的寫得很好，不然我不能第一時間的找到我想要的資訊。比如說稅法的部分就分成很多塊，比如說遺產稅贈與稅等等的，數量真的太多，且稅率也類似，常常找不到自己想要的地方。</li>
+<li>難以擴充：紙質的筆記一旦寫下去之後就難以修改，無法滿足我越來越多的知識積累，比如說大家都知道的金融資產那一個章節，可能光一個範例就可以寫個2,30個也不為過，每個範例可能都有一些細節要抄進筆記裡面，這樣日積月累下去，那一頁的筆記越記越多、越寫越亂不易閱讀。</li>
+<li>耗時：耗時是最大的問題，一頁的筆記我可能需要寫個半小時，雖然說寫的當下其實就記得很清楚了，但是卻非常的消耗時間，往往做完這些筆記我的假日就這樣沒了，實在是不太行，且手寫筆記非常吃手寫的品質，如果心一旦亂起來，亂寫一通，那這筆記基本上閱讀不能，只是寫給當時的自己看的，不利日後準備研究所或是會計師考試。</li>
+</ol>
+<p>雖然1、2的問題都可以透過Ipad的手寫筆記來解決一些問題，但最大的問題就是第3點，當時有嘗試過很多方式，比如說用excel來記筆記(但儲存格不方便修改與擴充)，或是用word來寫，但word真的非常不適合拿來寫筆記，首先，work本身是不支援你打出類似分錄格式的東西的，就算可以，那個代價我記得也很大，其次，光是格式的部分可能就要設定個老半天，再加上在寫筆記的途中還需要移動滑鼠去調整現在想要的是</p>
+<ol>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>或是</p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<p>這樣的格式真的有點打斷思緒。</p>
+<p>因此我的需求是這樣</p>
+<ol>
+<li>方便撰寫，希望不需要去切什麼格式</li>
+<li>支援圖片上傳，可以讓我傳圖片上去，可能有些範例或是老師在黑板上畫的東西，需要做成筆記來看</li>
+<li>要可以讓我打類似分錄的東西</li>
+</ol>
+<p>後來出社會工作後，接觸到Markdown這個東西真的驚為天人，並且是有一點相見恨晚，如果在學期間知道這個東西的話做筆記應該會更高效快速一點。首先先來介紹一下Markdown是什麼吧</p>
+<h2 id="markdown介紹">Markdown介紹</h2>
+<p>Markdown 是目前非常普遍用來撰寫文檔的語言，一開始的目標就是使用「易讀易寫的純文字格式編寫文件」，此初衷讓使用者可以專注在文字的本身，而不需要透過其它工具來切換格式。以 Word 撰寫文檔來說，就必須透過上方的工具列來切換<strong>標題、列表、粗體、斜體</strong>等等；而 Markdown 並沒有這樣的工具列，完全都是<strong>使用標示符號來完成這些需求</strong>。</p>
+<p>Markdown是一種輕量級標記式語言，創始人為約翰·格魯伯。它允許人們使用易讀易寫的純文字格式編寫文件</p>
+<p>由於Markdown的輕量化、易讀易寫特性，並且對於圖片，圖表、數學式都有支援，目前許多網站都廣泛使用Markdown來撰寫說明文件或是用於論壇上發表訊息。如GitHub、Reddit、Discord、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、簡書等，甚至還能被用來撰寫電子書。</p>
+<p>參考自維基百科以及https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/</p>
+<p>先來看看如果我把會計的筆記轉成Markdown的話看起來會是怎麼樣吧，因為Dcard不支援markdown，可以點這邊預覽看看</p>
+<p><a class="link" href="https://hackmd.io/@Celeast/ryyXXyosi"  target="_blank" rel="noopener"
+    >https://hackmd.io/@Celeast/ryyXXyosi</a></p>
+<p><img src="https://i.imgur.com/NFRD8Ko.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123005704082"
+	
+	
+></p>
+<h2 id="第七章-彈性預算直接成本與管理會計">第七章 彈性預算、直接成本與管理會計</h2>
+<p>本章學習重點</p>
+<ol>
+<li>了解各差異的差異</li>
+<li>基於差異分析所做的決策判斷</li>
+</ol>
+<p>名詞定義</p>
+<ul>
+<li>靜態預算(Static Budget)：在預算期間開始時，<strong>基於預計產出水準所做的預算</strong>所做的預算</li>
+<li>靜態預算差異：在靜態預算中，實際結果與預期數之間的差異</li>
+<li>彈性預算(Flexible Budget)：預算期間內按<strong>實際產出</strong>水準計算出預算收入與預算成本之預算</li>
+</ul>
+<p>．</p>
+<p>．</p>
+<p>．</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flowchart LR
+</span></span><span class="line"><span class="cl">B[實際投入數量x實際價格] &lt;--價格差異--&gt; 實際投入數量x預算價格 &lt;--效率差異--&gt; C[實際產出下所允許之預算投入x預算價格]
+</span></span><span class="line"><span class="cl">B &lt;--彈性預算差異--&gt;C
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>變動</th>
+<th>歸納</th>
+<th>評論</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>固定制造成本可以做為存貨成本嗎?</td>
+<td>不可</td>
+<td>可以</td>
+<td>基本問題</td>
+</tr>
+<tr>
+<td>有生產數量差異嗎?</td>
+<td>沒有</td>
+<td>有</td>
+<td>對基準產能水準的選擇，只在歸納成本法下影響營業利益的衡量</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>分錄</li>
+</ul>
+<blockquote>
+<p>原料	10,000</p>
+<p>​		應付帳款	10,000</p>
+</blockquote>
+<blockquote>
+<p>在製品		30,000</p>
+<p>製造費用 	1,000</p>
+<p>​		原料			31,000</p>
+</blockquote>
+<blockquote>
+<p>產成品	50,000</p>
+<p>​		在製品	50,000</p>
+</blockquote>
+<p>課堂範例：</p>
+<p><img src="https://i.imgur.com/bhWOaT5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123000736761"
+	
+	
+></p>
+<h2 id="ｍarkdown語法介紹">Ｍarkdown語法介紹</h2>
+<p>上面是我把我的會計筆記轉成Markdown格式，可以看到Markdown支援了幾點</p>
+<ol>
+<li>列表式的清單</li>
+<li>用來舉例的黑點</li>
+<li>重點的醒目提示</li>
+<li>分層式的標題，標出章節重點</li>
+<li>支援表格(注：markdown的表格語法非常反智，通常我都是用快捷鍵生成)</li>
+<li>支援流程圖的繪製</li>
+<li>支援數學式(這邊沒有示範到，不過Markdown是有支援高等數學的運算式的)</li>
+<li>支援圖片上傳，可以讓我把版書或是題目直接貼上去</li>
+</ol>
+<p>接下來帶大家認識一下Markdown的一些語法</p>
+<p>首先是標題的語法，輸入#再加上一個空格會產生標題，就像現在這樣</p>
+<p><img src="https://i.imgur.com/xzUg32o.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123001409936"
+	
+	
+></p>
+<p>在文字前加上1. 2. 3. 則會變成列表</p>
+<p><img src="https://i.imgur.com/xbpaCZs.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123001454121"
+	
+	
+></p>
+<p>文字之間加上**則可重點醒目</p>
+<p><img src="https://i.imgur.com/vceq8VB.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123001905373"
+	
+	
+></p>
+<p>在文字前加上+則會變成黑點</p>
+<p><img src="https://i.imgur.com/RrdcAai.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123001516022"
+	
+	
+></p>
+<p>在文字前加上&gt;則可做為補充說明，我就是用這個語法來寫分錄的</p>
+<p><img src="https://i.imgur.com/xaq48Ty.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123001618553"
+	
+	
+></p>
+<p>顯示圖片的語法則是這樣</p>
+<p><img src="https://i.imgur.com/Yg0rfCW.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123001709056"
+	
+	
+></p>
+<p>裡面的內容填上自己的圖片連結就可以了，如何把圖片上傳上去我後面會說。</p>
+<p>Markdown的語法還有很多很多，不只有我上面提到的這些，有興趣的同學可以參考這邊</p>
+<p><a class="link" href="https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/"  target="_blank" rel="noopener"
+    >https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/</a></p>
+<h2 id="我該怎麼寫markdown呢">我該怎麼寫Markdown呢？</h2>
+<p>markdown是工程師蠻常會接觸到一個標籤式語言，如果你開心的話用記事本也是可以寫Markdown的喔，但是效果會不太好閱讀而已，目前markdown我自己認為比較常見的有幾種</p>
+<ol>
+<li>
+<p>Vscode</p>
+<p><img src="https://i.imgur.com/zCtwWvH.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123002813123"
+	
+	
+></p>
+<p>這是我最初拿來寫markdown的工具，但它本身不是專門拿來寫markdown的，不支援一些熱鍵以及圖片上傳，後面就被我拋棄了</p>
+<p><img src="https://i.imgur.com/To64OPG.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123003226114"
+	
+	
+></p>
+</li>
+<li>
+<p>HackMd</p>
+<p><img src="https://i.imgur.com/XQD4g2U.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123010834897"
+	
+	
+></p>
+<p>HackMd是一個網頁版的markdown編輯器，簡單來講就是你寫上去後，東西就是直接存在雲端，且圖片複製貼上就會自動幫你上傳到網路上了，非常的便捷以及快速，好像是台灣人開發的，最重要的是它免費，也是最常見的方式。</p>
+<p><img src="https://i.imgur.com/yPY9NIk.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123003322000"
+	
+	
+></p>
+</li>
+<li>
+<p>Typora</p>
+<p><img src="https://i.imgur.com/AJVAHof.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123003346195"
+	
+	
+></p>
+<p>這是我目前主力所使用的Markdown編輯器，跟HackMd最大的不同就是它是一個所見及所得的編輯器，上述兩款其實都是把畫面分成兩邊，左邊是Markdown語法，右邊則是渲染後的結果，而typora則是在你輸入完後直接幫你渲染好，也就是<strong>所寫及所見</strong>，是它最大的特色。</p>
+<p><img src="https://i.imgur.com/04NdYQW.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>但相比之下它就有幾個缺點</p>
+<ol>
+<li>要錢，最直觀的問題就是它是一個付費的程式，屬於買斷制一次500，支援三台設備同時使用</li>
+<li>本身不支援圖片上傳，想要用它來做圖片上傳需要懂一些控制台指令以及Json格式的</li>
+<li>本身的檔案都在local端，需要自己手動丟上雲端(我個人是丟到github上面，然後用bat檔自動上傳)</li>
+</ol>
+</li>
+</ol>
+<p>還可以提供一點，我會把一些真的沒辦法用文字或是Markdown語法表示的東西寫在平板的GoodNote上面，在把連結分享出來，然後截圖下來貼上去，看起來就像這樣</p>
+<p><img src="https://i.imgur.com/SdiDiSv.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230123004611873"
+	
+	
+></p>
+<h2 id="結語">結語</h2>
+<p>當然還有不只這些，我沒記錯的話Notion本身也有支援(但我不熟)以及obsidian也是一個寫Markdown的工具，我之所以會選Typora只是因為我喜歡有更大的空間，不喜歡畫面被分成左右兩邊而已。</p>
+<p>作筆記的方法有很多，不做的、用紙寫的、用平板寫的，都可以，沒有誰優誰劣，Markdown也有它的限制在，比如說它就<strong>不能寫資產負債表、也不能寫T字帳</strong>，沒有一個方法是最佳解的，只要找到自己喜歡的方式都可以，這篇文章只是拋磚引玉，希望提供自己的一些想法供大家參考，也歡迎各位一起討論，祝大家新年快樂，忙季加油！</p>
 
 </section>
 
@@ -342,9 +636,7 @@ if (!doNotTrack) {
     
     <section class="article-tags">
         
-            <a href="/tags/google-analytics/">Google Analytics</a>
-        
-            <a href="/tags/%E7%B6%B2%E9%A0%81/">網頁</a>
+            <a href="/tags/markdown/">Markdown</a>
         
     </section>
 
@@ -378,25 +670,6 @@ if (!doNotTrack) {
             
                 
 <article class="has-image">
-    <a href="/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/JX87vay.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/JX87vay.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">如何製作會計的電子筆記？Markdown的介紹</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
     <a href="/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/">
         
         
@@ -409,6 +682,25 @@ if (!doNotTrack) {
 
         <div class="article-details">
             <h2 class="article-title">你知道嗎?現在Github上也可以使用Vscode喔！</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hugo%E5%9C%A8github%E4%B8%8A%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E9%A0%81%E5%AE%8C%E6%95%B4%E6%95%99%E5%AD%B8/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/WSwohcu.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/WSwohcu.png "/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">如何使用Hugo在Github上架設靜態網頁完整教學</h2>
         </div>
     </a>
 </article>
@@ -590,40 +882,13 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#創建github-repository">創建GitHub Repository</a>
-      <ol>
-        <li><a href="#submodule是什麼">submodule是什麼?</a></li>
-      </ol>
-    </li>
-    <li><a href="#從hugo上下載自己想要的主題thmem">從Hugo上下載自己想要的主題(thmem)</a>
-      <ol>
-        <li><a href="#如何在本機預覽hugo頁面">如何在本機預覽Hugo頁面</a></li>
-        <li><a href="#如何新增文章">如何新增文章</a></li>
-        <li><a href="#hugo的檔案結構介紹">hugo的檔案結構介紹</a></li>
-        <li><a href="#如何配置自己想要的模板configtoml">如何配置自己想要的模板(config.toml)</a>
-          <ol>
-            <li><a href="#關於baseurl的細節">關於baseURL的細節</a></li>
-          </ol>
-        </li>
-        <li><a href="#如何自定義文章模板">如何自定義文章模板</a></li>
-      </ol>
-    </li>
-    <li><a href="#如何將自己的網站上傳到github上面">如何將自己的網站上傳到GitHub上面</a>
-      <ol>
-        <li><a href="#如何push上去">如何push上去</a></li>
-        <li><a href="#在其他台電腦要怎麼clone下來">在其他台電腦要怎麼clone下來</a></li>
-      </ol>
-    </li>
-    <li><a href="#如何建立留言功能">如何建立留言功能</a>
-      <ol>
-        <li><a href="#gittalk">GitTalk</a></li>
-      </ol>
-    </li>
-    <li><a href="#如何購買自己的dns">如何購買自己的DNS</a>
-      <ol>
-        <li><a href="#google-domain">Google Domain</a></li>
-      </ol>
-    </li>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#紙本筆記的缺點">紙本筆記的缺點</a></li>
+    <li><a href="#markdown介紹">Markdown介紹</a></li>
+    <li><a href="#第七章-彈性預算直接成本與管理會計">第七章 彈性預算、直接成本與管理會計</a></li>
+    <li><a href="#ｍarkdown語法介紹">Ｍarkdown語法介紹</a></li>
+    <li><a href="#我該怎麼寫markdown呢">我該怎麼寫Markdown呢？</a></li>
+    <li><a href="#結語">結語</a></li>
   </ol>
 </nav>
         </div>
