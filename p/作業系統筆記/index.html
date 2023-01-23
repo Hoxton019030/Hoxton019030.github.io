@@ -302,7 +302,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    31 minute read
+                    32 minute read
                 </time>
             </div>
         
@@ -6516,6 +6516,131 @@ $$</p>
 <p>結果為6</p>
 </li>
 </ul>
+<p>範例1</p>
+<p>x, y 是共享變數，初值x=5, y=7</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x= x+y</td>
+<td>y=x*y</td>
+</tr>
+</tbody>
+</table></div>
+<p>Pi,Pj各作一次，求(x,y)之可能值</p>
+<p>Ans.</p>
+<p>(x,y) = (12,84)</p>
+<p>(x,y) = (40,35)</p>
+<p><strong>(x,y) = (12,35)</strong></p>
+<p>範例2</p>
+<p>x=0是共享變數，i 是區域變數</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for(i=1;i&lt;=3;i++)x=x+1</td>
+<td>for(i=1;i&lt;=3;i++)x=x+1</td>
+</tr>
+</tbody>
+</table></div>
+<p>Pi,Pj各作一次，求(x)之可能值</p>
+<p>提示</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一次</td>
+<td>x=x+1</td>
+<td>x=x+1</td>
+</tr>
+<tr>
+<td>第二次</td>
+<td>x=x+1</td>
+<td>x=x+1</td>
+</tr>
+<tr>
+<td>第三次</td>
+<td>x=x+1</td>
+<td>x=x+1</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ans.(3,4,5,6)</p>
+<p>範例3</p>
+<p>x=0是共享變數，i 是區域變數</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for(i=1;i&lt;=3;i++)x=x+1</td>
+<td>for(i=1;i&lt;=3;i++)x=x-1</td>
+</tr>
+</tbody>
+</table></div>
+<p>Pi,Pj各作一次，求(x)之可能值</p>
+<p>(-3,-2,-1,0,1,2,3)</p>
+<h3 id="解決race-condition之兩大策略">解決Race Condition之兩大策略</h3>
+<h4 id="disable-interrupt">Disable Interrupt</h4>
+<p><code>對CPU下手</code></p>
+<p>定義：<strong>Process在對共享變數存取之前，先Disable Interrupt，等到完成共享變數的存取後再才Enable Interrupt。如此一來可以保證Process在存取共享變數的期間CPU不會被Preempted</strong>，即此一存取是<strong>Atomically Executed</strong></p>
+<p>例</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&hellip;Disable interrupt</td>
+<td>&hellip; Disable Interrupt</td>
+</tr>
+<tr>
+<td>C=C+1</td>
+<td>C=C-1</td>
+</tr>
+<tr>
+<td>Enable Interrupt &hellip;</td>
+<td>Enable Interrupt &hellip;</td>
+</tr>
+</tbody>
+</table></div>
+<p>優點：</p>
+<ol>
+<li>Simple, Easy implementation</li>
+<li>適用於Uniprocessor System(單一CPU)</li>
+</ol>
+<p>缺點：</p>
+<ol>
+<li>不適合用於Multiprocessor的系統當中，<strong>只Disable 單一CPU的Interrupt，是無法防止Race Condition</strong>(因為其他CPUs上執行的Process仍可存取共享變數)，必須要Disable掉<strong>全部的</strong>CPU&rsquo;s Interrupt才可防止Race Condition，但這樣會大幅降低Performance(因為無法平行執行)</li>
+<li>風險很高，因為必須信任user process在Disable interrupt後，在很短的時間可以在Enable Interrupt，否則CPU never come back to kernel。<strong>注意，通常Disable Interrupt做法是不會開放給user Process的，它通常只存在於kernel的製作中</strong>(只有OS Developers可以用，因為開發者也要避免kernel內部的Race Condition)</li>
+</ol>
+<h4 id="critical-section臨界區間-design">Critical section(臨界區間) Design</h4>
+<p><code>對共享Data下手</code></p>
+<p><code>恐龍誤用Spinlock, Busy-waiting</code></p>
+<p>定義：對<strong>共享變數之存取</strong>進行管制，當Pi取得共享變數存取權利，在它尚未完成的期間，即使他們取得CPU，任何其他Process也無法存取共享變數</p>
 <h1 id="第一節-總覽">第一節 總覽</h1>
 <h2 id="第一章-序言">第一章 序言</h2>
 <h2 id="第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)★</h2>
@@ -7835,6 +7960,12 @@ $$</p>
           </ol>
         </li>
         <li><a href="#race-condition-problem">Race Condition problem</a></li>
+        <li><a href="#解決race-condition之兩大策略">解決Race Condition之兩大策略</a>
+          <ol>
+            <li><a href="#disable-interrupt">Disable Interrupt</a></li>
+            <li><a href="#critical-section臨界區間-design">Critical section(臨界區間) Design</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
