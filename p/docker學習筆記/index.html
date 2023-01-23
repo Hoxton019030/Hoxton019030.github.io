@@ -1310,6 +1310,37 @@ if (!doNotTrack) {
 	
 ></p>
 <p>這樣就可以把這些檔案排除在外了</p>
+<h2 id="caching--layers">Caching &amp; Layers</h2>
+<p>DockerFile裡面的每一個CML都是一個Layer，每個Layer都用來Caching`</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> node:latest</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> . .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> npm install<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> node index.js<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/qOnozTP.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124033035860"
+	
+	
+></p>
+<p>可以看到這邊的Step1, Step2都對應著CML的指令&hellip;</p>
+<p>而Cache的點就在於，其實除了ADD . . 以外(原始碼每次打包時都會有更動)，其實WORKDIR, RUN npm install這些指令其實都是重複的，我們每次打包都需要再重複執行一次，這樣很沒**效率    **</p>
+<p>於是Dokcer就會把這些重複的事情Caching起來，只要沒有改變就不會重複再做，就會看到上面的Using Cache</p>
 
 </section>
 
@@ -1639,6 +1670,7 @@ if (!doNotTrack) {
         <li><a href="#dockerignore">DockerIgnore</a></li>
       </ol>
     </li>
+    <li><a href="#caching--layers">Caching &amp; Layers</a></li>
   </ol>
 </nav>
         </div>
