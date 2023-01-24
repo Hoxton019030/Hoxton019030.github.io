@@ -298,7 +298,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    3 minute read
+                    4 minute read
                 </time>
             </div>
         
@@ -338,6 +338,25 @@ if (!doNotTrack) {
 	
 ></p>
 <h2 id="常用指令">常用指令</h2>
+<h3 id="搜尋image">搜尋Image</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker search postgres
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/D4Bl6SJ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124042123305"
+	
+	
+></p>
 <h3 id="查看目前的image">查看目前的image</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -501,6 +520,16 @@ if (!doNotTrack) {
 	
 	
 ></p>
+<h3 id="進入container與之互動">進入Container與之互動</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it <span class="o">[</span>ConatinerId<span class="o">]]</span> bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bash有可能沒有，有可能是sh，要自己到/bin裡面看</p>
 <h3 id="停止container">停止Container</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -551,6 +580,57 @@ if (!doNotTrack) {
 	
 	
 ></p>
+<h3 id="暴露port">暴露port</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -p 5432:5432 posgres
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>前面的5432是你自定義的localhost:5432，而後面的5432則是容器裡面的port號</p>
+<h3 id="暴露已經runningstopping-的container的port">暴露已經Running,Stopping 的Container的Port</h3>
+<p>沒有這個方法，只有</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run postgres
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>的這個時候你才可以把port暴露出來</p>
+<h3 id="一次性查看container的log紀錄">一次性查看Container的Log紀錄</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker logs <span class="o">[</span>ContainerId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/ux9s2GH.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124052203569"
+	
+	
+></p>
+<p>這條指令只會顯示過去的紀錄，後續的logs不會更新</p>
+<h3 id="持續查看container的log紀錄">持續查看Container的Log紀錄</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker logs -f <span class="o">[</span>ContainerId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這條不只會顯示過去的，還會動態更新現在的log</p>
 <h2 id="在docker啟動ubuntu">在Docker啟動Ubuntu</h2>
 <ol>
 <li>
@@ -1340,7 +1420,60 @@ if (!doNotTrack) {
 ></p>
 <p>可以看到這邊的Step1, Step2都對應著CML的指令&hellip;</p>
 <p>而Cache的點就在於，其實除了ADD . . 以外(原始碼每次打包時都會有更動)，其實WORKDIR, RUN npm install這些指令其實都是重複的，我們每次打包都需要再重複執行一次，這樣很沒**效率    **</p>
-<p>於是Dokcer就會把這些重複的事情Caching起來，只要沒有改變就不會重複再做，就會看到上面的Using Cache</p>
+<p>於是Dokcer就會把這些重複的事情Caching起來，只要沒有改變就不會重複再做，就會看到上面的Using Cache了</p>
+<h2 id="alpine">ALPINE</h2>
+<p><code>翻譯的意思是高山</code></p>
+<p><img src="https://i.imgur.com/lHZT25E.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124040633982"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/vROHoya.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124040527548"
+	
+	
+></p>
+<p>我剛剛打包的Image檔案已經快逼近一個G了，很明顯我們其實不需要那麼多的東西，Alpine版本的就是一個非常小的鏡像。</p>
+<h3 id="實際安裝alpine">實際安裝ALPINE</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull node:lts-alpine
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/sOvYX9X.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124041533774"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/WiRUr17.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124041614756"
+	
+	
+></p>
+<p>兩者的Size差了快十倍</p>
 
 </section>
 
@@ -1642,14 +1775,20 @@ if (!doNotTrack) {
     </li>
     <li><a href="#常用指令">常用指令</a>
       <ol>
+        <li><a href="#搜尋image">搜尋Image</a></li>
         <li><a href="#查看目前的image">查看目前的image</a></li>
         <li><a href="#查看目前運行的container">查看目前運行的Container</a></li>
         <li><a href="#執行docker-image">執行docker image</a></li>
         <li><a href="#在detached-mode下執行">在Detached mode下執行</a></li>
         <li><a href="#打包成docker-image">打包成docker image</a></li>
         <li><a href="#查看目前運作中running的container">查看目前運作中(running)的Container</a></li>
+        <li><a href="#進入container與之互動">進入Container與之互動</a></li>
         <li><a href="#停止container">停止Container</a></li>
         <li><a href="#刪除container">刪除Container</a></li>
+        <li><a href="#暴露port">暴露port</a></li>
+        <li><a href="#暴露已經runningstopping-的container的port">暴露已經Running,Stopping 的Container的Port</a></li>
+        <li><a href="#一次性查看container的log紀錄">一次性查看Container的Log紀錄</a></li>
+        <li><a href="#持續查看container的log紀錄">持續查看Container的Log紀錄</a></li>
       </ol>
     </li>
     <li><a href="#在docker啟動ubuntu">在Docker啟動Ubuntu</a></li>
@@ -1671,6 +1810,11 @@ if (!doNotTrack) {
       </ol>
     </li>
     <li><a href="#caching--layers">Caching &amp; Layers</a></li>
+    <li><a href="#alpine">ALPINE</a>
+      <ol>
+        <li><a href="#實際安裝alpine">實際安裝ALPINE</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
