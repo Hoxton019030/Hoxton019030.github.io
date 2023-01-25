@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>心得 on Hoxton</title>
+        <link>https://hoxtonhsu.com/tags/%E5%BF%83%E5%BE%97/</link>
+        <description>Recent content in 心得 on Hoxton</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh</language>
+        <lastBuildDate>Sun, 04 Dec 2022 22:22:06 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>淺談測試驅動開發</title>
+        <link>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</link>
+        <pubDate>Sun, 04 Dec 2022 22:22:06 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</guid>
+        <description>&lt;img src="https://i.imgur.com/2xteh3C.png" alt="Featured image of post 淺談測試驅動開發" /&gt;&lt;h2 id=&#34;序言&#34;&gt;序言&lt;/h2&gt;
+&lt;p&gt;參考資料：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://youtu.be/t4D6GW2c8G8?list=LL&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Agile Hsinchu 2022.11 - 〈你就是不寫測試，才會沒時間〉線上導讀&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://youtu.be/wTpsxjP0t7M&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;測試有時間再寫？你就是不寫才會沒時間！&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://ithelp.ithome.com.tw/users/20107429/ironman/3897&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;你就是都不寫測試才會沒時間：Kuma 的 30 天 Unit Test 手把手教學，從理論到實戰 （Java 篇）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;TDD(Test-Driven Development)是一個軟體開發的模式，它的概念很簡單，就是&lt;strong&gt;先寫測試在寫程式&lt;/strong&gt;，&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/LgOetJJ.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205004202805&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;這樣的事情會讓我們覺得不可思議，因為我們一直以來寫程式的方式都是先寫程式，而測試則是有時間才再補的東西。那改成先寫測試會有什麼好處呢？這部分我們等等再來談，我們先討論TDD最核心的部分—&lt;strong&gt;單元測試(Unit Test)&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;單元測試在tdd的作用是什麼&#34;&gt;單元測試在TDD的作用是什麼&lt;/h2&gt;
+&lt;p&gt;​		一開始在認識單元測試的時候，許多人的想法都會認為說，單元測試可以避免Bug，可以提升程式碼的品質。確實這些都是Unit Test的好處，但卻不是最核心的關鍵，單元測試最重要的點在於幫助我們&lt;strong&gt;重構現有的程式架構&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;​		我們在經手一個項目的時候，第二個月的理解一定會比第一個月的理解更深，第三個月的理解也一定會比第二個月的理解更加深刻，可能三個月前所使用的架構，在三個月後，隨著業務規模的擴展、需求的增加，而需要去新增新的程式，或是改變原有的設計，因而漸漸不敷使用，在這樣的情形下，若沒有單元測試的保護支持我們重構，讓我們確保每一步的Design都沒有破壞原有程式的設計，工程師會變得去害怕修改舊有的程式碼，因而導致不敷使用的架構繼續生長下去。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/RUQ0j6E.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205010938974&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;(▲ 程式能跑，但還能在更好）&lt;/p&gt;
+&lt;p&gt;​		如果只是這樣子還沒什麼問題，畢竟就只是把東西一個接著一個地疊上去，頂多就是不好維護而已。但實際上的開發中，是很常出現改Ａ壞Ｂ這種情況的，在沒有單元測試的保護下，工程師在開發中是不會知道自己更新的這段程式碼會對某些程式造成影響，往往要等到合併後才能出現問題，所以會出現一種情況就是前期開發的都很順利，而越到後面Dead Line，效率就越發下降，&lt;strong&gt;因為工程師在開發的當下不知道自己新增的功能到底會不會對別人造成影響&lt;/strong&gt;。而有了測試的保護，我們可以在寫程式的時候就知道現在程式的運行狀況，今天這樣子的修改會不會導致其他程式跑不起來，如果跑不起來那單元測試就不會過，這樣的回饋是&lt;strong&gt;立即性&lt;/strong&gt;的回應，而不需要等到合併後大家才知道。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/4EMwAcp.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205010534318&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;(▲ 隨著開發時間的增加，TDD的優勢會更凸顯出來）&lt;/p&gt;
+&lt;h2 id=&#34;agile與tdd&#34;&gt;Agile與TDD&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;講到Agile就會講到瀑布式開發(WaterFall)，但你知道嗎？其實從來都沒有瀑布式開發這種事情喔。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;瀑布式開發是來自於Winston Royce在1970所提出的論文Managing the Development of Larger Software Systems被提出，但事實上這個開發模式在這篇論文的下一行就被Winston Royce否決了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6dBbaHc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205012708984&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/61MwhoA.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205012720794&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I believe in this concept, but the implementation described above is risky and inivites failure. The problem is illustrated in Figure 4 .&lt;/p&gt;
+&lt;p&gt;我相信這個概念，但照著這上面的流程做的話是高風險且易導致錯誤的，原因就如第四張圖所示&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/73usP4Z.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221205012847815&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;​		(▲Figure 4)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;The testing phase which occurs at the end of the development cycle&lt;/strong&gt; is the first event for which timing, stotage, input/output transfers, etc, are experienced as distinguished from analyzed. These phenomena are not precisely analyzable. There phenomena are not precisely analyzable. They are not the solutions or the satndard partial differential quations of mathematical physics for instatnce. Yet if there phenomena fail to satisfy the  various external constraints, then invariablt a major redesign is required . A simple octal patch or redo of some isolated code will not fix there kinds of difficulties. The required design changes are likely to be so disruptive that the software requiremnets upon which the design is based and which provides the rationale for everything  are violated. &lt;strong&gt;Either the requirements must be modified, or a substantial change in the design is required.&lt;/strong&gt; &lt;strong&gt;In effect the development process has returned to the origin and one can expect up to a 100-percent overrun in schedule and/or costs&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在開發流程的最後一個階段-測試，第一個遇到的事情就是時序、儲存，輸出輸入，這些現象情況無法準確的分析，這些不像數學物理的解答，或是標準偏微方程，然而，如果存在不能滿足各種外部約束的現象，則不可避免地需要進行重大的重新設計，一個簡單的八進制補丁或一些孤立代碼的重做不會解決這些困難，所需的設計更改可能會造成破壞，以至於違反了設計所基於的以及為所有事情提供基本原理的軟件要求。 要么必須修改要求，要么需要對設計進行實質性更改。 實際上，開發過程已經回到原點，預計進度和/或成本會超支 100%。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Winston Royce在瀑布模型提出的當下其實就否認了它的意義，但後續被一些人拿來當作開發的窠臼，也導致了這種開發模式往往會在完工時出現重大的危害。Winston Royce認為，&lt;strong&gt;在最後的測試階段是充滿著未知與不確定性&lt;/strong&gt;，到最後會反覆著在&lt;strong&gt;測試、程式修改、確認需求&lt;/strong&gt;這三個階段來回擺盪，這樣三個階段的來回擺盪是不是有點似曾相似呢？沒錯，就是TDD的概念&lt;/p&gt;
+&lt;h2 id=&#34;什麼是tdd&#34;&gt;什麼是TDD&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Iwmr8mT.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221207000519492&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;TDD&lt;strong&gt;是一個開發模式&lt;/strong&gt;而不是測試模式，TDD的測試模式是由&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;寫一個會錯的測試&lt;/li&gt;
+&lt;li&gt;寫一個剛好會過的程式&lt;/li&gt;
+&lt;li&gt;重構&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		這三者循環，對應Winston Royce對瀑布模型提出的弊端，也就是&lt;strong&gt;測試、修改程式、確認需求&lt;/strong&gt;，也因此TDD是一個可以讓&lt;strong&gt;問題早期浮上水面的開發方式&lt;/strong&gt;，為什麼？因為這樣的開發方式要求我們對業務邏輯的需求有充分的了解，這樣我們才可以寫測試，一旦需求明確了，那麼寫出程式就只是時間的問題了。&lt;/p&gt;
+&lt;p&gt;​		另一方面，也是因為TDD的開發模式，我們每一個Code都有單元測試的保護，我們可以&lt;strong&gt;隨時重構&lt;/strong&gt;我們的程式碼而毋須擔心程式被我們改錯，是的，沒錯，TDD的一個核心概念就在於&lt;strong&gt;任何時候都可以重構我們的程式碼&lt;/strong&gt;，因為人對於系統的了解，會隨著開發時間的增加而了解的越深刻，半年前的Code到了現在可能越看越不順眼，另一方面，隨著業務規模的提升，我們早期的設計可能也會越不敷使用，若沒有單元測試的保護，我們重構的成本會隨著產品的規模的提升而提升，而發展到一定規模的情況下，&lt;strong&gt;重構變成遙不可及的夢想&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;​		也是因為有單元測試的保護，我們才可以&lt;strong&gt;真正的去設計我們的程式&lt;/strong&gt;，常見的S.O.L.I.D，以及23種設計模式的使用，如何根據不同的情境套用不同的設計模式，這就是工程師有價值的地方，可以說單元測試的撰寫完整了整個物件導向的程式設計。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

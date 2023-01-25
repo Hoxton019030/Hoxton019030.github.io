@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Java on Hoxton</title>
+        <link>https://hoxtonhsu.com/tags/java/</link>
+        <description>Recent content in Java on Hoxton</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh</language>
+        <lastBuildDate>Tue, 27 Dec 2022 15:12:58 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/java/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Java中的throw,throws,try...catch，受檢例外與非受檢例外</title>
+        <link>https://hoxtonhsu.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</link>
+        <pubDate>Tue, 27 Dec 2022 15:12:58 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</guid>
+        <description>&lt;img src="https://i.imgur.com/dwbYvaF.png" alt="Featured image of post Java中的throw,throws,try...catch，受檢例外與非受檢例外" /&gt;&lt;h2 id=&#34;開頭&#34;&gt;開頭&lt;/h2&gt;
+&lt;p&gt;Java中的例外分為受檢例外與非受檢例外(RuntimeExcetption)兩大類，可以先看到這張圖。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/apUx0mu.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221227160151705&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;所謂的&lt;strong&gt;非受檢例外就是指繼承了RuntimeException的Exception&lt;/strong&gt;，這類的Exception發生，而非受檢例外就是指沒有繼承RuntimeException的Exception。可以看下列的圖片&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/FdZYptn.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221227161807341&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;何謂受檢例外與非受檢例外&#34;&gt;何謂受檢例外與非受檢例外&lt;/h2&gt;
+&lt;p&gt;受檢例外之所以叫受檢例外，就在於這些例外是工程師必須明確檢查並處理的例外，例如讀取檔案時發生的FileNotFoundException，這類的Exception，JVM沒有辦法進行處理，因此需要工程師去做處理。而RumtimeException則是指那些工程師不需要去明確處理的Exception，比如說NullPointerException, ArrayIndexOutOfBoundsException，這類的例外都是繼承自RuntimeException，可以由JVM進行處理，當然要處理也是可以的，比如說這樣&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/9drhRUY.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221227164624742&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;(可以看到左邊第13行的方法，沒有被try..catch包住也沒事，因為該方法拋出的例外是NumberFormatException，這個例外繼承了RuntimeException，因此不用try&amp;hellip;catch處理也沒關係，JVM會自動幫我們處理，如果要放到try&amp;hellip;catch的話，則是在catch段裡去catch NumberFormatException)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/xsozyoG.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221227164726651&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;將方法放入try&amp;hellip;catch之後，因為catch是抓RuntimeException，所以被抓到後會print出catch error。&lt;/p&gt;
+&lt;p&gt;另外比較實務上的說法即是，受檢例外(checked Exception)是可被修復的例外，可以試看看retry，而不可修復的例外就是非受檢例外(RunTimeException)，這種時候就代表程式出了問題，有bug，需要工程師下來進行處理，把問題處理掉&lt;/p&gt;
+&lt;p&gt;來源：&lt;a class=&#34;link&#34; href=&#34;https://medium.com/kuma%E8%80%81%E5%B8%AB%E7%9A%84%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B%E6%95%99%E5%AE%A4/2021-it-%E9%90%B5%E4%BA%BA-day-09-%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E8%88%87%E4%BE%8B%E5%A4%96%E8%99%95%E7%90%86-f571f577f72&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;2021 IT 鐵人 Day 09 單元測試與例外處理&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;那如果一個method會拋出受檢例外，而在該method中又沒有做處理，則會需要呼叫它的那一個method進行處理。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/mLLBczf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20221227165544804&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;右邊的方法實際上不會拋出IOException，所以會顯示為灰色的，這邊只是作為Demo先寫上去。可以看到畫面左邊的地方，此時IDE跟我們報錯，說這個方法會拋出一個IOException，要我們進行處理，&lt;strong&gt;因為IOException是一個受檢例外&lt;/strong&gt;，JVM本身沒有能力可以進行處理。&lt;/p&gt;
+&lt;p&gt;大概先這樣，其他想到後補。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

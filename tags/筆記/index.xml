@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>筆記 on Hoxton</title>
+        <link>https://hoxtonhsu.com/tags/%E7%AD%86%E8%A8%98/</link>
+        <description>Recent content in 筆記 on Hoxton</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh</language>
+        <lastBuildDate>Sun, 25 Dec 2022 01:22:09 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/%E7%AD%86%E8%A8%98/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Jenkins筆記</title>
+        <link>https://hoxtonhsu.com/p/jenkins%E7%AD%86%E8%A8%98/</link>
+        <pubDate>Sun, 25 Dec 2022 01:22:09 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/jenkins%E7%AD%86%E8%A8%98/</guid>
+        <description>&lt;img src="https://i.imgur.com/3VUgy0E.png" alt="Featured image of post Jenkins筆記" /&gt;&lt;p&gt;安裝好麻煩喔，唉，晚點補&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

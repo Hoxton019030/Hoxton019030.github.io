@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Hoxton</title>
-        <link>https://hoxtonhsu.com/</link>
-        <description>Recent content on Hoxton</description>
+        <title>Posts on Hoxton</title>
+        <link>https://hoxtonhsu.com/post/</link>
+        <description>Recent content in Posts on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Sun, 22 Jan 2023 23:15:25 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 22 Jan 2023 23:15:25 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>如何製作會計的電子筆記？Markdown的介紹</title>
         <link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</link>
         <pubDate>Sun, 22 Jan 2023 23:15:25 +0800</pubDate>
@@ -5912,22 +5912,6 @@
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.796t.com/content/1545519797.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;觸發器詳細定義&lt;/a&gt;&lt;/p&gt;
 </description>
-        </item>
-        <item>
-        <title>Archives</title>
-        <link>https://hoxtonhsu.com/archives/</link>
-        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
-        
-        <guid>https://hoxtonhsu.com/archives/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Search</title>
-        <link>https://hoxtonhsu.com/search/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://hoxtonhsu.com/search/</guid>
-        <description></description>
         </item>
         
     </channel>

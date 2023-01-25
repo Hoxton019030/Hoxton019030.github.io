@@ -35,6 +35,9 @@
     <loc>https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</loc>
     <lastmod>2023-01-18T21:47:50+08:00</lastmod>
   </url><url>
+    <loc>https://hoxtonhsu.com/categories/%E7%AD%86%E8%A8%98/</loc>
+    <lastmod>2023-01-18T21:47:50+08:00</lastmod>
+  </url><url>
     <loc>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</loc>
     <lastmod>2023-01-11T23:27:27+08:00</lastmod>
   </url><url>
@@ -52,6 +55,12 @@
   </url><url>
     <loc>https://hoxtonhsu.com/tags/%E4%BE%8B%E5%A4%96%E8%99%95%E7%90%86/</loc>
     <lastmod>2022-12-27T15:12:58+08:00</lastmod>
+  </url><url>
+    <loc>https://hoxtonhsu.com/p/jenkins%E7%AD%86%E8%A8%98/</loc>
+    <lastmod>2022-12-25T01:22:09+08:00</lastmod>
+  </url><url>
+    <loc>https://hoxtonhsu.com/tags/%E7%AD%86%E8%A8%98/</loc>
+    <lastmod>2022-12-25T01:22:09+08:00</lastmod>
   </url><url>
     <loc>https://hoxtonhsu.com/tags/%E5%BF%83%E5%BE%97/</loc>
     <lastmod>2022-12-04T22:22:06+08:00</lastmod>
@@ -169,7 +178,5 @@
     <loc>https://hoxtonhsu.com/categories/%E5%BF%83%E5%BE%97/</loc>
   </url><url>
     <loc>https://hoxtonhsu.com/categories/%E7%94%9F%E6%B4%BB/</loc>
-  </url><url>
-    <loc>https://hoxtonhsu.com/categories/%E7%AD%86%E8%A8%98/</loc>
   </url>
 </urlset>
