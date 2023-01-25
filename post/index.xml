@@ -4303,6 +4303,8 @@
      + CPU排版採Priority Scheduling 排班 &amp;gt; Mechanism
      + Priority大小之定義 &amp;gt; Policy
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;chapter-3-system-structure&#34;&gt;Chapter 3 System Structure&lt;/h1&gt;
+&lt;p&gt;這個部分和第二章寫在一起了&lt;/p&gt;
 &lt;h1 id=&#34;chapter4--process-management-and-thread-management&#34;&gt;Chapter4  Process Management And Thread Management&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Process 定義與Progeam比較&lt;/p&gt;
