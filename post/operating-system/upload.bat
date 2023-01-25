@@ -1,7 +1,7 @@
 @echo off
 git pull origin main
 git add .
-git commit -m "筆記上傳 %DATE%"
+git commit -m "筆記上傳 %DATE% %TIME%"
 git push -u origin main
 pause
 exit
