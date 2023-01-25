@@ -12,7 +12,7 @@
         <pubDate>Sun, 22 Jan 2023 23:15:25 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</guid>
-        <description>&lt;img src="https://i.imgur.com/c968Ywa.png" alt="Featured image of post 如何製作會計的電子筆記？Markdown的介紹" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://i.imgur.com/c968Ywa.png" alt="Featured image of post 如何製作會計的電子筆記？Markdown的介紹" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;p&gt;年假回老家實在是太無聊了，想把這幾年學到的東西分享一下，希望可以幫助一些莘莘學子，能用更有效率的方式來整理筆記。&lt;/p&gt;
 &lt;p&gt;記得大二或是大三的時候很沉迷於作筆記這件事情，最喜歡做的事情，就是用一兩個下午把那個禮拜所上的成會或是中會整理成筆記，以利後面的複習。不得不說當時這樣做的回饋還不錯，當時中會跟成會的成績都還算不錯。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CFebBUe.png&#34;
@@ -26,7 +26,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;（當時很認真的筆記）&lt;/p&gt;
-&lt;h2 id=&#34;紙本筆記的缺點&#34;&gt;紙本筆記的缺點&lt;/h2&gt;
+&lt;h1 id=&#34;紙本筆記的缺點&#34;&gt;紙本筆記的缺點&lt;/h1&gt;
 &lt;p&gt;這樣的筆記在當時應付期中考期末考還行，因為這些筆記可能都是一兩個月寫的，都還算有印象，但是當我準備研究所的時候就發現幾個問題了，首先&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;難以搜尋：面對海量的資料，我很難在第一時間找到我需要的資訊，比如說我想要找一個利息資本化的定義，以及它的細項，我除非前一陣子剛寫，或是我版面真的寫得很好，不然我不能第一時間的找到我想要的資訊。比如說稅法的部分就分成很多塊，比如說遺產稅贈與稅等等的，數量真的太多，且稅率也類似，常常找不到自己想要的地方。&lt;/li&gt;
@@ -53,7 +53,7 @@
 &lt;li&gt;要可以讓我打類似分錄的東西&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;後來出社會工作後，接觸到Markdown這個東西真的驚為天人，並且是有一點相見恨晚，如果在學期間知道這個東西的話做筆記應該會更高效快速一點。首先先來介紹一下Markdown是什麼吧&lt;/p&gt;
-&lt;h2 id=&#34;markdown介紹&#34;&gt;Markdown介紹&lt;/h2&gt;
+&lt;h1 id=&#34;markdown介紹&#34;&gt;Markdown介紹&lt;/h1&gt;
 &lt;p&gt;Markdown 是目前非常普遍用來撰寫文檔的語言，一開始的目標就是使用「易讀易寫的純文字格式編寫文件」，此初衷讓使用者可以專注在文字的本身，而不需要透過其它工具來切換格式。以 Word 撰寫文檔來說，就必須透過上方的工具列來切換&lt;strong&gt;標題、列表、粗體、斜體&lt;/strong&gt;等等；而 Markdown 並沒有這樣的工具列，完全都是&lt;strong&gt;使用標示符號來完成這些需求&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;Markdown是一種輕量級標記式語言，創始人為約翰·格魯伯。它允許人們使用易讀易寫的純文字格式編寫文件&lt;/p&gt;
 &lt;p&gt;由於Markdown的輕量化、易讀易寫特性，並且對於圖片，圖表、數學式都有支援，目前許多網站都廣泛使用Markdown來撰寫說明文件或是用於論壇上發表訊息。如GitHub、Reddit、Discord、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、簡書等，甚至還能被用來撰寫電子書。&lt;/p&gt;
@@ -71,7 +71,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;第七章-彈性預算直接成本與管理會計&#34;&gt;第七章 彈性預算、直接成本與管理會計&lt;/h2&gt;
+&lt;h1 id=&#34;第七章-彈性預算直接成本與管理會計&#34;&gt;第七章 彈性預算、直接成本與管理會計&lt;/h1&gt;
 &lt;p&gt;本章學習重點&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;了解各差異的差異&lt;/li&gt;
@@ -149,7 +149,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;ｍarkdown語法介紹&#34;&gt;Ｍarkdown語法介紹&lt;/h2&gt;
+&lt;h1 id=&#34;ｍarkdown語法介紹&#34;&gt;Ｍarkdown語法介紹&lt;/h1&gt;
 &lt;p&gt;上面是我把我的會計筆記轉成Markdown格式，可以看到Markdown支援了幾點&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;列表式的清單&lt;/li&gt;
@@ -232,7 +232,7 @@
 &lt;p&gt;Markdown的語法還有很多很多，不只有我上面提到的這些，有興趣的同學可以參考這邊&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;我該怎麼寫markdown呢&#34;&gt;我該怎麼寫Markdown呢？&lt;/h2&gt;
+&lt;h1 id=&#34;我該怎麼寫markdown呢&#34;&gt;我該怎麼寫Markdown呢？&lt;/h1&gt;
 &lt;p&gt;markdown是工程師蠻常會接觸到一個標籤式語言，如果你開心的話用記事本也是可以寫Markdown的喔，但是效果會不太好閱讀而已，目前markdown我自己認為比較常見的有幾種&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -325,7 +325,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;結語&#34;&gt;結語&lt;/h2&gt;
+&lt;h1 id=&#34;結語&#34;&gt;結語&lt;/h1&gt;
 &lt;p&gt;當然還有不只這些，我沒記錯的話Notion本身也有支援(但我不熟)以及obsidian也是一個寫Markdown的工具，我之所以會選Typora只是因為我喜歡有更大的空間，不喜歡畫面被分成左右兩邊而已。&lt;/p&gt;
 &lt;p&gt;作筆記的方法有很多，不做的、用紙寫的、用平板寫的，都可以，沒有誰優誰劣，Markdown也有它的限制在，比如說它就&lt;strong&gt;不能寫資產負債表、也不能寫T字帳&lt;/strong&gt;，沒有一個方法是最佳解的，只要找到自己喜歡的方式都可以，這篇文章只是拋磚引玉，希望提供自己的一些想法供大家參考，也歡迎各位一起討論，祝大家新年快樂，忙季加油！&lt;/p&gt;
 </description>
