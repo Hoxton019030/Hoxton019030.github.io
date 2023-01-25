@@ -6,7 +6,59 @@
         <description>Recent content in 教學 on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Sun, 22 Jan 2023 23:15:25 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 26 Jan 2023 00:31:43 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>淺談一些實用的快捷鍵</title>
+        <link>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E4%B8%80%E4%BA%9B%E5%AF%A6%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/</link>
+        <pubDate>Thu, 26 Jan 2023 00:31:43 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E4%B8%80%E4%BA%9B%E5%AF%A6%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/</guid>
+        <description>&lt;img src="https://i.imgur.com/Ln2xqzT.png" alt="Featured image of post 淺談一些實用的快捷鍵" /&gt;&lt;p&gt;想講一些實用的，但卻很少人知道的一些電腦使用的功能，知道這些對做底稿、翻憑證不會有太大的幫助，但會用的話我個人覺得可以節省很多時間，供大家參考。&lt;/p&gt;
+&lt;h1 id=&#34;快速關機&#34;&gt;快速關機&lt;/h1&gt;
+&lt;p&gt;window+D：回到桌面&lt;/p&gt;
+&lt;p&gt;在桌面Alt+F4即可跳出關機選項&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/A0TkM9G.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230126004515683&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;記得當初在外勤的時候，只要組長說撤的時候我就會用最快的速度關機XD，那時候同事都問我怎麼用的，這就是訣竅，當然也可以選擇重新啟動或休眠，看自己喜好決定。&lt;/p&gt;
+&lt;h1 id=&#34;截圖&#34;&gt;截圖&lt;/h1&gt;
+&lt;p&gt;window+shift+s&lt;/p&gt;
+&lt;p&gt;這個應該最基本，在Window10以上的系統可以透過這個shortcut來打開截圖視窗，就拿來貼圖片給組長，跟組長說我哪邊不會QQ&lt;/p&gt;
+&lt;h1 id=&#34;快速打開excel-word-記事本-小畫家計算機&#34;&gt;快速打開Excel, Word, 記事本, 小畫家,計算機&amp;hellip;&lt;/h1&gt;
+&lt;p&gt;Window+R：跳出執行選項&lt;/p&gt;
+&lt;p&gt;在裡面輸入以下的內容已打開不同的Application&lt;/p&gt;
+&lt;p&gt;mspaint：打開小畫家&lt;/p&gt;
+&lt;p&gt;notepad：記事本&lt;/p&gt;
+&lt;p&gt;winword：word&lt;/p&gt;
+&lt;p&gt;excel：excel&lt;/p&gt;
+&lt;p&gt;計算機：calc&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BQZCVyH.gif&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;demo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;快速打開工作列的應用程式&#34;&gt;快速打開工作列的應用程式&lt;/h1&gt;
+&lt;p&gt;window+1&lt;/p&gt;
+&lt;p&gt;可以打開工作列的第一個應用&lt;/p&gt;
+&lt;p&gt;window+2&lt;/p&gt;
+&lt;p&gt;可以打開工作列的第二個應用，以此類推&amp;hellip;&lt;/p&gt;
+&lt;p&gt;這個指令我大部分都是用來開Chrome，或是Excel之類的東西&lt;/p&gt;
+&lt;h1 id=&#34;瀏覽器快速選擇搜尋列&#34;&gt;瀏覽器快速選擇搜尋列&lt;/h1&gt;
+&lt;p&gt;打開Chrorm後，打alt+D就可以定位到搜尋列，並且在這邊按Ctrl+1,2,3&amp;hellip;即可切換至不同的頁面，通常是我拿來打混摸魚的時候用的，Ctrl+T則可以打開新的分頁，所以兩個和再一起就是，開啟一個新分頁並搜尋，如果旁邊有人過來就立刻Ctrl+w關閉當前頁面，避免摸魚被抓包。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>如何製作會計的電子筆記？Markdown的介紹</title>
         <link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</link>
         <pubDate>Sun, 22 Jan 2023 23:15:25 +0800</pubDate>
