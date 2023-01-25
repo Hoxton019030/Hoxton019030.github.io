@@ -356,18 +356,18 @@
         <pubDate>Wed, 18 Jan 2023 21:47:50 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid>
-        <description>&lt;img src="https://i.imgur.com/JdDwgHn.png " alt="Featured image of post Docker學習筆記" /&gt;&lt;h2 id=&#34;名詞解釋&#34;&gt;名詞解釋&lt;/h2&gt;
-&lt;h3 id=&#34;container&#34;&gt;Container&lt;/h3&gt;
+        <description>&lt;img src="https://i.imgur.com/JdDwgHn.png " alt="Featured image of post Docker學習筆記" /&gt;&lt;h1 id=&#34;名詞解釋&#34;&gt;名詞解釋&lt;/h1&gt;
+&lt;h2 id=&#34;container&#34;&gt;Container&lt;/h2&gt;
 &lt;p&gt;Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。它使用操作系統級別的虛擬化，可以在單一的物理主機上運行多個容器，並且每個容器都有自己的運行環境和資源。&lt;/p&gt;
 &lt;p&gt;Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。容器具有輕量級、可移植性和隔離性等特點。容器是通過在操作系統內核中運行的容器引擎來實現的。&lt;/p&gt;
 &lt;p&gt;Docker容器主要是使用了Linux 的 Namespaces 和 Control groups（cgroups） 技術來實現隔離，這兩種技術可以將一個實體主機上的資源限制給每個容器，而容器內部則是共用一個kernel，因此容器比虛擬機器輕量且速度較快。&lt;/p&gt;
 &lt;p&gt;Docker容器是基於鏡像(Image)來建立與運行的，一個鏡像可以是一個基礎鏡像或是由其他鏡像所建立而來。當執行docker run 指令時，會從鏡像建立一個容器，並在容器內執行指定的應用程式或服務。&lt;/p&gt;
 &lt;p&gt;不僅如此，Docker容器還支援網路、儲存卷的映射，使得容器可以與外部通訊，也可以存取本地端的資料。&lt;/p&gt;
 &lt;p&gt;透過Docker容器,我們可以將應用程式、服務和其所需的環境打包在一起，並且可以在不同的環境中運行，提高了應用程式的可移植性和彈性。&lt;/p&gt;
-&lt;h3 id=&#34;image&#34;&gt;Image&lt;/h3&gt;
+&lt;h2 id=&#34;image&#34;&gt;Image&lt;/h2&gt;
 &lt;p&gt;Docker Image 是 Docker 容器的基礎，它是一個只讀的模板，包含了容器運行所需的所有檔案、設定和程式。當執行 &lt;code&gt;docker run&lt;/code&gt; 指令時，Docker 會從 Image 建立一個新的容器並在其中執行指定的應用程式或服務。&lt;/p&gt;
 &lt;p&gt;Docker Image 可以通過構建或下載的方式創建，構建的方式可以使用 Dockerfile 來描述如何構建一個 Image。而下載的方式則可以從 Docker Hub 或其他的 registry 下載。&lt;/p&gt;
-&lt;h3 id=&#34;volume&#34;&gt;Volume&lt;/h3&gt;
+&lt;h2 id=&#34;volume&#34;&gt;Volume&lt;/h2&gt;
 &lt;p&gt;Docker Volume 是 Docker 的一種功能，用於管理容器中的數據。容器本身是輕量級的，數據是不能永久存在的，而 Volume 則是可以永久存在的。&lt;/p&gt;
 &lt;p&gt;Docker Volume 可以被掛載到容器上，並且可以在容器內部存儲數據。當容器停止運行或者被刪除時，Volume 中的數據仍然可以保留下來。這樣就可以在重啟容器或建立新容器時，繼續使用之前存儲的數據。&lt;/p&gt;
 &lt;p&gt;並且Volume裡面的資料是可以和Host分享的，兩邊的資料呈現鏡像的雙向對應，在Host新增的東西會在Container出現，Container新增的資料也會在Host裡面出現&lt;/p&gt;
@@ -381,8 +381,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;常用指令&#34;&gt;常用指令&lt;/h2&gt;
-&lt;h3 id=&#34;搜尋image&#34;&gt;搜尋Image&lt;/h3&gt;
+&lt;h1 id=&#34;常用指令&#34;&gt;常用指令&lt;/h1&gt;
+&lt;h2 id=&#34;搜尋image&#34;&gt;搜尋Image&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -401,7 +401,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;查看目前的image&#34;&gt;查看目前的image&lt;/h3&gt;
+&lt;h2 id=&#34;查看目前的image&#34;&gt;查看目前的image&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -419,7 +419,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker images
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;查看目前運行的container&#34;&gt;查看目前運行的Container&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;查看目前運行的container&#34;&gt;查看目前運行的Container&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -448,7 +448,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;執行docker-image&#34;&gt;執行docker image&lt;/h3&gt;
+&lt;h2 id=&#34;執行docker-image&#34;&gt;執行docker image&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -468,7 +468,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;後面的:latest是版本號，可加可不加，沒加的話預設就是latest&lt;/p&gt;
-&lt;h3 id=&#34;在detached-mode下執行&#34;&gt;在Detached mode下執行&lt;/h3&gt;
+&lt;h2 id=&#34;在detached-mode下執行&#34;&gt;在Detached mode下執行&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -504,7 +504,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;打包成docker-image&#34;&gt;打包成docker image&lt;/h3&gt;
+&lt;h2 id=&#34;打包成docker-image&#34;&gt;打包成docker image&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -525,7 +525,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;​&lt;/p&gt;
-&lt;h3 id=&#34;查看目前運作中running的container&#34;&gt;查看目前運作中(running)的Container&lt;/h3&gt;
+&lt;h2 id=&#34;查看目前運作中running的container&#34;&gt;查看目前運作中(running)的Container&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -564,7 +564,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;進入container與之互動&#34;&gt;進入Container與之互動&lt;/h3&gt;
+&lt;h2 id=&#34;進入container與之互動&#34;&gt;進入Container與之互動&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -574,7 +574,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;bash有可能沒有，有可能是sh，要自己到/bin裡面看&lt;/p&gt;
-&lt;h3 id=&#34;停止container&#34;&gt;停止Container&lt;/h3&gt;
+&lt;h2 id=&#34;停止container&#34;&gt;停止Container&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -594,7 +594,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;​&lt;/p&gt;
-&lt;h3 id=&#34;刪除container&#34;&gt;刪除Container&lt;/h3&gt;
+&lt;h2 id=&#34;刪除container&#34;&gt;刪除Container&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -624,7 +624,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;暴露port&#34;&gt;暴露port&lt;/h3&gt;
+&lt;h2 id=&#34;暴露port&#34;&gt;暴露port&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -634,7 +634,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;前面的5432是你自定義的localhost:5432，而後面的5432則是容器裡面的port號&lt;/p&gt;
-&lt;h3 id=&#34;暴露已經runningstopping-的container的port&#34;&gt;暴露已經Running,Stopping 的Container的Port&lt;/h3&gt;
+&lt;h2 id=&#34;暴露已經runningstopping-的container的port&#34;&gt;暴露已經Running,Stopping 的Container的Port&lt;/h2&gt;
 &lt;p&gt;沒有這個方法，只有&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -645,7 +645,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;的這個時候你才可以把port暴露出來&lt;/p&gt;
-&lt;h3 id=&#34;一次性查看container的log紀錄&#34;&gt;一次性查看Container的Log紀錄&lt;/h3&gt;
+&lt;h2 id=&#34;一次性查看container的log紀錄&#34;&gt;一次性查看Container的Log紀錄&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -665,7 +665,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;這條指令只會顯示過去的紀錄，後續的logs不會更新&lt;/p&gt;
-&lt;h3 id=&#34;持續查看container的log紀錄&#34;&gt;持續查看Container的Log紀錄&lt;/h3&gt;
+&lt;h2 id=&#34;持續查看container的log紀錄&#34;&gt;持續查看Container的Log紀錄&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -675,7 +675,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;這條不只會顯示過去的，還會動態更新現在的log&lt;/p&gt;
-&lt;h2 id=&#34;在docker啟動ubuntu&#34;&gt;在Docker啟動Ubuntu&lt;/h2&gt;
+&lt;h1 id=&#34;在docker啟動ubuntu&#34;&gt;在Docker啟動Ubuntu&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;下載 ubuntu 的image&lt;/p&gt;
@@ -750,7 +750,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;exposing-port&#34;&gt;Exposing Port&lt;/h2&gt;
+&lt;h1 id=&#34;exposing-port&#34;&gt;Exposing Port&lt;/h1&gt;
 &lt;p&gt;輸入&lt;code&gt;docker ps&lt;/code&gt;可以看到以下資訊&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/jkFwePC.png&#34;
 	
@@ -844,7 +844,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;container的管理&#34;&gt;Container的管理&lt;/h2&gt;
+&lt;h1 id=&#34;container的管理&#34;&gt;Container的管理&lt;/h1&gt;
 &lt;p&gt;當我們啟動、並Stop一個Container，實際上如果依照我們剛剛的作法，我們是不斷的創造新的Container，輸入docker ps -a 即可看到目前存在的Container(不論running or Stopping)，或是在Desktop docker裡面也都可以看到&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/y6X5rl3.gif&#34;
 	
@@ -898,7 +898,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;為container命名&#34;&gt;為Container命名&lt;/h2&gt;
+&lt;h1 id=&#34;為container命名&#34;&gt;為Container命名&lt;/h1&gt;
 &lt;p&gt;建議命名一下，比較好找，只支援英文，不支援中文&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -928,7 +928,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;volume的使用&#34;&gt;Volume的使用&lt;/h2&gt;
+&lt;h1 id=&#34;volume的使用&#34;&gt;Volume的使用&lt;/h1&gt;
 &lt;p&gt;讓資訊可以在host與Container共享的一個功能&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/gFztGx2.png&#34;
 	
@@ -1039,7 +1039,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;不同的container使用相同的volume&#34;&gt;不同的Container使用相同的Volume&lt;/h3&gt;
+&lt;h2 id=&#34;不同的container使用相同的volume&#34;&gt;不同的Container使用相同的Volume&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/sF6Jpws.png&#34;
 	
 	
@@ -1081,7 +1081,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
+&lt;h1 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h1&gt;
 &lt;p&gt;Dockerfile是一個文本文件，它包含了創建Docker image所需的指令。這些指令可以包括例如：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;從哪個基礎鏡像建立新鏡像&lt;/li&gt;
@@ -1184,8 +1184,8 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;​&lt;/p&gt;
-&lt;h2 id=&#34;實際演練-nodejs&#34;&gt;實際演練 NodeJs&lt;/h2&gt;
-&lt;h3 id=&#34;前置作業&#34;&gt;前置作業&lt;/h3&gt;
+&lt;h1 id=&#34;實際演練-nodejs&#34;&gt;實際演練 NodeJs&lt;/h1&gt;
+&lt;h2 id=&#34;前置作業&#34;&gt;前置作業&lt;/h2&gt;
 &lt;p&gt;安裝Node.js，這邊安裝為了快速，就直接用Choco來裝了，Choco的安裝如下&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1311,7 +1311,7 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;如此一來前置作業就完成了&lt;/p&gt;
-&lt;h3 id=&#34;製作dockerfile&#34;&gt;製作DockerFile&lt;/h3&gt;
+&lt;h2 id=&#34;製作dockerfile&#34;&gt;製作DockerFile&lt;/h2&gt;
 &lt;p&gt;在目錄底下新增dockerfile，內容如下&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1339,7 +1339,7 @@
 &lt;/ul&gt;
 &lt;p&gt;為什麼要分成RUN跟CMD呢？有幾個原因，首先RUN跟CMD的用途本身就不一樣，RUN主要是在創建image中執行命令，並將結果保存在image中，它主要用來安裝依賴、配置應用程式或其他操作。則是用來說明Image創建完成後要執行的動作。&lt;strong&gt;簡而言之，RUN是在創建Image中過程所執行的，而CMD則是在Image創建完成後所執行的&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;並且，一個DockerFile可以有很多RUN指令，但只能有一個CMD指令，因為Container只能運行一個CMD指令&lt;/p&gt;
-&lt;h3 id=&#34;使用image&#34;&gt;使用Image&lt;/h3&gt;
+&lt;h2 id=&#34;使用image&#34;&gt;使用Image&lt;/h2&gt;
 &lt;p&gt;接著創建鏡像&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1380,7 +1380,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;dockerignore&#34;&gt;DockerIgnore&lt;/h3&gt;
+&lt;h2 id=&#34;dockerignore&#34;&gt;DockerIgnore&lt;/h2&gt;
 &lt;p&gt;做完上面這些操作後，我們的檔案結構長這樣&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/zx4lldH.png&#34;
 	
@@ -1434,7 +1434,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;這樣就可以把這些檔案排除在外了&lt;/p&gt;
-&lt;h2 id=&#34;caching--layers&#34;&gt;Caching &amp;amp; Layers&lt;/h2&gt;
+&lt;h1 id=&#34;caching--layers&#34;&gt;Caching &amp;amp; Layers&lt;/h1&gt;
 &lt;p&gt;DockerFile裡面的每一個CML都是一個Layer，每個Layer都用來Caching`&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1465,7 +1465,7 @@
 &lt;p&gt;可以看到這邊的Step1, Step2都對應著CML的指令&amp;hellip;&lt;/p&gt;
 &lt;p&gt;而Cache的點就在於，其實除了ADD . . 以外(原始碼每次打包時都會有更動)，其實WORKDIR, RUN npm install這些指令其實都是重複的，我們每次打包都需要再重複執行一次，這樣很沒**效率    **&lt;/p&gt;
 &lt;p&gt;於是Dokcer就會把這些重複的事情Caching起來，只要沒有改變就不會重複再做，就會看到上面的Using Cache了&lt;/p&gt;
-&lt;h2 id=&#34;alpine&#34;&gt;ALPINE&lt;/h2&gt;
+&lt;h1 id=&#34;alpine&#34;&gt;ALPINE&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;翻譯的意思是高山&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/lHZT25E.png&#34;
 	
@@ -1488,7 +1488,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;我剛剛打包的Image檔案已經快逼近一個G了，很明顯我們其實不需要那麼多的東西，Alpine版本的就是一個非常小的鏡像。&lt;/p&gt;
-&lt;h3 id=&#34;實際安裝alpine&#34;&gt;實際安裝ALPINE&lt;/h3&gt;
+&lt;h2 id=&#34;實際安裝alpine&#34;&gt;實際安裝ALPINE&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1518,7 +1518,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;兩者的Size差了快十倍&lt;/p&gt;
-&lt;h2 id=&#34;docker-compose-將後端與資料庫一起包一包&#34;&gt;Docker Compose 將後端與資料庫一起包一包&lt;/h2&gt;
+&lt;h1 id=&#34;docker-compose-將後端與資料庫一起包一包&#34;&gt;Docker Compose 將後端與資料庫一起包一包&lt;/h1&gt;
 </description>
         </item>
         <item>
@@ -1550,9 +1550,9 @@
         <pubDate>Fri, 06 Jan 2023 14:15:51 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/</guid>
-        <description>&lt;img src="https://i.imgur.com/nCGDuUc.png " alt="Featured image of post 實用的Git指令" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+        <description>&lt;img src="https://i.imgur.com/nCGDuUc.png " alt="Featured image of post 實用的Git指令" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
 &lt;p&gt;整理一下工作上有用過，並覺得實用、比較少人提過的一些Git指令。&lt;/p&gt;
-&lt;h2 id=&#34;git指令&#34;&gt;Git指令&lt;/h2&gt;
+&lt;h1 id=&#34;git指令&#34;&gt;Git指令&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;退回到上一個Commit，數字可以更改，1就是上一次，改成三的話就是三次前的Commit&lt;/li&gt;
 &lt;/ol&gt;
@@ -1694,7 +1694,7 @@
         <pubDate>Sun, 04 Dec 2022 22:22:06 +0800</pubDate>
         
         <guid>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</guid>
-        <description>&lt;img src="https://i.imgur.com/2xteh3C.png" alt="Featured image of post 淺談測試驅動開發" /&gt;&lt;h2 id=&#34;序言&#34;&gt;序言&lt;/h2&gt;
+        <description>&lt;img src="https://i.imgur.com/2xteh3C.png" alt="Featured image of post 淺談測試驅動開發" /&gt;&lt;h1 id=&#34;序言&#34;&gt;序言&lt;/h1&gt;
 &lt;p&gt;參考資料：&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://youtu.be/t4D6GW2c8G8?list=LL&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Agile Hsinchu 2022.11 - 〈你就是不寫測試，才會沒時間〉線上導讀&lt;/a&gt;&lt;/p&gt;
@@ -1714,7 +1714,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;這樣的事情會讓我們覺得不可思議，因為我們一直以來寫程式的方式都是先寫程式，而測試則是有時間才再補的東西。那改成先寫測試會有什麼好處呢？這部分我們等等再來談，我們先討論TDD最核心的部分—&lt;strong&gt;單元測試(Unit Test)&lt;/strong&gt;。&lt;/p&gt;
-&lt;h2 id=&#34;單元測試在tdd的作用是什麼&#34;&gt;單元測試在TDD的作用是什麼&lt;/h2&gt;
+&lt;h1 id=&#34;單元測試在tdd的作用是什麼&#34;&gt;單元測試在TDD的作用是什麼&lt;/h1&gt;
 &lt;p&gt;​		一開始在認識單元測試的時候，許多人的想法都會認為說，單元測試可以避免Bug，可以提升程式碼的品質。確實這些都是Unit Test的好處，但卻不是最核心的關鍵，單元測試最重要的點在於幫助我們&lt;strong&gt;重構現有的程式架構&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;​		我們在經手一個項目的時候，第二個月的理解一定會比第一個月的理解更深，第三個月的理解也一定會比第二個月的理解更加深刻，可能三個月前所使用的架構，在三個月後，隨著業務規模的擴展、需求的增加，而需要去新增新的程式，或是改變原有的設計，因而漸漸不敷使用，在這樣的情形下，若沒有單元測試的保護支持我們重構，讓我們確保每一步的Design都沒有破壞原有程式的設計，工程師會變得去害怕修改舊有的程式碼，因而導致不敷使用的架構繼續生長下去。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/RUQ0j6E.png&#34;
@@ -1740,7 +1740,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;(▲ 隨著開發時間的增加，TDD的優勢會更凸顯出來）&lt;/p&gt;
-&lt;h2 id=&#34;agile與tdd&#34;&gt;Agile與TDD&lt;/h2&gt;
+&lt;h1 id=&#34;agile與tdd&#34;&gt;Agile與TDD&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;講到Agile就會講到瀑布式開發(WaterFall)，但你知道嗎？其實從來都沒有瀑布式開發這種事情喔。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1785,7 +1785,7 @@
 &lt;p&gt;在開發流程的最後一個階段-測試，第一個遇到的事情就是時序、儲存，輸出輸入，這些現象情況無法準確的分析，這些不像數學物理的解答，或是標準偏微方程，然而，如果存在不能滿足各種外部約束的現象，則不可避免地需要進行重大的重新設計，一個簡單的八進制補丁或一些孤立代碼的重做不會解決這些困難，所需的設計更改可能會造成破壞，以至於違反了設計所基於的以及為所有事情提供基本原理的軟件要求。 要么必須修改要求，要么需要對設計進行實質性更改。 實際上，開發過程已經回到原點，預計進度和/或成本會超支 100%。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Winston Royce在瀑布模型提出的當下其實就否認了它的意義，但後續被一些人拿來當作開發的窠臼，也導致了這種開發模式往往會在完工時出現重大的危害。Winston Royce認為，&lt;strong&gt;在最後的測試階段是充滿著未知與不確定性&lt;/strong&gt;，到最後會反覆著在&lt;strong&gt;測試、程式修改、確認需求&lt;/strong&gt;這三個階段來回擺盪，這樣三個階段的來回擺盪是不是有點似曾相似呢？沒錯，就是TDD的概念&lt;/p&gt;
-&lt;h2 id=&#34;什麼是tdd&#34;&gt;什麼是TDD&lt;/h2&gt;
+&lt;h1 id=&#34;什麼是tdd&#34;&gt;什麼是TDD&lt;/h1&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Iwmr8mT.png&#34;
 	
 	

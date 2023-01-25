@@ -290,18 +290,18 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h2 id="名詞解釋">名詞解釋</h2>
-<h3 id="container">Container</h3>
+    <h1 id="名詞解釋">名詞解釋</h1>
+<h2 id="container">Container</h2>
 <p>Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。它使用操作系統級別的虛擬化，可以在單一的物理主機上運行多個容器，並且每個容器都有自己的運行環境和資源。</p>
 <p>Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。容器具有輕量級、可移植性和隔離性等特點。容器是通過在操作系統內核中運行的容器引擎來實現的。</p>
 <p>Docker容器主要是使用了Linux 的 Namespaces 和 Control groups（cgroups） 技術來實現隔離，這兩種技術可以將一個實體主機上的資源限制給每個容器，而容器內部則是共用一個kernel，因此容器比虛擬機器輕量且速度較快。</p>
 <p>Docker容器是基於鏡像(Image)來建立與運行的，一個鏡像可以是一個基礎鏡像或是由其他鏡像所建立而來。當執行docker run 指令時，會從鏡像建立一個容器，並在容器內執行指定的應用程式或服務。</p>
 <p>不僅如此，Docker容器還支援網路、儲存卷的映射，使得容器可以與外部通訊，也可以存取本地端的資料。</p>
 <p>透過Docker容器,我們可以將應用程式、服務和其所需的環境打包在一起，並且可以在不同的環境中運行，提高了應用程式的可移植性和彈性。</p>
-<h3 id="image">Image</h3>
+<h2 id="image">Image</h2>
 <p>Docker Image 是 Docker 容器的基礎，它是一個只讀的模板，包含了容器運行所需的所有檔案、設定和程式。當執行 <code>docker run</code> 指令時，Docker 會從 Image 建立一個新的容器並在其中執行指定的應用程式或服務。</p>
 <p>Docker Image 可以通過構建或下載的方式創建，構建的方式可以使用 Dockerfile 來描述如何構建一個 Image。而下載的方式則可以從 Docker Hub 或其他的 registry 下載。</p>
-<h3 id="volume">Volume</h3>
+<h2 id="volume">Volume</h2>
 <p>Docker Volume 是 Docker 的一種功能，用於管理容器中的數據。容器本身是輕量級的，數據是不能永久存在的，而 Volume 則是可以永久存在的。</p>
 <p>Docker Volume 可以被掛載到容器上，並且可以在容器內部存儲數據。當容器停止運行或者被刪除時，Volume 中的數據仍然可以保留下來。這樣就可以在重啟容器或建立新容器時，繼續使用之前存儲的數據。</p>
 <p>並且Volume裡面的資料是可以和Host分享的，兩邊的資料呈現鏡像的雙向對應，在Host新增的東西會在Container出現，Container新增的資料也會在Host裡面出現</p>
@@ -315,8 +315,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="常用指令">常用指令</h2>
-<h3 id="搜尋image">搜尋Image</h3>
+<h1 id="常用指令">常用指令</h1>
+<h2 id="搜尋image">搜尋Image</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -335,7 +335,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="查看目前的image">查看目前的image</h3>
+<h2 id="查看目前的image">查看目前的image</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -353,7 +353,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker images
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="查看目前運行的container">查看目前運行的Container</h3>
+</div><h2 id="查看目前運行的container">查看目前運行的Container</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -382,7 +382,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="執行docker-image">執行docker image</h3>
+<h2 id="執行docker-image">執行docker image</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -402,7 +402,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>後面的:latest是版本號，可加可不加，沒加的話預設就是latest</p>
-<h3 id="在detached-mode下執行">在Detached mode下執行</h3>
+<h2 id="在detached-mode下執行">在Detached mode下執行</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -438,7 +438,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="打包成docker-image">打包成docker image</h3>
+<h2 id="打包成docker-image">打包成docker image</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -459,7 +459,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>​</p>
-<h3 id="查看目前運作中running的container">查看目前運作中(running)的Container</h3>
+<h2 id="查看目前運作中running的container">查看目前運作中(running)的Container</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -498,7 +498,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="進入container與之互動">進入Container與之互動</h3>
+<h2 id="進入container與之互動">進入Container與之互動</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -508,7 +508,7 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>bash有可能沒有，有可能是sh，要自己到/bin裡面看</p>
-<h3 id="停止container">停止Container</h3>
+<h2 id="停止container">停止Container</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -528,7 +528,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>​</p>
-<h3 id="刪除container">刪除Container</h3>
+<h2 id="刪除container">刪除Container</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -558,7 +558,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="暴露port">暴露port</h3>
+<h2 id="暴露port">暴露port</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -568,7 +568,7 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>前面的5432是你自定義的localhost:5432，而後面的5432則是容器裡面的port號</p>
-<h3 id="暴露已經runningstopping-的container的port">暴露已經Running,Stopping 的Container的Port</h3>
+<h2 id="暴露已經runningstopping-的container的port">暴露已經Running,Stopping 的Container的Port</h2>
 <p>沒有這個方法，只有</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -579,7 +579,7 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>的這個時候你才可以把port暴露出來</p>
-<h3 id="一次性查看container的log紀錄">一次性查看Container的Log紀錄</h3>
+<h2 id="一次性查看container的log紀錄">一次性查看Container的Log紀錄</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -599,7 +599,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>這條指令只會顯示過去的紀錄，後續的logs不會更新</p>
-<h3 id="持續查看container的log紀錄">持續查看Container的Log紀錄</h3>
+<h2 id="持續查看container的log紀錄">持續查看Container的Log紀錄</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -609,7 +609,7 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>這條不只會顯示過去的，還會動態更新現在的log</p>
-<h2 id="在docker啟動ubuntu">在Docker啟動Ubuntu</h2>
+<h1 id="在docker啟動ubuntu">在Docker啟動Ubuntu</h1>
 <ol>
 <li>
 <p>下載 ubuntu 的image</p>
@@ -684,7 +684,7 @@ if (!doNotTrack) {
 </div>
 </div></li>
 </ol>
-<h2 id="exposing-port">Exposing Port</h2>
+<h1 id="exposing-port">Exposing Port</h1>
 <p>輸入<code>docker ps</code>可以看到以下資訊</p>
 <p><img src="https://i.imgur.com/jkFwePC.png"
 	
@@ -778,7 +778,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="container的管理">Container的管理</h2>
+<h1 id="container的管理">Container的管理</h1>
 <p>當我們啟動、並Stop一個Container，實際上如果依照我們剛剛的作法，我們是不斷的創造新的Container，輸入docker ps -a 即可看到目前存在的Container(不論running or Stopping)，或是在Desktop docker裡面也都可以看到</p>
 <p><img src="https://i.imgur.com/y6X5rl3.gif"
 	
@@ -832,7 +832,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="為container命名">為Container命名</h2>
+<h1 id="為container命名">為Container命名</h1>
 <p>建議命名一下，比較好找，只支援英文，不支援中文</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -862,7 +862,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="volume的使用">Volume的使用</h2>
+<h1 id="volume的使用">Volume的使用</h1>
 <p>讓資訊可以在host與Container共享的一個功能</p>
 <p><img src="https://i.imgur.com/gFztGx2.png"
 	
@@ -973,7 +973,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="不同的container使用相同的volume">不同的Container使用相同的Volume</h3>
+<h2 id="不同的container使用相同的volume">不同的Container使用相同的Volume</h2>
 <p><img src="https://i.imgur.com/sF6Jpws.png"
 	
 	
@@ -1015,7 +1015,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="dockerfile">Dockerfile</h2>
+<h1 id="dockerfile">Dockerfile</h1>
 <p>Dockerfile是一個文本文件，它包含了創建Docker image所需的指令。這些指令可以包括例如：</p>
 <ul>
 <li>從哪個基礎鏡像建立新鏡像</li>
@@ -1118,8 +1118,8 @@ if (!doNotTrack) {
 	
 ></p>
 <p>​</p>
-<h2 id="實際演練-nodejs">實際演練 NodeJs</h2>
-<h3 id="前置作業">前置作業</h3>
+<h1 id="實際演練-nodejs">實際演練 NodeJs</h1>
+<h2 id="前置作業">前置作業</h2>
 <p>安裝Node.js，這邊安裝為了快速，就直接用Choco來裝了，Choco的安裝如下</p>
 <ol>
 <li>
@@ -1245,7 +1245,7 @@ if (!doNotTrack) {
 </li>
 </ol>
 <p>如此一來前置作業就完成了</p>
-<h3 id="製作dockerfile">製作DockerFile</h3>
+<h2 id="製作dockerfile">製作DockerFile</h2>
 <p>在目錄底下新增dockerfile，內容如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1273,7 +1273,7 @@ if (!doNotTrack) {
 </ul>
 <p>為什麼要分成RUN跟CMD呢？有幾個原因，首先RUN跟CMD的用途本身就不一樣，RUN主要是在創建image中執行命令，並將結果保存在image中，它主要用來安裝依賴、配置應用程式或其他操作。則是用來說明Image創建完成後要執行的動作。<strong>簡而言之，RUN是在創建Image中過程所執行的，而CMD則是在Image創建完成後所執行的</strong>。</p>
 <p>並且，一個DockerFile可以有很多RUN指令，但只能有一個CMD指令，因為Container只能運行一個CMD指令</p>
-<h3 id="使用image">使用Image</h3>
+<h2 id="使用image">使用Image</h2>
 <p>接著創建鏡像</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1314,7 +1314,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="dockerignore">DockerIgnore</h3>
+<h2 id="dockerignore">DockerIgnore</h2>
 <p>做完上面這些操作後，我們的檔案結構長這樣</p>
 <p><img src="https://i.imgur.com/zx4lldH.png"
 	
@@ -1368,7 +1368,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>這樣就可以把這些檔案排除在外了</p>
-<h2 id="caching--layers">Caching &amp; Layers</h2>
+<h1 id="caching--layers">Caching &amp; Layers</h1>
 <p>DockerFile裡面的每一個CML都是一個Layer，每個Layer都用來Caching`</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1399,7 +1399,7 @@ if (!doNotTrack) {
 <p>可以看到這邊的Step1, Step2都對應著CML的指令&hellip;</p>
 <p>而Cache的點就在於，其實除了ADD . . 以外(原始碼每次打包時都會有更動)，其實WORKDIR, RUN npm install這些指令其實都是重複的，我們每次打包都需要再重複執行一次，這樣很沒**效率    **</p>
 <p>於是Dokcer就會把這些重複的事情Caching起來，只要沒有改變就不會重複再做，就會看到上面的Using Cache了</p>
-<h2 id="alpine">ALPINE</h2>
+<h1 id="alpine">ALPINE</h1>
 <p><code>翻譯的意思是高山</code></p>
 <p><img src="https://i.imgur.com/lHZT25E.png"
 	
@@ -1422,7 +1422,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>我剛剛打包的Image檔案已經快逼近一個G了，很明顯我們其實不需要那麼多的東西，Alpine版本的就是一個非常小的鏡像。</p>
-<h3 id="實際安裝alpine">實際安裝ALPINE</h3>
+<h2 id="實際安裝alpine">實際安裝ALPINE</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1452,7 +1452,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>兩者的Size差了快十倍</p>
-<h2 id="docker-compose-將後端與資料庫一起包一包">Docker Compose 將後端與資料庫一起包一包</h2>
+<h1 id="docker-compose-將後端與資料庫一起包一包">Docker Compose 將後端與資料庫一起包一包</h1>
 
 </section>
 
@@ -1664,60 +1664,56 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#名詞解釋">名詞解釋</a>
       <ol>
-        <li><a href="#名詞解釋">名詞解釋</a>
-          <ol>
-            <li><a href="#container">Container</a></li>
-            <li><a href="#image">Image</a></li>
-            <li><a href="#volume">Volume</a></li>
-          </ol>
-        </li>
-        <li><a href="#常用指令">常用指令</a>
-          <ol>
-            <li><a href="#搜尋image">搜尋Image</a></li>
-            <li><a href="#查看目前的image">查看目前的image</a></li>
-            <li><a href="#查看目前運行的container">查看目前運行的Container</a></li>
-            <li><a href="#執行docker-image">執行docker image</a></li>
-            <li><a href="#在detached-mode下執行">在Detached mode下執行</a></li>
-            <li><a href="#打包成docker-image">打包成docker image</a></li>
-            <li><a href="#查看目前運作中running的container">查看目前運作中(running)的Container</a></li>
-            <li><a href="#進入container與之互動">進入Container與之互動</a></li>
-            <li><a href="#停止container">停止Container</a></li>
-            <li><a href="#刪除container">刪除Container</a></li>
-            <li><a href="#暴露port">暴露port</a></li>
-            <li><a href="#暴露已經runningstopping-的container的port">暴露已經Running,Stopping 的Container的Port</a></li>
-            <li><a href="#一次性查看container的log紀錄">一次性查看Container的Log紀錄</a></li>
-            <li><a href="#持續查看container的log紀錄">持續查看Container的Log紀錄</a></li>
-          </ol>
-        </li>
-        <li><a href="#在docker啟動ubuntu">在Docker啟動Ubuntu</a></li>
-        <li><a href="#exposing-port">Exposing Port</a></li>
-        <li><a href="#container的管理">Container的管理</a></li>
-        <li><a href="#為container命名">為Container命名</a></li>
-        <li><a href="#volume的使用">Volume的使用</a>
-          <ol>
-            <li><a href="#不同的container使用相同的volume">不同的Container使用相同的Volume</a></li>
-          </ol>
-        </li>
-        <li><a href="#dockerfile">Dockerfile</a></li>
-        <li><a href="#實際演練-nodejs">實際演練 NodeJs</a>
-          <ol>
-            <li><a href="#前置作業">前置作業</a></li>
-            <li><a href="#製作dockerfile">製作DockerFile</a></li>
-            <li><a href="#使用image">使用Image</a></li>
-            <li><a href="#dockerignore">DockerIgnore</a></li>
-          </ol>
-        </li>
-        <li><a href="#caching--layers">Caching &amp; Layers</a></li>
-        <li><a href="#alpine">ALPINE</a>
-          <ol>
-            <li><a href="#實際安裝alpine">實際安裝ALPINE</a></li>
-          </ol>
-        </li>
-        <li><a href="#docker-compose-將後端與資料庫一起包一包">Docker Compose 將後端與資料庫一起包一包</a></li>
+        <li><a href="#container">Container</a></li>
+        <li><a href="#image">Image</a></li>
+        <li><a href="#volume">Volume</a></li>
       </ol>
     </li>
+    <li><a href="#常用指令">常用指令</a>
+      <ol>
+        <li><a href="#搜尋image">搜尋Image</a></li>
+        <li><a href="#查看目前的image">查看目前的image</a></li>
+        <li><a href="#查看目前運行的container">查看目前運行的Container</a></li>
+        <li><a href="#執行docker-image">執行docker image</a></li>
+        <li><a href="#在detached-mode下執行">在Detached mode下執行</a></li>
+        <li><a href="#打包成docker-image">打包成docker image</a></li>
+        <li><a href="#查看目前運作中running的container">查看目前運作中(running)的Container</a></li>
+        <li><a href="#進入container與之互動">進入Container與之互動</a></li>
+        <li><a href="#停止container">停止Container</a></li>
+        <li><a href="#刪除container">刪除Container</a></li>
+        <li><a href="#暴露port">暴露port</a></li>
+        <li><a href="#暴露已經runningstopping-的container的port">暴露已經Running,Stopping 的Container的Port</a></li>
+        <li><a href="#一次性查看container的log紀錄">一次性查看Container的Log紀錄</a></li>
+        <li><a href="#持續查看container的log紀錄">持續查看Container的Log紀錄</a></li>
+      </ol>
+    </li>
+    <li><a href="#在docker啟動ubuntu">在Docker啟動Ubuntu</a></li>
+    <li><a href="#exposing-port">Exposing Port</a></li>
+    <li><a href="#container的管理">Container的管理</a></li>
+    <li><a href="#為container命名">為Container命名</a></li>
+    <li><a href="#volume的使用">Volume的使用</a>
+      <ol>
+        <li><a href="#不同的container使用相同的volume">不同的Container使用相同的Volume</a></li>
+      </ol>
+    </li>
+    <li><a href="#dockerfile">Dockerfile</a></li>
+    <li><a href="#實際演練-nodejs">實際演練 NodeJs</a>
+      <ol>
+        <li><a href="#前置作業">前置作業</a></li>
+        <li><a href="#製作dockerfile">製作DockerFile</a></li>
+        <li><a href="#使用image">使用Image</a></li>
+        <li><a href="#dockerignore">DockerIgnore</a></li>
+      </ol>
+    </li>
+    <li><a href="#caching--layers">Caching &amp; Layers</a></li>
+    <li><a href="#alpine">ALPINE</a>
+      <ol>
+        <li><a href="#實際安裝alpine">實際安裝ALPINE</a></li>
+      </ol>
+    </li>
+    <li><a href="#docker-compose-將後端與資料庫一起包一包">Docker Compose 將後端與資料庫一起包一包</a></li>
   </ol>
 </nav>
         </div>
