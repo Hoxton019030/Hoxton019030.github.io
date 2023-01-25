@@ -33,9 +33,7 @@ if (!doNotTrack) {
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
-            if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "dark");
-            }
+            localStorage.setItem(colorSchemeKey, "dark");
         })();
     </script><script>
     (function() {
@@ -211,26 +209,6 @@ if (!doNotTrack) {
 
         <div class="menu-bottom-section">
             
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="8" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="16" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                    <span>Dark Mode</span>
-                </li>
             
         </div>
     </ol>
@@ -1402,6 +1380,29 @@ if (!doNotTrack) {
 
 
     
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
 </article>
 
     
@@ -1665,47 +1666,54 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#步驟">步驟</a></li>
-    <li><a href="#cron表達式七子表達式">Cron表達式(七子表達式)</a></li>
-  </ol>
-
-  <ol>
-    <li>
+    <li><a href="#springboot-scheduling">SpringBoot-Scheduling</a></li>
+    <li><a href="#spring-schedule">Spring Schedule</a>
       <ol>
-        <li><a href="#底層數據結構--堆">底層數據結構- 堆</a>
-          <ol>
-            <li><a href="#介紹">介紹</a></li>
-            <li><a href="#如何插入元素">如何插入元素</a></li>
-            <li><a href="#如何刪除元素">如何刪除元素</a></li>
-          </ol>
-        </li>
-        <li><a href="#時間輪算法time-wheel">時間輪算法(Time Wheel)</a>
-          <ol>
-            <li><a href="#round-型的時間輪">round 型的時間輪</a></li>
-            <li><a href="#分層時間輪">分層時間輪</a></li>
-          </ol>
-        </li>
+        <li><a href="#步驟">步驟</a></li>
+        <li><a href="#cron表達式七子表達式">Cron表達式(七子表達式)</a></li>
       </ol>
     </li>
-    <li><a href="#cron表達式七子表達式-1">Cron表達式(七子表達式)</a></li>
-    <li><a href="#重要api及概念">重要API及概念</a>
+    <li><a href="#quartz">Quartz</a>
       <ol>
-        <li><a href="#scheduler">Scheduler</a></li>
-        <li><a href="#job">Job</a></li>
-        <li><a href="#jobdetail">JobDetail</a></li>
-        <li><a href="#jobdatamap">JobDataMap</a></li>
-        <li><a href="#trigger">Trigger</a>
+        <li>
           <ol>
-            <li><a href="#simpletriger"><strong>SimpleTriger</strong></a></li>
-            <li><a href="#crontrigger"><strong>CronTrigger</strong></a></li>
+            <li><a href="#底層數據結構--堆">底層數據結構- 堆</a>
+              <ol>
+                <li><a href="#介紹">介紹</a></li>
+                <li><a href="#如何插入元素">如何插入元素</a></li>
+                <li><a href="#如何刪除元素">如何刪除元素</a></li>
+              </ol>
+            </li>
+            <li><a href="#時間輪算法time-wheel">時間輪算法(Time Wheel)</a>
+              <ol>
+                <li><a href="#round-型的時間輪">round 型的時間輪</a></li>
+                <li><a href="#分層時間輪">分層時間輪</a></li>
+              </ol>
+            </li>
           </ol>
         </li>
-        <li><a href="#jobbulider">JobBulider</a></li>
-        <li><a href="#identity">Identity</a></li>
-        <li><a href="#為何要將job和trigger分開來">為何要將Job和Trigger分開來?</a></li>
+        <li><a href="#cron表達式七子表達式-1">Cron表達式(七子表達式)</a></li>
+        <li><a href="#重要api及概念">重要API及概念</a>
+          <ol>
+            <li><a href="#scheduler">Scheduler</a></li>
+            <li><a href="#job">Job</a></li>
+            <li><a href="#jobdetail">JobDetail</a></li>
+            <li><a href="#jobdatamap">JobDataMap</a></li>
+            <li><a href="#trigger">Trigger</a>
+              <ol>
+                <li><a href="#simpletriger"><strong>SimpleTriger</strong></a></li>
+                <li><a href="#crontrigger"><strong>CronTrigger</strong></a></li>
+              </ol>
+            </li>
+            <li><a href="#jobbulider">JobBulider</a></li>
+            <li><a href="#identity">Identity</a></li>
+            <li><a href="#為何要將job和trigger分開來">為何要將Job和Trigger分開來?</a></li>
+          </ol>
+        </li>
+        <li><a href="#job與jobdetail的一些說明">Job與JobDetail的一些說明</a></li>
       </ol>
     </li>
-    <li><a href="#job與jobdetail的一些說明">Job與JobDetail的一些說明</a></li>
+    <li><a href="#參考">參考</a></li>
   </ol>
 </nav>
         </div>
