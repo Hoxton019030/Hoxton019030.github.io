@@ -286,7 +286,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="chapter1-intruduction">Chapter1 Intruduction</h1>
+    <p>[TOC]</p>
+<h1 id="chapter1-intruduction">Chapter1 Intruduction</h1>
 <p>管理硬體的軟體就是作業系統，硬體包含CPU，Memory，I/O設備等等…作業系統就是負責管理這些硬體的系統。一個電腦系統可以被粗略的劃分成下面四個組件：</p>
 <ul>
 <li>硬體(hardware)</li>
@@ -6736,7 +6737,7 @@ $$</p>
 <ul>
 <li>定義：須<strong>滿足以下兩點才算Progress</strong>
 <ol>
-<li>不想進入C.S的Process(亦即在Ramaid Section活動)，不可以阻礙其他Process進入C.S(或不參與進入C.S之決策)</li>
+<li>不想進入C.S的Process(亦即在Ramaid Section活動)，不可以阻礙其他Process進入C.S(或不參與進入C.S之決策)<code>不想進去的process不會阻礙別人進入</code></li>
 <li><strong>從那些想進入C.S的Processes中，決定誰可以進入C.S的決策時間是有限的(不可以無窮，也就是No Deadlock likes waitgin forever 大家都無法進入CS)</strong></li>
 </ol>
 </li>
@@ -6776,7 +6777,8 @@ $$</p>
 </tr>
 </tbody>
 </table></div>
-<h2 id="sofeware-solutions">Sofeware Solutions</h2>
+<h2 id="software-solutions">Software Solutions</h2>
+<!--https://youtu.be/72tnIO2Lvrk?list=PLGRcV7rvSdTYY0i6Sm-YQJqQerk1mQlgg&t=3450-->
 <ul>
 <li>
 <p>特色</p>
@@ -6858,6 +6860,138 @@ $$</p>
 </tr>
 </tbody>
 </table></div>
+<h3 id="algo2">Algo2</h3>
+<ol>
+<li>
+<p>共享變數宣告如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">flag[i..j] of boolean;
+</span></span><span class="line"><span class="cl">初值皆為False
+</span></span><span class="line"><span class="cl">意義：flag[i] ={
+</span></span><span class="line"><span class="cl">True:Pi有意進C.S
+</span></span><span class="line"><span class="cl">False:Pi無意進C.S
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>程式：</p>
+<p><img src="https://i.imgur.com/efUReYc.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230126182421298"
+	
+	
+></p>
+</li>
+<li>
+<p>分析</p>
+</li>
+</ol>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>CS Design要滿足的條件</th>
+<th>滿足與否</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mutual Exclusion</td>
+<td>O</td>
+<td>兩個人確實都不會同時進去，但有可能會兩個都想進去，卡住彼此，參照下面</td>
+</tr>
+<tr>
+<td>Progress</td>
+<td>X</td>
+<td>第二點不符合，會<strong>形成Deadlock</strong>，Pi,Pj可能接無法進入C.S<code>解析在下面</code></td>
+</tr>
+<tr>
+<td>Bounded Waiting</td>
+<td>O</td>
+<td>兩個都進不去，是deadlock，不是stravation</td>
+</tr>
+</tbody>
+</table></div>
+<p>解析：<img src="https://i.imgur.com/RJq3tIi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230126183442922"
+	
+	
+></p>
+<h3 id="algo3">Algo3</h3>
+<p><code>Peterson's solution</code></p>
+<p><code>混合Algo1,Algo2做撒尿牛丸</code></p>
+<p>algo1只考慮誰有資格，沒考慮意願。algo2只考量意願，但會造成死結。因此結合百家之長，不只考量資格也考量意願</p>
+<ol>
+<li>
+<p>共享變數宣告如下</p>
+<ol>
+<li>Flag[i&hellip;j] of Boolean初值皆為False <code>表意願</code></li>
+<li>Turn：值為i或j only <code>表資格</code></li>
+</ol>
+</li>
+<li>
+<p>程式</p>
+<p><img src="https://i.imgur.com/RdgEoJs.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230126220525905"
+	
+	
+></p>
+</li>
+<li>
+<p>分析</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>CS Design要滿足的條件</th>
+<th>滿足與否</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mutual Exclusion</td>
+<td>O</td>
+<td><code>相互排斥，不會有兩個process同時進入C.S</code>：若Pi，Pj皆想進入C.S，代表flag[i]跟flag[j]結為True， 當雙方皆做到while測試的時候(也就是交錯)，表示雙方已分別執行過Turn=i, Trun=j之設定，差別只是先後順序不同而已。<strong>若Pi執行比較快，把Turn改成J，接著Pj因為執行比較慢，又把Turn改成i，所以Turn的值只會為i(或j其中一個)，不會同時為兩者</strong>，所以只有Pi或Pj一個Process得以進入CS，因此符合Mutual Exclustion</td>
+</tr>
+<tr>
+<td>Progress</td>
+<td>O</td>
+<td>因為progress有兩個情況，因此分別討論之。<br />1.<code>不想進去的process不會阻礙別人進入</code>： 假設turn值為i，且Pi不想進入C.S，代表Flag[i]為False，若此時Pj想進去則Pj必可離開while(因為Flag[i]==False)，<strong>而進入CS，因為Pi不會阻礙Pj進CS</strong><br />2.<code>不產生Deadlock</code>：若Pi,Pj皆想進入C.S，則在有限的時間內必可決定出Turn值為i或為j，讓Pi or Pj進入，兩者不會waiting forever</td>
+</tr>
+<tr>
+<td>Bounded Waiting</td>
+<td>O</td>
+<td><code>先進去的process出來後，不會立刻再進去，亦即不會有Starvation的情形</code>：假設turn為i，Pi已先於Pj進入CS，而Pj等待進入中，Flag[i]==[j]==True，若Pi離開CS之後，又立刻想進入CS，則Pi必定會做一件事情，就是**<del>把Flag[i]自己設為False</del>，把Turn設成=j**，一定是Pj進入CS，因為Pj至多等一次後即可進入CS。</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ol>
+<h2 id="n個processes-cs-design">N個Processes C.S Design</h2>
 <h1 id="第一節-總覽">第一節 總覽</h1>
 <h1 id="第一章-序言">第一章 序言</h1>
 <h1 id="第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)★</h1>
@@ -8117,12 +8251,15 @@ $$</p>
           </ol>
         </li>
         <li><a href="#cs-design的方法架構圖重要">C.S Design的方法(架構圖)重要</a></li>
-        <li><a href="#sofeware-solutions">Sofeware Solutions</a></li>
+        <li><a href="#software-solutions">Software Solutions</a></li>
         <li><a href="#2個processes之cs-designpipjij">2個Processes之C.S Design(Pi,Pj,i≠j)</a>
           <ol>
             <li><a href="#algo1">Algo1</a></li>
+            <li><a href="#algo2">Algo2</a></li>
+            <li><a href="#algo3">Algo3</a></li>
           </ol>
         </li>
+        <li><a href="#n個processes-cs-design">N個Processes C.S Design</a></li>
       </ol>
     </li>
     <li><a href="#第一節-總覽">第一節 總覽</a></li>
