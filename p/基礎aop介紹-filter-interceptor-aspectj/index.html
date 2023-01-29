@@ -567,7 +567,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">  <span class="n">bean</span><span class="o">.</span><span class="na">setFilter</span><span class="o">(</span><span class="k">new</span> <span class="n">LogProcessTimeFilter</span><span class="o">());</span> <span class="c1">//設定想要使用哪一個Filter
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">addUrlPatterns</span><span class="o">(</span><span class="s">&#34;/*&#34;</span><span class="o">);</span> <span class="c1">//設置哪些url會觸發Filter，設置成/* 就代表全部都會吃到，/user/*就代表/user開頭的都會吃到
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;logProcessTimeFilter&#34;</span><span class="o">);</span> <span class="c1">//設置要叫什麼名字
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">//設定過濾器的執行順序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="n">0</span><span class="o">);</span> <span class="c1">//設定過濾器的執行順序
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="n">bean</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
@@ -577,7 +577,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">  <span class="n">bean</span><span class="o">.</span><span class="na">setFilter</span><span class="o">(</span><span class="k">new</span> <span class="n">LogApiFilter</span><span class="o">());</span> <span class="c1">//設定想要使用哪一個Filter
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">addUrlPatterns</span><span class="o">(</span><span class="s">&#34;/*&#34;</span><span class="o">);</span> <span class="c1">//設置哪些url會觸發Filter，設置成/* 就代表全部都會吃到，/user/*就代表/user開頭的都會吃到
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;logApiFilter&#34;</span><span class="o">);</span> <span class="c1">//設置要叫什麼名字
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span> <span class="c1">//設定過濾器的執行順序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="n">1</span><span class="o">);</span> <span class="c1">//設定過濾器的執行順序
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="n">bean</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="nd">@Bean</span>
@@ -586,7 +586,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">  <span class="n">bean</span><span class="o">.</span><span class="na">setFilter</span><span class="o">(</span><span class="k">new</span> <span class="n">PrintResponseRequest</span><span class="o">());</span> <span class="c1">//設定想要使用哪一個Filter
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">addUrlPatterns</span><span class="o">(</span><span class="s">&#34;/*&#34;</span><span class="o">);</span> <span class="c1">//設置哪些url會觸發Filter，設置成/* 就代表全部都會吃到，/user/*就代表/user開頭的都會吃到
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;printResponseRequestFilter&#34;</span><span class="o">);</span> <span class="c1">//設置要叫什麼名字
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span> <span class="c1">//設定過濾器的執行順序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">bean</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="n">2</span><span class="o">);</span> <span class="c1">//設定過濾器的執行順序
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="n">bean</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
@@ -1156,7 +1156,7 @@ if (!doNotTrack) {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">UserDaoImpl</span> <span class="kd">implements</span><span class="err">　</span><span class="n">UserDao</span><span class="o">{</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">UserDaoImpl</span> <span class="kd">implements</span>　<span class="n">UserDao</span><span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">login</span><span class="o">(){</span>  
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
@@ -1331,7 +1331,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">        <span class="n">UserDaoImpl</span> <span class="n">userDao</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserDaoImpl</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">UserDao</span> <span class="n">dao</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserDao</span><span class="o">)</span> <span class="n">Proxy</span><span class="o">.</span><span class="na">newProxyInstance</span><span class="o">(</span><span class="n">JDKProxy</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getClassLoader</span><span class="o">(),</span> <span class="n">interfaces</span><span class="o">,</span> <span class="k">new</span> <span class="n">UserDaoProxy</span><span class="o">(</span><span class="n">userDao</span><span class="o">));</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">//此dao已經不是原本的dao，而是新的代理類dao了
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;result = &#34;</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
@@ -1539,7 +1539,7 @@ if (!doNotTrack) {
 </ul>
 <p>within([package名].* )或( [package名]..*)</p>
 <p>舉例</p>
-<p>1.
+<p>1. 
 1.</p>
 </li>
 </ol>
