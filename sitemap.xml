@@ -3,21 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://hoxtonhsu.com/</loc>
-    <lastmod>2023-01-26T17:50:33+08:00</lastmod>
+    <lastmod>2023-01-29T17:20:08+08:00</lastmod>
   </url><url>
     <loc>https://hoxtonhsu.com/categories/</loc>
-    <lastmod>2023-01-26T17:50:33+08:00</lastmod>
+    <lastmod>2023-01-29T17:20:08+08:00</lastmod>
+  </url><url>
+    <loc>https://hoxtonhsu.com/post/</loc>
+    <lastmod>2023-01-29T17:20:08+08:00</lastmod>
+  </url><url>
+    <loc>https://hoxtonhsu.com/tags/</loc>
+    <lastmod>2023-01-29T17:20:08+08:00</lastmod>
+  </url><url>
+    <loc>https://hoxtonhsu.com/tags/wednesday/</loc>
+    <lastmod>2023-01-29T17:20:08+08:00</lastmod>
+  </url><url>
+    <loc>https://hoxtonhsu.com/p/wednesday-%E6%98%9F%E6%9C%9F%E4%B8%89%E8%88%87%E5%A5%B9%E7%9A%84%E6%9A%88%E8%88%B9%E5%A4%A5%E4%BC%B4/</loc>
+    <lastmod>2023-01-29T17:20:08+08:00</lastmod>
+  </url><url>
+    <loc>https://hoxtonhsu.com/categories/%E5%BF%83%E5%BE%97/</loc>
+    <lastmod>2023-01-29T17:20:08+08:00</lastmod>
   </url><url>
     <loc>https://hoxtonhsu.com/p/oraclesap%E9%BC%8E%E6%96%B0%E6%B7%BA%E8%AB%87%E9%80%99%E4%BA%9Berp%E8%83%8C%E5%BE%8C%E7%9A%84%E6%98%AF%E4%BB%80%E9%BA%BC-sql%E8%B3%87%E6%96%99%E5%BA%AB/</loc>
     <lastmod>2023-01-26T17:50:33+08:00</lastmod>
   </url><url>
-    <loc>https://hoxtonhsu.com/post/</loc>
-    <lastmod>2023-01-26T17:50:33+08:00</lastmod>
-  </url><url>
     <loc>https://hoxtonhsu.com/tags/sql/</loc>
-    <lastmod>2023-01-26T17:50:33+08:00</lastmod>
-  </url><url>
-    <loc>https://hoxtonhsu.com/tags/</loc>
     <lastmod>2023-01-26T17:50:33+08:00</lastmod>
   </url><url>
     <loc>https://hoxtonhsu.com/categories/%E7%94%9F%E6%B4%BB/</loc>
@@ -186,7 +195,5 @@
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://hoxtonhsu.com/search/</loc>
-  </url><url>
-    <loc>https://hoxtonhsu.com/categories/%E5%BF%83%E5%BE%97/</loc>
   </url>
 </urlset>
