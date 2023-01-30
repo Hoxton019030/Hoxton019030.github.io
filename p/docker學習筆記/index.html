@@ -353,36 +353,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker images
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="查看目前運行的container">查看目前運行的Container</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>ps是process status的意思</code></p>
-<p>或是</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker container ls
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>​	<img src="https://i.imgur.com/WCJdgXl.gif"
-	
-	
-	
-	loading="lazy"
-	
-		alt="demo"
-	
-	
-></p>
-<h2 id="執行docker-image">執行docker image</h2>
+</div><h2 id="執行docker-image">執行docker image</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -444,10 +415,10 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker build -t drink-more-water .
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker build -t drink-more-water:latest .
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>-t 是 tag的縮寫，hello-docker是這個tag的名稱，.代表所有檔案(吧?</p>
+</div><p>-t 是 tag的縮寫，hello-docker是這個tag的名稱，.代表dockerfile在當前的目錄下，如果Dockerfile不在當前目錄，則這邊要改變。latest則是版本號，可加可不加，不加的話預設是latest</p>
 <p><img src="https://i.imgur.com/c5XdkHr.png"
 	
 	
@@ -458,7 +429,35 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<p>​</p>
+<h2 id="查看目前運行的container">查看目前運行的Container</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>ps是process status的意思</code></p>
+<p>或是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker container ls
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​	<img src="https://i.imgur.com/WCJdgXl.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
 <h2 id="查看目前運作中running的container">查看目前運作中(running)的Container</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -528,7 +527,16 @@ if (!doNotTrack) {
 	
 ></p>
 <p>​</p>
-<h2 id="刪除container">刪除Container</h2>
+<p>啟動停止的Container</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker start <span class="o">[</span>ContainerId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="刪除container">刪除Container</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -609,7 +617,26 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>這條不只會顯示過去的，還會動態更新現在的log</p>
-<h1 id="在docker啟動ubuntu">在Docker啟動Ubuntu</h1>
+<h2 id="執行docker-compose">執行Docker-compose</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker compose up -d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>-d 代表是否背景執行，不佔用terminal</p>
+<h2 id="停止並刪除docker-compose的container">停止並刪除Docker-compose的Container</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker compose down
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="在docker啟動ubuntu">在Docker啟動Ubuntu</h1>
 <ol>
 <li>
 <p>下載 ubuntu 的image</p>
@@ -1453,7 +1480,158 @@ if (!doNotTrack) {
 ></p>
 <p>兩者的Size差了快十倍</p>
 <h1 id="docker-compose-將後端與資料庫一起包一包">Docker Compose 將後端與資料庫一起包一包</h1>
-
+<p>一個Project不可能只由一個後端組成，肯定是要由後端、前端、以及資料庫三者組合，甚至更甚者可能會有10,20個的部件需要去組合，那麼一個一個run container這件事情就變得相當缺乏效率。為了處理這件事情，於是有了<strong>Docker-Compose</strong>的概念出現。</p>
+<p>Docker-Compose大概就像這樣，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.7&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">postgres-for-dockerpractice</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./pgdata:/var/lib/postgresql/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;5432:5432&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">backend</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">backend-for-dockerpractice</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">shop</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">db</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;8080:8080&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>和dockerfile一樣存在於專案根目錄中</p>
+<p><img src="https://i.imgur.com/UpKhAur.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230130235149649"
+	
+	
+></p>
+<p>他類似於一個<strong>配置檔</strong>，用以告訴Docker要啟動哪些Container，以及它們之間的交互關係，以上面的Docker-compose.yml來說明</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.7&#39;</span><span class="w"> </span><span class="l">//要使用的dokcer-compose版本，有分很多版，比如說1.0,2.0，但目前主流是3.0，所以照著寫就好</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w"> </span><span class="l">//每一個起起來的Container有一個特殊的名字，叫做service，這個yaml檔就有兩個service，分別叫db跟backend</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w"> </span><span class="l">//可自定義的service名稱，高興叫啥就叫啥，但這個名字會與你在application.properties裡描述的名稱有對應關係，可以看看下面的附圖，第四行的url:jdbc:postgresql://db:5432/shop，其中的db就是service的名稱</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">postgres-for-dockerpractice //自定義的名稱，想叫啥就叫啥，這名稱會是你的Container名稱</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres //要使用哪個image作為基底</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="m">45002502</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">postgres</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">shop</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./pgdata:/var/lib/postgresql/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;5432:5432&#39;</span><span class="w"> </span><span class="l">//要暴露出來的端口</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l">//可自定義的service名稱，高興叫啥就叫啥，但這個名字會與你在application.properties裡描述的名稱有對應關係。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">backend-for-dockerpractice  //自定義的名稱，想叫啥就叫啥，這名稱會是你的Container名稱</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">shop //要使用哪個image作為基底，這個是我自己docker build -t shop:latest . 所創建出來的image</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">db //這意味著，你這邊的service會等到db這個service完成後才會進行部屬。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;8080:8080&#39;</span><span class="w"> </span><span class="l">// 暴露出來的端口</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/AMN0bz6.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230130235821812"
+	
+	
+></p>
+<p>▲第四行的db與services的名稱有對應。</p>
+<p><img src="https://i.imgur.com/ksv3RFX.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230131000230558"
+	
+	
+></p>
+<p>▲上述的docker-compose啟動後顯示的樣子。</p>
+<p>常用的指令</p>
+<p>啟動當前目錄的docker-compose</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker compose up
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>關閉當前目錄的docker-compose</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker compose down
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -1675,10 +1853,10 @@ if (!doNotTrack) {
       <ol>
         <li><a href="#搜尋image">搜尋Image</a></li>
         <li><a href="#查看目前的image">查看目前的image</a></li>
-        <li><a href="#查看目前運行的container">查看目前運行的Container</a></li>
         <li><a href="#執行docker-image">執行docker image</a></li>
         <li><a href="#在detached-mode下執行">在Detached mode下執行</a></li>
         <li><a href="#打包成docker-image">打包成docker image</a></li>
+        <li><a href="#查看目前運行的container">查看目前運行的Container</a></li>
         <li><a href="#查看目前運作中running的container">查看目前運作中(running)的Container</a></li>
         <li><a href="#進入container與之互動">進入Container與之互動</a></li>
         <li><a href="#停止container">停止Container</a></li>
@@ -1687,6 +1865,8 @@ if (!doNotTrack) {
         <li><a href="#暴露已經runningstopping-的container的port">暴露已經Running,Stopping 的Container的Port</a></li>
         <li><a href="#一次性查看container的log紀錄">一次性查看Container的Log紀錄</a></li>
         <li><a href="#持續查看container的log紀錄">持續查看Container的Log紀錄</a></li>
+        <li><a href="#執行docker-compose">執行Docker-compose</a></li>
+        <li><a href="#停止並刪除docker-compose的container">停止並刪除Docker-compose的Container</a></li>
       </ol>
     </li>
     <li><a href="#在docker啟動ubuntu">在Docker啟動Ubuntu</a></li>
