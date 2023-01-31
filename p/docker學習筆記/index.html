@@ -373,7 +373,16 @@ if (!doNotTrack) {
 	
 ></p>
 <p>後面的:latest是版本號，可加可不加，沒加的話預設就是latest</p>
-<h2 id="在detached-mode下執行">在Detached mode下執行</h2>
+<h2 id="刪除images">刪除images</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker rmi <span class="o">[</span>imageId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="在detached-mode下執行">在Detached mode下執行</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1864,6 +1873,7 @@ if (!doNotTrack) {
         <li><a href="#搜尋image">搜尋Image</a></li>
         <li><a href="#查看目前的image">查看目前的image</a></li>
         <li><a href="#執行docker-image">執行docker image</a></li>
+        <li><a href="#刪除images">刪除images</a></li>
         <li><a href="#在detached-mode下執行">在Detached mode下執行</a></li>
         <li><a href="#打包成docker-image">打包成docker image</a></li>
         <li><a href="#查看目前運行的container">查看目前運行的Container</a></li>
