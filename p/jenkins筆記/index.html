@@ -290,22 +290,13 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <p>在Docker安裝Jenkins</p>
+    <h1 id="在docker安裝jenkins">在Docker安裝Jenkins</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --restart<span class="o">=</span>always -d -v c:/jenkins:/var/jenkins_home -p 9070:8080 -p 50000:50000 --name jenkins jenkins/jenkins:lts
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>使用環境變數安裝也可以</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"> docker run --restart<span class="o">=</span>always -d -v <span class="si">${</span><span class="nv">JENKINS_HOME</span><span class="si">}</span>:/var/jenkins_home -p 9070:8080 -p 50000:50000 --name jenkins jenkins/jenkins:lts
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>密碼會顯示在logs紀錄裡面，輸入</p>
@@ -328,6 +319,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
+<h1 id="進入jenkins">進入Jenkins</h1>
+<p>訪問http://localhost:9070/</p>
 
 </section>
 
@@ -621,7 +614,39 @@ if (!doNotTrack) {
             >
 
             </main>
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#在docker安裝jenkins">在Docker安裝Jenkins</a></li>
+    <li><a href="#進入jenkins">進入Jenkins</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
         </div>
         <script 
