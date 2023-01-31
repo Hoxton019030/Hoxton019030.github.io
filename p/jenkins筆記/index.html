@@ -290,7 +290,35 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <p>安裝好麻煩喔，唉，晚點補</p>
+    <p>在Docker安裝Jenkins</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --rm -u root -p 8080:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">&#34;</span>:/home  jenkinsci/blueocean
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>密碼會顯示在logs紀錄裡面，輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker logs -f [ContainerId]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>來查看</p>
+<p><img src="https://i.imgur.com/CGgyuYw.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230131112905119"
+	
+	
+></p>
 
 </section>
 
