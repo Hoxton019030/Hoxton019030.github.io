@@ -296,7 +296,16 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --rm -u root -p 8080:8080 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">&#34;</span>:/home  jenkinsci/blueocean
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --restart<span class="o">=</span>always -d -v jenkins_home:/var/jenkins_home -p 9070:8080 -p 50000:50000 --name jenkins jenkins/jenkins:lts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用環境變數安裝也可以</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"> docker run --restart<span class="o">=</span>always -d -v <span class="si">${</span><span class="nv">JENKINS_HOME</span><span class="si">}</span>:/var/jenkins_home -p 9070:8080 -p 50000:50000 --name jenkins jenkins/jenkins:lts
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>密碼會顯示在logs紀錄裡面，輸入</p>
