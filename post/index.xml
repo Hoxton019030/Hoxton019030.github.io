@@ -6,7 +6,93 @@
         <description>Recent content in Posts on Hoxton</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <lastBuildDate>Sun, 29 Jan 2023 17:20:08 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 05 Feb 2023 21:06:21 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>使用SSH來連動GITSCM</title>
+        <link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</link>
+        <pubDate>Sun, 05 Feb 2023 21:06:21 +0800</pubDate>
+        
+        <guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</guid>
+        <description>&lt;img src="https://i.imgur.com/8ocM55M.png " alt="Featured image of post 使用SSH來連動GITSCM" /&gt;&lt;h1 id=&#34;步驟&#34;&gt;步驟&lt;/h1&gt;
+&lt;h2 id=&#34;產生key的方式&#34;&gt;產生key的方式&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;儲存key的位置&#34;&gt;儲存Key的位置&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/O7fBG6U.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230205211256218&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;要改就改，不改就是預設的&lt;/p&gt;
+&lt;h2 id=&#34;是否要針對privatekey設置密碼&#34;&gt;是否要針對privateKey設置密碼&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6cq91cE.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230205211413921&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用這組Key時需不需要額外使用密碼，不輸入就是空白&lt;/p&gt;
+&lt;h2 id=&#34;查看產生的key&#34;&gt;查看產生的key&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/s4Zz9fr.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230205211703737&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;.pub後綴的就代表是pubKey&lt;/p&gt;
+&lt;p&gt;輸入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat id_rsa.pub
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;來查看&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/eRFOrX4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230205211814078&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此時將這串複製下來，貼到GitHub的SSH Key設定&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/JuU3kev.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230205213904945&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接著只要上傳是使用SSH方式上傳，就不需要再登入github了&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Wednesday 星期三與她的暈船夥伴</title>
         <link>https://hoxtonhsu.com/p/wednesday-%E6%98%9F%E6%9C%9F%E4%B8%89%E8%88%87%E5%A5%B9%E7%9A%84%E6%9A%88%E8%88%B9%E5%A4%A5%E4%BC%B4/</link>
         <pubDate>Sun, 29 Jan 2023 17:20:08 +0800</pubDate>
@@ -2476,6 +2562,7 @@
         
         <guid>https://hoxtonhsu.com/p/jenkins%E7%AD%86%E8%A8%98/</guid>
         <description>&lt;img src="https://i.imgur.com/3VUgy0E.png" alt="Featured image of post Jenkins筆記" /&gt;&lt;h1 id=&#34;在docker安裝jenkins&#34;&gt;在Docker安裝Jenkins&lt;/h1&gt;
+&lt;p&gt;強烈建議初次學習時先不要使用docker安裝，要看什麼東西都不方便，還是用WAR啟動比較好&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2506,6 +2593,8 @@
 &gt;&lt;/p&gt;
 &lt;h1 id=&#34;進入jenkins&#34;&gt;進入Jenkins&lt;/h1&gt;
 &lt;p&gt;訪問http://localhost:9070/&lt;/p&gt;
+&lt;p&gt;github的webhook是什麼意思&lt;/p&gt;
+&lt;p&gt;GitHub Webhooks 是一种让其他网站或服务在 GitHub 上的特定事件发生时得到通知的功能。当你在 GitHub 上执行一些特定操作时，例如推送代码、打开 Pull Request，GitHub 就会发送一个 HTTP POST 请求到你指定的 URL，以告知其他网站或服务。这样，其他网站或服务就可以基于这些通知触发自己的行为，例如自动化构建、部署等。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -3795,6 +3884,145 @@
 &lt;h2 id=&#34;ch8-hasing&#34;&gt;CH8 Hasing&lt;/h2&gt;
 &lt;h2 id=&#34;ch6-graph&#34;&gt;Ch6 Graph&lt;/h2&gt;
 &lt;h2 id=&#34;ch2ch4-arraylinked-list&#34;&gt;Ch2/Ch4 Array&amp;amp;Linked List&lt;/h2&gt;
+&lt;h1 id=&#34;ch1-algorith-recursion-and-performance-analysis&#34;&gt;Ch1 Algorith, Recursion and Performance Analysis&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Algo定義(5個Criteria)&lt;/p&gt;
+&lt;p&gt;Recursion(遞迴)☆☆☆☆☆&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;定義&lt;/p&gt;
+&lt;p&gt;種類&lt;/p&gt;
+&lt;p&gt;與 Non-Recursion比較考型及來源&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;效能分析&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Space(較少考)&lt;/p&gt;
+&lt;p&gt;Time(較常考)☆☆☆☆☆&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;algorithm演算法&#34;&gt;Algorithm(演算法)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;定義：為了解決特定問題之有限個敘述／步驟／指令所構成之集合，且必須滿足下列&lt;strong&gt;５&lt;/strong&gt;個Criteria：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;Input：輸入的資料量&amp;gt;=0個即可&lt;/li&gt;
+&lt;li&gt;Output：至少要有&amp;gt;=1個輸出量&lt;/li&gt;
+&lt;li&gt;Definiteness(明確性)：每個敘述／步驟／指令必須是Clear且unambiauous(不可混淆不清)。&lt;code&gt;3之要求在於Algo之寫作格式無一致標準之規範 &lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Finiteness(有限性)：必須在執行／追蹤有限個步驟後，必能夠終止&lt;/li&gt;
+&lt;li&gt;Effectiveness(有效性)：人可以用紙和筆追蹤／執行每一個步驟，即每一個Step is baisc enough to be carried。&lt;code&gt;當log完成，你如何確定它是正確的&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;ch5-tree-and-binary-tree-1&#34;&gt;Ch5 Tree and Binary Tree&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Tree跟BinaryTree不一樣&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;學習路線-1&#34;&gt;學習路線&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tree Def 相關術語&lt;/p&gt;
+&lt;p&gt;Tree的表示方法(4種)☆☆&lt;/p&gt;
+&lt;p&gt;Binary Tree之 Def 與 &lt;u&gt;Tree不同比較☆☆☆☆☆&lt;/u&gt;&lt;/p&gt;
+&lt;p&gt;B.T的3個基本定理☆☆☆☆☆☆&lt;/p&gt;
+&lt;p&gt;B.T的種類(4種)☆☆&lt;/p&gt;
+&lt;p&gt;B.T的表示方式(2種)☆☆&lt;/p&gt;
+&lt;p&gt;B.T Traversal (前中後序及level-order)及其應用☆☆&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Binary Search Tree(BST)☆☆☆☆☆&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Heap☆☆☆☆☆&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Thread Binary Tree(有效利用空鏈結，但非考試重點)☆☆&lt;/p&gt;
+&lt;p&gt;Tree化成B.T,Forest化成BT&lt;/p&gt;
+&lt;p&gt;N個Node所形成的不同B.T Structures ☆☆☆&lt;/p&gt;
+&lt;p&gt;Disjoint Sets定義、表示、應用及Union(i,j) , Find(x)運作&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;tree樹&#34;&gt;Tree(樹)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定義：是由&amp;gt;0個Node所構成之集合，&lt;strong&gt;不可以為空&lt;/strong&gt;，滿足以下的條件&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;至少會有一個特定Node叫做&lt;strong&gt;Root(樹根)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;其餘的Node分成T1~Tm個互斥集合，T1~Tm稱之為Root之子樹(subtrees)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/iwSOSZh.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230201220412599&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;術語&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Node&amp;rsquo;s Degree&lt;/strong&gt;：該節點的子樹個數&lt;/p&gt;
+&lt;p&gt;Ａ之Degree：３&lt;/p&gt;
+&lt;p&gt;Ｂ之Degree：２&lt;/p&gt;
+&lt;p&gt;Ｅ之Degree：０&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Leaf(樹葉)&lt;/strong&gt;：Degree=0的Node&lt;/p&gt;
+&lt;p&gt;例如：E,F,G,H,I,J&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Non-Leaf(非樹葉)：非樹葉的點(Degree&amp;gt;0的點)&lt;/p&gt;
+&lt;p&gt;例如：Ａ,B,C,D&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Child與Parent&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sibling(兄弟)：具有共同父點的Node，即為Sibling&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;eg. B,C,D是sibling&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ancestors(先祖)：沿著父節點往上延伸的Node即為Ancestors&lt;/p&gt;
+&lt;p&gt;eg. E之Ancestors{B,A}&lt;/p&gt;
+&lt;p&gt;​	  I之Ancestors{D,A}&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note：Descendents(後代)&lt;/p&gt;
+&lt;p&gt;eg. B之後代={E,F}&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Node&amp;rsquo;s Level值：各家定義不盡相同，有以下幾種，&lt;strong&gt;差異在於Root是0還是1&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定義：
+&lt;ol&gt;
+&lt;li&gt;Root Level = 1;&lt;/li&gt;
+&lt;li&gt;若 Parent 之 level=i，則it children level = i+1&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tree&amp;rsquo;s Degree：MAx{Node&amp;rsquo;s Degree}&lt;/p&gt;
+&lt;p&gt;eg. Tree&amp;rsquo;s Degree = 3&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tree&amp;rsquo;s Height (or Depth) ：Max{Node&amp;rsquo;s Level}&lt;/p&gt;
+&lt;p&gt;eg. Tree高度=3(假設root為1)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Forest(森林)&lt;/strong&gt;：由≥0棵互斥Trees所形成之集合，&lt;strong&gt;Forest可以為空&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;tree的表示方式&#34;&gt;Tree的表示方式&lt;/h2&gt;
+&lt;p&gt;方法一：LinkedList直接表示&lt;/p&gt;
+&lt;p&gt;作法：假設Tree&amp;rsquo;s Degree=K，Node數=n，則Node Structure如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/jCq1OHY.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230201224708128&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;分析：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;缺點:極度浪費Link空間&lt;/strong&gt;，共準備n*K條Link，&lt;strong&gt;☆☆☆☆☆有用的非Nil之Link有n-1條☆☆☆☆☆&lt;/strong&gt;(扣掉樹根不用，概念類似相通的無向圖)，所以Nil Links(浪費的)有nk-(n-1)條，因為浪費比例&lt;/p&gt;
+&lt;p&gt;$$
+\frac{n&lt;em&gt;k-(n-1)}{n&lt;/em&gt;k} = \frac{nk-n+1}{nk}=\frac{k-1}{k} =0.99
+$$&lt;/p&gt;
 </description>
         </item>
         <item>
