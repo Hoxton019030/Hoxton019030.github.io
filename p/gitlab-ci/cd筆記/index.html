@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Jenkins的學習筆記，依然是想到啥就寫啥'><title>Jenkins筆記</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='熬夜做的筆記，痛苦'><title>GitLab-CI/CD筆記</title>
 
-<link rel='canonical' href='https://hoxtonhsu.com/p/jenkins%E7%AD%86%E8%A8%98/'>
+<link rel='canonical' href='https://hoxtonhsu.com/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/'>
 
-<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='Jenkins筆記'>
-<meta property='og:description' content='Jenkins的學習筆記，依然是想到啥就寫啥'>
-<meta property='og:url' content='https://hoxtonhsu.com/p/jenkins%E7%AD%86%E8%A8%98/'>
+<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='GitLab-CI/CD筆記'>
+<meta property='og:description' content='熬夜做的筆記，痛苦'>
+<meta property='og:url' content='https://hoxtonhsu.com/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/'>
 <meta property='og:site_name' content='Hoxton'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='筆記' /><meta property='article:published_time' content='2022-12-25T01:22:09&#43;08:00'/><meta property='article:modified_time' content='2022-12-25T01:22:09&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/3VUgy0E.png' />
-<meta name="twitter:title" content="Jenkins筆記">
-<meta name="twitter:description" content="Jenkins的學習筆記，依然是想到啥就寫啥"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://i.imgur.com/3VUgy0E.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='CI/CD' /><meta property='article:tag' content='Gitlab' /><meta property='article:published_time' content='2023-02-06T19:50:08&#43;08:00'/><meta property='article:modified_time' content='2023-02-06T19:50:08&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/b9bWXWs.jpg' />
+<meta name="twitter:title" content="GitLab-CI/CD筆記">
+<meta name="twitter:description" content="熬夜做的筆記，痛苦"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.imgur.com/b9bWXWs.jpg' />
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
@@ -217,9 +217,9 @@ if (!doNotTrack) {
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/jenkins%E7%AD%86%E8%A8%98/">
+            <a href="/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/">
                 
-                    <img src="https://i.imgur.com/3VUgy0E.png" loading="lazy" alt="Featured image of post Jenkins筆記" />
+                    <img src="https://i.imgur.com/b9bWXWs.jpg" loading="lazy" alt="Featured image of post GitLab-CI/CD筆記" />
                 
             </a>
         </div>
@@ -238,12 +238,12 @@ if (!doNotTrack) {
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/jenkins%E7%AD%86%E8%A8%98/">Jenkins筆記</a>
+            <a href="/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/">GitLab-CI/CD筆記</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            Jenkins的學習筆記，依然是想到啥就寫啥
+            熬夜做的筆記，痛苦
         </h3>
         
     </div>
@@ -261,7 +261,7 @@ if (!doNotTrack) {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Dec 25, 2022</time>
+                <time class="article-time--published">Feb 06, 2023</time>
             </div>
         
 
@@ -290,41 +290,120 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="在docker安裝jenkins">在Docker安裝Jenkins</h1>
-<p>強烈建議初次學習時先不要使用docker安裝，要看什麼東西都不方便，還是用WAR啟動比較好</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --restart<span class="o">=</span>always -d -v c:/jenkins:/var/jenkins_home -p 9070:8080 -p 50000:50000 --name jenkins jenkins/jenkins:lts
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>密碼會顯示在logs紀錄裡面，輸入</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker logs -f [ContainerId]
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>來查看</p>
-<p><img src="https://i.imgur.com/CGgyuYw.png"
+    <p>參考影片：https://youtu.be/-4XT8-znkuc?list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu</p>
+<h1 id="jenkins與gitlab的比較">Jenkins與GitLab的比較</h1>
+<p>Jenkins是目前業界最流行、最廣泛的CI/CD工具</p>
+<h1 id="如何使用gitlab的cicd工具">如何使用GitLab的CI/CD工具</h1>
+<p>在專案底下新增<code>.gitlab-ci.yml</code>的檔案，裡面的格式長這樣</p>
+<p><img src="https://i.imgur.com/UYbhpbw.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20230131112905119"
+		alt="image-20230205220750491"
 	
 	
 ></p>
-<h1 id="進入jenkins">進入Jenkins</h1>
-<p>訪問http://localhost:9070/</p>
-<p>github的webhook是什麼意思</p>
-<p>GitHub Webhooks 是一种让其他网站或服务在 GitHub 上的特定事件发生时得到通知的功能。当你在 GitHub 上执行一些特定操作时，例如推送代码、打开 Pull Request，GitHub 就会发送一个 HTTP POST 请求到你指定的 URL，以告知其他网站或服务。这样，其他网站或服务就可以基于这些通知触发自己的行为，例如自动化构建、部署等。</p>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># 稱之為狀態</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">stages</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">linter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">testing</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">building</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">deploy </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 稱之為Job</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">Helloworld</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l">linter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">echo &#34;hello world, GitLab!&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">run_unit_tests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l">testing</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">echo &#34;執行單元測試&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">before_script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">echo &#34;安裝套件&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">echo &#34;設定資料庫連線&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">after_script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">echo &#34;刪除不必要的檔案&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">bad_job</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l">testing</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">epaewjdqwe</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">build_docker_images</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l">building</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">echo &#34;building docker images&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">deploy_to_production</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l">deploy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">echo &#34;deploy to production&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="問題彙整">問題彙整</h1>
+<h2 id="got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unix-">Got permission denied while trying to connect to the Docker daemon socket at unix:/// &hellip;</h2>
+<p><img src="https://i.imgur.com/qnx1Plu.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230208005955002"
+	
+	
+></p>
+<p>解決方法：</p>
+<p>在vm中輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">usermod -aG docker gitlab-runenr
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -332,7 +411,9 @@ if (!doNotTrack) {
     
     <section class="article-tags">
         
-            <a href="/tags/%E7%AD%86%E8%A8%98/">筆記</a>
+            <a href="/tags/ci/cd/">CI/CD</a>
+        
+            <a href="/tags/gitlab/">Gitlab</a>
         
     </section>
 
@@ -386,25 +467,6 @@ if (!doNotTrack) {
     <h2 class="section-title">Related content</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/b9bWXWs.jpg" loading="lazy" data-key="" data-hash="https://i.imgur.com/b9bWXWs.jpg"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">GitLab-CI/CD筆記</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="has-image">
@@ -477,6 +539,25 @@ if (!doNotTrack) {
 
         <div class="article-details">
             <h2 class="article-title">Java中的throw,throws,try...catch，受檢例外與非受檢例外</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/jenkins%E7%AD%86%E8%A8%98/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/3VUgy0E.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/3VUgy0E.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Jenkins筆記</h2>
         </div>
     </a>
 </article>
@@ -639,8 +720,13 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#在docker安裝jenkins">在Docker安裝Jenkins</a></li>
-    <li><a href="#進入jenkins">進入Jenkins</a></li>
+    <li><a href="#jenkins與gitlab的比較">Jenkins與GitLab的比較</a></li>
+    <li><a href="#如何使用gitlab的cicd工具">如何使用GitLab的CI/CD工具</a></li>
+    <li><a href="#問題彙整">問題彙整</a>
+      <ol>
+        <li><a href="#got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unix-">Got permission denied while trying to connect to the Docker daemon socket at unix:/// &hellip;</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
