@@ -3,27 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://hoxtonhsu.com/</loc>
-    <lastmod>2023-02-06T13:57:51+08:00</lastmod>
-  </url><url>
-    <loc>https://hoxtonhsu.com/tags/cicd/</loc>
-    <lastmod>2023-02-06T13:57:51+08:00</lastmod>
-  </url><url>
-    <loc>https://hoxtonhsu.com/tags/gitlab/</loc>
-    <lastmod>2023-02-06T13:57:51+08:00</lastmod>
-  </url><url>
-    <loc>https://hoxtonhsu.com/p/gitlab_cicd/</loc>
-    <lastmod>2023-02-06T13:57:51+08:00</lastmod>
-  </url><url>
-    <loc>https://hoxtonhsu.com/post/</loc>
-    <lastmod>2023-02-06T13:57:51+08:00</lastmod>
-  </url><url>
-    <loc>https://hoxtonhsu.com/tags/</loc>
-    <lastmod>2023-02-06T13:57:51+08:00</lastmod>
+    <lastmod>2023-02-05T21:06:21+08:00</lastmod>
   </url><url>
     <loc>https://hoxtonhsu.com/categories/</loc>
     <lastmod>2023-02-05T21:06:21+08:00</lastmod>
   </url><url>
+    <loc>https://hoxtonhsu.com/post/</loc>
+    <lastmod>2023-02-05T21:06:21+08:00</lastmod>
+  </url><url>
     <loc>https://hoxtonhsu.com/tags/ssh/</loc>
+    <lastmod>2023-02-05T21:06:21+08:00</lastmod>
+  </url><url>
+    <loc>https://hoxtonhsu.com/tags/</loc>
     <lastmod>2023-02-05T21:06:21+08:00</lastmod>
   </url><url>
     <loc>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</loc>
