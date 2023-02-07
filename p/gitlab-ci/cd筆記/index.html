@@ -291,8 +291,46 @@ if (!doNotTrack) {
     
     
     <p>參考影片：https://youtu.be/-4XT8-znkuc?list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu</p>
-<h1 id="jenkins與gitlab的比較">Jenkins與GitLab的比較</h1>
-<p>Jenkins是目前業界最流行、最廣泛的CI/CD工具</p>
+<h1 id="為何選擇jenkins">為何選擇Jenkins？</h1>
+<p>目前市面上有三種CI/CD的工具，分別是</p>
+<ol>
+<li>Github Action</li>
+<li>GitLab CI/CD</li>
+<li>Jenkins</li>
+</ol>
+<p><img src="https://i.imgur.com/2Z5xcnD.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230208032100440"
+	
+	
+></p>
+<p>Github Action Jenkins GitlabCICD 三者之比較</p>
+<p>為什麼CI/CD重要，它做了哪些事情？</p>
+<p><img src="https://i.imgur.com/Mvw7aN3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230208033136666"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/I5CQwCE.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230208033210513"
+	
+	
+></p>
+<h1 id="名詞解析">名詞解析</h1>
 <h1 id="如何使用gitlab的cicd工具">如何使用GitLab的CI/CD工具</h1>
 <p>在專案底下新增<code>.gitlab-ci.yml</code>的檔案，裡面的格式長這樣</p>
 <p><img src="https://i.imgur.com/UYbhpbw.png"
@@ -381,7 +419,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">echo &#34;deploy to production&#34;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="問題彙整">問題彙整</h1>
+</div><h1 id="把image推上gitlab">把Image推上Gitlab</h1>
+<h1 id="問題彙整">問題彙整</h1>
 <h2 id="got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unix-">Got permission denied while trying to connect to the Docker daemon socket at unix:/// &hellip;</h2>
 <p><img src="https://i.imgur.com/qnx1Plu.png"
 	
@@ -403,7 +442,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">usermod -aG docker gitlab-runenr
 </span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div><h2 id="denied--requested-access-to-the-resource-is-denied">denied : requested access to the resource is denied.</h2>
+
 </section>
 
 
@@ -720,11 +760,14 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#jenkins與gitlab的比較">Jenkins與GitLab的比較</a></li>
+    <li><a href="#為何選擇jenkins">為何選擇Jenkins？</a></li>
+    <li><a href="#名詞解析">名詞解析</a></li>
     <li><a href="#如何使用gitlab的cicd工具">如何使用GitLab的CI/CD工具</a></li>
+    <li><a href="#把image推上gitlab">把Image推上Gitlab</a></li>
     <li><a href="#問題彙整">問題彙整</a>
       <ol>
         <li><a href="#got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unix-">Got permission denied while trying to connect to the Docker daemon socket at unix:/// &hellip;</a></li>
+        <li><a href="#denied--requested-access-to-the-resource-is-denied">denied : requested access to the resource is denied.</a></li>
       </ol>
     </li>
   </ol>
