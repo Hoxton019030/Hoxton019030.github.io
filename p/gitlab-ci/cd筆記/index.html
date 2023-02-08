@@ -276,7 +276,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -363,8 +363,196 @@ if (!doNotTrack) {
 ></p>
 <h1 id="名詞解析">名詞解析</h1>
 <h2 id="pipeline">Pipeline</h2>
-<h2 id="runner">Runner</h2>
+<p>就是腳本(script)的意思，用來設計CICD的流程，一個常見的pipeline如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 稱之為階段，可以為每個Job分配階段，常見的比如說有測試階段、打包階段、部屬階段等等，每個job都屬於一個階段</span>
+</span></span><span class="line"><span class="cl">stages:
+</span></span><span class="line"><span class="cl">  - linter
+</span></span><span class="line"><span class="cl">  - testing
+</span></span><span class="line"><span class="cl">  - building
+</span></span><span class="line"><span class="cl">  - deploy 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 工作流</span>
+</span></span><span class="line"><span class="cl">workflow:
+</span></span><span class="line"><span class="cl">  rules:
+</span></span><span class="line"><span class="cl">    - <span class="k">if</span>: <span class="nv">$CI_COMMIT_BRANCH</span> <span class="o">==</span><span class="s2">&#34;main&#34;</span> <span class="c1">#若發生什麼事</span>
+</span></span><span class="line"><span class="cl">      when: always <span class="c1">#則做什麼事</span>
+</span></span><span class="line"><span class="cl">    - when: never <span class="c1">#不然則做什麼</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 變數，就是那個變數，可以寫在外層的就是全域變數，寫在Job裡面的就是Job變數</span>
+</span></span><span class="line"><span class="cl">variables:
+</span></span><span class="line"><span class="cl">  host_name: <span class="s2">&#34;hoxton&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 稱之為Job</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Helloworld: <span class="c1"># Job名稱</span>
+</span></span><span class="line"><span class="cl">  image: ruby:3.1.2-alpine3.16  <span class="c1">#指定要用什麼image來跑，等同於Executor</span>
+</span></span><span class="line"><span class="cl">  variables: <span class="c1"># Job變數</span>
+</span></span><span class="line"><span class="cl">    my_name: <span class="s2">&#34;hello kitty&#34;</span>
+</span></span><span class="line"><span class="cl">  stage: linter <span class="c1"># 這個Job是什麼階段的</span>
+</span></span><span class="line"><span class="cl">  script: <span class="c1"># 要執行什麼樣的腳本</span>
+</span></span><span class="line"><span class="cl">    - <span class="nb">echo</span> <span class="s2">&#34;hello world, GitLab! </span><span class="nv">$my_name</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    - <span class="nb">echo</span> <span class="s2">&#34;hello world, GitLab! </span><span class="nv">$host_name</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    - chmod +x ./run.sh
+</span></span><span class="line"><span class="cl">    - ./run.sh
+</span></span><span class="line"><span class="cl">run_unit_tests:  <span class="c1"># Job名稱</span>
+</span></span><span class="line"><span class="cl">  stage: testing <span class="c1"># 這個Job是什麼階段的</span>
+</span></span><span class="line"><span class="cl">  needs: <span class="c1"># 決定Job的順序</span>
+</span></span><span class="line"><span class="cl">    - Helloworld <span class="c1"># 在這些Job完成後才會去做run_unit_tests的Job</span>
+</span></span><span class="line"><span class="cl">  script: <span class="c1"># 要執行什麼樣的腳本</span>
+</span></span><span class="line"><span class="cl">    - <span class="nb">echo</span> <span class="s2">&#34;執行單元測試&#34;</span>
+</span></span><span class="line"><span class="cl">  before_script: <span class="c1">#在執行腳本之前需要執行什麼腳本</span>
+</span></span><span class="line"><span class="cl">    - <span class="nb">echo</span> <span class="s2">&#34;安裝套件&#34;</span>
+</span></span><span class="line"><span class="cl">    - <span class="nb">echo</span> <span class="s2">&#34;設定資料庫連線&#34;</span>
+</span></span><span class="line"><span class="cl">  after_script :#在執行腳本之後需要執行什麼腳本
+</span></span><span class="line"><span class="cl">    - <span class="nb">echo</span> <span class="s2">&#34;刪除不必要的檔案&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">bad_job:  <span class="c1"># Job名稱</span>
+</span></span><span class="line"><span class="cl">  stage: testing <span class="c1"># 這個Job是什麼階段的</span>
+</span></span><span class="line"><span class="cl">  script:  <span class="c1"># 要執行什麼樣的腳本</span>
+</span></span><span class="line"><span class="cl">    - <span class="nb">echo</span> <span class="s2">&#34;bad_job&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">build_docker_images: <span class="c1"># Job名稱</span>
+</span></span><span class="line"><span class="cl">  only: <span class="c1"># 指定Job只會在什麼分支執行</span>
+</span></span><span class="line"><span class="cl">    - main
+</span></span><span class="line"><span class="cl">  stage: building <span class="c1"># 這個Job是什麼階段的</span>
+</span></span><span class="line"><span class="cl">  script: <span class="c1"># 要執行什麼樣的腳本</span>
+</span></span><span class="line"><span class="cl">    - <span class="nb">echo</span> <span class="s2">&#34;building docker images&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">deploy_to_production: <span class="c1"># Job名稱</span>
+</span></span><span class="line"><span class="cl">  except: <span class="c1"># 指定Job不在什麼分支執行</span>
+</span></span><span class="line"><span class="cl">    - dev <span class="c1"># 分支名稱</span>
+</span></span><span class="line"><span class="cl">  stage: deploy <span class="c1"># # 這個Job是什麼階段的</span>
+</span></span><span class="line"><span class="cl">  script:  <span class="c1"># 要執行什麼樣的腳本</span>
+</span></span><span class="line"><span class="cl">    - <span class="nb">echo</span> <span class="s2">&#34;deploy to production&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="runner">Runner</h2>
+<p>大概等同於「要用哪台電腦來執行Pipeline」，以下可以證明</p>
+<p>欲執行的script</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">print-location:
+</span></span><span class="line"><span class="cl">  tags: 
+</span></span><span class="line"><span class="cl">    - euno
+</span></span><span class="line"><span class="cl">  script:
+</span></span><span class="line"><span class="cl">    - <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$HOSTNAME</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/47bZfpT.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230208114831319"
+	
+	
+></p>
+<p><strong>若不指定要有用哪台電腦執行，則gitlab會提供，但這時候就是在使用gitlab所提供的服務，免費帳戶每月超過40小時即到達上限，因此需要去註冊一個Runner</strong></p>
+<ul>
+<li>如何註冊一個Runner</li>
+</ul>
+<p><img src="https://i.imgur.com/TZSQrpa.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/Kumst5b.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230208113900501"
+	
+	
+></p>
 <h2 id="executor">Executor</h2>
+<p>代表pipeline所運行的環境，可以是shell，也可以是Docker容器，端看目的而定，但千萬要記得，要執行指定的Executor，<strong>也要看自己的電腦或VM有沒有這個環境</strong>，之前有遇到一個問題是，我在本地起了一個runner，但一直說找不到pwsd的指令，此時要到gitlab-runner安裝的資料夾去調整toml檔案，將shell改成用powershell運行，<strong>因為window下沒有pwsd這個指定</strong></p>
+<p><img src="https://i.imgur.com/z1cqmhL.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230208115618286"
+	
+	
+></p>
 <h1 id="如何使用gitlab的cicd工具">如何使用GitLab的CI/CD工具</h1>
 <p>在專案底下新增<code>.gitlab-ci.yml</code>的檔案，裡面的格式長這樣</p>
 <p><img src="https://i.imgur.com/UYbhpbw.png"
