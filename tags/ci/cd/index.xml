@@ -19,6 +19,7 @@
 &lt;li&gt;GitLab CI/CD&lt;/li&gt;
 &lt;li&gt;Jenkins&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;而他們各自的難易度如下：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/2Z5xcnD.jpg&#34;
 	
 	
@@ -29,8 +30,35 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;Github Action Jenkins GitlabCICD 三者之比較&lt;/p&gt;
+&lt;h2 id=&#34;github-action-jenkins-gitlabcicd-三者之比較&#34;&gt;Github Action Jenkins GitlabCICD 三者之比較&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Github Action&lt;/th&gt;
+&lt;th&gt;GitLab CI/CD&lt;/th&gt;
+&lt;th&gt;Jenkins&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;優點&lt;/td&gt;
+&lt;td&gt;簡單易用，可以透過組合 Actions 來設定 CI/CD 流程。&lt;br/&gt;集成與 GitHub 相當良好，方便地與其他 GitHub 工具整合。&lt;br/&gt;社区支持相對較弱，不如 Jenkins 和 GitLab CI/CD 社群活躍。&lt;/td&gt;
+&lt;td&gt;功能齊全，涵蓋了版本控制、需求管理、測試、打包、部署等。&lt;br/&gt;內建了測試覆蓋率分析、版本回溯、網路推送等工具。&lt;br/&gt;支援更多的發佈平臺和語言，可以支援更多不同的開發團隊。&lt;/td&gt;
+&lt;td&gt;功能強大，擁有豐富的插件系統，可以滿足多種 CI/CD 需求。&lt;br/&gt;社區活躍，有大量社區插件可以使用。&lt;br/&gt;可以自定義工作流程，靈活應對複雜需求。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;缺點&lt;/td&gt;
+&lt;td&gt;設定複雜的流程可能會比較困難。&lt;br/&gt;有些功能，比如說高級的權限管理，可能比較弱。&lt;/td&gt;
+&lt;td&gt;較為複雜，可能會花費一些時間來學習和設定。&lt;br/&gt;有些功能，例如高級的安全性，可能會有額外的費用。&lt;/td&gt;
+&lt;td&gt;相對較難學習和使用，不如 GitHub Actions 和 GitLab CI/CD 簡單易用。&lt;br/&gt;配置和管理相對複雜，需要一定的技術支持。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;p&gt;為什麼CI/CD重要，它做了哪些事情？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在還沒有CI/CD的流程之前，部屬一個web大概是這樣&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Mvw7aN3.png&#34;
 	
 	
@@ -41,6 +69,9 @@
 	
 	
 &gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CI/CD建立完成後，開發人員只需要專注在任務的完成，而不需要做重複的部屬工作&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/I5CQwCE.png&#34;
 	
 	
@@ -52,6 +83,9 @@
 	
 &gt;&lt;/p&gt;
 &lt;h1 id=&#34;名詞解析&#34;&gt;名詞解析&lt;/h1&gt;
+&lt;h2 id=&#34;pipeline&#34;&gt;Pipeline&lt;/h2&gt;
+&lt;h2 id=&#34;runner&#34;&gt;Runner&lt;/h2&gt;
+&lt;h2 id=&#34;executor&#34;&gt;Executor&lt;/h2&gt;
 &lt;h1 id=&#34;如何使用gitlab的cicd工具&#34;&gt;如何使用GitLab的CI/CD工具&lt;/h1&gt;
 &lt;p&gt;在專案底下新增&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;的檔案，裡面的格式長這樣&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/UYbhpbw.png&#34;

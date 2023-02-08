@@ -298,6 +298,7 @@ if (!doNotTrack) {
 <li>GitLab CI/CD</li>
 <li>Jenkins</li>
 </ol>
+<p>而他們各自的難易度如下：</p>
 <p><img src="https://i.imgur.com/2Z5xcnD.jpg"
 	
 	
@@ -308,8 +309,35 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<p>Github Action Jenkins GitlabCICD 三者之比較</p>
+<h2 id="github-action-jenkins-gitlabcicd-三者之比較">Github Action Jenkins GitlabCICD 三者之比較</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>Github Action</th>
+<th>GitLab CI/CD</th>
+<th>Jenkins</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>優點</td>
+<td>簡單易用，可以透過組合 Actions 來設定 CI/CD 流程。<br/>集成與 GitHub 相當良好，方便地與其他 GitHub 工具整合。<br/>社区支持相對較弱，不如 Jenkins 和 GitLab CI/CD 社群活躍。</td>
+<td>功能齊全，涵蓋了版本控制、需求管理、測試、打包、部署等。<br/>內建了測試覆蓋率分析、版本回溯、網路推送等工具。<br/>支援更多的發佈平臺和語言，可以支援更多不同的開發團隊。</td>
+<td>功能強大，擁有豐富的插件系統，可以滿足多種 CI/CD 需求。<br/>社區活躍，有大量社區插件可以使用。<br/>可以自定義工作流程，靈活應對複雜需求。</td>
+</tr>
+<tr>
+<td>缺點</td>
+<td>設定複雜的流程可能會比較困難。<br/>有些功能，比如說高級的權限管理，可能比較弱。</td>
+<td>較為複雜，可能會花費一些時間來學習和設定。<br/>有些功能，例如高級的安全性，可能會有額外的費用。</td>
+<td>相對較難學習和使用，不如 GitHub Actions 和 GitLab CI/CD 簡單易用。<br/>配置和管理相對複雜，需要一定的技術支持。</td>
+</tr>
+</tbody>
+</table></div>
 <p>為什麼CI/CD重要，它做了哪些事情？</p>
+<ul>
+<li>在還沒有CI/CD的流程之前，部屬一個web大概是這樣</li>
+</ul>
 <p><img src="https://i.imgur.com/Mvw7aN3.png"
 	
 	
@@ -320,6 +348,9 @@ if (!doNotTrack) {
 	
 	
 ></p>
+<ul>
+<li>CI/CD建立完成後，開發人員只需要專注在任務的完成，而不需要做重複的部屬工作</li>
+</ul>
 <p><img src="https://i.imgur.com/I5CQwCE.png"
 	
 	
@@ -331,6 +362,9 @@ if (!doNotTrack) {
 	
 ></p>
 <h1 id="名詞解析">名詞解析</h1>
+<h2 id="pipeline">Pipeline</h2>
+<h2 id="runner">Runner</h2>
+<h2 id="executor">Executor</h2>
 <h1 id="如何使用gitlab的cicd工具">如何使用GitLab的CI/CD工具</h1>
 <p>在專案底下新增<code>.gitlab-ci.yml</code>的檔案，裡面的格式長這樣</p>
 <p><img src="https://i.imgur.com/UYbhpbw.png"
@@ -760,8 +794,18 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#為何選擇jenkins">為何選擇Jenkins？</a></li>
-    <li><a href="#名詞解析">名詞解析</a></li>
+    <li><a href="#為何選擇jenkins">為何選擇Jenkins？</a>
+      <ol>
+        <li><a href="#github-action-jenkins-gitlabcicd-三者之比較">Github Action Jenkins GitlabCICD 三者之比較</a></li>
+      </ol>
+    </li>
+    <li><a href="#名詞解析">名詞解析</a>
+      <ol>
+        <li><a href="#pipeline">Pipeline</a></li>
+        <li><a href="#runner">Runner</a></li>
+        <li><a href="#executor">Executor</a></li>
+      </ol>
+    </li>
     <li><a href="#如何使用gitlab的cicd工具">如何使用GitLab的CI/CD工具</a></li>
     <li><a href="#把image推上gitlab">把Image推上Gitlab</a></li>
     <li><a href="#問題彙整">問題彙整</a>
