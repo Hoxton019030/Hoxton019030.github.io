@@ -44,7 +44,7 @@
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;優點&lt;/td&gt;
-&lt;td&gt;簡單易用，可以透過組合 Actions 來設定 CI/CD 流程。&lt;br/&gt;集成與 GitHub 相當良好，方便地與其他 GitHub 工具整合。&lt;br/&gt;社区支持相對較弱，不如 Jenkins 和 GitLab CI/CD 社群活躍。&lt;/td&gt;
+&lt;td&gt;簡單易用，可以透過組合 Actions 來設定 CI/CD 流程。&lt;br/&gt;集成與 GitHub 相當良好，方便地與其他 GitHub 工具整合。&lt;br/&gt;&lt;/td&gt;
 &lt;td&gt;功能齊全，涵蓋了版本控制、需求管理、測試、打包、部署等。&lt;br/&gt;內建了測試覆蓋率分析、版本回溯、網路推送等工具。&lt;br/&gt;支援更多的發佈平臺和語言，可以支援更多不同的開發團隊。&lt;/td&gt;
 &lt;td&gt;功能強大，擁有豐富的插件系統，可以滿足多種 CI/CD 需求。&lt;br/&gt;社區活躍，有大量社區插件可以使用。&lt;br/&gt;可以自定義工作流程，靈活應對複雜需求。&lt;/td&gt;
 &lt;/tr&gt;
@@ -383,10 +383,14 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;usermod -aG docker gitlab-runenr
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;usermod -aG docker gitlab-runner
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;denied--requested-access-to-the-resource-is-denied&#34;&gt;denied : requested access to the resource is denied.&lt;/h2&gt;
+&lt;/div&gt;&lt;p&gt;&amp;ldquo;usermod -aG docker gitlab-runner&amp;rdquo; 這個指令是用來將 &amp;ldquo;gitlab-runner&amp;rdquo; 用戶加入 &amp;ldquo;docker&amp;rdquo; 群組。 &amp;ldquo;-a&amp;rdquo; 選項用於將用戶附加到指定的群組， &amp;ldquo;-G&amp;rdquo; 選項用於指定群組。&lt;/p&gt;
+&lt;p&gt;這通常是為了允許 &amp;ldquo;gitlab-runner&amp;rdquo; 用戶在 GitLab Runner 管理的 CI/CD 流程中執行 Docker 容器。 通過將用戶加入 &amp;ldquo;docker&amp;rdquo; 群組，用戶可以在不需要權限升級的情況下運行 Docker 指令。&lt;/p&gt;
+&lt;p&gt;請注意，&amp;ldquo;usermod&amp;rdquo; 指令的確切語法和行為可能因您使用的作業系統而異。 請查閱您的作業系統的文檔以獲取更多信息。&lt;/p&gt;
+&lt;h2 id=&#34;denied--requested-access-to-the-resource-is-denied&#34;&gt;denied : requested access to the resource is denied.&lt;/h2&gt;
+&lt;p&gt;八成是你的push沒有寫好，可以參考下面的樣子&lt;/p&gt;
 </description>
         </item>
         <item>
