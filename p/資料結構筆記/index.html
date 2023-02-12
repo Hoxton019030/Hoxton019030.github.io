@@ -227,6 +227,14 @@ if (!doNotTrack) {
 
     <div class="article-details">
     
+    <header class="article-category">
+        
+            <a href="/categories/%E7%A8%8B%E5%BC%8F/" style="background-color: #2a9d8f; color: #fff;">
+                程式
+            </a>
+        
+    </header>
+    
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -268,7 +276,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -316,6 +324,444 @@ if (!doNotTrack) {
 <li>Definiteness(明確性)：每個敘述／步驟／指令必須是Clear且unambiauous(不可混淆不清)。<code>3之要求在於Algo之寫作格式無一致標準之規範 </code></li>
 <li>Finiteness(有限性)：必須在執行／追蹤有限個步驟後，必能夠終止</li>
 <li>Effectiveness(有效性)：人可以用紙和筆追蹤／執行每一個步驟，即每一個Step is baisc enough to be carried。<code>當log完成，你如何確定它是正確的</code></li>
+</ol>
+<h2 id="recurtion遞迴">Recurtion(遞迴)</h2>
+<ul>
+<li>
+<p>定義：(以Direct Recursion為例)，Algo/program中含有==<strong>self-calling(自我呼叫)</strong>==敘述存在者，稱之遞迴</p>
+</li>
+<li>
+<p>種類：</p>
+<ol>
+<li>Direct：直接遞迴</li>
+<li>Indirect：間接遞迴</li>
+<li>Tail：尾端遞迴</li>
+</ol>
+</li>
+<li>
+<p>分述如下</p>
+<ol>
+<li>
+<p>直接遞迴：方法中直接呼叫自己</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">function</span> <span class="nf">A</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// do something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(...)</span> <span class="n">then</span>  <span class="n">A</span><span class="p">();</span> <span class="c1">//重複自己
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// do something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>間接遞迴：多個Module之間彼此形成Calling Cycle，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">function</span>  <span class="nf">A</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Call</span> <span class="n">B</span><span class="p">();</span> <span class="c1">//相互呼叫
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">function</span> <span class="nf">B</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Call</span> <span class="n">A</span><span class="p">();</span> <span class="c1">//相互呼叫
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>尾端遞迴：是Direct Recustion 之一種，recursive call發生在程式即將結束之前一行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">function</span> <span class="nf">A</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//do something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">xxx</span><span class="p">){}</span> <span class="n">then</span> <span class="n">A</span><span class="p">()</span> <span class="c1">//程式的最後一行 優點是Complier或工程師方便改寫成非遞迴的形式(降低時間複雜度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+</ul>
+<p><strong>任何problem之解決，必定存在兩種形式之Algo</strong></p>
+<ol>
+<li>遞迴</li>
+<li>非遞迴(Interation)</li>
+</ol>
+<p>eq. 求n! 求費氏數列</p>
+<p><img src="https://i.imgur.com/dIbSOTs.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230212130259106"
+	
+	
+></p>
+<p>比較圖如下</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Recursion</th>
+<th>Non-Recursion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>程式碼較為精簡</strong></td>
+<td>冗長</td>
+</tr>
+<tr>
+<td>較少，或沒有使用區域變數</td>
+<td>使用到區域變數來保存中間值，Loop控制等等</td>
+</tr>
+<tr>
+<td><strong>程式碼占的儲存空間</strong>比較少</td>
+<td>程式碼占用的儲存空間較多</td>
+</tr>
+<tr>
+<td>表達力較強(powerful)</td>
+<td>表達力較弱(weak)</td>
+</tr>
+<tr>
+<td>==<strong>執行的時間較久，較沒效率</strong>==</td>
+<td>執行時間較短，較有效率</td>
+</tr>
+<tr>
+<td>==<strong>需要額外的stack space支持</strong>==</td>
+<td>不需要這東西</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>補充</li>
+</ul>
+<p>在complier或程式語言的課程裡面，會<strong>討論如何處理recursion?</strong></p>
+<ol>
+<li>
+<p>當遇到Recursive call的時候，</p>
+<ol>
+<li>必須先保存當時執行狀況，push這些東西</li>
+</ol>
+<blockquote>
+<ol>
+<li>參數值</li>
+<li>區域/占存 變數值</li>
+<li>返回位址(return address)</li>
+</ol>
+</blockquote>
+<p>到System <strong>stack</strong></p>
+<ol start="2">
+<li>Jump to 程式開端執行</li>
+</ol>
+</li>
+<li>
+<p>若遇到程式結束(END)敘述時<code>遞迴條件不符合，繼續往下執行，遇到程式的END，要判斷是某一次的遞迴結束，還是整個都結束了。判斷的依據是查看Stack區是否為空，若為空則代表只是一次的遞迴結束，若Stack為空，則代表整個程式結束</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">stack</span> <span class="n">is</span> <span class="n">empty</span><span class="p">)</span> <span class="n">then</span> <span class="err">整個結束</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pop</span> <span class="n">stack</span><span class="p">;</span> <span class="c1">//取出當時保存的參數或區域變數以及返回位置(return address) then go to &#34;return address&#34;執行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//所謂的return address(返回位址，就是指遞迴結束完後，下一個會執行的程式碼)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">function</span> <span class="nf">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">){</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">xxx</span><span class="p">)</span> <span class="n">then</span> <span class="n">A</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="c1">//recursive call
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//do something
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="p">(</span><span class="err">這就是返回位址</span> <span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p><img src="https://i.imgur.com/7uzIEQg.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230212135153292"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/7JDHEkJ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230212135446234"
+	
+	
+></p>
+<h3 id="考型及來源">考型及來源</h3>
+<p>考型：</p>
+<blockquote>
+<ol>
+<li>給一個Probleam，寫下Recursive algo/code</li>
+<li>給Recursive algo/code，要我們追蹤結果 etc&hellip;</li>
+</ol>
+</blockquote>
+<p>來源：</p>
+<blockquote>
+<ol>
+<li>數學類：階層</li>
+<li>往後章節(二元樹的追蹤、圖形的追蹤、排序的追蹤&hellip;)</li>
+<li>其他</li>
+</ol>
+<blockquote>
+<ol>
+<li>Tower fo Hanoi</li>
+<li>permutation printing</li>
+</ol>
+</blockquote>
+</blockquote>
+<h4 id="數學類">數學類</h4>
+<ol>
+<li>寫下一個非遞迴的求階層方法</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fac</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="c1">// n&gt;0{
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">S</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    	<span class="kt">int</span> <span class="n">i</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="o">*</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">S</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>   
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>
+<p>寫下一個用遞迴處理的求階程式</p>
+<p>==關鍵點：記下數學遞迴定義式==</p>
+<p><img src="https://i.imgur.com/taUXn8C.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230212145854185"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fac</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>以2的Code為題目</p>
+<ol>
+<li>
+<p>求Fac(3)</p>
+<p><img src="https://i.imgur.com/5TgPcuk.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230212145917501"
+	
+	
+></p>
+</li>
+<li>
+<p>共呼叫Fac函數?次，含Fac(3)這次<code>這影響到了時間複雜度，以及會調用幾次pop</code></p>
+<p>4次，<code>Fac(n)共呼叫幾次=n+1次</code></p>
+</li>
+</ol>
+</li>
+<li>
+<p>write a recursive algo for sum(n)= 1+2+&hellip;+n, and sum(0)=0;</p>
+<p><img src="https://i.imgur.com/7JkNHxN.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230212150912005"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">n</span><span class="o">+</span><span class="n">sum</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Fibonacci Number(費氏數列)</p>
+<p><img src="https://i.imgur.com/T5k9DFx.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230212151908181"
+	
+	
+></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>n</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fn</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>8</td>
+<td>13</td>
+<td>21</td>
+<td>34</td>
+<td>55</td>
+<td>89</td>
+<td>144</td>
+<td>233</td>
+</tr>
+</tbody>
+</table></div>
+<p>Q：F98 = ? + ? = ? - ? = ? - ?</p>
+<ol>
+<li>F97+F96;</li>
+<li>F99-F97;</li>
+<li>F100-F99;</li>
+</ol>
+<p>Q：不超過500之費氏數列</p>
+<p>​	A. F14 = 377</p>
+</li>
 </ol>
 <h1 id="ch5-tree-and-binary-tree-1">Ch5 Tree and Binary Tree</h1>
 <p><strong>Tree跟BinaryTree不一樣</strong></p>
@@ -486,6 +932,110 @@ $$</p>
 
     
 
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/HJLk11O.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/HJLk11O.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">作業系統筆記</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/b9bWXWs.jpg" loading="lazy" data-key="" data-hash="https://i.imgur.com/b9bWXWs.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">GitLab-CI/CD筆記</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/8ocM55M.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/8ocM55M.png "/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用SSH來連動GITSCM</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/docker_desktop_starting%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/xgUpP8O.png%29" loading="lazy" data-key="" data-hash="https://i.imgur.com/xgUpP8O.png)"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker_Desktop_Starting問題解決</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/nCGDuUc.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/nCGDuUc.png "/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">實用的Git指令</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
      
     
         
@@ -654,6 +1204,15 @@ $$</p>
     <li><a href="#ch1-algorith-recursion-and-performance-analysis">Ch1 Algorith, Recursion and Performance Analysis</a>
       <ol>
         <li><a href="#algorithm演算法">Algorithm(演算法)</a></li>
+        <li><a href="#recurtion遞迴">Recurtion(遞迴)</a>
+          <ol>
+            <li><a href="#考型及來源">考型及來源</a>
+              <ol>
+                <li><a href="#數學類">數學類</a></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
       </ol>
     </li>
     <li><a href="#ch5-tree-and-binary-tree-1">Ch5 Tree and Binary Tree</a>
