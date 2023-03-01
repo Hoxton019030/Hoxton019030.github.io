@@ -8162,7 +8162,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;用在C.S Design上&lt;/p&gt;
-&lt;p&gt;[Algo1]：Ｘ不可以用&lt;/p&gt;
+&lt;h3 id=&#34;algo1ｘ不可以用&#34;&gt;[Algo1]：Ｘ不可以用&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;共享變數如下：&lt;/p&gt;
@@ -8199,7 +8199,7 @@ $$&lt;/p&gt;
 &lt;p&gt;分析：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Mutual Exclustion：OK&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Mutual Exclustion：OK&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/XtJJRuB.png&#34;
 	
 	
@@ -8212,893 +8212,989 @@ $$&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Progress：OK&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Progress：OK&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;不想進去的人就待在RS裡面，不會去搶&lt;/li&gt;
 &lt;li&gt;避免死結，總有一個人會搶到Test-and-Set(Lock)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Bounded Waiting：&lt;strong&gt;違反&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bounded Waiting：違反&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;假設Pi已先於Pj進入CS，且Pj等待中，當Pi離開CS後，若想在立刻進去CS，則&lt;strong&gt;Pi是有機會在優先進去搶到Test-and-set之執行&lt;/strong&gt;，因此Pj 有可能Starvation&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;第一節-總覽&#34;&gt;第一節 總覽&lt;/h1&gt;
-&lt;h1 id=&#34;第一章-序言&#34;&gt;第一章 序言&lt;/h1&gt;
-&lt;h1 id=&#34;第二章-operating-system-strucutures作業系統架構&#34;&gt;第二章 Operating-System Strucutures(作業系統架構)★&lt;/h1&gt;
-&lt;h2 id=&#34;os-service&#34;&gt;&lt;strong&gt;OS&lt;/strong&gt; Service&lt;/h2&gt;
-&lt;p&gt;透過System Code去呼叫這些Service&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/RIMvaGk.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;os-application-interface最重要的&#34;&gt;OS-Application Interface(最重要的)&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;System call (使用組合語言撰寫)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Operating System本身就是一個提供Service的Software，提供Process conmtrol, FIle management, Device management, Information maintenance, Communications。而System Call則是OS的Interface，透過System Call去進行Software的Interrupt。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;API&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;由於System call是使用組合語言來寫的，較不貼近人類，因此在多加一層API，來調用System call。這些API有些會使用到多個System Call，有些則連一個System Call都沒有，因為API本身就只是為了方面Programing，提供一個Interface去調用更底層的System call&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/qKgR7ax.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221008225805849&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;System Call傳送參數的三種方式&lt;/p&gt;
+&lt;h3 id=&#34;algo2-穩的可以用&#34;&gt;[Algo2] ：穩的，可以用&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;透過Rigisters&lt;/li&gt;
-&lt;li&gt;透過Pointer&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/L0RUgJ9.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221009135803193&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;透過Stack&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;simple-os-architecture&#34;&gt;Simple OS Architecture&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/GtaKA9x.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221009193532801&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;MS-DOS device driver和ROM BIOS device driver其實都是Driver，大部分的東西都還是塞在Resident system program裡面，也就是沒再分。&lt;/p&gt;
-&lt;h3 id=&#34;layer-os-architecture&#34;&gt;Layer Os Architecture&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/SXR7S2w.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221009193909302&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;基於Simple OS Architecture對於維護上的不便（所有東西都寫在一起），所以有人提出了分層的概念，在kerel依照subsystem的概念去劃分各個職責。外層的layer可以call裡面的layer，裡面的layer不能call外面的layer，概念有點像Mvc架構，這樣方便工程師去維護，但相對的也會帶來一些&lt;strong&gt;困難&lt;/strong&gt;，比如說&lt;strong&gt;效能降低&lt;/strong&gt;，因為需要由外面一層一層呼叫，因此效能會降低。另一方面，要去定義&lt;strong&gt;各個Layer&lt;/strong&gt;也不是一件容易的事情。&lt;/p&gt;
-&lt;h3 id=&#34;microkernel-os&#34;&gt;Microkernel OS&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/lVO8ERV.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221009200319941&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;kernel的程式碼應該要越少越好，越少越小代表越Reliable。&lt;/p&gt;
-&lt;p&gt;引入Modularize的概念，把Subsystem變成各種modular，中間的kernel是負責去溝通各種不同的Modular。&lt;/p&gt;
-&lt;p&gt;kernel只負責去溝通和定義，但因為這個架構的每一個subsystem要溝通都要透過kernel，去interrupt它，效能又會在更低&lt;/p&gt;
-&lt;h3 id=&#34;modular-os-structure&#34;&gt;Modular OS Structure&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/MQWMMPO.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221009203643586&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;現在常見的作業系統大部分都遵循這個架構（linux），有點像OO的概念，把功能&lt;strong&gt;寫成各個在kernel&lt;/strong&gt;裡面的Subsystem，可以去這張投影片下面的網址，會手把手教你怎麼撰寫kernel&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/nwp4ACJ.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221009214443781&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/yqh2tao.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221009214705990&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://youtu.be/7pAiJeldUfk?t=700&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://youtu.be/7pAiJeldUfk?t=700&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;可以多看幾次。&lt;/p&gt;
-&lt;p&gt;critical instruction：一個instruction在user mode跟kernel mode執行的結果會不一樣，比如說user mode可能是a+b，但在kernel mode執行的結果是a+b+b&lt;/p&gt;
-&lt;p&gt;VM的好處&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;隔離各個使用著，保護system resouce&lt;/li&gt;
-&lt;li&gt;透過VM，可以在一台電腦因應不同的程式需求，建立不同的VM（window 98，windowXP）&lt;/li&gt;
-&lt;li&gt;幫助R&amp;amp;D測試開發，&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;VM的技術&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Full Virtualization&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/UEXmsCg.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221009224922016&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;一個guest的作業系統，可以不用做任何修改就可以直接安裝在一個作業系統，VM不知道自己是個VM，以為自己就是一個完整的作業系統&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Para-virtualization&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/62vkO74.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221010131253990&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;會有一個Global zone，負責去調度、協調各個VM，Guest的作業系統需要被修改&lt;/p&gt;
-&lt;h3 id=&#34;java-virtual-machine&#34;&gt;Java Virtual Machine&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/H4YbXj1.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221010132400382&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;第二節-process-management-進程管理&#34;&gt;第二節 Process Management (進程管理)&lt;/h1&gt;
-&lt;h1 id=&#34;第三章-processes-進程&#34;&gt;第三章 Processes (進程)&lt;/h1&gt;
-&lt;h3 id=&#34;process-management--thread-management&#34;&gt;Process Management &amp;amp; Thread Management&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Process 定義與Progeam比較&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;PCB內容 考試重點&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Process State Transition Diagram (S.T.D)考試重點&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Scheduler的種類(解釋名詞)&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;長期&lt;/p&gt;
-&lt;p&gt;短期&lt;/p&gt;
-&lt;p&gt;中期&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Context Switching (解釋名詞)&lt;/p&gt;
-&lt;p&gt;Dispatcher, Dispatch latency(較少考)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Process Controller Operations(UNIX, System Call為主的程式追蹤) 考試重點&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;評估CPU Scheduling 效能的好或不好的5個Criteria(清大喜歡考)&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;各種CPU 排班法則(7個)介紹及相關名詞(Starvation,Aging,Preemptive,Non-preemptive,Convoy effect) 考試重點&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;特定System的排班設計&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;MultiProcessors System&lt;/p&gt;
-&lt;p&gt;Real-time System&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Soft (考申論題)&lt;/p&gt;
-&lt;p&gt;Hard(考計算題)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Thread Management&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;process&#34;&gt;Process&lt;/h3&gt;
-&lt;p&gt;定義：A program in execution[恐]&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Process 建立後，其主要組成有：
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Process No(ID)&lt;/strong&gt;: Process被生成出來時，會有一個Process Id，作為識別&lt;/li&gt;
-&lt;li&gt;Process State&lt;/li&gt;
-&lt;li&gt;Code Section, Data Section：Process占用的 Memory Space&lt;/li&gt;
-&lt;li&gt;Programming Counter(PC)：程式計數器，告訴我們現在這個Process執行到哪裡，裡面放下一條指令的位址&lt;/li&gt;
-&lt;li&gt;Stack&lt;/li&gt;
-&lt;li&gt;CPU Register value&lt;/li&gt;
-&lt;li&gt;是OS 分配 **Resource(CPU,I/O-Divice, Memory) **之對象單位：跟Thread的差別&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;與Program(程式)的比較&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Process&lt;/th&gt;
-&lt;th&gt;Program&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;執行中的程式&lt;/td&gt;
-&lt;td&gt;Just a &lt;strong&gt;File&lt;/strong&gt; stored in storage device&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&amp;ldquo;Active&amp;rdquo; entity(活動中、執行中)&lt;/td&gt;
-&lt;td&gt;&amp;ldquo;Passive&amp;rdquo; entity(沒有活動的)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&#34;process-control-block-1&#34;&gt;Process Control Block&lt;/h3&gt;
-&lt;p&gt;(PCB內容)&lt;/p&gt;
-&lt;p&gt;定義：OS為了管理所有Processes，會在Kernel memory中，替每個Process，各自準備一個Block(Table, 表格)，用來記錄Process之所有相關資訊&lt;/p&gt;
-&lt;p&gt;PCB的主要內容有：&lt;/p&gt;
-&lt;p&gt;Process&lt;/p&gt;
-&lt;h3 id=&#34;process-concept&#34;&gt;Process Concept&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/46QhD4h.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221010162753190&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Program：被動的，可被執行的程式就叫Program，存在硬碟裡面&lt;/li&gt;
-&lt;li&gt;Process：主動的，一個程式正在執行就叫Process，是存在Memory裡面&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;code segment&lt;/code&gt;：把程式碼放到memory裡面的動作&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Data section&lt;/code&gt;：globla variable存放的區域&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Stack&lt;/code&gt;：區域變數及function存放的地方&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Heap&lt;/code&gt;：(待補)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/67apr7c.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221010170803581&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;又稱做Lightweight process，是CPU的最小執行單位，它跟Process有八成像，Process可以被拆分成很多個Thread，許多Thread&lt;strong&gt;可以共用同一塊Memory Space&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;同一個Process下面的Thread，它的Code section，Data section，OS resource ，這三塊的memory空間是共用的。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/P3yDybT.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221010172926249&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;管理Thread的方式跟管理Process的方式都大同小異，區別不大，像Linux就沒有Process的概念。都只有Thread而已，當一個Process被執行起來時，會有下面這五個狀態&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/oPCYLp0.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221010175047577&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;共享變數如下：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;New：當這個Process被created出來，把Program load 進 Memory裡面，然後initialization。&lt;/li&gt;
-&lt;li&gt;Ready：把Process放進一個quoue裡面，等著被OS排程，放進CPU做使用。&lt;/li&gt;
-&lt;li&gt;Running：送instructions到CPU裡面做使用&lt;/li&gt;
-&lt;li&gt;Ｗating：有些instruction不需要CPU來做，例如IO，而等待其他事件執行完畢的這個過程就叫wating&lt;/li&gt;
-&lt;li&gt;Terminated：釋放資源，把資源給其他的Process&lt;/li&gt;
+&lt;li&gt;Lock：boolean = False; &lt;code&gt;Test and Set會用到的變數&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;waiting[0 ..n-1] of boolean初值皆為False，若為True則代表有意進入區間，若為False則代表初值，或準備進入C.S&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/A9jcaOI.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221010180531411&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;管理Process的方式，就是會為每一個Process去建立一個&lt;strong&gt;Process Control Block&lt;/strong&gt;，在Memory裡面紀錄這些Information，在Ready狀態的意思，就是只把PCB放進quoue的動作，這個PCB會存放下列資訊。&lt;/p&gt;
+&lt;p&gt;意義：&lt;/p&gt;
+&lt;p&gt;waiting[i]有兩種，若為&lt;/p&gt;
+&lt;p&gt;True：&lt;strong&gt;表Pi有意進入CS，且正在等待中&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;False：&lt;strong&gt;代表初值，或是表示Pi不需要再等了，可以進入CS&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pi之程式如下： [034 17 02 CH6 P 6 71時24分02秒 17:57]&lt;/p&gt;
+&lt;p&gt;區域變數&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Process State&lt;/p&gt;
+&lt;p&gt;Key：boolean;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Program counter（CPU中的Register，用於指示電腦在其程式序列中的位置）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;CPU Register（CPU中，用來暫存指令、數據和記憶體位址的電腦記憶體，暫存器的容量有限，但讀寫速度快的飛起）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;CPU Scheduling Information&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Memory-management information&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;I/O status information&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Accounting Information&lt;/p&gt;
+&lt;p&gt;j: int&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;+++&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/s2ZFuvE.png&#34;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;repeat&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;waiting&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//Pi有意，且等待中...
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;waiting&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Test&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Lock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//--------------------分隔線--------------
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//在還沒離開while前，waiting[i]的值不可能為False，Process i 個人而言不可能把waiting[i]值改成False進入CS。因此只剩Key可以動了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 又因TestAndSet(Lock)方法會返回Lock的Boolean值，並將Lock設為True，也因此，惟有第一個搶到CPU的Process，才會有False的Key值
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;waiting&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//☆☆☆☆☆表明Pi不用等了，可以進入CS了☆☆☆☆☆
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;n&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//n是陣列長度, j 是指i的下一個element of array
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;≠&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;waiting&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]){&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//若j=i，則表示已經繞了一圈。waiting表意願，True代表想，False代表不想
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//找出下一個想進入C.S之Pj
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//搭配下面的case2，代表都沒人想進入CS，並且因為 Test-and-Set(Lock)會將Lock設為True(可參照上面)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;Lock&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//因為都沒人想進去，因此就把鎖打開
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         &lt;span class=&#34;n&#34;&gt;waiting&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//Pj不用等了，換你進CS 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;utill&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Case1.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/yLoFE11.jpg&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;image-20221010182705266&#34;
+		alt=&#34;S__16056339&#34;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/lOawJ5v.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/qdgQnel.jpg&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;image-20221010183709101&#34;
+		alt=&#34;S__16056339&#34;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;CPU被interrupt之後，把CPU上執行的Process切換成另一個Process的動作，就叫Context Switch，實際上就是在做PCB的Save還有Load的動作。&lt;/p&gt;
-&lt;p&gt;Context Switch是一個overhead（浪費）的行為，但卻無可避免，因為我們要Share CPU 給所有的Process。&lt;/p&gt;
-&lt;p&gt;提升Context Switch的速度有幾種方式&lt;/p&gt;
+&lt;p&gt;Case2：當Pi執行完後，發現外面都沒任何人想進來，只好再把Lock設回False，一切重新ReSet&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/5Dc47tS.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230214225719635&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/tRwC3p0.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230214232435547&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Q1：證明正確性&lt;/p&gt;
+&lt;p&gt;Ans．&lt;/p&gt;
+&lt;p&gt;[1] Mutual Exclusion：OK&lt;/p&gt;
+&lt;p&gt;pf： Pi可進入C.S之條件有兩種可能&lt;/p&gt;
+&lt;p&gt;case1. Key值為False&lt;/p&gt;
+&lt;p&gt;代表Pi是第一個搶到Test-and-Set(Lock)執行者，如此才能將Key改為False，==&lt;strong&gt;因此唯一性確立&lt;/strong&gt;==&lt;/p&gt;
+&lt;p&gt;case2. waiting[i]為False&lt;/p&gt;
+&lt;p&gt;代表Pi在離開while之前，是&lt;strong&gt;不會&lt;/strong&gt;將waiting[i]改為False,==&lt;strong&gt;只會將它設為True，只有在CS的Proces當它離開CS後，才能改變其他processes中之一個process的waiting值變False，在CS中的Process只有一個，出來CS後也只改變一個Process之waiting值為False，因此唯一性也確立。換言之，一個process不會自己把自己的waitiing值設成False，一定都是別的process來設的，因此唯一性確立&lt;/strong&gt;==&lt;/p&gt;
+&lt;p&gt;因此由case1及2得知，互斥成立&lt;/p&gt;
+&lt;p&gt;[2] Progress：OK&lt;/p&gt;
+&lt;p&gt;pf：==&lt;strong&gt;若Pi不想進入C.S，其waiting[i]為False，而且Pi不會跟其他Process競爭Test-and-Set(Lock)的執行&lt;/strong&gt;，且從CS離開之Process，也不會改變Pi之waiting值，因此Pi不會參與進行CS之決策。==&lt;/p&gt;
+&lt;p&gt;若n個Process都想進入CS，則在有限的時間內必定會決定出第一個搶到Tetst-and-Set()執行，並進入CS。它從CS離開後，也會在&lt;strong&gt;有限的&lt;/strong&gt;時間內讓下一個想進入CS之Process進入CS或Lock設False。&lt;/p&gt;
+&lt;p&gt;==不會有Deadlock==&lt;/p&gt;
+&lt;p&gt;[3]Bounded Waiting：OK&lt;/p&gt;
+&lt;p&gt;pf：假設P&lt;sub&gt;0&lt;/sub&gt;~P&lt;sub&gt;n-1&lt;/sub&gt;等n個Processes皆想進入C.S表示waiting[0]~[n-1]皆為True&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Xk4eZu4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230216003256885&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;令Pi是&lt;strong&gt;第一個&lt;/strong&gt;搶到Test-and-Set執行之Process，率先進入CS當Pi離開CS後，會將P&lt;sub&gt;(n+1)%n&lt;/sub&gt;之waiting值改為False，讓P&lt;sub&gt;(n+1)%n&lt;/sub&gt;進入cs，依此類推，Process會依P&lt;sub&gt;i&lt;/sub&gt;,P&lt;sub&gt;(i+1)%n&lt;/sub&gt;,P&lt;sub&gt;(i+2)%n&lt;/sub&gt;&amp;hellip;P&lt;sub&gt;(i-1)%n&lt;/sub&gt;FIFO 順序依據進入CS，故不會有Starvation&lt;/p&gt;
+&lt;h2 id=&#34;swapab指令&#34;&gt;SWAP(a,b)指令&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;提升momory的速度&lt;/li&gt;
-&lt;li&gt;減少Register的數量，數量減少了，需要存儲的資料也少了，但這件事情在現代很難做到&lt;/li&gt;
+&lt;li&gt;定義：&lt;strong&gt;此CPU指令是將a,b兩值互換，且CPU保證它是==Atomically executed==&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;上面兩種都不是主流的方式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Hardware Support，有好幾個set的Register，可以在hardware裡面紀錄好幾個程式的狀態，所以在做Context Switch的時候，只是從一個Register切換到另一個Register，減少對memory的access&lt;/li&gt;
+&lt;p&gt;若以C語言描述，功能如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;swap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;用在C.S design上&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;process-scheduling&#34;&gt;Process Scheduling&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/zvU98FQ.png&#34;
+&lt;p&gt;[algo1]：Ｘ&lt;/p&gt;
+&lt;p&gt;共享變數如下&lt;/p&gt;
+&lt;p&gt;Lock：boolean=False;&lt;/p&gt;
+&lt;p&gt;區域變數如下：&lt;/p&gt;
+&lt;p&gt;key：boolean&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;repeat;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	key=True;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	{repeat;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		swap(Lock,key);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    utill(key==False)} ; //成立才離開 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    C.S
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    Lock=False;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    R.S
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;until False;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/MBKeMjT.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;image-20221010185905554&#34;
+		alt=&#34;image-20230216233043091&#34;
 	
 	
 &gt;&lt;/p&gt;
+&lt;p&gt;分析：&lt;/p&gt;
+&lt;p&gt;[Algo1]同Test-and-Set&lt;/p&gt;
+&lt;p&gt;Mutual Exclustion= ok&lt;/p&gt;
+&lt;p&gt;progress= ok&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bounded waiting= No，只有設成Fales而已，還是無法避免無限等待&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[Algo2] 正確的&lt;/p&gt;
+&lt;p&gt;將Test-and-set的[algo2]中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;while(...){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  // key=test-and-set(Lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  swap(Lock,key); //改成這樣即可
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;綜合練習&lt;/p&gt;
+&lt;p&gt;在Test-and-set[Algo2]中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;while(waiting[i] and key){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	key = Test-and-Set(Lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;waiting[i] = False; //Pi不用等了，可進入CS
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CS
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;若把&lt;code&gt;waiting[i] = False; &lt;/code&gt;這行刪掉，此行removed是否正確?explain in details&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/nYiqTti.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230217001954998&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Ans.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;違反Progress&lt;/strong&gt;，不想進入的progress參與決策，並且會發生死結，兩件事情都會發生&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/e6tghIj.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230217005154344&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;semaphore號誌&#34;&gt;Semaphore(號誌)&lt;/h2&gt;
+&lt;p&gt;學習地圖&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Process 也能產生 Process （parent跟child）&lt;/p&gt;
+&lt;p&gt;定義&lt;/p&gt;
+&lt;p&gt;應用&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CS Design (臨界區間設計)&lt;/p&gt;
+&lt;p&gt;synchronization problem solution(解決同步問題)&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/9GsCQX3.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221010230406358&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;CPU的數量很少，可能只有個位數或十幾個，但在Memory要執行的程式卻很多(multiProgram)，因此需要Scheduler，有分為三種Scheduler&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Short-term**(CPU Scheduler)**：選擇哪個Process要被執行，以及分配CPU&lt;/li&gt;
-&lt;li&gt;Long-term**(Job Scheduler)**：決定哪些Processes能被Load進Memory，以及進入queue等待&lt;/li&gt;
-&lt;li&gt;Medium-term：決定哪個Processes被丟回Memory（從Ready state 變成 Wait state）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/XyXSPVP.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221010232740246&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h4 id=&#34;long-term-scheduler&#34;&gt;Long-Term Scheduler&lt;/h4&gt;
+&lt;p&gt;種類&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Binary semaphore vs counting semaphore&lt;/p&gt;
+&lt;p&gt;spinlock semaphore vs non-busy waiting semaphore&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;控制 degree of multiprogramming：目前電腦上有幾個程式在Memory裡面&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;執行的頻率相較Short-term來講較低（只在process離開系統，或是每隔幾分鐘執行一次）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;選擇什麼Processes也很重要，因為我們希望CPU跟I/O可以overlap，不要完全偏向CPU或是I/O，而讓另一方沒事情做。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在現在的OS裡面，因為Memory已經足夠，因此Job Schduler的功能逐漸淡化，直接先load進memory再說，&lt;/p&gt;
+&lt;p&gt;定義：令Ｓ為Semaphore type變數，架構在integer type針對S，提供兩個&lt;strong&gt;Atomica operations&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;wait(S)&lt;code&gt;或P(S)&lt;/code&gt; &lt;code&gt;因為是荷蘭人，所以用荷蘭命名&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;signal(S)&lt;code&gt;或V(S)&lt;/code&gt; &lt;code&gt;因為是荷蘭人，所以用荷蘭命名&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;定義如下&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;short-term-scheduler&#34;&gt;Short-Term Scheduler&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/uzdlYWX.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221010234018932&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;頻率極短(100ms)&lt;/li&gt;
-&lt;li&gt;要非常有效率&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;medium-term-scheduler&#34;&gt;Medium-Term Scheduler&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/nYV5B7I.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221011010707793&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;負責在DisK及Memory之間切換的Scheduler&lt;/p&gt;
-&lt;p&gt;Swap Out：把Processes移出記憶體&lt;/p&gt;
-&lt;p&gt;Swap In：把Processes移入記憶體&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/PYbB6CD.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221012001702454&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;每個Processor都有自己的ID(Processor identifier &lt;strong&gt;pid&lt;/strong&gt;)，&lt;strong&gt;整台電腦一開始在執行的時候只會有一個Process&lt;/strong&gt;，這個Process再去Create其他的Process&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;這個指令可以列出所有啟動的Processes&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&#34;waits&#34;&gt;wait(S)：&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;while(S≦０){do no-op;} //若semaphore的值為0，則卡在這邊
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;S=S-1; //退出後semaphore值-1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;signals&#34;&gt;signal(S)：&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ps-ael 
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;S=S+1;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/tdzYGmL.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221012003309571&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h4 id=&#34;process-creation&#34;&gt;Process Creation&lt;/h4&gt;
-&lt;p&gt;Parent和Child雖然是兩隻不一樣的程式，但還是有某種程度上的關聯，這個關聯性的定義，分成下面三個比較重要的部分，&lt;strong&gt;這個關聯性是由OS的設計者去決定的&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;note：因為Atomical, 所以S不會有race condition&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;應用：主要用在CS Design，及同步問題之解決&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;cs-design使用如下&#34;&gt;&lt;strong&gt;CS Design使用如下&lt;/strong&gt;&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Resource Sharing之間的關聯性&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Parent跟Child分享所有資源&lt;/li&gt;
-&lt;li&gt;Global共享，但Dynamic的不共享&lt;/li&gt;
-&lt;li&gt;全部都不分享&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;共享變數宣告如下&lt;/p&gt;
+&lt;p&gt;mutex&lt;code&gt;常見的變數名稱，代表mutual exclustion的意思&lt;/code&gt;：semaphore= 1; //初值為1&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Processes執行的順序，當Child被創建後，哪個Process有優先執行的權力&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;讓OS自己來決定&lt;/li&gt;
-&lt;li&gt;Chidren擁有較高的執行權&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Process Address Space的狀態&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Child複製Parent的過去（連Code Counter，程式執行到哪一行都會複製過去，比如說Parent執行到第三行，那複製過去的Child就會從第三開始啟動。行為都一樣，但Address會不一樣）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Child重新去Load Parent的程式碼。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/OygMp9G.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221012215807520&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h4 id=&#34;unixlinux-process-creation&#34;&gt;UNIX/Linux Process Creation&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;fork&lt;/strong&gt; system Call&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;創建新的Child Process&lt;/li&gt;
-&lt;li&gt;是用複製(duplicates)的方式創建的&lt;/li&gt;
-&lt;li&gt;執行無先後順序之分&lt;/li&gt;
-&lt;li&gt;Fork的這個Code也是個System code，會return 一個 value，return的value會是它children的PID，若底下無children則return 0 （父母一定知道小孩是誰，但小孩不一定知道父母是誰）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;execlp&lt;/strong&gt; system call&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Parent跟Child是dupulicate，裡面的內容完完全全一模一樣，但今天create 一個新的process的目的不是為了做同樣的事情，因此execlp這個system call的目的，就是塞一個binary file（也就是program），就會把把child的process全部清空。**那為什麼不直接創造一個新的process？**因為需要跟OS註冊一個PID&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;wait&lt;/strong&gt; system call&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;因為執行順序是concurrently，因此需要用wait來做順序的控制&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/a5oWtwq.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221012222041627&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;這只是UNIX系統對Process的策略，不代表所有，實際還是要參照[Process Creation](# Process Creation)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;從A複製一份到A&amp;rsquo;s child，之所以A&amp;rsquo;s child會比較小的原因，主要是因為，如果是完整複製的話，其實大小是會一樣的，父Process有100 MB，子Process 就會有100MB，但這樣的事情很沒意義，因此現在會採用Copy-on-write，保存重要的資訊就好，其他的就不複製過去，比如說code counter，或是Local Variable都沒有變的話，則子Process會用一個Pointer指到父Process，但如果Runtime後發現不一樣，OS才真的會複製一份到子process。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/W3myj7Q.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221012225909520&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/tH3YUq6.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221012231835420&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;恩，這邊不太清楚，要再回頭看 不懂&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;interprocess-communicationipc&#34;&gt;Interprocess Communication(IPC)&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/b6dna1d.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221012233401342&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;在OS的世界裡，有時候Process跟Thread是不分的&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;IPC：不同或相同的Process裡面的thread要互相溝通&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/EfY6Ymz.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221012234603052&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;讀投影片就是完整的筆記了&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;溝通的方式有兩種&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Shared Memory&lt;/p&gt;
-&lt;p&gt;有一塊Memoryd空間是share的，兩個人都可以用pointer去access它(會有synchronization的問題)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Message Passing&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;​      跨電腦的訊息溝通是Message Passing&lt;/p&gt;
-&lt;p&gt;資料量小的話用Shared memory，資料量大的話用Message passing（避免synchronization問題），&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/getfXBb.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221012235849010&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;如何Message Passing呢？&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Socket：透過IP和Port來辨認使用者，&lt;strong&gt;Port Number(8080,5432)就是Process&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Process ID是一個Process獨一無二的ID，用來辨認不同Process&lt;/p&gt;
-&lt;p&gt;Port Number是作為網路連線的一部分&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Socket是個比較low level的傳遞方式，只能傳遞stream of bytes。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Remote Procedure Calls&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;shared-memory&#34;&gt;Shared Memory&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vVFc3gA.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221013223320680&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/pwAp55s.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221015144503008&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/VX7VTFL.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221015144924661&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;完全看不懂&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&#34;message-passing-1&#34;&gt;Message Passing&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/zEPTisH.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221015151426143&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/GjTgnUy.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221015152045607&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;使用Memory copy的方式，溝通的方式有一點像打電話，有一個人要打電話(Send)另一個人要接電話(Receive)，訊息才可以交流，這一部分也隱含了同步化的操作，意即Message Passing雖然速度比較慢，但它其實幫你做了同步化這件事情。&lt;/p&gt;
-&lt;p&gt;為了要溝通，所以需要先建立一個communication link，並提供一個Send跟receive的function code，實作一個communication link有分成physical跟logical兩個部分&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Physical&lt;/p&gt;
-&lt;p&gt;例如Shared memory, HW bus 或是 network的部分&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Logical(Program 在乎的事情)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;溝通的方向性(單向還是雙向)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;symmetric and asymmetric 對稱與非對稱&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Blocking or non-blocking&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;blocking：呼叫一個function，除非這個function全部做完才會做下一件事情，循序漸進的方法去執行程式&lt;/p&gt;
-&lt;p&gt;Non-Blocking：呼叫一個function，如果有資料就回傳資料，如果沒有資料回傳就會得到一個Error，並執行下一個程式（大概啦）&lt;/p&gt;
-&lt;p&gt;參考資料：&lt;a class=&#34;link&#34; href=&#34;https://medium.com/@clu1022/%E6%B7%BA%E8%AB%87i-o-model-32da09c619e6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;淺談I/O Model&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&amp;hellip;. 參閱上面投影片&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/5xOl2Ks.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221015154148903&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/DlWQ645.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221015192600656&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/bq56vJz.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221015192823026&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;傳遞訊息的時候，不是把訊息直接傳給一個人，而是放到一個Mail Box裡面，想要這個message的人自己到mailbox裡面拿，這種不知道雙方是誰的Communication就叫做indirect communication&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AOImSIi.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221015231131458&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;MailBox所遇到的問題&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果很多人同時連線到MailBox該怎麼辦?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;解決方案&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;限制這個communication只能有兩個人同時使用&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;同一時間只能有一個Receiver&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h4 id=&#34;mailbox不做限制要幾個人來都可以但當有人同時access的時候會有其中一方先被delay&#34;&gt;MailBox不做限制，要幾個人來都可以，但當有人同時Access的時候，會有其中一方先被Delay&lt;/h4&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;synchronization&#34;&gt;Synchronization&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/cuNUaxt.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221015232822207&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;不懂，Buffer是啥&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Message在傳遞的時候一定是blocking或是non-blocking的狀態，要特別注意，Blcoking Send 不一定要對到Blocking Receive，它們之間沒有相對關係&lt;/p&gt;
-&lt;table&gt;
+&lt;p&gt;Pi程式如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;repeat :
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	wait(mutex);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	C.S
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	signal(mutex);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	RS
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;untill False;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;Blocking&lt;/th&gt;
-&lt;th&gt;NonBlock&lt;/th&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;th&gt;Pj&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;Send&lt;/td&gt;
-&lt;td&gt;在Message被收到之前，Sender都是被blocked住的&lt;/td&gt;
-&lt;td&gt;Sender送出Messager，不管有沒有人收到訊息，都直接去做自己的事&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Receive&lt;/td&gt;
-&lt;td&gt;Receiver被blocked住，直到收到訊息&lt;/td&gt;
-&lt;td&gt;Receiver收到一個valid Message或null(因為是nonBlock)&lt;/td&gt;
+&lt;td&gt;T1：wait(mutex);&lt;br /&gt;因為mutex = 1&lt;br /&gt;所以Pi可以離開while，then,mutex值在減1變0，then Pi進入CS&lt;/td&gt;
+&lt;td&gt;T2：wait(mutex)，因為此時mutex=0，這時候Pj會卡住。符合&lt;strong&gt;Mutual exclustion&lt;/strong&gt;&lt;br /&gt;&lt;strong&gt;Progress也符合&lt;/strong&gt;&lt;br /&gt;&lt;strong&gt;Bounded waiting也符合&lt;/strong&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id=&#34;sockets&#34;&gt;Sockets&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/yxrK8Tu.png&#34;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;解決簡單的synchronization-problem&#34;&gt;&lt;strong&gt;解決簡單的Synchronization problem&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;​	何謂Synchronization? Process因為某些事件發生(or未發生)而被迫等待，無法往下執行，直到其他Processes do something才得以往下&lt;/p&gt;
+&lt;p&gt;範例1：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;th&gt;Pj&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;A;&lt;/td&gt;
+&lt;td&gt;B;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;規定：A必須在B之前執行，試用Semaphore達到此需求&lt;/p&gt;
+&lt;p&gt;Ans. 宣告一共享變數&lt;/p&gt;
+&lt;p&gt;S= Semaphore=0;
+&lt;img src=&#34;https://i.imgur.com/gFkvUDs.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;image-20221015234703436&#34;
+		alt=&#34;image-20230218153218428&#34;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;Accept之後會產生一個thread，所以這整體是一個MultiThread的架構&lt;/p&gt;
-&lt;h3 id=&#34;remote-procedure-callsrpc&#34;&gt;Remote Procedure Calls：RPC&lt;/h3&gt;
-&lt;h1 id=&#34;第四章-thread--concurrency-執行序與併發&#34;&gt;第四章 Thread &amp;amp; Concurrency (執行序與併發)&lt;/h1&gt;
-&lt;h1 id=&#34;第五章-cpu-scheduling-cpu-行程&#34;&gt;第五章 CPU Scheduling (CPU 行程)&lt;/h1&gt;
-&lt;h1 id=&#34;第三節-process-synchronization-進程同步&#34;&gt;第三節 Process Synchronization (進程同步)&lt;/h1&gt;
-&lt;h1 id=&#34;第六章-synchronization-tools-同步工具&#34;&gt;第六章 Synchronization Tools (同步工具)&lt;/h1&gt;
-&lt;h1 id=&#34;第七章-synchronization-examples-同步範例&#34;&gt;第七章 Synchronization Examples (同步範例)&lt;/h1&gt;
-&lt;h1 id=&#34;第八章-deadlocks死鎖&#34;&gt;第八章 Deadlocks(死鎖)&lt;/h1&gt;
-&lt;h1 id=&#34;第四節-memory-management記憶體管理&#34;&gt;第四節 Memory Management(記憶體管理)&lt;/h1&gt;
-&lt;h1 id=&#34;第九章-main-memory主記憶體&#34;&gt;第九章 Main Memory(主記憶體)&lt;/h1&gt;
-&lt;h1 id=&#34;第十章-virtual-memory虛擬記憶體&#34;&gt;第十章 Virtual Memory(虛擬記憶體)&lt;/h1&gt;
-&lt;h1 id=&#34;第五節-storage-management儲存空間管理&#34;&gt;第五節 Storage Management(儲存空間管理)&lt;/h1&gt;
-&lt;h1 id=&#34;第十一章-mass-storage-structure-大型儲存架構&#34;&gt;第十一章 Mass-Storage Structure (大型儲存架構)&lt;/h1&gt;
-&lt;h1 id=&#34;第十二章-io-system-輸入輸出系統&#34;&gt;第十二章 I/O System (輸入/輸出系統)&lt;/h1&gt;
-&lt;h1 id=&#34;第六節-file-system-檔案系統&#34;&gt;第六節 File System (檔案系統)&lt;/h1&gt;
-&lt;h1 id=&#34;第十三章-file-system-interface-檔案系統介面&#34;&gt;第十三章 File-System Interface (檔案系統介面)&lt;/h1&gt;
-&lt;h1 id=&#34;第十四章-file-system-implementation-檔案系統實作&#34;&gt;第十四章 File-System Implementation (檔案系統實作)&lt;/h1&gt;
-&lt;h1 id=&#34;第十五章-file-system-internals-檔案系統內部&#34;&gt;第十五章 File-System Internals (檔案系統內部)&lt;/h1&gt;
-&lt;h1 id=&#34;第七節-security-and-protected-安全性及保護&#34;&gt;第七節 Security And Protected (安全性及保護)&lt;/h1&gt;
-&lt;h1 id=&#34;第十六章-security-安全性&#34;&gt;第十六章 Security 安全性&lt;/h1&gt;
-&lt;h1 id=&#34;第十七章-protection-保護&#34;&gt;第十七章 Protection 保護&lt;/h1&gt;
-&lt;h1 id=&#34;第八節-advenced-topics-進階主題&#34;&gt;第八節 Advenced Topics (進階主題)&lt;/h1&gt;
-&lt;h1 id=&#34;第十八章-vitual-machines-虛擬機&#34;&gt;第十八章 Vitual Machines (虛擬機)&lt;/h1&gt;
-&lt;h1 id=&#34;第十九章-networds-and-distributed-systems-網路與分配系統&#34;&gt;第十九章 Networds and Distributed Systems (網路與分配系統)&lt;/h1&gt;
-&lt;h1 id=&#34;第九節-case-studies-案例學習&#34;&gt;第九節 Case Studies (案例學習)&lt;/h1&gt;
-&lt;h1 id=&#34;第二十章-the-linux-system-linux系統&#34;&gt;第二十章 The Linux System (Linux系統)&lt;/h1&gt;
-&lt;h1 id=&#34;第二十一章-windowswindows&#34;&gt;第二十一章 Windows(Windows)&lt;/h1&gt;
-&lt;h1 id=&#34;第十節-appendices-附錄&#34;&gt;第十節 Appendices (附錄)&lt;/h1&gt;
-&lt;h1 id=&#34;附錄a-influential-operating-system-有影響力的作業系統&#34;&gt;附錄A Influential Operating System (有影響力的作業系統)&lt;/h1&gt;
-&lt;h1 id=&#34;附錄b-windowswindows&#34;&gt;附錄B Windows(Windows)&lt;/h1&gt;
-&lt;h1 id=&#34;附錄c-bsd-unix&#34;&gt;附錄C BSD UNIX&lt;/h1&gt;
-&lt;h1 id=&#34;附錄d-the-mach-system&#34;&gt;附錄D The Mach System&lt;/h1&gt;
-&lt;h1 id=&#34;附錄a-influential-operating-system-有影響力的作業系統-1&#34;&gt;附錄A Influential Operating System (有影響力的作業系統)&lt;/h1&gt;
-&lt;h1 id=&#34;附錄b-windowswindows-1&#34;&gt;附錄B Windows(Windows)&lt;/h1&gt;
-&lt;h1 id=&#34;附錄c-bsd-unix-1&#34;&gt;附錄C BSD UNIX&lt;/h1&gt;
-&lt;h1 id=&#34;附錄d-the-mach-system-1&#34;&gt;附錄D The Mach System&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;th&gt;Pj&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;A;&lt;br /&gt;signal(S);&lt;/td&gt;
+&lt;td&gt;wait(S);&lt;br /&gt;B;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;==Note：semaphore的初值是具有某些意義的，並且初值不一定要是０或１，其實都可以，只是都用０跟１做舉例==&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;初值為1：用作互斥控制&lt;/li&gt;
+&lt;li&gt;初值為0：用作強迫等待&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例2：&lt;/p&gt;
+&lt;p&gt;S1：Semaphore= 0;&lt;/p&gt;
+&lt;p&gt;S2：Semaphore= 0;&lt;/p&gt;
+&lt;p&gt;規定執行順序為A -&amp;gt; C -&amp;gt; B 該如何完成?&lt;/p&gt;
+&lt;p&gt;Ans：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;th&gt;Pj&lt;/th&gt;
+&lt;th&gt;Pk&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;wait(s2)&lt;/td&gt;
+&lt;td&gt;wait(s1)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;B;&lt;/td&gt;
+&lt;td&gt;C;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;signal(s1)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;signal(s2)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Ex2：希望達成 &lt;u&gt;A,B,C,&lt;/u&gt;&lt;u&gt;A,B,C,&lt;/u&gt;&lt;u&gt;A,B,C&lt;/u&gt; repeatly execuction&lt;/p&gt;
+&lt;p&gt;承上性質，S1,S2 semaphore=0;S3 semaphore=1&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;th&gt;Pj&lt;/th&gt;
+&lt;th&gt;Pk&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;wait(s3)&lt;/td&gt;
+&lt;td&gt;wait(s1)&lt;/td&gt;
+&lt;td&gt;wait(s2)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;A;&lt;/td&gt;
+&lt;td&gt;B;&lt;/td&gt;
+&lt;td&gt;C;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;signal(s1)&lt;/td&gt;
+&lt;td&gt;signal(s2)&lt;/td&gt;
+&lt;td&gt;signal(s3)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Ex3：C是共享變數，初值為3，請寫出最後C的值為多少&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一小題&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;th&gt;Pj&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;C=C*2&lt;/td&gt;
+&lt;td&gt;C=C+1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;7或8或4或6&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第二小題&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;s= semaphore=1&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;th&gt;Pj&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;wait(s)&lt;/td&gt;
+&lt;td&gt;wait(s)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c=c*2&lt;/td&gt;
+&lt;td&gt;c=c+1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;signal(s)&lt;/td&gt;
+&lt;td&gt;singal(s)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;7或8&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第三小題&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;s= semaphore = 0&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;th&gt;Pj&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;wait(s)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;c=c*2&lt;/td&gt;
+&lt;td&gt;c=c+1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;signal(s)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;7&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;EX4&lt;/p&gt;
+&lt;p&gt;S1：Semaphore = 1;&lt;/p&gt;
+&lt;p&gt;S2：Semaphore = 0;&lt;/p&gt;
+&lt;p&gt;求ABC可能執行順序&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;th&gt;Pj&lt;/th&gt;
+&lt;th&gt;Pk&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;wait(s1)&lt;/td&gt;
+&lt;td&gt;wait(s2)&lt;/td&gt;
+&lt;td&gt;wait(s1)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;A;&lt;/td&gt;
+&lt;td&gt;B;&lt;/td&gt;
+&lt;td&gt;C;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;signal(s2)&lt;/td&gt;
+&lt;td&gt;signal(s1)&lt;/td&gt;
+&lt;td&gt;signal(s1)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Ans：把不可能的刪除就好&lt;/p&gt;
+&lt;p&gt;ABC,&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;ACB,&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;BAC,&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;BCA,&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;CAB,&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;CBA&lt;/del&gt;&lt;/p&gt;
+&lt;h3 id=&#34;semaphore之誤用所造成之問題&#34;&gt;semaphore之誤用所造成之問題&lt;/h3&gt;
+&lt;p&gt;違反互斥、形成死結&lt;/p&gt;
+&lt;p&gt;例1&lt;/p&gt;
+&lt;p&gt;s= Semaphore=1&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;singal(s)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Wait(s)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&amp;mdash;&amp;gt; 違反mutual exclusion&lt;/p&gt;
+&lt;p&gt;例2&lt;/p&gt;
+&lt;p&gt;s= semaphore = 2&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;wait(s)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;cs&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;wait(s)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;rs&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&amp;mdash;&amp;gt; 形成死結&lt;/p&gt;
+&lt;p&gt;例3&lt;/p&gt;
+&lt;p&gt;S1,S2 = Semaphore  = 1;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pi&lt;/th&gt;
+&lt;th&gt;Pj&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;T1:wait(s1)&lt;/td&gt;
+&lt;td&gt;T2:wait(s2)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;T3:wait(s2)&lt;/td&gt;
+&lt;td&gt;T4:wait(s1)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;signal(s1)&lt;/td&gt;
+&lt;td&gt;signal(s2)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;signal(s2)&lt;/td&gt;
+&lt;td&gt;signal(s1)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;可能形成deadlock，如果Pi，Pj依照T1~T4之順序交錯執行&lt;/p&gt;
+&lt;h3 id=&#34;著名的synchronization-problem之解決&#34;&gt;著名的Synchronization Problem之解決&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;想看看何時會停下來&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;producer-consumer-problem生產者消費者問題&#34;&gt;Producer-Consumer Problem(生產者消費者問題)&lt;/h4&gt;
+&lt;p&gt;Producer：此process專門產生資訊供別人使用&lt;/p&gt;
+&lt;p&gt;Consumer：此process專門消耗別人產生的成果&lt;/p&gt;
+&lt;p&gt;在sharrd memory溝通方式底下，會準備一個buffer&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Ms4bWcB.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230219133538935&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;細分為兩個類型的問題&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Bounded Buffer Producer-Consumer(Buffer有限)&lt;/p&gt;
+&lt;p&gt;有兩個情況會被迫等待&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;當Buffer滿了，Producer被迫等待&lt;/li&gt;
+&lt;li&gt;當Buffer空了，Consumer被迫等待&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Unbounded Buffer Producer-Consumer(Buffer無限)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;algo1-1&#34;&gt;algo1&lt;/h5&gt;
+&lt;p&gt;共享變數宣告如下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Buffer: [0..n-1] of items;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;in,out: int = 0;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Producer 程式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;repeat:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	produce an item in nextp;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	while((in+1)%n==out) {do noting}; //當buffer滿的話，就卡在while中
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	Buffer[in] =nextp;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	in = (in+1)%n;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;until false;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Consumer程式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;repeat
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	while(in == out ){ do nothing} //buffer為空
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	nextc= Buffer[out];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	out=(out+1) % n;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	consumes  the item in nextc;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;until false;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BkZNIb6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230219174042582&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此時producer 無法在加item，因為(in+1)%n == out, 即buffer已經滿了，因此最多利用(n-1)格&lt;/p&gt;
+&lt;h5 id=&#34;algo2-1&#34;&gt;algo2&lt;/h5&gt;
+&lt;p&gt;共享變數宣告如下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Buffer: [0..n-1] of items;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;in,out: int = 0;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;==&lt;strong&gt;count:int =0&lt;/strong&gt;==&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;這個count值有可能導致race condition，因此不完全正確&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Producer 程式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;repeat:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	produce an item in nextp;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	while(count==n) {do noting}; //當buffer滿的話，就卡在while中
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	Buffer[in] =nextp;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	in = (in+1)%n;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	count = count +1;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;until false;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Consumer程式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;repeat
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	while(count ==0 ){ do nothing} //buffer為空
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	nextc= Buffer[out];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	out=(out+1) % n;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	count = count -1;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	consumes  the item in nextc;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;until false;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;用semaphore解producer-consumer-problem&#34;&gt;用semaphore解producer-consumer problem&lt;/h1&gt;
+&lt;p&gt;共享變數宣告如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;empty : semaphore = n . 代表buffer內空格數，若空格數變為0，代表滿了&lt;/li&gt;
+&lt;li&gt;full : semaphore=0. 代表buffer區中，填入item之格數，若為0，表buffer為空&lt;/li&gt;
+&lt;li&gt;mutex：semaphore=1; 對buffer, in , out , count做互斥控制，防止&lt;strong&gt;race condition&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;semaphore的設計哲學&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;滿足同步條件之號誌變數&lt;code&gt;empty, full&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;互斥控制防止race condition之號誌 &lt;code&gt;mutex&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;先測同步在測互斥，不然會造成死結&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;producer&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;repeat
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	produce on item in nextp;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	wait(empty) ; //若無空格則P被迫等待
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	wait(mutex); 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	add nextp into Bufffer;  //濃縮很多程式在這行裡面喔
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	signal(mutex);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	signal(full); //填入item之格數加1，maybe拯救Consumer
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;consumer&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;repeat
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	wait(full);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	wait(mutex);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	remove item from Buffer in nextc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	signal(mutex);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	singal(empty)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;readwrite-problem&#34;&gt;Read/write Problem&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/J4nkQh8.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230222215707149&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;基本的同步條件&#34;&gt;基本的同步條件&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Reader write要互斥&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;writer,writer也要互斥&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此外，這問題再細分成兩類&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;First read/writer problem&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;-&amp;gt; 對Reader有利，對writer不利，因此writer可能starvation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Second read/writer problem&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;-&amp;gt; 對writer有利，對reader不利，因此reader可能startvation&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;first-readerwriter-problem&#34;&gt;First Reader/Writer Problem&lt;/h4&gt;
+&lt;p&gt;何謂「對Reader有利，Writer不利」?&lt;/p&gt;
+&lt;p&gt;只要有源源不絕的Reader，則W1可能Starvation&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/P4FyOhL.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230222223611353&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;共享變數宣告如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;wrt：semaphore =1&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;提供R/W 及 W/W互斥控制，並&lt;strong&gt;兼差對Writer不利的控制&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;readcnt：int = 0;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;統計Reader個數，直到沒有Reader，才可以放writer進去&lt;/p&gt;
+&lt;p&gt;Reader到-&amp;gt;Readcnt +1&lt;/p&gt;
+&lt;p&gt;Reader走 -&amp;gt;Readcnt -1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;mutex：semaphore=1&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由於readcnt是一共享變數，會有Race Condition之問題，故需額外宣告一變數Mutex做互斥控制&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;writer&lt;/th&gt;
+&lt;th&gt;reader&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;hellip;&lt;br /&gt;wait(wrt)&lt;br /&gt;執行寫入作業&lt;br /&gt;signal(wrt)&lt;br /&gt;&amp;hellip;&lt;/td&gt;
+&lt;td&gt;&amp;hellip;&lt;br /&gt;wait(mutex) ;&lt;br /&gt;readcnt = readcnt +1&lt;br /&gt;if(readcnt==1)&lt;code&gt;代表你是第一個Reader&lt;/code&gt; then wait(wrt)&lt;code&gt;要去偵測是否有writer存在。若有則卡住，若無則通過，也順便卡住writer&lt;/code&gt;&lt;br /&gt;signal(mutex);&lt;br /&gt;執行reading工作 &lt;br /&gt;wait(mutex);&lt;br /&gt;readcnt = readcnt -1 //reader走，reader-1&lt;br /&gt;if(readcnt=.=0) then signal(wrt) //No reader，放writer進去&lt;br /&gt;singal(mutex)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;練習：&lt;/p&gt;
+&lt;p&gt;若目前W1已在寫入中&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;R1到，則R1會卡在wrt 裡，此時readcnt=1&lt;/li&gt;
+&lt;li&gt;R2又到，則R2會卡在mutex，此時readcnt=1&lt;/li&gt;
+&lt;li&gt;R3ˋ到，則R3會卡在mutex，此時readcnt=1&lt;/li&gt;
+&lt;/ol&gt;
 </description>
         </item>
         <item>
@@ -9579,8 +9675,625 @@ $$&lt;/p&gt;
 &lt;p&gt;Q：不超過500之費氏數列&lt;/p&gt;
 &lt;p&gt;​	A. F14 = 377&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Write a recursive algo/code for Fibonacci&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;遞迴解法&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;ch5-tree-and-binary-tree-1&#34;&gt;Ch5 Tree and Binary Tree&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int Fib(int n){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if(n==0){ return 0;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if(n==1){return 1;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;return Fib(n-1)+Fib(n-2);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;非遞迴解法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Fib&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Fo&lt;/th&gt;
+&lt;th&gt;F1&lt;/th&gt;
+&lt;th&gt;F2&lt;/th&gt;
+&lt;th&gt;F3&lt;/th&gt;
+&lt;th&gt;&amp;hellip;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;a=0&lt;/td&gt;
+&lt;td&gt;b=1&lt;/td&gt;
+&lt;td&gt;c=a+b&lt;br /&gt;a=b&lt;br /&gt;b=c&lt;/td&gt;
+&lt;td&gt;c=a+b&lt;br /&gt;a=b&lt;br /&gt;b=c&lt;/td&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;依(1)之code，(i)求出Fib(5)之值(ii)呼叫次數?次(iii)Fib(10)的呼叫次數呢?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int Fib(int n){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if(n==0){ return 0;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if(n==1){return 1;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;return Fib(n-1)+Fib(n-2);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;ans .&lt;/p&gt;
+&lt;p&gt;(i) 5&lt;/p&gt;
+&lt;p&gt;(ii)&lt;img src=&#34;https://i.imgur.com/9rkgJtk.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230220000219053&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;(iii)&lt;img src=&#34;https://i.imgur.com/ed9zsLC.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230220001353812&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;令T&lt;sub&gt;(n)&lt;/sub&gt;代表求Fin(n)時之呼叫次數，即T(0)=T(1)=1次，(i)寫出T(n)之Recursive definition(ii)Based on (i)，求出T(10)之值&lt;/p&gt;
+&lt;p&gt;ans . (i) T(n) = T(n-1)+T(n-2)+1 且 T(0) =T(1) = 1;&lt;/p&gt;
+&lt;p&gt;​		(ii)&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;th&gt;5&lt;/th&gt;
+&lt;th&gt;6&lt;/th&gt;
+&lt;th&gt;7&lt;/th&gt;
+&lt;th&gt;8&lt;/th&gt;
+&lt;th&gt;9&lt;/th&gt;
+&lt;th&gt;10&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;15&lt;/td&gt;
+&lt;td&gt;25&lt;/td&gt;
+&lt;td&gt;41&lt;/td&gt;
+&lt;td&gt;67&lt;/td&gt;
+&lt;td&gt;109&lt;/td&gt;
+&lt;td&gt;177&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;求Fib(5)時，則Fib(0),Fib(1),Fib(2),Fib(3),Fib(4),Fib(5),分別被呼叫?次&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Fib(n)&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;th&gt;5&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;呼叫幾次&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;5只會自己生自己，4只會由5產生，3會由4跟5產生(1+1)，2則是由3跟4產生(2+1)，1會由2跟3產生(3+5)，但0只會由2產生，不會由0產生。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;接續上題，那Fib(10)呢?&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Fin(n)&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;th&gt;5&lt;/th&gt;
+&lt;th&gt;6&lt;/th&gt;
+&lt;th&gt;7&lt;/th&gt;
+&lt;th&gt;8&lt;/th&gt;
+&lt;th&gt;9&lt;/th&gt;
+&lt;th&gt;10&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;呼叫幾次&lt;/td&gt;
+&lt;td&gt;34&lt;/td&gt;
+&lt;td&gt;55&lt;/td&gt;
+&lt;td&gt;34&lt;/td&gt;
+&lt;td&gt;21&lt;/td&gt;
+&lt;td&gt;13&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;令T(n)代表求Fib(n)時之加法次數&lt;/p&gt;
+&lt;p&gt;(i)求出T(n)之recursive definition&lt;/p&gt;
+&lt;p&gt;(ii)求T(5)之值 based on(i)&lt;/p&gt;
+&lt;p&gt;ans&lt;/p&gt;
+&lt;p&gt;(i) T(n)=T(n-1)+T(n-2)+1，且T(0)=0,T(1)=0&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Fib(n)&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;th&gt;5&lt;/th&gt;
+&lt;th&gt;6&lt;/th&gt;
+&lt;th&gt;7&lt;/th&gt;
+&lt;th&gt;8&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;呼叫幾次&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;12&lt;/td&gt;
+&lt;td&gt;20&lt;/td&gt;
+&lt;td&gt;33&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;code如下，求F(5)之值&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int Fib(int n){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if(n==0 || n==1){return 1}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;return F(n-1)+F(n-2)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Fib(n)&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;th&gt;5&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;值&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;code如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int Fib(int n){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if(n&amp;lt;1){return 0}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if(n&amp;lt;3){return 1}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;return Fib(n-1)+Fin(n-2)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;(i)求Fib(5)之值&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Fib(n)&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;th&gt;5&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;值&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;(ii)呼叫Fib函數?次(含Fib(5))&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/cR8M7qZ.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230220214503733&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Binomical coe(二項式係數)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;p&gt;$$
+{C_m}^n =(\underset{m}{\overset{n}{{}}})=\frac{n!}{m!(n-m)!}
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;p&gt;$$
+(i)write a recursive algo / code 求 (\underset{m}{\overset{n}{{}}})之值
+$$&lt;/p&gt;
+&lt;p&gt;ans. 關鍵，==&lt;strong&gt;必背&lt;/strong&gt;==&lt;/p&gt;
+&lt;p&gt;$$
+(\underset{m}{\overset{n}{{}}})=&lt;br&gt;
+\begin{cases}
+&amp;amp; 1, \text{ if } (n = m \text{ or } m = 0) \
+&amp;amp; (\underset{m}{\overset{n-1}{{}}})+(\underset{m-1}{\overset{n-1}{{}}})
+\end{cases}
+$$&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int Bin(int n , int m){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if(n==m || m==0){return 1}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;else{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;return Bin(n-1,m)+Bin(n-1,m-1)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;(ii) based on (i) code 求Bin(5,3)之值及呼叫次數&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/8VKJjX9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230220232145991&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ans 10 ,19次&lt;/p&gt;
+&lt;p&gt;Note ：計算時有些撇步&lt;/p&gt;
+&lt;p&gt;$$
+(\underset{3}{\overset{5}{{}}}) = \frac{5\times4\times3}{1\times2\times3}=10
+$$&lt;/p&gt;
+&lt;p&gt;$$
+(\underset{4}{\overset{8}{{}}}) = \frac{8\times7\times6\times5}{1\times2\times3\times4}=70
+$$&lt;/p&gt;
+&lt;ol start=&#34;12&#34;&gt;
+&lt;li&gt;GCD(A,B) 求A,B兩數之最大公因數，寫出recursive algo/code&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;==&lt;strong&gt;☆☆☆☆☆☆☆☆☆要背☆☆☆☆☆☆☆☆☆☆☆☆&lt;/strong&gt;==&lt;/p&gt;
+&lt;p&gt;$$
+GCD(A,B)=\ \begin{cases}
+&amp;amp; B, \text{ if } (A modsB)=0 \
+&amp;amp;GCD(B,AmodsB), other wise
+\end{cases}
+$$&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int GCD(int A,int B){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if (A%B==0) {return B}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;else return GCD(B,A%B)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;依上述code，試求(1)求GCD(18,33)之值(2)呼叫GCD?次&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/JkzUfwK.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230221000814907&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;13&#34;&gt;
+&lt;li&gt;Ackerman&amp;rsquo;s Function &lt;code&gt;一坨大便，幹破你娘&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;$$
+A(m,n) = \begin{cases}
+n+1, &amp;amp; \text{if } m=0\
+A(m-1,1), &amp;amp; \text{if } n=0\
+A(m-1,A(m,n-1)), &amp;amp; \text{otherwise}
+\end{cases}
+$$&lt;/p&gt;
+&lt;p&gt;(i) A(2,2)=?&lt;/p&gt;
+&lt;p&gt;ans.&lt;/p&gt;
+&lt;p&gt;A(2, 2) =7&lt;/p&gt;
+&lt;p&gt;(ii) A(10,10)
+ans.&lt;/p&gt;
+&lt;p&gt;A(10, 10) = A(9, A(10, 9))
+= A(9, A(9, A(10, 8)))
+= A(9, A(9, A(9, A(10, 7))))
+= A(9, A(9, A(9, A(9, A(10, 6)))))
+= A(9, A(9, A(9, A(9, A(9, A(10, 5))))))
+= A(9, A(9, A(9, A(9, A(9, A(9, A(10, 4)))))))
+= A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(10, 3))))))))
+= A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(10, 2)))))))))
+= A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(10, 1))))))))))
+= A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, 1))))))))))
+≈ 2.1216 x 10^19728&lt;/p&gt;
+&lt;p&gt;(iii)A(1,3)&lt;/p&gt;
+&lt;p&gt;A(1, 3) = A(0, A(1, 2))
+= A(0, A(0, A(1, 1)))
+= A(0, A(0, A(0, A(1, 0))))
+= A(0, A(0, A(0, A(0, 1))))
+= A(0, A(0, A(0, 1)))
+= A(0, A(0, 2))
+= A(0, 3)
+= 4&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;常考排行&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A(2,2) = 7&lt;/p&gt;
+&lt;p&gt;A(2,1) = 5&lt;/p&gt;
+&lt;p&gt;A(1,2) = 4&lt;/p&gt;
+&lt;p&gt;A(2,3)=  9&lt;/p&gt;
+&lt;ol start=&#34;14&#34;&gt;
+&lt;li&gt;求x&lt;sup&gt;n&lt;/sup&gt;，其中x,n是integer，且n ≧ 0 , write a recursive algo/ code&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ans&lt;/p&gt;
+&lt;p&gt;$$
+x^n=
+\begin{cases} 
+1&amp;amp;\text {if}(n==0) \ 
+x \times x^{n-1}&amp;amp;\text {if} (n&amp;gt;0)
+\end{cases}
+$$&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int exp(int x,int n){
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;if (n==0){return 1}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;else{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;return Exp(x,n-1)*x
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;15&#34;&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;(i) 求foo(2,5)值&lt;/p&gt;
+&lt;p&gt;​	&lt;img src=&#34;https://i.imgur.com/GvgDjdH.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230223220045068&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;(ii)求foo(x,n)之功能&lt;/p&gt;
+&lt;p&gt;​	求x&lt;sup&gt;n&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;(iii)求foo(x,n)之Time Complexity&lt;/p&gt;
+&lt;p&gt;​	O(log&lt;sub&gt;n&lt;/sub&gt;)&lt;/p&gt;
+&lt;h4 id=&#34;河內塔towers-of-hanai&#34;&gt;河內塔(Towers of Hanai)&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/dj1RFAh.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20230223232944377&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;程式如下：&lt;/p&gt;
+&lt;p&gt;Hanoi(n,x,y,z);&lt;/p&gt;
+&lt;p&gt;n：盤數&lt;/p&gt;
+&lt;p&gt;x：來源&lt;/p&gt;
+&lt;p&gt;y：占存地&lt;/p&gt;
+&lt;p&gt;z：目的地&lt;/p&gt;
+&lt;p&gt;Step1 Hanoi(n-1,A,C,B);&lt;/p&gt;
+&lt;p&gt;Step2 Hanoi(1,A,B,C);&lt;/p&gt;
+&lt;p&gt;Step3 Hanoi(n-1,B,A,C);&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Hanoi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;B&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;move disk %d from %c to %c &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//n&amp;gt;1{
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;Hanoi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;B&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;move disk %d from %c &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    	&lt;span class=&#34;n&#34;&gt;Hanoi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;B&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    	
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h1 id=&#34;ch5-tree-and-binary-tree-1&#34;&gt;Ch5 Tree and Binary Tree&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;Tree跟BinaryTree不一樣&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;學習路線-1&#34;&gt;學習路線&lt;/h2&gt;
 &lt;blockquote&gt;

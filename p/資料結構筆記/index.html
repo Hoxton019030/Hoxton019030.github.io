@@ -276,7 +276,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    3 minute read
+                    6 minute read
                 </time>
             </div>
         
@@ -762,8 +762,625 @@ if (!doNotTrack) {
 <p>Q：不超過500之費氏數列</p>
 <p>​	A. F14 = 377</p>
 </li>
+<li>
+<p>Write a recursive algo/code for Fibonacci</p>
+<ol>
+<li>遞迴解法</li>
 </ol>
-<h1 id="ch5-tree-and-binary-tree-1">Ch5 Tree and Binary Tree</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int Fib(int n){
+</span></span><span class="line"><span class="cl">if(n==0){ return 0;}
+</span></span><span class="line"><span class="cl">if(n==1){return 1;}
+</span></span><span class="line"><span class="cl">return Fib(n-1)+Fib(n-2);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>非遞迴解法</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Fib</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">c</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span><span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">a</span> <span class="o">=</span><span class="n">b</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">b</span> <span class="o">=</span> <span class="n">c</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Fo</th>
+<th>F1</th>
+<th>F2</th>
+<th>F3</th>
+<th>&hellip;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a=0</td>
+<td>b=1</td>
+<td>c=a+b<br />a=b<br />b=c</td>
+<td>c=a+b<br />a=b<br />b=c</td>
+<td>&hellip;</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>依(1)之code，(i)求出Fib(5)之值(ii)呼叫次數?次(iii)Fib(10)的呼叫次數呢?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int Fib(int n){
+</span></span><span class="line"><span class="cl">if(n==0){ return 0;}
+</span></span><span class="line"><span class="cl">if(n==1){return 1;}
+</span></span><span class="line"><span class="cl">return Fib(n-1)+Fib(n-2);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ans .</p>
+<p>(i) 5</p>
+<p>(ii)<img src="https://i.imgur.com/9rkgJtk.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230220000219053"
+	
+	
+></p>
+<p>(iii)<img src="https://i.imgur.com/ed9zsLC.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230220001353812"
+	
+	
+></p>
+<ol start="4">
+<li>
+<p>令T<sub>(n)</sub>代表求Fin(n)時之呼叫次數，即T(0)=T(1)=1次，(i)寫出T(n)之Recursive definition(ii)Based on (i)，求出T(10)之值</p>
+<p>ans . (i) T(n) = T(n-1)+T(n-2)+1 且 T(0) =T(1) = 1;</p>
+<p>​		(ii)</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>5</td>
+<td>9</td>
+<td>15</td>
+<td>25</td>
+<td>41</td>
+<td>67</td>
+<td>109</td>
+<td>177</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>求Fib(5)時，則Fib(0),Fib(1),Fib(2),Fib(3),Fib(4),Fib(5),分別被呼叫?次</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Fib(n)</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>呼叫幾次</td>
+<td>3</td>
+<td>5</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
+<p>5只會自己生自己，4只會由5產生，3會由4跟5產生(1+1)，2則是由3跟4產生(2+1)，1會由2跟3產生(3+5)，但0只會由2產生，不會由0產生。</p>
+</li>
+<li>
+<p>接續上題，那Fib(10)呢?</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Fin(n)</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>呼叫幾次</td>
+<td>34</td>
+<td>55</td>
+<td>34</td>
+<td>21</td>
+<td>13</td>
+<td>8</td>
+<td>5</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>令T(n)代表求Fib(n)時之加法次數</p>
+<p>(i)求出T(n)之recursive definition</p>
+<p>(ii)求T(5)之值 based on(i)</p>
+<p>ans</p>
+<p>(i) T(n)=T(n-1)+T(n-2)+1，且T(0)=0,T(1)=0</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Fib(n)</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>呼叫幾次</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>7</td>
+<td>12</td>
+<td>20</td>
+<td>33</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>code如下，求F(5)之值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int Fib(int n){
+</span></span><span class="line"><span class="cl">if(n==0 || n==1){return 1}
+</span></span><span class="line"><span class="cl">return F(n-1)+F(n-2)
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Fib(n)</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>值</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>8</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>code如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int Fib(int n){
+</span></span><span class="line"><span class="cl">if(n&lt;1){return 0}
+</span></span><span class="line"><span class="cl">if(n&lt;3){return 1}
+</span></span><span class="line"><span class="cl">return Fib(n-1)+Fin(n-2)
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>(i)求Fib(5)之值</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Fib(n)</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>值</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+</tr>
+</tbody>
+</table></div>
+<p>(ii)呼叫Fib函數?次(含Fib(5))</p>
+<p><img src="https://i.imgur.com/cR8M7qZ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230220214503733"
+	
+	
+></p>
+</li>
+<li>
+<p>Binomical coe(二項式係數)</p>
+</li>
+</ol>
+<p>​</p>
+<p>$$
+{C_m}^n =(\underset{m}{\overset{n}{{}}})=\frac{n!}{m!(n-m)!}
+$$</p>
+</li>
+</ol>
+<p>​</p>
+<p>$$
+(i)write a recursive algo / code 求 (\underset{m}{\overset{n}{{}}})之值
+$$</p>
+<p>ans. 關鍵，==<strong>必背</strong>==</p>
+<p>$$
+(\underset{m}{\overset{n}{{}}})=<br>
+\begin{cases}
+&amp; 1, \text{ if } (n = m \text{ or } m = 0) \
+&amp; (\underset{m}{\overset{n-1}{{}}})+(\underset{m-1}{\overset{n-1}{{}}})
+\end{cases}
+$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int Bin(int n , int m){
+</span></span><span class="line"><span class="cl">if(n==m || m==0){return 1}
+</span></span><span class="line"><span class="cl">else{
+</span></span><span class="line"><span class="cl">return Bin(n-1,m)+Bin(n-1,m-1)
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>(ii) based on (i) code 求Bin(5,3)之值及呼叫次數</p>
+<p><img src="https://i.imgur.com/8VKJjX9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230220232145991"
+	
+	
+></p>
+<p>ans 10 ,19次</p>
+<p>Note ：計算時有些撇步</p>
+<p>$$
+(\underset{3}{\overset{5}{{}}}) = \frac{5\times4\times3}{1\times2\times3}=10
+$$</p>
+<p>$$
+(\underset{4}{\overset{8}{{}}}) = \frac{8\times7\times6\times5}{1\times2\times3\times4}=70
+$$</p>
+<ol start="12">
+<li>GCD(A,B) 求A,B兩數之最大公因數，寫出recursive algo/code</li>
+</ol>
+<p>==<strong>☆☆☆☆☆☆☆☆☆要背☆☆☆☆☆☆☆☆☆☆☆☆</strong>==</p>
+<p>$$
+GCD(A,B)=\ \begin{cases}
+&amp; B, \text{ if } (A modsB)=0 \
+&amp;GCD(B,AmodsB), other wise
+\end{cases}
+$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int GCD(int A,int B){
+</span></span><span class="line"><span class="cl">if (A%B==0) {return B}
+</span></span><span class="line"><span class="cl">else return GCD(B,A%B)
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>依上述code，試求(1)求GCD(18,33)之值(2)呼叫GCD?次</p>
+<p><img src="https://i.imgur.com/JkzUfwK.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230221000814907"
+	
+	
+></p>
+<ol start="13">
+<li>Ackerman&rsquo;s Function <code>一坨大便，幹破你娘</code></li>
+</ol>
+<p>$$
+A(m,n) = \begin{cases}
+n+1, &amp; \text{if } m=0\
+A(m-1,1), &amp; \text{if } n=0\
+A(m-1,A(m,n-1)), &amp; \text{otherwise}
+\end{cases}
+$$</p>
+<p>(i) A(2,2)=?</p>
+<p>ans.</p>
+<p>A(2, 2) =7</p>
+<p>(ii) A(10,10)
+ans.</p>
+<p>A(10, 10) = A(9, A(10, 9))
+= A(9, A(9, A(10, 8)))
+= A(9, A(9, A(9, A(10, 7))))
+= A(9, A(9, A(9, A(9, A(10, 6)))))
+= A(9, A(9, A(9, A(9, A(9, A(10, 5))))))
+= A(9, A(9, A(9, A(9, A(9, A(9, A(10, 4)))))))
+= A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(10, 3))))))))
+= A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(10, 2)))))))))
+= A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(10, 1))))))))))
+= A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, A(9, 1))))))))))
+≈ 2.1216 x 10^19728</p>
+<p>(iii)A(1,3)</p>
+<p>A(1, 3) = A(0, A(1, 2))
+= A(0, A(0, A(1, 1)))
+= A(0, A(0, A(0, A(1, 0))))
+= A(0, A(0, A(0, A(0, 1))))
+= A(0, A(0, A(0, 1)))
+= A(0, A(0, 2))
+= A(0, 3)
+= 4</p>
+<p><strong>常考排行</strong></p>
+<p>A(2,2) = 7</p>
+<p>A(2,1) = 5</p>
+<p>A(1,2) = 4</p>
+<p>A(2,3)=  9</p>
+<ol start="14">
+<li>求x<sup>n</sup>，其中x,n是integer，且n ≧ 0 , write a recursive algo/ code</li>
+</ol>
+<p>ans</p>
+<p>$$
+x^n=
+\begin{cases} 
+1&amp;\text {if}(n==0) \ 
+x \times x^{n-1}&amp;\text {if} (n&gt;0)
+\end{cases}
+$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">int exp(int x,int n){
+</span></span><span class="line"><span class="cl">if (n==0){return 1}
+</span></span><span class="line"><span class="cl">else{
+</span></span><span class="line"><span class="cl">return Exp(x,n-1)*x
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="15">
+<li></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">=</span><span class="n">x</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">f</span><span class="o">*</span><span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>(i) 求foo(2,5)值</p>
+<p>​	<img src="https://i.imgur.com/GvgDjdH.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230223220045068"
+	
+	
+></p>
+<p>(ii)求foo(x,n)之功能</p>
+<p>​	求x<sup>n</sup></p>
+<p>(iii)求foo(x,n)之Time Complexity</p>
+<p>​	O(log<sub>n</sub>)</p>
+<h4 id="河內塔towers-of-hanai">河內塔(Towers of Hanai)</h4>
+<p><img src="https://i.imgur.com/dj1RFAh.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230223232944377"
+	
+	
+></p>
+<p>程式如下：</p>
+<p>Hanoi(n,x,y,z);</p>
+<p>n：盤數</p>
+<p>x：來源</p>
+<p>y：占存地</p>
+<p>z：目的地</p>
+<p>Step1 Hanoi(n-1,A,C,B);</p>
+<p>Step2 Hanoi(1,A,B,C);</p>
+<p>Step3 Hanoi(n-1,B,A,C);</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Hanoi</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="kt">char</span> <span class="n">A</span><span class="p">,</span><span class="n">Char</span> <span class="n">B</span><span class="p">,</span> <span class="n">Char</span> <span class="n">C</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;move disk %d from %c to %c </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="c1">//n&gt;1{
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;move disk %d from %c </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">Hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    	
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="ch5-tree-and-binary-tree-1">Ch5 Tree and Binary Tree</h1>
 <p><strong>Tree跟BinaryTree不一樣</strong></p>
 <h2 id="學習路線-1">學習路線</h2>
 <blockquote>
@@ -1209,6 +1826,7 @@ $$</p>
             <li><a href="#考型及來源">考型及來源</a>
               <ol>
                 <li><a href="#數學類">數學類</a></li>
+                <li><a href="#河內塔towers-of-hanai">河內塔(Towers of Hanai)</a></li>
               </ol>
             </li>
           </ol>

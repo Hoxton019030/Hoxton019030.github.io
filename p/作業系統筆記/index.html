@@ -276,7 +276,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    34 minute read
+                    35 minute read
                 </time>
             </div>
         
@@ -7180,7 +7180,7 @@ $$</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>用在C.S Design上</p>
-<p>[Algo1]：Ｘ不可以用</p>
+<h3 id="algo1ｘ不可以用">[Algo1]：Ｘ不可以用</h3>
 <ol>
 <li>
 <p>共享變數如下：</p>
@@ -7217,7 +7217,7 @@ $$</p>
 <p>分析：</p>
 <ol>
 <li>
-<p>Mutual Exclustion：OK</p>
+<p><strong>Mutual Exclustion：OK</strong></p>
 <p><img src="https://i.imgur.com/XtJJRuB.png"
 	
 	
@@ -7230,893 +7230,989 @@ $$</p>
 ></p>
 </li>
 <li>
-<p>Progress：OK</p>
+<p><strong>Progress：OK</strong></p>
 <ol>
 <li>不想進去的人就待在RS裡面，不會去搶</li>
 <li>避免死結，總有一個人會搶到Test-and-Set(Lock)</li>
 </ol>
 </li>
 <li>
-<p>Bounded Waiting：<strong>違反</strong></p>
+<p><strong>Bounded Waiting：違反</strong></p>
 <p>假設Pi已先於Pj進入CS，且Pj等待中，當Pi離開CS後，若想在立刻進去CS，則<strong>Pi是有機會在優先進去搶到Test-and-set之執行</strong>，因此Pj 有可能Starvation</p>
 </li>
 </ol>
 </li>
 </ol>
-<h1 id="第一節-總覽">第一節 總覽</h1>
-<h1 id="第一章-序言">第一章 序言</h1>
-<h1 id="第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)★</h1>
-<h2 id="os-service"><strong>OS</strong> Service</h2>
-<p>透過System Code去呼叫這些Service</p>
-<p><img src="https://i.imgur.com/RIMvaGk.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<h2 id="os-application-interface最重要的">OS-Application Interface(最重要的)</h2>
-<ul>
-<li>System call (使用組合語言撰寫)</li>
-</ul>
-<p>Operating System本身就是一個提供Service的Software，提供Process conmtrol, FIle management, Device management, Information maintenance, Communications。而System Call則是OS的Interface，透過System Call去進行Software的Interrupt。</p>
-<ul>
-<li>API</li>
-</ul>
-<p>由於System call是使用組合語言來寫的，較不貼近人類，因此在多加一層API，來調用System call。這些API有些會使用到多個System Call，有些則連一個System Call都沒有，因為API本身就只是為了方面Programing，提供一個Interface去調用更底層的System call</p>
-<p><img src="https://i.imgur.com/qKgR7ax.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221008225805849"
-	
-	
-></p>
-<p>System Call傳送參數的三種方式</p>
+<h3 id="algo2-穩的可以用">[Algo2] ：穩的，可以用</h3>
 <ol>
-<li>透過Rigisters</li>
-<li>透過Pointer</li>
-</ol>
-<p><img src="https://i.imgur.com/L0RUgJ9.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221009135803193"
-	
-	
-></p>
-<ol start="3">
-<li>透過Stack</li>
-</ol>
-<blockquote>
-</blockquote>
-<h3 id="simple-os-architecture">Simple OS Architecture</h3>
-<p><img src="https://i.imgur.com/GtaKA9x.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221009193532801"
-	
-	
-></p>
-<p>MS-DOS device driver和ROM BIOS device driver其實都是Driver，大部分的東西都還是塞在Resident system program裡面，也就是沒再分。</p>
-<h3 id="layer-os-architecture">Layer Os Architecture</h3>
-<p><img src="https://i.imgur.com/SXR7S2w.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221009193909302"
-	
-	
-></p>
-<p>基於Simple OS Architecture對於維護上的不便（所有東西都寫在一起），所以有人提出了分層的概念，在kerel依照subsystem的概念去劃分各個職責。外層的layer可以call裡面的layer，裡面的layer不能call外面的layer，概念有點像Mvc架構，這樣方便工程師去維護，但相對的也會帶來一些<strong>困難</strong>，比如說<strong>效能降低</strong>，因為需要由外面一層一層呼叫，因此效能會降低。另一方面，要去定義<strong>各個Layer</strong>也不是一件容易的事情。</p>
-<h3 id="microkernel-os">Microkernel OS</h3>
-<p><img src="https://i.imgur.com/lVO8ERV.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221009200319941"
-	
-	
-></p>
-<p>kernel的程式碼應該要越少越好，越少越小代表越Reliable。</p>
-<p>引入Modularize的概念，把Subsystem變成各種modular，中間的kernel是負責去溝通各種不同的Modular。</p>
-<p>kernel只負責去溝通和定義，但因為這個架構的每一個subsystem要溝通都要透過kernel，去interrupt它，效能又會在更低</p>
-<h3 id="modular-os-structure">Modular OS Structure</h3>
-<p><img src="https://i.imgur.com/MQWMMPO.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221009203643586"
-	
-	
-></p>
-<p>現在常見的作業系統大部分都遵循這個架構（linux），有點像OO的概念，把功能<strong>寫成各個在kernel</strong>裡面的Subsystem，可以去這張投影片下面的網址，會手把手教你怎麼撰寫kernel</p>
-<p><img src="https://i.imgur.com/nwp4ACJ.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221009214443781"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/yqh2tao.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221009214705990"
-	
-	
-></p>
-<p><a class="link" href="https://youtu.be/7pAiJeldUfk?t=700"  target="_blank" rel="noopener"
-    >https://youtu.be/7pAiJeldUfk?t=700</a></p>
-<p>可以多看幾次。</p>
-<p>critical instruction：一個instruction在user mode跟kernel mode執行的結果會不一樣，比如說user mode可能是a+b，但在kernel mode執行的結果是a+b+b</p>
-<p>VM的好處</p>
-<ul>
-<li>隔離各個使用著，保護system resouce</li>
-<li>透過VM，可以在一台電腦因應不同的程式需求，建立不同的VM（window 98，windowXP）</li>
-<li>幫助R&amp;D測試開發，</li>
-</ul>
-<p>VM的技術</p>
-<ul>
-<li>Full Virtualization</li>
-</ul>
-<p><img src="https://i.imgur.com/UEXmsCg.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221009224922016"
-	
-	
-></p>
-<p>一個guest的作業系統，可以不用做任何修改就可以直接安裝在一個作業系統，VM不知道自己是個VM，以為自己就是一個完整的作業系統</p>
-<ul>
-<li>Para-virtualization</li>
-</ul>
-<p><img src="https://i.imgur.com/62vkO74.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221010131253990"
-	
-	
-></p>
-<p>會有一個Global zone，負責去調度、協調各個VM，Guest的作業系統需要被修改</p>
-<h3 id="java-virtual-machine">Java Virtual Machine</h3>
-<p><img src="https://i.imgur.com/H4YbXj1.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221010132400382"
-	
-	
-></p>
-<h1 id="第二節-process-management-進程管理">第二節 Process Management (進程管理)</h1>
-<h1 id="第三章-processes-進程">第三章 Processes (進程)</h1>
-<h3 id="process-management--thread-management">Process Management &amp; Thread Management</h3>
-<blockquote>
-<p>Process 定義與Progeam比較</p>
-<p><strong>PCB內容 考試重點</strong></p>
-<p><strong>Process State Transition Diagram (S.T.D)考試重點</strong></p>
-<p>Scheduler的種類(解釋名詞)</p>
-<blockquote>
-<p>長期</p>
-<p>短期</p>
-<p>中期</p>
-</blockquote>
-<p>Context Switching (解釋名詞)</p>
-<p>Dispatcher, Dispatch latency(較少考)</p>
-<p><strong>Process Controller Operations(UNIX, System Call為主的程式追蹤) 考試重點</strong></p>
-<p><strong>評估CPU Scheduling 效能的好或不好的5個Criteria(清大喜歡考)</strong></p>
-<p><strong>各種CPU 排班法則(7個)介紹及相關名詞(Starvation,Aging,Preemptive,Non-preemptive,Convoy effect) 考試重點</strong></p>
-<p>特定System的排班設計</p>
-<blockquote>
-<p>MultiProcessors System</p>
-<p>Real-time System</p>
-<blockquote>
-<p>Soft (考申論題)</p>
-<p>Hard(考計算題)</p>
-</blockquote>
-</blockquote>
-<p>Thread Management</p>
-</blockquote>
-<h3 id="process">Process</h3>
-<p>定義：A program in execution[恐]</p>
-<ul>
-<li>Process 建立後，其主要組成有：
-<ul>
-<li><strong>Process No(ID)</strong>: Process被生成出來時，會有一個Process Id，作為識別</li>
-<li>Process State</li>
-<li>Code Section, Data Section：Process占用的 Memory Space</li>
-<li>Programming Counter(PC)：程式計數器，告訴我們現在這個Process執行到哪裡，裡面放下一條指令的位址</li>
-<li>Stack</li>
-<li>CPU Register value</li>
-<li>是OS 分配 **Resource(CPU,I/O-Divice, Memory) **之對象單位：跟Thread的差別</li>
-</ul>
-</li>
-<li>與Program(程式)的比較</li>
-</ul>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>Process</th>
-<th>Program</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>執行中的程式</td>
-<td>Just a <strong>File</strong> stored in storage device</td>
-</tr>
-<tr>
-<td>&ldquo;Active&rdquo; entity(活動中、執行中)</td>
-<td>&ldquo;Passive&rdquo; entity(沒有活動的)</td>
-</tr>
-</tbody>
-</table></div>
-<h3 id="process-control-block-1">Process Control Block</h3>
-<p>(PCB內容)</p>
-<p>定義：OS為了管理所有Processes，會在Kernel memory中，替每個Process，各自準備一個Block(Table, 表格)，用來記錄Process之所有相關資訊</p>
-<p>PCB的主要內容有：</p>
-<p>Process</p>
-<h3 id="process-concept">Process Concept</h3>
-<p><img src="https://i.imgur.com/46QhD4h.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221010162753190"
-	
-	
-></p>
-<ul>
-<li>Program：被動的，可被執行的程式就叫Program，存在硬碟裡面</li>
-<li>Process：主動的，一個程式正在執行就叫Process，是存在Memory裡面</li>
-</ul>
-<p><code>code segment</code>：把程式碼放到memory裡面的動作</p>
-<p><code>Data section</code>：globla variable存放的區域</p>
-<p><code>Stack</code>：區域變數及function存放的地方</p>
-<p><code>Heap</code>：(待補)</p>
-<p><img src="https://i.imgur.com/67apr7c.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221010170803581"
-	
-	
-></p>
-<p>又稱做Lightweight process，是CPU的最小執行單位，它跟Process有八成像，Process可以被拆分成很多個Thread，許多Thread<strong>可以共用同一塊Memory Space</strong>。</p>
-<p>同一個Process下面的Thread，它的Code section，Data section，OS resource ，這三塊的memory空間是共用的。</p>
-<p><img src="https://i.imgur.com/P3yDybT.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221010172926249"
-	
-	
-></p>
-<p>管理Thread的方式跟管理Process的方式都大同小異，區別不大，像Linux就沒有Process的概念。都只有Thread而已，當一個Process被執行起來時，會有下面這五個狀態</p>
-<p><img src="https://i.imgur.com/oPCYLp0.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221010175047577"
-	
-	
-></p>
+<li>
+<p>共享變數如下：</p>
 <ol>
-<li>New：當這個Process被created出來，把Program load 進 Memory裡面，然後initialization。</li>
-<li>Ready：把Process放進一個quoue裡面，等著被OS排程，放進CPU做使用。</li>
-<li>Running：送instructions到CPU裡面做使用</li>
-<li>Ｗating：有些instruction不需要CPU來做，例如IO，而等待其他事件執行完畢的這個過程就叫wating</li>
-<li>Terminated：釋放資源，把資源給其他的Process</li>
+<li>Lock：boolean = False; <code>Test and Set會用到的變數</code></li>
+<li>waiting[0 ..n-1] of boolean初值皆為False，若為True則代表有意進入區間，若為False則代表初值，或準備進入C.S</li>
 </ol>
-<p><img src="https://i.imgur.com/A9jcaOI.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221010180531411"
-	
-	
-></p>
-<p>管理Process的方式，就是會為每一個Process去建立一個<strong>Process Control Block</strong>，在Memory裡面紀錄這些Information，在Ready狀態的意思，就是只把PCB放進quoue的動作，這個PCB會存放下列資訊。</p>
+<p>意義：</p>
+<p>waiting[i]有兩種，若為</p>
+<p>True：<strong>表Pi有意進入CS，且正在等待中</strong></p>
+<p>False：<strong>代表初值，或是表示Pi不需要再等了，可以進入CS</strong></p>
+</li>
+<li>
+<p>Pi之程式如下： [034 17 02 CH6 P 6 71時24分02秒 17:57]</p>
+<p>區域變數</p>
 <ul>
 <li>
-<p>Process State</p>
+<p>Key：boolean;</p>
 </li>
 <li>
-<p>Program counter（CPU中的Register，用於指示電腦在其程式序列中的位置）</p>
-</li>
-<li>
-<p>CPU Register（CPU中，用來暫存指令、數據和記憶體位址的電腦記憶體，暫存器的容量有限，但讀寫速度快的飛起）</p>
-</li>
-<li>
-<p>CPU Scheduling Information</p>
-</li>
-<li>
-<p>Memory-management information</p>
-</li>
-<li>
-<p>I/O status information</p>
-</li>
-<li>
-<p>Accounting Information</p>
+<p>j: int</p>
 </li>
 </ul>
-<p>+++</p>
-<p><img src="https://i.imgur.com/s2ZFuvE.png"
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">repeat</span>
+</span></span><span class="line"><span class="cl">    <span class="n">waiting</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span><span class="n">True</span><span class="p">;</span> <span class="c1">//Pi有意，且等待中...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">key</span><span class="o">=</span> <span class="n">True</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">waiting</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&amp;&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">key</span> <span class="o">=</span> <span class="n">Test</span><span class="o">-</span><span class="n">and</span><span class="o">-</span><span class="n">set</span><span class="p">(</span><span class="n">Lock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//--------------------分隔線--------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">//在還沒離開while前，waiting[i]的值不可能為False，Process i 個人而言不可能把waiting[i]值改成False進入CS。因此只剩Key可以動了
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 又因TestAndSet(Lock)方法會返回Lock的Boolean值，並將Lock設為True，也因此，惟有第一個搶到CPU的Process，才會有False的Key值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">waiting</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">False</span><span class="p">;</span> <span class="c1">//☆☆☆☆☆表明Pi不用等了，可以進入CS了☆☆☆☆☆
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">C</span><span class="p">.</span><span class="n">S</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">j</span><span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span><span class="p">;</span> <span class="c1">//n是陣列長度, j 是指i的下一個element of array
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">while</span><span class="p">(</span><span class="n">j</span><span class="err">≠</span><span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">not</span> <span class="n">waiting</span><span class="p">[</span><span class="n">j</span><span class="p">]){</span> <span class="c1">//若j=i，則表示已經繞了一圈。waiting表意願，True代表想，False代表不想
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">j</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">n</span><span class="p">;</span> <span class="c1">//找出下一個想進入C.S之Pj
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//搭配下面的case2，代表都沒人想進入CS，並且因為 Test-and-Set(Lock)會將Lock設為True(可參照上面)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Lock</span> <span class="o">=</span><span class="n">False</span><span class="p">;</span> <span class="c1">//因為都沒人想進去，因此就把鎖打開
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="n">waiting</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span> <span class="n">False</span><span class="p">;</span> <span class="c1">//Pj不用等了，換你進CS 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">R</span><span class="p">.</span><span class="n">S</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">utill</span> <span class="n">False</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Case1.</p>
+<p><img src="https://i.imgur.com/yLoFE11.jpg"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20221010182705266"
+		alt="S__16056339"
 	
 	
 ></p>
-<p><img src="https://i.imgur.com/lOawJ5v.png"
+<p><img src="https://i.imgur.com/qdgQnel.jpg"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20221010183709101"
+		alt="S__16056339"
 	
 	
 ></p>
-<p>CPU被interrupt之後，把CPU上執行的Process切換成另一個Process的動作，就叫Context Switch，實際上就是在做PCB的Save還有Load的動作。</p>
-<p>Context Switch是一個overhead（浪費）的行為，但卻無可避免，因為我們要Share CPU 給所有的Process。</p>
-<p>提升Context Switch的速度有幾種方式</p>
+<p>Case2：當Pi執行完後，發現外面都沒任何人想進來，只好再把Lock設回False，一切重新ReSet</p>
+<p><img src="https://i.imgur.com/5Dc47tS.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230214225719635"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/tRwC3p0.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230214232435547"
+	
+	
+></p>
+</li>
+</ol>
+<p>Q1：證明正確性</p>
+<p>Ans．</p>
+<p>[1] Mutual Exclusion：OK</p>
+<p>pf： Pi可進入C.S之條件有兩種可能</p>
+<p>case1. Key值為False</p>
+<p>代表Pi是第一個搶到Test-and-Set(Lock)執行者，如此才能將Key改為False，==<strong>因此唯一性確立</strong>==</p>
+<p>case2. waiting[i]為False</p>
+<p>代表Pi在離開while之前，是<strong>不會</strong>將waiting[i]改為False,==<strong>只會將它設為True，只有在CS的Proces當它離開CS後，才能改變其他processes中之一個process的waiting值變False，在CS中的Process只有一個，出來CS後也只改變一個Process之waiting值為False，因此唯一性也確立。換言之，一個process不會自己把自己的waitiing值設成False，一定都是別的process來設的，因此唯一性確立</strong>==</p>
+<p>因此由case1及2得知，互斥成立</p>
+<p>[2] Progress：OK</p>
+<p>pf：==<strong>若Pi不想進入C.S，其waiting[i]為False，而且Pi不會跟其他Process競爭Test-and-Set(Lock)的執行</strong>，且從CS離開之Process，也不會改變Pi之waiting值，因此Pi不會參與進行CS之決策。==</p>
+<p>若n個Process都想進入CS，則在有限的時間內必定會決定出第一個搶到Tetst-and-Set()執行，並進入CS。它從CS離開後，也會在<strong>有限的</strong>時間內讓下一個想進入CS之Process進入CS或Lock設False。</p>
+<p>==不會有Deadlock==</p>
+<p>[3]Bounded Waiting：OK</p>
+<p>pf：假設P<sub>0</sub>~P<sub>n-1</sub>等n個Processes皆想進入C.S表示waiting[0]~[n-1]皆為True</p>
+<p><img src="https://i.imgur.com/Xk4eZu4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230216003256885"
+	
+	
+></p>
+<p>令Pi是<strong>第一個</strong>搶到Test-and-Set執行之Process，率先進入CS當Pi離開CS後，會將P<sub>(n+1)%n</sub>之waiting值改為False，讓P<sub>(n+1)%n</sub>進入cs，依此類推，Process會依P<sub>i</sub>,P<sub>(i+1)%n</sub>,P<sub>(i+2)%n</sub>&hellip;P<sub>(i-1)%n</sub>FIFO 順序依據進入CS，故不會有Starvation</p>
+<h2 id="swapab指令">SWAP(a,b)指令</h2>
 <ul>
-<li>提升momory的速度</li>
-<li>減少Register的數量，數量減少了，需要存儲的資料也少了，但這件事情在現代很難做到</li>
+<li>定義：<strong>此CPU指令是將a,b兩值互換，且CPU保證它是==Atomically executed==</strong></li>
 </ul>
-<p>上面兩種都不是主流的方式</p>
-<ul>
-<li>Hardware Support，有好幾個set的Register，可以在hardware裡面紀錄好幾個程式的狀態，所以在做Context Switch的時候，只是從一個Register切換到另一個Register，減少對memory的access</li>
+<p>若以C語言描述，功能如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>用在C.S design上</li>
 </ul>
-<h3 id="process-scheduling">Process Scheduling</h3>
-<p><img src="https://i.imgur.com/zvU98FQ.png"
+<p>[algo1]：Ｘ</p>
+<p>共享變數如下</p>
+<p>Lock：boolean=False;</p>
+<p>區域變數如下：</p>
+<p>key：boolean</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repeat;
+</span></span><span class="line"><span class="cl">	key=True;
+</span></span><span class="line"><span class="cl">	{repeat;
+</span></span><span class="line"><span class="cl">		swap(Lock,key);
+</span></span><span class="line"><span class="cl">    utill(key==False)} ; //成立才離開 
+</span></span><span class="line"><span class="cl">    C.S
+</span></span><span class="line"><span class="cl">    Lock=False;
+</span></span><span class="line"><span class="cl">    R.S
+</span></span><span class="line"><span class="cl">until False;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/MBKeMjT.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20221010185905554"
+		alt="image-20230216233043091"
 	
 	
 ></p>
+<p>分析：</p>
+<p>[Algo1]同Test-and-Set</p>
+<p>Mutual Exclustion= ok</p>
+<p>progress= ok</p>
+<p><strong>Bounded waiting= No，只有設成Fales而已，還是無法避免無限等待</strong></p>
+<p>[Algo2] 正確的</p>
+<p>將Test-and-set的[algo2]中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">while(...){
+</span></span><span class="line"><span class="cl">  // key=test-and-set(Lock);
+</span></span><span class="line"><span class="cl">  swap(Lock,key); //改成這樣即可
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>綜合練習</p>
+<p>在Test-and-set[Algo2]中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">while(waiting[i] and key){
+</span></span><span class="line"><span class="cl">	key = Test-and-Set(Lock);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">waiting[i] = False; //Pi不用等了，可進入CS
+</span></span><span class="line"><span class="cl">CS
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>若把<code>waiting[i] = False; </code>這行刪掉，此行removed是否正確?explain in details</p>
+<p><img src="https://i.imgur.com/nYiqTti.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230217001954998"
+	
+	
+></p>
+<p>Ans.</p>
+<p><strong>違反Progress</strong>，不想進入的progress參與決策，並且會發生死結，兩件事情都會發生</p>
+<p><img src="https://i.imgur.com/e6tghIj.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230217005154344"
+	
+	
+></p>
+<h2 id="semaphore號誌">Semaphore(號誌)</h2>
+<p>學習地圖</p>
 <blockquote>
-<p>Process 也能產生 Process （parent跟child）</p>
+<p>定義</p>
+<p>應用</p>
+<blockquote>
+<p>CS Design (臨界區間設計)</p>
+<p>synchronization problem solution(解決同步問題)</p>
 </blockquote>
-<p><img src="https://i.imgur.com/9GsCQX3.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221010230406358"
-	
-	
-></p>
-<p>CPU的數量很少，可能只有個位數或十幾個，但在Memory要執行的程式卻很多(multiProgram)，因此需要Scheduler，有分為三種Scheduler</p>
-<ul>
-<li>Short-term**(CPU Scheduler)**：選擇哪個Process要被執行，以及分配CPU</li>
-<li>Long-term**(Job Scheduler)**：決定哪些Processes能被Load進Memory，以及進入queue等待</li>
-<li>Medium-term：決定哪個Processes被丟回Memory（從Ready state 變成 Wait state）</li>
-</ul>
-<p><img src="https://i.imgur.com/XyXSPVP.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221010232740246"
-	
-	
-></p>
-<h4 id="long-term-scheduler">Long-Term Scheduler</h4>
+<p>種類</p>
+<blockquote>
+<p>Binary semaphore vs counting semaphore</p>
+<p>spinlock semaphore vs non-busy waiting semaphore</p>
+</blockquote>
+</blockquote>
 <ul>
 <li>
-<p>控制 degree of multiprogramming：目前電腦上有幾個程式在Memory裡面</p>
-</li>
-<li>
-<p>執行的頻率相較Short-term來講較低（只在process離開系統，或是每隔幾分鐘執行一次）</p>
-</li>
-<li>
-<p>選擇什麼Processes也很重要，因為我們希望CPU跟I/O可以overlap，不要完全偏向CPU或是I/O，而讓另一方沒事情做。</p>
-</li>
-<li>
-<p>在現在的OS裡面，因為Memory已經足夠，因此Job Schduler的功能逐漸淡化，直接先load進memory再說，</p>
+<p>定義：令Ｓ為Semaphore type變數，架構在integer type針對S，提供兩個<strong>Atomica operations</strong></p>
+<ol>
+<li>wait(S)<code>或P(S)</code> <code>因為是荷蘭人，所以用荷蘭命名</code></li>
+<li>signal(S)<code>或V(S)</code> <code>因為是荷蘭人，所以用荷蘭命名</code></li>
+</ol>
+<p>定義如下</p>
 </li>
 </ul>
-<h4 id="short-term-scheduler">Short-Term Scheduler</h4>
-<p><img src="https://i.imgur.com/uzdlYWX.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221010234018932"
-	
-	
-></p>
-<ul>
-<li>頻率極短(100ms)</li>
-<li>要非常有效率</li>
-</ul>
-<h4 id="medium-term-scheduler">Medium-Term Scheduler</h4>
-<p><img src="https://i.imgur.com/nYV5B7I.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221011010707793"
-	
-	
-></p>
-<p>負責在DisK及Memory之間切換的Scheduler</p>
-<p>Swap Out：把Processes移出記憶體</p>
-<p>Swap In：把Processes移入記憶體</p>
-<p><img src="https://i.imgur.com/PYbB6CD.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221012001702454"
-	
-	
-></p>
-<p>每個Processor都有自己的ID(Processor identifier <strong>pid</strong>)，<strong>整台電腦一開始在執行的時候只會有一個Process</strong>，這個Process再去Create其他的Process</p>
-<ul>
-<li>這個指令可以列出所有啟動的Processes</li>
-</ul>
+<h3 id="waits">wait(S)：</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">while(S≦０){do no-op;} //若semaphore的值為0，則卡在這邊
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">S=S-1; //退出後semaphore值-1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="signals">signal(S)：</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps-ael 
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">S=S+1;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="https://i.imgur.com/tdzYGmL.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221012003309571"
-	
-	
-></p>
-<h4 id="process-creation">Process Creation</h4>
-<p>Parent和Child雖然是兩隻不一樣的程式，但還是有某種程度上的關聯，這個關聯性的定義，分成下面三個比較重要的部分，<strong>這個關聯性是由OS的設計者去決定的</strong></p>
+</div><p>note：因為Atomical, 所以S不會有race condition</p>
+<ul>
+<li>應用：主要用在CS Design，及同步問題之解決</li>
+</ul>
+<h3 id="cs-design使用如下"><strong>CS Design使用如下</strong></h3>
 <ol>
 <li>
-<p>Resource Sharing之間的關聯性</p>
-<ul>
-<li>Parent跟Child分享所有資源</li>
-<li>Global共享，但Dynamic的不共享</li>
-<li>全部都不分享</li>
-</ul>
+<p>共享變數宣告如下</p>
+<p>mutex<code>常見的變數名稱，代表mutual exclustion的意思</code>：semaphore= 1; //初值為1</p>
 </li>
 <li>
-<p>Processes執行的順序，當Child被創建後，哪個Process有優先執行的權力</p>
-<ul>
-<li>讓OS自己來決定</li>
-<li>Chidren擁有較高的執行權</li>
-</ul>
-</li>
-<li>
-<p>Process Address Space的狀態</p>
-<ul>
-<li>
-<p>Child複製Parent的過去（連Code Counter，程式執行到哪一行都會複製過去，比如說Parent執行到第三行，那複製過去的Child就會從第三開始啟動。行為都一樣，但Address會不一樣）</p>
-</li>
-<li>
-<p>Child重新去Load Parent的程式碼。</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><img src="https://i.imgur.com/OygMp9G.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221012215807520"
-	
-	
-></p>
-<h4 id="unixlinux-process-creation">UNIX/Linux Process Creation</h4>
-<ul>
-<li>
-<p><strong>fork</strong> system Call</p>
-<ul>
-<li>創建新的Child Process</li>
-<li>是用複製(duplicates)的方式創建的</li>
-<li>執行無先後順序之分</li>
-<li>Fork的這個Code也是個System code，會return 一個 value，return的value會是它children的PID，若底下無children則return 0 （父母一定知道小孩是誰，但小孩不一定知道父母是誰）</li>
-</ul>
-</li>
-<li>
-<p><strong>execlp</strong> system call</p>
-<ul>
-<li>Parent跟Child是dupulicate，裡面的內容完完全全一模一樣，但今天create 一個新的process的目的不是為了做同樣的事情，因此execlp這個system call的目的，就是塞一個binary file（也就是program），就會把把child的process全部清空。**那為什麼不直接創造一個新的process？**因為需要跟OS註冊一個PID</li>
-</ul>
-</li>
-<li>
-<p><strong>wait</strong> system call</p>
-<ul>
-<li>因為執行順序是concurrently，因此需要用wait來做順序的控制</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/a5oWtwq.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221012222041627"
-	
-	
-></p>
-<blockquote>
-<p>這只是UNIX系統對Process的策略，不代表所有，實際還是要參照[Process Creation](# Process Creation)</p>
-</blockquote>
-<p>從A複製一份到A&rsquo;s child，之所以A&rsquo;s child會比較小的原因，主要是因為，如果是完整複製的話，其實大小是會一樣的，父Process有100 MB，子Process 就會有100MB，但這樣的事情很沒意義，因此現在會採用Copy-on-write，保存重要的資訊就好，其他的就不複製過去，比如說code counter，或是Local Variable都沒有變的話，則子Process會用一個Pointer指到父Process，但如果Runtime後發現不一樣，OS才真的會複製一份到子process。</p>
-<p><img src="https://i.imgur.com/W3myj7Q.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221012225909520"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/tH3YUq6.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221012231835420"
-	
-	
-></p>
-<blockquote>
-<p>恩，這邊不太清楚，要再回頭看 不懂</p>
-</blockquote>
-<h3 id="interprocess-communicationipc">Interprocess Communication(IPC)</h3>
-<p><img src="https://i.imgur.com/b6dna1d.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221012233401342"
-	
-	
-></p>
-<p>在OS的世界裡，有時候Process跟Thread是不分的</p>
-<ul>
-<li>IPC：不同或相同的Process裡面的thread要互相溝通</li>
-</ul>
-<p><img src="https://i.imgur.com/EfY6Ymz.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221012234603052"
-	
-	
-></p>
-<blockquote>
-<p>讀投影片就是完整的筆記了</p>
-</blockquote>
-<p>溝通的方式有兩種</p>
-<ol>
-<li>
-<p>Shared Memory</p>
-<p>有一塊Memoryd空間是share的，兩個人都可以用pointer去access它(會有synchronization的問題)</p>
-</li>
-<li>
-<p>Message Passing</p>
-</li>
-</ol>
-<p>​      跨電腦的訊息溝通是Message Passing</p>
-<p>資料量小的話用Shared memory，資料量大的話用Message passing（避免synchronization問題），</p>
-<p><img src="https://i.imgur.com/getfXBb.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221012235849010"
-	
-	
-></p>
-<p>如何Message Passing呢？</p>
-<ul>
-<li>
-<p>Socket：透過IP和Port來辨認使用者，<strong>Port Number(8080,5432)就是Process</strong></p>
-<blockquote>
-<p>Process ID是一個Process獨一無二的ID，用來辨認不同Process</p>
-<p>Port Number是作為網路連線的一部分</p>
-</blockquote>
-<p>Socket是個比較low level的傳遞方式，只能傳遞stream of bytes。</p>
-</li>
-<li>
-<p>Remote Procedure Calls</p>
-</li>
-</ul>
-<h4 id="shared-memory">Shared Memory</h4>
-<p><img src="https://i.imgur.com/vVFc3gA.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221013223320680"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/pwAp55s.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221015144503008"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/VX7VTFL.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221015144924661"
-	
-	
-></p>
-<blockquote>
-<p>完全看不懂</p>
-</blockquote>
-<h4 id="message-passing-1">Message Passing</h4>
-<p><img src="https://i.imgur.com/zEPTisH.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221015151426143"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/GjTgnUy.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221015152045607"
-	
-	
-></p>
-<p>使用Memory copy的方式，溝通的方式有一點像打電話，有一個人要打電話(Send)另一個人要接電話(Receive)，訊息才可以交流，這一部分也隱含了同步化的操作，意即Message Passing雖然速度比較慢，但它其實幫你做了同步化這件事情。</p>
-<p>為了要溝通，所以需要先建立一個communication link，並提供一個Send跟receive的function code，實作一個communication link有分成physical跟logical兩個部分</p>
-<ul>
-<li>
-<p>Physical</p>
-<p>例如Shared memory, HW bus 或是 network的部分</p>
-</li>
-<li>
-<p>Logical(Program 在乎的事情)</p>
-<ul>
-<li>
-<p>溝通的方向性(單向還是雙向)</p>
-</li>
-<li>
-<p>symmetric and asymmetric 對稱與非對稱</p>
-</li>
-<li>
-<p>Blocking or non-blocking</p>
-<blockquote>
-<p>blocking：呼叫一個function，除非這個function全部做完才會做下一件事情，循序漸進的方法去執行程式</p>
-<p>Non-Blocking：呼叫一個function，如果有資料就回傳資料，如果沒有資料回傳就會得到一個Error，並執行下一個程式（大概啦）</p>
-<p>參考資料：<a class="link" href="https://medium.com/@clu1022/%E6%B7%BA%E8%AB%87i-o-model-32da09c619e6"  target="_blank" rel="noopener"
-    >淺談I/O Model</a></p>
-</blockquote>
-</li>
-<li>
-<p>&hellip;. 參閱上面投影片</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/5xOl2Ks.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221015154148903"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/DlWQ645.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221015192600656"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/bq56vJz.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221015192823026"
-	
-	
-></p>
-<blockquote>
-<p>傳遞訊息的時候，不是把訊息直接傳給一個人，而是放到一個Mail Box裡面，想要這個message的人自己到mailbox裡面拿，這種不知道雙方是誰的Communication就叫做indirect communication</p>
-</blockquote>
-<p><img src="https://i.imgur.com/AOImSIi.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221015231131458"
-	
-	
-></p>
-<p>MailBox所遇到的問題</p>
-<blockquote>
-<p>如果很多人同時連線到MailBox該怎麼辦?</p>
-</blockquote>
-<p>解決方案</p>
-<ul>
-<li>
-<p>限制這個communication只能有兩個人同時使用</p>
-</li>
-<li>
-<p>同一時間只能有一個Receiver</p>
-</li>
-<li>
-<h4 id="mailbox不做限制要幾個人來都可以但當有人同時access的時候會有其中一方先被delay">MailBox不做限制，要幾個人來都可以，但當有人同時Access的時候，會有其中一方先被Delay</h4>
-</li>
-</ul>
-<h3 id="synchronization">Synchronization</h3>
-<p><img src="https://i.imgur.com/cuNUaxt.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20221015232822207"
-	
-	
-></p>
-<blockquote>
-<p>不懂，Buffer是啥</p>
-</blockquote>
-<p>Message在傳遞的時候一定是blocking或是non-blocking的狀態，要特別注意，Blcoking Send 不一定要對到Blocking Receive，它們之間沒有相對關係</p>
-<div class="table-wrapper"><table>
+<p>Pi程式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repeat :
+</span></span><span class="line"><span class="cl">	wait(mutex);
+</span></span><span class="line"><span class="cl">	C.S
+</span></span><span class="line"><span class="cl">	signal(mutex);
+</span></span><span class="line"><span class="cl">	RS
+</span></span><span class="line"><span class="cl">untill False;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
 <thead>
 <tr>
-<th></th>
-<th>Blocking</th>
-<th>NonBlock</th>
+<th>Pi</th>
+<th>Pj</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Send</td>
-<td>在Message被收到之前，Sender都是被blocked住的</td>
-<td>Sender送出Messager，不管有沒有人收到訊息，都直接去做自己的事</td>
-</tr>
-<tr>
-<td>Receive</td>
-<td>Receiver被blocked住，直到收到訊息</td>
-<td>Receiver收到一個valid Message或null(因為是nonBlock)</td>
+<td>T1：wait(mutex);<br />因為mutex = 1<br />所以Pi可以離開while，then,mutex值在減1變0，then Pi進入CS</td>
+<td>T2：wait(mutex)，因為此時mutex=0，這時候Pj會卡住。符合<strong>Mutual exclustion</strong><br /><strong>Progress也符合</strong><br /><strong>Bounded waiting也符合</strong></td>
 </tr>
 </tbody>
 </table></div>
-<h3 id="sockets">Sockets</h3>
-<p><img src="https://i.imgur.com/yxrK8Tu.png"
+</li>
+</ol>
+<h3 id="解決簡單的synchronization-problem"><strong>解決簡單的Synchronization problem</strong></h3>
+<p>​	何謂Synchronization? Process因為某些事件發生(or未發生)而被迫等待，無法往下執行，直到其他Processes do something才得以往下</p>
+<p>範例1：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td>A;</td>
+<td>B;</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+</tbody>
+</table></div>
+<p>規定：A必須在B之前執行，試用Semaphore達到此需求</p>
+<p>Ans. 宣告一共享變數</p>
+<p>S= Semaphore=0;
+<img src="https://i.imgur.com/gFkvUDs.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20221015234703436"
+		alt="image-20230218153218428"
 	
 	
 ></p>
-<p>Accept之後會產生一個thread，所以這整體是一個MultiThread的架構</p>
-<h3 id="remote-procedure-callsrpc">Remote Procedure Calls：RPC</h3>
-<h1 id="第四章-thread--concurrency-執行序與併發">第四章 Thread &amp; Concurrency (執行序與併發)</h1>
-<h1 id="第五章-cpu-scheduling-cpu-行程">第五章 CPU Scheduling (CPU 行程)</h1>
-<h1 id="第三節-process-synchronization-進程同步">第三節 Process Synchronization (進程同步)</h1>
-<h1 id="第六章-synchronization-tools-同步工具">第六章 Synchronization Tools (同步工具)</h1>
-<h1 id="第七章-synchronization-examples-同步範例">第七章 Synchronization Examples (同步範例)</h1>
-<h1 id="第八章-deadlocks死鎖">第八章 Deadlocks(死鎖)</h1>
-<h1 id="第四節-memory-management記憶體管理">第四節 Memory Management(記憶體管理)</h1>
-<h1 id="第九章-main-memory主記憶體">第九章 Main Memory(主記憶體)</h1>
-<h1 id="第十章-virtual-memory虛擬記憶體">第十章 Virtual Memory(虛擬記憶體)</h1>
-<h1 id="第五節-storage-management儲存空間管理">第五節 Storage Management(儲存空間管理)</h1>
-<h1 id="第十一章-mass-storage-structure-大型儲存架構">第十一章 Mass-Storage Structure (大型儲存架構)</h1>
-<h1 id="第十二章-io-system-輸入輸出系統">第十二章 I/O System (輸入/輸出系統)</h1>
-<h1 id="第六節-file-system-檔案系統">第六節 File System (檔案系統)</h1>
-<h1 id="第十三章-file-system-interface-檔案系統介面">第十三章 File-System Interface (檔案系統介面)</h1>
-<h1 id="第十四章-file-system-implementation-檔案系統實作">第十四章 File-System Implementation (檔案系統實作)</h1>
-<h1 id="第十五章-file-system-internals-檔案系統內部">第十五章 File-System Internals (檔案系統內部)</h1>
-<h1 id="第七節-security-and-protected-安全性及保護">第七節 Security And Protected (安全性及保護)</h1>
-<h1 id="第十六章-security-安全性">第十六章 Security 安全性</h1>
-<h1 id="第十七章-protection-保護">第十七章 Protection 保護</h1>
-<h1 id="第八節-advenced-topics-進階主題">第八節 Advenced Topics (進階主題)</h1>
-<h1 id="第十八章-vitual-machines-虛擬機">第十八章 Vitual Machines (虛擬機)</h1>
-<h1 id="第十九章-networds-and-distributed-systems-網路與分配系統">第十九章 Networds and Distributed Systems (網路與分配系統)</h1>
-<h1 id="第九節-case-studies-案例學習">第九節 Case Studies (案例學習)</h1>
-<h1 id="第二十章-the-linux-system-linux系統">第二十章 The Linux System (Linux系統)</h1>
-<h1 id="第二十一章-windowswindows">第二十一章 Windows(Windows)</h1>
-<h1 id="第十節-appendices-附錄">第十節 Appendices (附錄)</h1>
-<h1 id="附錄a-influential-operating-system-有影響力的作業系統">附錄A Influential Operating System (有影響力的作業系統)</h1>
-<h1 id="附錄b-windowswindows">附錄B Windows(Windows)</h1>
-<h1 id="附錄c-bsd-unix">附錄C BSD UNIX</h1>
-<h1 id="附錄d-the-mach-system">附錄D The Mach System</h1>
-<h1 id="附錄a-influential-operating-system-有影響力的作業系統-1">附錄A Influential Operating System (有影響力的作業系統)</h1>
-<h1 id="附錄b-windowswindows-1">附錄B Windows(Windows)</h1>
-<h1 id="附錄c-bsd-unix-1">附錄C BSD UNIX</h1>
-<h1 id="附錄d-the-mach-system-1">附錄D The Mach System</h1>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td>A;<br />signal(S);</td>
+<td>wait(S);<br />B;</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+</tbody>
+</table></div>
+<p>==Note：semaphore的初值是具有某些意義的，並且初值不一定要是０或１，其實都可以，只是都用０跟１做舉例==</p>
+<ul>
+<li>初值為1：用作互斥控制</li>
+<li>初值為0：用作強迫等待</li>
+</ul>
+<p>例2：</p>
+<p>S1：Semaphore= 0;</p>
+<p>S2：Semaphore= 0;</p>
+<p>規定執行順序為A -&gt; C -&gt; B 該如何完成?</p>
+<p>Ans：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+<th>Pk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>wait(s2)</td>
+<td>wait(s1)</td>
+</tr>
+<tr>
+<td>A</td>
+<td>B;</td>
+<td>C;</td>
+</tr>
+<tr>
+<td>signal(s1)</td>
+<td></td>
+<td>signal(s2)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ex2：希望達成 <u>A,B,C,</u><u>A,B,C,</u><u>A,B,C</u> repeatly execuction</p>
+<p>承上性質，S1,S2 semaphore=0;S3 semaphore=1</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+<th>Pk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wait(s3)</td>
+<td>wait(s1)</td>
+<td>wait(s2)</td>
+</tr>
+<tr>
+<td>A;</td>
+<td>B;</td>
+<td>C;</td>
+</tr>
+<tr>
+<td>signal(s1)</td>
+<td>signal(s2)</td>
+<td>signal(s3)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ex3：C是共享變數，初值為3，請寫出最後C的值為多少</p>
+<ul>
+<li>第一小題</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C=C*2</td>
+<td>C=C+1</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>7或8或4或6</strong></p>
+<ul>
+<li>第二小題</li>
+</ul>
+<p>s= semaphore=1</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wait(s)</td>
+<td>wait(s)</td>
+</tr>
+<tr>
+<td>c=c*2</td>
+<td>c=c+1</td>
+</tr>
+<tr>
+<td>signal(s)</td>
+<td>singal(s)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>7或8</strong></p>
+<ul>
+<li>第三小題</li>
+</ul>
+<p>s= semaphore = 0</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>wait(s)</td>
+</tr>
+<tr>
+<td>c=c*2</td>
+<td>c=c+1</td>
+</tr>
+<tr>
+<td>signal(s)</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>7</strong></p>
+<p>EX4</p>
+<p>S1：Semaphore = 1;</p>
+<p>S2：Semaphore = 0;</p>
+<p>求ABC可能執行順序</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+<th>Pk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wait(s1)</td>
+<td>wait(s2)</td>
+<td>wait(s1)</td>
+</tr>
+<tr>
+<td>A;</td>
+<td>B;</td>
+<td>C;</td>
+</tr>
+<tr>
+<td>signal(s2)</td>
+<td>signal(s1)</td>
+<td>signal(s1)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ans：把不可能的刪除就好</p>
+<p>ABC,</p>
+<p><del>ACB,</del></p>
+<p><del>BAC,</del></p>
+<p><del>BCA,</del></p>
+<p>CAB,</p>
+<p><del>CBA</del></p>
+<h3 id="semaphore之誤用所造成之問題">semaphore之誤用所造成之問題</h3>
+<p>違反互斥、形成死結</p>
+<p>例1</p>
+<p>s= Semaphore=1</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>singal(s)</td>
+</tr>
+<tr>
+<td>CS</td>
+</tr>
+<tr>
+<td>Wait(s)</td>
+</tr>
+</tbody>
+</table></div>
+<p>&mdash;&gt; 違反mutual exclusion</p>
+<p>例2</p>
+<p>s= semaphore = 2</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wait(s)</td>
+</tr>
+<tr>
+<td>cs</td>
+</tr>
+<tr>
+<td>wait(s)</td>
+</tr>
+<tr>
+<td>rs</td>
+</tr>
+</tbody>
+</table></div>
+<p>&mdash;&gt; 形成死結</p>
+<p>例3</p>
+<p>S1,S2 = Semaphore  = 1;</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Pi</th>
+<th>Pj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1:wait(s1)</td>
+<td>T2:wait(s2)</td>
+</tr>
+<tr>
+<td>T3:wait(s2)</td>
+<td>T4:wait(s1)</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td>signal(s1)</td>
+<td>signal(s2)</td>
+</tr>
+<tr>
+<td>signal(s2)</td>
+<td>signal(s1)</td>
+</tr>
+</tbody>
+</table></div>
+<p>可能形成deadlock，如果Pi，Pj依照T1~T4之順序交錯執行</p>
+<h3 id="著名的synchronization-problem之解決">著名的Synchronization Problem之解決</h3>
+<p><strong>想看看何時會停下來</strong></p>
+<h4 id="producer-consumer-problem生產者消費者問題">Producer-Consumer Problem(生產者消費者問題)</h4>
+<p>Producer：此process專門產生資訊供別人使用</p>
+<p>Consumer：此process專門消耗別人產生的成果</p>
+<p>在sharrd memory溝通方式底下，會準備一個buffer</p>
+<p><img src="https://i.imgur.com/Ms4bWcB.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230219133538935"
+	
+	
+></p>
+<p>細分為兩個類型的問題</p>
+<ol>
+<li>
+<p>Bounded Buffer Producer-Consumer(Buffer有限)</p>
+<p>有兩個情況會被迫等待</p>
+<ol>
+<li>當Buffer滿了，Producer被迫等待</li>
+<li>當Buffer空了，Consumer被迫等待</li>
+</ol>
+</li>
+<li>
+<p>Unbounded Buffer Producer-Consumer(Buffer無限)</p>
+</li>
+</ol>
+<h5 id="algo1-1">algo1</h5>
+<p>共享變數宣告如下</p>
+<ol>
+<li>
+<p>Buffer: [0..n-1] of items;</p>
+</li>
+<li>
+<p>in,out: int = 0;</p>
+</li>
+</ol>
+<p>Producer 程式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repeat:
+</span></span><span class="line"><span class="cl">	produce an item in nextp;
+</span></span><span class="line"><span class="cl">	while((in+1)%n==out) {do noting}; //當buffer滿的話，就卡在while中
+</span></span><span class="line"><span class="cl">	Buffer[in] =nextp;
+</span></span><span class="line"><span class="cl">	in = (in+1)%n;
+</span></span><span class="line"><span class="cl">until false;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Consumer程式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repeat
+</span></span><span class="line"><span class="cl">	while(in == out ){ do nothing} //buffer為空
+</span></span><span class="line"><span class="cl">	nextc= Buffer[out];
+</span></span><span class="line"><span class="cl">	out=(out+1) % n;
+</span></span><span class="line"><span class="cl">	...
+</span></span><span class="line"><span class="cl">	consumes  the item in nextc;
+</span></span><span class="line"><span class="cl">until false;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/BkZNIb6.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230219174042582"
+	
+	
+></p>
+<p>此時producer 無法在加item，因為(in+1)%n == out, 即buffer已經滿了，因此最多利用(n-1)格</p>
+<h5 id="algo2-1">algo2</h5>
+<p>共享變數宣告如下</p>
+<ol>
+<li>
+<p>Buffer: [0..n-1] of items;</p>
+</li>
+<li>
+<p>in,out: int = 0;</p>
+</li>
+<li>
+<p>==<strong>count:int =0</strong>==</p>
+</li>
+</ol>
+<p><strong>這個count值有可能導致race condition，因此不完全正確</strong></p>
+<p>Producer 程式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repeat:
+</span></span><span class="line"><span class="cl">	produce an item in nextp;
+</span></span><span class="line"><span class="cl">	while(count==n) {do noting}; //當buffer滿的話，就卡在while中
+</span></span><span class="line"><span class="cl">	Buffer[in] =nextp;
+</span></span><span class="line"><span class="cl">	in = (in+1)%n;
+</span></span><span class="line"><span class="cl">	count = count +1;
+</span></span><span class="line"><span class="cl">until false;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Consumer程式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repeat
+</span></span><span class="line"><span class="cl">	while(count ==0 ){ do nothing} //buffer為空
+</span></span><span class="line"><span class="cl">	nextc= Buffer[out];
+</span></span><span class="line"><span class="cl">	out=(out+1) % n;
+</span></span><span class="line"><span class="cl">	count = count -1;
+</span></span><span class="line"><span class="cl">	...
+</span></span><span class="line"><span class="cl">	consumes  the item in nextc;
+</span></span><span class="line"><span class="cl">until false;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="用semaphore解producer-consumer-problem">用semaphore解producer-consumer problem</h1>
+<p>共享變數宣告如下：</p>
+<ol>
+<li>empty : semaphore = n . 代表buffer內空格數，若空格數變為0，代表滿了</li>
+<li>full : semaphore=0. 代表buffer區中，填入item之格數，若為0，表buffer為空</li>
+<li>mutex：semaphore=1; 對buffer, in , out , count做互斥控制，防止<strong>race condition</strong></li>
+</ol>
+<p>semaphore的設計哲學</p>
+<blockquote>
+<ol>
+<li>滿足同步條件之號誌變數<code>empty, full</code></li>
+<li>互斥控制防止race condition之號誌 <code>mutex</code></li>
+<li>先測同步在測互斥，不然會造成死結</li>
+</ol>
+</blockquote>
+<p>producer</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repeat
+</span></span><span class="line"><span class="cl">	produce on item in nextp;
+</span></span><span class="line"><span class="cl">	wait(empty) ; //若無空格則P被迫等待
+</span></span><span class="line"><span class="cl">	wait(mutex); 
+</span></span><span class="line"><span class="cl">	add nextp into Bufffer;  //濃縮很多程式在這行裡面喔
+</span></span><span class="line"><span class="cl">	signal(mutex);
+</span></span><span class="line"><span class="cl">	signal(full); //填入item之格數加1，maybe拯救Consumer
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>consumer</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repeat
+</span></span><span class="line"><span class="cl">	wait(full);
+</span></span><span class="line"><span class="cl">	wait(mutex);
+</span></span><span class="line"><span class="cl">	remove item from Buffer in nextc
+</span></span><span class="line"><span class="cl">	signal(mutex);
+</span></span><span class="line"><span class="cl">	singal(empty)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="readwrite-problem">Read/write Problem</h3>
+<p><img src="https://i.imgur.com/J4nkQh8.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230222215707149"
+	
+	
+></p>
+<h4 id="基本的同步條件">基本的同步條件</h4>
+<ol>
+<li><strong>Reader write要互斥</strong></li>
+<li><strong>writer,writer也要互斥</strong></li>
+</ol>
+<p>此外，這問題再細分成兩類</p>
+<ol>
+<li>
+<p><strong>First read/writer problem</strong></p>
+<p>-&gt; 對Reader有利，對writer不利，因此writer可能starvation</p>
+</li>
+<li>
+<p><strong>Second read/writer problem</strong></p>
+<p>-&gt; 對writer有利，對reader不利，因此reader可能startvation</p>
+</li>
+</ol>
+<h4 id="first-readerwriter-problem">First Reader/Writer Problem</h4>
+<p>何謂「對Reader有利，Writer不利」?</p>
+<p>只要有源源不絕的Reader，則W1可能Starvation</p>
+<p><img src="https://i.imgur.com/P4FyOhL.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230222223611353"
+	
+	
+></p>
+<p>共享變數宣告如下：</p>
+<ol>
+<li>
+<p>wrt：semaphore =1</p>
+<blockquote>
+<p>提供R/W 及 W/W互斥控制，並<strong>兼差對Writer不利的控制</strong></p>
+</blockquote>
+</li>
+<li>
+<p>readcnt：int = 0;</p>
+<blockquote>
+<p>統計Reader個數，直到沒有Reader，才可以放writer進去</p>
+<p>Reader到-&gt;Readcnt +1</p>
+<p>Reader走 -&gt;Readcnt -1</p>
+</blockquote>
+</li>
+<li>
+<p>mutex：semaphore=1</p>
+<blockquote>
+<p>由於readcnt是一共享變數，會有Race Condition之問題，故需額外宣告一變數Mutex做互斥控制</p>
+</blockquote>
+</li>
+</ol>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>writer</th>
+<th>reader</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&hellip;<br />wait(wrt)<br />執行寫入作業<br />signal(wrt)<br />&hellip;</td>
+<td>&hellip;<br />wait(mutex) ;<br />readcnt = readcnt +1<br />if(readcnt==1)<code>代表你是第一個Reader</code> then wait(wrt)<code>要去偵測是否有writer存在。若有則卡住，若無則通過，也順便卡住writer</code><br />signal(mutex);<br />執行reading工作 <br />wait(mutex);<br />readcnt = readcnt -1 //reader走，reader-1<br />if(readcnt=.=0) then signal(wrt) //No reader，放writer進去<br />singal(mutex)</td>
+</tr>
+</tbody>
+</table></div>
+<p>練習：</p>
+<p>若目前W1已在寫入中</p>
+<ol>
+<li>R1到，則R1會卡在wrt 裡，此時readcnt=1</li>
+<li>R2又到，則R2會卡在mutex，此時readcnt=1</li>
+<li>R3ˋ到，則R3會卡在mutex，此時readcnt=1</li>
+</ol>
 
 </section>
 
@@ -8632,92 +8728,46 @@ $$</p>
         <li><a href="#hardware-solution---cpu-instructions-support">Hardware Solution - CPU Instructions Support</a>
           <ol>
             <li><a href="#test-and-setlock-指令">Test-and-Set(Lock) 指令</a></li>
+            <li><a href="#algo1ｘ不可以用">[Algo1]：Ｘ不可以用</a></li>
+            <li><a href="#algo2-穩的可以用">[Algo2] ：穩的，可以用</a></li>
           </ol>
         </li>
-      </ol>
-    </li>
-    <li><a href="#第一節-總覽">第一節 總覽</a></li>
-    <li><a href="#第一章-序言">第一章 序言</a></li>
-    <li><a href="#第二章-operating-system-strucutures作業系統架構">第二章 Operating-System Strucutures(作業系統架構)★</a>
-      <ol>
-        <li><a href="#os-service"><strong>OS</strong> Service</a></li>
-        <li><a href="#os-application-interface最重要的">OS-Application Interface(最重要的)</a>
+        <li><a href="#swapab指令">SWAP(a,b)指令</a></li>
+        <li><a href="#semaphore號誌">Semaphore(號誌)</a>
           <ol>
-            <li><a href="#simple-os-architecture">Simple OS Architecture</a></li>
-            <li><a href="#layer-os-architecture">Layer Os Architecture</a></li>
-            <li><a href="#microkernel-os">Microkernel OS</a></li>
-            <li><a href="#modular-os-structure">Modular OS Structure</a></li>
-            <li><a href="#java-virtual-machine">Java Virtual Machine</a></li>
+            <li><a href="#waits">wait(S)：</a></li>
+            <li><a href="#signals">signal(S)：</a></li>
+            <li><a href="#cs-design使用如下"><strong>CS Design使用如下</strong></a></li>
+            <li><a href="#解決簡單的synchronization-problem"><strong>解決簡單的Synchronization problem</strong></a></li>
+            <li><a href="#semaphore之誤用所造成之問題">semaphore之誤用所造成之問題</a></li>
+            <li><a href="#著名的synchronization-problem之解決">著名的Synchronization Problem之解決</a>
+              <ol>
+                <li><a href="#producer-consumer-problem生產者消費者問題">Producer-Consumer Problem(生產者消費者問題)</a>
+                  <ol>
+                    <li><a href="#algo1-1">algo1</a></li>
+                    <li><a href="#algo2-1">algo2</a></li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
           </ol>
         </li>
       </ol>
     </li>
-    <li><a href="#第二節-process-management-進程管理">第二節 Process Management (進程管理)</a></li>
-    <li><a href="#第三章-processes-進程">第三章 Processes (進程)</a>
+    <li><a href="#用semaphore解producer-consumer-problem">用semaphore解producer-consumer problem</a>
       <ol>
         <li>
           <ol>
-            <li><a href="#process-management--thread-management">Process Management &amp; Thread Management</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#process-control-block-1">Process Control Block</a></li>
-            <li><a href="#process-concept">Process Concept</a></li>
-            <li><a href="#process-scheduling">Process Scheduling</a>
+            <li><a href="#readwrite-problem">Read/write Problem</a>
               <ol>
-                <li><a href="#long-term-scheduler">Long-Term Scheduler</a></li>
-                <li><a href="#short-term-scheduler">Short-Term Scheduler</a></li>
-                <li><a href="#medium-term-scheduler">Medium-Term Scheduler</a></li>
-                <li><a href="#process-creation">Process Creation</a></li>
-                <li><a href="#unixlinux-process-creation">UNIX/Linux Process Creation</a></li>
+                <li><a href="#基本的同步條件">基本的同步條件</a></li>
+                <li><a href="#first-readerwriter-problem">First Reader/Writer Problem</a></li>
               </ol>
             </li>
-            <li><a href="#interprocess-communicationipc">Interprocess Communication(IPC)</a>
-              <ol>
-                <li><a href="#shared-memory">Shared Memory</a></li>
-                <li><a href="#message-passing-1">Message Passing</a></li>
-                <li><a href="#mailbox不做限制要幾個人來都可以但當有人同時access的時候會有其中一方先被delay">MailBox不做限制，要幾個人來都可以，但當有人同時Access的時候，會有其中一方先被Delay</a></li>
-              </ol>
-            </li>
-            <li><a href="#synchronization">Synchronization</a></li>
-            <li><a href="#sockets">Sockets</a></li>
-            <li><a href="#remote-procedure-callsrpc">Remote Procedure Calls：RPC</a></li>
           </ol>
         </li>
       </ol>
     </li>
-    <li><a href="#第四章-thread--concurrency-執行序與併發">第四章 Thread &amp; Concurrency (執行序與併發)</a></li>
-    <li><a href="#第五章-cpu-scheduling-cpu-行程">第五章 CPU Scheduling (CPU 行程)</a></li>
-    <li><a href="#第三節-process-synchronization-進程同步">第三節 Process Synchronization (進程同步)</a></li>
-    <li><a href="#第六章-synchronization-tools-同步工具">第六章 Synchronization Tools (同步工具)</a></li>
-    <li><a href="#第七章-synchronization-examples-同步範例">第七章 Synchronization Examples (同步範例)</a></li>
-    <li><a href="#第八章-deadlocks死鎖">第八章 Deadlocks(死鎖)</a></li>
-    <li><a href="#第四節-memory-management記憶體管理">第四節 Memory Management(記憶體管理)</a></li>
-    <li><a href="#第九章-main-memory主記憶體">第九章 Main Memory(主記憶體)</a></li>
-    <li><a href="#第十章-virtual-memory虛擬記憶體">第十章 Virtual Memory(虛擬記憶體)</a></li>
-    <li><a href="#第五節-storage-management儲存空間管理">第五節 Storage Management(儲存空間管理)</a></li>
-    <li><a href="#第十一章-mass-storage-structure-大型儲存架構">第十一章 Mass-Storage Structure (大型儲存架構)</a></li>
-    <li><a href="#第十二章-io-system-輸入輸出系統">第十二章 I/O System (輸入/輸出系統)</a></li>
-    <li><a href="#第六節-file-system-檔案系統">第六節 File System (檔案系統)</a></li>
-    <li><a href="#第十三章-file-system-interface-檔案系統介面">第十三章 File-System Interface (檔案系統介面)</a></li>
-    <li><a href="#第十四章-file-system-implementation-檔案系統實作">第十四章 File-System Implementation (檔案系統實作)</a></li>
-    <li><a href="#第十五章-file-system-internals-檔案系統內部">第十五章 File-System Internals (檔案系統內部)</a></li>
-    <li><a href="#第七節-security-and-protected-安全性及保護">第七節 Security And Protected (安全性及保護)</a></li>
-    <li><a href="#第十六章-security-安全性">第十六章 Security 安全性</a></li>
-    <li><a href="#第十七章-protection-保護">第十七章 Protection 保護</a></li>
-    <li><a href="#第八節-advenced-topics-進階主題">第八節 Advenced Topics (進階主題)</a></li>
-    <li><a href="#第十八章-vitual-machines-虛擬機">第十八章 Vitual Machines (虛擬機)</a></li>
-    <li><a href="#第十九章-networds-and-distributed-systems-網路與分配系統">第十九章 Networds and Distributed Systems (網路與分配系統)</a></li>
-    <li><a href="#第九節-case-studies-案例學習">第九節 Case Studies (案例學習)</a></li>
-    <li><a href="#第二十章-the-linux-system-linux系統">第二十章 The Linux System (Linux系統)</a></li>
-    <li><a href="#第二十一章-windowswindows">第二十一章 Windows(Windows)</a></li>
-    <li><a href="#第十節-appendices-附錄">第十節 Appendices (附錄)</a></li>
-    <li><a href="#附錄a-influential-operating-system-有影響力的作業系統">附錄A Influential Operating System (有影響力的作業系統)</a></li>
-    <li><a href="#附錄b-windowswindows">附錄B Windows(Windows)</a></li>
-    <li><a href="#附錄c-bsd-unix">附錄C BSD UNIX</a></li>
-    <li><a href="#附錄d-the-mach-system">附錄D The Mach System</a></li>
-    <li><a href="#附錄a-influential-operating-system-有影響力的作業系統-1">附錄A Influential Operating System (有影響力的作業系統)</a></li>
-    <li><a href="#附錄b-windowswindows-1">附錄B Windows(Windows)</a></li>
-    <li><a href="#附錄c-bsd-unix-1">附錄C BSD UNIX</a></li>
-    <li><a href="#附錄d-the-mach-system-1">附錄D The Mach System</a></li>
   </ol>
 </nav>
         </div>

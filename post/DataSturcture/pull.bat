@@ -1,2 +1,3 @@
 git pull
 pause
+exit
