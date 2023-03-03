@@ -6,14 +6,13 @@
 什麼是Store Procedure 存儲過程（Stored Procedure）是一種數據庫對象，它是一個預編譯的SQL代碼塊，可以在數據庫中存儲並重複使用。它通常由一系列SQL語句和編程邏輯組成，可以接受輸入參數、返回輸出參數和結果集。存儲過程通常由數據庫管理員或開發人員編寫和維護，並且可以在數據庫中執行。
 存儲過程有以下幾個優點：
 提高了數據庫性能：存儲過程是預編譯的，一旦編譯就會存儲在數據庫中，執行速度快。此外，存儲過程可以減少客戶端與服務器之間的通信，從而降低網絡延遲，提高數據庫性能。 提高了數據安全性：存儲過程可以在數據庫層面上實現安全控制，可以限制某些用戶或角色的操作權限，從而保證數據的安全性。 代碼復用：存儲過程可以被多個應用程序或者腳本重複調用，從而實現代碼復用，減少重複編寫代碼的時間和工作量。 事務處理：存儲過程可以封裝事務處理邏輯，當多個SQL語句需要在一個事務中執行時，可以使用存儲過程將它們封裝在一個事務中，從而保證了數據的一致性和完整性。 簡化了複雜的操作：存儲過程可以將多個SQL語句組合成一個操作，從而簡化了複雜的操作，使得應用程序更易於開發和維護。 存儲過程可以實現很多功能，比如：
-數據庫的備份和還原 數據庫的複製和同步 數據庫的日誌記錄和監控 數據庫的查詢優化 數據庫的數據加密和解密 數據庫的數據清洗和轉換 數據庫的業務邏輯實現 數據庫的存儲和檢索過程中的錯誤處理 數據庫的報表生成和匯出等。 在PostgreSQL中，function和procedure都是儲存運算邏輯的物件，它們在設計目的和使用方式上略有不同。
+數據庫的備份和還原 數據庫的複製和同步 數據庫的日誌記錄和監控 數據庫的查詢優化 數據庫的數據加密和解密 數據庫的數據清洗和轉換 數據庫的業務邏輯實現 數據庫的存儲和檢索過程中的錯誤處理 數據庫的報表生成和匯出等。 Procedure與Function之差異 在PostgreSQL中，function和procedure都是儲存運算邏輯的物件，它們在設計目的和使用方式上略有不同。
 Function主要是用於執行一個特定的計算或邏輯，返回一個單一的值或一個結果集，並且可以在SELECT語句、WHERE語句等中使用。Function可以返回一個或多個結果集，但只能返回一個值作為輸出，因此它被稱為有返回值的Function。
 Procedure主要用於執行一連串的操作，不返回結果集，通常是用來執行複雜的業務邏輯，如事務處理、資料庫管理等。Procedure可以執行INSERT、UPDATE、DELETE等數據操作，但是不能作為SELECT語句的一部分使用。Procedure不返回任何值或結果集，因此它被稱為無返回值的Procedure。
 在設計時，需要根據實際需求選擇使用哪種物件。如果需要執行一個特定的計算或邏輯，並返回一個結果集，則使用Function。如果需要執行一連串的操作並且不需要返回結果集，則使用Procedure。
-定界符$$ (delimiter) 在SQL中，兩個美元符號（$$）用來定義一個區塊或一個標識符（identifier）。
-例如，可以使用$$來定義一個存儲過程或函數的主體。在$$之間的所有內容都被視為存儲過程或函數的主體，可以包含SQL語句、流程控制語句等。
-另外，$$還可以用來定義一個標識符，例如，可以使用$$來定義一個變量或一個標識符的名稱。在$$之間的所有內容都被視為標識符的名稱，可以包含字母、數字和下劃線等字符。使用$$定義標識符時，可以幫助區分保留字和自定義的標識符，以及避免標識符中包含空格等特殊字符所帶來的問題。
-1 2 3 4 5 6 7 8 CREATE FUNCTION myfunc(x INT, y INT) RETURNS INT AS $$ BEGIN RETURN x &#43; y; END; $$ LANGUAGE plpgsql; -- 在這個例子中，$$ 用來定義函數的主體。CREATE FUNCTION 指令創建了一個名為 myfunc 的函數，它接受兩個整數參數 x 和 y，返回它們的和。 RETURN 指令用於返回函數的值。 -- 在這裡，$ 用作定界符，它定義了函數的主體。如果不使用定界符，則在函數主體中使用分號 ; 可能會導致錯誤。使用定界符可以幫助區分不同的 SQL 區塊，從而更好地組織和管理 SQL 代碼。 使用Terminal操作Postgres SQL 有兩種方式，一種是用psql的Shell，另一種則是用powershell'><title>StoreProcedure的一些筆記</title>
+更直接的不同是，Procedure並沒有定義它自身的回傳值，連Returns void都沒有，而Function是有回傳值的，即使是Returns Void也是有回傳值
+創建procedure的語法 1 2 3 4 5 6 create or replace function test() LANGUAGE plpgsql AS $$ BEGIN END $$; 若加入RETURNS VOID則會回報錯誤
+創建Function的語法 1 2 3 4 5 6 create or replace function test() LANGUAGE plpgsql AS $$ BEGIN END $$; 若不指定回傳值，則會報錯誤function result type must be specified'><title>StoreProcedure的一些筆記</title>
 
 <link rel='canonical' href='https://hoxtonhsu.com/p/storeprocedure%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/'>
 
@@ -23,32 +22,30 @@ Procedure主要用於執行一連串的操作，不返回結果集，通常是�
 什麼是Store Procedure 存儲過程（Stored Procedure）是一種數據庫對象，它是一個預編譯的SQL代碼塊，可以在數據庫中存儲並重複使用。它通常由一系列SQL語句和編程邏輯組成，可以接受輸入參數、返回輸出參數和結果集。存儲過程通常由數據庫管理員或開發人員編寫和維護，並且可以在數據庫中執行。
 存儲過程有以下幾個優點：
 提高了數據庫性能：存儲過程是預編譯的，一旦編譯就會存儲在數據庫中，執行速度快。此外，存儲過程可以減少客戶端與服務器之間的通信，從而降低網絡延遲，提高數據庫性能。 提高了數據安全性：存儲過程可以在數據庫層面上實現安全控制，可以限制某些用戶或角色的操作權限，從而保證數據的安全性。 代碼復用：存儲過程可以被多個應用程序或者腳本重複調用，從而實現代碼復用，減少重複編寫代碼的時間和工作量。 事務處理：存儲過程可以封裝事務處理邏輯，當多個SQL語句需要在一個事務中執行時，可以使用存儲過程將它們封裝在一個事務中，從而保證了數據的一致性和完整性。 簡化了複雜的操作：存儲過程可以將多個SQL語句組合成一個操作，從而簡化了複雜的操作，使得應用程序更易於開發和維護。 存儲過程可以實現很多功能，比如：
-數據庫的備份和還原 數據庫的複製和同步 數據庫的日誌記錄和監控 數據庫的查詢優化 數據庫的數據加密和解密 數據庫的數據清洗和轉換 數據庫的業務邏輯實現 數據庫的存儲和檢索過程中的錯誤處理 數據庫的報表生成和匯出等。 在PostgreSQL中，function和procedure都是儲存運算邏輯的物件，它們在設計目的和使用方式上略有不同。
+數據庫的備份和還原 數據庫的複製和同步 數據庫的日誌記錄和監控 數據庫的查詢優化 數據庫的數據加密和解密 數據庫的數據清洗和轉換 數據庫的業務邏輯實現 數據庫的存儲和檢索過程中的錯誤處理 數據庫的報表生成和匯出等。 Procedure與Function之差異 在PostgreSQL中，function和procedure都是儲存運算邏輯的物件，它們在設計目的和使用方式上略有不同。
 Function主要是用於執行一個特定的計算或邏輯，返回一個單一的值或一個結果集，並且可以在SELECT語句、WHERE語句等中使用。Function可以返回一個或多個結果集，但只能返回一個值作為輸出，因此它被稱為有返回值的Function。
 Procedure主要用於執行一連串的操作，不返回結果集，通常是用來執行複雜的業務邏輯，如事務處理、資料庫管理等。Procedure可以執行INSERT、UPDATE、DELETE等數據操作，但是不能作為SELECT語句的一部分使用。Procedure不返回任何值或結果集，因此它被稱為無返回值的Procedure。
 在設計時，需要根據實際需求選擇使用哪種物件。如果需要執行一個特定的計算或邏輯，並返回一個結果集，則使用Function。如果需要執行一連串的操作並且不需要返回結果集，則使用Procedure。
-定界符$$ (delimiter) 在SQL中，兩個美元符號（$$）用來定義一個區塊或一個標識符（identifier）。
-例如，可以使用$$來定義一個存儲過程或函數的主體。在$$之間的所有內容都被視為存儲過程或函數的主體，可以包含SQL語句、流程控制語句等。
-另外，$$還可以用來定義一個標識符，例如，可以使用$$來定義一個變量或一個標識符的名稱。在$$之間的所有內容都被視為標識符的名稱，可以包含字母、數字和下劃線等字符。使用$$定義標識符時，可以幫助區分保留字和自定義的標識符，以及避免標識符中包含空格等特殊字符所帶來的問題。
-1 2 3 4 5 6 7 8 CREATE FUNCTION myfunc(x INT, y INT) RETURNS INT AS $$ BEGIN RETURN x &#43; y; END; $$ LANGUAGE plpgsql; -- 在這個例子中，$$ 用來定義函數的主體。CREATE FUNCTION 指令創建了一個名為 myfunc 的函數，它接受兩個整數參數 x 和 y，返回它們的和。 RETURN 指令用於返回函數的值。 -- 在這裡，$ 用作定界符，它定義了函數的主體。如果不使用定界符，則在函數主體中使用分號 ; 可能會導致錯誤。使用定界符可以幫助區分不同的 SQL 區塊，從而更好地組織和管理 SQL 代碼。 使用Terminal操作Postgres SQL 有兩種方式，一種是用psql的Shell，另一種則是用powershell'>
+更直接的不同是，Procedure並沒有定義它自身的回傳值，連Returns void都沒有，而Function是有回傳值的，即使是Returns Void也是有回傳值
+創建procedure的語法 1 2 3 4 5 6 create or replace function test() LANGUAGE plpgsql AS $$ BEGIN END $$; 若加入RETURNS VOID則會回報錯誤
+創建Function的語法 1 2 3 4 5 6 create or replace function test() LANGUAGE plpgsql AS $$ BEGIN END $$; 若不指定回傳值，則會報錯誤function result type must be specified'>
 <meta property='og:url' content='https://hoxtonhsu.com/p/storeprocedure%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/'>
 <meta property='og:site_name' content='Hoxton'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='' /><meta property='article:published_time' content='2023-03-01T09:45:17&#43;08:00'/><meta property='article:modified_time' content='2023-03-01T09:45:17&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/GBkFYzy.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='' /><meta property='article:published_time' content='2023-03-01T09:45:17&#43;08:00'/><meta property='article:modified_time' content='2023-03-01T09:45:17&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/htOn9lJ.jpg' />
 <meta name="twitter:title" content="StoreProcedure的一些筆記">
 <meta name="twitter:description" content="參考網站
 這篇文章是以Postgres SQL的語法為主，其他RDB的語法略有不同
 什麼是Store Procedure 存儲過程（Stored Procedure）是一種數據庫對象，它是一個預編譯的SQL代碼塊，可以在數據庫中存儲並重複使用。它通常由一系列SQL語句和編程邏輯組成，可以接受輸入參數、返回輸出參數和結果集。存儲過程通常由數據庫管理員或開發人員編寫和維護，並且可以在數據庫中執行。
 存儲過程有以下幾個優點：
 提高了數據庫性能：存儲過程是預編譯的，一旦編譯就會存儲在數據庫中，執行速度快。此外，存儲過程可以減少客戶端與服務器之間的通信，從而降低網絡延遲，提高數據庫性能。 提高了數據安全性：存儲過程可以在數據庫層面上實現安全控制，可以限制某些用戶或角色的操作權限，從而保證數據的安全性。 代碼復用：存儲過程可以被多個應用程序或者腳本重複調用，從而實現代碼復用，減少重複編寫代碼的時間和工作量。 事務處理：存儲過程可以封裝事務處理邏輯，當多個SQL語句需要在一個事務中執行時，可以使用存儲過程將它們封裝在一個事務中，從而保證了數據的一致性和完整性。 簡化了複雜的操作：存儲過程可以將多個SQL語句組合成一個操作，從而簡化了複雜的操作，使得應用程序更易於開發和維護。 存儲過程可以實現很多功能，比如：
-數據庫的備份和還原 數據庫的複製和同步 數據庫的日誌記錄和監控 數據庫的查詢優化 數據庫的數據加密和解密 數據庫的數據清洗和轉換 數據庫的業務邏輯實現 數據庫的存儲和檢索過程中的錯誤處理 數據庫的報表生成和匯出等。 在PostgreSQL中，function和procedure都是儲存運算邏輯的物件，它們在設計目的和使用方式上略有不同。
+數據庫的備份和還原 數據庫的複製和同步 數據庫的日誌記錄和監控 數據庫的查詢優化 數據庫的數據加密和解密 數據庫的數據清洗和轉換 數據庫的業務邏輯實現 數據庫的存儲和檢索過程中的錯誤處理 數據庫的報表生成和匯出等。 Procedure與Function之差異 在PostgreSQL中，function和procedure都是儲存運算邏輯的物件，它們在設計目的和使用方式上略有不同。
 Function主要是用於執行一個特定的計算或邏輯，返回一個單一的值或一個結果集，並且可以在SELECT語句、WHERE語句等中使用。Function可以返回一個或多個結果集，但只能返回一個值作為輸出，因此它被稱為有返回值的Function。
 Procedure主要用於執行一連串的操作，不返回結果集，通常是用來執行複雜的業務邏輯，如事務處理、資料庫管理等。Procedure可以執行INSERT、UPDATE、DELETE等數據操作，但是不能作為SELECT語句的一部分使用。Procedure不返回任何值或結果集，因此它被稱為無返回值的Procedure。
 在設計時，需要根據實際需求選擇使用哪種物件。如果需要執行一個特定的計算或邏輯，並返回一個結果集，則使用Function。如果需要執行一連串的操作並且不需要返回結果集，則使用Procedure。
-定界符$$ (delimiter) 在SQL中，兩個美元符號（$$）用來定義一個區塊或一個標識符（identifier）。
-例如，可以使用$$來定義一個存儲過程或函數的主體。在$$之間的所有內容都被視為存儲過程或函數的主體，可以包含SQL語句、流程控制語句等。
-另外，$$還可以用來定義一個標識符，例如，可以使用$$來定義一個變量或一個標識符的名稱。在$$之間的所有內容都被視為標識符的名稱，可以包含字母、數字和下劃線等字符。使用$$定義標識符時，可以幫助區分保留字和自定義的標識符，以及避免標識符中包含空格等特殊字符所帶來的問題。
-1 2 3 4 5 6 7 8 CREATE FUNCTION myfunc(x INT, y INT) RETURNS INT AS $$ BEGIN RETURN x &#43; y; END; $$ LANGUAGE plpgsql; -- 在這個例子中，$$ 用來定義函數的主體。CREATE FUNCTION 指令創建了一個名為 myfunc 的函數，它接受兩個整數參數 x 和 y，返回它們的和。 RETURN 指令用於返回函數的值。 -- 在這裡，$ 用作定界符，它定義了函數的主體。如果不使用定界符，則在函數主體中使用分號 ; 可能會導致錯誤。使用定界符可以幫助區分不同的 SQL 區塊，從而更好地組織和管理 SQL 代碼。 使用Terminal操作Postgres SQL 有兩種方式，一種是用psql的Shell，另一種則是用powershell"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://i.imgur.com/GBkFYzy.jpg' />
+更直接的不同是，Procedure並沒有定義它自身的回傳值，連Returns void都沒有，而Function是有回傳值的，即使是Returns Void也是有回傳值
+創建procedure的語法 1 2 3 4 5 6 create or replace function test() LANGUAGE plpgsql AS $$ BEGIN END $$; 若加入RETURNS VOID則會回報錯誤
+創建Function的語法 1 2 3 4 5 6 create or replace function test() LANGUAGE plpgsql AS $$ BEGIN END $$; 若不指定回傳值，則會報錯誤function result type must be specified"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.imgur.com/htOn9lJ.jpg' />
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
@@ -255,7 +252,7 @@ if (!doNotTrack) {
         <div class="article-image">
             <a href="/p/storeprocedure%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/">
                 
-                    <img src="https://i.imgur.com/GBkFYzy.jpg" loading="lazy" alt="Featured image of post StoreProcedure的一些筆記" />
+                    <img src="https://i.imgur.com/htOn9lJ.jpg" loading="lazy" alt="Featured image of post StoreProcedure的一些筆記" />
                 
             </a>
         </div>
@@ -300,7 +297,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    3 minute read
+                    4 minute read
                 </time>
             </div>
         
@@ -316,7 +313,7 @@ if (!doNotTrack) {
     
     <p><a class="link" href="https://www.youtube.com/watch?v=yLR1w4tZ36I&amp;ab_channel=techTFQ"  target="_blank" rel="noopener"
     >參考網站</a></p>
-<p>這篇文章是以Postgres SQL的語法為主，其他RDB的語法略有不同</p>
+<p><strong>這篇文章是以Postgres SQL的語法為主，其他RDB的語法略有不同</strong></p>
 <h1 id="什麼是store-procedure">什麼是Store Procedure</h1>
 <p>存儲過程（Stored Procedure）是一種數據庫對象，它是一個預編譯的SQL代碼塊，可以在數據庫中存儲並重複使用。它通常由一系列SQL語句和編程邏輯組成，可以接受輸入參數、返回輸出參數和結果集。存儲過程通常由數據庫管理員或開發人員編寫和維護，並且可以在數據庫中執行。</p>
 <p>存儲過程有以下幾個優點：</p>
@@ -339,10 +336,82 @@ if (!doNotTrack) {
 <li>數據庫的存儲和檢索過程中的錯誤處理</li>
 <li>數據庫的報表生成和匯出等。</li>
 </ol>
+<h1 id="procedure與function之差異">Procedure與Function之差異</h1>
+<p><img src="https://i.imgur.com/glkexq1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230302110014148"
+	
+	
+></p>
 <p>在PostgreSQL中，function和procedure都是儲存運算邏輯的物件，它們在設計目的和使用方式上略有不同。</p>
 <p>Function主要是用於執行一個特定的計算或邏輯，返回一個單一的值或一個結果集，並且可以在SELECT語句、WHERE語句等中使用。Function可以返回一個或多個結果集，但只能返回一個值作為輸出，因此它被稱為有返回值的Function。</p>
 <p>Procedure主要用於執行一連串的操作，不返回結果集，通常是用來執行複雜的業務邏輯，如事務處理、資料庫管理等。Procedure可以執行INSERT、UPDATE、DELETE等數據操作，但是不能作為SELECT語句的一部分使用。Procedure不返回任何值或結果集，因此它被稱為無返回值的Procedure。</p>
 <p>在設計時，需要根據實際需求選擇使用哪種物件。如果需要執行一個特定的計算或邏輯，並返回一個結果集，則使用Function。如果需要執行一連串的操作並且不需要返回結果集，則使用Procedure。</p>
+<p><strong>更直接的不同是，Procedure並沒有定義它自身的回傳值，連Returns void都沒有，而Function是有回傳值的，即使是Returns Void也是有回傳值</strong></p>
+<h2 id="創建procedure的語法">創建procedure的語法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">test</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/SQvfGm9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230303104439737"
+	
+	
+></p>
+<p>若加入RETURNS VOID則會回報錯誤</p>
+<h2 id="創建function的語法">創建Function的語法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">test</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/dya5pND.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230303104821763"
+	
+	
+></p>
+<p>若不指定回傳值，則會報錯誤<code>function result type must be specified</code></p>
 <h1 id="定界符-delimiter">定界符$$ (delimiter)</h1>
 <p>在SQL中，兩個美元符號（$$）用來定義一個區塊或一個標識符（identifier）。</p>
 <p>例如，可以使用$$來定義一個存儲過程或函數的主體。在$$之間的所有內容都被視為存儲過程或函數的主體，可以包含SQL語句、流程控制語句等。</p>
@@ -537,7 +606,7 @@ if (!doNotTrack) {
 <li><code>\q</code> - 退出 <code>psql</code> 命令行界面。</li>
 <li><code>\c &lt;database_name&gt;</code> - 連接到指定的數據庫。</li>
 <li><code>\dt</code> - 列出當前數據庫中的所有表格。</li>
-<li><code>\d &lt;table_name&gt;</code> - 列出指定表格的詳細信息，包括列名、類型和約束等。</li>
+<li><strong><code>\d &lt;table_name&gt;</code> - 列出指定表格的詳細信息，包括列名、類型和約束等。</strong></li>
 <li><code>\du</code> - 列出所有用戶帳號的詳細信息，包括用戶名、權限和群組等。</li>
 <li><code>\dp</code> - 列出所有表格的權限設置。</li>
 <li><code>\timing</code> - 啟用或禁用查詢執行時間的顯示。</li>
@@ -682,6 +751,164 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="mi">3</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="變數宣告">變數宣告</h2>
+<p><code>:=</code>來進行變數宣告，<code>=</code>在postgresSQL比較像是用來比較</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">my_function</span><span class="p">(</span><span class="n">param1</span><span class="w"> </span><span class="nb">integer</span><span class="p">,</span><span class="w"> </span><span class="n">param2</span><span class="w"> </span><span class="nb">integer</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var1</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var2</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var1</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">param1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var2</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">param2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">var1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">var2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="while-語法">WHILE 語法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="k">OUT</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">WHILE</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">LOOP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">result</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="n">LOOP</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="if語法">IF語法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">example_if_proc</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">&#39;a is negative&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">ELSIF</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">&#39;a is zero&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">ELSE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">&#39;a is positive&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="將select出來的值儲存在一變數中">將SELECT出來的值儲存在一變數中</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">get_customer_info</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">IN</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">OUT</span><span class="w"> </span><span class="n">customer_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">OUT</span><span class="w"> </span><span class="n">customer_email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="n">customer_email</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">customer_id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">FOUND</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">RAISE</span><span class="w"> </span><span class="k">EXCEPTION</span><span class="w"> </span><span class="s1">&#39;Customer not found&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="將資訊打印出來print">將資訊打印出來(print)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">procedure</span><span class="w"> </span><span class="n">sayHello</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">RETURNS</span><span class="w"> </span><span class="n">void</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">RAISE</span><span class="w"> </span><span class="n">NOTICE</span><span class="w"> </span><span class="s1">&#39;hello word:&#39;</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
@@ -896,6 +1123,12 @@ if (!doNotTrack) {
             <nav id="TableOfContents">
   <ol>
     <li><a href="#什麼是store-procedure">什麼是Store Procedure</a></li>
+    <li><a href="#procedure與function之差異">Procedure與Function之差異</a>
+      <ol>
+        <li><a href="#創建procedure的語法">創建procedure的語法</a></li>
+        <li><a href="#創建function的語法">創建Function的語法</a></li>
+      </ol>
+    </li>
     <li><a href="#定界符-delimiter">定界符$$ (delimiter)</a></li>
     <li><a href="#使用terminal操作postgres-sql">使用Terminal操作Postgres SQL</a>
       <ol>
@@ -910,6 +1143,11 @@ if (!doNotTrack) {
         <li><a href="#返回值為空的function">返回值為空的Function</a></li>
         <li><a href="#回傳特定資料的function">回傳特定資料的function</a></li>
         <li><a href="#更新資料的function">更新資料的function</a></li>
+        <li><a href="#變數宣告">變數宣告</a></li>
+        <li><a href="#while-語法">WHILE 語法</a></li>
+        <li><a href="#if語法">IF語法</a></li>
+        <li><a href="#將select出來的值儲存在一變數中">將SELECT出來的值儲存在一變數中</a></li>
+        <li><a href="#將資訊打印出來print">將資訊打印出來(print)</a></li>
       </ol>
     </li>
   </ol>
