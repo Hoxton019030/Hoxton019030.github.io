@@ -115,8 +115,8 @@
 &lt;p&gt;若不指定回傳值，則會報錯誤&lt;code&gt;function result type must be specified&lt;/code&gt;&lt;/p&gt;
 &lt;h1 id=&#34;定界符-delimiter&#34;&gt;定界符$$ (delimiter)&lt;/h1&gt;
 &lt;p&gt;在SQL中，兩個美元符號（$$）用來定義一個區塊或一個標識符（identifier）。&lt;/p&gt;
-&lt;p&gt;例如，可以使用$$來定義一個存儲過程或函數的主體。在$$之間的所有內容都被視為存儲過程或函數的主體，可以包含SQL語句、流程控制語句等。&lt;/p&gt;
-&lt;p&gt;另外，$$還可以用來定義一個標識符，例如，可以使用$$來定義一個變量或一個標識符的名稱。在$$之間的所有內容都被視為標識符的名稱，可以包含字母、數字和下劃線等字符。使用$$定義標識符時，可以幫助區分保留字和自定義的標識符，以及避免標識符中包含空格等特殊字符所帶來的問題。&lt;/p&gt;
+&lt;p&gt;例如，可以使用&lt;code&gt;$$&lt;/code&gt;來.定義一個存儲過程或函數的主體。在$$之間的所有內容都被視為存儲過程或函數的主體，可以包含SQL語句、流程控制語句等。&lt;/p&gt;
+&lt;p&gt;另外，&lt;code&gt;$$&lt;/code&gt;還可以用來定義一個標識符，例如，可以使用&lt;code&gt;$$&lt;/code&gt;來定義一個變量或一個標識符的名稱。在&lt;code&gt;$$&lt;/code&gt;之間的所有內容都被視為標識符的名稱，可以包含字母、數字和下劃線等字符。使用&lt;code&gt;$$&lt;/code&gt;定義標識符時，可以幫助區分保留字和自定義的標識符，以及避免標識符中包含空格等特殊字符所帶來的問題。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
