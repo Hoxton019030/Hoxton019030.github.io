@@ -276,7 +276,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    35 minute read
+                    36 minute read
                 </time>
             </div>
         
@@ -6996,7 +6996,7 @@ $$</p>
 </li>
 </ol>
 <h2 id="n個processes-cs-design">N個Processes C.S Design</h2>
-<h3 id="bankerys-algo麵包店取號碼牌"><strong>Bankery&rsquo;s Algo(麵包店取號碼牌)</strong></h3>
+<h3 id="bankerys-algo麵包店取號碼牌">Bankery&rsquo;s Algo(麵包店取號碼牌)</h3>
 <p><code>解決Race Condition</code></p>
 <ul>
 <li>
@@ -7544,6 +7544,7 @@ $$</p>
 </li>
 </ul>
 <h3 id="waits">wait(S)：</h3>
+<p>==若S為0則卡住，若S不為0則通過==</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -8074,7 +8075,7 @@ $$</p>
 </span></span><span class="line"><span class="cl">until false;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="用semaphore解producer-consumer-problem">用semaphore解producer-consumer problem</h1>
+</div><h3 id="用semaphore解producer-consumer-problem">用semaphore解producer-consumer problem</h3>
 <p>共享變數宣告如下：</p>
 <ol>
 <li>empty : semaphore = n . 代表buffer內空格數，若空格數變為0，代表滿了</li>
@@ -8192,6 +8193,7 @@ $$</p>
 </blockquote>
 </li>
 </ol>
+<p>程式：</p>
 <div class="table-wrapper"><table>
 <thead>
 <tr>
@@ -8211,8 +8213,79 @@ $$</p>
 <ol>
 <li>R1到，則R1會卡在wrt 裡，此時readcnt=1</li>
 <li>R2又到，則R2會卡在mutex，此時readcnt=1</li>
-<li>R3ˋ到，則R3會卡在mutex，此時readcnt=1</li>
+<li>R3到，則R3會卡在mutex，此時readcnt=1</li>
 </ol>
+<h4 id="second-reader-writer-problem">Second Reader/ writer problem</h4>
+<p>何謂對Writer 有利，<strong>對Reader不利</strong></p>
+<p><img src="https://i.imgur.com/beObzlW.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230306001249076"
+	
+	
+></p>
+<p>T6：w1離開，<strong>優先</strong>放W2近來(並非R1)</p>
+<p>T7：w2離開，<strong>優先</strong>放W2近來(並非R1)</p>
+<p>&hellip;(以此類推)</p>
+<p>只要Writer離開，發現尚有waiting writer在，那就會優先放writer近來，所以R1有可能Startvation</p>
+<p><strong>共享變數之宣告</strong></p>
+<ol>
+<li>
+<p>readcnt：int=0 ：統計reader個數</p>
+</li>
+<li>
+<p>wrtcnd：int=0：統計writer個數</p>
+</li>
+<li>
+<p>x：semaphore：１　//用來對readcnt做互斥控制，防止race condition</p>
+</li>
+<li>
+<p>y：semaphore：１   //用來對wrtcnd做互斥控制，防止race condition</p>
+</li>
+<li>
+<p>z：semaphore：１　//有的版本會有，有的版本不會有。作為對reader之入口控制(讓它卡多一些關卡，讓reader slower)</p>
+</li>
+<li>
+<p>rsem：semaphore=1　//作為對reader不利之控制</p>
+</li>
+<li>
+<p>wsem：semephore=1 //提供R/W及W/W互斥控制</p>
+</li>
+</ol>
+<p><strong>程式</strong>：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>writer</th>
+<th>reaeder(以First reader程式為主，再加入控制)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wait(y)<br />wrtcnt = wrtcnt+1;<br />if(wrtcnt=<!---->=1) then(wait(rsem)) //第一個writer ，要負責築起對reader不利之控制<br />signal(y);<br />wait(wsem) //<br />執行writing工作<br /><br />wait(y)<br />wrtcnt = wrtcnt-1<br />if(wrtcnt==0) then signal(resm) //解除對reader不利之控制<br />signal(wsem) //解除 R/W W/W互斥<br />signal(y)</td>
+<td>wait(z)<br />wait(rsem) //通過對reader不利之控制?<br />wait(x)<br />readcnt = readcnt +1;<br />if(readcnt ==1) then wait(wsem) //R/W互斥<br />signal(x)<br />signal(rsem)<br />signal(z)<br />(執行reading工作)<br /><br />wait(x);<br />readcnt = readcnt -1<br />if(readcnt ==0) then signal(wsem)  //解除R/W互斥<br />signal(x)</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="the-sleeping-barbers-problem">The Sleeping Barbers Problem</h4>
+<p>描述：有一個barber，一張BarberChair，n張waitingChair。並且有客人。</p>
+<p>客人的行為如下</p>
+<blockquote>
+<p>waiting chairs 坐滿(n個等待客人)：不入店</p>
+<p>waiting chairs 尚未坐滿：入店內，坐在waitingChair，通知(喚醒)barber</p>
+<p>客人睡覺(wait) if barber is busy now&hellip; 直到Barber叫他起床剪髮，剪完髮Exit</p>
+</blockquote>
+<p>理髮師的行為如下</p>
+<blockquote>
+<p>睡覺 if no 客人</p>
+<p>直到有客人喚醒(通知)他</p>
+<p>叫醒客人剪髮</p>
+<p>剪完髮後如果還有客人，則叫醒客人剪髮</p>
+<p>剪完髮後如果沒有客人，則繼續睡，繼續水時間</p>
+</blockquote>
 
 </section>
 
@@ -8712,7 +8785,7 @@ $$</p>
         </li>
         <li><a href="#n個processes-cs-design">N個Processes C.S Design</a>
           <ol>
-            <li><a href="#bankerys-algo麵包店取號碼牌"><strong>Bankery&rsquo;s Algo(麵包店取號碼牌)</strong></a>
+            <li><a href="#bankerys-algo麵包店取號碼牌">Bankery&rsquo;s Algo(麵包店取號碼牌)</a>
               <ol>
                 <li><a href="#經典問題">經典問題</a>
                   <ol>
@@ -8750,18 +8823,13 @@ $$</p>
                 </li>
               </ol>
             </li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#用semaphore解producer-consumer-problem">用semaphore解producer-consumer problem</a>
-      <ol>
-        <li>
-          <ol>
+            <li><a href="#用semaphore解producer-consumer-problem">用semaphore解producer-consumer problem</a></li>
             <li><a href="#readwrite-problem">Read/write Problem</a>
               <ol>
                 <li><a href="#基本的同步條件">基本的同步條件</a></li>
                 <li><a href="#first-readerwriter-problem">First Reader/Writer Problem</a></li>
+                <li><a href="#second-reader-writer-problem">Second Reader/ writer problem</a></li>
+                <li><a href="#the-sleeping-barbers-problem">The Sleeping Barbers Problem</a></li>
               </ol>
             </li>
           </ol>

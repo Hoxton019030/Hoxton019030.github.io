@@ -342,6 +342,15 @@ if (!doNotTrack) {
 </span><span class="lnt">24
 </span><span class="lnt">25
 </span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.junit.jupiter.api.BeforeEach</span><span class="o">;</span>
@@ -368,6 +377,15 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">    <span class="nd">@BeforeEach</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMockMvc</span><span class="o">(){</span>
 </span></span><span class="line"><span class="cl">        <span class="n">MockMvcBuilders</span><span class="o">.</span><span class="na">standaloneSetup</span><span class="o">(</span><span class="n">userController</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">   	<span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">testMethod_situation_returnWhat</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">given</span><span class="o">(</span><span class="n">someObject</span><span class="o">.</span><span class="na">someMethod</span><span class="o">()).</span><span class="na">willReturn</span><span class="o">(</span><span class="s">&#34;someting&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">       	<span class="c1">// ... 設置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">       <span class="n">MockHttpServletResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">mvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">&#34;someUrl&#34;</span><span class="o">)).</span><span class="na">andReturn</span><span class="o">().</span><span class="na">getResponse</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">assertThat</span><span class="o">(</span><span class="s">&#34;something&#34;</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="s">&#34;thatThing&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
