@@ -10535,7 +10535,7 @@ think now;
 &lt;/div>
 &lt;/div>&lt;p>此Solution有問題，可能會形成Deadlock!!&lt;/p>
 &lt;p>若每位哲學家都拿起自己左邊的筷子，則每位哲學家都卡住，皆無法取得右筷，形成circular waiting&lt;/p>
-&lt;p>解法一&lt;/p>
+&lt;p>&lt;strong>解法一&lt;/strong>&lt;/p>
 &lt;p>一次最多讓4位哲學家上桌&lt;/p>
 &lt;p>m=5根,Maxi=2&lt;/p>
 &lt;ol>
@@ -10573,8 +10573,33 @@ signal(chopstick[(i+1)%5]);
 think now;
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>解法二&lt;/p>
-&lt;p>除非哲學家可同時取得左右兩邊筷子，才准許持有筷子，否則不得持有任何筷子。&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;h1 id="學習路線">學習路線&lt;/h1>
+&lt;/div>&lt;p>&lt;strong>解法二&lt;/strong>&lt;/p>
+&lt;p>除非&lt;strong>哲學家可同時取得左右兩邊筷子&lt;/strong>，才准許持有筷子，否則不得持有任何筷子。否則不得持有任何筷子&lt;/p>
+&lt;p>破除Hold&amp;amp;wait 條件&lt;/p>
+&lt;p>&lt;strong>解法三&lt;/strong>&lt;/p>
+&lt;p>相鄰哲學家之取筷順序不同，創造&lt;strong>Asymmetric mode&lt;/strong>，例如：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>奇數號&lt;/th>
+&lt;th>偶數號&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>先取左，再取右&lt;/td>
+&lt;td>先取右，再取左&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>破除Circular waiting條件&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/M9uGAQg.png"
+loading="lazy"
+alt="image-20230307231842002"
+>&lt;/p>
+&lt;p>Note：等同於西餐，大家規定：先取刀再取叉&lt;/p>
+&lt;h4 id="cigarette-smokers-problem">cigarette smokers problem&lt;/h4>
+&lt;p>很少考，從50年前就沒考過了。Pass&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
 &lt;h2 id="ch5-tree-and-binary-tree">Ch5 Tree And Binary Tree&lt;/h2>
