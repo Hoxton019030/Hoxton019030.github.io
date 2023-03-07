@@ -2638,34 +2638,7 @@ loading="lazy"
 alt="image-20221227165544804"
 >&lt;/p>
 &lt;p>右邊的方法實際上不會拋出IOException，所以會顯示為灰色的，這邊只是作為Demo先寫上去。可以看到畫面左邊的地方，此時IDE跟我們報錯，說這個方法會拋出一個IOException，要我們進行處理，&lt;strong>因為IOException是一個受檢例外&lt;/strong>，JVM本身沒有能力可以進行處理。&lt;/p>
-&lt;p>大概先這樣，其他想到後補。&lt;/p></description></item><item><title>Jenkins筆記</title><link>https://hoxtonhsu.com/p/jenkins%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 25 Dec 2022 01:22:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/jenkins%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/3VUgy0E.png" alt="Featured image of post Jenkins筆記" />&lt;h1 id="在docker安裝jenkins">在Docker安裝Jenkins&lt;/h1>
-&lt;p>強烈建議初次學習時先不要使用docker安裝，要看什麼東西都不方便，還是用WAR啟動比較好&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">docker run --restart&lt;span class="o">=&lt;/span>always -d -v c:/jenkins:/var/jenkins_home -p 9070:8080 -p 50000:50000 --name jenkins jenkins/jenkins:lts
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>密碼會顯示在logs紀錄裡面，輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">docker logs -f [ContainerId]
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>來查看&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/CGgyuYw.png"
-loading="lazy"
-alt="image-20230131112905119"
->&lt;/p>
-&lt;h1 id="進入jenkins">進入Jenkins&lt;/h1>
-&lt;p>訪問http://localhost:9070/&lt;/p>
-&lt;p>github的webhook是什麼意思&lt;/p>
-&lt;p>GitHub Webhooks 是一种让其他网站或服务在 GitHub 上的特定事件发生时得到通知的功能。当你在 GitHub 上执行一些特定操作时，例如推送代码、打开 Pull Request，GitHub 就会发送一个 HTTP POST 请求到你指定的 URL，以告知其他网站或服务。这样，其他网站或服务就可以基于这些通知触发自己的行为，例如自动化构建、部署等。&lt;/p></description></item><item><title>淺談測試驅動開發</title><link>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</link><pubDate>Sun, 04 Dec 2022 22:22:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</guid><description>&lt;img src="https://i.imgur.com/2xteh3C.png" alt="Featured image of post 淺談測試驅動開發" />&lt;h1 id="序言">序言&lt;/h1>
+&lt;p>大概先這樣，其他想到後補。&lt;/p></description></item><item><title>淺談測試驅動開發</title><link>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</link><pubDate>Sun, 04 Dec 2022 22:22:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</guid><description>&lt;img src="https://i.imgur.com/2xteh3C.png" alt="Featured image of post 淺談測試驅動開發" />&lt;h1 id="序言">序言&lt;/h1>
 &lt;p>參考資料：&lt;/p>
 &lt;p>&lt;a class="link" href="https://youtu.be/t4D6GW2c8G8?list=LL" target="_blank" rel="noopener"
 >Agile Hsinchu 2022.11 - 〈你就是不寫測試，才會沒時間〉線上導讀&lt;/a>&lt;/p>
