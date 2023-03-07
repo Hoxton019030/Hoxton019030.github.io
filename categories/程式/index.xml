@@ -7718,19 +7718,20 @@ consumes the item in nextc;
 until false;
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="用semaphore解producer-consumer-problem">用semaphore解producer-consumer problem&lt;/h3>
+&lt;/div>&lt;h4 id="用semaphore解producer-consumer-problem">用semaphore解producer-consumer problem&lt;/h4>
 &lt;p>共享變數宣告如下：&lt;/p>
 &lt;ol>
 &lt;li>empty : semaphore = n . 代表buffer內空格數，若空格數變為0，代表滿了&lt;/li>
 &lt;li>full : semaphore=0. 代表buffer區中，填入item之格數，若為0，表buffer為空&lt;/li>
 &lt;li>mutex：semaphore=1; 對buffer, in , out , count做互斥控制，防止&lt;strong>race condition&lt;/strong>&lt;/li>
 &lt;/ol>
-&lt;p>semaphore的設計哲學&lt;/p>
+&lt;h4 id="semaphore的設計哲學">semaphore的設計哲學&lt;/h4>
 &lt;blockquote>
 &lt;ol>
 &lt;li>滿足同步條件之號誌變數&lt;code>empty, full&lt;/code>&lt;/li>
 &lt;li>互斥控制防止race condition之號誌 &lt;code>mutex&lt;/code>&lt;/li>
 &lt;li>先測同步在測互斥，不然會造成死結&lt;/li>
+&lt;li>&lt;strong>==共享變數取存之前都需要經過互斥的處理==&lt;/strong>&lt;/li>
 &lt;/ol>
 &lt;/blockquote>
 &lt;p>producer&lt;/p>
@@ -7773,12 +7774,12 @@ signal(mutex);
 singal(empty)
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="readwrite-problem">Read/write Problem&lt;/h3>
+&lt;/div>&lt;h4 id="readwrite-problem">Read/write Problem&lt;/h4>
 &lt;p>&lt;img src="https://i.imgur.com/J4nkQh8.png"
 loading="lazy"
 alt="image-20230222215707149"
 >&lt;/p>
-&lt;h4 id="基本的同步條件">基本的同步條件&lt;/h4>
+&lt;p>&lt;strong>基本的同步條件&lt;/strong>&lt;/p>
 &lt;ol>
 &lt;li>&lt;strong>Reader write要互斥&lt;/strong>&lt;/li>
 &lt;li>&lt;strong>writer,writer也要互斥&lt;/strong>&lt;/li>
@@ -7896,7 +7897,7 @@ alt="image-20230306001249076"
 &lt;/tbody>
 &lt;/table>
 &lt;h4 id="the-sleeping-barbers-problem">The Sleeping Barbers Problem&lt;/h4>
-&lt;p>描述：有一個barber，一張BarberChair，n張waitingChair。並且有客人。&lt;/p>
+&lt;p>&lt;strong>描述&lt;/strong>：有一個barber，一張BarberChair，n張waitingChair。並且有客人。&lt;/p>
 &lt;p>客人的行為如下&lt;/p>
 &lt;blockquote>
 &lt;p>waiting chairs 坐滿(n個等待客人)：不入店&lt;/p>
@@ -7910,7 +7911,112 @@ alt="image-20230306001249076"
 &lt;p>叫醒客人剪髮&lt;/p>
 &lt;p>剪完髮後如果還有客人，則叫醒客人剪髮&lt;/p>
 &lt;p>剪完髮後如果沒有客人，則繼續睡，繼續水時間&lt;/p>
-&lt;/blockquote></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;h1 id="學習路線">學習路線&lt;/h1>
+&lt;/blockquote>
+&lt;p>&lt;strong>共享變數宣告：&lt;/strong> &lt;strong>==共享變數取存之前都需要經過互斥的處理==&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>Customer：semaphore=0 ：用來卡住理髮師 if no &lt;strong>客人&lt;/strong>&lt;/li>
+&lt;li>Barber：semaphore=0：用來卡住客人的 if Barber is busy&lt;/li>
+&lt;li>waiting：int=0 // 坐在等待椅上的客人數目。何時+1?何時-1?客人入店，坐上椅子。Barber叫客人起來剪髮，會有race condition的問題&lt;/li>
+&lt;li>mutex：semaphore=1 //防止waiting值race condition&lt;/li>
+&lt;/ol>
+&lt;p>程式：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Barber&lt;/th>
+&lt;th>Customer&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>repeat&lt;br />wait((Customer))&lt;br />wait(mutex)&lt;br />waiting = waiting -1;&lt;br />signal(Barber)&lt;br />signal(mutex)&lt;br />剪客人頭髮();&lt;br />until False&lt;/td>
+&lt;td>wait(mutex);&lt;br />if(waitng&amp;lt;n){waiting=waiting+1;&lt;br />signal(Customer) //叫醒、通知barber&lt;br />signal(mutex);&lt;br />wait(barber);&lt;br />被理髮()&lt;br />}else{ signal(mutex)}&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>客人是沒有repear &amp;hellip; until false&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="the-dining-philosophers-problems">The Dining-Philosophers Problems&lt;/h4>
+&lt;p>描述&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Qxdepnt.png"
+loading="lazy"
+alt="image-20230306233039022"
+>&lt;/p>
+&lt;p>&lt;code>注意：1. 吃中餐：奇數、偶數哲學家皆可&lt;/code>&lt;/p>
+&lt;p>&lt;code>2. 吃西餐：偶數位才可以（刀叉一副&lt;/code>&lt;/p>
+&lt;p>&lt;strong>共享變數之宣告&lt;/strong>&lt;/p>
+&lt;p>chopstick：[0,1,2,3,4] of semaphore；初值皆為1，對5根筷子做互斥控制。&lt;/p>
+&lt;p>&lt;strong>i號哲學家(i=0~4)哲學家Pi之狀況&lt;/strong>(這程式是有問題的)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">repeat...
+hugry now;
+wait(chopstick[i]);
+wait(chopstick[(i+1)%5])
+eating now;
+signal(chopstick[i]);
+signal(chopstick[(i+1)%5]);
+think now;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>此Solution有問題，可能會形成Deadlock!!&lt;/p>
+&lt;p>若每位哲學家都拿起自己左邊的筷子，則每位哲學家都卡住，皆無法取得右筷，形成circular waiting&lt;/p>
+&lt;p>解法一&lt;/p>
+&lt;p>一次最多讓4位哲學家上桌&lt;/p>
+&lt;p>m=5根,Maxi=2&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>1≦Maxi≦m成立&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$
+\sum_{i=1}^nMaxi &amp;lt; n+m,因此2n&amp;lt;n+5, n&amp;lt;5。最多4位
+$$&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>保證DeadLock Free-&amp;gt; 可額外加入另一個號誌 No:semaphore=4，做入口控制&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">repeat...
+wait(No);
+hugry now;
+wait(chopstick[i]);
+wait(chopstick[(i+1)%5])
+eating now;
+signal(chopstick[i]);
+signal(chopstick[(i+1)%5]);
+think now;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解法二&lt;/p>
+&lt;p>除非哲學家可同時取得左右兩邊筷子，才准許持有筷子，否則不得持有任何筷子。&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
 &lt;h2 id="ch5-tree-and-binary-tree">Ch5 Tree And Binary Tree&lt;/h2>
