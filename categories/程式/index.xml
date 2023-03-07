@@ -1,4 +1,516 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 06 Feb 2023 19:50:08 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>GitLab-CI/CD筆記</title><link>https://hoxtonhsu.com/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/</link><pubDate>Mon, 06 Feb 2023 19:50:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/b9bWXWs.jpg" alt="Featured image of post GitLab-CI/CD筆記" />&lt;p>&lt;a class="link" href="https://youtu.be/-4XT8-znkuc?list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 01 Mar 2023 09:45:17 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>StoreProcedure的一些筆記</title><link>https://hoxtonhsu.com/p/storeprocedure%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 01 Mar 2023 09:45:17 +0800</pubDate><guid>https://hoxtonhsu.com/p/storeprocedure%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1BTtOUL.png" alt="Featured image of post StoreProcedure的一些筆記" />&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=yLR1w4tZ36I&amp;amp;ab_channel=techTFQ" target="_blank" rel="noopener"
+>參考網站&lt;/a>&lt;/p>
+&lt;p>&lt;strong>這篇文章是以Postgres SQL的語法為主，其他RDB的語法略有不同&lt;/strong>&lt;/p>
+&lt;h1 id="什麼是store-procedure">什麼是Store Procedure&lt;/h1>
+&lt;p>存儲過程（Stored Procedure）是一種數據庫對象，它是一個預編譯的SQL代碼塊，可以在數據庫中存儲並重複使用。它通常由一系列SQL語句和編程邏輯組成，可以接受輸入參數、返回輸出參數和結果集。存儲過程通常由數據庫管理員或開發人員編寫和維護，並且可以在數據庫中執行。&lt;/p>
+&lt;p>存儲過程有以下幾個優點：&lt;/p>
+&lt;ol>
+&lt;li>提高了數據庫性能：存儲過程是預編譯的，一旦編譯就會存儲在數據庫中，執行速度快。此外，存儲過程可以減少客戶端與服務器之間的通信，從而降低網絡延遲，提高數據庫性能。&lt;/li>
+&lt;li>提高了數據安全性：存儲過程可以在數據庫層面上實現安全控制，可以限制某些用戶或角色的操作權限，從而保證數據的安全性。&lt;/li>
+&lt;li>代碼復用：存儲過程可以被多個應用程序或者腳本重複調用，從而實現代碼復用，減少重複編寫代碼的時間和工作量。&lt;/li>
+&lt;li>事務處理：存儲過程可以封裝事務處理邏輯，當多個SQL語句需要在一個事務中執行時，可以使用存儲過程將它們封裝在一個事務中，從而保證了數據的一致性和完整性。&lt;/li>
+&lt;li>簡化了複雜的操作：存儲過程可以將多個SQL語句組合成一個操作，從而簡化了複雜的操作，使得應用程序更易於開發和維護。&lt;/li>
+&lt;/ol>
+&lt;p>存儲過程可以實現很多功能，比如：&lt;/p>
+&lt;ol>
+&lt;li>數據庫的備份和還原&lt;/li>
+&lt;li>數據庫的複製和同步&lt;/li>
+&lt;li>數據庫的日誌記錄和監控&lt;/li>
+&lt;li>數據庫的查詢優化&lt;/li>
+&lt;li>數據庫的數據加密和解密&lt;/li>
+&lt;li>數據庫的數據清洗和轉換&lt;/li>
+&lt;li>數據庫的業務邏輯實現&lt;/li>
+&lt;li>數據庫的存儲和檢索過程中的錯誤處理&lt;/li>
+&lt;li>數據庫的報表生成和匯出等。&lt;/li>
+&lt;/ol>
+&lt;h1 id="procedure與function之差異">Procedure與Function之差異&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/glkexq1.png"
+loading="lazy"
+alt="image-20230302110014148"
+>&lt;/p>
+&lt;p>在PostgreSQL中，function和procedure都是儲存運算邏輯的物件，它們在設計目的和使用方式上略有不同。&lt;/p>
+&lt;p>Function主要是用於執行一個特定的計算或邏輯，返回一個單一的值或一個結果集，並且可以在SELECT語句、WHERE語句等中使用。Function可以返回一個或多個結果集，但只能返回一個值作為輸出，因此它被稱為有返回值的Function。&lt;/p>
+&lt;p>Procedure主要用於執行一連串的操作，不返回結果集，通常是用來執行複雜的業務邏輯，如事務處理、資料庫管理等。Procedure可以執行INSERT、UPDATE、DELETE等數據操作，但是不能作為SELECT語句的一部分使用。Procedure不返回任何值或結果集，因此它被稱為無返回值的Procedure。&lt;/p>
+&lt;p>在設計時，需要根據實際需求選擇使用哪種物件。如果需要執行一個特定的計算或邏輯，並返回一個結果集，則使用Function。如果需要執行一連串的操作並且不需要返回結果集，則使用Procedure。&lt;/p>
+&lt;p>&lt;strong>更直接的不同是，Procedure並沒有定義它自身的回傳值，連Returns void都沒有，而Function是有回傳值的，即使是Returns Void也是有回傳值&lt;/strong>&lt;/p>
+&lt;h2 id="創建procedure的語法">創建procedure的語法&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">create&lt;/span> &lt;span class="k">or&lt;/span> &lt;span class="k">replace&lt;/span> &lt;span class="k">function&lt;/span> &lt;span class="n">test&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>
+&lt;span class="k">AS&lt;/span> &lt;span class="err">$$&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="k">END&lt;/span>
+&lt;span class="err">$$&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/SQvfGm9.png"
+loading="lazy"
+alt="image-20230303104439737"
+>&lt;/p>
+&lt;p>若加入RETURNS VOID則會回報錯誤&lt;/p>
+&lt;h2 id="創建function的語法">創建Function的語法&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">create&lt;/span> &lt;span class="k">or&lt;/span> &lt;span class="k">replace&lt;/span> &lt;span class="k">function&lt;/span> &lt;span class="n">test&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>
+&lt;span class="k">AS&lt;/span> &lt;span class="err">$$&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="k">END&lt;/span>
+&lt;span class="err">$$&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/dya5pND.png"
+loading="lazy"
+alt="image-20230303104821763"
+>&lt;/p>
+&lt;p>若不指定回傳值，則會報錯誤&lt;code>function result type must be specified&lt;/code>&lt;/p>
+&lt;h1 id="定界符-delimiter">定界符$$ (delimiter)&lt;/h1>
+&lt;p>在SQL中，兩個美元符號（$$）用來定義一個區塊或一個標識符（identifier）。&lt;/p>
+&lt;p>例如，可以使用&lt;code>$$&lt;/code>來.定義一個存儲過程或函數的主體。在$$之間的所有內容都被視為存儲過程或函數的主體，可以包含SQL語句、流程控制語句等。&lt;/p>
+&lt;p>另外，&lt;code>$$&lt;/code>還可以用來定義一個標識符，例如，可以使用&lt;code>$$&lt;/code>來定義一個變量或一個標識符的名稱。在&lt;code>$$&lt;/code>之間的所有內容都被視為標識符的名稱，可以包含字母、數字和下劃線等字符。使用&lt;code>$$&lt;/code>定義標識符時，可以幫助區分保留字和自定義的標識符，以及避免標識符中包含空格等特殊字符所帶來的問題。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">FUNCTION&lt;/span> &lt;span class="n">myfunc&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="nb">INT&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="nb">INT&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">RETURNS&lt;/span> &lt;span class="nb">INT&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="err">$$&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="k">RETURN&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="err">$$&lt;/span> &lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="c1">-- 在這個例子中，$$ 用來定義函數的主體。CREATE FUNCTION 指令創建了一個名為 myfunc 的函數，它接受兩個整數參數 x 和 y，返回它們的和。 RETURN 指令用於返回函數的值。
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="c1">-- 在這裡，$ 用作定界符，它定義了函數的主體。如果不使用定界符，則在函數主體中使用分號 ; 可能會導致錯誤。使用定界符可以幫助區分不同的 SQL 區塊，從而更好地組織和管理 SQL 代碼。
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="使用terminal操作postgres-sql">使用Terminal操作Postgres SQL&lt;/h1>
+&lt;p>有兩種方式，一種是用psql的Shell，另一種則是用powershell&lt;/p>
+&lt;h2 id="使用psql的shell">使用psql的Shell&lt;/h2>
+&lt;p>打開psql&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/nK75Ei4.png"
+loading="lazy"
+alt="image-20230301141105566"
+>&lt;/p>
+&lt;p>輸入相應的資訊&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/7xAxqku.png"
+loading="lazy"
+alt="image-20230301141442266"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/VoFR6LZ.jpg"
+loading="lazy"
+alt="1677641123421"
+>&lt;/p>
+&lt;h2 id="使用powershell">使用powerShell&lt;/h2>
+&lt;p>首先先下載Postgres SQL，接著在把環境變數加入至電腦中，路徑大概會如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">C&lt;span class="p">:&lt;/span>&lt;span class="nl">\Program&lt;/span>&lt;span class="c1"> Files\PostgreSQL\14\bin&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/XGVwCjA.png"
+loading="lazy"
+alt="image-20230301112209470"
+>&lt;/p>
+&lt;p>即可在Termianl中操作postgres SQL&lt;/p>
+&lt;p>如以下指令&lt;img src="https://i.imgur.com/TytSWR7.png"
+loading="lazy"
+alt="image-20230301151606030"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">psql -h localhost -p 5432 -U postgres school
+## psql -h localhost -p 5432 -U &lt;span class="p">&amp;lt;&lt;/span>your_username&lt;span class="p">&amp;gt;&lt;/span> &amp;lt;your_database&amp;gt;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/O1LOTxQ.png"
+loading="lazy"
+alt="image-20230301112342437"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/9XwWLMJ.jpg"
+loading="lazy"
+alt="1677641123421"
+>&lt;/p>
+&lt;p>(與之對應的Server設定)&lt;/p>
+&lt;h2 id="連結成功後的畫面">連結成功後的畫面&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/hws6MgV.png"
+loading="lazy"
+alt="image-20230301114731154"
+>&lt;/p>
+&lt;p>可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">\dt
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看該database底下的table&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/LrRDSbm.png"
+loading="lazy"
+alt="image-20230301114853633"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>在 psql 中，&lt;code>\&lt;/code> 符號是一個特殊的字元，稱為 &amp;ldquo;psql 內部命令前綴&amp;rdquo;。當您在 psql 終端機中輸入以 &lt;code>\&lt;/code> 開頭的命令時，psql 將解釋這個命令，並執行對應的操作。&lt;/p>
+&lt;p>以下是幾個常用的 psql 內部命令：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>\c&lt;/code>: 切換到另一個數據庫&lt;/li>
+&lt;li>&lt;code>\dt&lt;/code>: 列出當前數據庫中的所有表格&lt;/li>
+&lt;li>&lt;code>\d table_name&lt;/code>: 查看指定表格的結構&lt;/li>
+&lt;li>&lt;code>\q&lt;/code>: 退出 psql 終端機&lt;/li>
+&lt;li>&lt;code>\! clear&lt;/code>: 清空psql 終端機畫面&lt;/li>
+&lt;/ul>
+&lt;p>當您想要使用 psql 內部命令時，必須在命令前加上 &lt;code>\&lt;/code> 符號。例如，要列出當前數據庫中的所有表格，您可以輸入 &lt;code>\dt&lt;/code>。&lt;/p>
+&lt;p>如果您想要輸入以 &lt;code>\&lt;/code> 開頭的普通文本，而不是 psql 內部命令，則必須在 &lt;code>\&lt;/code> 前面再加上一個 &lt;code>\&lt;/code> 符號。例如，如果您想要在 SQL 陳述句中使用反斜線（&lt;code>\&lt;/code>）字元，則必須將其寫成 &lt;code>\\&lt;/code>。&lt;/p>
+&lt;p>請注意，在某些情況下，psql 內部命令前綴 &lt;code>\&lt;/code> 可能會和 SQL 語句的關鍵字混淆。例如，&lt;code>CREATE TABLE&lt;/code> 陳述句中的 &lt;code>TABLE&lt;/code> 關鍵字後面如果不加引號可能會被 psql 認為是一個內部命令。為避免這種情況，建議在使用關鍵字時加上引號，例如 &lt;code>&amp;quot;TABLE&amp;quot;&lt;/code>。\&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/6fu3Mmp.png"
+loading="lazy"
+alt="image-20230301114853633"
+>&lt;/p>
+&lt;/blockquote>
+&lt;p>基本上這個terminal就是我們的Query Tool，所以是可以在這邊做CRUD的，如下&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/9rB6wxq.png"
+loading="lazy"
+alt="image-20230301115221834"
+>&lt;/p>
+&lt;h1 id="常用的psql-指令">常用的psql 指令&lt;/h1>
+&lt;ol>
+&lt;li>&lt;code>\q&lt;/code> - 退出 &lt;code>psql&lt;/code> 命令行界面。&lt;/li>
+&lt;li>&lt;code>\c &amp;lt;database_name&amp;gt;&lt;/code> - 連接到指定的數據庫。&lt;/li>
+&lt;li>&lt;code>\dt&lt;/code> - 列出當前數據庫中的所有表格。&lt;/li>
+&lt;li>&lt;strong>&lt;code>\d &amp;lt;table_name&amp;gt;&lt;/code> - 列出指定表格的詳細信息，包括列名、類型和約束等。&lt;/strong>&lt;/li>
+&lt;li>&lt;code>\du&lt;/code> - 列出所有用戶帳號的詳細信息，包括用戶名、權限和群組等。&lt;/li>
+&lt;li>&lt;code>\dp&lt;/code> - 列出所有表格的權限設置。&lt;/li>
+&lt;li>&lt;code>\timing&lt;/code> - 啟用或禁用查詢執行時間的顯示。&lt;/li>
+&lt;li>&lt;code>\set&lt;/code> - 列出或設置 &lt;code>psql&lt;/code> 的配置選項。&lt;/li>
+&lt;li>&lt;code>\i &amp;lt;file_path&amp;gt;&lt;/code> - 從指定的檔案載入 SQL 命令。&lt;/li>
+&lt;li>&lt;code>\e&lt;/code> - 打開外部編輯器編輯當前緩衝區中的 SQL 命令。&lt;/li>
+&lt;li>&lt;strong>&lt;code>\! clear&lt;/code>: 清空psql 終端機畫面&lt;/strong>&lt;/li>
+&lt;li>&lt;code>\dt&lt;/code>: 查看所有表格&lt;/li>
+&lt;li>&lt;code>\df&lt;/code>: 查看資料庫中的所有函數以及Stored Procedure&lt;/li>
+&lt;li>&lt;code>\ef&lt;/code>: 編輯現有的函數，可能你寫錯了還是啥的 ☆修改完後，存檔退出記事本，進到terminal要加上 &lt;code>\g&lt;/code> 才會把這個修改&lt;code>go&lt;/code>出去，不然你怎麼改都是沒有用ㄉ，血與淚的教訓Q_Q&lt;/li>
+&lt;li>&lt;code>\sf&lt;/code>: 查看更詳細的函數內容，s stand for show&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>dt, du, df的d代表Describe的縮寫，用以顯示資料庫的資料&lt;/strong>&lt;/p>
+&lt;h1 id="stored-procedure的實戰">Stored Procedure的實戰&lt;/h1>
+&lt;p>首先創造表格&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="n">users&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="n">id&lt;/span> &lt;span class="nb">SERIAL&lt;/span> &lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">name&lt;/span> &lt;span class="nb">VARCHAR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">email&lt;/span> &lt;span class="nb">VARCHAR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">UNIQUE&lt;/span>
+&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>插入資料&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">INSERT&lt;/span> &lt;span class="k">INTO&lt;/span> &lt;span class="n">users&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">email&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">VALUES&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;John Doe&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;john.doe@example.com&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Jane Doe&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;jane.doe@example.com&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Bob Smith&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;bob.smith@example.com&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="返回值為空的function">返回值為空的Function&lt;/h2>
+&lt;p>先創建一個無關緊要的stored procedure來感受一下它的作用吧，我們創造一個function，用來返回今天的日期，語法如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">OR&lt;/span> &lt;span class="k">REPLACE&lt;/span> &lt;span class="k">FUNCTION&lt;/span> &lt;span class="c1">-- 創建stored procedure的起手式。
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">get_current_date&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1">-- 函式名稱
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">RETURNS&lt;/span> &lt;span class="nb">DATE&lt;/span> &lt;span class="c1">-- 該函式的返回值，若未指定則為Return Null
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">AS&lt;/span> &lt;span class="c1">-- 用以分明函數聲明與函數體，AS上面的是函數聲明，AS下面的是函數體
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="err">$$&lt;/span> &lt;span class="c1">-- 定界符，參照上方說明
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="k">RETURN&lt;/span> &lt;span class="k">CURRENT_DATE&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">-- 函數體
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">END&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="err">$$&lt;/span> &lt;span class="c1">-- 定界符，參照上方說明
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">-- 不加這個就是默認使用SQL語言，只能使用一些比較簡單的語法，加了這個之後就可以作流程控制、循環、異常處理等等...
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著呼叫它&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span> &lt;span class="n">get_current_date&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/qoDZ9PN.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;h2 id="回傳特定資料的function">回傳特定資料的function&lt;/h2>
+&lt;p>該function會返回參數值的使用者的相關資訊&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">OR&lt;/span> &lt;span class="k">REPLACE&lt;/span> &lt;span class="k">FUNCTION&lt;/span> &lt;span class="n">get_user_info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">user_id&lt;/span> &lt;span class="nb">INTEGER&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">RETURNS&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">name&lt;/span> &lt;span class="nb">VARCHAR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">email&lt;/span> &lt;span class="nb">VARCHAR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="k">AS&lt;/span>
+&lt;span class="err">$$&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="k">RETURN&lt;/span> &lt;span class="n">QUERY&lt;/span> &lt;span class="k">SELECT&lt;/span> &lt;span class="n">users&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">users&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">email&lt;/span> &lt;span class="k">FROM&lt;/span> &lt;span class="n">users&lt;/span> &lt;span class="k">WHERE&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">user_id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="err">$$&lt;/span> &lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/MRdpixs.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;h2 id="更新資料的function">更新資料的function&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">OR&lt;/span> &lt;span class="k">REPLACE&lt;/span> &lt;span class="k">FUNCTION&lt;/span> &lt;span class="k">public&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">update_user_info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">user_id&lt;/span> &lt;span class="nb">integer&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="nb">character&lt;/span> &lt;span class="nb">varying&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">email&lt;/span> &lt;span class="nb">character&lt;/span> &lt;span class="nb">varying&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">RETURNS&lt;/span> &lt;span class="n">void&lt;/span>
+&lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>
+&lt;span class="k">AS&lt;/span> &lt;span class="err">$$&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="k">UPDATE&lt;/span> &lt;span class="n">users&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="n">u&lt;/span> &lt;span class="k">SET&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="err">$&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">email&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="err">$&lt;/span>&lt;span class="mi">3&lt;/span> &lt;span class="k">WHERE&lt;/span> &lt;span class="n">u&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="err">$&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="err">$$&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="變數宣告">變數宣告&lt;/h2>
+&lt;p>&lt;code>:=&lt;/code>來進行變數宣告，&lt;code>=&lt;/code>在postgresSQL比較像是用來比較&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">OR&lt;/span> &lt;span class="k">REPLACE&lt;/span> &lt;span class="k">FUNCTION&lt;/span> &lt;span class="n">my_function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">param1&lt;/span> &lt;span class="nb">integer&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">param2&lt;/span> &lt;span class="nb">integer&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">RETURNS&lt;/span> &lt;span class="nb">integer&lt;/span> &lt;span class="k">AS&lt;/span> &lt;span class="err">$$&lt;/span>
+&lt;span class="k">DECLARE&lt;/span>
+&lt;span class="n">var1&lt;/span> &lt;span class="nb">integer&lt;/span> &lt;span class="p">:&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">var2&lt;/span> &lt;span class="nb">integer&lt;/span> &lt;span class="p">:&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="n">var1&lt;/span> &lt;span class="p">:&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="n">param1&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">var2&lt;/span> &lt;span class="p">:&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="n">param2&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">RETURN&lt;/span> &lt;span class="n">var1&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">var2&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="err">$$&lt;/span> &lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="while-語法">WHILE 語法&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">OR&lt;/span> &lt;span class="k">REPLACE&lt;/span> &lt;span class="k">PROCEDURE&lt;/span> &lt;span class="k">public&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">IN&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="nb">INT&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">OUT&lt;/span> &lt;span class="k">result&lt;/span> &lt;span class="nb">BIGINT&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>
+&lt;span class="k">AS&lt;/span> &lt;span class="err">$$&lt;/span>
+&lt;span class="k">DECLARE&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="nb">INT&lt;/span> &lt;span class="p">:&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="k">result&lt;/span> &lt;span class="p">:&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">WHILE&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="n">LOOP&lt;/span>
+&lt;span class="k">result&lt;/span> &lt;span class="p">:&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="k">result&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">i&lt;/span> &lt;span class="p">:&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">END&lt;/span> &lt;span class="n">LOOP&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="err">$$&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="if語法">IF語法&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">OR&lt;/span> &lt;span class="k">REPLACE&lt;/span> &lt;span class="k">PROCEDURE&lt;/span> &lt;span class="n">example_if_proc&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="nb">INT&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">AS&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="k">IF&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="k">THEN&lt;/span>
+&lt;span class="n">DBMS_OUTPUT&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">PUT_LINE&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;a is negative&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">ELSIF&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="k">THEN&lt;/span>
+&lt;span class="n">DBMS_OUTPUT&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">PUT_LINE&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;a is zero&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">ELSE&lt;/span>
+&lt;span class="n">DBMS_OUTPUT&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">PUT_LINE&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;a is positive&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">END&lt;/span> &lt;span class="k">IF&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="將select出來的值儲存在一變數中">將SELECT出來的值儲存在一變數中&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">OR&lt;/span> &lt;span class="k">REPLACE&lt;/span> &lt;span class="k">PROCEDURE&lt;/span> &lt;span class="k">public&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">get_customer_info&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="k">IN&lt;/span> &lt;span class="n">customer_id&lt;/span> &lt;span class="nb">INTEGER&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">OUT&lt;/span> &lt;span class="n">customer_name&lt;/span> &lt;span class="nb">VARCHAR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="k">OUT&lt;/span> &lt;span class="n">customer_email&lt;/span> &lt;span class="nb">VARCHAR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>
+&lt;span class="k">AS&lt;/span> &lt;span class="err">$$&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="k">SELECT&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">email&lt;/span> &lt;span class="k">INTO&lt;/span> &lt;span class="n">customer_name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">customer_email&lt;/span>
+&lt;span class="k">FROM&lt;/span> &lt;span class="n">customers&lt;/span>
+&lt;span class="k">WHERE&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">customer_id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">IF&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">FOUND&lt;/span> &lt;span class="k">THEN&lt;/span>
+&lt;span class="n">RAISE&lt;/span> &lt;span class="k">EXCEPTION&lt;/span> &lt;span class="s1">&amp;#39;Customer not found&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">END&lt;/span> &lt;span class="k">IF&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="err">$$&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="將資訊打印出來print">將資訊打印出來(print)&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">CREATE&lt;/span> &lt;span class="k">OR&lt;/span> &lt;span class="k">REPLACE&lt;/span> &lt;span class="k">procedure&lt;/span> &lt;span class="n">sayHello&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">RETURNS&lt;/span> &lt;span class="n">void&lt;/span>
+&lt;span class="k">LANGUAGE&lt;/span> &lt;span class="n">plpgsql&lt;/span>
+&lt;span class="k">AS&lt;/span> &lt;span class="err">$$&lt;/span>
+&lt;span class="k">DECLARE&lt;/span>
+&lt;span class="k">BEGIN&lt;/span>
+&lt;span class="n">RAISE&lt;/span> &lt;span class="n">NOTICE&lt;/span> &lt;span class="s1">&amp;#39;hello word:&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">END&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="err">$$&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>GitLab-CI/CD筆記</title><link>https://hoxtonhsu.com/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/</link><pubDate>Mon, 06 Feb 2023 19:50:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/b9bWXWs.jpg" alt="Featured image of post GitLab-CI/CD筆記" />&lt;p>&lt;a class="link" href="https://youtu.be/-4XT8-znkuc?list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu" target="_blank" rel="noopener"
 >參考影片：為你自己學GitLab CICD&lt;/a>&lt;/p>
 &lt;h1 id="為何選擇jenkins">為何選擇Jenkins？&lt;/h1>
 &lt;p>目前市面上有三種CI/CD的工具，分別是&lt;/p>
