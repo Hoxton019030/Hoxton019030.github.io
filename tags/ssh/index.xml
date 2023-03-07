@@ -1,97 +1,48 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>SSH on Hoxton</title>
-        <link>https://hoxtonhsu.com/tags/ssh/</link>
-        <description>Recent content in SSH on Hoxton</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh</language>
-        <lastBuildDate>Sun, 05 Feb 2023 21:06:21 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/ssh/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>使用SSH來連動GITSCM</title>
-        <link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</link>
-        <pubDate>Sun, 05 Feb 2023 21:06:21 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</guid>
-        <description>&lt;img src="https://i.imgur.com/8ocM55M.png " alt="Featured image of post 使用SSH來連動GITSCM" /&gt;&lt;h1 id=&#34;步驟&#34;&gt;步驟&lt;/h1&gt;
-&lt;h2 id=&#34;產生key的方式&#34;&gt;產生key的方式&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;儲存key的位置&#34;&gt;儲存Key的位置&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/O7fBG6U.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230205211256218&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;要改就改，不改就是預設的&lt;/p&gt;
-&lt;h2 id=&#34;是否要針對privatekey設置密碼&#34;&gt;是否要針對privateKey設置密碼&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6cq91cE.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230205211413921&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;使用這組Key時需不需要額外使用密碼，不輸入就是空白&lt;/p&gt;
-&lt;h2 id=&#34;查看產生的key&#34;&gt;查看產生的key&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/s4Zz9fr.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230205211703737&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;.pub後綴的就代表是pubKey&lt;/p&gt;
-&lt;p&gt;輸入&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat id_rsa.pub
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;來查看&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/eRFOrX4.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230205211814078&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;此時將這串複製下來，貼到GitHub的SSH Key設定&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/JuU3kev.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230205213904945&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;接著只要上傳是使用SSH方式上傳，就不需要再登入github了&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SSH on Hoxton</title><link>https://hoxtonhsu.com/tags/ssh/</link><description>Recent content in SSH on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 05 Feb 2023 21:06:21 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/ssh/index.xml" rel="self" type="application/rss+xml"/><item><title>使用SSH來連動GITSCM</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</link><pubDate>Sun, 05 Feb 2023 21:06:21 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</guid><description>&lt;img src="https://i.imgur.com/8ocM55M.png " alt="Featured image of post 使用SSH來連動GITSCM" />&lt;h1 id="步驟">步驟&lt;/h1>
+&lt;h2 id="產生key的方式">產生key的方式&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">ssh-keygen
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="儲存key的位置">儲存Key的位置&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/O7fBG6U.png"
+loading="lazy"
+alt="image-20230205211256218"
+>&lt;/p>
+&lt;p>要改就改，不改就是預設的&lt;/p>
+&lt;h2 id="是否要針對privatekey設置密碼">是否要針對privateKey設置密碼&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/6cq91cE.png"
+loading="lazy"
+alt="image-20230205211413921"
+>&lt;/p>
+&lt;p>使用這組Key時需不需要額外使用密碼，不輸入就是空白&lt;/p>
+&lt;h2 id="查看產生的key">查看產生的key&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/s4Zz9fr.png"
+loading="lazy"
+alt="image-20230205211703737"
+>&lt;/p>
+&lt;p>.pub後綴的就代表是pubKey&lt;/p>
+&lt;p>輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">cat id_rsa.pub
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/eRFOrX4.png"
+loading="lazy"
+alt="image-20230205211814078"
+>&lt;/p>
+&lt;p>此時將這串複製下來，貼到GitHub的SSH Key設定&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/JuU3kev.png"
+loading="lazy"
+alt="image-20230205213904945"
+>&lt;/p>
+&lt;p>接著只要上傳是使用SSH方式上傳，就不需要再登入github了&lt;/p></description></item></channel></rss>

@@ -1,330 +1,168 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>IDE on Hoxton</title>
-        <link>https://hoxtonhsu.com/tags/ide/</link>
-        <description>Recent content in IDE on Hoxton</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh</language>
-        <lastBuildDate>Sun, 23 Oct 2022 20:40:49 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/ide/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>IntelliJ與Eclipse的比較</title>
-        <link>https://hoxtonhsu.com/p/intellij%E8%88%87eclipse%E7%9A%84%E6%AF%94%E8%BC%83/</link>
-        <pubDate>Sun, 23 Oct 2022 20:40:49 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/intellij%E8%88%87eclipse%E7%9A%84%E6%AF%94%E8%BC%83/</guid>
-        <description>&lt;img src="https://i.imgur.com/Fx9nanx.png" alt="Featured image of post IntelliJ與Eclipse的比較" /&gt;&lt;h2 id=&#34;推薦的plugin&#34;&gt;推薦的Plugin&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Plugin名稱&lt;/th&gt;
-&lt;th&gt;截圖&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;One Dark Theme&lt;br /&gt;&lt;img src=&#34;https://i.imgur.com/RDwmNyk.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109011709066&#34;
-	
-	
-&gt;佈景主題&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/rokbaGu.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109011724288&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;br /&gt;&lt;img src=&#34;https://i.imgur.com/DXd3gwi.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109011844072&#34;
-	
-	
-&gt;按鍵提示&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/tHGPxbO.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;ShortCutHit&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Rainbow Brackets&lt;br /&gt;&lt;img src=&#34;https://i.imgur.com/U1YiDG0.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109012245196&#34;
-	
-	
-&gt;&lt;br /&gt;括弧顏色顯示&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/hX6ghuf.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109012300415&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Nyan Progress Bar&lt;img src=&#34;https://i.imgur.com/puz6Ast.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109012330374&#34;
-	
-	
-&gt;&lt;br /&gt;讀取條改變&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/DwOQ9TA.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;bar&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;要改的設定&#34;&gt;要改的設定&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Code Completion Alt+.&lt;br /&gt;&lt;br /&gt; &lt;img src=&#34;https://i.imgur.com/wI4OJLb.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109012657212&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/QDvdM96.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;code&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Second Basic Alt+/&lt;br /&gt;  &lt;img src=&#34;https://i.imgur.com/UQP8q4F.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109013135689&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/1nIbigD.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;comple&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Run F10&lt;br /&gt;&lt;img src=&#34;https://i.imgur.com/GRWVIQD.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109013451000&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;td&gt;就Run&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Terminal Alt+`&lt;br /&gt;&lt;img src=&#34;https://i.imgur.com/mULyQep.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109013544910&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/xpIwXjH.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;更改Terminal Bash CMD or Window terminal&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/pfBEHEU.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109013734173&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;更改TODO 模板&lt;br /&gt;&lt;img src=&#34;https://i.imgur.com/fxIxqq0.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221109013905433&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/omEwjLh.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;demo&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;實用的快捷鍵&#34;&gt;實用的快捷鍵&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;功能&lt;/th&gt;
-&lt;th&gt;預覽&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;搜尋 &lt;br /&gt;Shift+shift&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/VeRXfgk.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;search2&#34;
-	
-	
-&gt;&lt;br /&gt;快速列出所有可能，快速定位&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;切換分頁&lt;br /&gt; Ctrl+E&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/T48Dr58.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;switch2&#34;
-	
-	
-&gt;&lt;br /&gt;預設快捷鍵，會列出最近開啟的分頁&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;選擇檔案&lt;br /&gt; Alt+F1然後按1&lt;br /&gt;若不想選擇按Esc退回Editor&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/o7J2P5D.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;demo&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;快速選取區塊&lt;br /&gt;Ctrl+W&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/sP0SaBd.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;selectWord&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;快速選取方法&lt;br /&gt;Alt+↑&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/4WVURXZ.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;SelectMethod&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;內建GitBlame功能&lt;br /&gt;對行數右鍵選擇gitBlame&lt;/td&gt;
-&lt;td&gt;&lt;img src=&#34;https://i.imgur.com/kvtETsi.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;GitBlame&#34;
-	
-	
-&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>IDE on Hoxton</title><link>https://hoxtonhsu.com/tags/ide/</link><description>Recent content in IDE on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 23 Oct 2022 20:40:49 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/ide/index.xml" rel="self" type="application/rss+xml"/><item><title>IntelliJ與Eclipse的比較</title><link>https://hoxtonhsu.com/p/intellij%E8%88%87eclipse%E7%9A%84%E6%AF%94%E8%BC%83/</link><pubDate>Sun, 23 Oct 2022 20:40:49 +0800</pubDate><guid>https://hoxtonhsu.com/p/intellij%E8%88%87eclipse%E7%9A%84%E6%AF%94%E8%BC%83/</guid><description>&lt;img src="https://i.imgur.com/Fx9nanx.png" alt="Featured image of post IntelliJ與Eclipse的比較" />&lt;h2 id="推薦的plugin">推薦的Plugin&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Plugin名稱&lt;/th>
+&lt;th>截圖&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>One Dark Theme&lt;br />&lt;img src="https://i.imgur.com/RDwmNyk.png"
+loading="lazy"
+alt="image-20221109011709066"
+>佈景主題&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/rokbaGu.png"
+loading="lazy"
+alt="image-20221109011724288"
+>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;br />&lt;img src="https://i.imgur.com/DXd3gwi.png"
+loading="lazy"
+alt="image-20221109011844072"
+>按鍵提示&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/tHGPxbO.gif"
+loading="lazy"
+alt="ShortCutHit"
+>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Rainbow Brackets&lt;br />&lt;img src="https://i.imgur.com/U1YiDG0.png"
+loading="lazy"
+alt="image-20221109012245196"
+>&lt;br />括弧顏色顯示&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/hX6ghuf.png"
+loading="lazy"
+alt="image-20221109012300415"
+>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Nyan Progress Bar&lt;img src="https://i.imgur.com/puz6Ast.png"
+loading="lazy"
+alt="image-20221109012330374"
+>&lt;br />讀取條改變&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/DwOQ9TA.gif"
+loading="lazy"
+alt="bar"
+>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="要改的設定">要改的設定&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Code Completion Alt+.&lt;br />&lt;br /> &lt;img src="https://i.imgur.com/wI4OJLb.png"
+loading="lazy"
+alt="image-20221109012657212"
+>&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/QDvdM96.gif"
+loading="lazy"
+alt="code"
+>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Second Basic Alt+/&lt;br /> &lt;img src="https://i.imgur.com/UQP8q4F.png"
+loading="lazy"
+alt="image-20221109013135689"
+>&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/1nIbigD.gif"
+loading="lazy"
+alt="comple"
+>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Run F10&lt;br />&lt;img src="https://i.imgur.com/GRWVIQD.png"
+loading="lazy"
+alt="image-20221109013451000"
+>&lt;/td>
+&lt;td>就Run&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Terminal Alt+`&lt;br />&lt;img src="https://i.imgur.com/mULyQep.png"
+loading="lazy"
+alt="image-20221109013544910"
+> | &lt;img src="https://i.imgur.com/xpIwXjH.gif"
+loading="lazy"
+> |&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>更改Terminal Bash CMD or Window terminal&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/pfBEHEU.png"
+loading="lazy"
+alt="image-20221109013734173"
+>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>更改TODO 模板&lt;br />&lt;img src="https://i.imgur.com/fxIxqq0.png"
+loading="lazy"
+alt="image-20221109013905433"
+>&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/omEwjLh.gif"
+loading="lazy"
+alt="demo"
+>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="實用的快捷鍵">實用的快捷鍵&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>功能&lt;/th>
+&lt;th>預覽&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>搜尋 &lt;br />Shift+shift&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/VeRXfgk.gif"
+loading="lazy"
+alt="search2"
+>&lt;br />快速列出所有可能，快速定位&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>切換分頁&lt;br /> Ctrl+E&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/T48Dr58.gif"
+loading="lazy"
+alt="switch2"
+>&lt;br />預設快捷鍵，會列出最近開啟的分頁&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>選擇檔案&lt;br /> Alt+F1然後按1&lt;br />若不想選擇按Esc退回Editor&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/o7J2P5D.gif"
+loading="lazy"
+alt="demo"
+>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>快速選取區塊&lt;br />Ctrl+W&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/sP0SaBd.gif"
+loading="lazy"
+alt="selectWord"
+>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>快速選取方法&lt;br />Alt+↑&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/4WVURXZ.gif"
+loading="lazy"
+alt="SelectMethod"
+>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>內建GitBlame功能&lt;br />對行數右鍵選擇gitBlame&lt;/td>
+&lt;td>&lt;img src="https://i.imgur.com/kvtETsi.gif"
+loading="lazy"
+alt="GitBlame"
+>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item></channel></rss>

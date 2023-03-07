@@ -1,75 +1,45 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Git on Hoxton</title>
-        <link>https://hoxtonhsu.com/tags/git/</link>
-        <description>Recent content in Git on Hoxton</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh</language>
-        <lastBuildDate>Fri, 06 Jan 2023 14:15:51 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/git/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>實用的Git指令</title>
-        <link>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/</link>
-        <pubDate>Fri, 06 Jan 2023 14:15:51 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/</guid>
-        <description>&lt;img src="https://i.imgur.com/nCGDuUc.png " alt="Featured image of post 實用的Git指令" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
-&lt;p&gt;整理一下工作上有用過，並覺得實用、比較少人提過的一些Git指令。&lt;/p&gt;
-&lt;h1 id=&#34;git指令&#34;&gt;Git指令&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;退回到上一個Commit，數字可以更改，1就是上一次，改成三的話就是三次前的Commit&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout HEAD~1
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/MNnAwmx.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;demo2&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;退回上一次的Commit，重複輸入的話會往復循環&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/GpQAK2L.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;demo2&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;將本次修改合併至上次Commit，如果有漏掉的提交會常用這個指令&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit --amend --no-edit
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
-        </item>
-        
-    </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Hoxton</title><link>https://hoxtonhsu.com/tags/git/</link><description>Recent content in Git on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 06 Jan 2023 14:15:51 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>實用的Git指令</title><link>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/</link><pubDate>Fri, 06 Jan 2023 14:15:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/</guid><description>&lt;img src="https://i.imgur.com/nCGDuUc.png " alt="Featured image of post 實用的Git指令" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>整理一下工作上有用過，並覺得實用、比較少人提過的一些Git指令。&lt;/p>
+&lt;h1 id="git指令">Git指令&lt;/h1>
+&lt;ol>
+&lt;li>退回到上一個Commit，數字可以更改，1就是上一次，改成三的話就是三次前的Commit&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git checkout HEAD~1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/MNnAwmx.gif"
+loading="lazy"
+alt="demo2"
+>&lt;/p>
+&lt;ol start="2">
+&lt;li>退回上一次的Commit，重複輸入的話會往復循環&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git checkout -
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/GpQAK2L.gif"
+loading="lazy"
+alt="demo2"
+>&lt;/p>
+&lt;ol start="3">
+&lt;li>將本次修改合併至上次Commit，如果有漏掉的提交會常用這個指令&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git commit --amend --no-edit
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

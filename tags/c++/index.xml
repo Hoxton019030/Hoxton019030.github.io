@@ -1,76 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>C&#43;&#43; on Hoxton</title>
-        <link>https://hoxtonhsu.com/tags/c&#43;&#43;/</link>
-        <description>Recent content in C&#43;&#43; on Hoxton</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh</language>
-        <lastBuildDate>Mon, 17 Oct 2022 18:09:43 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/c++/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>CLion的MutilMain</title>
-        <link>https://hoxtonhsu.com/p/clion%E7%9A%84mutilmain/</link>
-        <pubDate>Mon, 17 Oct 2022 18:09:43 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/clion%E7%9A%84mutilmain/</guid>
-        <description>&lt;img src="https://i.imgur.com/aGwtINt.png" alt="Featured image of post CLion的MutilMain" /&gt;&lt;p&gt;最近在研究C++，但發現我的CLion不知道為什麼只能有一個Main方法，後來網路上查了一下之後發現好像是因為CMake的關係。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/F5hZpXH.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221017181210022&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;錯誤訊息&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;後來研究了一下，發現只要在Project底下的CMakeList.txt加上這段就可以了&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;file (GLOB files *.cpp)
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;foreach (file ${files})
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    string(REGEX REPLACE &amp;#34;.+/(.+)\\..*&amp;#34; &amp;#34;\\1&amp;#34; exe ${file})
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    add_executable (${exe} ${file})
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    message (\ \ \ \ --\ src/${exe}.cpp\ will\ be\ compiled\ to\ bin/${exe})
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;endforeach ()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/qKhhlaq.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221017181342487&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;完整的圖片如上&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;加入之後記得要Reload CMake Project&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/DrQHwR8.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20221017181404785&#34;
-	
-	
-&gt;&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C++ on Hoxton</title><link>https://hoxtonhsu.com/tags/c++/</link><description>Recent content in C++ on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 17 Oct 2022 18:09:43 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/c++/index.xml" rel="self" type="application/rss+xml"/><item><title>CLion的MutilMain</title><link>https://hoxtonhsu.com/p/clion%E7%9A%84mutilmain/</link><pubDate>Mon, 17 Oct 2022 18:09:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/clion%E7%9A%84mutilmain/</guid><description>&lt;img src="https://i.imgur.com/aGwtINt.png" alt="Featured image of post CLion的MutilMain" />&lt;p>最近在研究C++，但發現我的CLion不知道為什麼只能有一個Main方法，後來網路上查了一下之後發現好像是因為CMake的關係。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/F5hZpXH.png"
+loading="lazy"
+alt="image-20221017181210022"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>錯誤訊息&lt;/p>
+&lt;/blockquote>
+&lt;p>後來研究了一下，發現只要在Project底下的CMakeList.txt加上這段就可以了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">file (GLOB files *.cpp)
+foreach (file ${files})
+string(REGEX REPLACE &amp;#34;.+/(.+)\\..*&amp;#34; &amp;#34;\\1&amp;#34; exe ${file})
+add_executable (${exe} ${file})
+message (\ \ \ \ --\ src/${exe}.cpp\ will\ be\ compiled\ to\ bin/${exe})
+endforeach ()
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/qKhhlaq.png"
+loading="lazy"
+alt="image-20221017181342487"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>完整的圖片如上&lt;/p>
+&lt;/blockquote>
+&lt;p>加入之後記得要Reload CMake Project&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DrQHwR8.png"
+loading="lazy"
+alt="image-20221017181404785"
+>&lt;/p></description></item></channel></rss>
