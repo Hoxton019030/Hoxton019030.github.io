@@ -11603,7 +11603,18 @@ alt="image-20230223232944377"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="ch5-tree-and-binary-tree-1">Ch5 Tree and Binary Tree&lt;/h1>
+&lt;/div>&lt;h4 id="permutation列印">Permutation列印&lt;/h4>
+&lt;p>將[a,b,c]以不同的排列組合印出來&lt;/p>
+&lt;p>如&lt;/p>
+&lt;p>abc&lt;/p>
+&lt;p>acb&lt;/p>
+&lt;p>bac&lt;/p>
+&lt;p>bca&lt;/p>
+&lt;p>cba&lt;/p>
+&lt;p>cab&lt;/p>
+&lt;p>有3!=6種寫法&lt;/p>
+&lt;p>以遞迴的概念來理解&lt;/p>
+&lt;h1 id="ch5-tree-and-binary-tree-1">Ch5 Tree and Binary Tree&lt;/h1>
 &lt;p>&lt;strong>Tree跟BinaryTree不一樣&lt;/strong>&lt;/p>
 &lt;h2 id="學習路線-1">學習路線&lt;/h2>
 &lt;blockquote>
