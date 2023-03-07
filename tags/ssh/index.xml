@@ -26,6 +26,13 @@ loading="lazy"
 alt="image-20230205211703737"
 >&lt;/p>
 &lt;p>.pub後綴的就代表是pubKey&lt;/p>
+&lt;h2 id="進入主機內將private-key加入">進入主機內，將private Key加入&lt;/h2>
+&lt;p>在.ssh底下會有一個authorized_keys的檔案
+將privateKey放入其中就好&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xnGrZmN.png"
+loading="lazy"
+alt="image-20230307235351522"
+>&lt;/p>
 &lt;p>輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
