@@ -1,4 +1,62 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 08 Mar 2023 20:48:18 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>Git在第一次使用的credentialhelperselector該怎麼設定呢</title><link>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</link><pubDate>Wed, 08 Mar 2023 20:48:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/PFJUZO4.png" alt="Featured image of post Git在第一次使用的credentialhelperselector該怎麼設定呢" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 08 Mar 2023 20:56:55 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>只要按個鍵，圖片立刻上傳至雲端 PicGo介紹</title><link>https://hoxtonhsu.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</link><pubDate>Wed, 08 Mar 2023 20:56:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/QvMQf4h.png" alt="Featured image of post 只要按個鍵，圖片立刻上傳至雲端 PicGo介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
+&lt;p>PicGo是個開源的圖片上傳程式(並非平台)，由於設定快速，效果簡單而深受我的喜愛，決定寫一篇文章來介紹這東西該怎麼使用&lt;/p>
+&lt;h1 id="安裝">安裝&lt;/h1>
+&lt;p>我們使用Choco來安裝，Choco是一個Window系統的檔案下載工具，可以做類似npm的功能，以下是它的安裝方式。&lt;/p>
+&lt;p>使用&lt;strong>系統管理員&lt;/strong>執行CMD，並輸入以下的指令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">Set-ExecutionPolicy Bypass -Scope Process -Force&lt;span class="p">;&lt;/span> &lt;span class="o">[&lt;/span>System.Net.ServicePointManager&lt;span class="o">]&lt;/span>::SecurityProtocol &lt;span class="o">=&lt;/span> &lt;span class="o">[&lt;/span>System.Net.ServicePointManager&lt;span class="o">]&lt;/span>::SecurityProtocol -bor 3072&lt;span class="p">;&lt;/span> iex &lt;span class="o">((&lt;/span>New-Object System.Net.WebClient&lt;span class="o">)&lt;/span>.DownloadString&lt;span class="o">(&lt;/span>&lt;span class="s1">&amp;#39;https://community.chocolatey.org/install.ps1&amp;#39;&lt;/span>&lt;span class="o">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>即下載成功，若下載成功，可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">choco --version
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看是否安裝成功&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/StJyUnh.png"
+loading="lazy"
+alt="image-20230308210113018"
+>&lt;/p>
+&lt;p>若Choco安裝沒問題，則可以透過以下指令安裝picGo，若跳出什麼無法存取，則請記得要&lt;strong>使用系統管理員身分&lt;/strong>執行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">choco install picgo
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/iZGJC8G.png"
+loading="lazy"
+alt="image-20230308210301760"
+>&lt;/p>
+&lt;h1 id="使用">使用&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/Zb3DFev.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>我有點懶得打，就錄成Gif了，這邊其實就是去Imgur的&lt;/p>
+&lt;p>&lt;a href="https://imgur.com/account/settings/apps">https://imgur.com/account/settings/apps&lt;/a>&lt;/p>
+&lt;p>這邊，去設定你的一個ClinetId&lt;/p>
+&lt;p>然後把它貼到&lt;code>設定ClinetId&lt;/code>那一欄就可以&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/IXOptVX.png"
+loading="lazy"
+alt="image-20230308210959190"
+>&lt;/p>
+&lt;p>並且我也會推薦將上傳的快捷鍵調成Ctrl+Alt+V&lt;/p>
+&lt;p>這樣當你按下Win+Shift+S，截圖後，只要按下Ctrl+Alt+V，圖片就會自動幫你上傳至Imgur囉&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/UejcWoE.png"
+loading="lazy"
+alt="image-20230308211104660"
+>&lt;/p></description></item><item><title>Git在第一次使用的credentialhelperselector該怎麼設定呢</title><link>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</link><pubDate>Wed, 08 Mar 2023 20:48:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/PFJUZO4.png" alt="Featured image of post Git在第一次使用的credentialhelperselector該怎麼設定呢" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>每次在新電腦上使用Git的時候都會跳這個東西出來，但一直不知道這是啥，這次來研究一下&lt;/p>
 &lt;h1 id="總結">總結&lt;/h1>
 &lt;p>這東西其實是因為如果要推東西上去或是拉Private專案下來的話，會需要做認證(Credential)的部分，而這個視窗其實就是在問你，你所提供的這些登入資訊想存在哪邊?&lt;/p>
