@@ -202,7 +202,28 @@ alt="image-20230208114831319"
 &lt;ul>
 &lt;li>如何註冊一個Runner&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://i.imgur.com/TZSQrpa.gif"
+&lt;p>可以參考GitLab的官方文件
+&lt;a href="https://docs.gitlab.com/runner/install/">https://docs.gitlab.com/runner/install/&lt;/a>&lt;/p>
+&lt;p>在Ubuntu系統下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">curl -L &lt;span class="s2">&amp;#34;https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> sudo bash
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著執行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo apt-get install gitlab-runner
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/TZSQrpa.gif"
 loading="lazy"
 alt="demo"
 >&lt;/p>
