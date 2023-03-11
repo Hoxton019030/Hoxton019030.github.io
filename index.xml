@@ -10722,7 +10722,8 @@ alt="image-20230307231842002"
 >&lt;/p>
 &lt;p>Note：等同於西餐，大家規定：先取刀再取叉&lt;/p>
 &lt;h4 id="cigarette-smokers-problem">cigarette smokers problem&lt;/h4>
-&lt;p>很少考，從50年前就沒考過了。Pass&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;h1 id="學習路線">學習路線&lt;/h1>
+&lt;p>很少考，從50年前就沒考過了。Pass&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
 &lt;h2 id="ch5-tree-and-binary-tree">Ch5 Tree And Binary Tree&lt;/h2>
@@ -11797,6 +11798,68 @@ alt="image-20230308214715912"
 loading="lazy"
 alt="1914A818-E923-4D51-854B-57E4AB2A9C3F"
 >&lt;/p>
+&lt;h2 id="performance-analysis效能分析">Performance Analysis(效能分析)&lt;/h2>
+&lt;p>Algo/code之效能分析，主要分析兩點&lt;/p>
+&lt;ol>
+&lt;li>Space&lt;/li>
+&lt;li>Time&lt;/li>
+&lt;/ol>
+&lt;h2 id="space空間需求分析">Space(空間)需求分析&lt;/h2>
+&lt;p>定義：令SP(P)代表Algo/Code P 之空間需求，則SP(P)= &lt;strong>Fixed&lt;/strong> Space requirement + &lt;strong>Variable&lt;/strong> Space Requirement&lt;/p>
+&lt;p>固定(Fixed)空間需求= Instruction (or Code) Space &lt;code>意即你寫了幾行的程式&lt;/code>+變數+常數空間 =&lt;strong>C&lt;/strong>(mean Constant)&lt;/p>
+&lt;p>變動(Varialbe)空間需求=&lt;/p>
+&lt;p>主要有兩個來源&lt;/p>
+&lt;ol>
+&lt;li>若參數為結構型態(Array, Struct)且&lt;strong>採用Call-By-Value參數傳遞方式&lt;/strong>(若是用Call-By-Address則也不是變動空間，因為只收一個Address的起始位址而已)&lt;/li>
+&lt;li>遞迴(recursion)所需之stack space (堆疊空間)&lt;/li>
+&lt;/ol>
+&lt;p>因此主要的分析是在變動空間需求這邊&lt;/p>
+&lt;p>SP(P)= C + SP(i)&lt;/p>
+&lt;p>範例&lt;/p>
+&lt;p>求SP(i)=?&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">rsum&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">floot&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="p">[],&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">n&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="o">!=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">rsum&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">list&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">list&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="c1">// 此外，假設 floot 佔4 bytes, int佔2bytes pointr(address)佔2bytes, List[]採用Call-by-address傳遞
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Ans.SP(i)= Stack Space for recursion&lt;/p>
+&lt;p>如何計算?&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>每發生一次遞迴的呼叫(recusive call)，我們需要將&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>參數值 &lt;code>list[] 佔2byte,因為是call by address。n 佔2bytes&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>區域變數值&lt;code>無&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Return Address&lt;code>一定有，題目說是2Byte&lt;/code>&lt;/p>
+&lt;p>&lt;strong>Push 6 byte per recursive call&lt;/strong>&lt;/p>
+&lt;p>又共發生&lt;strong>n&lt;/strong>次recursive call(不含rsum(list,n))&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>因此Sp(i)= 6n bytes&lt;/p>
 &lt;h1 id="ch5-tree-and-binary-tree-1">Ch5 Tree and Binary Tree&lt;/h1>
 &lt;p>&lt;strong>Tree跟BinaryTree不一樣&lt;/strong>&lt;/p>
 &lt;h2 id="學習路線-1">學習路線&lt;/h2>
