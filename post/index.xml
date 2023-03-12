@@ -11843,6 +11843,110 @@ alt="1914A818-E923-4D51-854B-57E4AB2A9C3F"
 &lt;/li>
 &lt;/ul>
 &lt;p>因此Sp(i)= 6n bytes&lt;/p>
+&lt;h2 id="time時間需求分析">Time(時間)需求分析&lt;/h2>
+&lt;p>定義：令T(P)代表Algo,code P之時間需求，則T(P)=Development time(開發時間) + Execution Time&lt;/p>
+&lt;p>只注重/討論 Execution Time分析in DS/Algo課程&lt;/p>
+&lt;p>Execution Time之評量有兩個方法&lt;/p>
+&lt;ol>
+&lt;li>Measurement(實際量度)&lt;/li>
+&lt;li>&lt;strong>Analysis&lt;/strong>(分析、預估)\&lt;/li>
+&lt;/ol>
+&lt;p>本課程是採用Analysis方式，Analysis是以Algo/Code的指令執行總次數，作為分析Time之基礎&lt;/p>
+&lt;p>範例1. 不考慮指令之難易度&lt;/p>
+&lt;p>eq. 整數除法 a/b，浮點數除法 a/b視為一樣&lt;/p>
+&lt;p>原始code如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="k">for&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="err">≦&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then, 宣告一個Global變數，Count=0，在適當處加入Count++之敘述&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="k">for&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="err">≦&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="n">count&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">//用來統計for做幾次
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">count&lt;/span>&lt;span class="o">++&lt;/span> &lt;span class="c1">//統計 a=a+b做幾次
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;span class="n">count&lt;/span> &lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="c1">// for最後失敗的那一次，跳出for迴圈，實際上還是有做，因此要補上
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="n">conut&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">//用來統計下面的return
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">return&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>T(P)= 指令執行次數之統計= 2n+1+1(每行被執行了幾次)=2n+2次&lt;/p>
+&lt;p>範例2. 考慮指令之難易程度&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Source Code&lt;/th>
+&lt;th>S/E&lt;/th>
+&lt;th>Frequency&lt;/th>
+&lt;th>Total&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>for(i=1;i≦n;i++)&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>n+1&lt;/td>
+&lt;td>4n+4&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>{a=a+b}&lt;/td>
+&lt;td>2&lt;/td>
+&lt;td>n&lt;/td>
+&lt;td>2n&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>return a&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>6n+5&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>利用S/E (Steps per Execution&lt;code>每執行一次要花幾步，開心要怎麼定就怎麼定&lt;/code>)區別指令難易程度 S/E高，代表較難&lt;/p>
+&lt;h2 id="研究所的time分析考型">研究所的Time分析考型&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>計算某行指令執行次數&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Asymptotic&lt;code>漸進式&lt;/code> Notations&lt;code>符號&lt;/code>定義、大小、定理&lt;/p>
+&lt;p>(O,Ω,θ,o,w)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Recursive time function遞迴時間函數計算/求解 (eq. Honai Tower:T(n)+2*T(n-1)+1)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>給一遞迴演算法Recursive algo/code寫出Time Function求解&lt;/p>
+&lt;/li>
+&lt;/ol>
 &lt;h1 id="ch5-tree-and-binary-tree-1">Ch5 Tree and Binary Tree&lt;/h1>
 &lt;p>&lt;strong>Tree跟BinaryTree不一樣&lt;/strong>&lt;/p>
 &lt;h2 id="學習路線-1">學習路線&lt;/h2>
