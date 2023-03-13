@@ -5,6 +5,7 @@
 loading="lazy"
 alt="image-20230314004011166"
 >&lt;/p>
+&lt;h1 id="修改前">修改前&lt;/h1>
 &lt;p>這是我的設計&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -126,6 +127,7 @@ alt="image-20230314004011166"
 &lt;li>當資料庫在擴充時，必須要回頭修改&lt;code>getDatabaseDao&lt;/code>，增加修改的成本&lt;/li>
 &lt;li>無法利用SpringBean的IoC，每次有新的Request近來，都會創造一個Dao的Object存在於記憶體中，造成記憶體空間的浪費&lt;/li>
 &lt;/ol>
+&lt;h1 id="修改後">修改後&lt;/h1>
 &lt;p>因此後來的修改必須得改善上面兩點，必須要符合OCP的規則，我只要新增新的Dao，而毋需修改就有的程式碼，並且還要使用SpringBean，以下是修改後的版本&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
