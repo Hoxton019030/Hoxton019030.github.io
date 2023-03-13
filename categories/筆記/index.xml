@@ -37,7 +37,35 @@ alt="image-20230313142828806"
 &lt;li>創建一個Trigger，設置成當CPU負載過高時會觸發&lt;/li>
 &lt;li>Trigger被觸發，發送告警郵件&lt;/li>
 &lt;/ol>
-&lt;p>雖然看起來有很多步驟，但是使用模板的話操作起來其實非常簡單，Zabbix這樣的設計使得配置機制非常靈活易用&lt;/p></description></item><item><title>StoreProcedure跟PSQL的筆記</title><link>https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 01 Mar 2023 09:45:17 +0800</pubDate><guid>https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1BTtOUL.png" alt="Featured image of post StoreProcedure跟PSQL的筆記" />&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=yLR1w4tZ36I&amp;amp;ab_channel=techTFQ" target="_blank" rel="noopener"
+&lt;p>雖然看起來有很多步驟，但是使用模板的話操作起來其實非常簡單，Zabbix這樣的設計使得配置機制非常靈活易用&lt;/p>
+&lt;p>主機(Host)&lt;/p>
+&lt;ul>
+&lt;li>一台你想監控的網路設備，用IP和域名表示&lt;/li>
+&lt;/ul>
+&lt;p>主機組(host Group)&lt;/p>
+&lt;ul>
+&lt;li>主機的邏輯組；包含了主機和模板。一個主機裡的主機和模板之間並沒有任何直接的關聯，通常在給不同用戶組的主機分配權限時，使用主機組&lt;/li>
+&lt;/ul>
+&lt;p>監控項(item)&lt;/p>
+&lt;ul>
+&lt;li>你想要接收的主機的特定數據，一個度量數據&lt;/li>
+&lt;/ul>
+&lt;p>觸發器(Trigger)&lt;/p>
+&lt;ul>
+&lt;li>一個被用於定義問題閾值和&amp;quot;評估&amp;quot;監控項接受到的數據的邏輯表達式，當接收到的數據高於閾值時，觸發器從OK變成Problem狀態。當接收到的數據低於閾值時，觸發器保留/返回一個OK的狀態&lt;/li>
+&lt;/ul>
+&lt;p>事件(Event)&lt;/p>
+&lt;ul>
+&lt;li>單次發生的需要注意的事情，例如觸發器狀態改變，或是發現有監控代理自動註冊&lt;/li>
+&lt;/ul>
+&lt;p>異常(Problem)&lt;/p>
+&lt;ul>
+&lt;li>一個處在&lt;strong>異常&lt;/strong>狀態的觸發器&lt;/li>
+&lt;/ul>
+&lt;p>動作(Action)&lt;/p>
+&lt;ul>
+&lt;li>一個對事件做出反應的預定義的操作&lt;/li>
+&lt;/ul></description></item><item><title>StoreProcedure跟PSQL的筆記</title><link>https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 01 Mar 2023 09:45:17 +0800</pubDate><guid>https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1BTtOUL.png" alt="Featured image of post StoreProcedure跟PSQL的筆記" />&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=yLR1w4tZ36I&amp;amp;ab_channel=techTFQ" target="_blank" rel="noopener"
 >參考網站&lt;/a>&lt;/p>
 &lt;p>&lt;strong>這篇文章是以Postgres SQL的語法為主，其他RDB的語法略有不同&lt;/strong>&lt;/p>
 &lt;h1 id="什麼是store-procedure">什麼是Store Procedure&lt;/h1>
