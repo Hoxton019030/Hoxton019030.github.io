@@ -65,6 +65,71 @@ alt="image-20230313142828806"
 &lt;p>動作(Action)&lt;/p>
 &lt;ul>
 &lt;li>一個對事件做出反應的預定義的操作&lt;/li>
+&lt;li>一個動作由操作(例如發出通知)和條件(當時操作正在發生)組成&lt;/li>
+&lt;/ul>
+&lt;p>升級(Escalation)&lt;/p>
+&lt;ul>
+&lt;li>一個在動作內執行操作的自定義場景；發生通知／執行遠程命令的序列&lt;/li>
+&lt;/ul>
+&lt;p>媒介(Media)&lt;/p>
+&lt;ul>
+&lt;li>發送告警通知的手段；告警通知的途徑&lt;/li>
+&lt;/ul>
+&lt;p>通知(Notification)&lt;/p>
+&lt;ul>
+&lt;li>利用已選擇的媒體途徑把跟事件相關的訊息發送給用戶&lt;/li>
+&lt;/ul>
+&lt;p>遠程命令(remote command)&lt;/p>
+&lt;ul>
+&lt;li>一個預定義好的，滿足一些條件的情況下，可以在被監控主機上自動執行的命令&lt;/li>
+&lt;/ul>
+&lt;p>模板(template)&lt;/p>
+&lt;ul>
+&lt;li>一組可以被應用到一個或多個主機上的實體(監控項、觸發器、圖形、聚合圖形、應用、LLD、Web場景)的集合&lt;/li>
+&lt;li>模板的任務就是加快對主機監控任務的實施；也可以使監控任務的批量修改更簡單。模板是直接關連到每台單獨的主機上&lt;/li>
+&lt;/ul>
+&lt;p>應用(Application)&lt;/p>
+&lt;ul>
+&lt;li>一組監控項組成的邏輯分組&lt;/li>
+&lt;/ul>
+&lt;p>Web場景(Web Scenario)&lt;/p>
+&lt;ul>
+&lt;li>利用一個或多個HTTP請求來檢查網站的可用性&lt;/li>
+&lt;/ul>
+&lt;p>前端(FrontEnd)&lt;/p>
+&lt;ul>
+&lt;li>Zabbix提供的Web介面&lt;/li>
+&lt;/ul>
+&lt;p>Zabbix API&lt;/p>
+&lt;ul>
+&lt;li>Zabbix API允許你使用JSON RPC協議(是一個無狀態且輕量級的遠程過程調用&lt;code>Remote Procedure Call &lt;/code>傳送協議，其傳遞內容透過JSON為主)來創建、更新和獲取Zabbix對象(如主機、監控項、圖形和其他)信息或者執行任何其他的字定義的任務&lt;/li>
+&lt;/ul>
+&lt;p>Zabbix Server&lt;/p>
+&lt;ul>
+&lt;li>Zabbix軟件實現監控的核心程序，主要功能是與Zabbix proxies和Agents進行交互、觸發器計算、發送告警通知、並將資料集中保存&lt;/li>
+&lt;/ul>
+&lt;p>Zabbix Agent&lt;/p>
+&lt;ul>
+&lt;li>一個部屬在監控對象上的，能夠主動監控本地資源和應用的程序&lt;/li>
+&lt;li>Zabbix Agent部屬在監控的目標上，主動監測本地的資源和應用(硬體驅動、記憶體、處理器統計等等)&lt;/li>
+&lt;li>Zabbix Agent收集本地的操作訊息並將資料報告給Zabbix Server用於進一步處理。一旦出現異常(比如硬碟空間已滿或者有崩潰的服務器Process)，Zabbix Server會主動警告管理員指定機器上的異常。Zabbix Agents的極端高校源於他可以利用本地系統調用來完成統計數據的收集&lt;/li>
+&lt;/ul>
+&lt;p>被動(Passive) 和 主動(Active)檢查&lt;/p>
+&lt;ul>
+&lt;li>Zabbix Agent可以執行被動和主動兩種檢查方式&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>被動檢查(Passive Check)模式中Agent應答數據請求，Zabbix Server(或者Proxy)詢問Agent資料，如CPU負仔狀況，然後Zabbix Agent回傳結果&lt;/li>
+&lt;li>主動檢查(Active Checks) 處理過程將相對複雜。Agent必須首先從Zabbix server索取監控項列表以進行獨立處理，然後週期性的發送新的值給Server&lt;/li>
+&lt;/ol>
+&lt;p>執行被動或主動檢查是通過選擇相應的監測項目類型來配置的。Item Type. Zabbix Agent處理監控項類型有Zabbix agent和 Zabbix Agent(Active)&lt;/p>
+&lt;p>Zabbix Proxy&lt;/p>
+&lt;ul>
+&lt;li>一個幫助Zabbix server收集數據，分擔Zabbix Server負擔的程式&lt;/li>
+&lt;li>Zabbix Proxy是一個可以從一個或多個受監控設備收集監控數據，並將訊息結果發送到Zabbix Server的Process，基本上是代表Server工作的。所有收集的數據都在本地進行快取，然後傳送到Proxy所屬的Zabbix Server。&lt;/li>
+&lt;li>部屬Proxy是可選的，但是可能會非常有益於分散單個Zabbix Sever的負載，如果只有Proxy收集數據，Server上的進程就會減少，CPU消耗和磁碟I/O負載&lt;/li>
+&lt;li>Zabbix Proxy是完成遠端區域，分支機構，沒有本地管理員的網路集中監控的理想解決方案&lt;/li>
+&lt;li>Zabbix Proxy需要使用獨立的資料庫&lt;/li>
 &lt;/ul></description></item><item><title>StoreProcedure跟PSQL的筆記</title><link>https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 01 Mar 2023 09:45:17 +0800</pubDate><guid>https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1BTtOUL.png" alt="Featured image of post StoreProcedure跟PSQL的筆記" />&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=yLR1w4tZ36I&amp;amp;ab_channel=techTFQ" target="_blank" rel="noopener"
 >參考網站&lt;/a>&lt;/p>
 &lt;p>&lt;strong>這篇文章是以Postgres SQL的語法為主，其他RDB的語法略有不同&lt;/strong>&lt;/p>
