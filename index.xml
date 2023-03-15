@@ -11398,7 +11398,82 @@ alt="image-20230313232606063"
 &lt;/blockquote>
 &lt;p>因為共享變數區之共享變數只能被monitor的local function直接存取，外界不能直接存取，外界(process)只能透過呼叫Monitor的Local Function來存取共享變數，而&lt;strong>Monitor保障互斥&lt;/strong>，因此保障了共享變數不會發生Race Condition，&lt;strong>所以Programmer毋須煩惱Race Condition problem (不用撰寫額外的Code，或是使用Mutex semaphore)&lt;/strong>，只需專心處理同步問題即可。&lt;strong>此點優於Semaphore&lt;/strong>&lt;/p>
 &lt;p>Question：Semaphore 比 Monitor容易使用 when solving synchronization problem&lt;/p>
-&lt;p>Ans：False，參照如上。並且semaphore一多，容易產生Deadloc&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;p>Ans：False，參照如上。並且semaphore一多，容易產生Deadloc&lt;/p>
+&lt;h2 id="condition-type">Condition Type&lt;/h2>
+&lt;p>定義：Condition 型別是用Monitor中，提供給Programmer&lt;strong>解決同步問題&lt;/strong>之用，令x是Condition Type變數，&lt;strong>在X上提供兩個operations：&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>x.wait 及 x.signal&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>x.wait：執行此運作的process會被Blocked且置入Monitor內x所屬的&lt;strong>waiting queue中(預設是FIFO)&lt;/strong>&lt;/li>
+&lt;li>x.signal：如果先前有Processes卡在x的waiting queue中，則此運作會自此waiting queue中移走一個process且恢復(resume)其執行，&lt;strong>否則無任何作用&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;h2 id="使用monitor解決-the-dining-philosophers-problem">使用Monitor解決 The dining-philosophers Problem&lt;/h2>
+&lt;p>先定義所需的Monitor ADT Type&lt;/p>
+&lt;p>Dining-philosophers = Monitor&lt;/p>
+&lt;p>Var&lt;/p>
+&lt;ol>
+&lt;li>State[0..4] of {thinking, hungry, eating}&lt;/li>
+&lt;li>self[0..4] of condition;&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">procedure&lt;/span> &lt;span class="n">entry&lt;/span> &lt;span class="nf">pickup&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nl">i&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mf">0.&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mf">.4&lt;/span>&lt;span class="p">){&lt;/span> &lt;span class="c1">//拿起筷子
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nl">begin&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">state&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">hungry&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">test&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">state&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="err">≠&lt;/span>&lt;span class="n">eating&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">then&lt;/span> &lt;span class="n">self&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">wait&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// Pi自己卡住
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;span class="n">procedure&lt;/span> &lt;span class="nf">test&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nl">k&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mf">0.&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mf">.4&lt;/span>&lt;span class="p">){&lt;/span> &lt;span class="c1">//測試
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nl">begin&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">state&lt;/span>&lt;span class="p">[(&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="err">≠&lt;/span>&lt;span class="n">eating&lt;/span> &lt;span class="n">and&lt;/span> &lt;span class="n">state&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">hungry&lt;/span> &lt;span class="n">and&lt;/span> &lt;span class="n">state&lt;/span>&lt;span class="p">[(&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="err">≠&lt;/span>&lt;span class="n">eating&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">then&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;span class="n">state&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="n">eating&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">self&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">signal&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="n">procedure&lt;/span> &lt;span class="n">entry&lt;/span> &lt;span class="nf">putdown&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nl">i&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">0..4&lt;/span>&lt;span class="p">){&lt;/span> &lt;span class="c1">// 放下筷子
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">begin&lt;/span>
+&lt;span class="n">state&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="n">thinking&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">test&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">test&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">end&lt;/span>
+&lt;span class="n">begin&lt;/span>
+&lt;span class="k">for&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="err">≦&lt;/span>&lt;span class="mi">4&lt;/span> &lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="n">state&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="n">thinking&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="n">end&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
