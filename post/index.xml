@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 16 Mar 2023 06:41:23 +0000</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>教學 使用Docker在window會出現的問題</title><link>https://hoxtonhsu.com/p/%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 16 Mar 2023 06:41:23 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/AP3wJLN.png" alt="Featured image of post 教學 使用Docker在window會出現的問題" />&lt;h1 id="前情提要">前情提要&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 16 Mar 2023 06:41:23 +0000</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Docker在window會出現的File Not Found問題</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 16 Mar 2023 06:41:23 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/AP3wJLN.png" alt="Featured image of post 使用Docker在window會出現的File Not Found問題" />&lt;h1 id="前情提要">前情提要&lt;/h1>
 &lt;p>最近在學習zabbix時，安裝在Linux系統下時，透過Postman是可以正常取得資料的&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/DX2FgEJ.png"
 loading="lazy"
@@ -432,6 +432,41 @@ loading="lazy"
 &lt;p>帳號：Admin
 密碼：zabbix&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/T8tGvQQ.png"
+loading="lazy"
+>&lt;/p>
+&lt;h1 id="使用docker安裝可能導致api路徑不正確">使用Docker安裝，可能導致API路徑不正確&lt;/h1>
+&lt;p>最近在學習zabbix時，安裝在Linux系統下時，透過Postman是可以正常取得資料的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DX2FgEJ.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>但是當我用Docker把Zabbix架設在Window環境下時卻一直出現&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">File not found.
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>的錯誤&lt;/p>
+&lt;h2 id="發現錯誤">發現錯誤&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/GNtvhd5.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>兩邊的版本、設置、Server Port都一樣，完全不知道到底發生了什麼問題，後來是透過網頁的開發人員工具才發現一小處的不同&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/W3r8xcI.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>這是Linux環境下的API請求&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Y2XdCFb.png"
+loading="lazy"
+>
+這是Window下的API請求&lt;/p>
+&lt;p>聰明的你一定發現了，肏你媽的這兩個API請求的URL完全不一樣啊，幹你媽的&lt;/p>
+&lt;h2 id="解決方法">解決方法&lt;/h2>
+&lt;p>我個人猜應該是Docker在部屬的時候，不知道為什麼裡面檔案的結構層級直接跳過了\zabbix這一層，直接變成&lt;code>http://localhost/api_jsonrpc.php&lt;/code>的路徑。&lt;/p>
+&lt;p>將URL改成正確地之後就能正常訪問了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1OlT37p.gif"
 loading="lazy"
 >&lt;/p></description></item><item><title>只要按個鍵，圖片立刻上傳至雲端 PicGo介紹</title><link>https://hoxtonhsu.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</link><pubDate>Wed, 08 Mar 2023 20:56:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/teYQFXk.png" alt="Featured image of post 只要按個鍵，圖片立刻上傳至雲端 PicGo介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
 &lt;p>PicGo是個開源的圖片上傳程式(並非平台)，由於設定快速，效果簡單而深受我的喜愛，決定寫一篇文章來介紹這東西該怎麼使用&lt;/p>
