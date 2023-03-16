@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 14 Mar 2023 00:31:03 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>運用ArrayList與自動配置將Swich語法拆解</title><link>https://hoxtonhsu.com/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/</link><pubDate>Tue, 14 Mar 2023 00:31:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/</guid><description>&lt;img src="https://i.imgur.com/rfkvgRO.png" alt="Featured image of post 運用ArrayList與自動配置將Swich語法拆解" />&lt;p>如果依照存在即合理的說法來看，Switch的存在確實是有解決一些問題，比如說一些要依照不同情況來回傳不同結果的Function，相較於用冗長的if-else，選擇用Switch確實是個不錯的解法。但當今天的Switch Case會增長的情況，在選擇使用它就會違反了OCP(開放擴充、封閉修改)的原則，亦即每次有新的情況出現，我們就得回頭去改Switch語法，新增不同的case，一來一往增加了維護的負擔，這邊分享一個我把switch語法拆解的方式，以供紀錄這樣子。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 16 Mar 2023 06:41:23 +0000</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>教學 使用Docker在window會出現的問題</title><link>https://hoxtonhsu.com/p/%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 16 Mar 2023 06:41:23 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/AP3wJLN.png" alt="Featured image of post 教學 使用Docker在window會出現的問題" />&lt;h1 id="前情提要">前情提要&lt;/h1>
+&lt;p>最近在學習zabbix時，安裝在Linux系統下時，透過Postman是可以正常取得資料的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DX2FgEJ.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>但是當我用Docker把Zabbix架設在Window環境下時卻一直出現&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">File not found.
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>的錯誤&lt;/p>
+&lt;h1 id="發現錯誤">發現錯誤&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/GNtvhd5.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>兩邊的版本、設置、Server Port都一樣，完全不知道到底發生了什麼問題，後來是透過網頁的開發人員工具才發現一小處的不同&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/W3r8xcI.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>這是Linux環境下的API請求&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Y2XdCFb.png"
+loading="lazy"
+>
+這是Window下的API請求&lt;/p>
+&lt;p>聰明的你一定發現了，肏你媽的這兩個API請求的URL完全不一樣啊，幹你媽的&lt;/p>
+&lt;h1 id="解決方法">解決方法&lt;/h1>
+&lt;p>我個人猜應該是Docker在部屬的時候，不知道為什麼裡面檔案的結構層級直接跳過了\zabbix這一層，直接變成&lt;code>http://localhost/api_jsonrpc.php&lt;/code>的路徑。&lt;/p>
+&lt;p>將URL改成正確地之後就能正常訪問了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1OlT37p.gif"
+loading="lazy"
+>&lt;/p></description></item><item><title>運用ArrayList與自動配置將Swich語法拆解</title><link>https://hoxtonhsu.com/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/</link><pubDate>Tue, 14 Mar 2023 00:31:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/</guid><description>&lt;img src="https://i.imgur.com/rfkvgRO.png" alt="Featured image of post 運用ArrayList與自動配置將Swich語法拆解" />&lt;p>如果依照存在即合理的說法來看，Switch的存在確實是有解決一些問題，比如說一些要依照不同情況來回傳不同結果的Function，相較於用冗長的if-else，選擇用Switch確實是個不錯的解法。但當今天的Switch Case會增長的情況，在選擇使用它就會違反了OCP(開放擴充、封閉修改)的原則，亦即每次有新的情況出現，我們就得回頭去改Switch語法，新增不同的case，一來一往增加了維護的負擔，這邊分享一個我把switch語法拆解的方式，以供紀錄這樣子。&lt;/p>
 &lt;h1 id="情境">情境&lt;/h1>
 &lt;p>我在設計一款可以連結不同SQL Engine的程式，當用戶選擇了不同的SQL Engine，我能夠執行不同資料庫的語法來返回結果，圖示如下&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/h00lO8z.png"
