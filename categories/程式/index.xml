@@ -8680,6 +8680,7 @@ alt="image-20230313232606063"
 &lt;/span>&lt;span class="lnt">25
 &lt;/span>&lt;span class="lnt">26
 &lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">procedure&lt;/span> &lt;span class="n">entry&lt;/span> &lt;span class="nf">pickup&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nl">i&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="mf">0.&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mf">.4&lt;/span>&lt;span class="p">){&lt;/span> &lt;span class="c1">//拿起筷子
@@ -8696,7 +8697,7 @@ alt="image-20230313232606063"
 &lt;span class="n">self&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">signal&lt;/span>
 &lt;span class="p">}&lt;/span>
 &lt;span class="p">}&lt;/span>
-&lt;span class="n">procedure&lt;/span> &lt;span class="n">entry&lt;/span> &lt;span class="nf">putdown&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nl">i&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">0..4&lt;/span>&lt;span class="p">){&lt;/span> &lt;span class="c1">// 放下筷子
+&lt;span class="n">procedure&lt;/span> &lt;span class="n">entry&lt;/span> &lt;span class="nf">putdown&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nl">i&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">0..4&lt;/span>&lt;span class="p">){&lt;/span> &lt;span class="c1">// 吃飽了放下筷子
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">begin&lt;/span>
 &lt;span class="n">state&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="n">thinking&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="n">test&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">%&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">);&lt;/span>
@@ -8710,7 +8711,125 @@ alt="image-20230313232606063"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;/div>&lt;ul>
+&lt;li>使用方式&lt;/li>
+&lt;/ul>
+&lt;p>共享變數宣告：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">dp&lt;/span>&lt;span class="err">`變數名稱`：&lt;/span>&lt;span class="n">Dining&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ph&lt;/span>&lt;span class="err">`&lt;/span>&lt;span class="n">Monitor&lt;/span> &lt;span class="n">type&lt;/span>&lt;span class="err">`&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Pi (i號哲學家)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="n">repeat&lt;/span>
+&lt;span class="n">hungry&lt;/span> &lt;span class="n">now&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">dp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">pickup&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">//在Monitor中
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">eating&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">//不在Mnitor中
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">dp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">putdown&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">//在Monitor中
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">thinking&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">untill&lt;/span> &lt;span class="n">False&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="conditional-monitor">Conditional Monitor&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>緣由：condition變數，eg. X所附屬的waiting Queue, 一般皆是FIFO Queue (甚至Monitor的Entry Quene 也是FIFO,In general)，&lt;strong>可是我們有時需要Priority Queue，優先移除高優先權的Process，恢復執行或讓已進入Monitor內active&lt;/strong>，此種monitor稱之&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>語法改變：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">x&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">wait&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// c代表此process的priority info
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="使用conditional-monitor解決問題">使用Conditional Monitor解決問題&lt;/h2>
+&lt;ul>
+&lt;li>範例一&lt;/li>
+&lt;/ul>
+&lt;p>使用Monitor解決&lt;strong>互斥資源的配置問題&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>規定：process最小者，優先權高，優先取得資源&lt;/strong>&lt;/p>
+&lt;p>解決問題之哲學&lt;/p>
+&lt;blockquote>
+&lt;p>「非」優先權之需求-&amp;gt;寫入Monitor之定義&lt;/p>
+&lt;p>優先權之需求-&amp;gt;只要告知老師說你用的是Priority Queue的Monitor即可&lt;/p>
+&lt;/blockquote>
+&lt;p>Ans.&lt;/p>
+&lt;ol>
+&lt;li>先定義Monitor&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">type&lt;/span> &lt;span class="n">ResourceAllocator&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Monitor&lt;/span>
+&lt;span class="n">var&lt;/span> &lt;span class="nl">Busy&lt;/span> &lt;span class="p">:&lt;/span> &lt;span class="n">Boolean&lt;/span> &lt;span class="c1">//代表資源配置出去與否
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="n">var&lt;/span> &lt;span class="n">X&lt;/span>&lt;span class="err">：&lt;/span>&lt;span class="n">Condition&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">//代表資源到底可用不可用
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="n">procdure&lt;/span> &lt;span class="n">entry&lt;/span> &lt;span class="nf">Apply&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nl">processId&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">begin&lt;/span>
+&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Busy&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">then&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">wait&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="n">Busy&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">True&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">procedure&lt;/span> &lt;span class="n">entry&lt;/span> &lt;span class="nf">Release&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">begin&lt;/span>
+&lt;span class="n">Busy&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="n">False&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">X&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">signal&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">end&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">Begin&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">Busy&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="n">False&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">end&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用方式：&lt;/p>
+&lt;p>共享變數宣告如下：&lt;/p>
+&lt;p>​ RA：Resource Allocator;&lt;/p>
+&lt;p>​ Pi(i代表processId)：&lt;/p>
+&lt;p>程式如下：&lt;/p>
+&lt;p>RA.Apply(i);&lt;/p>
+&lt;p>使用資源;&lt;/p>
+&lt;p>RA.Release();&lt;/p>
+&lt;p>此Monitor的X Condition變數之waiting Queue及Monior的entry Queue是Priority Queue且processId小者，優先權高，優先移出&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
