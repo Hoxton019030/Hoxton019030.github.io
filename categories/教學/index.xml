@@ -26,7 +26,7 @@ loading="lazy"
 loading="lazy"
 >
 這是Window下的API請求&lt;/p>
-&lt;p>聰明的你一定發現了，*&lt;strong>肏你媽的這兩個API請求的URL完全不一樣啊，幹你媽的&lt;/strong>&lt;/p>
+&lt;p>聰明的你一定發現了，&lt;strong>肏你媽的這兩個API請求的URL完全不一樣啊，幹你媽的&lt;/strong>&lt;/p>
 &lt;h1 id="解決方法">解決方法&lt;/h1>
 &lt;p>我個人猜應該是Docker在部屬的時候，不知道為什麼裡面檔案的結構層級直接跳過了\zabbix這一層，直接變成&lt;code>http://localhost/api_jsonrpc.php&lt;/code>的路徑。&lt;/p>
 &lt;p>將URL改成正確地之後就能正常訪問了&lt;/p>
