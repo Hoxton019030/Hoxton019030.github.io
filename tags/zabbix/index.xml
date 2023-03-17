@@ -34,6 +34,70 @@ loading="lazy"
 loading="lazy"
 >&lt;/p></description></item><item><title>Zabbix的一些筆記</title><link>https://hoxtonhsu.com/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/</link><pubDate>Mon, 13 Mar 2023 05:40:02 +0000</pubDate><guid>https://hoxtonhsu.com/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/7g77ZiN.png" alt="Featured image of post Zabbix的一些筆記" />&lt;p>參考網址：&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10263907" target="_blank" rel="noopener"
 >監控大挑戰 - 以 Zabbix 為例&lt;/a>&lt;/p>
+&lt;h1 id="為什麼選擇zabbix">為什麼選擇Zabbix?&lt;/h1>
+&lt;p>目前常見的監控軟體有三者&lt;/p>
+&lt;ol>
+&lt;li>Zabbix&lt;/li>
+&lt;li>Cacti&lt;/li>
+&lt;li>Nagios&lt;/li>
+&lt;/ol>
+&lt;h2 id="nagios的介面">NagiOs的介面&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/MnINBY1.png"
+loading="lazy"
+alt="image-20230317110443666"
+>&lt;/p>
+&lt;h2 id="cacti的介面">Cacti的介面&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/quFB2i9.jpg"
+loading="lazy"
+alt="image-20230317110544016"
+>&lt;/p>
+&lt;h2 id="zabbix的介面">Zabbix的介面&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/KMZdZPE.png"
+loading="lazy"
+alt="image-20230317110906297"
+>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>監控產品&lt;/th>
+&lt;th>Zabbix&lt;/th>
+&lt;th>Nagios&lt;/th>
+&lt;th>Cacti&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>圖形介面&lt;/td>
+&lt;td>好看&lt;/td>
+&lt;td>不是特別好&lt;/td>
+&lt;td>還行&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>監控性能&lt;/td>
+&lt;td>併發監控，對CPU要求較高&lt;/td>
+&lt;td>併發監控，對CPU要求較高&lt;/td>
+&lt;td>輪詢監控，效能低&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>配置難度&lt;/td>
+&lt;td>較低，有圖形化介面使用&lt;/td>
+&lt;td>需使用CommandLine&lt;/td>
+&lt;td>需使用CommandLine&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>自動發現&lt;/td>
+&lt;td>支持&lt;/td>
+&lt;td>不支持&lt;/td>
+&lt;td>不支持&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>異常通知方式&lt;/td>
+&lt;td>Email,簡訊,webhook,Line&amp;hellip;&lt;/td>
+&lt;td>Email,簡訊,webhook,Line&amp;hellip;&lt;/td>
+&lt;td>較弱，預設只支援Email&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
 &lt;h1 id="zabbix是什麼">Zabbix是什麼&lt;/h1>
 &lt;p>Zabbix是一種開源的網絡監視和警報系統，用於監視各種網絡設備，包括服務器、網絡設備和應用程序等。Zabbix提供了一個可擴展的架構，可用於監視多個位置的數千個設備。&lt;/p>
 &lt;p>Zabbix支持各種監視方式，包括SNMP、JMX、IPMI和VMware監視，還可以通過自定義監視腳本進行擴展。Zabbix還提供了一個強大的報警系統，可以通過電子郵件、SMS和其他方式發送警報，以便快速解決問題。&lt;/p>
@@ -227,6 +291,24 @@ loading="lazy"
 &lt;p>&lt;img src="https://i.imgur.com/T8tGvQQ.png"
 loading="lazy"
 >&lt;/p>
+&lt;h1 id="在window下安裝-zabbix-agent">在Window下安裝 Zabbix Agent&lt;/h1>
+&lt;p>這邊待補啦，不過先講一下Zabbix的Server端要怎麼對應&lt;/p>
+&lt;p>​ &lt;img src="https://i.imgur.com/5CXeOx4.png"
+loading="lazy"
+alt="image-20230317111417481"
+>&lt;/p>
+&lt;p>Host Name：要和當初設定Agent的Name一致&lt;/p>
+&lt;p>Group：Templates/Operating systems&lt;/p>
+&lt;p>Agent：當Agent的那一台主機的IP&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Vre2glc.png"
+loading="lazy"
+alt="image-20230317111854438"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/LQ0R9rk.png"
+loading="lazy"
+alt="image-20230317111428373"
+>&lt;/p>
+&lt;p>Temlate：Template OS Windows by Zabbix agent&lt;/p>
 &lt;h1 id="使用docker安裝可能導致api路徑不正確">使用Docker安裝，可能導致API路徑不正確&lt;/h1>
 &lt;p>最近在學習zabbix時，安裝在Linux系統下時，透過Postman是可以正常取得資料的&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/DX2FgEJ.png"
