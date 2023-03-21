@@ -11807,7 +11807,7 @@ alt="image-20230313232606063"
 &lt;p>RA.Release();&lt;/p>
 &lt;p>此Monitor的X Condition變數之waiting Queue及Monior的entry Queue是Priority Queue且processId小者，優先權高，優先移出&lt;/p>
 &lt;ul>
-&lt;li>範例二&lt;/li>
+&lt;li>範例二 ==(最常考)==&lt;/li>
 &lt;/ul>
 &lt;p>有一個File可被多個Processes使用，每一個Process有Unique priority No，並且存取File須滿足以下限制&lt;/p>
 &lt;ol>
@@ -11883,14 +11883,168 @@ alt="image-20230317013644199"
 &lt;/li>
 &lt;li>
 &lt;p>Pi(i：process Priority No)程式：&lt;/p>
-&lt;p>​ FA.Access(i);&lt;/p>
+&lt;p>​ &lt;strong>FA.Access(i);&lt;/strong>&lt;/p>
 &lt;p>​ 使用File;&lt;/p>
-&lt;p>​ FA.Leave(i);&lt;/p>
+&lt;p>​ &lt;strong>FA.Leave(i);&lt;/strong>&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>&lt;/li>
-&lt;/ol></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;/ol>
+&lt;ul>
+&lt;li>範例三&lt;/li>
+&lt;/ul>
+&lt;p>有3部printer 被processes使用&lt;sub>(三個互斥資源)&lt;/sub>，且規定Process Id 小，優先權高。&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>先定義Monitor&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="n">var&lt;/span> &lt;span class="n">p&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mf">0..2&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">of&lt;/span> &lt;span class="n">Boolean&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nl">x&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">condition&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="nf">Acquire&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nl">i&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">processId&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">and&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">and&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]){&lt;/span>
+&lt;span class="n">x&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">wait&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">not&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]){&lt;/span>
+&lt;span class="n">y&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">not&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]){&lt;/span>
+&lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">else&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;span class="n">y&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="n">p&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">=&lt;/span> &lt;span class="nb">true&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kt">void&lt;/span> &lt;span class="nf">Release&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nl">y&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">printerNo&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="n">p&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">False&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">x&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">signal&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用方式：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>共享變數宣告：&lt;/p>
+&lt;p>PA: Allocator&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Pi(i=processId)&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>程式如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="nl">pNo&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">printerNo&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">pNo&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">PA&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Acquire&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">//使用pno號之列表機
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="n">PA&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Realse&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pno&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>範例四 &lt;strong>使用Monitor定義Semaphore&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">type semaphore = Monitor;
+var value : int; //號誌值
+var x : condition;
+procedure entry wait(){
+begin
+value = value -1;
+if (value &amp;lt;0) then x.wait;
+end
+}
+procedure entry Signal(){
+begin
+value = value+1;
+x.signal;
+end
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="monitor的種類3種">Monitor的種類(3種)&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>區分角度(緣由)&lt;/p>
+&lt;p>假設Process A目前卡在 x condition 變數之 waiting Queue(因為 Q 先前執行了 X.wait目前，**Process P is active in the **)&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h1 id="幹他媽的這邊也拖太久了我受不了我想先去看記憶體管理-2023323">幹他媽的，這邊也拖太久了，我受不了，我想先去看記憶體管理 2023/3/23&lt;/h1>
+&lt;h1 id="chapter-7-memory-management">Chapter 7 Memory Management&lt;/h1>
+&lt;blockquote>
+&lt;p>Binding 及其時機點&lt;/p>
+&lt;p>Dynamic Binding&lt;/p>
+&lt;p>Dynamic Loading, Dynamic Linking&lt;/p>
+&lt;p>&lt;strong>Contiguous Memory Allocation(Firstt/Best/Worst Fit)&lt;/strong>&lt;/p>
+&lt;p>External Fragmentation, Internal Fragmentation&lt;/p>
+&lt;p>解決外部碎裂方法&lt;/p>
+&lt;blockquote>
+&lt;p>Compaction&lt;/p>
+&lt;p>Page&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;strong>Page Memory Management&lt;/strong>&lt;/p>
+&lt;blockquote>
+&lt;p>Schema&lt;/p>
+&lt;p>Page Table 製作(3個)&lt;/p>
+&lt;p>相關計算&lt;/p>
+&lt;p>Page Table Size 太大之解決(3個)&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;strong>Segment Memory Management&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>Paged Segment Memory Management&lt;/strong> [恐龍本已移除]&lt;/p>
+&lt;/blockquote></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
