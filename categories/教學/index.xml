@@ -1,4 +1,99 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 16 Mar 2023 06:41:23 +0000</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Docker在window會出現的File Not Found問題</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 16 Mar 2023 06:41:23 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/AP3wJLN.png" alt="Featured image of post 使用Docker在window會出現的File Not Found問題" />&lt;h1 id="前情提要">前情提要&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 21 Mar 2023 10:40:57 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>在window Terminal中使用Cmder</title><link>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</link><pubDate>Tue, 21 Mar 2023 10:40:57 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</guid><description>&lt;img src="https://i.imgur.com/l3t70N4.png" alt="Featured image of post 在window Terminal中使用Cmder" />&lt;h1 id="安裝window-terminal">安裝window terminal&lt;/h1>
+&lt;p>至Microsoft Store安裝window terminal&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QHkfcK2.png"
+loading="lazy"
+alt="image-20230321104350045"
+>&lt;/p>
+&lt;h1 id="安裝cmder">安裝Cmder&lt;/h1>
+&lt;p>&lt;a class="link" href="https://cmder-app.translate.goog/?_x_tr_sl=en&amp;amp;_x_tr_tl=zh-TW&amp;amp;_x_tr_hl=zh-TW&amp;amp;_x_tr_pto=sc" target="_blank" rel="noopener"
+>Cmder載點&lt;/a>&lt;/p>
+&lt;p>並將它解壓縮後放置&lt;/p>
+&lt;p>&lt;code>%USERPROFILE%/AppData/Roaming&lt;/code>&lt;/p>
+&lt;p>中&lt;/p>
+&lt;p>也就是&lt;/p>
+&lt;p>&lt;code>C:\Users\you_userName\AppData\Roaming&lt;/code>&lt;/p>
+&lt;h1 id="設定環境變數">設定環境變數&lt;/h1>
+&lt;p>接著設定環境變數&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">變數名稱：CMDER_ROOT
+變數值：C:\Users\You_userName\AppData\Roaming\cmder
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/evCanCt.png"
+loading="lazy"
+alt="image-20230321104927389"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">變數名稱：ConEmuDir
+變數值：C:\Users\You_userName\AppData\Roaming\cmder\vendor\conemu-maximus5
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/v6v0WUg.png"
+loading="lazy"
+alt="image-20230321105111605"
+>&lt;/p>
+&lt;p>設定window Termianl&lt;/p>
+&lt;p>打開設定&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/o7ga4o6.png"
+loading="lazy"
+alt="image-20230321105152420"
+>&lt;/p>
+&lt;p>按左下角的開啟JSON檔案&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/t0NQTF2.png"
+loading="lazy"
+alt="image-20230321105210480"
+>&lt;/p>
+&lt;p>將下列這段貼上至JSON檔中的這個位置&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json"> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;background&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;#2E3436&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;commandline&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;cmd.exe /k %CMDER_ROOT%\\vendor\\init.bat&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;font&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;face&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Cascadia Code&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;size&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">10.0&lt;/span>
+&lt;span class="p">},&lt;/span>
+&lt;span class="nt">&amp;#34;guid&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;{6d953325-a939-475d-a151-940cbd0302fb}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;icon&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;%CMDER_ROOT%\\icons\\cmder.ico&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;name&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Cmder&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;padding&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;15&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;startingDirectory&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;%USERPROFILE%/Desktop&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>就像這樣子&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/jyFYrjK.png"
+loading="lazy"
+alt="image-20230321105524196"
+>&lt;/p>
+&lt;p>接著&lt;strong>重開&lt;/strong>window terminal就可以囉~&lt;/p></description></item><item><title>使用Docker在window會出現的File Not Found問題</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 16 Mar 2023 06:41:23 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/AP3wJLN.png" alt="Featured image of post 使用Docker在window會出現的File Not Found問題" />&lt;h1 id="前情提要">前情提要&lt;/h1>
 &lt;p>最近在學習zabbix時，安裝在Linux系統下時，透過Postman是可以正常取得資料的&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/DX2FgEJ.png"
 loading="lazy"
