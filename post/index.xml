@@ -12144,23 +12144,105 @@ end
 &lt;p>Binding 及其時機點&lt;/p>
 &lt;p>Dynamic Binding&lt;/p>
 &lt;p>Dynamic Loading, Dynamic Linking&lt;/p>
-&lt;p>&lt;strong>Contiguous Memory Allocation(Firstt/Best/Worst Fit)&lt;/strong>&lt;/p>
-&lt;p>External Fragmentation, Internal Fragmentation&lt;/p>
+&lt;p>&lt;strong>Contiguous Memory Allocation(Firstt/Best/Worst Fit)☆☆&lt;/strong>&lt;/p>
+&lt;p>External Fragmentation, Internal Fragmentation☆☆☆☆☆&lt;/p>
 &lt;p>解決外部碎裂方法&lt;/p>
 &lt;blockquote>
-&lt;p>Compaction&lt;/p>
+&lt;p>Compaction☆☆&lt;/p>
 &lt;p>Page&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;strong>Page Memory Management&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>Page Memory Management☆☆☆☆☆&lt;/strong>&lt;/p>
 &lt;blockquote>
 &lt;p>Schema&lt;/p>
 &lt;p>Page Table 製作(3個)&lt;/p>
 &lt;p>相關計算&lt;/p>
 &lt;p>Page Table Size 太大之解決(3個)&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;strong>Segment Memory Management&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>Segment Memory Management☆☆&lt;/strong>&lt;/p>
 &lt;p>&lt;strong>Paged Segment Memory Management&lt;/strong> [恐龍本已移除]&lt;/p>
-&lt;/blockquote></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="binding">Binding&lt;/h2>
+&lt;p>定義：&lt;strong>決定程式/process執行的起始位址&lt;/strong>，此一動作稱之為Binding&lt;/p>
+&lt;p>時機點：&lt;/p>
+&lt;blockquote>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Compiling Time&lt;/strong>：由Compiler作Binding&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Loading Time 或 Linking Loading Time&lt;/strong>：由Linking Loader 或 Linkage Editor作&lt;/p>
+&lt;p>&amp;laquo;以上兩者都叫Static Binding&amp;raquo;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Execution Time&lt;/strong>：由OS動態決定，也叫&lt;strong>Dynamic Binding&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i.imgur.com/kIEguNv.png"
+loading="lazy"
+alt="image-20230322223226871"
+>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Compiler作Binding&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>產生之Object Code叫做&lt;strong>Absolute object code(絕對式目的碼)&lt;/strong>&lt;/p>
+&lt;p>eg:&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/39GeUzp.png"
+loading="lazy"
+alt="image-20230322224154158"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>後面的Loader叫作&lt;strong>Absolute Loader&lt;/strong>主要是作Allocation與Loading only&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>缺點：&lt;strong>Process若要改變起始位址，則必須re-compiling非常不便&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Note：通常用於.COM(命令檔)&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Loading Time由 Linking Loader 作Binding&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Compiler所產生出的Object Code叫作&lt;strong>Relocatable Object Code(可重定位之目的碼)&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;img src="https://i.imgur.com/07A826q.png"
+loading="lazy"
+alt="image-20230323000356425"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>何謂Relocation修正？&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;strong>當成是執行起始位址改變，某些Object code內容必須隨之修正&lt;/strong>，將來才能正確執行。&lt;/p>
+&lt;p>例：採用&lt;strong>直接定址&lt;/strong>(Direct Addressing Mode)指令，假設今天起始位址為0000，變數儲存於2000的位址。今起始位址改為1000後，變數儲存的位址需要有相應的改動，這個改動值就是寫在Relocation修正資訊&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i.imgur.com/I986VNO.png"
+loading="lazy"
+alt="image-20230323015129289"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>何謂Linking修正？&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>解決External Symbol reference(外部符號參考)之修正&lt;/p>
+&lt;p>例：外部符號：副程式名稱&lt;/p>
+&lt;p>外部變數(extern)、Library, etc&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i.imgur.com/PHXZ2lg.png"
+loading="lazy"
+alt="image-20230323020626593"
+>&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
