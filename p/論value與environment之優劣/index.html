@@ -38,7 +38,7 @@
         <span class=k>return</span> <span class=k>new</span> <span class=n>String</span><span class=o>[</span><span class=n>0</span><span class=o>];</span>
     <span class=o>}</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>但如果用@Value的方式來取值，則可以在宣告變數時，聲明它是一個Stringg或是一個String[]，避免後續的轉換</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>但如果用@Value的方式來取值，則可以在宣告變數時，聲明它是一個String或是一個String[]，避免後續的轉換</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@Value</span><span class=o>(</span><span class=s>&#34;${language}&#34;</span><span class=o>)</span>
 <span class=kd>private</span> <span class=n>String</span><span class=o>[]</span> <span class=n>myArray</span><span class=o>;</span>

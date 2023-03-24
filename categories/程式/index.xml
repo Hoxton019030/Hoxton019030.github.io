@@ -68,7 +68,7 @@ loading="lazy"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>但如果用@Value的方式來取值，則可以在宣告變數時，聲明它是一個Stringg或是一個String[]，避免後續的轉換&lt;/p>
+&lt;/div>&lt;p>但如果用@Value的方式來取值，則可以在宣告變數時，聲明它是一個String或是一個String[]，避免後續的轉換&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
