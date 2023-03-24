@@ -1,4 +1,100 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 21 Mar 2023 10:40:57 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>在window Terminal中使用Cmder</title><link>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</link><pubDate>Tue, 21 Mar 2023 10:40:57 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</guid><description>&lt;img src="https://i.imgur.com/l3t70N4.png" alt="Featured image of post 在window Terminal中使用Cmder" />&lt;h1 id="安裝window-terminal">安裝window terminal&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 24 Mar 2023 01:41:57 +0000</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>論@Value與Environment之優劣</title><link>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link><pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid><description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" />&lt;p>&lt;img src="https://i.imgur.com/JQHz275.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>SpringBoot中想要從Application.properties中取的值，有兩種常見的方式，其中一種是利用@Value的方式&lt;/p>
+&lt;h1 id="value">@Value&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="err">&amp;#34;&lt;/span>&lt;span class="n">$&lt;/span>&lt;span class="o">{&lt;/span>&lt;span class="n">app&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">version&lt;/span>&lt;span class="o">})&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">version&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="enviroment">Enviroment&lt;/h1>
+&lt;p>另一種則是透過 Enviroment物件來取的&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">Environment&lt;/span> &lt;span class="n">env&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="nf">getAppVersion&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getProperty&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;app.version&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="結論">結論&lt;/h1>
+&lt;p>這兩個表現形式幾乎一模一樣，都可以取得想要的部分，但最大差別就在單元測試時，由於@Value這個取值方式有賴將整個SpringBoot專案啟動才可以注入，在單元測試的環境下並沒有辦法做到這件事情。但相反的，由於Environment本身屬於一個外部依賴，我們可以很好的替代掉他&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Service&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">VersionService&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">Environment&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="nf">VersionService&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Environment&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">environment&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="nf">getEunoExAppVersion&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getProperty&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;eunoex.version&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@ExtendWith&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">MockitoExtension&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">class&lt;/span> &lt;span class="nc">VersionServiceTest&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Mock&lt;/span>
+&lt;span class="n">Environment&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@InjectMocks&lt;/span>
+&lt;span class="n">VersionService&lt;/span> &lt;span class="n">versionService&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Test&lt;/span>
+&lt;span class="kt">void&lt;/span> &lt;span class="nf">getEunoExAppVersion_everythingFine_returnSuccessfully&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">given&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">environment&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getProperty&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">any&lt;/span>&lt;span class="o">())).&lt;/span>&lt;span class="na">willReturn&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;v1.2.0&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">eunoExAppVersion&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">versionService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getEunoExAppVersion&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;eunoExAppVersion = &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">eunoExAppVersion&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>大概Guy4這樣&lt;/p></description></item><item><title>在window Terminal中使用Cmder</title><link>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</link><pubDate>Tue, 21 Mar 2023 10:40:57 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</guid><description>&lt;img src="https://i.imgur.com/l3t70N4.png" alt="Featured image of post 在window Terminal中使用Cmder" />&lt;h1 id="安裝window-terminal">安裝window terminal&lt;/h1>
 &lt;p>至Microsoft Store安裝window terminal&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/QHkfcK2.png"
 loading="lazy"
