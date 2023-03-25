@@ -135,10 +135,10 @@ loading="lazy"
 &lt;span class="nd">@InjectMocks&lt;/span>
 &lt;span class="n">VersionService&lt;/span> &lt;span class="n">versionService&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="nd">@Test&lt;/span>
-&lt;span class="kt">void&lt;/span> &lt;span class="nf">getEunoExAppVersion_everythingFine_returnSuccessfully&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kt">void&lt;/span> &lt;span class="nf">getAppVersion_everythingFine_returnSuccessfully&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="n">given&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">environment&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getProperty&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">any&lt;/span>&lt;span class="o">())).&lt;/span>&lt;span class="na">willReturn&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;v1.2.0&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
-&lt;span class="n">String&lt;/span> &lt;span class="n">eunoExAppVersion&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">versionService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getEunoExAppVersion&lt;/span>&lt;span class="o">();&lt;/span>
-&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;eunoExAppVersion = &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">eunoExAppVersion&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">ExAppVersion&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">versionService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getAppVersion&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;AppVersion = &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">AppVersion&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>

@@ -89,10 +89,10 @@
     <span class=nd>@InjectMocks</span>
     <span class=n>VersionService</span> <span class=n>versionService</span><span class=o>;</span>
     <span class=nd>@Test</span>
-    <span class=kt>void</span> <span class=nf>getEunoExAppVersion_everythingFine_returnSuccessfully</span><span class=o>()</span> <span class=o>{</span>
+    <span class=kt>void</span> <span class=nf>getAppVersion_everythingFine_returnSuccessfully</span><span class=o>()</span> <span class=o>{</span>
         <span class=n>given</span><span class=o>(</span><span class=n>environment</span><span class=o>.</span><span class=na>getProperty</span><span class=o>(</span><span class=n>any</span><span class=o>())).</span><span class=na>willReturn</span><span class=o>(</span><span class=s>&#34;v1.2.0&#34;</span><span class=o>);</span>
-        <span class=n>String</span> <span class=n>eunoExAppVersion</span> <span class=o>=</span> <span class=n>versionService</span><span class=o>.</span><span class=na>getEunoExAppVersion</span><span class=o>();</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;eunoExAppVersion = &#34;</span> <span class=o>+</span> <span class=n>eunoExAppVersion</span><span class=o>);</span>
+        <span class=n>String</span> <span class=n>ExAppVersion</span> <span class=o>=</span> <span class=n>versionService</span><span class=o>.</span><span class=na>getAppVersion</span><span class=o>();</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;AppVersion = &#34;</span> <span class=o>+</span> <span class=n>AppVersion</span><span class=o>);</span>
     <span class=o>}</span>
 
 <span class=o>}</span>
