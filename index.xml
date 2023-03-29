@@ -12649,6 +12649,7 @@ end
 &lt;/ol>
 &lt;h1 id="幹他媽的這邊也拖太久了我受不了我想先去看記憶體管理-2023323">幹他媽的，這邊也拖太久了，我受不了，我想先去看記憶體管理 2023/3/23&lt;/h1>
 &lt;h1 id="chapter-7-memory-management">Chapter 7 Memory Management&lt;/h1>
+&lt;p>&lt;strong>本章的考試重點是圖，有圖的都很重要&lt;/strong>&lt;/p>
 &lt;blockquote>
 &lt;p>Binding 及其時機點&lt;/p>
 &lt;p>Dynamic Binding&lt;/p>
@@ -12955,7 +12956,148 @@ alt="image-20230327232414541"
 &lt;p>Frames=10KB&lt;/p>
 &lt;p>配置方式：&lt;strong>OS採非連續性配置原則&lt;/strong>，即若Process大小=n個Pages，則OS只需在Physical memory 找出&lt;strong>n個Free Frames(不一定要連續)，即可配給此process&lt;/strong>&lt;/p>
 &lt;p>OS會替每個Process建立一個&lt;strong>Page Table(分頁表)，紀錄各個Page置於哪個Frame 之Frame No&lt;/strong>&lt;/p>
-&lt;p>Note：Page Table is stoted in [PCB](# Process Control Block)&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;p>Note：Page Table is stoted in PCB&lt;/p>
+&lt;p>若Process大小=n個Pages，則它的Page Table就有n個entry(格子)&lt;/p>
+&lt;p>圖示：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/uhe1dwc.png"
+loading="lazy"
+alt="image-20230328205131031"
+>&lt;/p>
+&lt;h3 id="logical-address-轉-physical-address-過程by-mmuhardware">Logical Address 轉 Physical Address 過程By MMU(Hardware)&lt;/h3>
+&lt;p>Steps [例：假設Page size=10]&lt;/p>
+&lt;ol>
+&lt;li>LogicalAddress初始是&lt;strong>單一量&lt;/strong>，自動拆解成：&lt;img src="https://i.imgur.com/7sQbMJQ.png"
+loading="lazy"
+alt="image-20230328210819830"
+>&lt;/li>
+&lt;/ol>
+&lt;p>​ 其中p代表PageNo，d代表Page offset(偏移量)&lt;/p>
+&lt;p>$$
+單一量位址 \div PageSize = 商數(p)&amp;hellip;餘數(d)
+$$&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/U3e2Le5.png"
+loading="lazy"
+alt="image-20230328213544244"
+>&lt;/p>
+&lt;ol start="2">
+&lt;li>
+&lt;p>依P查詢Page Table, 取得該Page的FrameNo(頁框號碼)，令為f&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>f與d合成&lt;img src="https://i.imgur.com/sLrGWip.png"
+loading="lazy"
+alt="image-20230328213723596"
+>即為Physical Address&lt;/strong>&lt;/p>
+&lt;p>或 f * PageSize + d = Physical Address&lt;/p>
+&lt;p>eg.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>p&lt;/th>
+&lt;th>d&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>3&lt;/td>
+&lt;td>2&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>依P=3查表，它的Frame No= F7, 因此&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>f&lt;/th>
+&lt;th>d&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>7&lt;/td>
+&lt;td>2&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>=Physical Address&lt;/p>
+&lt;p>=7*10+2=72&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/6hez29T.png"
+loading="lazy"
+alt="image-20230328215606192"
+>&lt;/p>
+&lt;h3 id="優缺點比較">優缺點比較&lt;/h3>
+&lt;h4 id="優點">優點：&lt;/h4>
+&lt;ol>
+&lt;li>&lt;strong>沒有外部碎裂&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>可支援Memory Sharing及Memory Protection之實施&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>可支持Dynamic Loading, Dynamic Linking及Virtual Memory之實現&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;p>Memory Sharing(共享)&lt;/p>
+&lt;p>若多個Processes彼此具有共通的&lt;strong>Read-only Code/Data&lt;/strong> Pages，則我們可以藉由process各自的Page Table，將共通Pages映射到同一個頁框，如此可以節省memory space&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/j6gQWCf.png"
+loading="lazy"
+alt="image-20230328230158676"
+>&lt;/p>
+&lt;p>Memory Protection(保護)&lt;/p>
+&lt;p>在Page Table中多加一個欄位：&lt;/p>
+&lt;p>&lt;strong>Protection Bit 值為&lt;/strong>&lt;/p>
+&lt;blockquote>
+&lt;p>R：表此Page只能Read-Only&lt;/p>
+&lt;p>W：表此Page Read/write都可以&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i.imgur.com/p0B6b2l.png"
+loading="lazy"
+alt="image-20230328231459427"
+>&lt;/p>
+&lt;h4 id="缺點">缺點：&lt;/h4>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>有Internal Fragmentation&lt;/strong>，因為Process大小不見得是PageSize之整數倍數。eg. PageSize=10KB，Process大小=32KB，因此需配置4個Frames，因此內碎=4*10-32=8KB&lt;/p>
+&lt;p>&lt;code>Note：若PageSize愈大，則內碎越嚴重&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>需要額外Hardware支援&lt;/strong>，例：Page Table之製作、Logical Address轉physical address By &lt;strong>MMU&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>effective memory access time 較長&lt;code>因為有Logical Address轉physical address 的時間&lt;/code>，這邊的較長是相對於Contiguous來看&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="page-table之製作保存">Page Table之製作(保存)&lt;/h2>
+&lt;p>[方法一] 使用Register保存，Page Table中每個Entry內容(frame No)&lt;/p>
+&lt;p>優點：存取page table 時，無須memory access，因為速度最快&lt;/p>
+&lt;p>缺點：&lt;strong>Register數量有限，不適用大型的Page Table(或大型Process)&lt;/strong>&lt;/p>
+&lt;p>[方法二] 使用&lt;strong>Memory&lt;/strong>保存分頁表，且用一個Register:PTBR(Page Table Base Register)紀錄它在memory中之位址，及PTLR(Page Table Length Register)紀錄Table大小&lt;/p>
+&lt;p>優點：&lt;strong>適用於大型Page Table&lt;/strong>&lt;/p>
+&lt;p>缺點：&lt;strong>須額外多一次Memory Access來存取Page Table，因此速度很慢&lt;/strong>&lt;/p>
+&lt;p>[方法三] &lt;strong>最普遍的方法&lt;/strong>，&lt;strong>使用TLB(Translation-Lookaside Buffer)&lt;/strong> Register(或叫Associative Registers)保存&lt;strong>Page Table中經常被存取之Page No及FrameNo&lt;/strong>，且完整的age Table存於memory中&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ssiW1QX.png"
+loading="lazy"
+alt="image-20230329002106932"
+>&lt;/p>
+&lt;p>使用TLB之effective Memory Access Time =&lt;/p>
+&lt;p>$$
+effective Memory Access Time=P \times (TLB time+ Memory Access Time)+ (1-P) * (TLB Time +2*Memory Access Time) \&lt;br>
+where P is TLB Hit Ration
+$$&lt;/p>
+&lt;p>範例：&lt;/p>
+&lt;p>&lt;strong>Register access Time : 0 ns(ignored)&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>Memory Access Time：200ns&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>TLB Time：100ns&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>TLB Hit Ration：90%&lt;/strong>&lt;/p>
+&lt;p>求Effective Memory Access Time if Page Table is Stored using&lt;/p>
+&lt;ol>
+&lt;li>Register&lt;/li>
+&lt;li>Memory&lt;/li>
+&lt;li>TLB&lt;/li>
+&lt;/ol>
+&lt;p>Ans.&lt;/p>
+&lt;ol>
+&lt;li>200ns(只訪問一次記憶體)&lt;/li>
+&lt;li>2*200 =400 ns&lt;/li>
+&lt;li>0.9 * (100+200) + 0.1 * (100+2*200) = 100+200+0.1*200=320ns&lt;/li>
+&lt;/ol></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
