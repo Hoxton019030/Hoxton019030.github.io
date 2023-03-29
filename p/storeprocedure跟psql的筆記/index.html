@@ -1,263 +1,1208 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="研究了一下Store Procedure跟PSQL，以此紀錄"><title>StoreProcedure跟PSQL的筆記</title><link rel=canonical href=https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/><link rel=stylesheet href=/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css><meta property="og:title" content="StoreProcedure跟PSQL的筆記"><meta property="og:description" content="研究了一下Store Procedure跟PSQL，以此紀錄"><meta property="og:url" content="https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/"><meta property="og:site_name" content="Hoxton"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content><meta property="article:published_time" content="2023-03-01T09:45:17+08:00"><meta property="article:modified_time" content="2023-03-01T09:45:17+08:00"><meta property="og:image" content="https://i.imgur.com/1BTtOUL.png"><meta name=twitter:title content="StoreProcedure跟PSQL的筆記"><meta name=twitter:description content="研究了一下Store Procedure跟PSQL，以此紀錄"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://i.imgur.com/1BTtOUL.png"><link rel="shortcut icon" href=https://cdn-icons-png.flaticon.com/512/92/92031.png><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-9N16MVLR0Q','auto');ga('send','pageview');}</script></head><body class=article-page><script>(function(){const colorSchemeKey='StackColorScheme';localStorage.setItem(colorSchemeKey,"dark");})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.documentElement.dataset.scheme='dark';}else{document.documentElement.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy, API Caller</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/><img src=https://i.imgur.com/1BTtOUL.png loading=lazy alt="Featured image of post StoreProcedure跟PSQL的筆記"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%AD%86%E8%A8%98/ style=background-color:#2a9d8f;color:#fff>筆記</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/>StoreProcedure跟PSQL的筆記</a></h2><h3 class=article-subtitle>研究了一下Store Procedure跟PSQL，以此紀錄</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Mar 01, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>4 minute read</time></div></footer></div></header><section class=article-content><p><a class=link href="https://www.youtube.com/watch?v=yLR1w4tZ36I&ab_channel=techTFQ" target=_blank rel=noopener>參考網站</a></p><p><strong>這篇文章是以Postgres SQL的語法為主，其他RDB的語法略有不同</strong></p><h1 id=什麼是store-procedure>什麼是Store Procedure</h1><p>預存程序（Stored Procedure）是一種資料庫對象，它是一個預編譯的SQL程式碼，可以在資料庫中存儲並重複使用。它通常由一系列SQL語句和編程邏輯組成，可以接受輸入參數、返回輸出參數和結果集。存儲過程通常由數據庫管理員或開發人員編寫和維護，並且可以在數據庫中執行。</p><p>存儲過程有以下幾個優點：</p><ol><li>提高了數據庫性能：存儲過程是預編譯的，一旦編譯就會存儲在數據庫中，執行速度快。此外，存儲過程可以減少客戶端與服務器之間的通信，從而降低網絡延遲，提高數據庫性能。</li><li>提高了數據安全性：存儲過程可以在數據庫層面上實現安全控制，可以限制某些用戶或角色的操作權限，從而保證數據的安全性。</li><li>代碼復用：存儲過程可以被多個應用程序或者腳本重複調用，從而實現代碼復用，減少重複編寫代碼的時間和工作量。</li><li>事務處理：存儲過程可以封裝事務處理邏輯，當多個SQL語句需要在一個事務中執行時，可以使用存儲過程將它們封裝在一個事務中，從而保證了數據的一致性和完整性。</li><li>簡化了複雜的操作：存儲過程可以將多個SQL語句組合成一個操作，從而簡化了複雜的操作，使得應用程序更易於開發和維護。</li></ol><p>存儲過程可以實現很多功能，比如：</p><ol><li>數據庫的備份和還原</li><li>數據庫的複製和同步</li><li>數據庫的日誌記錄和監控</li><li>數據庫的查詢優化</li><li>數據庫的數據加密和解密</li><li>數據庫的數據清洗和轉換</li><li>數據庫的業務邏輯實現</li><li>數據庫的存儲和檢索過程中的錯誤處理</li><li>數據庫的報表生成和匯出等。</li></ol><h1 id=procedure與function之差異>Procedure與Function之差異</h1><p><img src=https://i.imgur.com/glkexq1.png loading=lazy alt=image-20230302110014148></p><p>在PostgreSQL中，function和procedure都是儲存運算邏輯的物件，它們在設計目的和使用方式上略有不同。</p><p>Function主要是用於執行一個特定的計算或邏輯，返回一個單一的值或一個結果集，並且可以在SELECT語句、WHERE語句等中使用。Function可以返回一個或多個結果集，但只能返回一個值作為輸出，因此它被稱為有返回值的Function。</p><p>Procedure主要用於執行一連串的操作，不返回結果集，通常是用來執行複雜的業務邏輯，如事務處理、資料庫管理等。Procedure可以執行INSERT、UPDATE、DELETE等數據操作，但是不能作為SELECT語句的一部分使用。Procedure不返回任何值或結果集，因此它被稱為無返回值的Procedure。</p><p>在設計時，需要根據實際需求選擇使用哪種物件。如果需要執行一個特定的計算或邏輯，並返回一個結果集，則使用Function。如果需要執行一連串的操作並且不需要返回結果集，則使用Procedure。</p><p><strong>更直接的不同是，Procedure並沒有定義它自身的回傳值，連Returns void都沒有，而Function是有回傳值的，即使是Returns Void也是有回傳值</strong></p><h2 id=創建procedure的語法>創建procedure的語法</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>create</span> <span class=k>or</span> <span class=k>replace</span> <span class=k>function</span> <span class=n>test</span><span class=p>()</span>
-<span class=k>LANGUAGE</span> <span class=n>plpgsql</span>
-<span class=k>AS</span> <span class=err>$$</span>
-<span class=k>BEGIN</span>
-<span class=k>END</span>
-<span class=err>$$</span><span class=p>;</span>
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='研究了一下Store Procedure跟PSQL，以此紀錄'><title>StoreProcedure跟PSQL的筆記</title>
 
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/SQvfGm9.png loading=lazy alt=image-20230303104439737></p><p>若加入RETURNS VOID則會回報錯誤</p><h2 id=創建function的語法>創建Function的語法</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>create</span> <span class=k>or</span> <span class=k>replace</span> <span class=k>function</span> <span class=n>test</span><span class=p>()</span>
-<span class=k>LANGUAGE</span> <span class=n>plpgsql</span>
-<span class=k>AS</span> <span class=err>$$</span>
-<span class=k>BEGIN</span>
-<span class=k>END</span>
-<span class=err>$$</span><span class=p>;</span>
+<link rel='canonical' href='https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/'>
 
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/dya5pND.png loading=lazy alt=image-20230303104821763></p><p>若不指定回傳值，則會報錯誤<code>function result type must be specified</code></p><h1 id=定界符-delimiter>定界符$$ (delimiter)</h1><p>在SQL中，兩個美元符號（$$）用來定義一個區塊或一個標識符（identifier）。</p><p>例如，可以使用<code>$$</code>來.定義一個存儲過程或函數的主體。在$$之間的所有內容都被視為存儲過程或函數的主體，可以包含SQL語句、流程控制語句等。</p><p>另外，<code>$$</code>還可以用來定義一個標識符，例如，可以使用<code>$$</code>來定義一個變量或一個標識符的名稱。在<code>$$</code>之間的所有內容都被視為標識符的名稱，可以包含字母、數字和下劃線等字符。使用<code>$$</code>定義標識符時，可以幫助區分保留字和自定義的標識符，以及避免標識符中包含空格等特殊字符所帶來的問題。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>FUNCTION</span> <span class=n>myfunc</span><span class=p>(</span><span class=n>x</span> <span class=nb>INT</span><span class=p>,</span> <span class=n>y</span> <span class=nb>INT</span><span class=p>)</span> <span class=k>RETURNS</span> <span class=nb>INT</span> <span class=k>AS</span> <span class=err>$$</span>
-<span class=k>BEGIN</span>
-    <span class=k>RETURN</span> <span class=n>x</span> <span class=o>+</span> <span class=n>y</span><span class=p>;</span>
-<span class=k>END</span><span class=p>;</span>
-<span class=err>$$</span> <span class=k>LANGUAGE</span> <span class=n>plpgsql</span><span class=p>;</span>
-<span class=c1>-- 在這個例子中，$$ 用來定義函數的主體。CREATE FUNCTION 指令創建了一個名為 myfunc 的函數，它接受兩個整數參數 x 和 y，返回它們的和。 RETURN 指令用於返回函數的值。
-</span><span class=c1></span>
-<span class=c1>-- 在這裡，$ 用作定界符，它定義了函數的主體。如果不使用定界符，則在函數主體中使用分號 ; 可能會導致錯誤。使用定界符可以幫助區分不同的 SQL 區塊，從而更好地組織和管理 SQL 代碼。
-</span></code></pre></td></tr></table></div></div><h1 id=使用terminal操作postgres-sql>使用Terminal操作Postgres SQL</h1><p>有兩種方式，一種是用psql的Shell，另一種則是用powershell</p><h2 id=使用psql的shell>使用psql的Shell</h2><p>打開psql</p><p><img src=https://i.imgur.com/nK75Ei4.png loading=lazy alt=image-20230301141105566></p><p>輸入相應的資訊</p><p><img src=https://i.imgur.com/7xAxqku.png loading=lazy alt=image-20230301141442266></p><p><img src=https://i.imgur.com/VoFR6LZ.jpg loading=lazy alt=1677641123421></p><h2 id=使用powershell>使用powerShell</h2><p>首先先下載Postgres SQL，接著在把環境變數加入至電腦中，路徑大概會如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cmd data-lang=cmd>C<span class=p>:</span><span class=nl>\Program</span><span class=c1> Files\PostgreSQL\14\bin</span>
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/XGVwCjA.png loading=lazy alt=image-20230301112209470></p><p>即可在Termianl中操作postgres SQL</p><p>如以下指令<img src=https://i.imgur.com/TytSWR7.png loading=lazy alt=image-20230301151606030></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cmd data-lang=cmd>psql -h localhost -p 5432 -U postgres school
-## psql -h localhost -p 5432 -U <span class=p>&lt;</span>your_username<span class=p>&gt;</span> &lt;your_database&gt;
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/O1LOTxQ.png loading=lazy alt=image-20230301112342437></p><p><img src=https://i.imgur.com/9XwWLMJ.jpg loading=lazy alt=1677641123421></p><p>(與之對應的Server設定)</p><h2 id=連結成功後的畫面>連結成功後的畫面</h2><p><img src=https://i.imgur.com/hws6MgV.png loading=lazy alt=image-20230301114731154></p><p>可以輸入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cmd data-lang=cmd>\dt 
-</code></pre></td></tr></table></div></div><p>來查看該database底下的table</p><p><img src=https://i.imgur.com/LrRDSbm.png loading=lazy alt=image-20230301114853633></p><blockquote><p>在 psql 中，<code>\</code> 符號是一個特殊的字元，稱為 &ldquo;psql 內部命令前綴&rdquo;。當您在 psql 終端機中輸入以 <code>\</code> 開頭的命令時，psql 將解釋這個命令，並執行對應的操作。</p><p>以下是幾個常用的 psql 內部命令：</p><ul><li><code>\c</code>: 切換到另一個數據庫</li><li><code>\dt</code>: 列出當前數據庫中的所有表格</li><li><code>\d table_name</code>: 查看指定表格的結構</li><li><code>\q</code>: 退出 psql 終端機</li><li><code>\! clear</code>: 清空psql 終端機畫面</li></ul><p>當您想要使用 psql 內部命令時，必須在命令前加上 <code>\</code> 符號。例如，要列出當前數據庫中的所有表格，您可以輸入 <code>\dt</code>。</p><p>如果您想要輸入以 <code>\</code> 開頭的普通文本，而不是 psql 內部命令，則必須在 <code>\</code> 前面再加上一個 <code>\</code> 符號。例如，如果您想要在 SQL 陳述句中使用反斜線（<code>\</code>）字元，則必須將其寫成 <code>\\</code>。</p><p>請注意，在某些情況下，psql 內部命令前綴 <code>\</code> 可能會和 SQL 語句的關鍵字混淆。例如，<code>CREATE TABLE</code> 陳述句中的 <code>TABLE</code> 關鍵字後面如果不加引號可能會被 psql 認為是一個內部命令。為避免這種情況，建議在使用關鍵字時加上引號，例如 <code>"TABLE"</code>。\</p><p><img src=https://i.imgur.com/6fu3Mmp.png loading=lazy alt=image-20230301114853633></p></blockquote><p>基本上這個terminal就是我們的Query Tool，所以是可以在這邊做CRUD的，如下</p><p><img src=https://i.imgur.com/9rB6wxq.png loading=lazy alt=image-20230301115221834></p><h1 id=常用的psql-指令>常用的psql 指令</h1><ol><li><code>\q</code> - 退出 <code>psql</code> 命令行界面。</li><li><code>\c &lt;database_name></code> - 連接到指定的數據庫。</li><li><code>\dt</code> - 列出當前數據庫中的所有表格。</li><li><strong><code>\d &lt;table_name></code> - 列出指定表格的詳細信息，包括列名、類型和約束等。</strong></li><li><code>\du</code> - 列出所有用戶帳號的詳細信息，包括用戶名、權限和群組等。</li><li><code>\dp</code> - 列出所有表格的權限設置。</li><li><code>\timing</code> - 啟用或禁用查詢執行時間的顯示。</li><li><code>\set</code> - 列出或設置 <code>psql</code> 的配置選項。</li><li><code>\i &lt;file_path></code> - 從指定的檔案載入 SQL 命令。</li><li><code>\e</code> - 打開外部編輯器編輯當前緩衝區中的 SQL 命令。</li><li><strong><code>\! clear</code>: 清空psql 終端機畫面</strong></li><li><code>\dt</code>: 查看所有表格</li><li><code>\df</code>: 查看資料庫中的所有函數以及Stored Procedure</li><li><code>\ef</code>: 編輯現有的函數，可能你寫錯了還是啥的 ☆修改完後，存檔退出記事本，進到terminal要加上 <code>\g</code> 才會把這個修改<code>go</code>出去，不然你怎麼改都是沒有用ㄉ，血與淚的教訓Q_Q</li><li><code>\sf</code>: 查看更詳細的函數內容，s stand for show</li></ol><p><strong>dt, du, df的d代表Describe的縮寫，用以顯示資料庫的資料</strong></p><h1 id=stored-procedure的實戰>Stored Procedure的實戰</h1><p>首先創造表格</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>users</span> <span class=p>(</span>
-  <span class=n>id</span> <span class=nb>SERIAL</span> <span class=k>PRIMARY</span> <span class=k>KEY</span><span class=p>,</span>
-  <span class=n>name</span> <span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>255</span><span class=p>)</span> <span class=k>NOT</span> <span class=k>NULL</span><span class=p>,</span>
-  <span class=n>email</span> <span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>255</span><span class=p>)</span> <span class=k>NOT</span> <span class=k>NULL</span> <span class=k>UNIQUE</span>
-<span class=p>);</span>
-</code></pre></td></tr></table></div></div><p>插入資料</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>users</span> <span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=n>email</span><span class=p>)</span>
-<span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;John Doe&#39;</span><span class=p>,</span> <span class=s1>&#39;john.doe@example.com&#39;</span><span class=p>),</span>
-       <span class=p>(</span><span class=s1>&#39;Jane Doe&#39;</span><span class=p>,</span> <span class=s1>&#39;jane.doe@example.com&#39;</span><span class=p>),</span>
-       <span class=p>(</span><span class=s1>&#39;Bob Smith&#39;</span><span class=p>,</span> <span class=s1>&#39;bob.smith@example.com&#39;</span><span class=p>);</span>
+<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='StoreProcedure跟PSQL的筆記'>
+<meta property='og:description' content='研究了一下Store Procedure跟PSQL，以此紀錄'>
+<meta property='og:url' content='https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/'>
+<meta property='og:site_name' content='Hoxton'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='' /><meta property='article:published_time' content='2023-03-01T09:45:17&#43;08:00'/><meta property='article:modified_time' content='2023-03-01T09:45:17&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/1BTtOUL.png' />
+<meta name="twitter:title" content="StoreProcedure跟PSQL的筆記">
+<meta name="twitter:description" content="研究了一下Store Procedure跟PSQL，以此紀錄"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.imgur.com/1BTtOUL.png' />
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
 
-</code></pre></td></tr></table></div></div><h2 id=返回值為空的function>返回值為空的Function</h2><p>先創建一個無關緊要的stored procedure來感受一下它的作用吧，我們創造一個function，用來返回今天的日期，語法如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>OR</span> <span class=k>REPLACE</span> <span class=k>FUNCTION</span>  <span class=c1>-- 創建stored procedure的起手式。
-</span><span class=c1></span><span class=n>get_current_date</span><span class=p>()</span> <span class=c1>-- 函式名稱
-</span><span class=c1></span><span class=k>RETURNS</span> <span class=nb>DATE</span>  <span class=c1>-- 該函式的返回值，若未指定則為Return Null
-</span><span class=c1></span><span class=k>AS</span> <span class=c1>-- 用以分明函數聲明與函數體，AS上面的是函數聲明，AS下面的是函數體
-</span><span class=c1></span><span class=err>$$</span>  <span class=c1>-- 定界符，參照上方說明
-</span><span class=c1></span><span class=k>BEGIN</span> 
-  <span class=k>RETURN</span> <span class=k>CURRENT_DATE</span><span class=p>;</span> <span class=c1>-- 函數體
-</span><span class=c1></span><span class=k>END</span><span class=p>;</span>
-<span class=err>$$</span>  <span class=c1>-- 定界符，參照上方說明
-</span><span class=c1></span><span class=k>LANGUAGE</span> <span class=n>plpgsql</span><span class=p>;</span> <span class=c1>-- 不加這個就是默認使用SQL語言，只能使用一些比較簡單的語法，加了這個之後就可以作流程控制、循環、異常處理等等...
-</span></code></pre></td></tr></table></div></div><p>接著呼叫它</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>SELECT</span> <span class=n>get_current_date</span><span class=p>();</span>
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/qoDZ9PN.gif loading=lazy alt=demo></p><h2 id=回傳特定資料的function>回傳特定資料的function</h2><p>該function會返回參數值的使用者的相關資訊</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>OR</span> <span class=k>REPLACE</span> <span class=k>FUNCTION</span> <span class=n>get_user_info</span><span class=p>(</span><span class=n>user_id</span> <span class=nb>INTEGER</span><span class=p>)</span>
-  <span class=k>RETURNS</span> <span class=k>TABLE</span> <span class=p>(</span><span class=n>name</span> <span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>255</span><span class=p>),</span> <span class=n>email</span> <span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>255</span><span class=p>))</span> <span class=k>AS</span>
-<span class=err>$$</span>
-<span class=k>BEGIN</span>
-  <span class=k>RETURN</span> <span class=n>QUERY</span> <span class=k>SELECT</span> <span class=n>users</span><span class=p>.</span><span class=n>name</span><span class=p>,</span> <span class=n>users</span><span class=p>.</span><span class=n>email</span> <span class=k>FROM</span> <span class=n>users</span> <span class=k>WHERE</span> <span class=n>id</span> <span class=o>=</span> <span class=n>user_id</span><span class=p>;</span>
-<span class=k>END</span><span class=p>;</span>
-<span class=err>$$</span> <span class=k>LANGUAGE</span> <span class=n>plpgsql</span><span class=p>;</span>
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/MRdpixs.gif loading=lazy alt=demo></p><h2 id=更新資料的function>更新資料的function</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>OR</span> <span class=k>REPLACE</span> <span class=k>FUNCTION</span> <span class=k>public</span><span class=p>.</span><span class=n>update_user_info</span><span class=p>(</span><span class=n>user_id</span> <span class=nb>integer</span><span class=p>,</span> <span class=n>name</span> <span class=nb>character</span> <span class=nb>varying</span><span class=p>,</span> <span class=n>email</span> <span class=nb>character</span> <span class=nb>varying</span><span class=p>)</span>
- <span class=k>RETURNS</span> <span class=n>void</span>
- <span class=k>LANGUAGE</span> <span class=n>plpgsql</span>
-<span class=k>AS</span> <span class=err>$$</span>
-<span class=k>BEGIN</span>
-  <span class=k>UPDATE</span> <span class=n>users</span> <span class=k>AS</span> <span class=n>u</span> <span class=k>SET</span> <span class=n>name</span> <span class=o>=</span> <span class=err>$</span><span class=mi>2</span><span class=p>,</span> <span class=n>email</span> <span class=o>=</span> <span class=err>$</span><span class=mi>3</span> <span class=k>WHERE</span> <span class=n>u</span><span class=p>.</span><span class=n>id</span> <span class=o>=</span> <span class=err>$</span><span class=mi>1</span><span class=p>;</span>
-<span class=k>END</span><span class=p>;</span>
-<span class=err>$$</span>
-</code></pre></td></tr></table></div></div><h2 id=變數宣告>變數宣告</h2><p><code>:=</code>來進行變數宣告，<code>=</code>在postgresSQL比較像是用來比較</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>OR</span> <span class=k>REPLACE</span> <span class=k>FUNCTION</span> <span class=n>my_function</span><span class=p>(</span><span class=n>param1</span> <span class=nb>integer</span><span class=p>,</span> <span class=n>param2</span> <span class=nb>integer</span><span class=p>)</span>
-<span class=k>RETURNS</span> <span class=nb>integer</span> <span class=k>AS</span> <span class=err>$$</span>
-<span class=k>DECLARE</span>
-    <span class=n>var1</span> <span class=nb>integer</span> <span class=p>:</span><span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
-    <span class=n>var2</span> <span class=nb>integer</span> <span class=p>:</span><span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
-<span class=k>BEGIN</span>
-    <span class=n>var1</span> <span class=p>:</span><span class=o>=</span> <span class=n>param1</span> <span class=o>+</span> <span class=mi>1</span><span class=p>;</span>
-    <span class=n>var2</span> <span class=p>:</span><span class=o>=</span> <span class=n>param2</span> <span class=o>+</span> <span class=mi>2</span><span class=p>;</span>
-    <span class=k>RETURN</span> <span class=n>var1</span> <span class=o>*</span> <span class=n>var2</span><span class=p>;</span>
-<span class=k>END</span><span class=p>;</span>
-<span class=err>$$</span> <span class=k>LANGUAGE</span> <span class=n>plpgsql</span><span class=p>;</span>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-9N16MVLR0Q', { 'anonymize_ip': false });
+}
+</script>
 
-</code></pre></td></tr></table></div></div><h2 id=while-語法>WHILE 語法</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>OR</span> <span class=k>REPLACE</span> <span class=k>PROCEDURE</span> <span class=k>public</span><span class=p>.</span><span class=n>factorial</span><span class=p>(</span><span class=k>IN</span> <span class=n>n</span> <span class=nb>INT</span><span class=p>,</span> <span class=k>OUT</span> <span class=k>result</span> <span class=nb>BIGINT</span><span class=p>)</span>
-<span class=k>LANGUAGE</span> <span class=n>plpgsql</span>
-<span class=k>AS</span> <span class=err>$$</span>
-<span class=k>DECLARE</span> 
-    <span class=n>i</span> <span class=nb>INT</span> <span class=p>:</span><span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
-<span class=k>BEGIN</span>
-    <span class=k>result</span> <span class=p>:</span><span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
-    <span class=n>WHILE</span> <span class=n>i</span> <span class=o>&lt;=</span> <span class=n>n</span> <span class=n>LOOP</span>
-        <span class=k>result</span> <span class=p>:</span><span class=o>=</span> <span class=k>result</span> <span class=o>*</span> <span class=n>i</span><span class=p>;</span>
-        <span class=n>i</span> <span class=p>:</span><span class=o>=</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>;</span>
-    <span class=k>END</span> <span class=n>LOOP</span><span class=p>;</span>
-<span class=k>END</span><span class=p>;</span>
-<span class=err>$$</span><span class=p>;</span>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
 
-</code></pre></td></tr></table></div></div><h2 id=if語法>IF語法</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>OR</span> <span class=k>REPLACE</span> <span class=k>PROCEDURE</span> <span class=n>example_if_proc</span> <span class=p>(</span><span class=n>a</span> <span class=nb>INT</span><span class=p>)</span>
-<span class=k>AS</span>
-<span class=k>BEGIN</span>
-  <span class=k>IF</span> <span class=n>a</span> <span class=o>&lt;</span> <span class=mi>0</span> <span class=k>THEN</span>
-    <span class=n>DBMS_OUTPUT</span><span class=p>.</span><span class=n>PUT_LINE</span><span class=p>(</span><span class=s1>&#39;a is negative&#39;</span><span class=p>);</span>
-  <span class=k>ELSIF</span> <span class=n>a</span> <span class=o>=</span> <span class=mi>0</span> <span class=k>THEN</span>
-    <span class=n>DBMS_OUTPUT</span><span class=p>.</span><span class=n>PUT_LINE</span><span class=p>(</span><span class=s1>&#39;a is zero&#39;</span><span class=p>);</span>
-  <span class=k>ELSE</span>
-    <span class=n>DBMS_OUTPUT</span><span class=p>.</span><span class=n>PUT_LINE</span><span class=p>(</span><span class=s1>&#39;a is positive&#39;</span><span class=p>);</span>
-  <span class=k>END</span> <span class=k>IF</span><span class=p>;</span>
-<span class=k>END</span><span class=p>;</span>
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
 
-</code></pre></td></tr></table></div></div><h2 id=將select出來的值儲存在一變數中>將SELECT出來的值儲存在一變數中</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>OR</span> <span class=k>REPLACE</span> <span class=k>PROCEDURE</span> <span class=k>public</span><span class=p>.</span><span class=n>get_customer_info</span><span class=p>(</span>
-    <span class=k>IN</span> <span class=n>customer_id</span> <span class=nb>INTEGER</span><span class=p>,</span>
-    <span class=k>OUT</span> <span class=n>customer_name</span> <span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>50</span><span class=p>),</span>
-    <span class=k>OUT</span> <span class=n>customer_email</span> <span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>50</span><span class=p>)</span>
-<span class=p>)</span>
-<span class=k>LANGUAGE</span> <span class=n>plpgsql</span>
-<span class=k>AS</span> <span class=err>$$</span>
-<span class=k>BEGIN</span>
-    <span class=k>SELECT</span> <span class=n>name</span><span class=p>,</span> <span class=n>email</span> <span class=k>INTO</span> <span class=n>customer_name</span><span class=p>,</span> <span class=n>customer_email</span>
-    <span class=k>FROM</span> <span class=n>customers</span>
-    <span class=k>WHERE</span> <span class=n>id</span> <span class=o>=</span> <span class=n>customer_id</span><span class=p>;</span>
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
 
-    <span class=k>IF</span> <span class=k>NOT</span> <span class=k>FOUND</span> <span class=k>THEN</span>
-        <span class=n>RAISE</span> <span class=k>EXCEPTION</span> <span class=s1>&#39;Customer not found&#39;</span><span class=p>;</span>
-    <span class=k>END</span> <span class=k>IF</span><span class=p>;</span>
-<span class=k>END</span><span class=p>;</span>
-<span class=err>$$</span><span class=p>;</span>
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_3.png" width="300"
+                            height="301" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Hoxton</a></h1>
+            <h2 class="site-description">快樂的CRUD Boy, API Caller</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://discordapp.com/users/840906423076782082'
+                        target="_blank"
+                        title="Discord"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="9" cy="12" r="1" />
+  <circle cx="15" cy="12" r="1" />
+  <path d="M7.5 7.5c3.5 -1 5.5 -1 9 0" />
+  <path d="M7 16.5c3.5 1 6.5 1 10 0" />
+  <path d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-1 2.5" />
+  <path d="M8.5 17c0 1 -1.356 3 -1.832 3c-1.429 0 -2.698 -1.667 -3.333 -3c-.635 -1.667 -.476 -5.833 1.428 -11.5c1.388 -1.015 2.782 -1.34 4.237 -1.5l1 2.5" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Hoxton019030'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
 
-</code></pre></td></tr></table></div></div><h2 id=將資訊打印出來print>將資訊打印出來(print)</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span><span class=lnt>8
-</span><span class=lnt>9
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>OR</span> <span class=k>REPLACE</span> <span class=k>procedure</span> <span class=n>sayHello</span><span class=p>()</span>
- <span class=k>RETURNS</span> <span class=n>void</span>
- <span class=k>LANGUAGE</span> <span class=n>plpgsql</span>
-<span class=k>AS</span> <span class=err>$$</span>
-<span class=k>DECLARE</span>
-<span class=k>BEGIN</span>
-        <span class=n>RAISE</span> <span class=n>NOTICE</span> <span class=s1>&#39;hello word:&#39;</span><span class=p>;</span>
-<span class=k>END</span><span class=p>;</span>
-<span class=err>$$</span>
-</code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/><div class=article-image><img src=https://i.imgur.com/7g77ZiN.png loading=lazy data-key data-hash=https://i.imgur.com/7g77ZiN.png></div><div class=article-details><h2 class=article-title>Zabbix的一些筆記</h2></div></a></article><article class=has-image><a href=/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/><div class=article-image><img src=https://i.imgur.com/JdDwgHn.png%20 loading=lazy data-key data-hash=https://i.imgur.com/JdDwgHn.png></div><div class=article-details><h2 class=article-title>Docker學習筆記</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
-gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
-2020 -
-2023 Hoxton</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-<button class="pswp__button pswp__button--share" title=Share></button>
-<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#什麼是store-procedure>什麼是Store Procedure</a></li><li><a href=#procedure與function之差異>Procedure與Function之差異</a><ol><li><a href=#創建procedure的語法>創建procedure的語法</a></li><li><a href=#創建function的語法>創建Function的語法</a></li></ol></li><li><a href=#定界符-delimiter>定界符$$ (delimiter)</a></li><li><a href=#使用terminal操作postgres-sql>使用Terminal操作Postgres SQL</a><ol><li><a href=#使用psql的shell>使用psql的Shell</a></li><li><a href=#使用powershell>使用powerShell</a></li><li><a href=#連結成功後的畫面>連結成功後的畫面</a></li></ol></li><li><a href=#常用的psql-指令>常用的psql 指令</a></li><li><a href=#stored-procedure的實戰>Stored Procedure的實戰</a><ol><li><a href=#返回值為空的function>返回值為空的Function</a></li><li><a href=#回傳特定資料的function>回傳特定資料的function</a></li><li><a href=#更新資料的function>更新資料的function</a></li><li><a href=#變數宣告>變數宣告</a></li><li><a href=#while-語法>WHILE 語法</a></li><li><a href=#if語法>IF語法</a></li><li><a href=#將select出來的值儲存在一變數中>將SELECT出來的值儲存在一變數中</a></li><li><a href=#將資訊打印出來print>將資訊打印出來(print)</a></li></ol></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.instagram.com/hoxton_8a31/'
+                        target="_blank"
+                        title="Instagram"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="4" />
+  <circle cx="12" cy="12" r="3" />
+  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/">
+                
+                    <img src="https://i.imgur.com/1BTtOUL.png" loading="lazy" alt="Featured image of post StoreProcedure跟PSQL的筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%AD%86%E8%A8%98/" style="background-color: #2a9d8f; color: #fff;">
+                筆記
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/">StoreProcedure跟PSQL的筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            研究了一下Store Procedure跟PSQL，以此紀錄
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 01, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><a class="link" href="https://www.youtube.com/watch?v=yLR1w4tZ36I&amp;ab_channel=techTFQ"  target="_blank" rel="noopener"
+    >參考網站</a></p>
+<p><strong>這篇文章是以Postgres SQL的語法為主，其他RDB的語法略有不同</strong></p>
+<h1 id="什麼是store-procedure">什麼是Store Procedure</h1>
+<p>預存程序（Stored Procedure）是一種資料庫對象，它是一個預編譯的SQL程式碼，可以在資料庫中存儲並重複使用。它通常由一系列SQL語句和編程邏輯組成，可以接受輸入參數、返回輸出參數和結果集。存儲過程通常由數據庫管理員或開發人員編寫和維護，並且可以在數據庫中執行。</p>
+<p>存儲過程有以下幾個優點：</p>
+<ol>
+<li>提高了數據庫性能：存儲過程是預編譯的，一旦編譯就會存儲在數據庫中，執行速度快。此外，存儲過程可以減少客戶端與服務器之間的通信，從而降低網絡延遲，提高數據庫性能。</li>
+<li>提高了數據安全性：存儲過程可以在數據庫層面上實現安全控制，可以限制某些用戶或角色的操作權限，從而保證數據的安全性。</li>
+<li>代碼復用：存儲過程可以被多個應用程序或者腳本重複調用，從而實現代碼復用，減少重複編寫代碼的時間和工作量。</li>
+<li>事務處理：存儲過程可以封裝事務處理邏輯，當多個SQL語句需要在一個事務中執行時，可以使用存儲過程將它們封裝在一個事務中，從而保證了數據的一致性和完整性。</li>
+<li>簡化了複雜的操作：存儲過程可以將多個SQL語句組合成一個操作，從而簡化了複雜的操作，使得應用程序更易於開發和維護。</li>
+</ol>
+<p>存儲過程可以實現很多功能，比如：</p>
+<ol>
+<li>數據庫的備份和還原</li>
+<li>數據庫的複製和同步</li>
+<li>數據庫的日誌記錄和監控</li>
+<li>數據庫的查詢優化</li>
+<li>數據庫的數據加密和解密</li>
+<li>數據庫的數據清洗和轉換</li>
+<li>數據庫的業務邏輯實現</li>
+<li>數據庫的存儲和檢索過程中的錯誤處理</li>
+<li>數據庫的報表生成和匯出等。</li>
+</ol>
+<h1 id="procedure與function之差異">Procedure與Function之差異</h1>
+<p><img src="https://i.imgur.com/glkexq1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230302110014148"
+	
+	
+></p>
+<p>在PostgreSQL中，function和procedure都是儲存運算邏輯的物件，它們在設計目的和使用方式上略有不同。</p>
+<p>Function主要是用於執行一個特定的計算或邏輯，返回一個單一的值或一個結果集，並且可以在SELECT語句、WHERE語句等中使用。Function可以返回一個或多個結果集，但只能返回一個值作為輸出，因此它被稱為有返回值的Function。</p>
+<p>Procedure主要用於執行一連串的操作，不返回結果集，通常是用來執行複雜的業務邏輯，如事務處理、資料庫管理等。Procedure可以執行INSERT、UPDATE、DELETE等數據操作，但是不能作為SELECT語句的一部分使用。Procedure不返回任何值或結果集，因此它被稱為無返回值的Procedure。</p>
+<p>在設計時，需要根據實際需求選擇使用哪種物件。如果需要執行一個特定的計算或邏輯，並返回一個結果集，則使用Function。如果需要執行一連串的操作並且不需要返回結果集，則使用Procedure。</p>
+<p><strong>更直接的不同是，Procedure並沒有定義它自身的回傳值，連Returns void都沒有，而Function是有回傳值的，即使是Returns Void也是有回傳值</strong></p>
+<h2 id="創建procedure的語法">創建procedure的語法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">test</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/SQvfGm9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230303104439737"
+	
+	
+></p>
+<p>若加入RETURNS VOID則會回報錯誤</p>
+<h2 id="創建function的語法">創建Function的語法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">test</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/dya5pND.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230303104821763"
+	
+	
+></p>
+<p>若不指定回傳值，則會報錯誤<code>function result type must be specified</code></p>
+<h1 id="定界符-delimiter">定界符$$ (delimiter)</h1>
+<p>在SQL中，兩個美元符號（$$）用來定義一個區塊或一個標識符（identifier）。</p>
+<p>例如，可以使用<code>$$</code>來.定義一個存儲過程或函數的主體。在$$之間的所有內容都被視為存儲過程或函數的主體，可以包含SQL語句、流程控制語句等。</p>
+<p>另外，<code>$$</code>還可以用來定義一個標識符，例如，可以使用<code>$$</code>來定義一個變量或一個標識符的名稱。在<code>$$</code>之間的所有內容都被視為標識符的名稱，可以包含字母、數字和下劃線等字符。使用<code>$$</code>定義標識符時，可以幫助區分保留字和自定義的標識符，以及避免標識符中包含空格等特殊字符所帶來的問題。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">myfunc</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span><span class="w"> </span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 在這個例子中，$$ 用來定義函數的主體。CREATE FUNCTION 指令創建了一個名為 myfunc 的函數，它接受兩個整數參數 x 和 y，返回它們的和。 RETURN 指令用於返回函數的值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 在這裡，$ 用作定界符，它定義了函數的主體。如果不使用定界符，則在函數主體中使用分號 ; 可能會導致錯誤。使用定界符可以幫助區分不同的 SQL 區塊，從而更好地組織和管理 SQL 代碼。
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="使用terminal操作postgres-sql">使用Terminal操作Postgres SQL</h1>
+<p>有兩種方式，一種是用psql的Shell，另一種則是用powershell</p>
+<h2 id="使用psql的shell">使用psql的Shell</h2>
+<p>打開psql</p>
+<p><img src="https://i.imgur.com/nK75Ei4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230301141105566"
+	
+	
+></p>
+<p>輸入相應的資訊</p>
+<p><img src="https://i.imgur.com/7xAxqku.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230301141442266"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/VoFR6LZ.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1677641123421"
+	
+	
+></p>
+<h2 id="使用powershell">使用powerShell</h2>
+<p>首先先下載Postgres SQL，接著在把環境變數加入至電腦中，路徑大概會如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">C<span class="p">:</span><span class="nl">\Program</span><span class="c1"> Files\PostgreSQL\14\bin</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/XGVwCjA.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230301112209470"
+	
+	
+></p>
+<p>即可在Termianl中操作postgres SQL</p>
+<p>如以下指令<img src="https://i.imgur.com/TytSWR7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230301151606030"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">psql -h localhost -p 5432 -U postgres school
+</span></span><span class="line"><span class="cl">## psql -h localhost -p 5432 -U <span class="p">&lt;</span>your_username<span class="p">&gt;</span> &lt;your_database&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/O1LOTxQ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230301112342437"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/9XwWLMJ.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1677641123421"
+	
+	
+></p>
+<p>(與之對應的Server設定)</p>
+<h2 id="連結成功後的畫面">連結成功後的畫面</h2>
+<p><img src="https://i.imgur.com/hws6MgV.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230301114731154"
+	
+	
+></p>
+<p>可以輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">\dt 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>來查看該database底下的table</p>
+<p><img src="https://i.imgur.com/LrRDSbm.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230301114853633"
+	
+	
+></p>
+<blockquote>
+<p>在 psql 中，<code>\</code> 符號是一個特殊的字元，稱為 &ldquo;psql 內部命令前綴&rdquo;。當您在 psql 終端機中輸入以 <code>\</code> 開頭的命令時，psql 將解釋這個命令，並執行對應的操作。</p>
+<p>以下是幾個常用的 psql 內部命令：</p>
+<ul>
+<li><code>\c</code>: 切換到另一個數據庫</li>
+<li><code>\dt</code>: 列出當前數據庫中的所有表格</li>
+<li><code>\d table_name</code>: 查看指定表格的結構</li>
+<li><code>\q</code>: 退出 psql 終端機</li>
+<li><code>\! clear</code>: 清空psql 終端機畫面</li>
+</ul>
+<p>當您想要使用 psql 內部命令時，必須在命令前加上 <code>\</code> 符號。例如，要列出當前數據庫中的所有表格，您可以輸入 <code>\dt</code>。</p>
+<p>如果您想要輸入以 <code>\</code> 開頭的普通文本，而不是 psql 內部命令，則必須在 <code>\</code> 前面再加上一個 <code>\</code> 符號。例如，如果您想要在 SQL 陳述句中使用反斜線（<code>\</code>）字元，則必須將其寫成 <code>\\</code>。</p>
+<p>請注意，在某些情況下，psql 內部命令前綴 <code>\</code> 可能會和 SQL 語句的關鍵字混淆。例如，<code>CREATE TABLE</code> 陳述句中的 <code>TABLE</code> 關鍵字後面如果不加引號可能會被 psql 認為是一個內部命令。為避免這種情況，建議在使用關鍵字時加上引號，例如 <code>&quot;TABLE&quot;</code>。\</p>
+<p><img src="https://i.imgur.com/6fu3Mmp.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230301114853633"
+	
+	
+></p>
+</blockquote>
+<p>基本上這個terminal就是我們的Query Tool，所以是可以在這邊做CRUD的，如下</p>
+<p><img src="https://i.imgur.com/9rB6wxq.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230301115221834"
+	
+	
+></p>
+<h1 id="常用的psql-指令">常用的psql 指令</h1>
+<ol>
+<li><code>\q</code> - 退出 <code>psql</code> 命令行界面。</li>
+<li><code>\c &lt;database_name&gt;</code> - 連接到指定的數據庫。</li>
+<li><code>\dt</code> - 列出當前數據庫中的所有表格。</li>
+<li><strong><code>\d &lt;table_name&gt;</code> - 列出指定表格的詳細信息，包括列名、類型和約束等。</strong></li>
+<li><code>\du</code> - 列出所有用戶帳號的詳細信息，包括用戶名、權限和群組等。</li>
+<li><code>\dp</code> - 列出所有表格的權限設置。</li>
+<li><code>\timing</code> - 啟用或禁用查詢執行時間的顯示。</li>
+<li><code>\set</code> - 列出或設置 <code>psql</code> 的配置選項。</li>
+<li><code>\i &lt;file_path&gt;</code> - 從指定的檔案載入 SQL 命令。</li>
+<li><code>\e</code> - 打開外部編輯器編輯當前緩衝區中的 SQL 命令。</li>
+<li><strong><code>\! clear</code>: 清空psql 終端機畫面</strong></li>
+<li><code>\dt</code>: 查看所有表格</li>
+<li><code>\df</code>: 查看資料庫中的所有函數以及Stored Procedure</li>
+<li><code>\ef</code>: 編輯現有的函數，可能你寫錯了還是啥的 ☆修改完後，存檔退出記事本，進到terminal要加上 <code>\g</code> 才會把這個修改<code>go</code>出去，不然你怎麼改都是沒有用ㄉ，血與淚的教訓Q_Q</li>
+<li><code>\sf</code>: 查看更詳細的函數內容，s stand for show</li>
+</ol>
+<p><strong>dt, du, df的d代表Describe的縮寫，用以顯示資料庫的資料</strong></p>
+<h1 id="stored-procedure的實戰">Stored Procedure的實戰</h1>
+<p>首先創造表格</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>插入資料</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;john.doe@example.com&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="p">(</span><span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;jane.doe@example.com&#39;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="p">(</span><span class="s1">&#39;Bob Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bob.smith@example.com&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="返回值為空的function">返回值為空的Function</h2>
+<p>先創建一個無關緊要的stored procedure來感受一下它的作用吧，我們創造一個function，用來返回今天的日期，語法如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w">  </span><span class="c1">-- 創建stored procedure的起手式。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">get_current_date</span><span class="p">()</span><span class="w"> </span><span class="c1">-- 函式名稱
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">DATE</span><span class="w">  </span><span class="c1">-- 該函式的返回值，若未指定則為Return Null
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">AS</span><span class="w"> </span><span class="c1">-- 用以分明函數聲明與函數體，AS上面的是函數聲明，AS下面的是函數體
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">$$</span><span class="w">  </span><span class="c1">-- 定界符，參照上方說明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">BEGIN</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">RETURN</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 函數體
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="w">  </span><span class="c1">-- 定界符，參照上方說明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 不加這個就是默認使用SQL語言，只能使用一些比較簡單的語法，加了這個之後就可以作流程控制、循環、異常處理等等...
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>接著呼叫它</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">get_current_date</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/qoDZ9PN.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<h2 id="回傳特定資料的function">回傳特定資料的function</h2>
+<p>該function會返回參數值的使用者的相關資訊</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">get_user_info</span><span class="p">(</span><span class="n">user_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">RETURNS</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">RETURN</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="n">email</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/MRdpixs.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<h2 id="更新資料的function">更新資料的function</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">update_user_info</span><span class="p">(</span><span class="n">user_id</span><span class="w"> </span><span class="nb">integer</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">RETURNS</span><span class="w"> </span><span class="n">void</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="mi">3</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="變數宣告">變數宣告</h2>
+<p><code>:=</code>來進行變數宣告，<code>=</code>在postgresSQL比較像是用來比較</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">my_function</span><span class="p">(</span><span class="n">param1</span><span class="w"> </span><span class="nb">integer</span><span class="p">,</span><span class="w"> </span><span class="n">param2</span><span class="w"> </span><span class="nb">integer</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var1</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var2</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var1</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">param1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">var2</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">param2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">var1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">var2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="while-語法">WHILE 語法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">factorial</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="k">OUT</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">WHILE</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">LOOP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">result</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="n">LOOP</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="if語法">IF語法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">example_if_proc</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">&#39;a is negative&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">ELSIF</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">&#39;a is zero&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">ELSE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">DBMS_OUTPUT</span><span class="p">.</span><span class="n">PUT_LINE</span><span class="p">(</span><span class="s1">&#39;a is positive&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="將select出來的值儲存在一變數中">將SELECT出來的值儲存在一變數中</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">get_customer_info</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">IN</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">OUT</span><span class="w"> </span><span class="n">customer_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">OUT</span><span class="w"> </span><span class="n">customer_email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="n">customer_email</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">customer_id</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">FOUND</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">RAISE</span><span class="w"> </span><span class="k">EXCEPTION</span><span class="w"> </span><span class="s1">&#39;Customer not found&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="將資訊打印出來print">將資訊打印出來(print)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">procedure</span><span class="w"> </span><span class="n">sayHello</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">RETURNS</span><span class="w"> </span><span class="n">void</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DECLARE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">BEGIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">RAISE</span><span class="w"> </span><span class="n">NOTICE</span><span class="w"> </span><span class="s1">&#39;hello word:&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">END</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">$$</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/7g77ZiN.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/7g77ZiN.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Zabbix的一些筆記</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/JdDwgHn.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/JdDwgHn.png "/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker學習筆記</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "bf152013e92e48c1495f",
+        clientSecret: "bed32f8438cb1e00d8628d9b6d148003bb4bf25d",
+        repo: "comment",
+        owner: "Hoxton019030",
+        admin: ["Hoxton019030"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Hoxton
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.14.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#什麼是store-procedure">什麼是Store Procedure</a></li>
+    <li><a href="#procedure與function之差異">Procedure與Function之差異</a>
+      <ol>
+        <li><a href="#創建procedure的語法">創建procedure的語法</a></li>
+        <li><a href="#創建function的語法">創建Function的語法</a></li>
+      </ol>
+    </li>
+    <li><a href="#定界符-delimiter">定界符$$ (delimiter)</a></li>
+    <li><a href="#使用terminal操作postgres-sql">使用Terminal操作Postgres SQL</a>
+      <ol>
+        <li><a href="#使用psql的shell">使用psql的Shell</a></li>
+        <li><a href="#使用powershell">使用powerShell</a></li>
+        <li><a href="#連結成功後的畫面">連結成功後的畫面</a></li>
+      </ol>
+    </li>
+    <li><a href="#常用的psql-指令">常用的psql 指令</a></li>
+    <li><a href="#stored-procedure的實戰">Stored Procedure的實戰</a>
+      <ol>
+        <li><a href="#返回值為空的function">返回值為空的Function</a></li>
+        <li><a href="#回傳特定資料的function">回傳特定資料的function</a></li>
+        <li><a href="#更新資料的function">更新資料的function</a></li>
+        <li><a href="#變數宣告">變數宣告</a></li>
+        <li><a href="#while-語法">WHILE 語法</a></li>
+        <li><a href="#if語法">IF語法</a></li>
+        <li><a href="#將select出來的值儲存在一變數中">將SELECT出來的值儲存在一變數中</a></li>
+        <li><a href="#將資訊打印出來print">將資訊打印出來(print)</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

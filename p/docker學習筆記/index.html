@@ -1,263 +1,1993 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Docker的一些學習筆記，想到啥就寫啥"><title>Docker學習筆記</title><link rel=canonical href=https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/><link rel=stylesheet href=/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css><meta property="og:title" content="Docker學習筆記"><meta property="og:description" content="Docker的一些學習筆記，想到啥就寫啥"><meta property="og:url" content="https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/"><meta property="og:site_name" content="Hoxton"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="Docker"><meta property="article:published_time" content="2023-01-18T21:47:50+08:00"><meta property="article:modified_time" content="2023-01-18T21:47:50+08:00"><meta property="og:image" content="https://i.imgur.com/JdDwgHn.png"><meta name=twitter:title content="Docker學習筆記"><meta name=twitter:description content="Docker的一些學習筆記，想到啥就寫啥"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://i.imgur.com/JdDwgHn.png"><link rel="shortcut icon" href=https://cdn-icons-png.flaticon.com/512/92/92031.png><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-9N16MVLR0Q','auto');ga('send','pageview');}</script></head><body class=article-page><script>(function(){const colorSchemeKey='StackColorScheme';localStorage.setItem(colorSchemeKey,"dark");})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.documentElement.dataset.scheme='dark';}else{document.documentElement.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy, API Caller</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/><img src=https://i.imgur.com/JdDwgHn.png%20 loading=lazy alt="Featured image of post Docker學習筆記"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%AD%86%E8%A8%98/ style=background-color:#2a9d8f;color:#fff>筆記</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/>Docker學習筆記</a></h2><h3 class=article-subtitle>Docker的一些學習筆記，想到啥就寫啥</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Jan 18, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>4 minute read</time></div></footer></div></header><section class=article-content><h1 id=名詞解釋>名詞解釋</h1><h2 id=container>Container</h2><p>Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。它使用操作系統級別的虛擬化，可以在單一的物理主機上運行多個容器，並且每個容器都有自己的運行環境和資源。</p><p>Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。容器具有輕量級、可移植性和隔離性等特點。容器是通過在操作系統內核中運行的容器引擎來實現的。</p><p>Docker容器主要是使用了Linux 的 Namespaces 和 Control groups（cgroups） 技術來實現隔離，這兩種技術可以將一個實體主機上的資源限制給每個容器，而容器內部則是共用一個kernel，因此容器比虛擬機器輕量且速度較快。</p><p>Docker容器是基於鏡像(Image)來建立與運行的，一個鏡像可以是一個基礎鏡像或是由其他鏡像所建立而來。當執行docker run 指令時，會從鏡像建立一個容器，並在容器內執行指定的應用程式或服務。</p><p>不僅如此，Docker容器還支援網路、儲存卷的映射，使得容器可以與外部通訊，也可以存取本地端的資料。</p><p>透過Docker容器,我們可以將應用程式、服務和其所需的環境打包在一起，並且可以在不同的環境中運行，提高了應用程式的可移植性和彈性。</p><h2 id=image>Image</h2><p>Docker Image 是 Docker 容器的基礎，它是一個只讀的模板，包含了容器運行所需的所有檔案、設定和程式。當執行 <code>docker run</code> 指令時，Docker 會從 Image 建立一個新的容器並在其中執行指定的應用程式或服務。</p><p>Docker Image 可以通過構建或下載的方式創建，構建的方式可以使用 Dockerfile 來描述如何構建一個 Image。而下載的方式則可以從 Docker Hub 或其他的 registry 下載。</p><h2 id=volume>Volume</h2><p>Docker Volume 是 Docker 的一種功能，用於管理容器中的數據。容器本身是輕量級的，數據是不能永久存在的，而 Volume 則是可以永久存在的。</p><p>Docker Volume 可以被掛載到容器上，並且可以在容器內部存儲數據。當容器停止運行或者被刪除時，Volume 中的數據仍然可以保留下來。這樣就可以在重啟容器或建立新容器時，繼續使用之前存儲的數據。</p><p>並且Volume裡面的資料是可以和Host分享的，兩邊的資料呈現鏡像的雙向對應，在Host新增的東西會在Container出現，Container新增的資料也會在Host裡面出現</p><p><img src=https://i.imgur.com/pw664cD.png loading=lazy alt=image-20230121163302976></p><h1 id=常用指令>常用指令</h1><h2 id=搜尋image>搜尋Image</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker search postgres
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/D4Bl6SJ.png loading=lazy alt=image-20230124042123305></p><h2 id=查看目前的image>查看目前的image</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker image ls
-</code></pre></td></tr></table></div></div><p>或是</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker images
-</code></pre></td></tr></table></div></div><h2 id=執行docker-image>執行docker image</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run <span class=o>[</span>imageName<span class=o>][</span>:tag<span class=o>]</span>
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/s140pSv.png loading=lazy alt=image-20230121123518172></p><p>後面的:latest是版本號，可加可不加，沒加的話預設就是latest</p><h2 id=刪除images>刪除images</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker rmi <span class=o>[</span>imageId<span class=o>]</span>
-</code></pre></td></tr></table></div></div><h2 id=在detached-mode下執行>在Detached mode下執行</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run -d nginx
-</code></pre></td></tr></table></div></div><p>所謂的Detached mode亦即<strong>啟動後會不會占用你的terminal</strong>，可以看一下下面的git，可以比較兩者間的差異</p><ul><li>沒有-d</li></ul><p><img src=https://i.imgur.com/ehYrPax.gif loading=lazy alt=demo></p><ul><li>有-d</li></ul><p><img src=https://i.imgur.com/kRVrhXQ.gif loading=lazy alt=demo></p><h2 id=打包成docker-image>打包成docker image</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker build -t drink-more-water:latest .
-</code></pre></td></tr></table></div></div><p>-t 是 tag的縮寫，hello-docker是這個tag的名稱，.代表dockerfile在當前的目錄下，如果Dockerfile不在當前目錄，則這邊要改變。latest則是版本號，可加可不加，不加的話預設是latest</p><p><img src=https://i.imgur.com/c5XdkHr.png loading=lazy alt=image-20230118215347469></p><h2 id=查看目前運行的container>查看目前運行的Container</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker ps
-</code></pre></td></tr></table></div></div><p><code>ps是process status的意思</code></p><p>或是</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker container ls
-</code></pre></td></tr></table></div></div><p>​ <img src=https://i.imgur.com/WCJdgXl.gif loading=lazy alt=demo></p><h2 id=查看目前運作中running的container>查看目前運作中(running)的Container</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker ps
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/C1jS3jN.png loading=lazy alt=image-20230118222647084></p><p>或是</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker ps -a
-</code></pre></td></tr></table></div></div><p>查看底下全部的Container不論啟動與否</p><p><img src=https://i.imgur.com/sIt29w1.png loading=lazy alt=image-20230118222751647></p><h2 id=進入container與之互動>進入Container與之互動</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh>docker <span class=nb>exec</span> -it <span class=o>[</span>ConatinerId<span class=o>]]</span> bash
-</code></pre></td></tr></table></div></div><p>bash有可能沒有，有可能是sh，要自己到/bin裡面看</p><h2 id=停止container>停止Container</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker stop <span class=o>[</span>ContainerId<span class=o>]</span>
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/dziz1MR.png loading=lazy alt=image-20230121125714796></p><p>​</p><p>啟動停止的Container</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker start <span class=o>[</span>ContainerId<span class=o>]</span>
-</code></pre></td></tr></table></div></div><h2 id=刪除container>刪除Container</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker rm <span class=o>[</span>ContainerId<span class=o>]</span>or<span class=o>[</span>NAMEs<span class=o>]</span>
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/RrMc8BN.gif loading=lazy alt=demo></p><p>也可以輸入很多個Id，一次刪個爽</p><p><img src=https://i.imgur.com/rL9pJaN.png loading=lazy alt=image-20230121155539947></p><p>還有更猛的</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docekr rm -f <span class=k>$(</span>docker ps -aq<span class=k>)</span>
-</code></pre></td></tr></table></div></div><p>直接用參數的方式全刪。</p><h2 id=暴露port>暴露port</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run -p 5432:5432 posgres
-</code></pre></td></tr></table></div></div><p>前面的5432是你自定義的localhost:5432，而後面的5432則是容器裡面的port號</p><h2 id=暴露已經runningstopping-的container的port>暴露已經Running,Stopping 的Container的Port</h2><p>沒有這個方法，只有</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run postgres
-</code></pre></td></tr></table></div></div><p>的這個時候你才可以把port暴露出來</p><h2 id=一次性查看container的log紀錄>一次性查看Container的Log紀錄</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker logs <span class=o>[</span>ContainerId<span class=o>]</span>
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/ux9s2GH.png loading=lazy alt=image-20230124052203569></p><p>這條指令只會顯示過去的紀錄，後續的logs不會更新</p><h2 id=持續查看container的log紀錄>持續查看Container的Log紀錄</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker logs -f <span class=o>[</span>ContainerId<span class=o>]</span>
-</code></pre></td></tr></table></div></div><p>這條不只會顯示過去的，還會動態更新現在的log</p><h2 id=執行docker-compose>執行Docker-compose</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker compose up -d
-</code></pre></td></tr></table></div></div><p>-d 代表是否背景執行，不佔用terminal</p><h2 id=停止並刪除docker-compose的container>停止並刪除Docker-compose的Container</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker compose down
-</code></pre></td></tr></table></div></div><h1 id=在docker啟動ubuntu>在Docker啟動Ubuntu</h1><ol><li><p>下載 ubuntu 的image</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker pull ubuntu
-</code></pre></td></tr></table></div></div><p>或是可以</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run ubuntu
-</code></pre></td></tr></table></div></div><p>就會自動從docker hub載下來了，但這樣只是把ubuntu的image拉到我們的docker裡面，它本身是沒有啟動的</p><p><img src=https://i.imgur.com/MMDiSRt.png loading=lazy alt=image-20230118222929032></p></li><li><p>在docker中運行ubuntu</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run -it ubuntu
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/IMZCVGx.gif loading=lazy alt></p></li><li><p>使用apt(advanced package tool)安裝nano(Linux text editor)</p><p>用apt載任何東西前都建議先update</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>apt update
-</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>apt install nano
-</code></pre></td></tr></table></div></div></li></ol><h1 id=exposing-port>Exposing Port</h1><p>輸入<code>docker ps</code>可以看到以下資訊</p><p><img src=https://i.imgur.com/jkFwePC.png loading=lazy alt=image-20230121144512601></p><p>其中的PORTS 80/tcp的意思，容器對外公開的網路端口是 80/tcp，表示這個容器對外公開的網路端口是80，並且是基於TCP協議的。這意味著當外部網路瀏覽器連接到<a class=link href=http://xn--localhosthttp-cs9z// target=_blank rel=noopener>http://localhost或http://</a><ip address>時，將會連接到容器內部的 Nginx Web 伺服器。想要讓容器的端口對外開放，就需要exposing它，否則直接打localhost:80是沒有用的。</p><p><img src=https://i.imgur.com/ZD37kgp.gif loading=lazy alt=demo></p><p>我們可以使用以下的方式將8080 連接到80/TCP</p><p><img src=https://i.imgur.com/6NmgZGj.png loading=lazy alt=image-20230121144820173></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run -d -p 8080:80 nginx
-</code></pre></td></tr></table></div></div><p>其中的8080:80的意思是指將主機的 8080 端口映射到容器的 80 端口。也就是說，當外部網路瀏覽器連接到 <a class=link href=http://localhost:8080/ target=_blank rel=noopener>http://localhost:8080</a> 時，將會連接到容器內部的 Nginx Web 伺服器。</p><p><img src=https://i.imgur.com/uv9msjJ.gif loading=lazy alt=demo></p><p><img src=https://i.imgur.com/qRzMKUP.png loading=lazy alt=image-20230121152744371></p><p>你也可以不只Exposing一個Port，可以Exposing多個port給80</p><p><img src=https://i.imgur.com/udQnP6Q.png loading=lazy alt=image-20230121153052811></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker  run -d -p 8080:80 -p 3000:80  nginx
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/RAElKnV.png loading=lazy alt=image-20230121153324975></p><h1 id=container的管理>Container的管理</h1><p>當我們啟動、並Stop一個Container，實際上如果依照我們剛剛的作法，我們是不斷的創造新的Container，輸入docker ps -a 即可看到目前存在的Container(不論running or Stopping)，或是在Desktop docker裡面也都可以看到</p><p><img src=https://i.imgur.com/y6X5rl3.gif loading=lazy alt=demo></p><p><img src=https://i.imgur.com/myW3tLy.png loading=lazy alt=image-20230121154505315></p><p>我們可以透過</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker rm <span class=o>[</span>ContainerId<span class=o>]</span>
-</code></pre></td></tr></table></div></div><p>來真正意義上的移除Container，而不是停止它</p><p><img src=https://i.imgur.com/RrMc8BN.gif loading=lazy alt=demo></p><p><code>可以使用docker ps -aq ，這個指令只會秀出ContainerId，可以刪更爽，直接複製貼上就好</code></p><p>還有更爽的方式，用$(docker ps -aq)的方式 傳遞參數</p><p><img src=https://i.imgur.com/6awXQYd.gif loading=lazy alt=demo></p><h1 id=為container命名>為Container命名</h1><p>建議命名一下，比較好找，只支援英文，不支援中文</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run --name hoxtonPractice -d -p 8080:80 nginx
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/ibwUXZi.gif loading=lazy alt=demo></p><p><img src=https://i.imgur.com/ivVF2QW.png loading=lazy alt=image-20230121161417305></p><h1 id=volume的使用>Volume的使用</h1><p>讓資訊可以在host與Container共享的一個功能</p><p><img src=https://i.imgur.com/gFztGx2.png loading=lazy alt=image-20230121171102777></p><p>範例：</p><p>首先在桌面上創建一個名為website的資料夾，裡面有個index.html，內容如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>hello docker and volume<span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/E9IOBy2.png loading=lazy alt=image-20230121172021418></p><p>接著將terminal切至/website底下，然後輸入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run --name website -v <span class=si>${</span><span class=nv>PWD</span><span class=si>}</span>:/usr/share/nginx/html:ro -d -p 8080:80 nginx
-</code></pre></td></tr></table></div></div><ul><li><p>-v是 Docker 中的 volume 指令，它用於將主機上的目錄或檔案掛載到容器中。配合後面的${PWD}:/usr/share/nginx/html，意思就是將當前目錄的內容掛載(Mount)到容器中的 /usr/share/nginx/html 目錄下。這樣設定後，當主機上的目錄內容變更時，容器中的 /usr/share/nginx/html 目錄內的內容也會隨之更新。</p></li><li><p>:ro 是指將主機上的目錄或檔案掛載到容器中的目錄或檔案，並設定為只讀模式。</p></li></ul><p>​ 這意味著在容器中將無法寫入或修改掛載的目錄或檔案，只能讀取。這可以避免對主機上的檔案造成損壞或不 必要的變更。</p><ul><li>/usr/share/nginx/html 是 Nginx 預設的網站根目錄。</li></ul><p>結果如下：</p><p><img src=https://i.imgur.com/JWE1ngP.gif loading=lazy alt=demo></p><p>也因為Volume是鏡像對應，因此修改host的檔案，container的內容物也會同步更新</p><p><img src=https://i.imgur.com/xr4Ps97.gif loading=lazy alt=demo></p><p>我們可以用以下的指令來訪問看看Nginx的檔案</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker <span class=nb>exec</span> -it website bash 
-</code></pre></td></tr></table></div></div><ul><li>docker exec 是 Docker 的命令行工具，用於在運行中的容器內執行命令。</li><li>-it 這兩個選項表示要互動式地執行命令，並且讓輸入和輸出保持連接。</li><li>website 是容器的名稱或 ID。</li><li>bash 是要在容器內執行的命令，這裡是啟動 Bash shell。也可以改成ls，就變成ls了，玩法很多，自行摸索</li></ul><p><img src=https://i.imgur.com/vfD46ft.gif loading=lazy alt=demo></p><p>在Nginx裡面新增檔案，移除檔案，會發現host的資料夾檔案也同步更新</p><p><img src=https://i.imgur.com/CxISdYl.gif loading=lazy alt=demo></p><h2 id=不同的container使用相同的volume>不同的Container使用相同的Volume</h2><p><img src=https://i.imgur.com/sF6Jpws.png loading=lazy alt=image-20230122000944184></p><p><img src=https://i.imgur.com/M0VVEdM.png loading=lazy alt=image-20230122000515311></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run --name website-copy --volumes-from website -d -p 8081:80 nginx
-</code></pre></td></tr></table></div></div><ul><li>&ndash;volumes-from [ContainerName]：將這次要啟動的Container使用和website一樣的Volume</li></ul><p><img src=https://i.imgur.com/138uiD1.png loading=lazy alt=image-20230122000709771></p><h1 id=dockerfile>Dockerfile</h1><p>Dockerfile是一個文本文件，它包含了創建Docker image所需的指令。這些指令可以包括例如：</p><ul><li>從哪個基礎鏡像建立新鏡像</li><li>安裝需要的軟體</li><li>設置環境變量</li><li>添加應用程序文件</li><li>定義容器啟動時執行的命令</li></ul><p>透過Dockerfile, 可以自動化的建立一個環境，方便在不同的環境上部署，使用者可以更方便的管理環境，以及減少部署錯誤的機會。</p><p>例如，如果你有一個Java應用程序需要在多個不同的服務器上運行，你可以使用Dockerfile創建一個包含Java執行時環境的镜像，然後在每個服務器上執行這個镜像，這樣就能保證每個服務器上都有相同的環境。</p><p>試著把剛剛寫的volume打包成一個image，首先在/website的資料夾裡面新增一個名稱一定要是dockerfile的檔案</p><p>裡面的檔案結構長的像這樣子</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> nginx:latest</span><span class=err>
-</span><span class=err></span><span class=k>ADD</span> . /usr/share/nginx/html<span class=err>
-</span></code></pre></td></tr></table></div></div><ul><li>FROM：指定了基礎Image是nginx，後面的latest是指版本號。Dockerfile中必須要有FROM指令，它是一切的根本，它指定了基礎Image環境。舉例來說，這邊指定用最新版的nginx，那麼我們的鏡像會基於這個最新版的nginx環境運行</li><li>ADD：將本地目錄中的文件複製到鏡像中的指定目錄。在這個例子中是將本地目錄中的所有文件複製到鏡像中的/usr/share/nginx/html目錄。它的功能跟COPY有點像，但是COPY用法比較單純，只能複製本地文件和目錄到鏡像中，而ADD指令還可以解壓縮tar文件並將其中的文件複製到鏡像中。</li></ul><p>​ 值得注意的是</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>ADD</span> .   /usr/share/nginx/html<span class=err>
-</span></code></pre></td></tr></table></div></div><p>這行指的是，將當前目錄的所有東西(以一個.表示)加入至Container中的/usr/share/nginx/html目錄中。在這個例子中就是將</p><p><img src=https://i.imgur.com/xhF8sgi.png loading=lazy alt=image-20230122005758339></p><p>這些東西ADD進/usr/share/nginx/html裡面。</p><p>當Dockerfile寫好後，要開始bulid它，步驟如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile>docker build -t website:latest .<span class=err>
-</span></code></pre></td></tr></table></div></div><ul><li>這個命令是在使用 Docker 建立一個新的鏡像檔，並標記為 &ldquo;website:latest&rdquo;。 &ldquo;.&rdquo; 表示當前目錄下的 Dockerfile 檔案將會被用來建立映像檔。這個命令將會建立一個名為 &ldquo;website&rdquo; 並且標記為 &ldquo;latest&rdquo; 的鏡像檔。</li></ul><p>Build完後就會出現一個image了，輸入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker images 
-</code></pre></td></tr></table></div></div><p>就可以查看目前擁有的images</p><p><img src=https://i.imgur.com/fjUHVh9.png loading=lazy alt=image-20230122023400655></p><p>並且可以這個image可以運行我們剛剛對index的設定，輸入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run --name website -p 8080:80 -d website:latest
-</code></pre></td></tr></table></div></div><p>注意：這邊不需要再為website設置volume，因為我們已經將需要的東西打包進image裡面了。</p><p>輸入完後，在URL的地方輸入localhost:8080就可以看到我們剛剛設置的東西了。</p><p>gif如下</p><p><img src=https://i.imgur.com/XvOfKcm.gif loading=lazy alt=demo></p><p>​</p><h1 id=實際演練-nodejs>實際演練 NodeJs</h1><h2 id=前置作業>前置作業</h2><p>安裝Node.js，這邊安裝為了快速，就直接用Choco來裝了，Choco的安裝如下</p><ol><li><p>在Terminal中輸入，記得要以系統管理員身分輸入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>Set-ExecutionPolicy Bypass -Scope Process -Force<span class=p>;</span> <span class=o>[</span>System.Net.ServicePointManager<span class=o>]</span>::SecurityProtocol <span class=o>=</span> <span class=o>[</span>System.Net.ServicePointManager<span class=o>]</span>::SecurityProtocol -bor 3072<span class=p>;</span> iex <span class=o>((</span>New-Object System.Net.WebClient<span class=o>)</span>.DownloadString<span class=o>(</span><span class=s1>&#39;https://community.chocolatey.org/install.ps1&#39;</span><span class=o>))</span>
-</code></pre></td></tr></table></div></div></li><li><p>安裝完後安裝nodeJs</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>choco install nodejs
-</code></pre></td></tr></table></div></div></li><li><p>安裝完後隨便創一個資料夾，這邊命名叫做user-service-api</p></li><li><p>切換到該資料夾底下，並且npm init它</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm init
-</code></pre></td></tr></table></div></div></li><li><p>接著安裝express</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>npm install --save express
-</code></pre></td></tr></table></div></div></li><li><p>用好後檔案結構長這樣</p><p><img src=https://i.imgur.com/UfcpwaY.png loading=lazy alt=image-20230122032825912></p></li><li><p>在該目錄底下新增一個index.js的檔案，內容如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kr>const</span> <span class=nx>express</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;express&#39;</span><span class=p>)</span>
-<span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>express</span><span class=p>()</span>
-<span class=kr>const</span> <span class=nx>port</span> <span class=o>=</span> <span class=mi>3000</span>
-   
-<span class=nx>app</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
-  <span class=nx>res</span><span class=p>.</span><span class=nx>json</span><span class=p>([{</span>
-    <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;Bod&#39;</span><span class=p>,</span>
-    <span class=nx>email</span><span class=o>:</span> <span class=s1>&#39;bob@gmail.com&#39;</span>
-  <span class=p>}])</span>
-<span class=p>})</span>
-   
-<span class=nx>app</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=nx>port</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
-  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Example app listening on port </span><span class=si>${</span><span class=nx>port</span><span class=si>}</span><span class=sb>`</span><span class=p>)</span>
-<span class=p>})</span>
-   
-   
-</code></pre></td></tr></table></div></div></li><li><p>使用nodejs運行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>node index.js
-</code></pre></td></tr></table></div></div></li><li><p>成功後進入localhost:3000即可看到下列畫面</p><p><img src=https://i.imgur.com/dRynWn4.png loading=lazy alt=image-20230122033843917></p></li></ol><p>如此一來前置作業就完成了</p><h2 id=製作dockerfile>製作DockerFile</h2><p>在目錄底下新增dockerfile，內容如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> node:latest</span><span class=err>
-</span><span class=err></span><span class=k>WORKDIR</span><span class=s> /app</span><span class=err>
-</span><span class=err></span><span class=k>ADD</span> . .<span class=err>
-</span><span class=err></span><span class=k>RUN</span> npm install<span class=err>
-</span><span class=err></span><span class=k>CMD</span> node index.js<span class=err>
-</span></code></pre></td></tr></table></div></div><ul><li>WORKDIR：若Container有/app這個資料夾，則使用它，若沒有，則創造它。</li></ul><ul><li>ADD . .： 将当前目录中的文件复制到镜像中的 /app 目录。</li><li>RUN npm install： 在鏡像中运行 npm install 命令，安装应用程序所需的依赖项。</li><li>CMD node index.js：设置镜像启动时运行的命令，这里是运行 node index.js。</li></ul><p>為什麼要分成RUN跟CMD呢？有幾個原因，首先RUN跟CMD的用途本身就不一樣，RUN主要是在創建image中執行命令，並將結果保存在image中，它主要用來安裝依賴、配置應用程式或其他操作。則是用來說明Image創建完成後要執行的動作。<strong>簡而言之，RUN是在創建Image中過程所執行的，而CMD則是在Image創建完成後所執行的</strong>。</p><p>並且，一個DockerFile可以有很多RUN指令，但只能有一個CMD指令，因為Container只能運行一個CMD指令</p><h2 id=使用image>使用Image</h2><p>接著創建鏡像</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker build --tag user-service-api:latest .
-</code></pre></td></tr></table></div></div><p>創建完之後啟動鏡像</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker run --name user-api -d -p 8080:3000 user-service-api:latest
-</code></pre></td></tr></table></div></div><p>這邊的<code>8080:3000</code>是指，將我們容器裡面原本配置的3000端口暴露出來，以8080來接收。</p><p><img src=https://i.imgur.com/VSKx5y3.png loading=lazy alt=image-20230122041621171></p><p>因為3000是指在Container裡面的端口，host想要讀到它，必須將Container的端口暴露出來。因此localhost:3000會找不到東西，只有打localhost:8080才會有我們要的內容</p><p><img src=https://i.imgur.com/vUVU65T.gif loading=lazy alt=demo></p><h2 id=dockerignore>DockerIgnore</h2><p>做完上面這些操作後，我們的檔案結構長這樣</p><p><img src=https://i.imgur.com/zx4lldH.png loading=lazy alt=image-20230122042649897></p><p>然後我們的Dockerfile長這樣</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> node:latest</span><span class=err>
-</span><span class=err></span><span class=k>WORKDIR</span><span class=s> /app</span><span class=err>
-</span><span class=err></span><span class=k>ADD</span> . .<span class=err>
-</span><span class=err></span><span class=k>RUN</span> npm install<span class=err>
-</span><span class=err></span><span class=k>CMD</span> node index.js<span class=err>
-</span></code></pre></td></tr></table></div></div><p>比較之後發現一件事情，RUN npm install會創建node_modules資料夾，但我們在ADD時已經把node_modules加入進去，等於說我們<strong>重複創建</strong>了兩次node_modules，這種情況就類似gitIgnore，需要排除掉重複的資料夾</p><p>dockerIgnore的寫法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile>node_modules<span class=err>
-</span><span class=err></span>dockerfile<span class=err>
-</span><span class=err></span>.git<span class=err>
-</span></code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/cw6wiqo.png loading=lazy alt=image-20230122043320515></p><p>這樣就可以把這些檔案排除在外了</p><h1 id=caching--layers>Caching & Layers</h1><p>DockerFile裡面的每一個CML都是一個Layer，每個Layer都用來Caching`</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> node:latest</span><span class=err>
-</span><span class=err></span><span class=k>WORKDIR</span><span class=s> /app</span><span class=err>
-</span><span class=err></span><span class=k>ADD</span> . .<span class=err>
-</span><span class=err></span><span class=k>RUN</span> npm install<span class=err>
-</span><span class=err></span><span class=k>CMD</span> node index.js<span class=err>
-</span></code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/qOnozTP.png loading=lazy alt=image-20230124033035860></p><p>可以看到這邊的Step1, Step2都對應著CML的指令&mldr;</p><p>而Cache的點就在於，其實除了ADD . . 以外(原始碼每次打包時都會有更動)，其實WORKDIR, RUN npm install這些指令其實都是重複的，我們每次打包都需要再重複執行一次，這樣很沒**效率 **</p><p>於是Dokcer就會把這些重複的事情Caching起來，只要沒有改變就不會重複再做，就會看到上面的Using Cache了</p><h1 id=alpine>ALPINE</h1><p><code>翻譯的意思是高山</code></p><p><img src=https://i.imgur.com/lHZT25E.png loading=lazy alt=image-20230124040633982></p><p><img src=https://i.imgur.com/vROHoya.png loading=lazy alt=image-20230124040527548></p><p>我剛剛打包的Image檔案已經快逼近一個G了，很明顯我們其實不需要那麼多的東西，Alpine版本的就是一個非常小的鏡像。</p><h2 id=實際安裝alpine>實際安裝ALPINE</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker pull node:lts-alpine
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/sOvYX9X.png loading=lazy alt=image-20230124041533774></p><p><img src=https://i.imgur.com/WiRUr17.png loading=lazy alt=image-20230124041614756></p><p>兩者的Size差了快十倍</p><h1 id=docker-compose-將後端與資料庫一起包一包>Docker Compose 將後端與資料庫一起包一包</h1><p>一個Project不可能只由一個後端組成，肯定是要由後端、前端、以及資料庫三者組合，甚至更甚者可能會有10,20個的部件需要去組合，那麼一個一個run container這件事情就變得相當缺乏效率。為了處理這件事情，於是有了<strong>Docker-Compose</strong>的概念出現。</p><p>Docker-Compose大概就像這樣，</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;3.7&#39;</span><span class=w>
-</span><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
-</span><span class=w>  </span><span class=nt>db</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>postgres-for-dockerpractice</span><span class=w>
-</span><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>postgres</span><span class=w>
-</span><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span><span class=nt>POSTGRES_PASSWORD</span><span class=p>:</span><span class=w> </span><span class=l>root</span><span class=w>
-</span><span class=w>      </span><span class=nt>POSTGRES_USER</span><span class=p>:</span><span class=w> </span><span class=l>root</span><span class=w>
-</span><span class=w>      </span><span class=nt>POSTGRES_DB</span><span class=p>:</span><span class=w> </span><span class=l>root</span><span class=w>
-</span><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span>- <span class=l>./pgdata:/var/lib/postgresql/data</span><span class=w>
-</span><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span>- <span class=s1>&#39;5432:5432&#39;</span><span class=w>
-</span><span class=w>
-</span><span class=w>
-</span><span class=w>  </span><span class=nt>backend</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>backend-for-dockerpractice</span><span class=w>
-</span><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>shop</span><span class=w>
-</span><span class=w>    </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span>- <span class=l>db</span><span class=w>
-</span><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span>- <span class=s1>&#39;8080:8080&#39;</span><span class=w>
-</span></code></pre></td></tr></table></div></div><p>和dockerfile一樣存在於專案根目錄中</p><p><img src=https://i.imgur.com/UpKhAur.png loading=lazy alt=image-20230130235149649></p><p>他類似於一個<strong>配置檔</strong>，用以告訴Docker要啟動哪些Container，以及它們之間的交互關係，以上面的Docker-compose.yml來說明</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;3.7&#39;</span><span class=w> </span><span class=l>//要使用的dokcer-compose版本，有分很多版，比如說1.0,2.0，但目前主流是3.0，所以照著寫就好</span><span class=w>
-</span><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w> </span><span class=l>//每一個起起來的Container有一個特殊的名字，叫做service，這個yaml檔就有兩個service，分別叫db跟backend</span><span class=w>
-</span><span class=w>  </span><span class=nt>db</span><span class=p>:</span><span class=w> </span><span class=l>//可自定義的service名稱，高興叫啥就叫啥，但這個名字會與你在application.properties裡描述的名稱有對應關係，可以看看下面的附圖，第四行的url:jdbc:postgresql://db:5432/shop，其中的db就是service的名稱</span><span class=w>
-</span><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>postgres-for-dockerpractice //自定義的名稱，想叫啥就叫啥，這名稱會是你的Container名稱</span><span class=w>
-</span><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>postgres //要使用哪個image作為基底</span><span class=w>
-</span><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span><span class=nt>POSTGRES_PASSWORD</span><span class=p>:</span><span class=w> </span><span class=m>45002502</span><span class=w>
-</span><span class=w>      </span><span class=nt>POSTGRES_USER</span><span class=p>:</span><span class=w> </span><span class=l>postgres</span><span class=w>
-</span><span class=w>      </span><span class=nt>POSTGRES_DB</span><span class=p>:</span><span class=w> </span><span class=l>shop</span><span class=w>
-</span><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span>- <span class=l>./pgdata:/var/lib/postgresql/data</span><span class=w>
-</span><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span>- <span class=s1>&#39;5432:5432&#39;</span><span class=w> </span><span class=l>//要暴露出來的端口</span><span class=w>
-</span><span class=w>  </span><span class=nt>backend</span><span class=p>:</span><span class=w> </span><span class=l>//可自定義的service名稱，高興叫啥就叫啥，但這個名字會與你在application.properties裡描述的名稱有對應關係。</span><span class=w>
-</span><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>backend-for-dockerpractice  //自定義的名稱，想叫啥就叫啥，這名稱會是你的Container名稱</span><span class=w>
-</span><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>shop //要使用哪個image作為基底，這個是我自己docker build -t shop:latest . 所創建出來的image</span><span class=w>
-</span><span class=w>    </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span>- <span class=l>db //這意味著，你這邊的service會等到db這個service完成後才會進行部屬。</span><span class=w>
-</span><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span>- <span class=s1>&#39;8080:8080&#39;</span><span class=w> </span><span class=l>// 暴露出來的端口</span><span class=w>
-</span></code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/AMN0bz6.png loading=lazy alt=image-20230130235821812></p><p>▲第四行的db與services的名稱有對應。</p><p><img src=https://i.imgur.com/ksv3RFX.png loading=lazy alt=image-20230131000230558></p><p>▲上述的docker-compose啟動後顯示的樣子。</p><p>常用的指令</p><p>啟動當前目錄的docker-compose</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker compose up
-</code></pre></td></tr></table></div></div><p>關閉當前目錄的docker-compose</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>docker compose down
-</code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/tags/docker/>Docker</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/><div class=article-image><img src=https://i.imgur.com/7g77ZiN.png loading=lazy data-key data-hash=https://i.imgur.com/7g77ZiN.png></div><div class=article-details><h2 class=article-title>Zabbix的一些筆記</h2></div></a></article><article class=has-image><a href=/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/><div class=article-image><img src=https://i.imgur.com/1BTtOUL.png loading=lazy data-key data-hash=https://i.imgur.com/1BTtOUL.png></div><div class=article-details><h2 class=article-title>StoreProcedure跟PSQL的筆記</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
-gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
-2020 -
-2023 Hoxton</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-<button class="pswp__button pswp__button--share" title=Share></button>
-<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#名詞解釋>名詞解釋</a><ol><li><a href=#container>Container</a></li><li><a href=#image>Image</a></li><li><a href=#volume>Volume</a></li></ol></li><li><a href=#常用指令>常用指令</a><ol><li><a href=#搜尋image>搜尋Image</a></li><li><a href=#查看目前的image>查看目前的image</a></li><li><a href=#執行docker-image>執行docker image</a></li><li><a href=#刪除images>刪除images</a></li><li><a href=#在detached-mode下執行>在Detached mode下執行</a></li><li><a href=#打包成docker-image>打包成docker image</a></li><li><a href=#查看目前運行的container>查看目前運行的Container</a></li><li><a href=#查看目前運作中running的container>查看目前運作中(running)的Container</a></li><li><a href=#進入container與之互動>進入Container與之互動</a></li><li><a href=#停止container>停止Container</a></li><li><a href=#刪除container>刪除Container</a></li><li><a href=#暴露port>暴露port</a></li><li><a href=#暴露已經runningstopping-的container的port>暴露已經Running,Stopping 的Container的Port</a></li><li><a href=#一次性查看container的log紀錄>一次性查看Container的Log紀錄</a></li><li><a href=#持續查看container的log紀錄>持續查看Container的Log紀錄</a></li><li><a href=#執行docker-compose>執行Docker-compose</a></li><li><a href=#停止並刪除docker-compose的container>停止並刪除Docker-compose的Container</a></li></ol></li><li><a href=#在docker啟動ubuntu>在Docker啟動Ubuntu</a></li><li><a href=#exposing-port>Exposing Port</a></li><li><a href=#container的管理>Container的管理</a></li><li><a href=#為container命名>為Container命名</a></li><li><a href=#volume的使用>Volume的使用</a><ol><li><a href=#不同的container使用相同的volume>不同的Container使用相同的Volume</a></li></ol></li><li><a href=#dockerfile>Dockerfile</a></li><li><a href=#實際演練-nodejs>實際演練 NodeJs</a><ol><li><a href=#前置作業>前置作業</a></li><li><a href=#製作dockerfile>製作DockerFile</a></li><li><a href=#使用image>使用Image</a></li><li><a href=#dockerignore>DockerIgnore</a></li></ol></li><li><a href=#caching--layers>Caching & Layers</a></li><li><a href=#alpine>ALPINE</a><ol><li><a href=#實際安裝alpine>實際安裝ALPINE</a></li></ol></li><li><a href=#docker-compose-將後端與資料庫一起包一包>Docker Compose 將後端與資料庫一起包一包</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Docker的一些學習筆記，想到啥就寫啥'><title>Docker學習筆記</title>
+
+<link rel='canonical' href='https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/'>
+
+<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='Docker學習筆記'>
+<meta property='og:description' content='Docker的一些學習筆記，想到啥就寫啥'>
+<meta property='og:url' content='https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/'>
+<meta property='og:site_name' content='Hoxton'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Docker' /><meta property='article:published_time' content='2023-01-18T21:47:50&#43;08:00'/><meta property='article:modified_time' content='2023-01-18T21:47:50&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/JdDwgHn.png ' />
+<meta name="twitter:title" content="Docker學習筆記">
+<meta name="twitter:description" content="Docker的一些學習筆記，想到啥就寫啥"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://i.imgur.com/JdDwgHn.png ' />
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-9N16MVLR0Q', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "dark");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_3.png" width="300"
+                            height="301" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Hoxton</a></h1>
+            <h2 class="site-description">快樂的CRUD Boy, API Caller</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://discordapp.com/users/840906423076782082'
+                        target="_blank"
+                        title="Discord"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="9" cy="12" r="1" />
+  <circle cx="15" cy="12" r="1" />
+  <path d="M7.5 7.5c3.5 -1 5.5 -1 9 0" />
+  <path d="M7 16.5c3.5 1 6.5 1 10 0" />
+  <path d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-1 2.5" />
+  <path d="M8.5 17c0 1 -1.356 3 -1.832 3c-1.429 0 -2.698 -1.667 -3.333 -3c-.635 -1.667 -.476 -5.833 1.428 -11.5c1.388 -1.015 2.782 -1.34 4.237 -1.5l1 2.5" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Hoxton019030'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.instagram.com/hoxton_8a31/'
+                        target="_blank"
+                        title="Instagram"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="4" y="4" width="16" height="16" rx="4" />
+  <circle cx="12" cy="12" r="3" />
+  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/">
+                
+                    <img src="https://i.imgur.com/JdDwgHn.png%20" loading="lazy" alt="Featured image of post Docker學習筆記" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E7%AD%86%E8%A8%98/" style="background-color: #2a9d8f; color: #fff;">
+                筆記
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/">Docker學習筆記</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Docker的一些學習筆記，想到啥就寫啥
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 18, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="名詞解釋">名詞解釋</h1>
+<h2 id="container">Container</h2>
+<p>Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。它使用操作系統級別的虛擬化，可以在單一的物理主機上運行多個容器，並且每個容器都有自己的運行環境和資源。</p>
+<p>Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。容器具有輕量級、可移植性和隔離性等特點。容器是通過在操作系統內核中運行的容器引擎來實現的。</p>
+<p>Docker容器主要是使用了Linux 的 Namespaces 和 Control groups（cgroups） 技術來實現隔離，這兩種技術可以將一個實體主機上的資源限制給每個容器，而容器內部則是共用一個kernel，因此容器比虛擬機器輕量且速度較快。</p>
+<p>Docker容器是基於鏡像(Image)來建立與運行的，一個鏡像可以是一個基礎鏡像或是由其他鏡像所建立而來。當執行docker run 指令時，會從鏡像建立一個容器，並在容器內執行指定的應用程式或服務。</p>
+<p>不僅如此，Docker容器還支援網路、儲存卷的映射，使得容器可以與外部通訊，也可以存取本地端的資料。</p>
+<p>透過Docker容器,我們可以將應用程式、服務和其所需的環境打包在一起，並且可以在不同的環境中運行，提高了應用程式的可移植性和彈性。</p>
+<h2 id="image">Image</h2>
+<p>Docker Image 是 Docker 容器的基礎，它是一個只讀的模板，包含了容器運行所需的所有檔案、設定和程式。當執行 <code>docker run</code> 指令時，Docker 會從 Image 建立一個新的容器並在其中執行指定的應用程式或服務。</p>
+<p>Docker Image 可以通過構建或下載的方式創建，構建的方式可以使用 Dockerfile 來描述如何構建一個 Image。而下載的方式則可以從 Docker Hub 或其他的 registry 下載。</p>
+<h2 id="volume">Volume</h2>
+<p>Docker Volume 是 Docker 的一種功能，用於管理容器中的數據。容器本身是輕量級的，數據是不能永久存在的，而 Volume 則是可以永久存在的。</p>
+<p>Docker Volume 可以被掛載到容器上，並且可以在容器內部存儲數據。當容器停止運行或者被刪除時，Volume 中的數據仍然可以保留下來。這樣就可以在重啟容器或建立新容器時，繼續使用之前存儲的數據。</p>
+<p>並且Volume裡面的資料是可以和Host分享的，兩邊的資料呈現鏡像的雙向對應，在Host新增的東西會在Container出現，Container新增的資料也會在Host裡面出現</p>
+<p><img src="https://i.imgur.com/pw664cD.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121163302976"
+	
+	
+></p>
+<h1 id="常用指令">常用指令</h1>
+<h2 id="搜尋image">搜尋Image</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker search postgres
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/D4Bl6SJ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124042123305"
+	
+	
+></p>
+<h2 id="查看目前的image">查看目前的image</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker image ls
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker images
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="執行docker-image">執行docker image</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run <span class="o">[</span>imageName<span class="o">][</span>:tag<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/s140pSv.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121123518172"
+	
+	
+></p>
+<p>後面的:latest是版本號，可加可不加，沒加的話預設就是latest</p>
+<h2 id="刪除images">刪除images</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker rmi <span class="o">[</span>imageId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="在detached-mode下執行">在Detached mode下執行</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所謂的Detached mode亦即<strong>啟動後會不會占用你的terminal</strong>，可以看一下下面的git，可以比較兩者間的差異</p>
+<ul>
+<li>沒有-d</li>
+</ul>
+<p><img src="https://i.imgur.com/ehYrPax.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<ul>
+<li>有-d</li>
+</ul>
+<p><img src="https://i.imgur.com/kRVrhXQ.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<h2 id="打包成docker-image">打包成docker image</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker build -t drink-more-water:latest .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>-t 是 tag的縮寫，hello-docker是這個tag的名稱，.代表dockerfile在當前的目錄下，如果Dockerfile不在當前目錄，則這邊要改變。latest則是版本號，可加可不加，不加的話預設是latest</p>
+<p><img src="https://i.imgur.com/c5XdkHr.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230118215347469"
+	
+	
+></p>
+<h2 id="查看目前運行的container">查看目前運行的Container</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>ps是process status的意思</code></p>
+<p>或是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker container ls
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​	<img src="https://i.imgur.com/WCJdgXl.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<h2 id="查看目前運作中running的container">查看目前運作中(running)的Container</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/C1jS3jN.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230118222647084"
+	
+	
+></p>
+<p>或是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker ps -a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看底下全部的Container不論啟動與否</p>
+<p><img src="https://i.imgur.com/sIt29w1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230118222751647"
+	
+	
+></p>
+<h2 id="進入container與之互動">進入Container與之互動</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it <span class="o">[</span>ConatinerId<span class="o">]]</span> bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>bash有可能沒有，有可能是sh，要自己到/bin裡面看</p>
+<h2 id="停止container">停止Container</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker stop <span class="o">[</span>ContainerId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/dziz1MR.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121125714796"
+	
+	
+></p>
+<p>​</p>
+<p>啟動停止的Container</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker start <span class="o">[</span>ContainerId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="刪除container">刪除Container</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker rm <span class="o">[</span>ContainerId<span class="o">]</span>or<span class="o">[</span>NAMEs<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/RrMc8BN.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>也可以輸入很多個Id，一次刪個爽</p>
+<p><img src="https://i.imgur.com/rL9pJaN.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121155539947"
+	
+	
+></p>
+<p>還有更猛的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docekr rm -f <span class="k">$(</span>docker ps -aq<span class="k">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>直接用參數的方式全刪。</p>
+<h2 id="暴露port">暴露port</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -p 5432:5432 posgres
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>前面的5432是你自定義的localhost:5432，而後面的5432則是容器裡面的port號</p>
+<h2 id="暴露已經runningstopping-的container的port">暴露已經Running,Stopping 的Container的Port</h2>
+<p>沒有這個方法，只有</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run postgres
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>的這個時候你才可以把port暴露出來</p>
+<h2 id="一次性查看container的log紀錄">一次性查看Container的Log紀錄</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker logs <span class="o">[</span>ContainerId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/ux9s2GH.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124052203569"
+	
+	
+></p>
+<p>這條指令只會顯示過去的紀錄，後續的logs不會更新</p>
+<h2 id="持續查看container的log紀錄">持續查看Container的Log紀錄</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker logs -f <span class="o">[</span>ContainerId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這條不只會顯示過去的，還會動態更新現在的log</p>
+<h2 id="執行docker-compose">執行Docker-compose</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker compose up -d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>-d 代表是否背景執行，不佔用terminal</p>
+<h2 id="停止並刪除docker-compose的container">停止並刪除Docker-compose的Container</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker compose down
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="在docker啟動ubuntu">在Docker啟動Ubuntu</h1>
+<ol>
+<li>
+<p>下載 ubuntu 的image</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull ubuntu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或是可以</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run ubuntu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就會自動從docker hub載下來了，但這樣只是把ubuntu的image拉到我們的docker裡面，它本身是沒有啟動的</p>
+<p><img src="https://i.imgur.com/MMDiSRt.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230118222929032"
+	
+	
+></p>
+</li>
+<li>
+<p>在docker中運行ubuntu</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -it ubuntu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/IMZCVGx.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt=" "
+	
+	
+></p>
+</li>
+<li>
+<p>使用apt(advanced package tool)安裝nano(Linux text editor)</p>
+<p>用apt載任何東西前都建議先update</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">apt update
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">apt install nano
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h1 id="exposing-port">Exposing Port</h1>
+<p>輸入<code>docker ps</code>可以看到以下資訊</p>
+<p><img src="https://i.imgur.com/jkFwePC.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121144512601"
+	
+	
+></p>
+<p>其中的PORTS 80/tcp的意思，容器對外公開的網路端口是 80/tcp，表示這個容器對外公開的網路端口是80，並且是基於TCP協議的。這意味著當外部網路瀏覽器連接到<a class="link" href="http://xn--localhosthttp-cs9z//"  target="_blank" rel="noopener"
+    >http://localhost或http://</a><IP address>時，將會連接到容器內部的 Nginx Web 伺服器。想要讓容器的端口對外開放，就需要exposing它，否則直接打localhost:80是沒有用的。</p>
+<p><img src="https://i.imgur.com/ZD37kgp.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>我們可以使用以下的方式將8080 連接到80/TCP</p>
+<p><img src="https://i.imgur.com/6NmgZGj.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121144820173"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d -p 8080:80 nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中的8080:80的意思是指將主機的 8080 端口映射到容器的 80 端口。也就是說，當外部網路瀏覽器連接到 <a class="link" href="http://localhost:8080/"  target="_blank" rel="noopener"
+    >http://localhost:8080</a> 時，將會連接到容器內部的 Nginx Web 伺服器。</p>
+<p><img src="https://i.imgur.com/uv9msjJ.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/qRzMKUP.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121152744371"
+	
+	
+></p>
+<p>你也可以不只Exposing一個Port，可以Exposing多個port給80</p>
+<p><img src="https://i.imgur.com/udQnP6Q.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121153052811"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker  run -d -p 8080:80 -p 3000:80  nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/RAElKnV.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121153324975"
+	
+	
+></p>
+<h1 id="container的管理">Container的管理</h1>
+<p>當我們啟動、並Stop一個Container，實際上如果依照我們剛剛的作法，我們是不斷的創造新的Container，輸入docker ps -a 即可看到目前存在的Container(不論running or Stopping)，或是在Desktop docker裡面也都可以看到</p>
+<p><img src="https://i.imgur.com/y6X5rl3.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/myW3tLy.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121154505315"
+	
+	
+></p>
+<p>我們可以透過</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker rm <span class="o">[</span>ContainerId<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>來真正意義上的移除Container，而不是停止它</p>
+<p><img src="https://i.imgur.com/RrMc8BN.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p><code>可以使用docker ps -aq ，這個指令只會秀出ContainerId，可以刪更爽，直接複製貼上就好</code></p>
+<p>還有更爽的方式，用$(docker ps -aq)的方式 傳遞參數</p>
+<p><img src="https://i.imgur.com/6awXQYd.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<h1 id="為container命名">為Container命名</h1>
+<p>建議命名一下，比較好找，只支援英文，不支援中文</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name hoxtonPractice -d -p 8080:80 nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/ibwUXZi.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/ivVF2QW.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121161417305"
+	
+	
+></p>
+<h1 id="volume的使用">Volume的使用</h1>
+<p>讓資訊可以在host與Container共享的一個功能</p>
+<p><img src="https://i.imgur.com/gFztGx2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121171102777"
+	
+	
+></p>
+<p>範例：</p>
+<p>首先在桌面上創建一個名為website的資料夾，裡面有個index.html，內容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>hello docker and volume<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/E9IOBy2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230121172021418"
+	
+	
+></p>
+<p>接著將terminal切至/website底下，然後輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name website -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/usr/share/nginx/html:ro -d -p 8080:80 nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>-v是 Docker 中的 volume 指令，它用於將主機上的目錄或檔案掛載到容器中。配合後面的${PWD}:/usr/share/nginx/html，意思就是將當前目錄的內容掛載(Mount)到容器中的 /usr/share/nginx/html 目錄下。這樣設定後，當主機上的目錄內容變更時，容器中的 /usr/share/nginx/html 目錄內的內容也會隨之更新。</p>
+</li>
+<li>
+<p>:ro 是指將主機上的目錄或檔案掛載到容器中的目錄或檔案，並設定為只讀模式。</p>
+</li>
+</ul>
+<p>​	這意味著在容器中將無法寫入或修改掛載的目錄或檔案，只能讀取。這可以避免對主機上的檔案造成損壞或不	必要的變更。</p>
+<ul>
+<li>/usr/share/nginx/html 是 Nginx 預設的網站根目錄。</li>
+</ul>
+<p>結果如下：</p>
+<p><img src="https://i.imgur.com/JWE1ngP.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>也因為Volume是鏡像對應，因此修改host的檔案，container的內容物也會同步更新</p>
+<p><img src="https://i.imgur.com/xr4Ps97.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>我們可以用以下的指令來訪問看看Nginx的檔案</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it website bash 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>docker exec 是 Docker 的命令行工具，用於在運行中的容器內執行命令。</li>
+<li>-it 這兩個選項表示要互動式地執行命令，並且讓輸入和輸出保持連接。</li>
+<li>website 是容器的名稱或 ID。</li>
+<li>bash 是要在容器內執行的命令，這裡是啟動 Bash shell。也可以改成ls，就變成ls了，玩法很多，自行摸索</li>
+</ul>
+<p><img src="https://i.imgur.com/vfD46ft.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>在Nginx裡面新增檔案，移除檔案，會發現host的資料夾檔案也同步更新</p>
+<p><img src="https://i.imgur.com/CxISdYl.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<h2 id="不同的container使用相同的volume">不同的Container使用相同的Volume</h2>
+<p><img src="https://i.imgur.com/sF6Jpws.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122000944184"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/M0VVEdM.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122000515311"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name website-copy --volumes-from website -d -p 8081:80 nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>&ndash;volumes-from [ContainerName]：將這次要啟動的Container使用和website一樣的Volume</li>
+</ul>
+<p><img src="https://i.imgur.com/138uiD1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122000709771"
+	
+	
+></p>
+<h1 id="dockerfile">Dockerfile</h1>
+<p>Dockerfile是一個文本文件，它包含了創建Docker image所需的指令。這些指令可以包括例如：</p>
+<ul>
+<li>從哪個基礎鏡像建立新鏡像</li>
+<li>安裝需要的軟體</li>
+<li>設置環境變量</li>
+<li>添加應用程序文件</li>
+<li>定義容器啟動時執行的命令</li>
+</ul>
+<p>透過Dockerfile, 可以自動化的建立一個環境，方便在不同的環境上部署，使用者可以更方便的管理環境，以及減少部署錯誤的機會。</p>
+<p>例如，如果你有一個Java應用程序需要在多個不同的服務器上運行，你可以使用Dockerfile創建一個包含Java執行時環境的镜像，然後在每個服務器上執行這個镜像，這樣就能保證每個服務器上都有相同的環境。</p>
+<p>試著把剛剛寫的volume打包成一個image，首先在/website的資料夾裡面新增一個名稱一定要是dockerfile的檔案</p>
+<p>裡面的檔案結構長的像這樣子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> nginx:latest</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> . /usr/share/nginx/html<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>FROM：指定了基礎Image是nginx，後面的latest是指版本號。Dockerfile中必須要有FROM指令，它是一切的根本，它指定了基礎Image環境。舉例來說，這邊指定用最新版的nginx，那麼我們的鏡像會基於這個最新版的nginx環境運行</li>
+<li>ADD：將本地目錄中的文件複製到鏡像中的指定目錄。在這個例子中是將本地目錄中的所有文件複製到鏡像中的/usr/share/nginx/html目錄。它的功能跟COPY有點像，但是COPY用法比較單純，只能複製本地文件和目錄到鏡像中，而ADD指令還可以解壓縮tar文件並將其中的文件複製到鏡像中。</li>
+</ul>
+<p>​	值得注意的是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">ADD</span> .   /usr/share/nginx/html<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>這行指的是，將當前目錄的所有東西(以一個.表示)加入至Container中的/usr/share/nginx/html目錄中。在這個例子中就是將</p>
+<p><img src="https://i.imgur.com/xhF8sgi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122005758339"
+	
+	
+></p>
+<p>這些東西ADD進/usr/share/nginx/html裡面。</p>
+<p>當Dockerfile寫好後，要開始bulid它，步驟如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl">docker build -t website:latest .<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>這個命令是在使用 Docker 建立一個新的鏡像檔，並標記為 &ldquo;website:latest&rdquo;。 &ldquo;.&rdquo; 表示當前目錄下的 Dockerfile 檔案將會被用來建立映像檔。這個命令將會建立一個名為 &ldquo;website&rdquo; 並且標記為 &ldquo;latest&rdquo; 的鏡像檔。</li>
+</ul>
+<p>Build完後就會出現一個image了，輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker images 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就可以查看目前擁有的images</p>
+<p><img src="https://i.imgur.com/fjUHVh9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122023400655"
+	
+	
+></p>
+<p>並且可以這個image可以運行我們剛剛對index的設定，輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name website -p 8080:80 -d website:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：這邊不需要再為website設置volume，因為我們已經將需要的東西打包進image裡面了。</p>
+<p>輸入完後，在URL的地方輸入localhost:8080就可以看到我們剛剛設置的東西了。</p>
+<p>gif如下</p>
+<p><img src="https://i.imgur.com/XvOfKcm.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<p>​</p>
+<h1 id="實際演練-nodejs">實際演練 NodeJs</h1>
+<h2 id="前置作業">前置作業</h2>
+<p>安裝Node.js，這邊安裝為了快速，就直接用Choco來裝了，Choco的安裝如下</p>
+<ol>
+<li>
+<p>在Terminal中輸入，記得要以系統管理員身分輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">Set-ExecutionPolicy Bypass -Scope Process -Force<span class="p">;</span> <span class="o">[</span>System.Net.ServicePointManager<span class="o">]</span>::SecurityProtocol <span class="o">=</span> <span class="o">[</span>System.Net.ServicePointManager<span class="o">]</span>::SecurityProtocol -bor 3072<span class="p">;</span> iex <span class="o">((</span>New-Object System.Net.WebClient<span class="o">)</span>.DownloadString<span class="o">(</span><span class="s1">&#39;https://community.chocolatey.org/install.ps1&#39;</span><span class="o">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安裝完後安裝nodeJs</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">choco install nodejs
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安裝完後隨便創一個資料夾，這邊命名叫做user-service-api</p>
+</li>
+<li>
+<p>切換到該資料夾底下，並且npm init它</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm init
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>接著安裝express</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm install --save express
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>用好後檔案結構長這樣</p>
+<p><img src="https://i.imgur.com/UfcpwaY.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122032825912"
+	
+	
+></p>
+</li>
+<li>
+<p>在該目錄底下新增一個index.js的檔案，內容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">3000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">([{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bod&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">email</span><span class="o">:</span> <span class="s1">&#39;bob@gmail.com&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}])</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Example app listening on port </span><span class="si">${</span><span class="nx">port</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>使用nodejs運行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">node index.js
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>成功後進入localhost:3000即可看到下列畫面</p>
+<p><img src="https://i.imgur.com/dRynWn4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122033843917"
+	
+	
+></p>
+</li>
+</ol>
+<p>如此一來前置作業就完成了</p>
+<h2 id="製作dockerfile">製作DockerFile</h2>
+<p>在目錄底下新增dockerfile，內容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> node:latest</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> . .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> npm install<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> node index.js<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>WORKDIR：若Container有/app這個資料夾，則使用它，若沒有，則創造它。</li>
+</ul>
+<ul>
+<li>ADD . .： 将当前目录中的文件复制到镜像中的 /app 目录。</li>
+<li>RUN npm install： 在鏡像中运行 npm install 命令，安装应用程序所需的依赖项。</li>
+<li>CMD node index.js：设置镜像启动时运行的命令，这里是运行 node index.js。</li>
+</ul>
+<p>為什麼要分成RUN跟CMD呢？有幾個原因，首先RUN跟CMD的用途本身就不一樣，RUN主要是在創建image中執行命令，並將結果保存在image中，它主要用來安裝依賴、配置應用程式或其他操作。則是用來說明Image創建完成後要執行的動作。<strong>簡而言之，RUN是在創建Image中過程所執行的，而CMD則是在Image創建完成後所執行的</strong>。</p>
+<p>並且，一個DockerFile可以有很多RUN指令，但只能有一個CMD指令，因為Container只能運行一個CMD指令</p>
+<h2 id="使用image">使用Image</h2>
+<p>接著創建鏡像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker build --tag user-service-api:latest .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>創建完之後啟動鏡像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --name user-api -d -p 8080:3000 user-service-api:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這邊的<code>8080:3000</code>是指，將我們容器裡面原本配置的3000端口暴露出來，以8080來接收。</p>
+<p><img src="https://i.imgur.com/VSKx5y3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122041621171"
+	
+	
+></p>
+<p>因為3000是指在Container裡面的端口，host想要讀到它，必須將Container的端口暴露出來。因此localhost:3000會找不到東西，只有打localhost:8080才會有我們要的內容</p>
+<p><img src="https://i.imgur.com/vUVU65T.gif"
+	
+	
+	
+	loading="lazy"
+	
+		alt="demo"
+	
+	
+></p>
+<h2 id="dockerignore">DockerIgnore</h2>
+<p>做完上面這些操作後，我們的檔案結構長這樣</p>
+<p><img src="https://i.imgur.com/zx4lldH.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122042649897"
+	
+	
+></p>
+<p>然後我們的Dockerfile長這樣</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> node:latest</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> . .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> npm install<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> node index.js<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>比較之後發現一件事情，RUN npm install會創建node_modules資料夾，但我們在ADD時已經把node_modules加入進去，等於說我們<strong>重複創建</strong>了兩次node_modules，這種情況就類似gitIgnore，需要排除掉重複的資料夾</p>
+<p>dockerIgnore的寫法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl">node_modules<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>dockerfile<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>.git<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/cw6wiqo.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230122043320515"
+	
+	
+></p>
+<p>這樣就可以把這些檔案排除在外了</p>
+<h1 id="caching--layers">Caching &amp; Layers</h1>
+<p>DockerFile裡面的每一個CML都是一個Layer，每個Layer都用來Caching`</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> node:latest</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ADD</span> . .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> npm install<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> node index.js<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/qOnozTP.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124033035860"
+	
+	
+></p>
+<p>可以看到這邊的Step1, Step2都對應著CML的指令&hellip;</p>
+<p>而Cache的點就在於，其實除了ADD . . 以外(原始碼每次打包時都會有更動)，其實WORKDIR, RUN npm install這些指令其實都是重複的，我們每次打包都需要再重複執行一次，這樣很沒**效率    **</p>
+<p>於是Dokcer就會把這些重複的事情Caching起來，只要沒有改變就不會重複再做，就會看到上面的Using Cache了</p>
+<h1 id="alpine">ALPINE</h1>
+<p><code>翻譯的意思是高山</code></p>
+<p><img src="https://i.imgur.com/lHZT25E.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124040633982"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/vROHoya.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124040527548"
+	
+	
+></p>
+<p>我剛剛打包的Image檔案已經快逼近一個G了，很明顯我們其實不需要那麼多的東西，Alpine版本的就是一個非常小的鏡像。</p>
+<h2 id="實際安裝alpine">實際安裝ALPINE</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull node:lts-alpine
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/sOvYX9X.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124041533774"
+	
+	
+></p>
+<p><img src="https://i.imgur.com/WiRUr17.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230124041614756"
+	
+	
+></p>
+<p>兩者的Size差了快十倍</p>
+<h1 id="docker-compose-將後端與資料庫一起包一包">Docker Compose 將後端與資料庫一起包一包</h1>
+<p>一個Project不可能只由一個後端組成，肯定是要由後端、前端、以及資料庫三者組合，甚至更甚者可能會有10,20個的部件需要去組合，那麼一個一個run container這件事情就變得相當缺乏效率。為了處理這件事情，於是有了<strong>Docker-Compose</strong>的概念出現。</p>
+<p>Docker-Compose大概就像這樣，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.7&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">postgres-for-dockerpractice</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./pgdata:/var/lib/postgresql/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;5432:5432&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">backend</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">backend-for-dockerpractice</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">shop</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">db</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;8080:8080&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>和dockerfile一樣存在於專案根目錄中</p>
+<p><img src="https://i.imgur.com/UpKhAur.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230130235149649"
+	
+	
+></p>
+<p>他類似於一個<strong>配置檔</strong>，用以告訴Docker要啟動哪些Container，以及它們之間的交互關係，以上面的Docker-compose.yml來說明</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.7&#39;</span><span class="w"> </span><span class="l">//要使用的dokcer-compose版本，有分很多版，比如說1.0,2.0，但目前主流是3.0，所以照著寫就好</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w"> </span><span class="l">//每一個起起來的Container有一個特殊的名字，叫做service，這個yaml檔就有兩個service，分別叫db跟backend</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w"> </span><span class="l">//可自定義的service名稱，高興叫啥就叫啥，但這個名字會與你在application.properties裡描述的名稱有對應關係，可以看看下面的附圖，第四行的url:jdbc:postgresql://db:5432/shop，其中的db就是service的名稱</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">postgres-for-dockerpractice //自定義的名稱，想叫啥就叫啥，這名稱會是你的Container名稱</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres //要使用哪個image作為基底</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="m">45002502</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">postgres</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">shop</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./pgdata:/var/lib/postgresql/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;5432:5432&#39;</span><span class="w"> </span><span class="l">//要暴露出來的端口</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l">//可自定義的service名稱，高興叫啥就叫啥，但這個名字會與你在application.properties裡描述的名稱有對應關係。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">backend-for-dockerpractice  //自定義的名稱，想叫啥就叫啥，這名稱會是你的Container名稱</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">shop //要使用哪個image作為基底，這個是我自己docker build -t shop:latest . 所創建出來的image</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">db //這意味著，你這邊的service會等到db這個service完成後才會進行部屬。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s1">&#39;8080:8080&#39;</span><span class="w"> </span><span class="l">// 暴露出來的端口</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://i.imgur.com/AMN0bz6.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230130235821812"
+	
+	
+></p>
+<p>▲第四行的db與services的名稱有對應。</p>
+<p><img src="https://i.imgur.com/ksv3RFX.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20230131000230558"
+	
+	
+></p>
+<p>▲上述的docker-compose啟動後顯示的樣子。</p>
+<p>常用的指令</p>
+<p>啟動當前目錄的docker-compose</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker compose up
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>關閉當前目錄的docker-compose</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker compose down
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/docker/">Docker</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/7g77ZiN.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/7g77ZiN.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Zabbix的一些筆記</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://i.imgur.com/1BTtOUL.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/1BTtOUL.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">StoreProcedure跟PSQL的筆記</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div id="gitalk-container"></div>
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: "bf152013e92e48c1495f",
+        clientSecret: "bed32f8438cb1e00d8628d9b6d148003bb4bf25d",
+        repo: "comment",
+        owner: "Hoxton019030",
+        admin: ["Hoxton019030"],
+        distractionFreeMode: false, 
+        id: md5(location.pathname), 
+    });
+    (function () {
+        if (
+            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
+        ) {
+            document.getElementById("gitalk-container").innerHTML =
+                "Gitalk comments not available by default when the website is previewed locally.";
+            return;
+        }
+        gitalk.render("gitalk-container");
+    })();
+</script>
+
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Hoxton
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.14.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#名詞解釋">名詞解釋</a>
+      <ol>
+        <li><a href="#container">Container</a></li>
+        <li><a href="#image">Image</a></li>
+        <li><a href="#volume">Volume</a></li>
+      </ol>
+    </li>
+    <li><a href="#常用指令">常用指令</a>
+      <ol>
+        <li><a href="#搜尋image">搜尋Image</a></li>
+        <li><a href="#查看目前的image">查看目前的image</a></li>
+        <li><a href="#執行docker-image">執行docker image</a></li>
+        <li><a href="#刪除images">刪除images</a></li>
+        <li><a href="#在detached-mode下執行">在Detached mode下執行</a></li>
+        <li><a href="#打包成docker-image">打包成docker image</a></li>
+        <li><a href="#查看目前運行的container">查看目前運行的Container</a></li>
+        <li><a href="#查看目前運作中running的container">查看目前運作中(running)的Container</a></li>
+        <li><a href="#進入container與之互動">進入Container與之互動</a></li>
+        <li><a href="#停止container">停止Container</a></li>
+        <li><a href="#刪除container">刪除Container</a></li>
+        <li><a href="#暴露port">暴露port</a></li>
+        <li><a href="#暴露已經runningstopping-的container的port">暴露已經Running,Stopping 的Container的Port</a></li>
+        <li><a href="#一次性查看container的log紀錄">一次性查看Container的Log紀錄</a></li>
+        <li><a href="#持續查看container的log紀錄">持續查看Container的Log紀錄</a></li>
+        <li><a href="#執行docker-compose">執行Docker-compose</a></li>
+        <li><a href="#停止並刪除docker-compose的container">停止並刪除Docker-compose的Container</a></li>
+      </ol>
+    </li>
+    <li><a href="#在docker啟動ubuntu">在Docker啟動Ubuntu</a></li>
+    <li><a href="#exposing-port">Exposing Port</a></li>
+    <li><a href="#container的管理">Container的管理</a></li>
+    <li><a href="#為container命名">為Container命名</a></li>
+    <li><a href="#volume的使用">Volume的使用</a>
+      <ol>
+        <li><a href="#不同的container使用相同的volume">不同的Container使用相同的Volume</a></li>
+      </ol>
+    </li>
+    <li><a href="#dockerfile">Dockerfile</a></li>
+    <li><a href="#實際演練-nodejs">實際演練 NodeJs</a>
+      <ol>
+        <li><a href="#前置作業">前置作業</a></li>
+        <li><a href="#製作dockerfile">製作DockerFile</a></li>
+        <li><a href="#使用image">使用Image</a></li>
+        <li><a href="#dockerignore">DockerIgnore</a></li>
+      </ol>
+    </li>
+    <li><a href="#caching--layers">Caching &amp; Layers</a></li>
+    <li><a href="#alpine">ALPINE</a>
+      <ol>
+        <li><a href="#實際安裝alpine">實際安裝ALPINE</a></li>
+      </ol>
+    </li>
+    <li><a href="#docker-compose-將後端與資料庫一起包一包">Docker Compose 將後端與資料庫一起包一包</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
