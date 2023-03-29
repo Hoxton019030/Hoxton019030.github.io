@@ -298,6 +298,7 @@ alt="image-20230317111428373"
 &lt;p>Temlate：Template OS Windows by Zabbix agent&lt;/p>
 &lt;h1 id="api的使用">API的使用&lt;/h1>
 &lt;p>可以到下列的網站使用線上的Zabbix API Test&lt;/p>
+&lt;p>&lt;a href="https://sbcode.net/zabbix/zabbix-api-test-form/">https://sbcode.net/zabbix/zabbix-api-test-form/&lt;/a>&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/SNBs6Z9.png"
 loading="lazy"
 >&lt;/p>
@@ -524,7 +525,9 @@ loading="lazy"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>在很多的API Parameter中，會常常看到&lt;/p>
+&lt;/div>&lt;h2 id="zabbix-api介紹">Zabbix API介紹&lt;/h2>
+&lt;p>&lt;a href="https://sbcode.net/zabbix/zabbix-api-test-form/">https://sbcode.net/zabbix/zabbix-api-test-form/&lt;/a>&lt;/p>
+&lt;p>在很多的API Parameter中，會常常看到&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
