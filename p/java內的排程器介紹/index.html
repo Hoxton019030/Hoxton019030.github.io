@@ -1,1746 +1,434 @@
-<!DOCTYPE html>
-<html lang="zh" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='關於排程器的介紹 '><title>Java內的排程器介紹</title>
-
-<link rel='canonical' href='https://hoxtonhsu.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/'>
-
-<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='Java內的排程器介紹'>
-<meta property='og:description' content='關於排程器的介紹 '>
-<meta property='og:url' content='https://hoxtonhsu.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/'>
-<meta property='og:site_name' content='Hoxton'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='排程器' /><meta property='article:published_time' content='2022-10-06T23:14:21&#43;08:00'/><meta property='article:modified_time' content='2022-10-06T23:14:21&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/9or5BzU.png' />
-<meta name="twitter:title" content="Java內的排程器介紹">
-<meta name="twitter:description" content="關於排程器的介紹 "><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://i.imgur.com/9or5BzU.png' />
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-9N16MVLR0Q', { 'anonymize_ip': false });
-}
-</script>
-
-    </head>
-    <body class="
-    article-page
-    ">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            localStorage.setItem(colorSchemeKey, "dark");
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-
-    <header>
-        
-            
-            <figure class="site-avatar">
-                <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_3.png" width="300"
-                            height="301" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
-                </a>
-                
-            </figure>
-            
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">Hoxton</a></h1>
-            <h2 class="site-description">快樂的CRUD Boy, API Caller</h2>
-        </div>
-    </header><ol class="social-menu">
-            
-                <li>
-                    <a 
-                        href='https://discordapp.com/users/840906423076782082'
-                        target="_blank"
-                        title="Discord"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <circle cx="9" cy="12" r="1" />
-  <circle cx="15" cy="12" r="1" />
-  <path d="M7.5 7.5c3.5 -1 5.5 -1 9 0" />
-  <path d="M7 16.5c3.5 1 6.5 1 10 0" />
-  <path d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-1 2.5" />
-  <path d="M8.5 17c0 1 -1.356 3 -1.832 3c-1.429 0 -2.698 -1.667 -3.333 -3c-.635 -1.667 -.476 -5.833 1.428 -11.5c1.388 -1.015 2.782 -1.34 4.237 -1.5l1 2.5" />
-</svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://github.com/Hoxton019030'
-                        target="_blank"
-                        title="GitHub"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://www.instagram.com/hoxton_8a31/'
-                        target="_blank"
-                        title="Instagram"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <rect x="4" y="4" width="16" height="16" rx="4" />
-  <circle cx="12" cy="12" r="3" />
-  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
-</svg>
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-
-        <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>Home</span>
-            </a>
-        </li>
-        
-        
-
-        <li >
-            <a href='/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>Archives</span>
-            </a>
-        </li>
-        
-        
-
-        <li >
-            <a href='/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>Search</span>
-            </a>
-        </li>
-        
-
-        <div class="menu-bottom-section">
-            
-            
-        </div>
-    </ol>
-</aside>
-<main class="main full-width">
-    <article class="has-image main-article">
-    <header class="article-header">
-        <div class="article-image">
-            <a href="/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/">
-                
-                    <img src="https://i.imgur.com/9or5BzU.png" loading="lazy" alt="Featured image of post Java內的排程器介紹" />
-                
-            </a>
-        </div>
-    
-
-    <div class="article-details">
-    
-    <header class="article-category">
-        
-            <a href="/categories/%E7%A8%8B%E5%BC%8F/" style="background-color: #2a9d8f; color: #fff;">
-                程式
-            </a>
-        
-            <a href="/categories/springboot/" style="background-color: #2a9d8f; color: #fff;">
-                SpringBoot
-            </a>
-        
-    </header>
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/">Java內的排程器介紹</a>
-        </h2>
-    
-        
-        <h3 class="article-subtitle">
-            關於排程器的介紹 
-        </h3>
-        
-    </div>
-
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">Oct 06, 2022</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    7 minute read
-                </time>
-            </div>
-        
-    </footer>
-    
-
-    
-</div>
-</header>
-
-    <section class="article-content">
-    
-    
-    <h1 id="springboot-scheduling">SpringBoot-Scheduling</h1>
-<p>用來做定期任務的東西，有兩種</p>
-<ul>
-<li>Spring schedule：只適合處理簡單的計畫任務，不能處理分散式的任務，當任務太多時，可能出現阻塞、崩潰、延遲啟動等問題</li>
-<li>Quartz：更強大的一個排程器，能夠配置上百甚至上千的事務。</li>
-</ul>
-<h1 id="spring-schedule">Spring Schedule</h1>
-<h2 id="步驟">步驟</h2>
-<ol>
-<li>在啟動類上加上@EnableScheduling</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootApplication</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@EnableScheduling</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Application</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">Application</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="2">
-<li>在方法上加上@Scheduled</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Component</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Task</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Scheduled</span><span class="o">(</span><span class="n">fixedDelay</span> <span class="o">=</span> <span class="n">10</span> <span class="o">*</span> <span class="n">100</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printLocalTime</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">LocalTime</span><span class="o">.</span><span class="na">now</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://i.imgur.com/RJ1HtHT.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220914144530121"
-	
-	
-></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="nd">@Scheduled</span><span class="o">(</span><span class="n">cron</span> <span class="o">=</span> <span class="s">&#34;1 * * * * ?&#34;</span><span class="o">,</span><span class="n">zone</span> <span class="o">=</span> <span class="s">&#34;Asia/Taipei&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printPer5second</span><span class="o">(){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;cron&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://i.imgur.com/AATFHO2.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220914145339544"
-	
-	
-></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Scheduled</span><span class="o">(</span><span class="n">cron</span> <span class="o">=</span> <span class="s">&#34;0/1 * * * * ?&#34;</span><span class="o">,</span><span class="n">zone</span> <span class="o">=</span> <span class="s">&#34;Asia/Taipei&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">printPer5second</span><span class="o">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;cron&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://i.imgur.com/Kby8DZf.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220914145730980"
-	
-	
-></p>
-<h2 id="cron表達式七子表達式">Cron表達式(七子表達式)</h2>
-<p><a class="link" href="https://cron.qqe2.com/"  target="_blank" rel="noopener"
-    >表達式生成工具</a></p>
-<p>Cron語源來自Chronos，是希臘神話中掌管時間的神柯羅諾斯(Chronos)。</p>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>秒</th>
-<th>分</th>
-<th>時</th>
-<th>日</th>
-<th>月</th>
-<th>周</th>
-<th>年(可選)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>*</td>
-<td>*</td>
-<td>*</td>
-<td>*</td>
-<td>?</td>
-<td>?</td>
-</tr>
-</tbody>
-</table></div>
-<ul>
-<li>秒：0-59</li>
-<li>分：0-59</li>
-<li>時 ：0-23</li>
-<li>日：1-31</li>
-<li>月：0-11或&quot;JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC&quot;</li>
-<li>周：1-7或SUN, MON, TUE, WED, THU, FRI,SAT</li>
-<li>年</li>
-</ul>
-<p>想像一個時鐘&hellip;</p>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>當每次秒針指向一秒時</th>
-<th>1 * * * * ?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>當每次時針指向12時</td>
-<td>* * 12 * * ?</td>
-</tr>
-<tr>
-<td>每個月 1 號中午 12 點</td>
-<td>0 0 12 1 * ?</td>
-</tr>
-<tr>
-<td>1 月每天中午 12 點，每 5 秒</td>
-<td>0/5 0 12 * 1 ?</td>
-</tr>
-</tbody>
-</table></div>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th style="text-align:left">字元</th>
-<th style="text-align:left">意義</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>*</code></td>
-<td style="text-align:left">表達任意值，所有值都可以匹配</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>?</code></td>
-<td style="text-align:left">只用在 <code>日</code> 跟 <code>周</code> 的值域，有點表達 don’t care 的概念，無所謂，不關心到底是什麼值</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-</code></td>
-<td style="text-align:left">指定範圍，前後接數字: 10-12</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>,</code></td>
-<td style="text-align:left">指定離散的選項: 1,5,6,8，或者的概念</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>/</code></td>
-<td style="text-align:left">指定增量，表達 <code>每</code> 的概念: 0/5 意旨從 0 開始每 5 單位</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>L</code></td>
-<td style="text-align:left">用在 <code>月</code> 跟 <code>周</code> 的值域。在月的話表達最後一天，在周的話前面可以加上數字 3L 表示該月最後一個星期二</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>W</code></td>
-<td style="text-align:left">用在<code>日</code>的值域表示距離最近的該月工作日: 15W，距離 15 號最近的工作日，可能往前也可能往後</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>LW</code></td>
-<td style="text-align:left">用在<code>日</code>的值域，表示最後一周的工作日</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>#</code></td>
-<td style="text-align:left">用在<code>周</code>的值域，指定特定周的特定日: “4#2” 表示第二周的星期三</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>C</code></td>
-<td style="text-align:left">用在<code>日</code>跟<code>周</code>的值域，指某特定個日期的後一天: 在<code>日</code>中寫 3C 指該月 3 號的後一天，在<code>周</code>中寫 2C 指該周星期一的後一天</td>
-</tr>
-</tbody>
-</table></div>
-<h1 id="quartz">Quartz</h1>
-<p><img src="https://i.imgur.com/C8FFRz9.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916143034403"
-	
-	
-></p>
-<p>是一個開源的任務排程器，幾乎可以整合到任何Java應用程式中。</p>
-<p>它可以用來</p>
-<ul>
-<li>安排每個晚上把資料庫內容轉存到檔案</li>
-<li>提供定時提醒服務</li>
-<li>族繁不及備載&hellip;</li>
-</ul>
-<h3 id="底層數據結構--堆">底層數據結構- 堆</h3>
-<h4 id="介紹">介紹</h4>
-<p>堆是一種特殊的樹，滿足下面兩個條件，就是一個<strong>堆</strong></p>
-<ol>
-<li>堆是一顆完全二元樹<code>完整二元樹：除了最後一層以外，其他層的節點數需要達到最大(1,2,4,8. ..)</code></li>
-</ol>
-<p><img src="https://i.imgur.com/GYIKgRe.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916103657827"
-	
-	
-></p>
-<ol start="2">
-<li>每個節點所儲存的值，必須要大於<code>小頂堆</code>或小於<code>大頂堆</code>父節點的值</li>
-</ol>
-<p><img src="https://i.imgur.com/t5Aeict.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916104946559"
-	
-	
-></p>
-<blockquote>
-<p>小頂堆</p>
-</blockquote>
-<p>完整二元樹的一些特性：快速定位父節點</p>
-<p><img src="https://i.imgur.com/F9btok2.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916105634080"
-	
-	
-></p>
-<p><strong>在排程器的框架中，每一個節點就是一個Job，越頻繁的Job會被放置在越上層的節點</strong></p>
-<h4 id="如何插入元素">如何插入元素</h4>
-<p>尾插法，在尾部插入一個新的元素，然後上浮，浮到符合定義</p>
-<ol>
-<li>除了最後一層以外，其他層的節點數需要達到最大(1,2,4,8. ..)，且最後一層節點都靠左排列</li>
-<li>每個節點所儲存的值，必須要大於<code>小頂堆</code>或小於<code>大頂堆</code>父節點的值</li>
-</ol>
-<p><img src="https://i.imgur.com/kGnnrnf.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916110137933"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/YjWGVYi.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916110150486"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/pqhvAgT.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916110656733"
-	
-	
-></p>
-<h4 id="如何刪除元素">如何刪除元素</h4>
-<p>將尾部(最後一個節點)放置到堆頂，然後下沉</p>
-<p><img src="https://i.imgur.com/vM6IFnf.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916111249806"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/ltoSIL1.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916111306206"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/spOXHoC.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916111330270"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/giEhi6Y.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916111958376"
-	
-	
-></p>
-<h3 id="時間輪算法time-wheel">時間輪算法(Time Wheel)</h3>
-<p><img src="https://i.imgur.com/FGlGv1M.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916114613849"
-	
-	
-></p>
-<p>再刪除元素的時候都需要下沉，當節點數很多時會造成性能延宕</p>
-<p><img src="https://i.imgur.com/djp3Uq4.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20220916113838923"
-	
-	
-></p>
-<h4 id="round-型的時間輪">round 型的時間輪</h4>
-<p>任務上記錄一個round，遍歷到了就將round減一，為0時取出來執行</p>
-<h4 id="分層時間輪">分層時間輪</h4>
-<p>Cron表達式以及其他排程器所採用的底層架構，分成秒輪、分輪、小時輪、日輪、周輪、月輪、年輪&hellip;，月輪迭代到了，就將任務取出放到天輪中執行&hellip;，以此類推</p>
-<h2 id="cron表達式七子表達式-1">Cron表達式(七子表達式)</h2>
-<p><a class="link" href="https://cron.qqe2.com/"  target="_blank" rel="noopener"
-    >表達式生成工具</a></p>
-<p>Cron語源來自Chronos，是希臘神話中掌管時間的神柯羅諾斯(Chronos)。</p>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>秒</th>
-<th>分</th>
-<th>時</th>
-<th>日</th>
-<th>月</th>
-<th>周</th>
-<th>年(可選)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>*</td>
-<td>*</td>
-<td>*</td>
-<td>*</td>
-<td>?</td>
-<td>?</td>
-</tr>
-</tbody>
-</table></div>
-<ul>
-<li>秒：0-59</li>
-<li>分：0-59</li>
-<li>時 ：0-23</li>
-<li>日：1-31</li>
-<li>月：0-11或&quot;JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC&quot;</li>
-<li>周：1-7或SUN, MON, TUE, WED, THU, FRI,SAT</li>
-<li>年</li>
-</ul>
-<p>想像一個時鐘&hellip;</p>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>當每次秒針指向一秒時</th>
-<th>1 * * * * ?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>當每次時針指向12時</td>
-<td>* * 12 * * ?</td>
-</tr>
-<tr>
-<td>每個月 1 號中午 12 點</td>
-<td>0 0 12 1 * ?</td>
-</tr>
-<tr>
-<td>1 月每天中午 12 點，每 5 秒</td>
-<td>0/5 0 12 * 1 ?</td>
-</tr>
-</tbody>
-</table></div>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th style="text-align:left">字元</th>
-<th style="text-align:left">意義</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>*</code></td>
-<td style="text-align:left">表達任意值，所有值都可以匹配</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>?</code></td>
-<td style="text-align:left">只用在 <code>日</code> 跟 <code>周</code> 的值域，有點表達 don’t care 的概念，無所謂，不關心到底是什麼值</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-</code></td>
-<td style="text-align:left">指定範圍，前後接數字: 10-12</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>,</code></td>
-<td style="text-align:left">指定離散的選項: 1,5,6,8，或者的概念</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>/</code></td>
-<td style="text-align:left">指定增量，表達 <code>每</code> 的概念: 0/5 意旨從 0 開始每 5 單位</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>L</code></td>
-<td style="text-align:left">用在 <code>月</code> 跟 <code>周</code> 的值域。在月的話表達最後一天，在周的話前面可以加上數字 3L 表示該月最後一個星期二</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>W</code></td>
-<td style="text-align:left">用在<code>日</code>的值域表示距離最近的該月工作日: 15W，距離 15 號最近的工作日，可能往前也可能往後</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>LW</code></td>
-<td style="text-align:left">用在<code>日</code>的值域，表示最後一周的工作日</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>#</code></td>
-<td style="text-align:left">用在<code>周</code>的值域，指定特定周的特定日: “4#2” 表示第二周的星期三</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>C</code></td>
-<td style="text-align:left">用在<code>日</code>跟<code>周</code>的值域，指某特定個日期的後一天: 在<code>日</code>中寫 3C 指該月 3 號的後一天，在<code>周</code>中寫 2C 指該周星期一的後一天</td>
-</tr>
-</tbody>
-</table></div>
-<p>​</p>
-<h2 id="重要api及概念">重要API及概念</h2>
-<blockquote>
-<p>記得Job類一定要是<strong>public class</strong>，不然Scheduler會讀不到</p>
-</blockquote>
-<p>釋例一：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Quartz</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">MyJob</span> <span class="n">myJob</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyJob</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">JobDetail</span> <span class="n">jobDetail</span> <span class="o">=</span> <span class="n">JobBuilder</span><span class="o">.</span><span class="na">newJob</span><span class="o">(</span><span class="n">MyJob</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;job1&#34;</span><span class="o">,</span> <span class="s">&#34;group1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">Trigger</span> <span class="n">trigger</span> <span class="o">=</span> <span class="n">TriggerBuilder</span><span class="o">.</span><span class="na">newTrigger</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;trigger1&#34;</span><span class="o">,</span> <span class="s">&#34;trigger1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">startNow</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">withSchedule</span><span class="o">(</span><span class="n">SimpleScheduleBuilder</span><span class="o">.</span><span class="na">simpleSchedule</span><span class="o">().</span><span class="na">withIntervalInSeconds</span><span class="o">(</span><span class="n">1</span><span class="o">).</span><span class="na">repeatForever</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">Scheduler</span> <span class="n">scheduler</span> <span class="o">=</span> <span class="n">StdSchedulerFactory</span><span class="o">.</span><span class="na">getDefaultScheduler</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">            <span class="n">scheduler</span><span class="o">.</span><span class="na">scheduleJob</span><span class="o">(</span><span class="n">jobDetail</span><span class="o">,</span><span class="n">trigger</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">            <span class="n">scheduler</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">SchedulerException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyJob</span> <span class="kd">implements</span> <span class="n">Job</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">JobExecutionContext</span> <span class="n">jobExecutionContext</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JobExecutionException</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;MyJob execute:&#34;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>釋例二</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloJob</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">Scheduler</span> <span class="n">scheduler</span> <span class="o">=</span> <span class="n">StdSchedulerFactory</span><span class="o">.</span><span class="na">getDefaultScheduler</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">            <span class="n">scheduler</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">            <span class="n">JobDetail</span> <span class="n">jobDetail</span> <span class="o">=</span> <span class="n">JobBuilder</span><span class="o">.</span><span class="na">newJob</span><span class="o">(</span><span class="n">SayHello</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;job1&#34;</span><span class="o">,</span> <span class="s">&#34;group1&#34;</span><span class="o">)</span>  <span class="c1">//Job1是名字，具有唯一性，group1是這個Job屬於哪一組，同一組的Job可以共享相同的邏輯來處理Job。需要name與Job才可以組成一個JobKey
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="o">.</span><span class="na">usingJobData</span><span class="o">(</span><span class="s">&#34;username&#34;</span><span class="o">,</span> <span class="s">&#34;Hoxton&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">usingJobData</span><span class="o">(</span><span class="s">&#34;age&#34;</span><span class="o">,</span> <span class="s">&#34;20&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">withDescription</span><span class="o">(</span><span class="s">&#34;desc-demo&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            <span class="n">SimpleTrigger</span> <span class="n">trigger</span> <span class="o">=</span> <span class="n">TriggerBuilder</span><span class="o">.</span><span class="na">newTrigger</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;trigger1&#34;</span><span class="o">,</span> <span class="s">&#34;group1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">startNow</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">withSchedule</span><span class="o">(</span><span class="n">SimpleScheduleBuilder</span><span class="o">.</span><span class="na">simpleSchedule</span><span class="o">().</span><span class="na">withIntervalInSeconds</span><span class="o">(</span><span class="n">1</span><span class="o">).</span><span class="na">repeatForever</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            <span class="n">scheduler</span><span class="o">.</span><span class="na">scheduleJob</span><span class="o">(</span><span class="n">jobDetail</span><span class="o">,</span><span class="n">trigger</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">            <span class="n">scheduler</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//            scheduler.shutdown();
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">SchedulerException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Slf4j</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@NoArgsConstructor</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SayHello</span> <span class="kd">implements</span> <span class="n">Job</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">JobExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JobExecutionException</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">JobDetail</span> <span class="n">jobDetail</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getJobDetail</span><span class="o">();</span><span class="c1">//從context中獲取屬性
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">JobKey</span> <span class="n">key</span> <span class="o">=</span> <span class="n">jobDetail</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Job</span><span class="o">&gt;</span> <span class="n">jobClass</span> <span class="o">=</span> <span class="n">jobDetail</span><span class="o">.</span><span class="na">getJobClass</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">description</span> <span class="o">=</span> <span class="n">jobDetail</span><span class="o">.</span><span class="na">getDescription</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">JobDataMap</span> <span class="n">jobDataMap</span> <span class="o">=</span> <span class="n">jobDetail</span><span class="o">.</span><span class="na">getJobDataMap</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="n">jobDataMap</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&#34;username&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="n">jobDataMap</span><span class="o">.</span><span class="na">getIntValue</span><span class="o">(</span><span class="s">&#34;age&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;\nJobKey : {},\n JobClass : {},\n JobDesc : {},\n username : {},\n age : {}&#34;</span><span class="o">,</span>
-</span></span><span class="line"><span class="cl">                <span class="n">key</span><span class="o">,</span> <span class="n">jobClass</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">description</span><span class="o">,</span> <span class="n">username</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="scheduler">Scheduler</h3>
-<p>生命週期由ScheduleFactory建立開始，呼叫shutdown方法結束。</p>
-<p>當Schduler建立，任何關於Schduling相關的事情，都由它控制</p>
-<ul>
-<li>新增</li>
-<li>刪除</li>
-<li>列出所有Job</li>
-<li>暫停觸發器</li>
-</ul>
-<p><strong>在Start之前不會做任何事情</strong></p>
-<h3 id="job">Job</h3>
-<p>你希望被排程器排程的任務元件介面，定義如何執行，是正在執行的作業例項，一個Job可以建立多個JobDetail，擁有不同的JobDataMap。本身implement了Job類</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">graph TD;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Job ---&gt; JodDetail1 &amp; JodDetail2 &amp; JodDetail3 &amp; JodDetail...
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SendEmail</span> <span class="kd">implements</span> <span class="n">Job</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">JobExecutionContext</span> <span class="n">jobExecutionContext</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JobExecutionException</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;SendEmail&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>當Job的觸發器觸發時，排程程式的工作執行將呼叫excute()方法</li>
-<li>該方法接收一個<code>JobExcutionContext</code>物件，為Job提供了豐富的執行時環境，比如<code>schduler</code>,<code>trigger</code>,<code>jobDataMap</code>,<code>job</code>,<code>calender</code>,<code>time</code></li>
-</ul>
-<blockquote>
-<p>何謂Context(上下文)</p>
-<p>可以理解為環境、容器的意思會比上下文更具體一點，它提供了一個程式中全域性的資訊。</p>
-</blockquote>
-<h3 id="jobdetail">JobDetail</h3>
-<p>用於定義Job的各種屬性、各種任務，還可以用來為Job儲存狀態資訊的JobDataMap，是將Job加入scheduler時，所需要創建的一個物件，它包含了各種屬性設置，以及用於存取job實例狀態訊息的JobDataMap，在創建JobDetail時，需要將欲執行的類名傳遞給JobDetail，這樣schedule就知道要執行何種類型的job。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">JobDetail</span> <span class="n">jobDetail</span><span class="o">=</span><span class="n">JobBulider</span><span class="o">.</span><span class="na">newJob</span><span class="o">(</span><span class="n">Job</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">bulid</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="jobdatamap">JobDataMap</h3>
-<p>實作Map介面，因此具有Key-Value，儲存可序列化資料，供Job在執行時使用。也可以使用<code>usingJobData(key,value)</code>在建構JobDetail的時候傳入資料，使用JobDetail.getDataMap()獲取Map。可以再透過jobDataMap取出裡面的數據</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="n">JobDetail</span> <span class="n">job</span> <span class="o">=</span> <span class="n">JobBuilder</span><span class="o">.</span><span class="na">newJob</span><span class="o">(</span><span class="n">HelloJob</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"> 		                  <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;helloJob&#34;</span><span class="o">,</span> <span class="s">&#34;hello&#34;</span><span class="o">)</span><span class="c1">//給job命名並分組
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span> 		                  <span class="o">.</span><span class="na">usingJobData</span><span class="o">(</span><span class="s">&#34;jobdd&#34;</span><span class="o">,</span> <span class="s">&#34;hello job&#34;</span><span class="o">)</span><span class="c1">//通過JobBuilder的usingJobData方法給JobDataMap中塞入數據
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span> 		                  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloJob</span> <span class="kd">implements</span> <span class="n">Job</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">JobExecutionContext</span> <span class="n">context</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JobExecutionException</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">getJobDetail</span><span class="o">().</span><span class="na">getKey</span><span class="o">());</span><span class="c1">// JobDetail的key又他的name和group組成
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">getTrigger</span><span class="o">().</span><span class="na">getKey</span><span class="o">());</span><span class="c1">// Trigger的key又他的name和group組成
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">getJobDetail</span><span class="o">().</span><span class="na">getJobDataMap</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;jobdd&#34;</span><span class="o">));</span>
-</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;hello,quartz&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">	<span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>會輸出</p>
-<p>`hello.helloJob</p>
-<p>hello.helloTrigger</p>
-<p>hello job</p>
-<p>hello, quartz</p>
-<h3 id="trigger">Trigger</h3>
-<p>觸發任務執行，觸發器可能具有與Job有關的JobDataMap，以便將觸發器觸發的引數傳遞給Job，Quartz本身提供了幾種觸發器<code>SimpleTrigger</code>和<code>CronTrigger</code>是最常用到的。</p>
-<h4 id="simpletriger"><strong>SimpleTriger</strong></h4>
-<p>用於一次性執行作業或需要在給定的時間觸發一個作業並重複執行N次，且兩次執行時間有Delay。用在具體的時間點，並已指定的間隔時間重複執行若干次，它包含了幾種屬性：</p>
-<ol>
-<li>開始時間</li>
-<li>結束時間</li>
-<li>重複次數</li>
-<li>重複間隔</li>
-</ol>
-<p>釋例一：立刻觸發一次，然後停止</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">  <span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Trigger</span> <span class="n">trigger1</span> <span class="o">=</span> <span class="n">TriggerBuilder</span><span class="o">.</span><span class="na">newTrigger</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;trigger1&#34;</span><span class="o">,</span> <span class="s">&#34;group1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">startAt</span><span class="o">(</span><span class="n">date</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>釋例二：指定時間觸發，每隔十秒執行一次，重複10次</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="n">trigger</span> <span class="o">=</span> <span class="n">newTrigger</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;trigger3&#34;</span><span class="o">,</span> <span class="s">&#34;group1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">startAt</span><span class="o">(</span><span class="n">myTimeToStartFiring</span><span class="o">)</span>  <span class="c1">// if a start time is not given (if this line were omitted), &#34;now&#34; is implied
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">withSchedule</span><span class="o">(</span><span class="n">simpleSchedule</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">withIntervalInSeconds</span><span class="o">(</span><span class="n">10</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">withRepeatCount</span><span class="o">(</span><span class="n">10</span><span class="o">))</span> <span class="c1">// note that 10 repeats will give a total of 11 firings
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">forJob</span><span class="o">(</span><span class="n">myJob</span><span class="o">)</span> <span class="c1">// identify job with handle to its JobDetail itself                   
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>釋例三：5分鐘以後開始觸發，僅執行一次</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="n">trigger</span> <span class="o">=</span> <span class="o">(</span><span class="n">SimpleTrigger</span><span class="o">)</span> <span class="n">newTrigger</span><span class="o">()</span> 
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;trigger5&#34;</span><span class="o">,</span> <span class="s">&#34;group1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">startAt</span><span class="o">(</span><span class="n">futureDate</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">IntervalUnit</span><span class="o">.</span><span class="na">MINUTE</span><span class="o">))</span> <span class="c1">// use DateBuilder to create a date in the future
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">forJob</span><span class="o">(</span><span class="n">myJobKey</span><span class="o">)</span> <span class="c1">// identify job with its JobKey
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>釋例四：立即觸發，每個5分鐘執行一次，直到22:00：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">trigger</span> <span class="o">=</span> <span class="n">newTrigger</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;trigger7&#34;</span><span class="o">,</span> <span class="s">&#34;group1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">withSchedule</span><span class="o">(</span><span class="n">simpleSchedule</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">withIntervalInMinutes</span><span class="o">(</span><span class="n">5</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">repeatForever</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">endAt</span><span class="o">(</span><span class="n">dateOf</span><span class="o">(</span><span class="n">22</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>釋例五：在下一小時整點觸發，每個2小時執行一次，一直重複：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">  <span class="n">trigger</span> <span class="o">=</span> <span class="n">newTrigger</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;trigger8&#34;</span><span class="o">)</span> <span class="c1">// because group is not specified, &#34;trigger8&#34; will be in the default group
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">startAt</span><span class="o">(</span><span class="n">evenHourDate</span><span class="o">(</span><span class="kc">null</span><span class="o">))</span> <span class="c1">// get the next even-hour (minutes and seconds zero (&#34;00:00&#34;))
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">withSchedule</span><span class="o">(</span><span class="n">simpleSchedule</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">withIntervalInHours</span><span class="o">(</span><span class="n">2</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">repeatForever</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// note that in this example, &#39;forJob(..)&#39; is not called which is valid 
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// if the trigger is passed to the scheduler along with the job  
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">scheduler</span><span class="o">.</span><span class="na">scheduleJob</span><span class="o">(</span><span class="n">trigger</span><span class="o">,</span> <span class="n">job</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="crontrigger"><strong>CronTrigger</strong></h4>
-<p>希望以日期作為觸發任務的板機，就用CronTriger，<strong>實務上比較常用這個</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="n">CronTrigger</span> <span class="n">trigger2</span> <span class="o">=</span> <span class="n">TriggerBuilder</span><span class="o">.</span><span class="na">newTrigger</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;trigger3&#34;</span><span class="o">,</span> <span class="s">&#34;group1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">withSchedule</span><span class="o">(</span><span class="n">CronScheduleBuilder</span><span class="o">.</span><span class="na">cronSchedule</span><span class="o">(</span><span class="s">&#34;0/2 * * * * ?&#34;</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.how2java</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">   
-</span></span><span class="line"><span class="cl"><span class="kn">import static</span> <span class="nn">org.quartz.CronScheduleBuilder.cronSchedule</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import static</span> <span class="nn">org.quartz.JobBuilder.newJob</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import static</span> <span class="nn">org.quartz.TriggerBuilder.newTrigger</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import static</span> <span class="nn">org.quartz.SimpleScheduleBuilder.simpleSchedule</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.quartz.CronTrigger</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.quartz.DateBuilder</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.quartz.JobDetail</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.quartz.Scheduler</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.quartz.SimpleTrigger</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.quartz.impl.StdSchedulerFactory</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">   
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestQuartz</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">Scheduler</span> <span class="n">scheduler</span> <span class="o">=</span> <span class="n">StdSchedulerFactory</span><span class="o">.</span><span class="na">getDefaultScheduler</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">   
-</span></span><span class="line"><span class="cl">            <span class="n">Date</span> <span class="n">startTime</span> <span class="o">=</span> <span class="n">DateBuilder</span><span class="o">.</span><span class="na">nextGivenSecondDate</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">            <span class="n">JobDetail</span> <span class="n">job</span> <span class="o">=</span> <span class="n">newJob</span><span class="o">(</span><span class="n">MailJob</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;mailJob&#34;</span><span class="o">,</span> <span class="s">&#34;mailGroup&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">            <span class="n">CronTrigger</span> <span class="n">trigger</span> <span class="o">=</span> <span class="n">newTrigger</span><span class="o">().</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;trigger1&#34;</span><span class="o">,</span> <span class="s">&#34;group1&#34;</span><span class="o">).</span><span class="na">withSchedule</span><span class="o">(</span><span class="n">cronSchedule</span><span class="o">(</span><span class="s">&#34;0/2 * * * * ?&#34;</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">            <span class="c1">// schedule it to run!
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Date</span> <span class="n">ft</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="na">scheduleJob</span><span class="o">(</span><span class="n">job</span><span class="o">,</span> <span class="n">trigger</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">             
-</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;使用的Cron表达式是：&#34;</span><span class="o">+</span><span class="n">trigger</span><span class="o">.</span><span class="na">getCronExpression</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl"><span class="c1">//            System.out.printf(&#34;%s 这个任务会在 %s 准时开始运行，累计运行%d次，间隔时间是%d毫秒%n&#34;, job.getKey(), ft.toLocaleString(), trigger.getRepeatCount()+1, trigger.getRepeatInterval());
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>             
-</span></span><span class="line"><span class="cl">            <span class="n">scheduler</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">               
-</span></span><span class="line"><span class="cl">            <span class="c1">//等待200秒，让前面的任务都执行完了之后，再关闭调度器
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">200000</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">            <span class="n">scheduler</span><span class="o">.</span><span class="na">shutdown</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="jobbulider">JobBulider</h3>
-<p>用來建立<a class="link" href="#JobDetail" >JobDetail</a></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="n">JobDetail</span> <span class="n">jobDetail</span> <span class="o">=</span> <span class="n">JobBuilder</span><span class="o">.</span><span class="na">newJob</span><span class="o">(</span><span class="n">某個繼承了Job的類</span><span class="o">)...</span>
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">     <span class="n">JobDetail</span> <span class="n">jobDetail</span> <span class="o">=</span> <span class="n">JobBuilder</span><span class="o">.</span><span class="na">newJob</span><span class="o">(</span><span class="n">SayHello</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">withIdentity</span><span class="o">(</span><span class="s">&#34;job1&#34;</span><span class="o">,</span> <span class="s">&#34;group1&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">usingJobData</span><span class="o">(</span><span class="s">&#34;username&#34;</span><span class="o">,</span> <span class="s">&#34;Hoxton&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">usingJobData</span><span class="o">(</span><span class="s">&#34;age&#34;</span><span class="o">,</span> <span class="s">&#34;20&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">withDescription</span><span class="o">(</span><span class="s">&#34;desc-demo&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>TriggerBulider</p>
-<p>用於建立<a class="link" href="#Trigger" >Trigger</a></p>
-<h3 id="identity">Identity</h3>
-<p>當Job和Trgger在Quartz排程程式中註冊時，會獲得標示鍵，<code>JobKey</code>和<code>TriggerKey</code>置入group中，易於組織管理，其中name與group必須<strong>唯一</strong></p>
-<h3 id="為何要將job和trigger分開來">為何要將Job和Trigger分開來?</h3>
-<blockquote>
-<p>While developing Quartz, we decided that it made sense to create a separation between the schedule and the work to be performed on that schedule. This has (in our opinion) many benefits.</p>
-<p>For example, Jobs can be created and stored in the job scheduler independent of a trigger, and many triggers can be associated with the same job. Another benefit of this loose-coupling is the ability to configure jobs that remain in the scheduler after their associated triggers have expired, so that that it can be rescheduled later, without having to re-define it. It also allows you to modify or replace a trigger without having to re-define its associated job.</p>
-</blockquote>
-<h2 id="job與jobdetail的一些說明">Job與JobDetail的一些說明</h2>
-<ul>
-<li>Job是正在執行的作業，JobDetail則是作業的定義</li>
-<li>一個Job可以創建多個JobDetail，擁有不同的JobDataMap</li>
-</ul>
-<p>舉例來說，今天寫了一個定時寄送信件的Job，叫做SendEmailJob，我們希望這個Job可以寄給客戶，然後在cc給你的主管，所以需要創建兩個不同的JobDetail，比如說SendEmailToClient、SendEmailToAdministor，並透過JobDataMap綁定參數傳遞至JobDetail中，這兩個JobDetail擁有各自獨立的JobDataMap，實現起來會更靈活。</p>
-<h1 id="參考">參考</h1>
-<p><a class="link" href="http://www.quartz-scheduler.org/documentation/quartz-2.3.0/quick-start.html"  target="_blank" rel="noopener"
-    >官方文檔</a></p>
-<p><a class="link" href="https://iter01.com/575275.html"  target="_blank" rel="noopener"
-    >任務排程框架Quartz快速入門</a></p>
-<p><a class="link" href="https://www.1ju.org/quartz/index"  target="_blank" rel="noopener"
-    >Quartz教學基礎</a></p>
-<p><a class="link" href="https://www.796t.com/content/1545519797.html"  target="_blank" rel="noopener"
-    >觸發器詳細定義</a></p>
-
-</section>
-
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/%E6%8E%92%E7%A8%8B%E5%99%A8/">排程器</a>
-        
-    </section>
-
-
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
-    </footer>
-
-
-    
-        <link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
-            ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
-                defer
-                >
-            </script><script>
-    window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ]
-        });})
-</script>
-    
-</article>
-
-    
-
-    
-
-<aside class="related-content--wrapper">
-    <h2 class="section-title">Related content</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/4qePz5L.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/4qePz5L.png "/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">如何將Junit的測試粒度控制在最小單元</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/B7GhSw1.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/B7GhSw1.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">基礎AOP介紹-Filter Interceptor AspectJ</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/UDvSvgw.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/UDvSvgw.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">論@Value與Environment之優劣</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/rfkvgRO.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/rfkvgRO.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">運用ArrayList與自動配置將Swich語法拆解</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/b9bWXWs.jpg" loading="lazy" data-key="" data-hash="https://i.imgur.com/b9bWXWs.jpg"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">GitLab-CI/CD筆記</h2>
-        </div>
-    </a>
-</article>
-
-            
-        </div>
-    </div>
-</aside>
-
-     
-    
-        
-    <div id="gitalk-container"></div>
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
-/>
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
-<script>
-    const gitalk = new Gitalk({
-        clientID: "bf152013e92e48c1495f",
-        clientSecret: "bed32f8438cb1e00d8628d9b6d148003bb4bf25d",
-        repo: "comment",
-        owner: "Hoxton019030",
-        admin: ["Hoxton019030"],
-        distractionFreeMode: false, 
-        id: md5(location.pathname), 
-    });
-    (function () {
-        if (
-            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
-        ) {
-            document.getElementById("gitalk-container").innerHTML =
-                "Gitalk comments not available by default when the website is previewed locally.";
-            return;
-        }
-        gitalk.render("gitalk-container");
-    })();
-</script>
-
-
-
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2020 - 
-        
-        2023 Hoxton
-    </section>
-    
-    <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.14.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
-    </section>
-</footer>
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
-
-            </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#springboot-scheduling">SpringBoot-Scheduling</a></li>
-    <li><a href="#spring-schedule">Spring Schedule</a>
-      <ol>
-        <li><a href="#步驟">步驟</a></li>
-        <li><a href="#cron表達式七子表達式">Cron表達式(七子表達式)</a></li>
-      </ol>
-    </li>
-    <li><a href="#quartz">Quartz</a>
-      <ol>
-        <li>
-          <ol>
-            <li><a href="#底層數據結構--堆">底層數據結構- 堆</a>
-              <ol>
-                <li><a href="#介紹">介紹</a></li>
-                <li><a href="#如何插入元素">如何插入元素</a></li>
-                <li><a href="#如何刪除元素">如何刪除元素</a></li>
-              </ol>
-            </li>
-            <li><a href="#時間輪算法time-wheel">時間輪算法(Time Wheel)</a>
-              <ol>
-                <li><a href="#round-型的時間輪">round 型的時間輪</a></li>
-                <li><a href="#分層時間輪">分層時間輪</a></li>
-              </ol>
-            </li>
-          </ol>
-        </li>
-        <li><a href="#cron表達式七子表達式-1">Cron表達式(七子表達式)</a></li>
-        <li><a href="#重要api及概念">重要API及概念</a>
-          <ol>
-            <li><a href="#scheduler">Scheduler</a></li>
-            <li><a href="#job">Job</a></li>
-            <li><a href="#jobdetail">JobDetail</a></li>
-            <li><a href="#jobdatamap">JobDataMap</a></li>
-            <li><a href="#trigger">Trigger</a>
-              <ol>
-                <li><a href="#simpletriger"><strong>SimpleTriger</strong></a></li>
-                <li><a href="#crontrigger"><strong>CronTrigger</strong></a></li>
-              </ol>
-            </li>
-            <li><a href="#jobbulider">JobBulider</a></li>
-            <li><a href="#identity">Identity</a></li>
-            <li><a href="#為何要將job和trigger分開來">為何要將Job和Trigger分開來?</a></li>
-          </ol>
-        </li>
-        <li><a href="#job與jobdetail的一些說明">Job與JobDetail的一些說明</a></li>
-      </ol>
-    </li>
-    <li><a href="#參考">參考</a></li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
-                
-                >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
-</html>
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="關於排程器的介紹"><title>Java內的排程器介紹</title><link rel=canonical href=https://hoxtonhsu.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/><link rel=stylesheet href=/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css><meta property="og:title" content="Java內的排程器介紹"><meta property="og:description" content="關於排程器的介紹"><meta property="og:url" content="https://hoxtonhsu.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/"><meta property="og:site_name" content="Hoxton"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="排程器"><meta property="article:published_time" content="2022-10-06T23:14:21+08:00"><meta property="article:modified_time" content="2022-10-06T23:14:21+08:00"><meta property="og:image" content="https://i.imgur.com/9or5BzU.png"><meta name=twitter:title content="Java內的排程器介紹"><meta name=twitter:description content="關於排程器的介紹"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://i.imgur.com/9or5BzU.png"><link rel="shortcut icon" href=https://cdn-icons-png.flaticon.com/512/92/92031.png><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-9N16MVLR0Q','auto');ga('send','pageview');}</script></head><body class=article-page><script>(function(){const colorSchemeKey='StackColorScheme';localStorage.setItem(colorSchemeKey,"dark");})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.documentElement.dataset.scheme='dark';}else{document.documentElement.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy, API Caller</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/><img src=https://i.imgur.com/9or5BzU.png loading=lazy alt="Featured image of post Java內的排程器介紹"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%A8%8B%E5%BC%8F/ style=background-color:#2a9d8f;color:#fff>程式</a>
+<a href=/categories/springboot/ style=background-color:#2a9d8f;color:#fff>SpringBoot</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/>Java內的排程器介紹</a></h2><h3 class=article-subtitle>關於排程器的介紹</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Oct 06, 2022</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>7 minute read</time></div></footer></div></header><section class=article-content><h1 id=springboot-scheduling>SpringBoot-Scheduling</h1><p>用來做定期任務的東西，有兩種</p><ul><li>Spring schedule：只適合處理簡單的計畫任務，不能處理分散式的任務，當任務太多時，可能出現阻塞、崩潰、延遲啟動等問題</li><li>Quartz：更強大的一個排程器，能夠配置上百甚至上千的事務。</li></ul><h1 id=spring-schedule>Spring Schedule</h1><h2 id=步驟>步驟</h2><ol><li>在啟動類上加上@EnableScheduling</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@SpringBootApplication</span><span class=o>()</span>
+<span class=nd>@EnableScheduling</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Application</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>SpringApplication</span><span class=o>.</span><span class=na>run</span><span class=o>(</span><span class=n>Application</span><span class=o>.</span><span class=na>class</span><span class=o>,</span> <span class=n>args</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><ol start=2><li>在方法上加上@Scheduled</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@Component</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Task</span> <span class=o>{</span>
+    <span class=nd>@Scheduled</span><span class=o>(</span><span class=n>fixedDelay</span> <span class=o>=</span> <span class=n>10</span> <span class=o>*</span> <span class=n>100</span><span class=o>)</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>printLocalTime</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>LocalTime</span><span class=o>.</span><span class=na>now</span><span class=o>().</span><span class=na>toString</span><span class=o>());</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/RJ1HtHT.png loading=lazy alt=image-20220914144530121></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java>    <span class=nd>@Scheduled</span><span class=o>(</span><span class=n>cron</span> <span class=o>=</span> <span class=s>&#34;1 * * * * ?&#34;</span><span class=o>,</span><span class=n>zone</span> <span class=o>=</span> <span class=s>&#34;Asia/Taipei&#34;</span><span class=o>)</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>printPer5second</span><span class=o>(){</span>
+        <span class=n>log</span><span class=o>.</span><span class=na>info</span><span class=o>(</span><span class=s>&#34;cron&#34;</span><span class=o>);</span>
+    <span class=o>}</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/AATFHO2.png loading=lazy alt=image-20220914145339544></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@Scheduled</span><span class=o>(</span><span class=n>cron</span> <span class=o>=</span> <span class=s>&#34;0/1 * * * * ?&#34;</span><span class=o>,</span><span class=n>zone</span> <span class=o>=</span> <span class=s>&#34;Asia/Taipei&#34;</span><span class=o>)</span>
+<span class=kd>public</span> <span class=kt>void</span> <span class=nf>printPer5second</span><span class=o>(){</span>
+    <span class=n>log</span><span class=o>.</span><span class=na>info</span><span class=o>(</span><span class=s>&#34;cron&#34;</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/Kby8DZf.png loading=lazy alt=image-20220914145730980></p><h2 id=cron表達式七子表達式>Cron表達式(七子表達式)</h2><p><a class=link href=https://cron.qqe2.com/ target=_blank rel=noopener>表達式生成工具</a></p><p>Cron語源來自Chronos，是希臘神話中掌管時間的神柯羅諾斯(Chronos)。</p><div class=table-wrapper><table><thead><tr><th>秒</th><th>分</th><th>時</th><th>日</th><th>月</th><th>周</th><th>年(可選)</th></tr></thead><tbody><tr><td>1</td><td>*</td><td>*</td><td>*</td><td>*</td><td>?</td><td>?</td></tr></tbody></table></div><ul><li>秒：0-59</li><li>分：0-59</li><li>時 ：0-23</li><li>日：1-31</li><li>月：0-11或"JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC"</li><li>周：1-7或SUN, MON, TUE, WED, THU, FRI,SAT</li><li>年</li></ul><p>想像一個時鐘&mldr;</p><div class=table-wrapper><table><thead><tr><th>當每次秒針指向一秒時</th><th>1 * * * * ?</th></tr></thead><tbody><tr><td>當每次時針指向12時</td><td>* * 12 * * ?</td></tr><tr><td>每個月 1 號中午 12 點</td><td>0 0 12 1 * ?</td></tr><tr><td>1 月每天中午 12 點，每 5 秒</td><td>0/5 0 12 * 1 ?</td></tr></tbody></table></div><div class=table-wrapper><table><thead><tr><th style=text-align:left>字元</th><th style=text-align:left>意義</th></tr></thead><tbody><tr><td style=text-align:left><code>*</code></td><td style=text-align:left>表達任意值，所有值都可以匹配</td></tr><tr><td style=text-align:left><code>?</code></td><td style=text-align:left>只用在 <code>日</code> 跟 <code>周</code> 的值域，有點表達 don’t care 的概念，無所謂，不關心到底是什麼值</td></tr><tr><td style=text-align:left><code>-</code></td><td style=text-align:left>指定範圍，前後接數字: 10-12</td></tr><tr><td style=text-align:left><code>,</code></td><td style=text-align:left>指定離散的選項: 1,5,6,8，或者的概念</td></tr><tr><td style=text-align:left><code>/</code></td><td style=text-align:left>指定增量，表達 <code>每</code> 的概念: 0/5 意旨從 0 開始每 5 單位</td></tr><tr><td style=text-align:left><code>L</code></td><td style=text-align:left>用在 <code>月</code> 跟 <code>周</code> 的值域。在月的話表達最後一天，在周的話前面可以加上數字 3L 表示該月最後一個星期二</td></tr><tr><td style=text-align:left><code>W</code></td><td style=text-align:left>用在<code>日</code>的值域表示距離最近的該月工作日: 15W，距離 15 號最近的工作日，可能往前也可能往後</td></tr><tr><td style=text-align:left><code>LW</code></td><td style=text-align:left>用在<code>日</code>的值域，表示最後一周的工作日</td></tr><tr><td style=text-align:left><code>#</code></td><td style=text-align:left>用在<code>周</code>的值域，指定特定周的特定日: “4#2” 表示第二周的星期三</td></tr><tr><td style=text-align:left><code>C</code></td><td style=text-align:left>用在<code>日</code>跟<code>周</code>的值域，指某特定個日期的後一天: 在<code>日</code>中寫 3C 指該月 3 號的後一天，在<code>周</code>中寫 2C 指該周星期一的後一天</td></tr></tbody></table></div><h1 id=quartz>Quartz</h1><p><img src=https://i.imgur.com/C8FFRz9.png loading=lazy alt=image-20220916143034403></p><p>是一個開源的任務排程器，幾乎可以整合到任何Java應用程式中。</p><p>它可以用來</p><ul><li>安排每個晚上把資料庫內容轉存到檔案</li><li>提供定時提醒服務</li><li>族繁不及備載&mldr;</li></ul><h3 id=底層數據結構--堆>底層數據結構- 堆</h3><h4 id=介紹>介紹</h4><p>堆是一種特殊的樹，滿足下面兩個條件，就是一個<strong>堆</strong></p><ol><li>堆是一顆完全二元樹<code>完整二元樹：除了最後一層以外，其他層的節點數需要達到最大(1,2,4,8. ..)</code></li></ol><p><img src=https://i.imgur.com/GYIKgRe.png loading=lazy alt=image-20220916103657827></p><ol start=2><li>每個節點所儲存的值，必須要大於<code>小頂堆</code>或小於<code>大頂堆</code>父節點的值</li></ol><p><img src=https://i.imgur.com/t5Aeict.png loading=lazy alt=image-20220916104946559></p><blockquote><p>小頂堆</p></blockquote><p>完整二元樹的一些特性：快速定位父節點</p><p><img src=https://i.imgur.com/F9btok2.png loading=lazy alt=image-20220916105634080></p><p><strong>在排程器的框架中，每一個節點就是一個Job，越頻繁的Job會被放置在越上層的節點</strong></p><h4 id=如何插入元素>如何插入元素</h4><p>尾插法，在尾部插入一個新的元素，然後上浮，浮到符合定義</p><ol><li>除了最後一層以外，其他層的節點數需要達到最大(1,2,4,8. ..)，且最後一層節點都靠左排列</li><li>每個節點所儲存的值，必須要大於<code>小頂堆</code>或小於<code>大頂堆</code>父節點的值</li></ol><p><img src=https://i.imgur.com/kGnnrnf.png loading=lazy alt=image-20220916110137933></p><p><img src=https://i.imgur.com/YjWGVYi.png loading=lazy alt=image-20220916110150486></p><p><img src=https://i.imgur.com/pqhvAgT.png loading=lazy alt=image-20220916110656733></p><h4 id=如何刪除元素>如何刪除元素</h4><p>將尾部(最後一個節點)放置到堆頂，然後下沉</p><p><img src=https://i.imgur.com/vM6IFnf.png loading=lazy alt=image-20220916111249806></p><p><img src=https://i.imgur.com/ltoSIL1.png loading=lazy alt=image-20220916111306206></p><p><img src=https://i.imgur.com/spOXHoC.png loading=lazy alt=image-20220916111330270></p><p><img src=https://i.imgur.com/giEhi6Y.png loading=lazy alt=image-20220916111958376></p><h3 id=時間輪算法time-wheel>時間輪算法(Time Wheel)</h3><p><img src=https://i.imgur.com/FGlGv1M.png loading=lazy alt=image-20220916114613849></p><p>再刪除元素的時候都需要下沉，當節點數很多時會造成性能延宕</p><p><img src=https://i.imgur.com/djp3Uq4.png loading=lazy alt=image-20220916113838923></p><h4 id=round-型的時間輪>round 型的時間輪</h4><p>任務上記錄一個round，遍歷到了就將round減一，為0時取出來執行</p><h4 id=分層時間輪>分層時間輪</h4><p>Cron表達式以及其他排程器所採用的底層架構，分成秒輪、分輪、小時輪、日輪、周輪、月輪、年輪&mldr;，月輪迭代到了，就將任務取出放到天輪中執行&mldr;，以此類推</p><h2 id=cron表達式七子表達式-1>Cron表達式(七子表達式)</h2><p><a class=link href=https://cron.qqe2.com/ target=_blank rel=noopener>表達式生成工具</a></p><p>Cron語源來自Chronos，是希臘神話中掌管時間的神柯羅諾斯(Chronos)。</p><div class=table-wrapper><table><thead><tr><th>秒</th><th>分</th><th>時</th><th>日</th><th>月</th><th>周</th><th>年(可選)</th></tr></thead><tbody><tr><td>1</td><td>*</td><td>*</td><td>*</td><td>*</td><td>?</td><td>?</td></tr></tbody></table></div><ul><li>秒：0-59</li><li>分：0-59</li><li>時 ：0-23</li><li>日：1-31</li><li>月：0-11或"JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC"</li><li>周：1-7或SUN, MON, TUE, WED, THU, FRI,SAT</li><li>年</li></ul><p>想像一個時鐘&mldr;</p><div class=table-wrapper><table><thead><tr><th>當每次秒針指向一秒時</th><th>1 * * * * ?</th></tr></thead><tbody><tr><td>當每次時針指向12時</td><td>* * 12 * * ?</td></tr><tr><td>每個月 1 號中午 12 點</td><td>0 0 12 1 * ?</td></tr><tr><td>1 月每天中午 12 點，每 5 秒</td><td>0/5 0 12 * 1 ?</td></tr></tbody></table></div><div class=table-wrapper><table><thead><tr><th style=text-align:left>字元</th><th style=text-align:left>意義</th></tr></thead><tbody><tr><td style=text-align:left><code>*</code></td><td style=text-align:left>表達任意值，所有值都可以匹配</td></tr><tr><td style=text-align:left><code>?</code></td><td style=text-align:left>只用在 <code>日</code> 跟 <code>周</code> 的值域，有點表達 don’t care 的概念，無所謂，不關心到底是什麼值</td></tr><tr><td style=text-align:left><code>-</code></td><td style=text-align:left>指定範圍，前後接數字: 10-12</td></tr><tr><td style=text-align:left><code>,</code></td><td style=text-align:left>指定離散的選項: 1,5,6,8，或者的概念</td></tr><tr><td style=text-align:left><code>/</code></td><td style=text-align:left>指定增量，表達 <code>每</code> 的概念: 0/5 意旨從 0 開始每 5 單位</td></tr><tr><td style=text-align:left><code>L</code></td><td style=text-align:left>用在 <code>月</code> 跟 <code>周</code> 的值域。在月的話表達最後一天，在周的話前面可以加上數字 3L 表示該月最後一個星期二</td></tr><tr><td style=text-align:left><code>W</code></td><td style=text-align:left>用在<code>日</code>的值域表示距離最近的該月工作日: 15W，距離 15 號最近的工作日，可能往前也可能往後</td></tr><tr><td style=text-align:left><code>LW</code></td><td style=text-align:left>用在<code>日</code>的值域，表示最後一周的工作日</td></tr><tr><td style=text-align:left><code>#</code></td><td style=text-align:left>用在<code>周</code>的值域，指定特定周的特定日: “4#2” 表示第二周的星期三</td></tr><tr><td style=text-align:left><code>C</code></td><td style=text-align:left>用在<code>日</code>跟<code>周</code>的值域，指某特定個日期的後一天: 在<code>日</code>中寫 3C 指該月 3 號的後一天，在<code>周</code>中寫 2C 指該周星期一的後一天</td></tr></tbody></table></div><p>​</p><h2 id=重要api及概念>重要API及概念</h2><blockquote><p>記得Job類一定要是<strong>public class</strong>，不然Scheduler會讀不到</p></blockquote><p>釋例一：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Quartz</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>MyJob</span> <span class=n>myJob</span> <span class=o>=</span> <span class=k>new</span> <span class=n>MyJob</span><span class=o>();</span>
+        <span class=n>JobDetail</span> <span class=n>jobDetail</span> <span class=o>=</span> <span class=n>JobBuilder</span><span class=o>.</span><span class=na>newJob</span><span class=o>(</span><span class=n>MyJob</span><span class=o>.</span><span class=na>class</span><span class=o>)</span>
+                <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;job1&#34;</span><span class=o>,</span> <span class=s>&#34;group1&#34;</span><span class=o>)</span>
+                <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+
+        <span class=n>Trigger</span> <span class=n>trigger</span> <span class=o>=</span> <span class=n>TriggerBuilder</span><span class=o>.</span><span class=na>newTrigger</span><span class=o>()</span>
+                <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;trigger1&#34;</span><span class=o>,</span> <span class=s>&#34;trigger1&#34;</span><span class=o>)</span>
+                <span class=o>.</span><span class=na>startNow</span><span class=o>()</span>
+                <span class=o>.</span><span class=na>withSchedule</span><span class=o>(</span><span class=n>SimpleScheduleBuilder</span><span class=o>.</span><span class=na>simpleSchedule</span><span class=o>().</span><span class=na>withIntervalInSeconds</span><span class=o>(</span><span class=n>1</span><span class=o>).</span><span class=na>repeatForever</span><span class=o>())</span>
+                <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>Scheduler</span> <span class=n>scheduler</span> <span class=o>=</span> <span class=n>StdSchedulerFactory</span><span class=o>.</span><span class=na>getDefaultScheduler</span><span class=o>();</span>
+            <span class=n>scheduler</span><span class=o>.</span><span class=na>scheduleJob</span><span class=o>(</span><span class=n>jobDetail</span><span class=o>,</span><span class=n>trigger</span><span class=o>);</span>
+            <span class=n>scheduler</span><span class=o>.</span><span class=na>start</span><span class=o>();</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>SchedulerException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span>
+        <span class=o>;</span>
+
+
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>MyJob</span> <span class=kd>implements</span> <span class=n>Job</span> <span class=o>{</span>
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>execute</span><span class=o>(</span><span class=n>JobExecutionContext</span> <span class=n>jobExecutionContext</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>JobExecutionException</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;MyJob execute:&#34;</span> <span class=o>+</span> <span class=k>new</span> <span class=n>Date</span><span class=o>());</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>釋例二</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>HelloJob</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>Scheduler</span> <span class=n>scheduler</span> <span class=o>=</span> <span class=n>StdSchedulerFactory</span><span class=o>.</span><span class=na>getDefaultScheduler</span><span class=o>();</span>
+            <span class=n>scheduler</span><span class=o>.</span><span class=na>start</span><span class=o>();</span>
+            <span class=n>JobDetail</span> <span class=n>jobDetail</span> <span class=o>=</span> <span class=n>JobBuilder</span><span class=o>.</span><span class=na>newJob</span><span class=o>(</span><span class=n>SayHello</span><span class=o>.</span><span class=na>class</span><span class=o>)</span>
+                    <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;job1&#34;</span><span class=o>,</span> <span class=s>&#34;group1&#34;</span><span class=o>)</span>  <span class=c1>//Job1是名字，具有唯一性，group1是這個Job屬於哪一組，同一組的Job可以共享相同的邏輯來處理Job。需要name與Job才可以組成一個JobKey
+</span><span class=c1></span>                    <span class=o>.</span><span class=na>usingJobData</span><span class=o>(</span><span class=s>&#34;username&#34;</span><span class=o>,</span> <span class=s>&#34;Hoxton&#34;</span><span class=o>)</span>
+                    <span class=o>.</span><span class=na>usingJobData</span><span class=o>(</span><span class=s>&#34;age&#34;</span><span class=o>,</span> <span class=s>&#34;20&#34;</span><span class=o>)</span>
+                    <span class=o>.</span><span class=na>withDescription</span><span class=o>(</span><span class=s>&#34;desc-demo&#34;</span><span class=o>)</span>
+                    <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+
+            <span class=n>SimpleTrigger</span> <span class=n>trigger</span> <span class=o>=</span> <span class=n>TriggerBuilder</span><span class=o>.</span><span class=na>newTrigger</span><span class=o>()</span>
+                    <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;trigger1&#34;</span><span class=o>,</span> <span class=s>&#34;group1&#34;</span><span class=o>)</span>
+                    <span class=o>.</span><span class=na>startNow</span><span class=o>()</span>
+                    <span class=o>.</span><span class=na>withSchedule</span><span class=o>(</span><span class=n>SimpleScheduleBuilder</span><span class=o>.</span><span class=na>simpleSchedule</span><span class=o>().</span><span class=na>withIntervalInSeconds</span><span class=o>(</span><span class=n>1</span><span class=o>).</span><span class=na>repeatForever</span><span class=o>())</span>
+                    <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+
+            <span class=n>scheduler</span><span class=o>.</span><span class=na>scheduleJob</span><span class=o>(</span><span class=n>jobDetail</span><span class=o>,</span><span class=n>trigger</span><span class=o>);</span>
+            <span class=n>scheduler</span><span class=o>.</span><span class=na>start</span><span class=o>();</span>
+
+<span class=c1>//            scheduler.shutdown();
+</span><span class=c1></span>        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>SchedulerException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@Slf4j</span>
+<span class=nd>@NoArgsConstructor</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>SayHello</span> <span class=kd>implements</span> <span class=n>Job</span> <span class=o>{</span>
+
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>execute</span><span class=o>(</span><span class=n>JobExecutionContext</span> <span class=n>context</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>JobExecutionException</span> <span class=o>{</span>
+        <span class=n>JobDetail</span> <span class=n>jobDetail</span> <span class=o>=</span> <span class=n>context</span><span class=o>.</span><span class=na>getJobDetail</span><span class=o>();</span><span class=c1>//從context中獲取屬性
+</span><span class=c1></span>        <span class=n>JobKey</span> <span class=n>key</span> <span class=o>=</span> <span class=n>jobDetail</span><span class=o>.</span><span class=na>getKey</span><span class=o>();</span>
+        <span class=n>Class</span><span class=o>&lt;?</span> <span class=kd>extends</span> <span class=n>Job</span><span class=o>&gt;</span> <span class=n>jobClass</span> <span class=o>=</span> <span class=n>jobDetail</span><span class=o>.</span><span class=na>getJobClass</span><span class=o>();</span>
+        <span class=n>String</span> <span class=n>description</span> <span class=o>=</span> <span class=n>jobDetail</span><span class=o>.</span><span class=na>getDescription</span><span class=o>();</span>
+
+        <span class=n>JobDataMap</span> <span class=n>jobDataMap</span> <span class=o>=</span> <span class=n>jobDetail</span><span class=o>.</span><span class=na>getJobDataMap</span><span class=o>();</span>
+        <span class=n>String</span> <span class=n>username</span> <span class=o>=</span> <span class=n>jobDataMap</span><span class=o>.</span><span class=na>getString</span><span class=o>(</span><span class=s>&#34;username&#34;</span><span class=o>);</span>
+        <span class=kt>int</span> <span class=n>age</span> <span class=o>=</span> <span class=n>jobDataMap</span><span class=o>.</span><span class=na>getIntValue</span><span class=o>(</span><span class=s>&#34;age&#34;</span><span class=o>);</span>
+
+        <span class=n>log</span><span class=o>.</span><span class=na>info</span><span class=o>(</span><span class=s>&#34;\nJobKey : {},\n JobClass : {},\n JobDesc : {},\n username : {},\n age : {}&#34;</span><span class=o>,</span>
+                <span class=n>key</span><span class=o>,</span> <span class=n>jobClass</span><span class=o>.</span><span class=na>getName</span><span class=o>(),</span> <span class=n>description</span><span class=o>,</span> <span class=n>username</span><span class=o>,</span> <span class=n>age</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><h3 id=scheduler>Scheduler</h3><p>生命週期由ScheduleFactory建立開始，呼叫shutdown方法結束。</p><p>當Schduler建立，任何關於Schduling相關的事情，都由它控制</p><ul><li>新增</li><li>刪除</li><li>列出所有Job</li><li>暫停觸發器</li></ul><p><strong>在Start之前不會做任何事情</strong></p><h3 id=job>Job</h3><p>你希望被排程器排程的任務元件介面，定義如何執行，是正在執行的作業例項，一個Job可以建立多個JobDetail，擁有不同的JobDataMap。本身implement了Job類</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>graph TD;
+
+Job ---&gt; JodDetail1 &amp; JodDetail2 &amp; JodDetail3 &amp; JodDetail...
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>SendEmail</span> <span class=kd>implements</span> <span class=n>Job</span> <span class=o>{</span>
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>execute</span><span class=o>(</span><span class=n>JobExecutionContext</span> <span class=n>jobExecutionContext</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>JobExecutionException</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;SendEmail&#34;</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><ul><li>當Job的觸發器觸發時，排程程式的工作執行將呼叫excute()方法</li><li>該方法接收一個<code>JobExcutionContext</code>物件，為Job提供了豐富的執行時環境，比如<code>schduler</code>,<code>trigger</code>,<code>jobDataMap</code>,<code>job</code>,<code>calender</code>,<code>time</code></li></ul><blockquote><p>何謂Context(上下文)</p><p>可以理解為環境、容器的意思會比上下文更具體一點，它提供了一個程式中全域性的資訊。</p></blockquote><h3 id=jobdetail>JobDetail</h3><p>用於定義Job的各種屬性、各種任務，還可以用來為Job儲存狀態資訊的JobDataMap，是將Job加入scheduler時，所需要創建的一個物件，它包含了各種屬性設置，以及用於存取job實例狀態訊息的JobDataMap，在創建JobDetail時，需要將欲執行的類名傳遞給JobDetail，這樣schedule就知道要執行何種類型的job。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=n>JobDetail</span> <span class=n>jobDetail</span><span class=o>=</span><span class=n>JobBulider</span><span class=o>.</span><span class=na>newJob</span><span class=o>(</span><span class=n>Job</span><span class=o>.</span><span class=na>class</span><span class=o>).</span><span class=na>bulid</span><span class=o>();</span>
+</code></pre></td></tr></table></div></div><h3 id=jobdatamap>JobDataMap</h3><p>實作Map介面，因此具有Key-Value，儲存可序列化資料，供Job在執行時使用。也可以使用<code>usingJobData(key,value)</code>在建構JobDetail的時候傳入資料，使用JobDetail.getDataMap()獲取Map。可以再透過jobDataMap取出裡面的數據</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java> <span class=n>JobDetail</span> <span class=n>job</span> <span class=o>=</span> <span class=n>JobBuilder</span><span class=o>.</span><span class=na>newJob</span><span class=o>(</span><span class=n>HelloJob</span><span class=o>.</span><span class=na>class</span><span class=o>)</span>
+ 		                  <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;helloJob&#34;</span><span class=o>,</span> <span class=s>&#34;hello&#34;</span><span class=o>)</span><span class=c1>//給job命名並分組
+</span><span class=c1></span> 		                  <span class=o>.</span><span class=na>usingJobData</span><span class=o>(</span><span class=s>&#34;jobdd&#34;</span><span class=o>,</span> <span class=s>&#34;hello job&#34;</span><span class=o>)</span><span class=c1>//通過JobBuilder的usingJobData方法給JobDataMap中塞入數據
+</span><span class=c1></span> 		                  <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>HelloJob</span> <span class=kd>implements</span> <span class=n>Job</span> <span class=o>{</span>
+
+	<span class=nd>@Override</span>
+	<span class=kd>public</span> <span class=kt>void</span> <span class=nf>execute</span><span class=o>(</span><span class=n>JobExecutionContext</span> <span class=n>context</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>JobExecutionException</span> <span class=o>{</span>
+		<span class=n>System</span><span class=o>.</span><span class=na>err</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>context</span><span class=o>.</span><span class=na>getJobDetail</span><span class=o>().</span><span class=na>getKey</span><span class=o>());</span><span class=c1>// JobDetail的key又他的name和group組成
+</span><span class=c1></span>		<span class=n>System</span><span class=o>.</span><span class=na>err</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>context</span><span class=o>.</span><span class=na>getTrigger</span><span class=o>().</span><span class=na>getKey</span><span class=o>());</span><span class=c1>// Trigger的key又他的name和group組成
+</span><span class=c1></span>		<span class=n>System</span><span class=o>.</span><span class=na>err</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>context</span><span class=o>.</span><span class=na>getJobDetail</span><span class=o>().</span><span class=na>getJobDataMap</span><span class=o>().</span><span class=na>get</span><span class=o>(</span><span class=s>&#34;jobdd&#34;</span><span class=o>));</span>
+		<span class=n>System</span><span class=o>.</span><span class=na>err</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;hello,quartz&#34;</span><span class=o>);</span>
+	<span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>會輸出</p><p>`hello.helloJob</p><p>hello.helloTrigger</p><p>hello job</p><p>hello, quartz</p><h3 id=trigger>Trigger</h3><p>觸發任務執行，觸發器可能具有與Job有關的JobDataMap，以便將觸發器觸發的引數傳遞給Job，Quartz本身提供了幾種觸發器<code>SimpleTrigger</code>和<code>CronTrigger</code>是最常用到的。</p><h4 id=simpletriger><strong>SimpleTriger</strong></h4><p>用於一次性執行作業或需要在給定的時間觸發一個作業並重複執行N次，且兩次執行時間有Delay。用在具體的時間點，並已指定的間隔時間重複執行若干次，它包含了幾種屬性：</p><ol><li>開始時間</li><li>結束時間</li><li>重複次數</li><li>重複間隔</li></ol><p>釋例一：立刻觸發一次，然後停止</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java>  <span class=n>Date</span> <span class=n>date</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Date</span><span class=o>();</span>
+        <span class=n>Trigger</span> <span class=n>trigger1</span> <span class=o>=</span> <span class=n>TriggerBuilder</span><span class=o>.</span><span class=na>newTrigger</span><span class=o>()</span>
+                <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;trigger1&#34;</span><span class=o>,</span> <span class=s>&#34;group1&#34;</span><span class=o>)</span>
+                <span class=o>.</span><span class=na>startAt</span><span class=o>(</span><span class=n>date</span><span class=o>)</span>
+                <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+</code></pre></td></tr></table></div></div><p>釋例二：指定時間觸發，每隔十秒執行一次，重複10次</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java> <span class=n>trigger</span> <span class=o>=</span> <span class=n>newTrigger</span><span class=o>()</span>
+        <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;trigger3&#34;</span><span class=o>,</span> <span class=s>&#34;group1&#34;</span><span class=o>)</span>
+        <span class=o>.</span><span class=na>startAt</span><span class=o>(</span><span class=n>myTimeToStartFiring</span><span class=o>)</span>  <span class=c1>// if a start time is not given (if this line were omitted), &#34;now&#34; is implied
+</span><span class=c1></span>        <span class=o>.</span><span class=na>withSchedule</span><span class=o>(</span><span class=n>simpleSchedule</span><span class=o>()</span>
+            <span class=o>.</span><span class=na>withIntervalInSeconds</span><span class=o>(</span><span class=n>10</span><span class=o>)</span>
+            <span class=o>.</span><span class=na>withRepeatCount</span><span class=o>(</span><span class=n>10</span><span class=o>))</span> <span class=c1>// note that 10 repeats will give a total of 11 firings
+</span><span class=c1></span>        <span class=o>.</span><span class=na>forJob</span><span class=o>(</span><span class=n>myJob</span><span class=o>)</span> <span class=c1>// identify job with handle to its JobDetail itself                   
+</span><span class=c1></span>        <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+</code></pre></td></tr></table></div></div><p>釋例三：5分鐘以後開始觸發，僅執行一次</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java> <span class=n>trigger</span> <span class=o>=</span> <span class=o>(</span><span class=n>SimpleTrigger</span><span class=o>)</span> <span class=n>newTrigger</span><span class=o>()</span> 
+        <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;trigger5&#34;</span><span class=o>,</span> <span class=s>&#34;group1&#34;</span><span class=o>)</span>
+        <span class=o>.</span><span class=na>startAt</span><span class=o>(</span><span class=n>futureDate</span><span class=o>(</span><span class=n>5</span><span class=o>,</span> <span class=n>IntervalUnit</span><span class=o>.</span><span class=na>MINUTE</span><span class=o>))</span> <span class=c1>// use DateBuilder to create a date in the future
+</span><span class=c1></span>        <span class=o>.</span><span class=na>forJob</span><span class=o>(</span><span class=n>myJobKey</span><span class=o>)</span> <span class=c1>// identify job with its JobKey
+</span><span class=c1></span>        <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+</code></pre></td></tr></table></div></div><p>釋例四：立即觸發，每個5分鐘執行一次，直到22:00：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=n>trigger</span> <span class=o>=</span> <span class=n>newTrigger</span><span class=o>()</span>
+        <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;trigger7&#34;</span><span class=o>,</span> <span class=s>&#34;group1&#34;</span><span class=o>)</span>
+        <span class=o>.</span><span class=na>withSchedule</span><span class=o>(</span><span class=n>simpleSchedule</span><span class=o>()</span>
+            <span class=o>.</span><span class=na>withIntervalInMinutes</span><span class=o>(</span><span class=n>5</span><span class=o>)</span>
+            <span class=o>.</span><span class=na>repeatForever</span><span class=o>())</span>
+        <span class=o>.</span><span class=na>endAt</span><span class=o>(</span><span class=n>dateOf</span><span class=o>(</span><span class=n>22</span><span class=o>,</span> <span class=n>0</span><span class=o>,</span> <span class=n>0</span><span class=o>))</span>
+        <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+</code></pre></td></tr></table></div></div><p>釋例五：在下一小時整點觸發，每個2小時執行一次，一直重複：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java>  <span class=n>trigger</span> <span class=o>=</span> <span class=n>newTrigger</span><span class=o>()</span>
+        <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;trigger8&#34;</span><span class=o>)</span> <span class=c1>// because group is not specified, &#34;trigger8&#34; will be in the default group
+</span><span class=c1></span>        <span class=o>.</span><span class=na>startAt</span><span class=o>(</span><span class=n>evenHourDate</span><span class=o>(</span><span class=kc>null</span><span class=o>))</span> <span class=c1>// get the next even-hour (minutes and seconds zero (&#34;00:00&#34;))
+</span><span class=c1></span>        <span class=o>.</span><span class=na>withSchedule</span><span class=o>(</span><span class=n>simpleSchedule</span><span class=o>()</span>
+            <span class=o>.</span><span class=na>withIntervalInHours</span><span class=o>(</span><span class=n>2</span><span class=o>)</span>
+            <span class=o>.</span><span class=na>repeatForever</span><span class=o>())</span>
+        <span class=c1>// note that in this example, &#39;forJob(..)&#39; is not called which is valid 
+</span><span class=c1></span>        <span class=c1>// if the trigger is passed to the scheduler along with the job  
+</span><span class=c1></span>        <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+
+    <span class=n>scheduler</span><span class=o>.</span><span class=na>scheduleJob</span><span class=o>(</span><span class=n>trigger</span><span class=o>,</span> <span class=n>job</span><span class=o>);</span>
+</code></pre></td></tr></table></div></div><h4 id=crontrigger><strong>CronTrigger</strong></h4><p>希望以日期作為觸發任務的板機，就用CronTriger，<strong>實務上比較常用這個</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java>    <span class=n>CronTrigger</span> <span class=n>trigger2</span> <span class=o>=</span> <span class=n>TriggerBuilder</span><span class=o>.</span><span class=na>newTrigger</span><span class=o>()</span>
+                <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;trigger3&#34;</span><span class=o>,</span> <span class=s>&#34;group1&#34;</span><span class=o>)</span>
+                <span class=o>.</span><span class=na>withSchedule</span><span class=o>(</span><span class=n>CronScheduleBuilder</span><span class=o>.</span><span class=na>cronSchedule</span><span class=o>(</span><span class=s>&#34;0/2 * * * * ?&#34;</span><span class=o>))</span>
+                <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.how2java</span><span class=o>;</span>
+   
+<span class=kn>import static</span> <span class=nn>org.quartz.CronScheduleBuilder.cronSchedule</span><span class=o>;</span>
+<span class=kn>import static</span> <span class=nn>org.quartz.JobBuilder.newJob</span><span class=o>;</span>
+<span class=kn>import static</span> <span class=nn>org.quartz.TriggerBuilder.newTrigger</span><span class=o>;</span>
+<span class=kn>import static</span> <span class=nn>org.quartz.SimpleScheduleBuilder.simpleSchedule</span><span class=o>;</span>
+  
+<span class=kn>import</span> <span class=nn>java.util.Date</span><span class=o>;</span>
+ 
+<span class=kn>import</span> <span class=nn>org.quartz.CronTrigger</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.quartz.DateBuilder</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.quartz.JobDetail</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.quartz.Scheduler</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.quartz.SimpleTrigger</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.quartz.impl.StdSchedulerFactory</span><span class=o>;</span>
+   
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>TestQuartz</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Exception</span><span class=o>{</span>
+            <span class=n>Scheduler</span> <span class=n>scheduler</span> <span class=o>=</span> <span class=n>StdSchedulerFactory</span><span class=o>.</span><span class=na>getDefaultScheduler</span><span class=o>();</span>
+   
+            <span class=n>Date</span> <span class=n>startTime</span> <span class=o>=</span> <span class=n>DateBuilder</span><span class=o>.</span><span class=na>nextGivenSecondDate</span><span class=o>(</span><span class=kc>null</span><span class=o>,</span> <span class=n>8</span><span class=o>);</span>
+  
+            <span class=n>JobDetail</span> <span class=n>job</span> <span class=o>=</span> <span class=n>newJob</span><span class=o>(</span><span class=n>MailJob</span><span class=o>.</span><span class=na>class</span><span class=o>).</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;mailJob&#34;</span><span class=o>,</span> <span class=s>&#34;mailGroup&#34;</span><span class=o>).</span><span class=na>build</span><span class=o>();</span>
+  
+            <span class=n>CronTrigger</span> <span class=n>trigger</span> <span class=o>=</span> <span class=n>newTrigger</span><span class=o>().</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;trigger1&#34;</span><span class=o>,</span> <span class=s>&#34;group1&#34;</span><span class=o>).</span><span class=na>withSchedule</span><span class=o>(</span><span class=n>cronSchedule</span><span class=o>(</span><span class=s>&#34;0/2 * * * * ?&#34;</span><span class=o>))</span>
+                    <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+  
+            <span class=c1>// schedule it to run!
+</span><span class=c1></span>            <span class=n>Date</span> <span class=n>ft</span> <span class=o>=</span> <span class=n>scheduler</span><span class=o>.</span><span class=na>scheduleJob</span><span class=o>(</span><span class=n>job</span><span class=o>,</span> <span class=n>trigger</span><span class=o>);</span>
+             
+            <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;使用的Cron表达式是：&#34;</span><span class=o>+</span><span class=n>trigger</span><span class=o>.</span><span class=na>getCronExpression</span><span class=o>());</span>
+<span class=c1>//            System.out.printf(&#34;%s 这个任务会在 %s 准时开始运行，累计运行%d次，间隔时间是%d毫秒%n&#34;, job.getKey(), ft.toLocaleString(), trigger.getRepeatCount()+1, trigger.getRepeatInterval());
+</span><span class=c1></span>             
+            <span class=n>scheduler</span><span class=o>.</span><span class=na>start</span><span class=o>();</span>
+               
+            <span class=c1>//等待200秒，让前面的任务都执行完了之后，再关闭调度器
+</span><span class=c1></span>            <span class=n>Thread</span><span class=o>.</span><span class=na>sleep</span><span class=o>(</span><span class=n>200000</span><span class=o>);</span>
+            <span class=n>scheduler</span><span class=o>.</span><span class=na>shutdown</span><span class=o>(</span><span class=kc>true</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><h3 id=jobbulider>JobBulider</h3><p>用來建立<a class=link href=#JobDetail>JobDetail</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java> <span class=n>JobDetail</span> <span class=n>jobDetail</span> <span class=o>=</span> <span class=n>JobBuilder</span><span class=o>.</span><span class=na>newJob</span><span class=o>(</span><span class=n>某個繼承了Job的類</span><span class=o>)...</span>
+ 
+     <span class=n>JobDetail</span> <span class=n>jobDetail</span> <span class=o>=</span> <span class=n>JobBuilder</span><span class=o>.</span><span class=na>newJob</span><span class=o>(</span><span class=n>SayHello</span><span class=o>.</span><span class=na>class</span><span class=o>)</span>
+                    <span class=o>.</span><span class=na>withIdentity</span><span class=o>(</span><span class=s>&#34;job1&#34;</span><span class=o>,</span> <span class=s>&#34;group1&#34;</span><span class=o>)</span>
+                    <span class=o>.</span><span class=na>usingJobData</span><span class=o>(</span><span class=s>&#34;username&#34;</span><span class=o>,</span> <span class=s>&#34;Hoxton&#34;</span><span class=o>)</span>
+                    <span class=o>.</span><span class=na>usingJobData</span><span class=o>(</span><span class=s>&#34;age&#34;</span><span class=o>,</span> <span class=s>&#34;20&#34;</span><span class=o>)</span>
+                    <span class=o>.</span><span class=na>withDescription</span><span class=o>(</span><span class=s>&#34;desc-demo&#34;</span><span class=o>)</span>
+                    <span class=o>.</span><span class=na>build</span><span class=o>();</span>
+</code></pre></td></tr></table></div></div><p>TriggerBulider</p><p>用於建立<a class=link href=#Trigger>Trigger</a></p><h3 id=identity>Identity</h3><p>當Job和Trgger在Quartz排程程式中註冊時，會獲得標示鍵，<code>JobKey</code>和<code>TriggerKey</code>置入group中，易於組織管理，其中name與group必須<strong>唯一</strong></p><h3 id=為何要將job和trigger分開來>為何要將Job和Trigger分開來?</h3><blockquote><p>While developing Quartz, we decided that it made sense to create a separation between the schedule and the work to be performed on that schedule. This has (in our opinion) many benefits.</p><p>For example, Jobs can be created and stored in the job scheduler independent of a trigger, and many triggers can be associated with the same job. Another benefit of this loose-coupling is the ability to configure jobs that remain in the scheduler after their associated triggers have expired, so that that it can be rescheduled later, without having to re-define it. It also allows you to modify or replace a trigger without having to re-define its associated job.</p></blockquote><h2 id=job與jobdetail的一些說明>Job與JobDetail的一些說明</h2><ul><li>Job是正在執行的作業，JobDetail則是作業的定義</li><li>一個Job可以創建多個JobDetail，擁有不同的JobDataMap</li></ul><p>舉例來說，今天寫了一個定時寄送信件的Job，叫做SendEmailJob，我們希望這個Job可以寄給客戶，然後在cc給你的主管，所以需要創建兩個不同的JobDetail，比如說SendEmailToClient、SendEmailToAdministor，並透過JobDataMap綁定參數傳遞至JobDetail中，這兩個JobDetail擁有各自獨立的JobDataMap，實現起來會更靈活。</p><h1 id=參考>參考</h1><p><a class=link href=http://www.quartz-scheduler.org/documentation/quartz-2.3.0/quick-start.html target=_blank rel=noopener>官方文檔</a></p><p><a class=link href=https://iter01.com/575275.html target=_blank rel=noopener>任務排程框架Quartz快速入門</a></p><p><a class=link href=https://www.1ju.org/quartz/index target=_blank rel=noopener>Quartz教學基礎</a></p><p><a class=link href=https://www.796t.com/content/1545519797.html target=_blank rel=noopener>觸發器詳細定義</a></p></section><footer class=article-footer><section class=article-tags><a href=/tags/%E6%8E%92%E7%A8%8B%E5%99%A8/>排程器</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/><div class=article-image><img src=https://i.imgur.com/4qePz5L.png%20 loading=lazy data-key data-hash=https://i.imgur.com/4qePz5L.png></div><div class=article-details><h2 class=article-title>如何將Junit的測試粒度控制在最小單元</h2></div></a></article><article class=has-image><a href=/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/><div class=article-image><img src=https://i.imgur.com/B7GhSw1.png loading=lazy data-key data-hash=https://i.imgur.com/B7GhSw1.png></div><div class=article-details><h2 class=article-title>基礎AOP介紹-Filter Interceptor AspectJ</h2></div></a></article><article class=has-image><a href=/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/><div class=article-image><img src=https://i.imgur.com/UDvSvgw.png loading=lazy data-key data-hash=https://i.imgur.com/UDvSvgw.png></div><div class=article-details><h2 class=article-title>論@Value與Environment之優劣</h2></div></a></article><article class=has-image><a href=/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/rfkvgRO.png loading=lazy data-key data-hash=https://i.imgur.com/rfkvgRO.png></div><div class=article-details><h2 class=article-title>運用ArrayList與自動配置將Swich語法拆解</h2></div></a></article><article class=has-image><a href=/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/><div class=article-image><img src=https://i.imgur.com/b9bWXWs.jpg loading=lazy data-key data-hash=https://i.imgur.com/b9bWXWs.jpg></div><div class=article-details><h2 class=article-title>GitLab-CI/CD筆記</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
+gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2023 Hoxton</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#springboot-scheduling>SpringBoot-Scheduling</a></li><li><a href=#spring-schedule>Spring Schedule</a><ol><li><a href=#步驟>步驟</a></li><li><a href=#cron表達式七子表達式>Cron表達式(七子表達式)</a></li></ol></li><li><a href=#quartz>Quartz</a><ol><li><ol><li><a href=#底層數據結構--堆>底層數據結構- 堆</a><ol><li><a href=#介紹>介紹</a></li><li><a href=#如何插入元素>如何插入元素</a></li><li><a href=#如何刪除元素>如何刪除元素</a></li></ol></li><li><a href=#時間輪算法time-wheel>時間輪算法(Time Wheel)</a><ol><li><a href=#round-型的時間輪>round 型的時間輪</a></li><li><a href=#分層時間輪>分層時間輪</a></li></ol></li></ol></li><li><a href=#cron表達式七子表達式-1>Cron表達式(七子表達式)</a></li><li><a href=#重要api及概念>重要API及概念</a><ol><li><a href=#scheduler>Scheduler</a></li><li><a href=#job>Job</a></li><li><a href=#jobdetail>JobDetail</a></li><li><a href=#jobdatamap>JobDataMap</a></li><li><a href=#trigger>Trigger</a><ol><li><a href=#simpletriger><strong>SimpleTriger</strong></a></li><li><a href=#crontrigger><strong>CronTrigger</strong></a></li></ol></li><li><a href=#jobbulider>JobBulider</a></li><li><a href=#identity>Identity</a></li><li><a href=#為何要將job和trigger分開來>為何要將Job和Trigger分開來?</a></li></ol></li><li><a href=#job與jobdetail的一些說明>Job與JobDetail的一些說明</a></li></ol></li><li><a href=#參考>參考</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>

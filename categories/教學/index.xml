@@ -1,1342 +1,906 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>教學 on Hoxton</title>
-        <link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link>
-        <description>Recent content in 教學 on Hoxton</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh</language>
-        <lastBuildDate>Fri, 24 Mar 2023 01:41:57 +0000</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>論@Value與Environment之優劣</title>
-        <link>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link>
-        <pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid>
-        <description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" /&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/JQHz275.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;SpringBoot中想要從Application.properties中取的值，有兩種常見的方式，其中一種是利用@Value的方式&lt;/p&gt;
-&lt;h1 id=&#34;value&#34;&gt;@Value&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@Value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;version&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;version&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;enviroment&#34;&gt;Enviroment&lt;/h1&gt;
-&lt;p&gt;另一種則是透過 Enviroment物件來取的&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Environment&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;getAppVersion&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getProperty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;app.version&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;以取值的表現形式來看&#34;&gt;以取值的表現形式來看&lt;/h1&gt;
-&lt;p&gt;在某些情形下，我們可能會從applicaiton.properties中取出一個陣列值，比如說&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-properties&#34; data-lang=&#34;properties&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;language&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;en,zh,jp&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;這時如果使用Enviroment來取，取出來的值會一個String，需要再透過轉換，將它變為一個String&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@Autowired&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Environment&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;getMyArrayProperty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;propertyValue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getProperty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;my.array.property&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;propertyValue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;propertyValue&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;split&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;,&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;];&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;但如果用@Value的方式來取值，則可以在宣告變數時，聲明它是一個String或是一個String[]，避免後續的轉換&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@Value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;${language}&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;myArray&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;以單元測試角度來看&#34;&gt;以單元測試角度來看&lt;/h1&gt;
-&lt;p&gt;這兩個表現形式幾乎一模一樣，都可以取得想要的部分，但最大差別就在單元測試時，由於@Value這個取值方式有賴將整個SpringBoot專案啟動才可以注入，在單元測試的環境下並沒有辦法做到這件事情。但相反的，由於Environment本身屬於一個外部依賴，我們可以很好的替代掉他&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@Service&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;VersionService&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;Environment&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;VersionService&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Environment&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;environment&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;getEunoExAppVersion&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getProperty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;eunoex.version&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nd&#34;&gt;@ExtendWith&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MockitoExtension&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;VersionServiceTest&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nd&#34;&gt;@Mock&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;Environment&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nd&#34;&gt;@InjectMocks&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;VersionService&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;versionService&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nd&#34;&gt;@Test&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;getAppVersion_everythingFine_returnSuccessfully&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;given&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getProperty&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;any&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;())).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;willReturn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;v1.2.0&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ExAppVersion&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;versionService&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getAppVersion&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;AppVersion = &amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;AppVersion&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;大概Guy4這樣&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>在window Terminal中使用Cmder</title>
-        <link>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</link>
-        <pubDate>Tue, 21 Mar 2023 10:40:57 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</guid>
-        <description>&lt;img src="https://i.imgur.com/l3t70N4.png" alt="Featured image of post 在window Terminal中使用Cmder" /&gt;&lt;h1 id=&#34;安裝window-terminal&#34;&gt;安裝window terminal&lt;/h1&gt;
-&lt;p&gt;至Microsoft Store安裝window terminal&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/QHkfcK2.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230321104350045&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;安裝cmder&#34;&gt;安裝Cmder&lt;/h1&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://cmder-app.translate.goog/?_x_tr_sl=en&amp;amp;_x_tr_tl=zh-TW&amp;amp;_x_tr_hl=zh-TW&amp;amp;_x_tr_pto=sc&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Cmder載點&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;並將它解壓縮後放置&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;%USERPROFILE%/AppData/Roaming&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;中&lt;/p&gt;
-&lt;p&gt;也就是&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C:\Users\you_userName\AppData\Roaming&lt;/code&gt;&lt;/p&gt;
-&lt;h1 id=&#34;設定環境變數&#34;&gt;設定環境變數&lt;/h1&gt;
-&lt;p&gt;接著設定環境變數&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;變數名稱：CMDER_ROOT
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;變數值：C:\Users\You_userName\AppData\Roaming\cmder
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/evCanCt.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230321104927389&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;變數名稱：ConEmuDir
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;變數值：C:\Users\You_userName\AppData\Roaming\cmder\vendor\conemu-maximus5
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/v6v0WUg.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230321105111605&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;設定window Termianl&lt;/p&gt;
-&lt;p&gt;打開設定&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/o7ga4o6.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230321105152420&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;按左下角的開啟JSON檔案&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/t0NQTF2.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230321105210480&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;將下列這段貼上至JSON檔中的這個位置&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nt&#34;&gt;&amp;#34;background&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;#2E3436&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nt&#34;&gt;&amp;#34;commandline&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;cmd.exe /k %CMDER_ROOT%\\vendor\\init.bat&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nt&#34;&gt;&amp;#34;font&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;nt&#34;&gt;&amp;#34;face&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Cascadia Code&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;nt&#34;&gt;&amp;#34;size&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;10.0&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nt&#34;&gt;&amp;#34;guid&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;{6d953325-a939-475d-a151-940cbd0302fb}&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nt&#34;&gt;&amp;#34;icon&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;%CMDER_ROOT%\\icons\\cmder.ico&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nt&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Cmder&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nt&#34;&gt;&amp;#34;padding&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;15&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nt&#34;&gt;&amp;#34;startingDirectory&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;%USERPROFILE%/Desktop&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;就像這樣子&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/jyFYrjK.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230321105524196&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;接著&lt;strong&gt;重開&lt;/strong&gt;window terminal就可以囉~&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>使用Docker在window會出現的File Not Found問題</title>
-        <link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</link>
-        <pubDate>Thu, 16 Mar 2023 06:41:23 +0000</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</guid>
-        <description>&lt;img src="https://i.imgur.com/AP3wJLN.png" alt="Featured image of post 使用Docker在window會出現的File Not Found問題" /&gt;&lt;h1 id=&#34;前情提要&#34;&gt;前情提要&lt;/h1&gt;
-&lt;p&gt;最近在學習zabbix時，安裝在Linux系統下時，透過Postman是可以正常取得資料的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/DX2FgEJ.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;但是當我用Docker把Zabbix架設在Window環境下時卻一直出現&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;File not found.
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;的錯誤&lt;/p&gt;
-&lt;h1 id=&#34;發現錯誤&#34;&gt;發現錯誤&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/GNtvhd5.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;兩邊的版本、設置、Server Port都一樣，完全不知道到底發生了什麼問題，後來是透過網頁的開發人員工具才發現一小處的不同&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/W3r8xcI.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;這是Linux環境下的API請求&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Y2XdCFb.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;
-這是Window下的API請求&lt;/p&gt;
-&lt;p&gt;聰明的你一定發現了，&lt;strong&gt;肏你媽的這兩個API請求的URL完全不一樣啊，幹你媽的&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&#34;解決方法&#34;&gt;解決方法&lt;/h1&gt;
-&lt;p&gt;我個人猜應該是Docker在部屬的時候，不知道為什麼裡面檔案的結構層級直接跳過了\zabbix這一層，直接變成&lt;code&gt;http://localhost/api_jsonrpc.php&lt;/code&gt;的路徑。&lt;/p&gt;
-&lt;p&gt;將URL改成正確地之後就能正常訪問了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/1OlT37p.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>只要按個鍵，圖片立刻上傳至雲端 PicGo介紹</title>
-        <link>https://hoxtonhsu.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</link>
-        <pubDate>Wed, 08 Mar 2023 20:56:55 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</guid>
-        <description>&lt;img src="https://i.imgur.com/teYQFXk.png" alt="Featured image of post 只要按個鍵，圖片立刻上傳至雲端 PicGo介紹" /&gt;&lt;h1 id=&#34;介紹&#34;&gt;介紹&lt;/h1&gt;
-&lt;p&gt;PicGo是個開源的圖片上傳程式(並非平台)，由於設定快速，效果簡單而深受我的喜愛，決定寫一篇文章來介紹這東西該怎麼使用&lt;/p&gt;
-&lt;h1 id=&#34;安裝&#34;&gt;安裝&lt;/h1&gt;
-&lt;p&gt;我們使用Choco來安裝，Choco是一個Window系統的檔案下載工具，可以做類似npm的功能，以下是它的安裝方式。&lt;/p&gt;
-&lt;p&gt;使用&lt;strong&gt;系統管理員&lt;/strong&gt;執行CMD，並輸入以下的指令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Set-ExecutionPolicy Bypass -Scope Process -Force&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;System.Net.ServicePointManager&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;::SecurityProtocol &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;System.Net.ServicePointManager&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;::SecurityProtocol -bor 3072&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; iex &lt;span class=&#34;o&#34;&gt;((&lt;/span&gt;New-Object System.Net.WebClient&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.DownloadString&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;https://community.chocolatey.org/install.ps1&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;))&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;即下載成功，若下載成功，可以輸入&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;choco --version
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;來查看是否安裝成功&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/StJyUnh.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230308210113018&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;若Choco安裝沒問題，則可以透過以下指令安裝picGo，若跳出什麼無法存取，則請記得要&lt;strong&gt;使用系統管理員身分&lt;/strong&gt;執行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;choco install picgo
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/iZGJC8G.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230308210301760&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;使用&#34;&gt;使用&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Zb3DFev.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;demo&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;我有點懶得打，就錄成Gif了，這邊其實就是去Imgur的&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://imgur.com/account/settings/apps&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://imgur.com/account/settings/apps&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;這邊，去設定你的一個ClinetId&lt;/p&gt;
-&lt;p&gt;然後把它貼到&lt;code&gt;設定ClinetId&lt;/code&gt;那一欄就可以&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/IXOptVX.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230308210959190&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;並且我也會推薦將上傳的快捷鍵調成Ctrl+Alt+V&lt;/p&gt;
-&lt;p&gt;這樣當你按下Win+Shift+S，截圖後，只要按下Ctrl+Alt+V，圖片就會自動幫你上傳至Imgur囉&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/UejcWoE.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230308211104660&#34;
-	
-	
-&gt;&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>Git在第一次使用的credentialhelperselector該怎麼設定呢</title>
-        <link>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</link>
-        <pubDate>Wed, 08 Mar 2023 20:48:18 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</guid>
-        <description>&lt;img src="https://i.imgur.com/PFJUZO4.png" alt="Featured image of post Git在第一次使用的credentialhelperselector該怎麼設定呢" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
-&lt;p&gt;每次在新電腦上使用Git的時候都會跳這個東西出來，但一直不知道這是啥，這次來研究一下&lt;/p&gt;
-&lt;h1 id=&#34;總結&#34;&gt;總結&lt;/h1&gt;
-&lt;p&gt;這東西其實是因為如果要推東西上去或是拉Private專案下來的話，會需要做認證(Credential)的部分，而這個視窗其實就是在問你，你所提供的這些登入資訊想存在哪邊?&lt;/p&gt;
-&lt;p&gt;會建議就用預設的&lt;code&gt;manager-core&lt;/code&gt;就好，如果想存在磁碟中的話就選&lt;code&gt;store&lt;/code&gt;，如果想存在Cache就選&lt;code&gt;cache&lt;/code&gt;
-這樣就可以囉&lt;/p&gt;
-&lt;p&gt;如果已經存了，那可以輸入以下的指令來調整&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;查看目前的credential.helper 是什麼&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config credential.helper
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;將credential.helper 的設定改掉&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global credential.helper manager-core
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;設定帳號密碼&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;由於自2021年後，GitHub不在提供使用帳號密碼的認證方式，要使用Token進行認證，帳號輸入自己的Github帳號，而密碼則是輸入自己的Token，這樣就設定成功囉！&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>淺談一些實用的快捷鍵</title>
-        <link>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E4%B8%80%E4%BA%9B%E5%AF%A6%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/</link>
-        <pubDate>Thu, 26 Jan 2023 00:31:43 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E4%B8%80%E4%BA%9B%E5%AF%A6%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/</guid>
-        <description>&lt;img src="https://i.imgur.com/Ln2xqzT.png" alt="Featured image of post 淺談一些實用的快捷鍵" /&gt;&lt;p&gt;想講一些實用的，但卻很少人知道的一些電腦使用的功能，知道這些對做底稿、翻憑證不會有太大的幫助，但會用的話我個人覺得可以節省很多時間，供大家參考。&lt;/p&gt;
-&lt;h1 id=&#34;快速關機&#34;&gt;快速關機&lt;/h1&gt;
-&lt;p&gt;window+D：回到桌面&lt;/p&gt;
-&lt;p&gt;在桌面Alt+F4即可跳出關機選項&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/A0TkM9G.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230126004515683&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;記得當初在外勤的時候，只要組長說撤的時候我就會用最快的速度關機XD，那時候同事都問我怎麼用的，這就是訣竅，當然也可以選擇重新啟動或休眠，看自己喜好決定。&lt;/p&gt;
-&lt;h1 id=&#34;截圖&#34;&gt;截圖&lt;/h1&gt;
-&lt;p&gt;window+shift+s&lt;/p&gt;
-&lt;p&gt;這個應該最基本，在Window10以上的系統可以透過這個shortcut來打開截圖視窗，就拿來貼圖片給組長，跟組長說我哪邊不會QQ&lt;/p&gt;
-&lt;h1 id=&#34;快速打開excel-word-記事本-小畫家計算機&#34;&gt;快速打開Excel, Word, 記事本, 小畫家,計算機&amp;hellip;&lt;/h1&gt;
-&lt;p&gt;Window+R：跳出執行選項&lt;/p&gt;
-&lt;p&gt;在裡面輸入以下的內容已打開不同的Application&lt;/p&gt;
-&lt;p&gt;mspaint：打開小畫家&lt;/p&gt;
-&lt;p&gt;notepad：記事本&lt;/p&gt;
-&lt;p&gt;winword：word&lt;/p&gt;
-&lt;p&gt;excel：excel&lt;/p&gt;
-&lt;p&gt;計算機：calc&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BQZCVyH.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;demo&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;快速打開工作列的應用程式&#34;&gt;快速打開工作列的應用程式&lt;/h1&gt;
-&lt;p&gt;window+1&lt;/p&gt;
-&lt;p&gt;可以打開工作列的第一個應用&lt;/p&gt;
-&lt;p&gt;window+2&lt;/p&gt;
-&lt;p&gt;可以打開工作列的第二個應用，以此類推&amp;hellip;&lt;/p&gt;
-&lt;p&gt;這個指令我大部分都是用來開Chrome，或是Excel之類的東西&lt;/p&gt;
-&lt;h1 id=&#34;瀏覽器快速選擇搜尋列&#34;&gt;瀏覽器快速選擇搜尋列&lt;/h1&gt;
-&lt;p&gt;打開Chrorm後，打alt+D就可以定位到搜尋列，並且在這邊按Ctrl+1,2,3&amp;hellip;即可切換至不同的頁面，通常是我拿來打混摸魚的時候用的，Ctrl+T則可以打開新的分頁，所以兩個和再一起就是，開啟一個新分頁並搜尋，如果旁邊有人過來就立刻Ctrl+w關閉當前頁面，避免摸魚被抓包。&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>如何製作會計的電子筆記？Markdown的介紹</title>
-        <link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</link>
-        <pubDate>Sun, 22 Jan 2023 23:15:25 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</guid>
-        <description>&lt;img src="https://i.imgur.com/c968Ywa.png" alt="Featured image of post 如何製作會計的電子筆記？Markdown的介紹" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
-&lt;p&gt;年假回老家實在是太無聊了，想把這幾年學到的東西分享一下，希望可以幫助一些莘莘學子，能用更有效率的方式來整理筆記。&lt;/p&gt;
-&lt;p&gt;記得大二或是大三的時候很沉迷於作筆記這件事情，最喜歡做的事情，就是用一兩個下午把那個禮拜所上的成會或是中會整理成筆記，以利後面的複習。不得不說當時這樣做的回饋還不錯，當時中會跟成會的成績都還算不錯。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CFebBUe.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230122232625364&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;（當時很認真的筆記）&lt;/p&gt;
-&lt;h1 id=&#34;紙本筆記的缺點&#34;&gt;紙本筆記的缺點&lt;/h1&gt;
-&lt;p&gt;這樣的筆記在當時應付期中考期末考還行，因為這些筆記可能都是一兩個月寫的，都還算有印象，但是當我準備研究所的時候就發現幾個問題了，首先&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;難以搜尋：面對海量的資料，我很難在第一時間找到我需要的資訊，比如說我想要找一個利息資本化的定義，以及它的細項，我除非前一陣子剛寫，或是我版面真的寫得很好，不然我不能第一時間的找到我想要的資訊。比如說稅法的部分就分成很多塊，比如說遺產稅贈與稅等等的，數量真的太多，且稅率也類似，常常找不到自己想要的地方。&lt;/li&gt;
-&lt;li&gt;難以擴充：紙質的筆記一旦寫下去之後就難以修改，無法滿足我越來越多的知識積累，比如說大家都知道的金融資產那一個章節，可能光一個範例就可以寫個2,30個也不為過，每個範例可能都有一些細節要抄進筆記裡面，這樣日積月累下去，那一頁的筆記越記越多、越寫越亂不易閱讀。&lt;/li&gt;
-&lt;li&gt;耗時：耗時是最大的問題，一頁的筆記我可能需要寫個半小時，雖然說寫的當下其實就記得很清楚了，但是卻非常的消耗時間，往往做完這些筆記我的假日就這樣沒了，實在是不太行，且手寫筆記非常吃手寫的品質，如果心一旦亂起來，亂寫一通，那這筆記基本上閱讀不能，只是寫給當時的自己看的，不利日後準備研究所或是會計師考試。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;雖然1、2的問題都可以透過Ipad的手寫筆記來解決一些問題，但最大的問題就是第3點，當時有嘗試過很多方式，比如說用excel來記筆記(但儲存格不方便修改與擴充)，或是用word來寫，但word真的非常不適合拿來寫筆記，首先，work本身是不支援你打出類似分錄格式的東西的，就算可以，那個代價我記得也很大，其次，光是格式的部分可能就要設定個老半天，再加上在寫筆記的途中還需要移動滑鼠去調整現在想要的是&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;或是&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;這樣的格式真的有點打斷思緒。&lt;/p&gt;
-&lt;p&gt;因此我的需求是這樣&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;方便撰寫，希望不需要去切什麼格式&lt;/li&gt;
-&lt;li&gt;支援圖片上傳，可以讓我傳圖片上去，可能有些範例或是老師在黑板上畫的東西，需要做成筆記來看&lt;/li&gt;
-&lt;li&gt;要可以讓我打類似分錄的東西&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;後來出社會工作後，接觸到Markdown這個東西真的驚為天人，並且是有一點相見恨晚，如果在學期間知道這個東西的話做筆記應該會更高效快速一點。首先先來介紹一下Markdown是什麼吧&lt;/p&gt;
-&lt;h1 id=&#34;markdown介紹&#34;&gt;Markdown介紹&lt;/h1&gt;
-&lt;p&gt;Markdown 是目前非常普遍用來撰寫文檔的語言，一開始的目標就是使用「易讀易寫的純文字格式編寫文件」，此初衷讓使用者可以專注在文字的本身，而不需要透過其它工具來切換格式。以 Word 撰寫文檔來說，就必須透過上方的工具列來切換&lt;strong&gt;標題、列表、粗體、斜體&lt;/strong&gt;等等；而 Markdown 並沒有這樣的工具列，完全都是&lt;strong&gt;使用標示符號來完成這些需求&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;Markdown是一種輕量級標記式語言，創始人為約翰·格魯伯。它允許人們使用易讀易寫的純文字格式編寫文件&lt;/p&gt;
-&lt;p&gt;由於Markdown的輕量化、易讀易寫特性，並且對於圖片，圖表、數學式都有支援，目前許多網站都廣泛使用Markdown來撰寫說明文件或是用於論壇上發表訊息。如GitHub、Reddit、Discord、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、簡書等，甚至還能被用來撰寫電子書。&lt;/p&gt;
-&lt;p&gt;參考自維基百科以及https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/&lt;/p&gt;
-&lt;p&gt;先來看看如果我把會計的筆記轉成Markdown的話看起來會是怎麼樣吧，因為Dcard不支援markdown，可以點這邊預覽看看&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://hackmd.io/@Celeast/ryyXXyosi&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://hackmd.io/@Celeast/ryyXXyosi&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/NFRD8Ko.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123005704082&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;第七章-彈性預算直接成本與管理會計&#34;&gt;第七章 彈性預算、直接成本與管理會計&lt;/h1&gt;
-&lt;p&gt;本章學習重點&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;了解各差異的差異&lt;/li&gt;
-&lt;li&gt;基於差異分析所做的決策判斷&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;名詞定義&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;靜態預算(Static Budget)：在預算期間開始時，&lt;strong&gt;基於預計產出水準所做的預算&lt;/strong&gt;所做的預算&lt;/li&gt;
-&lt;li&gt;靜態預算差異：在靜態預算中，實際結果與預期數之間的差異&lt;/li&gt;
-&lt;li&gt;彈性預算(Flexible Budget)：預算期間內按&lt;strong&gt;實際產出&lt;/strong&gt;水準計算出預算收入與預算成本之預算&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;．&lt;/p&gt;
-&lt;p&gt;．&lt;/p&gt;
-&lt;p&gt;．&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;flowchart LR
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B[實際投入數量x實際價格] &amp;lt;--價格差異--&amp;gt; 實際投入數量x預算價格 &amp;lt;--效率差異--&amp;gt; C[實際產出下所允許之預算投入x預算價格]
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;B &amp;lt;--彈性預算差異--&amp;gt;C
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;變動&lt;/th&gt;
-&lt;th&gt;歸納&lt;/th&gt;
-&lt;th&gt;評論&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;固定制造成本可以做為存貨成本嗎?&lt;/td&gt;
-&lt;td&gt;不可&lt;/td&gt;
-&lt;td&gt;可以&lt;/td&gt;
-&lt;td&gt;基本問題&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;有生產數量差異嗎?&lt;/td&gt;
-&lt;td&gt;沒有&lt;/td&gt;
-&lt;td&gt;有&lt;/td&gt;
-&lt;td&gt;對基準產能水準的選擇，只在歸納成本法下影響營業利益的衡量&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;分錄&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;原料	10,000&lt;/p&gt;
-&lt;p&gt;​		應付帳款	10,000&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在製品		30,000&lt;/p&gt;
-&lt;p&gt;製造費用 	1,000&lt;/p&gt;
-&lt;p&gt;​		原料			31,000&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;產成品	50,000&lt;/p&gt;
-&lt;p&gt;​		在製品	50,000&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;課堂範例：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/bhWOaT5.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123000736761&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;ｍarkdown語法介紹&#34;&gt;Ｍarkdown語法介紹&lt;/h1&gt;
-&lt;p&gt;上面是我把我的會計筆記轉成Markdown格式，可以看到Markdown支援了幾點&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;列表式的清單&lt;/li&gt;
-&lt;li&gt;用來舉例的黑點&lt;/li&gt;
-&lt;li&gt;重點的醒目提示&lt;/li&gt;
-&lt;li&gt;分層式的標題，標出章節重點&lt;/li&gt;
-&lt;li&gt;支援表格(注：markdown的表格語法非常反智，通常我都是用快捷鍵生成)&lt;/li&gt;
-&lt;li&gt;支援流程圖的繪製&lt;/li&gt;
-&lt;li&gt;支援數學式(這邊沒有示範到，不過Markdown是有支援高等數學的運算式的)&lt;/li&gt;
-&lt;li&gt;支援圖片上傳，可以讓我把版書或是題目直接貼上去&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;接下來帶大家認識一下Markdown的一些語法&lt;/p&gt;
-&lt;p&gt;首先是標題的語法，輸入#再加上一個空格會產生標題，就像現在這樣&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/xzUg32o.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123001409936&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;在文字前加上1. 2. 3. 則會變成列表&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/xbpaCZs.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123001454121&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;文字之間加上**則可重點醒目&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vceq8VB.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123001905373&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;在文字前加上+則會變成黑點&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/RrdcAai.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123001516022&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;在文字前加上&amp;gt;則可做為補充說明，我就是用這個語法來寫分錄的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/xaq48Ty.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123001618553&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;顯示圖片的語法則是這樣&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Yg0rfCW.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123001709056&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;裡面的內容填上自己的圖片連結就可以了，如何把圖片上傳上去我後面會說。&lt;/p&gt;
-&lt;p&gt;Markdown的語法還有很多很多，不只有我上面提到的這些，有興趣的同學可以參考這邊&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;我該怎麼寫markdown呢&#34;&gt;我該怎麼寫Markdown呢？&lt;/h1&gt;
-&lt;p&gt;markdown是工程師蠻常會接觸到一個標籤式語言，如果你開心的話用記事本也是可以寫Markdown的喔，但是效果會不太好閱讀而已，目前markdown我自己認為比較常見的有幾種&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Vscode&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/zCtwWvH.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123002813123&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;這是我最初拿來寫markdown的工具，但它本身不是專門拿來寫markdown的，不支援一些熱鍵以及圖片上傳，後面就被我拋棄了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/To64OPG.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123003226114&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;HackMd&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/XQD4g2U.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123010834897&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;HackMd是一個網頁版的markdown編輯器，簡單來講就是你寫上去後，東西就是直接存在雲端，且圖片複製貼上就會自動幫你上傳到網路上了，非常的便捷以及快速，好像是台灣人開發的，最重要的是它免費，也是最常見的方式。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/yPY9NIk.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123003322000&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Typora&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AJVAHof.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123003346195&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;這是我目前主力所使用的Markdown編輯器，跟HackMd最大的不同就是它是一個所見及所得的編輯器，上述兩款其實都是把畫面分成兩邊，左邊是Markdown語法，右邊則是渲染後的結果，而typora則是在你輸入完後直接幫你渲染好，也就是&lt;strong&gt;所寫及所見&lt;/strong&gt;，是它最大的特色。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/04NdYQW.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;demo&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;但相比之下它就有幾個缺點&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;要錢，最直觀的問題就是它是一個付費的程式，屬於買斷制一次500，支援三台設備同時使用&lt;/li&gt;
-&lt;li&gt;本身不支援圖片上傳，想要用它來做圖片上傳需要懂一些控制台指令以及Json格式的&lt;/li&gt;
-&lt;li&gt;本身的檔案都在local端，需要自己手動丟上雲端(我個人是丟到github上面，然後用bat檔自動上傳)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;還可以提供一點，我會把一些真的沒辦法用文字或是Markdown語法表示的東西寫在平板的GoodNote上面，在把連結分享出來，然後截圖下來貼上去，看起來就像這樣&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/SdiDiSv.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;image-20230123004611873&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h1 id=&#34;結語&#34;&gt;結語&lt;/h1&gt;
-&lt;p&gt;當然還有不只這些，我沒記錯的話Notion本身也有支援(但我不熟)以及obsidian也是一個寫Markdown的工具，我之所以會選Typora只是因為我喜歡有更大的空間，不喜歡畫面被分成左右兩邊而已。&lt;/p&gt;
-&lt;p&gt;作筆記的方法有很多，不做的、用紙寫的、用平板寫的，都可以，沒有誰優誰劣，Markdown也有它的限制在，比如說它就&lt;strong&gt;不能寫資產負債表、也不能寫T字帳&lt;/strong&gt;，沒有一個方法是最佳解的，只要找到自己喜歡的方式都可以，這篇文章只是拋磚引玉，希望提供自己的一些想法供大家參考，也歡迎各位一起討論，祝大家新年快樂，忙季加油！&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>你知道嗎?現在Github上也可以使用Vscode喔！</title>
-        <link>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</link>
-        <pubDate>Wed, 11 Jan 2023 23:27:27 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</guid>
-        <description>&lt;img src="https://i.imgur.com/Gckim1N.png" alt="Featured image of post 你知道嗎?現在Github上也可以使用Vscode喔！" /&gt;&lt;p&gt;前陣子在網路上找看看有沒有什麼實用的Git指令，無意間看到這個功能。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/NltXKuw.gif&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;demo&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;只要在Github的頁面按下 &amp;gt; ，就可以開啟網頁版的Vscode囉，不過有個小缺點就是，Vscode開啟時介面語言是依據你瀏覽器的語言所決定，所以如果想要使用英文版的Vscode就要把Chrome的語言設定成英文喔。&lt;/p&gt;
-&lt;p&gt;這樣開啟後最直觀的好處就是可以直接在Github上以Vscode編輯程式碼，做快速的修改，瀏覽起來也比較快，不然原本網頁在看的話速度非常的慢！並且也可以在上面做衝突的處理。&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title>
-        <link>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link>
-        <pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate>
-        
-        <guid>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid>
-        <description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" /&gt;&lt;p&gt;最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p&gt;
-&lt;p&gt;圖片空間有Github跟imgur，就看你想要用哪個就用哪個吧，其實沒差太多，但imgur會稍微簡單一點點點點點點，以下是步驟&lt;/p&gt;
-&lt;h2 id=&#34;開始&#34;&gt;開始&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;先去安裝node.js，因為會需要裡面的npm&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://nodejs.org/en/download/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://nodejs.org/en/download/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;安裝好可以用系統管理員身分打開cmd，並輸入&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;node
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;如果有成功安裝的話應該會顯示&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*TJh1mXLciPRITGML.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;接著安裝picGo-core&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install picgo -g
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*OURwrokLcSXsKhh7.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;說出現錯誤，要我們執行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm audit fix -force
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*iJyRBtSoBBDDWCiL.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;執行完之後就安裝好了，接著輸入&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;picgo
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;來確認是否有安裝成功，有時候可能會出現&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;檔案未經數位簽署這個指令碼將不會在系統上執行
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;之類之類的句子，這時候可以輸入&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Set-ExecutionPolicy RemoteSigned
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;來允許執行，這時候在輸入picgo應該就可以看到這樣子的畫面了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*5z4fiwasXjd5owxU.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;到這一步本地端的設定已經完成80%了，接下來就是要選擇要使用哪種圖片空間&lt;/p&gt;
-&lt;h2 id=&#34;github&#34;&gt;Github&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;首先先到Github創建一個&lt;strong&gt;公開&lt;/strong&gt;的Repository，名字隨意就好&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*Qtv_aOAy_jvvJmxS.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;接著把這個Repository的URL複製下來&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://github.com/Hoxton019030/Typora
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;右上角個人頭像點開，選擇Settings&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*IvpN0zdI8lH7ArDz.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;左側選項最下面有一個Developer settings&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*I0XbiRgEZbAqSl1P.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;選擇Personal access tokens&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*av4YXNmNeXapHaSQ.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;選擇 Generate new token&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*f4CIbfps52_y13UM.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;輸入這個token的名稱，隨便取就好，Expiration看個人喜好，我很懶，所以我選擇永久，下面的select scopes勾選repo&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*OdCzsVJiqnSncFsR.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;接著會產生一組ghp開頭的token，這組序號&lt;strong&gt;只會在這裡以明碼出現一次，接下來永遠都不會再以明碼的方式呈現&lt;/strong&gt;所以請好好記起來&lt;/li&gt;
-&lt;li&gt;然後到Typora的偏好設定裡打開&lt;code&gt;開啟設定檔&lt;/code&gt;，通常會是用一個文本編輯器打開，通常都是vscode啦&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*TfGA65bOI7NQlTdO.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;接著把這串東西複製貼上去&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &amp;#34;picBed&amp;#34;: {
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;current&amp;#34;: &amp;#34;github&amp;#34;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;uploader&amp;#34;: &amp;#34;github&amp;#34;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;github&amp;#34;: {
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;repo&amp;#34;: &amp;#34;Hoxton019030/Typora&amp;#34;,  //這串對應的是使用者名稱+Repo名稱，改成自己的
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;token&amp;#34;: &amp;#34;ghp_xxxxxxxxxxxxxxxxxxxx&amp;#34;, //這邊把剛剛產生的token貼上去
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;path&amp;#34;: &amp;#34;data/&amp;#34;, //圖片要上傳到哪個資料夾，可以先不用設定，
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;customUrl&amp;#34;: &amp;#34;https://raw.githubusercontent.com/Hoxton019030/Typora/main&amp;#34;, //把Hoxton019030/Typora改成你自己的repo
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;branch&amp;#34;: &amp;#34;main&amp;#34; //應該也不用動
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     }
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   },
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &amp;#34;picgoPlugins&amp;#34;: {}
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;完成之後應該長這個樣子，接著按存檔&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*Jv9sK10wHg0dKTgj.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;接著回到設定，試著按看看測試圖片上傳&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*aBg4zeoUl5MUkCUB.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;如果成功的話就會出現這樣的畫面&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*jWdQ9Nc1dfG2Ju4g.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;就代表你成功了！&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;如果你在按一次測試圖片上傳，由於上傳的圖片檔名一模一樣，會報錯，這樣是正常現象，請不要驚慌&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*W658xLMijQPg2W5M.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;imgur&#34;&gt;imgur&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;首先先辦帳號&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://api.imgur.com/oauth2/addclient&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://api.imgur.com/oauth2/addclient&lt;/a&gt; 點擊這個網址&lt;/li&gt;
-&lt;li&gt;老樣子，名字隨意取就好，然後Authorization type選擇第二個&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*X8N6pfp6RBxMrFUQ-7DMhg.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;接著會跳出畫面，會告訴你你的Client ID是什麼，請複製下來&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*BXo0QET3625yCZb3.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;接著到偏好設定裡面打開開啟設定檔，通常會用vscode開啟&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*wcsfPRq4DONBo8WE.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;接著把這段複製貼上上去&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &amp;#34;picBed&amp;#34;: {
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;current&amp;#34;: &amp;#34;imgur&amp;#34;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;uploader&amp;#34;: &amp;#34;imgur&amp;#34;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &amp;#34;imgur&amp;#34;:{
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &amp;#34;clientId&amp;#34;: &amp;#34;XXXXXXXXXXX&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     }
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   },
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &amp;#34;picgoPlugins&amp;#34;: {}
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; }
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;貼上去之後應該會長這個樣子&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*w6neiFt-pF_F7Xi5.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;然後存檔之後，回到偏好設定，按「測試圖片上傳」&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*zVjvGlhqINfbk757.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*J3wT0Gdta9xwlTpd.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;img&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;跳出這個就代表成功上傳了！&lt;/p&gt;
-&lt;h2 id=&#34;小結&#34;&gt;小結&lt;/h2&gt;
-&lt;p&gt;這樣子只要在typora裡面貼上圖片，typora就會自動幫我們上傳圖片到圖片空間了。&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 24 Mar 2023 01:41:57 +0000</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>論@Value與Environment之優劣</title><link>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link><pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid><description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" />&lt;p>&lt;img src="https://i.imgur.com/JQHz275.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>SpringBoot中想要從Application.properties中取的值，有兩種常見的方式，其中一種是利用@Value的方式&lt;/p>
+&lt;h1 id="value">@Value&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="err">&amp;#34;&lt;/span>&lt;span class="n">$&lt;/span>&lt;span class="o">{&lt;/span>&lt;span class="n">app&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">version&lt;/span>&lt;span class="o">})&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">version&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="enviroment">Enviroment&lt;/h1>
+&lt;p>另一種則是透過 Enviroment物件來取的&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">Environment&lt;/span> &lt;span class="n">env&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="nf">getAppVersion&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getProperty&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;app.version&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="以取值的表現形式來看">以取值的表現形式來看&lt;/h1>
+&lt;p>在某些情形下，我們可能會從applicaiton.properties中取出一個陣列值，比如說&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">language=en,zh,jp
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這時如果使用Enviroment來取，取出來的值會一個String，需要再透過轉換，將它變為一個String&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Autowired&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">Environment&lt;/span> &lt;span class="n">env&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="nf">getMyArrayProperty&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">propertyValue&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">env&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getProperty&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;my.array.property&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">propertyValue&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">propertyValue&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">split&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;,&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">];&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但如果用@Value的方式來取值，則可以在宣告變數時，聲明它是一個String或是一個String[]，避免後續的轉換&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${language}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">myArray&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="以單元測試角度來看">以單元測試角度來看&lt;/h1>
+&lt;p>這兩個表現形式幾乎一模一樣，都可以取得想要的部分，但最大差別就在單元測試時，由於@Value這個取值方式有賴將整個SpringBoot專案啟動才可以注入，在單元測試的環境下並沒有辦法做到這件事情。但相反的，由於Environment本身屬於一個外部依賴，我們可以很好的替代掉他&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Service&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">VersionService&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">Environment&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="nf">VersionService&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Environment&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">environment&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="nf">getEunoExAppVersion&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getProperty&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;eunoex.version&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@ExtendWith&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">MockitoExtension&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">class&lt;/span> &lt;span class="nc">VersionServiceTest&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Mock&lt;/span>
+&lt;span class="n">Environment&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@InjectMocks&lt;/span>
+&lt;span class="n">VersionService&lt;/span> &lt;span class="n">versionService&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Test&lt;/span>
+&lt;span class="kt">void&lt;/span> &lt;span class="nf">getAppVersion_everythingFine_returnSuccessfully&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">given&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">environment&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getProperty&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">any&lt;/span>&lt;span class="o">())).&lt;/span>&lt;span class="na">willReturn&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;v1.2.0&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">ExAppVersion&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">versionService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getAppVersion&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;AppVersion = &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">AppVersion&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>大概Guy4這樣&lt;/p></description></item><item><title>在window Terminal中使用Cmder</title><link>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</link><pubDate>Tue, 21 Mar 2023 10:40:57 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</guid><description>&lt;img src="https://i.imgur.com/l3t70N4.png" alt="Featured image of post 在window Terminal中使用Cmder" />&lt;h1 id="安裝window-terminal">安裝window terminal&lt;/h1>
+&lt;p>至Microsoft Store安裝window terminal&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QHkfcK2.png"
+loading="lazy"
+alt="image-20230321104350045"
+>&lt;/p>
+&lt;h1 id="安裝cmder">安裝Cmder&lt;/h1>
+&lt;p>&lt;a class="link" href="https://cmder-app.translate.goog/?_x_tr_sl=en&amp;amp;_x_tr_tl=zh-TW&amp;amp;_x_tr_hl=zh-TW&amp;amp;_x_tr_pto=sc" target="_blank" rel="noopener"
+>Cmder載點&lt;/a>&lt;/p>
+&lt;p>並將它解壓縮後放置&lt;/p>
+&lt;p>&lt;code>%USERPROFILE%/AppData/Roaming&lt;/code>&lt;/p>
+&lt;p>中&lt;/p>
+&lt;p>也就是&lt;/p>
+&lt;p>&lt;code>C:\Users\you_userName\AppData\Roaming&lt;/code>&lt;/p>
+&lt;h1 id="設定環境變數">設定環境變數&lt;/h1>
+&lt;p>接著設定環境變數&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">變數名稱：CMDER_ROOT
+變數值：C:\Users\You_userName\AppData\Roaming\cmder
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/evCanCt.png"
+loading="lazy"
+alt="image-20230321104927389"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">變數名稱：ConEmuDir
+變數值：C:\Users\You_userName\AppData\Roaming\cmder\vendor\conemu-maximus5
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/v6v0WUg.png"
+loading="lazy"
+alt="image-20230321105111605"
+>&lt;/p>
+&lt;p>設定window Termianl&lt;/p>
+&lt;p>打開設定&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/o7ga4o6.png"
+loading="lazy"
+alt="image-20230321105152420"
+>&lt;/p>
+&lt;p>按左下角的開啟JSON檔案&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/t0NQTF2.png"
+loading="lazy"
+alt="image-20230321105210480"
+>&lt;/p>
+&lt;p>將下列這段貼上至JSON檔中的這個位置&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json"> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;background&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;#2E3436&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;commandline&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;cmd.exe /k %CMDER_ROOT%\\vendor\\init.bat&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;font&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;face&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Cascadia Code&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;size&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">10.0&lt;/span>
+&lt;span class="p">},&lt;/span>
+&lt;span class="nt">&amp;#34;guid&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;{6d953325-a939-475d-a151-940cbd0302fb}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;icon&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;%CMDER_ROOT%\\icons\\cmder.ico&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;name&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Cmder&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;padding&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;15&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;startingDirectory&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;%USERPROFILE%/Desktop&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>就像這樣子&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/jyFYrjK.png"
+loading="lazy"
+alt="image-20230321105524196"
+>&lt;/p>
+&lt;p>接著&lt;strong>重開&lt;/strong>window terminal就可以囉~&lt;/p></description></item><item><title>使用Docker在window會出現的File Not Found問題</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 16 Mar 2023 06:41:23 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/AP3wJLN.png" alt="Featured image of post 使用Docker在window會出現的File Not Found問題" />&lt;h1 id="前情提要">前情提要&lt;/h1>
+&lt;p>最近在學習zabbix時，安裝在Linux系統下時，透過Postman是可以正常取得資料的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DX2FgEJ.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>但是當我用Docker把Zabbix架設在Window環境下時卻一直出現&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">File not found.
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>的錯誤&lt;/p>
+&lt;h1 id="發現錯誤">發現錯誤&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/GNtvhd5.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>兩邊的版本、設置、Server Port都一樣，完全不知道到底發生了什麼問題，後來是透過網頁的開發人員工具才發現一小處的不同&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/W3r8xcI.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>這是Linux環境下的API請求&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Y2XdCFb.png"
+loading="lazy"
+>
+這是Window下的API請求&lt;/p>
+&lt;p>聰明的你一定發現了，&lt;strong>肏你媽的這兩個API請求的URL完全不一樣啊，幹你媽的&lt;/strong>&lt;/p>
+&lt;h1 id="解決方法">解決方法&lt;/h1>
+&lt;p>我個人猜應該是Docker在部屬的時候，不知道為什麼裡面檔案的結構層級直接跳過了\zabbix這一層，直接變成&lt;code>http://localhost/api_jsonrpc.php&lt;/code>的路徑。&lt;/p>
+&lt;p>將URL改成正確地之後就能正常訪問了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1OlT37p.gif"
+loading="lazy"
+>&lt;/p></description></item><item><title>只要按個鍵，圖片立刻上傳至雲端 PicGo介紹</title><link>https://hoxtonhsu.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</link><pubDate>Wed, 08 Mar 2023 20:56:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/teYQFXk.png" alt="Featured image of post 只要按個鍵，圖片立刻上傳至雲端 PicGo介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
+&lt;p>PicGo是個開源的圖片上傳程式(並非平台)，由於設定快速，效果簡單而深受我的喜愛，決定寫一篇文章來介紹這東西該怎麼使用&lt;/p>
+&lt;h1 id="安裝">安裝&lt;/h1>
+&lt;p>我們使用Choco來安裝，Choco是一個Window系統的檔案下載工具，可以做類似npm的功能，以下是它的安裝方式。&lt;/p>
+&lt;p>使用&lt;strong>系統管理員&lt;/strong>執行CMD，並輸入以下的指令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">Set-ExecutionPolicy Bypass -Scope Process -Force&lt;span class="p">;&lt;/span> &lt;span class="o">[&lt;/span>System.Net.ServicePointManager&lt;span class="o">]&lt;/span>::SecurityProtocol &lt;span class="o">=&lt;/span> &lt;span class="o">[&lt;/span>System.Net.ServicePointManager&lt;span class="o">]&lt;/span>::SecurityProtocol -bor 3072&lt;span class="p">;&lt;/span> iex &lt;span class="o">((&lt;/span>New-Object System.Net.WebClient&lt;span class="o">)&lt;/span>.DownloadString&lt;span class="o">(&lt;/span>&lt;span class="s1">&amp;#39;https://community.chocolatey.org/install.ps1&amp;#39;&lt;/span>&lt;span class="o">))&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>即下載成功，若下載成功，可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">choco --version
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看是否安裝成功&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/StJyUnh.png"
+loading="lazy"
+alt="image-20230308210113018"
+>&lt;/p>
+&lt;p>若Choco安裝沒問題，則可以透過以下指令安裝picGo，若跳出什麼無法存取，則請記得要&lt;strong>使用系統管理員身分&lt;/strong>執行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">choco install picgo
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/iZGJC8G.png"
+loading="lazy"
+alt="image-20230308210301760"
+>&lt;/p>
+&lt;h1 id="使用">使用&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/Zb3DFev.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>我有點懶得打，就錄成Gif了，這邊其實就是去Imgur的&lt;/p>
+&lt;p>&lt;a href="https://imgur.com/account/settings/apps">https://imgur.com/account/settings/apps&lt;/a>&lt;/p>
+&lt;p>這邊，去設定你的一個ClinetId&lt;/p>
+&lt;p>然後把它貼到&lt;code>設定ClinetId&lt;/code>那一欄就可以&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/IXOptVX.png"
+loading="lazy"
+alt="image-20230308210959190"
+>&lt;/p>
+&lt;p>並且我也會推薦將上傳的快捷鍵調成Ctrl+Alt+V&lt;/p>
+&lt;p>這樣當你按下Win+Shift+S，截圖後，只要按下Ctrl+Alt+V，圖片就會自動幫你上傳至Imgur囉&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/UejcWoE.png"
+loading="lazy"
+alt="image-20230308211104660"
+>&lt;/p></description></item><item><title>Git在第一次使用的credentialhelperselector該怎麼設定呢</title><link>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</link><pubDate>Wed, 08 Mar 2023 20:48:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/PFJUZO4.png" alt="Featured image of post Git在第一次使用的credentialhelperselector該怎麼設定呢" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>每次在新電腦上使用Git的時候都會跳這個東西出來，但一直不知道這是啥，這次來研究一下&lt;/p>
+&lt;h1 id="總結">總結&lt;/h1>
+&lt;p>這東西其實是因為如果要推東西上去或是拉Private專案下來的話，會需要做認證(Credential)的部分，而這個視窗其實就是在問你，你所提供的這些登入資訊想存在哪邊?&lt;/p>
+&lt;p>會建議就用預設的&lt;code>manager-core&lt;/code>就好，如果想存在磁碟中的話就選&lt;code>store&lt;/code>，如果想存在Cache就選&lt;code>cache&lt;/code>
+這樣就可以囉&lt;/p>
+&lt;p>如果已經存了，那可以輸入以下的指令來調整&lt;/p>
+&lt;ul>
+&lt;li>查看目前的credential.helper 是什麼&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config credential.helper
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>將credential.helper 的設定改掉&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global credential.helper manager-core
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>設定帳號密碼&lt;/li>
+&lt;/ul>
+&lt;p>由於自2021年後，GitHub不在提供使用帳號密碼的認證方式，要使用Token進行認證，帳號輸入自己的Github帳號，而密碼則是輸入自己的Token，這樣就設定成功囉！&lt;/p></description></item><item><title>淺談一些實用的快捷鍵</title><link>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E4%B8%80%E4%BA%9B%E5%AF%A6%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/</link><pubDate>Thu, 26 Jan 2023 00:31:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E4%B8%80%E4%BA%9B%E5%AF%A6%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/</guid><description>&lt;img src="https://i.imgur.com/Ln2xqzT.png" alt="Featured image of post 淺談一些實用的快捷鍵" />&lt;p>想講一些實用的，但卻很少人知道的一些電腦使用的功能，知道這些對做底稿、翻憑證不會有太大的幫助，但會用的話我個人覺得可以節省很多時間，供大家參考。&lt;/p>
+&lt;h1 id="快速關機">快速關機&lt;/h1>
+&lt;p>window+D：回到桌面&lt;/p>
+&lt;p>在桌面Alt+F4即可跳出關機選項&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/A0TkM9G.png"
+loading="lazy"
+alt="image-20230126004515683"
+>&lt;/p>
+&lt;p>記得當初在外勤的時候，只要組長說撤的時候我就會用最快的速度關機XD，那時候同事都問我怎麼用的，這就是訣竅，當然也可以選擇重新啟動或休眠，看自己喜好決定。&lt;/p>
+&lt;h1 id="截圖">截圖&lt;/h1>
+&lt;p>window+shift+s&lt;/p>
+&lt;p>這個應該最基本，在Window10以上的系統可以透過這個shortcut來打開截圖視窗，就拿來貼圖片給組長，跟組長說我哪邊不會QQ&lt;/p>
+&lt;h1 id="快速打開excel-word-記事本-小畫家計算機">快速打開Excel, Word, 記事本, 小畫家,計算機&amp;hellip;&lt;/h1>
+&lt;p>Window+R：跳出執行選項&lt;/p>
+&lt;p>在裡面輸入以下的內容已打開不同的Application&lt;/p>
+&lt;p>mspaint：打開小畫家&lt;/p>
+&lt;p>notepad：記事本&lt;/p>
+&lt;p>winword：word&lt;/p>
+&lt;p>excel：excel&lt;/p>
+&lt;p>計算機：calc&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/BQZCVyH.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;h1 id="快速打開工作列的應用程式">快速打開工作列的應用程式&lt;/h1>
+&lt;p>window+1&lt;/p>
+&lt;p>可以打開工作列的第一個應用&lt;/p>
+&lt;p>window+2&lt;/p>
+&lt;p>可以打開工作列的第二個應用，以此類推&amp;hellip;&lt;/p>
+&lt;p>這個指令我大部分都是用來開Chrome，或是Excel之類的東西&lt;/p>
+&lt;h1 id="瀏覽器快速選擇搜尋列">瀏覽器快速選擇搜尋列&lt;/h1>
+&lt;p>打開Chrorm後，打alt+D就可以定位到搜尋列，並且在這邊按Ctrl+1,2,3&amp;hellip;即可切換至不同的頁面，通常是我拿來打混摸魚的時候用的，Ctrl+T則可以打開新的分頁，所以兩個和再一起就是，開啟一個新分頁並搜尋，如果旁邊有人過來就立刻Ctrl+w關閉當前頁面，避免摸魚被抓包。&lt;/p></description></item><item><title>如何製作會計的電子筆記？Markdown的介紹</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</link><pubDate>Sun, 22 Jan 2023 23:15:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/c968Ywa.png" alt="Featured image of post 如何製作會計的電子筆記？Markdown的介紹" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>年假回老家實在是太無聊了，想把這幾年學到的東西分享一下，希望可以幫助一些莘莘學子，能用更有效率的方式來整理筆記。&lt;/p>
+&lt;p>記得大二或是大三的時候很沉迷於作筆記這件事情，最喜歡做的事情，就是用一兩個下午把那個禮拜所上的成會或是中會整理成筆記，以利後面的複習。不得不說當時這樣做的回饋還不錯，當時中會跟成會的成績都還算不錯。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/CFebBUe.png"
+loading="lazy"
+alt="image-20230122232625364"
+>&lt;/p>
+&lt;p>（當時很認真的筆記）&lt;/p>
+&lt;h1 id="紙本筆記的缺點">紙本筆記的缺點&lt;/h1>
+&lt;p>這樣的筆記在當時應付期中考期末考還行，因為這些筆記可能都是一兩個月寫的，都還算有印象，但是當我準備研究所的時候就發現幾個問題了，首先&lt;/p>
+&lt;ol>
+&lt;li>難以搜尋：面對海量的資料，我很難在第一時間找到我需要的資訊，比如說我想要找一個利息資本化的定義，以及它的細項，我除非前一陣子剛寫，或是我版面真的寫得很好，不然我不能第一時間的找到我想要的資訊。比如說稅法的部分就分成很多塊，比如說遺產稅贈與稅等等的，數量真的太多，且稅率也類似，常常找不到自己想要的地方。&lt;/li>
+&lt;li>難以擴充：紙質的筆記一旦寫下去之後就難以修改，無法滿足我越來越多的知識積累，比如說大家都知道的金融資產那一個章節，可能光一個範例就可以寫個2,30個也不為過，每個範例可能都有一些細節要抄進筆記裡面，這樣日積月累下去，那一頁的筆記越記越多、越寫越亂不易閱讀。&lt;/li>
+&lt;li>耗時：耗時是最大的問題，一頁的筆記我可能需要寫個半小時，雖然說寫的當下其實就記得很清楚了，但是卻非常的消耗時間，往往做完這些筆記我的假日就這樣沒了，實在是不太行，且手寫筆記非常吃手寫的品質，如果心一旦亂起來，亂寫一通，那這筆記基本上閱讀不能，只是寫給當時的自己看的，不利日後準備研究所或是會計師考試。&lt;/li>
+&lt;/ol>
+&lt;p>雖然1、2的問題都可以透過Ipad的手寫筆記來解決一些問題，但最大的問題就是第3點，當時有嘗試過很多方式，比如說用excel來記筆記(但儲存格不方便修改與擴充)，或是用word來寫，但word真的非常不適合拿來寫筆記，首先，work本身是不支援你打出類似分錄格式的東西的，就算可以，那個代價我記得也很大，其次，光是格式的部分可能就要設定個老半天，再加上在寫筆記的途中還需要移動滑鼠去調整現在想要的是&lt;/p>
+&lt;ol>
+&lt;li>&lt;/li>
+&lt;/ol>
+&lt;ol start="2">
+&lt;li>&lt;/li>
+&lt;li>&lt;/li>
+&lt;/ol>
+&lt;p>或是&lt;/p>
+&lt;ul>
+&lt;li>&lt;/li>
+&lt;/ul>
+&lt;ul>
+&lt;li>&lt;/li>
+&lt;li>&lt;/li>
+&lt;/ul>
+&lt;p>這樣的格式真的有點打斷思緒。&lt;/p>
+&lt;p>因此我的需求是這樣&lt;/p>
+&lt;ol>
+&lt;li>方便撰寫，希望不需要去切什麼格式&lt;/li>
+&lt;li>支援圖片上傳，可以讓我傳圖片上去，可能有些範例或是老師在黑板上畫的東西，需要做成筆記來看&lt;/li>
+&lt;li>要可以讓我打類似分錄的東西&lt;/li>
+&lt;/ol>
+&lt;p>後來出社會工作後，接觸到Markdown這個東西真的驚為天人，並且是有一點相見恨晚，如果在學期間知道這個東西的話做筆記應該會更高效快速一點。首先先來介紹一下Markdown是什麼吧&lt;/p>
+&lt;h1 id="markdown介紹">Markdown介紹&lt;/h1>
+&lt;p>Markdown 是目前非常普遍用來撰寫文檔的語言，一開始的目標就是使用「易讀易寫的純文字格式編寫文件」，此初衷讓使用者可以專注在文字的本身，而不需要透過其它工具來切換格式。以 Word 撰寫文檔來說，就必須透過上方的工具列來切換&lt;strong>標題、列表、粗體、斜體&lt;/strong>等等；而 Markdown 並沒有這樣的工具列，完全都是&lt;strong>使用標示符號來完成這些需求&lt;/strong>。&lt;/p>
+&lt;p>Markdown是一種輕量級標記式語言，創始人為約翰·格魯伯。它允許人們使用易讀易寫的純文字格式編寫文件&lt;/p>
+&lt;p>由於Markdown的輕量化、易讀易寫特性，並且對於圖片，圖表、數學式都有支援，目前許多網站都廣泛使用Markdown來撰寫說明文件或是用於論壇上發表訊息。如GitHub、Reddit、Discord、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge、簡書等，甚至還能被用來撰寫電子書。&lt;/p>
+&lt;p>參考自維基百科以及https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/&lt;/p>
+&lt;p>先來看看如果我把會計的筆記轉成Markdown的話看起來會是怎麼樣吧，因為Dcard不支援markdown，可以點這邊預覽看看&lt;/p>
+&lt;p>&lt;a href="https://hackmd.io/@Celeast/ryyXXyosi">https://hackmd.io/@Celeast/ryyXXyosi&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/NFRD8Ko.png"
+loading="lazy"
+alt="image-20230123005704082"
+>&lt;/p>
+&lt;h1 id="第七章-彈性預算直接成本與管理會計">第七章 彈性預算、直接成本與管理會計&lt;/h1>
+&lt;p>本章學習重點&lt;/p>
+&lt;ol>
+&lt;li>了解各差異的差異&lt;/li>
+&lt;li>基於差異分析所做的決策判斷&lt;/li>
+&lt;/ol>
+&lt;p>名詞定義&lt;/p>
+&lt;ul>
+&lt;li>靜態預算(Static Budget)：在預算期間開始時，&lt;strong>基於預計產出水準所做的預算&lt;/strong>所做的預算&lt;/li>
+&lt;li>靜態預算差異：在靜態預算中，實際結果與預期數之間的差異&lt;/li>
+&lt;li>彈性預算(Flexible Budget)：預算期間內按&lt;strong>實際產出&lt;/strong>水準計算出預算收入與預算成本之預算&lt;/li>
+&lt;/ul>
+&lt;p>．&lt;/p>
+&lt;p>．&lt;/p>
+&lt;p>．&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">flowchart LR
+B[實際投入數量x實際價格] &amp;lt;--價格差異--&amp;gt; 實際投入數量x預算價格 &amp;lt;--效率差異--&amp;gt; C[實際產出下所允許之預算投入x預算價格]
+B &amp;lt;--彈性預算差異--&amp;gt;C
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>變動&lt;/th>
+&lt;th>歸納&lt;/th>
+&lt;th>評論&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>固定制造成本可以做為存貨成本嗎?&lt;/td>
+&lt;td>不可&lt;/td>
+&lt;td>可以&lt;/td>
+&lt;td>基本問題&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>有生產數量差異嗎?&lt;/td>
+&lt;td>沒有&lt;/td>
+&lt;td>有&lt;/td>
+&lt;td>對基準產能水準的選擇，只在歸納成本法下影響營業利益的衡量&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>分錄&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>原料 10,000&lt;/p>
+&lt;p>​ 應付帳款 10,000&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>在製品 30,000&lt;/p>
+&lt;p>製造費用 1,000&lt;/p>
+&lt;p>​ 原料 31,000&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>產成品 50,000&lt;/p>
+&lt;p>​ 在製品 50,000&lt;/p>
+&lt;/blockquote>
+&lt;p>課堂範例：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/bhWOaT5.png"
+loading="lazy"
+alt="image-20230123000736761"
+>&lt;/p>
+&lt;h1 id="ｍarkdown語法介紹">Ｍarkdown語法介紹&lt;/h1>
+&lt;p>上面是我把我的會計筆記轉成Markdown格式，可以看到Markdown支援了幾點&lt;/p>
+&lt;ol>
+&lt;li>列表式的清單&lt;/li>
+&lt;li>用來舉例的黑點&lt;/li>
+&lt;li>重點的醒目提示&lt;/li>
+&lt;li>分層式的標題，標出章節重點&lt;/li>
+&lt;li>支援表格(注：markdown的表格語法非常反智，通常我都是用快捷鍵生成)&lt;/li>
+&lt;li>支援流程圖的繪製&lt;/li>
+&lt;li>支援數學式(這邊沒有示範到，不過Markdown是有支援高等數學的運算式的)&lt;/li>
+&lt;li>支援圖片上傳，可以讓我把版書或是題目直接貼上去&lt;/li>
+&lt;/ol>
+&lt;p>接下來帶大家認識一下Markdown的一些語法&lt;/p>
+&lt;p>首先是標題的語法，輸入#再加上一個空格會產生標題，就像現在這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xzUg32o.png"
+loading="lazy"
+alt="image-20230123001409936"
+>&lt;/p>
+&lt;p>在文字前加上1. 2. 3. 則會變成列表&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xbpaCZs.png"
+loading="lazy"
+alt="image-20230123001454121"
+>&lt;/p>
+&lt;p>文字之間加上**則可重點醒目&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vceq8VB.png"
+loading="lazy"
+alt="image-20230123001905373"
+>&lt;/p>
+&lt;p>在文字前加上+則會變成黑點&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/RrdcAai.png"
+loading="lazy"
+alt="image-20230123001516022"
+>&lt;/p>
+&lt;p>在文字前加上&amp;gt;則可做為補充說明，我就是用這個語法來寫分錄的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xaq48Ty.png"
+loading="lazy"
+alt="image-20230123001618553"
+>&lt;/p>
+&lt;p>顯示圖片的語法則是這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Yg0rfCW.png"
+loading="lazy"
+alt="image-20230123001709056"
+>&lt;/p>
+&lt;p>裡面的內容填上自己的圖片連結就可以了，如何把圖片上傳上去我後面會說。&lt;/p>
+&lt;p>Markdown的語法還有很多很多，不只有我上面提到的這些，有興趣的同學可以參考這邊&lt;/p>
+&lt;p>&lt;a href="https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/">https://www.casper.tw/development/2019/11/23/ten-mins-learn-markdown/&lt;/a>&lt;/p>
+&lt;h1 id="我該怎麼寫markdown呢">我該怎麼寫Markdown呢？&lt;/h1>
+&lt;p>markdown是工程師蠻常會接觸到一個標籤式語言，如果你開心的話用記事本也是可以寫Markdown的喔，但是效果會不太好閱讀而已，目前markdown我自己認為比較常見的有幾種&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Vscode&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/zCtwWvH.png"
+loading="lazy"
+alt="image-20230123002813123"
+>&lt;/p>
+&lt;p>這是我最初拿來寫markdown的工具，但它本身不是專門拿來寫markdown的，不支援一些熱鍵以及圖片上傳，後面就被我拋棄了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/To64OPG.png"
+loading="lazy"
+alt="image-20230123003226114"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>HackMd&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/XQD4g2U.png"
+loading="lazy"
+alt="image-20230123010834897"
+>&lt;/p>
+&lt;p>HackMd是一個網頁版的markdown編輯器，簡單來講就是你寫上去後，東西就是直接存在雲端，且圖片複製貼上就會自動幫你上傳到網路上了，非常的便捷以及快速，好像是台灣人開發的，最重要的是它免費，也是最常見的方式。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/yPY9NIk.png"
+loading="lazy"
+alt="image-20230123003322000"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Typora&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/AJVAHof.png"
+loading="lazy"
+alt="image-20230123003346195"
+>&lt;/p>
+&lt;p>這是我目前主力所使用的Markdown編輯器，跟HackMd最大的不同就是它是一個所見及所得的編輯器，上述兩款其實都是把畫面分成兩邊，左邊是Markdown語法，右邊則是渲染後的結果，而typora則是在你輸入完後直接幫你渲染好，也就是&lt;strong>所寫及所見&lt;/strong>，是它最大的特色。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/04NdYQW.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>但相比之下它就有幾個缺點&lt;/p>
+&lt;ol>
+&lt;li>要錢，最直觀的問題就是它是一個付費的程式，屬於買斷制一次500，支援三台設備同時使用&lt;/li>
+&lt;li>本身不支援圖片上傳，想要用它來做圖片上傳需要懂一些控制台指令以及Json格式的&lt;/li>
+&lt;li>本身的檔案都在local端，需要自己手動丟上雲端(我個人是丟到github上面，然後用bat檔自動上傳)&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;p>還可以提供一點，我會把一些真的沒辦法用文字或是Markdown語法表示的東西寫在平板的GoodNote上面，在把連結分享出來，然後截圖下來貼上去，看起來就像這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/SdiDiSv.png"
+loading="lazy"
+alt="image-20230123004611873"
+>&lt;/p>
+&lt;h1 id="結語">結語&lt;/h1>
+&lt;p>當然還有不只這些，我沒記錯的話Notion本身也有支援(但我不熟)以及obsidian也是一個寫Markdown的工具，我之所以會選Typora只是因為我喜歡有更大的空間，不喜歡畫面被分成左右兩邊而已。&lt;/p>
+&lt;p>作筆記的方法有很多，不做的、用紙寫的、用平板寫的，都可以，沒有誰優誰劣，Markdown也有它的限制在，比如說它就&lt;strong>不能寫資產負債表、也不能寫T字帳&lt;/strong>，沒有一個方法是最佳解的，只要找到自己喜歡的方式都可以，這篇文章只是拋磚引玉，希望提供自己的一些想法供大家參考，也歡迎各位一起討論，祝大家新年快樂，忙季加油！&lt;/p></description></item><item><title>你知道嗎?現在Github上也可以使用Vscode喔！</title><link>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</link><pubDate>Wed, 11 Jan 2023 23:27:27 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</guid><description>&lt;img src="https://i.imgur.com/Gckim1N.png" alt="Featured image of post 你知道嗎?現在Github上也可以使用Vscode喔！" />&lt;p>前陣子在網路上找看看有沒有什麼實用的Git指令，無意間看到這個功能。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/NltXKuw.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>只要在Github的頁面按下 &amp;gt; ，就可以開啟網頁版的Vscode囉，不過有個小缺點就是，Vscode開啟時介面語言是依據你瀏覽器的語言所決定，所以如果想要使用英文版的Vscode就要把Chrome的語言設定成英文喔。&lt;/p>
+&lt;p>這樣開啟後最直觀的好處就是可以直接在Github上以Vscode編輯程式碼，做快速的修改，瀏覽起來也比較快，不然原本網頁在看的話速度非常的慢！並且也可以在上面做衝突的處理。&lt;/p></description></item><item><title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title><link>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link><pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid><description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" />&lt;p>最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p>
+&lt;p>圖片空間有Github跟imgur，就看你想要用哪個就用哪個吧，其實沒差太多，但imgur會稍微簡單一點點點點點點，以下是步驟&lt;/p>
+&lt;h2 id="開始">開始&lt;/h2>
+&lt;ul>
+&lt;li>先去安裝node.js，因為會需要裡面的npm&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/&lt;/a>&lt;/p>
+&lt;p>安裝好可以用系統管理員身分打開cmd，並輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">node
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>如果有成功安裝的話應該會顯示&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*TJh1mXLciPRITGML.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;p>接著安裝picGo-core&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">npm install picgo -g
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*OURwrokLcSXsKhh7.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;p>說出現錯誤，要我們執行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">npm audit fix -force
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*iJyRBtSoBBDDWCiL.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;p>執行完之後就安裝好了，接著輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">picgo
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來確認是否有安裝成功，有時候可能會出現&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">檔案未經數位簽署這個指令碼將不會在系統上執行
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>之類之類的句子，這時候可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Set-ExecutionPolicy RemoteSigned
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來允許執行，這時候在輸入picgo應該就可以看到這樣子的畫面了&lt;/p>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*5z4fiwasXjd5owxU.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;p>到這一步本地端的設定已經完成80%了，接下來就是要選擇要使用哪種圖片空間&lt;/p>
+&lt;h2 id="github">Github&lt;/h2>
+&lt;ul>
+&lt;li>首先先到Github創建一個&lt;strong>公開&lt;/strong>的Repository，名字隨意就好&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*Qtv_aOAy_jvvJmxS.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>接著把這個Repository的URL複製下來&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">https://github.com/Hoxton019030/Typora
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>右上角個人頭像點開，選擇Settings&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*IvpN0zdI8lH7ArDz.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>左側選項最下面有一個Developer settings&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*I0XbiRgEZbAqSl1P.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>選擇Personal access tokens&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*av4YXNmNeXapHaSQ.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>選擇 Generate new token&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*f4CIbfps52_y13UM.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>輸入這個token的名稱，隨便取就好，Expiration看個人喜好，我很懶，所以我選擇永久，下面的select scopes勾選repo&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*OdCzsVJiqnSncFsR.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>接著會產生一組ghp開頭的token，這組序號&lt;strong>只會在這裡以明碼出現一次，接下來永遠都不會再以明碼的方式呈現&lt;/strong>所以請好好記起來&lt;/li>
+&lt;li>然後到Typora的偏好設定裡打開&lt;code>開啟設定檔&lt;/code>，通常會是用一個文本編輯器打開，通常都是vscode啦&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*TfGA65bOI7NQlTdO.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>接著把這串東西複製貼上去&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">{
+&amp;#34;picBed&amp;#34;: {
+&amp;#34;current&amp;#34;: &amp;#34;github&amp;#34;,
+&amp;#34;uploader&amp;#34;: &amp;#34;github&amp;#34;,
+&amp;#34;github&amp;#34;: {
+&amp;#34;repo&amp;#34;: &amp;#34;Hoxton019030/Typora&amp;#34;, //這串對應的是使用者名稱+Repo名稱，改成自己的
+&amp;#34;token&amp;#34;: &amp;#34;ghp_xxxxxxxxxxxxxxxxxxxx&amp;#34;, //這邊把剛剛產生的token貼上去
+&amp;#34;path&amp;#34;: &amp;#34;data/&amp;#34;, //圖片要上傳到哪個資料夾，可以先不用設定，
+&amp;#34;customUrl&amp;#34;: &amp;#34;https://raw.githubusercontent.com/Hoxton019030/Typora/main&amp;#34;, //把Hoxton019030/Typora改成你自己的repo
+&amp;#34;branch&amp;#34;: &amp;#34;main&amp;#34; //應該也不用動
+}
+},
+&amp;#34;picgoPlugins&amp;#34;: {}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>完成之後應該長這個樣子，接著按存檔&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*Jv9sK10wHg0dKTgj.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>接著回到設定，試著按看看測試圖片上傳&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*aBg4zeoUl5MUkCUB.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;p>如果成功的話就會出現這樣的畫面&lt;/p>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*jWdQ9Nc1dfG2Ju4g.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;p>就代表你成功了！&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;em>如果你在按一次測試圖片上傳，由於上傳的圖片檔名一模一樣，會報錯，這樣是正常現象，請不要驚慌&lt;/em>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*W658xLMijQPg2W5M.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;h2 id="imgur">imgur&lt;/h2>
+&lt;ul>
+&lt;li>首先先辦帳號&lt;/li>
+&lt;li>&lt;a href="https://api.imgur.com/oauth2/addclient">https://api.imgur.com/oauth2/addclient&lt;/a> 點擊這個網址&lt;/li>
+&lt;li>老樣子，名字隨意取就好，然後Authorization type選擇第二個&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/1*X8N6pfp6RBxMrFUQ-7DMhg.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>接著會跳出畫面，會告訴你你的Client ID是什麼，請複製下來&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*BXo0QET3625yCZb3.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>接著到偏好設定裡面打開開啟設定檔，通常會用vscode開啟&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*wcsfPRq4DONBo8WE.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>接著把這段複製貼上上去&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">{
+&amp;#34;picBed&amp;#34;: {
+&amp;#34;current&amp;#34;: &amp;#34;imgur&amp;#34;,
+&amp;#34;uploader&amp;#34;: &amp;#34;imgur&amp;#34;,
+&amp;#34;imgur&amp;#34;:{
+&amp;#34;clientId&amp;#34;: &amp;#34;XXXXXXXXXXX&amp;#34;
+}
+},
+&amp;#34;picgoPlugins&amp;#34;: {}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>貼上去之後應該會長這個樣子&lt;/p>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*w6neiFt-pF_F7Xi5.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;ul>
+&lt;li>然後存檔之後，回到偏好設定，按「測試圖片上傳」&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*zVjvGlhqINfbk757.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*J3wT0Gdta9xwlTpd.png"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;p>跳出這個就代表成功上傳了！&lt;/p>
+&lt;h2 id="小結">小結&lt;/h2>
+&lt;p>這樣子只要在typora裡面貼上圖片，typora就會自動幫我們上傳圖片到圖片空間了。&lt;/p></description></item></channel></rss>

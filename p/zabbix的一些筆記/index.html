@@ -1,1722 +1,563 @@
-<!DOCTYPE html>
-<html lang="zh" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='人生中總是有許多無奈，被迫去學的Zabbix筆記'><title>Zabbix的一些筆記</title>
-
-<link rel='canonical' href='https://hoxtonhsu.com/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/'>
-
-<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='Zabbix的一些筆記'>
-<meta property='og:description' content='人生中總是有許多無奈，被迫去學的Zabbix筆記'>
-<meta property='og:url' content='https://hoxtonhsu.com/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/'>
-<meta property='og:site_name' content='Hoxton'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Zabbix' /><meta property='article:published_time' content='2023-03-13T05:40:02&#43;00:00'/><meta property='article:modified_time' content='2023-03-13T05:40:02&#43;00:00'/><meta property='og:image' content='https://i.imgur.com/7g77ZiN.png' />
-<meta name="twitter:title" content="Zabbix的一些筆記">
-<meta name="twitter:description" content="人生中總是有許多無奈，被迫去學的Zabbix筆記"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://i.imgur.com/7g77ZiN.png' />
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-9N16MVLR0Q', { 'anonymize_ip': false });
-}
-</script>
-
-    </head>
-    <body class="
-    article-page
-    ">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            localStorage.setItem(colorSchemeKey, "dark");
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-
-    <header>
-        
-            
-            <figure class="site-avatar">
-                <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_3.png" width="300"
-                            height="301" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
-                </a>
-                
-            </figure>
-            
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">Hoxton</a></h1>
-            <h2 class="site-description">快樂的CRUD Boy, API Caller</h2>
-        </div>
-    </header><ol class="social-menu">
-            
-                <li>
-                    <a 
-                        href='https://discordapp.com/users/840906423076782082'
-                        target="_blank"
-                        title="Discord"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <circle cx="9" cy="12" r="1" />
-  <circle cx="15" cy="12" r="1" />
-  <path d="M7.5 7.5c3.5 -1 5.5 -1 9 0" />
-  <path d="M7 16.5c3.5 1 6.5 1 10 0" />
-  <path d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-1 2.5" />
-  <path d="M8.5 17c0 1 -1.356 3 -1.832 3c-1.429 0 -2.698 -1.667 -3.333 -3c-.635 -1.667 -.476 -5.833 1.428 -11.5c1.388 -1.015 2.782 -1.34 4.237 -1.5l1 2.5" />
-</svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://github.com/Hoxton019030'
-                        target="_blank"
-                        title="GitHub"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://www.instagram.com/hoxton_8a31/'
-                        target="_blank"
-                        title="Instagram"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <rect x="4" y="4" width="16" height="16" rx="4" />
-  <circle cx="12" cy="12" r="3" />
-  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
-</svg>
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-
-        <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>Home</span>
-            </a>
-        </li>
-        
-        
-
-        <li >
-            <a href='/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>Archives</span>
-            </a>
-        </li>
-        
-        
-
-        <li >
-            <a href='/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>Search</span>
-            </a>
-        </li>
-        
-
-        <div class="menu-bottom-section">
-            
-            
-        </div>
-    </ol>
-</aside>
-<main class="main full-width">
-    <article class="has-image main-article">
-    <header class="article-header">
-        <div class="article-image">
-            <a href="/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/">
-                
-                    <img src="https://i.imgur.com/7g77ZiN.png" loading="lazy" alt="Featured image of post Zabbix的一些筆記" />
-                
-            </a>
-        </div>
-    
-
-    <div class="article-details">
-    
-    <header class="article-category">
-        
-            <a href="/categories/%E7%AD%86%E8%A8%98/" style="background-color: #2a9d8f; color: #fff;">
-                筆記
-            </a>
-        
-    </header>
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/">Zabbix的一些筆記</a>
-        </h2>
-    
-        
-        <h3 class="article-subtitle">
-            人生中總是有許多無奈，被迫去學的Zabbix筆記
-        </h3>
-        
-    </div>
-
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">Mar 13, 2023</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    6 minute read
-                </time>
-            </div>
-        
-    </footer>
-    
-
-    
-</div>
-</header>
-
-    <section class="article-content">
-    
-    
-    <p>參考網址：<a class="link" href="https://ithelp.ithome.com.tw/articles/10263907"  target="_blank" rel="noopener"
-    >監控大挑戰 - 以 Zabbix 為例</a></p>
-<h1 id="為什麼選擇zabbix">為什麼選擇Zabbix?</h1>
-<p>目前常見的監控軟體有三者</p>
-<ol>
-<li>Zabbix</li>
-<li>Cacti</li>
-<li>Nagios</li>
-</ol>
-<h2 id="nagios的介面">NagiOs的介面</h2>
-<p><img src="https://i.imgur.com/MnINBY1.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230317110443666"
-	
-	
-></p>
-<h2 id="cacti的介面">Cacti的介面</h2>
-<p><img src="https://i.imgur.com/quFB2i9.jpg"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230317110544016"
-	
-	
-></p>
-<h2 id="zabbix的介面">Zabbix的介面</h2>
-<p><img src="https://i.imgur.com/KMZdZPE.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230317110906297"
-	
-	
-></p>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>監控產品</th>
-<th>Zabbix</th>
-<th>Nagios</th>
-<th>Cacti</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>圖形介面</td>
-<td>好看</td>
-<td>不是特別好</td>
-<td>還行</td>
-</tr>
-<tr>
-<td>監控性能</td>
-<td>併發監控，對CPU要求較高</td>
-<td>併發監控，對CPU要求較高</td>
-<td>輪詢監控，效能低</td>
-</tr>
-<tr>
-<td>配置難度</td>
-<td>較低，有圖形化介面使用</td>
-<td>需使用CommandLine</td>
-<td>需使用CommandLine</td>
-</tr>
-<tr>
-<td>自動發現</td>
-<td>支持</td>
-<td>不支持</td>
-<td>不支持</td>
-</tr>
-<tr>
-<td>異常通知方式</td>
-<td>Email,簡訊,webhook,Line&hellip;</td>
-<td>Email,簡訊,webhook,Line&hellip;</td>
-<td>較弱，預設只支援Email</td>
-</tr>
-</tbody>
-</table></div>
-<h1 id="zabbix是什麼">Zabbix是什麼</h1>
-<p>Zabbix是一種開源的網絡監視和警報系統，用於監視各種網絡設備，包括服務器、網絡設備和應用程序等。Zabbix提供了一個可擴展的架構，可用於監視多個位置的數千個設備。</p>
-<p>Zabbix支持各種監視方式，包括SNMP、JMX、IPMI和VMware監視，還可以通過自定義監視腳本進行擴展。Zabbix還提供了一個強大的報警系統，可以通過電子郵件、SMS和其他方式發送警報，以便快速解決問題。</p>
-<p>Zabbix還提供了一個用戶友好的Web界面，可以輕鬆設置監視器和警報。Zabbix的開源設計使其成為一個非常有用的監視解決方案，可以滿足各種規模的企業和組織的需求</p>
-<p><img src="https://i.imgur.com/f9AxFB5.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230313142828806"
-	
-	
-></p>
-<h1 id="zabbix術語">Zabbix術語</h1>
-<p>Zabbix Server</p>
-<ul>
-<li>Zabbix server是agent程序報告系統可用性、系統完整性和統計數據的核心組件，是所有配置訊息、統計訊息和操作數據的核心儲存器</li>
-</ul>
-<p>Zabbix資料庫存取</p>
-<ul>
-<li>所有配置訊息和Zabbix收集到的數據都被儲存在資料庫中</li>
-</ul>
-<p>Zabbix Web介面</p>
-<ul>
-<li>為了從任何地方和任何平台都可以輕鬆地訪問Zabbix，我們提供基於Web的Zabbix介面，該介面是Zabbix Server的一部分，通常(但不一定)跟Zabbix Server運行在同一台物理主機上</li>
-</ul>
-<p>Zabbix Proxy 代理服務器</p>
-<ul>
-<li>Zabbix Proxy可以替Zabbix Server收集性能和可用性數據。Proxy代理服務器是Zabbix軟體可選擇部屬的一部分，當然，Proxy代理服務器可以幫助單台Zabbix Server分擔負載壓力</li>
-</ul>
-<p>Zabbix Agent 監控代理</p>
-<ul>
-<li>Zabbix agent 監控代理，部屬在監控目標上，能夠主動間空本地資源和應用程序，並將收集到的數據報告給Zabbix Server</li>
-</ul>
-<p>Zabbix數據流</p>
-<ul>
-<li>監控方面，為了創造一個監控項(item)用於採集數據，必須先創建一個主機(host)</li>
-<li>告警方面，在監控項裡面創造觸發器(trigger)，通過觸發器(trigger)來觸發告警動作(action)。因此如果你想收到Server XCPU負載過高的告警，必須滿足</li>
-</ul>
-<ol>
-<li>為Server X創建一個Host並關聯一個用對CPU進行監控的監控項(item)</li>
-<li>創建一個Trigger，設置成當CPU負載過高時會觸發</li>
-<li>Trigger被觸發，發送告警郵件</li>
-</ol>
-<p>雖然看起來有很多步驟，但是使用模板的話操作起來其實非常簡單，Zabbix這樣的設計使得配置機制非常靈活易用</p>
-<p>主機(Host)</p>
-<ul>
-<li>一台你想監控的網路設備，用IP和域名表示</li>
-</ul>
-<p>主機組(host Group)</p>
-<ul>
-<li>主機的邏輯組；包含了主機和模板。一個主機裡的主機和模板之間並沒有任何直接的關聯，通常在給不同用戶組的主機分配權限時，使用主機組</li>
-</ul>
-<p>監控項(item)</p>
-<ul>
-<li>你想要接收的主機的特定數據，一個度量數據</li>
-</ul>
-<p>觸發器(Trigger)</p>
-<ul>
-<li>一個被用於定義問題閾值和&quot;評估&quot;監控項接受到的數據的邏輯表達式，當接收到的數據高於閾值時，觸發器從OK變成Problem狀態。當接收到的數據低於閾值時，觸發器保留/返回一個OK的狀態</li>
-</ul>
-<p>事件(Event)</p>
-<ul>
-<li>單次發生的需要注意的事情，例如觸發器狀態改變，或是發現有監控代理自動註冊</li>
-</ul>
-<p>異常(Problem)</p>
-<ul>
-<li>一個處在<strong>異常</strong>狀態的觸發器</li>
-</ul>
-<p>動作(Action)</p>
-<ul>
-<li>一個對事件做出反應的預定義的操作</li>
-<li>一個動作由操作(例如發出通知)和條件(當時操作正在發生)組成</li>
-</ul>
-<p>升級(Escalation)</p>
-<ul>
-<li>一個在動作內執行操作的自定義場景；發生通知／執行遠程命令的序列</li>
-</ul>
-<p>媒介(Media)</p>
-<ul>
-<li>發送告警通知的手段；告警通知的途徑</li>
-</ul>
-<p>通知(Notification)</p>
-<ul>
-<li>利用已選擇的媒體途徑把跟事件相關的訊息發送給用戶</li>
-</ul>
-<p>遠程命令(remote command)</p>
-<ul>
-<li>一個預定義好的，滿足一些條件的情況下，可以在被監控主機上自動執行的命令</li>
-</ul>
-<p>模板(template)</p>
-<ul>
-<li>一組可以被應用到一個或多個主機上的實體(監控項、觸發器、圖形、聚合圖形、應用、LLD、Web場景)的集合</li>
-<li>模板的任務就是加快對主機監控任務的實施；也可以使監控任務的批量修改更簡單。模板是直接關連到每台單獨的主機上</li>
-</ul>
-<p>應用(Application)</p>
-<ul>
-<li>一組監控項組成的邏輯分組</li>
-</ul>
-<p>Web場景(Web Scenario)</p>
-<ul>
-<li>利用一個或多個HTTP請求來檢查網站的可用性</li>
-</ul>
-<p>前端(FrontEnd)</p>
-<ul>
-<li>Zabbix提供的Web介面</li>
-</ul>
-<p>Zabbix API</p>
-<ul>
-<li>Zabbix API允許你使用JSON RPC協議(是一個無狀態且輕量級的遠程過程調用<code>Remote Procedure Call </code>傳送協議，其傳遞內容透過JSON為主)來創建、更新和獲取Zabbix對象(如主機、監控項、圖形和其他)信息或者執行任何其他的字定義的任務</li>
-</ul>
-<p>Zabbix Server</p>
-<ul>
-<li>Zabbix軟件實現監控的核心程序，主要功能是與Zabbix proxies和Agents進行交互、觸發器計算、發送告警通知、並將資料集中保存</li>
-</ul>
-<p>Zabbix Agent</p>
-<ul>
-<li>一個部屬在監控對象上的，能夠主動監控本地資源和應用的程序</li>
-<li>Zabbix Agent部屬在監控的目標上，主動監測本地的資源和應用(硬體驅動、記憶體、處理器統計等等)</li>
-<li>Zabbix Agent收集本地的操作訊息並將資料報告給Zabbix Server用於進一步處理。一旦出現異常(比如硬碟空間已滿或者有崩潰的服務器Process)，Zabbix Server會主動警告管理員指定機器上的異常。Zabbix Agents的極端高校源於他可以利用本地系統調用來完成統計數據的收集</li>
-</ul>
-<p>被動(Passive) 和 主動(Active)檢查</p>
-<ul>
-<li>Zabbix Agent可以執行被動和主動兩種檢查方式</li>
-</ul>
-<ol>
-<li>被動檢查(Passive Check)模式中Agent應答數據請求，Zabbix Server(或者Proxy)詢問Agent資料，如CPU負仔狀況，然後Zabbix Agent回傳結果</li>
-<li>主動檢查(Active Checks) 處理過程將相對複雜。Agent必須首先從Zabbix server索取監控項列表以進行獨立處理，然後週期性的發送新的值給Server</li>
-</ol>
-<p>執行被動或主動檢查是通過選擇相應的監測項目類型來配置的。Item Type. Zabbix Agent處理監控項類型有Zabbix agent和 Zabbix Agent(Active)</p>
-<p>Zabbix Proxy</p>
-<ul>
-<li>一個幫助Zabbix server收集數據，分擔Zabbix Server負擔的程式</li>
-<li>Zabbix Proxy是一個可以從一個或多個受監控設備收集監控數據，並將訊息結果發送到Zabbix Server的Process，基本上是代表Server工作的。所有收集的數據都在本地進行快取，然後傳送到Proxy所屬的Zabbix Server。</li>
-<li>部屬Proxy是可選的，但是可能會非常有益於分散單個Zabbix  Sever的負載，如果只有Proxy收集數據，Server上的進程就會減少，CPU消耗和磁碟I/O負載</li>
-<li>Zabbix Proxy是完成遠端區域，分支機構，沒有本地管理員的網路集中監控的理想解決方案</li>
-<li>Zabbix  Proxy需要使用獨立的資料庫</li>
-</ul>
-<h1 id="使用docker安裝-zabbix">使用Docker安裝 Zabbix</h1>
-<p>首先先點到下列網站
-<a class="link" href="https://www.zabbix.com/documentation/5.0/en/manual/installation/containers"  target="_blank" rel="noopener"
-    >https://www.zabbix.com/documentation/5.0/en/manual/installation/containers</a></p>
-<p>並在這邊選擇要使用的版本
-<img src="https://i.imgur.com/WNJujBy.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>這次是使用官網提供的，也就是用mysql當database的版本</p>
-<p>並按照下列的cmd指令輸入，下面的參數，若有需要變可以在自行修改</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker network create --subnet 172.20.0.0/16 --ip-range 172.20.240.0/20 zabbix-net
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --name postgres-server -t -e <span class="nv">POSTGRES_USER</span><span class="o">=</span><span class="s2">&#34;zabbix&#34;</span> -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">&#34;zabbix_pwd&#34;</span> -e <span class="nv">POSTGRES_DB</span><span class="o">=</span><span class="s2">&#34;zabbix&#34;</span> --network<span class="o">=</span>zabbix-net --restart unless-stopped -d postgres:latest
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --name zabbix-snmptraps -t -v /zbx_instance/snmptraps:/var/lib/zabbix/snmptraps:rw -v /var/lib/zabbix/mibs:/usr/share/snmp/mibs:ro --network<span class="o">=</span>zabbix-net -p 162:1162/udp --restart unless-stopped -d zabbix/zabbix-snmptraps:alpine-5.0-latest
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ddocker run --name zabbix-server-pgsql -t -e <span class="nv">DB_SERVER_HOST</span><span class="o">=</span><span class="s2">&#34;postgres-server&#34;</span> -e <span class="nv">POSTGRES_USER</span><span class="o">=</span><span class="s2">&#34;zabbix&#34;</span> -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">&#34;zabbix_pwd&#34;</span> -e <span class="nv">POSTGRES_DB</span><span class="o">=</span><span class="s2">&#34;zabbix&#34;</span> -e <span class="nv">ZBX_ENABLE_SNMP_TRAPS</span><span class="o">=</span><span class="s2">&#34;true&#34;</span> --network<span class="o">=</span>zabbix-net -p 10051:10051 --volumes-from zabbix-snmptraps  --restart unless-stopped -d zabbix/zabbix-server-pgsql:alpine-5.0-latest
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --name zabbix-web-nginx-pgsql -t -e <span class="nv">ZBX_SERVER_HOST</span><span class="o">=</span><span class="s2">&#34;zabbix-server-pgsql&#34;</span> -e <span class="nv">DB_SERVER_HOST</span><span class="o">=</span><span class="s2">&#34;postgres-server&#34;</span> -e <span class="nv">POSTGRES_USER</span><span class="o">=</span><span class="s2">&#34;zabbix&#34;</span> -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">&#34;zabbix_pwd&#34;</span> -e <span class="nv">POSTGRES_DB</span><span class="o">=</span><span class="s2">&#34;zabbix&#34;</span> --network<span class="o">=</span>zabbix-net -p 443:8443 -p 80:8080 -v /etc/ssl/nginx:/etc/ssl/nginx:ro --restart unless-stopped -d zabbix/zabbix-web-nginx-pgsql:alpine-5.0-latest
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="透過termianl訪問container中的資料庫以psql為例">透過termianl訪問Container中的資料庫，以psql為例</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it <span class="o">[</span>containerId<span class="o">]</span> bash
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">psql -U zabbix -h localhost zabbix
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://i.imgur.com/mVPKa6i.gif"
-	
-	
-	
-	loading="lazy"
-	
-		alt="demo"
-	
-	
-></p>
-<p>當全部都設置好後</p>
-<p>訪問 http://localohst/ 即可訪問Zabbix頁面</p>
-<p>帳號：Admin
-密碼：zabbix</p>
-<p><img src="https://i.imgur.com/T8tGvQQ.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<h1 id="在window下安裝-zabbix-agent">在Window下安裝 Zabbix Agent</h1>
-<p>這邊待補啦，不過先講一下Zabbix的Server端要怎麼對應</p>
-<p>​	<img src="https://i.imgur.com/5CXeOx4.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230317111417481"
-	
-	
-></p>
-<p>Host Name：要和當初設定Agent的Name一致</p>
-<p>Group：Templates/Operating systems</p>
-<p>Agent：當Agent的那一台主機的IP</p>
-<p><img src="https://i.imgur.com/Vre2glc.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230317111854438"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/LQ0R9rk.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230317111428373"
-	
-	
-></p>
-<p>Temlate：Template OS Windows by Zabbix agent</p>
-<h1 id="api的使用">API的使用</h1>
-<p>可以到下列的網站使用線上的Zabbix API Test</p>
-<p><a class="link" href="https://sbcode.net/zabbix/zabbix-api-test-form/"  target="_blank" rel="noopener"
-    >https://sbcode.net/zabbix/zabbix-api-test-form/</a></p>
-<p><img src="https://i.imgur.com/SNBs6Z9.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>url都是 http://localhost/api_jsonrpc.php，差別在於Body的內容</p>
-<h2 id="測試用api用以返回版本號">測試用API，用以返回版本號</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;apiinfo.version&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>返回的結果</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="s2">&#34;5.0.32&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="登入用的api用來取得token">登入用的API，用來取得Token</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;user.login&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="s2">&#34;Admin&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;zabbix&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="kc">null</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>返回的結果</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="s2">&#34;1a6022b1a01b787b2129d011763c73e6&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>result就是Token值</p>
-<h2 id="返回目前存在的agent">返回目前存在的Agent</h2>
-<p>記得把Auth的值改成login返回的token</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;host.get&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;output&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;hostid&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;host&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">],</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;selectInterfaces&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;interfaceid&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;ip&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="s2">&#34;1a6022b1a01b787b2129d011763c73e6&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>返回的結果</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;hostid&#34;</span><span class="p">:</span> <span class="s2">&#34;10084&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;Zabbix server&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;interfaces&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">                <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;interfaceid&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;ip&#34;</span><span class="p">:</span> <span class="s2">&#34;127.0.0.1&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;hostid&#34;</span><span class="p">:</span> <span class="s2">&#34;10438&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;Ian&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;interfaces&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">                <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;interfaceid&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;ip&#34;</span><span class="p">:</span> <span class="s2">&#34;192.168.100.51&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;hostid&#34;</span><span class="p">:</span> <span class="s2">&#34;10440&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;Bill&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;interfaces&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">                <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;interfaceid&#34;</span><span class="p">:</span> <span class="s2">&#34;4&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;ip&#34;</span><span class="p">:</span> <span class="s2">&#34;192.168.100.57&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;hostid&#34;</span><span class="p">:</span> <span class="s2">&#34;10439&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;Jess&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;interfaces&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">                <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;interfaceid&#34;</span><span class="p">:</span> <span class="s2">&#34;3&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;ip&#34;</span><span class="p">:</span> <span class="s2">&#34;192.168.100.51&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="zabbix-api介紹">Zabbix API介紹</h2>
-<p><a class="link" href="https://sbcode.net/zabbix/zabbix-api-test-form/"  target="_blank" rel="noopener"
-    >https://sbcode.net/zabbix/zabbix-api-test-form/</a></p>
-<p>在很多的API Parameter中，會常常看到</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;output&#34;</span><span class="p">:</span> <span class="s2">&#34;extend&#34;</span><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>這段。這句話的意思是這樣的
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="人生中總是有許多無奈，被迫去學的Zabbix筆記"><title>Zabbix的一些筆記</title><link rel=canonical href=https://hoxtonhsu.com/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/><link rel=stylesheet href=/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css><meta property="og:title" content="Zabbix的一些筆記"><meta property="og:description" content="人生中總是有許多無奈，被迫去學的Zabbix筆記"><meta property="og:url" content="https://hoxtonhsu.com/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/"><meta property="og:site_name" content="Hoxton"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="Zabbix"><meta property="article:published_time" content="2023-03-13T05:40:02+00:00"><meta property="article:modified_time" content="2023-03-13T05:40:02+00:00"><meta property="og:image" content="https://i.imgur.com/7g77ZiN.png"><meta name=twitter:title content="Zabbix的一些筆記"><meta name=twitter:description content="人生中總是有許多無奈，被迫去學的Zabbix筆記"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://i.imgur.com/7g77ZiN.png"><link rel="shortcut icon" href=https://cdn-icons-png.flaticon.com/512/92/92031.png><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-9N16MVLR0Q','auto');ga('send','pageview');}</script></head><body class=article-page><script>(function(){const colorSchemeKey='StackColorScheme';localStorage.setItem(colorSchemeKey,"dark");})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.documentElement.dataset.scheme='dark';}else{document.documentElement.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy, API Caller</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/><img src=https://i.imgur.com/7g77ZiN.png loading=lazy alt="Featured image of post Zabbix的一些筆記"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%AD%86%E8%A8%98/ style=background-color:#2a9d8f;color:#fff>筆記</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/>Zabbix的一些筆記</a></h2><h3 class=article-subtitle>人生中總是有許多無奈，被迫去學的Zabbix筆記</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Mar 13, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>6 minute read</time></div></footer></div></header><section class=article-content><p>參考網址：<a class=link href=https://ithelp.ithome.com.tw/articles/10263907 target=_blank rel=noopener>監控大挑戰 - 以 Zabbix 為例</a></p><h1 id=為什麼選擇zabbix>為什麼選擇Zabbix?</h1><p>目前常見的監控軟體有三者</p><ol><li>Zabbix</li><li>Cacti</li><li>Nagios</li></ol><h2 id=nagios的介面>NagiOs的介面</h2><p><img src=https://i.imgur.com/MnINBY1.png loading=lazy alt=image-20230317110443666></p><h2 id=cacti的介面>Cacti的介面</h2><p><img src=https://i.imgur.com/quFB2i9.jpg loading=lazy alt=image-20230317110544016></p><h2 id=zabbix的介面>Zabbix的介面</h2><p><img src=https://i.imgur.com/KMZdZPE.png loading=lazy alt=image-20230317110906297></p><div class=table-wrapper><table><thead><tr><th>監控產品</th><th>Zabbix</th><th>Nagios</th><th>Cacti</th></tr></thead><tbody><tr><td>圖形介面</td><td>好看</td><td>不是特別好</td><td>還行</td></tr><tr><td>監控性能</td><td>併發監控，對CPU要求較高</td><td>併發監控，對CPU要求較高</td><td>輪詢監控，效能低</td></tr><tr><td>配置難度</td><td>較低，有圖形化介面使用</td><td>需使用CommandLine</td><td>需使用CommandLine</td></tr><tr><td>自動發現</td><td>支持</td><td>不支持</td><td>不支持</td></tr><tr><td>異常通知方式</td><td>Email,簡訊,webhook,Line&mldr;</td><td>Email,簡訊,webhook,Line&mldr;</td><td>較弱，預設只支援Email</td></tr></tbody></table></div><h1 id=zabbix是什麼>Zabbix是什麼</h1><p>Zabbix是一種開源的網絡監視和警報系統，用於監視各種網絡設備，包括服務器、網絡設備和應用程序等。Zabbix提供了一個可擴展的架構，可用於監視多個位置的數千個設備。</p><p>Zabbix支持各種監視方式，包括SNMP、JMX、IPMI和VMware監視，還可以通過自定義監視腳本進行擴展。Zabbix還提供了一個強大的報警系統，可以通過電子郵件、SMS和其他方式發送警報，以便快速解決問題。</p><p>Zabbix還提供了一個用戶友好的Web界面，可以輕鬆設置監視器和警報。Zabbix的開源設計使其成為一個非常有用的監視解決方案，可以滿足各種規模的企業和組織的需求</p><p><img src=https://i.imgur.com/f9AxFB5.png loading=lazy alt=image-20230313142828806></p><h1 id=zabbix術語>Zabbix術語</h1><p>Zabbix Server</p><ul><li>Zabbix server是agent程序報告系統可用性、系統完整性和統計數據的核心組件，是所有配置訊息、統計訊息和操作數據的核心儲存器</li></ul><p>Zabbix資料庫存取</p><ul><li>所有配置訊息和Zabbix收集到的數據都被儲存在資料庫中</li></ul><p>Zabbix Web介面</p><ul><li>為了從任何地方和任何平台都可以輕鬆地訪問Zabbix，我們提供基於Web的Zabbix介面，該介面是Zabbix Server的一部分，通常(但不一定)跟Zabbix Server運行在同一台物理主機上</li></ul><p>Zabbix Proxy 代理服務器</p><ul><li>Zabbix Proxy可以替Zabbix Server收集性能和可用性數據。Proxy代理服務器是Zabbix軟體可選擇部屬的一部分，當然，Proxy代理服務器可以幫助單台Zabbix Server分擔負載壓力</li></ul><p>Zabbix Agent 監控代理</p><ul><li>Zabbix agent 監控代理，部屬在監控目標上，能夠主動間空本地資源和應用程序，並將收集到的數據報告給Zabbix Server</li></ul><p>Zabbix數據流</p><ul><li>監控方面，為了創造一個監控項(item)用於採集數據，必須先創建一個主機(host)</li><li>告警方面，在監控項裡面創造觸發器(trigger)，通過觸發器(trigger)來觸發告警動作(action)。因此如果你想收到Server XCPU負載過高的告警，必須滿足</li></ul><ol><li>為Server X創建一個Host並關聯一個用對CPU進行監控的監控項(item)</li><li>創建一個Trigger，設置成當CPU負載過高時會觸發</li><li>Trigger被觸發，發送告警郵件</li></ol><p>雖然看起來有很多步驟，但是使用模板的話操作起來其實非常簡單，Zabbix這樣的設計使得配置機制非常靈活易用</p><p>主機(Host)</p><ul><li>一台你想監控的網路設備，用IP和域名表示</li></ul><p>主機組(host Group)</p><ul><li>主機的邏輯組；包含了主機和模板。一個主機裡的主機和模板之間並沒有任何直接的關聯，通常在給不同用戶組的主機分配權限時，使用主機組</li></ul><p>監控項(item)</p><ul><li>你想要接收的主機的特定數據，一個度量數據</li></ul><p>觸發器(Trigger)</p><ul><li>一個被用於定義問題閾值和"評估"監控項接受到的數據的邏輯表達式，當接收到的數據高於閾值時，觸發器從OK變成Problem狀態。當接收到的數據低於閾值時，觸發器保留/返回一個OK的狀態</li></ul><p>事件(Event)</p><ul><li>單次發生的需要注意的事情，例如觸發器狀態改變，或是發現有監控代理自動註冊</li></ul><p>異常(Problem)</p><ul><li>一個處在<strong>異常</strong>狀態的觸發器</li></ul><p>動作(Action)</p><ul><li>一個對事件做出反應的預定義的操作</li><li>一個動作由操作(例如發出通知)和條件(當時操作正在發生)組成</li></ul><p>升級(Escalation)</p><ul><li>一個在動作內執行操作的自定義場景；發生通知／執行遠程命令的序列</li></ul><p>媒介(Media)</p><ul><li>發送告警通知的手段；告警通知的途徑</li></ul><p>通知(Notification)</p><ul><li>利用已選擇的媒體途徑把跟事件相關的訊息發送給用戶</li></ul><p>遠程命令(remote command)</p><ul><li>一個預定義好的，滿足一些條件的情況下，可以在被監控主機上自動執行的命令</li></ul><p>模板(template)</p><ul><li>一組可以被應用到一個或多個主機上的實體(監控項、觸發器、圖形、聚合圖形、應用、LLD、Web場景)的集合</li><li>模板的任務就是加快對主機監控任務的實施；也可以使監控任務的批量修改更簡單。模板是直接關連到每台單獨的主機上</li></ul><p>應用(Application)</p><ul><li>一組監控項組成的邏輯分組</li></ul><p>Web場景(Web Scenario)</p><ul><li>利用一個或多個HTTP請求來檢查網站的可用性</li></ul><p>前端(FrontEnd)</p><ul><li>Zabbix提供的Web介面</li></ul><p>Zabbix API</p><ul><li>Zabbix API允許你使用JSON RPC協議(是一個無狀態且輕量級的遠程過程調用<code>Remote Procedure Call </code>傳送協議，其傳遞內容透過JSON為主)來創建、更新和獲取Zabbix對象(如主機、監控項、圖形和其他)信息或者執行任何其他的字定義的任務</li></ul><p>Zabbix Server</p><ul><li>Zabbix軟件實現監控的核心程序，主要功能是與Zabbix proxies和Agents進行交互、觸發器計算、發送告警通知、並將資料集中保存</li></ul><p>Zabbix Agent</p><ul><li>一個部屬在監控對象上的，能夠主動監控本地資源和應用的程序</li><li>Zabbix Agent部屬在監控的目標上，主動監測本地的資源和應用(硬體驅動、記憶體、處理器統計等等)</li><li>Zabbix Agent收集本地的操作訊息並將資料報告給Zabbix Server用於進一步處理。一旦出現異常(比如硬碟空間已滿或者有崩潰的服務器Process)，Zabbix Server會主動警告管理員指定機器上的異常。Zabbix Agents的極端高校源於他可以利用本地系統調用來完成統計數據的收集</li></ul><p>被動(Passive) 和 主動(Active)檢查</p><ul><li>Zabbix Agent可以執行被動和主動兩種檢查方式</li></ul><ol><li>被動檢查(Passive Check)模式中Agent應答數據請求，Zabbix Server(或者Proxy)詢問Agent資料，如CPU負仔狀況，然後Zabbix Agent回傳結果</li><li>主動檢查(Active Checks) 處理過程將相對複雜。Agent必須首先從Zabbix server索取監控項列表以進行獨立處理，然後週期性的發送新的值給Server</li></ol><p>執行被動或主動檢查是通過選擇相應的監測項目類型來配置的。Item Type. Zabbix Agent處理監控項類型有Zabbix agent和 Zabbix Agent(Active)</p><p>Zabbix Proxy</p><ul><li>一個幫助Zabbix server收集數據，分擔Zabbix Server負擔的程式</li><li>Zabbix Proxy是一個可以從一個或多個受監控設備收集監控數據，並將訊息結果發送到Zabbix Server的Process，基本上是代表Server工作的。所有收集的數據都在本地進行快取，然後傳送到Proxy所屬的Zabbix Server。</li><li>部屬Proxy是可選的，但是可能會非常有益於分散單個Zabbix Sever的負載，如果只有Proxy收集數據，Server上的進程就會減少，CPU消耗和磁碟I/O負載</li><li>Zabbix Proxy是完成遠端區域，分支機構，沒有本地管理員的網路集中監控的理想解決方案</li><li>Zabbix Proxy需要使用獨立的資料庫</li></ul><h1 id=使用docker安裝-zabbix>使用Docker安裝 Zabbix</h1><p>首先先點到下列網站
+<a href=https://www.zabbix.com/documentation/5.0/en/manual/installation/containers>https://www.zabbix.com/documentation/5.0/en/manual/installation/containers</a></p><p>並在這邊選擇要使用的版本
+<img src=https://i.imgur.com/WNJujBy.png loading=lazy></p><p>這次是使用官網提供的，也就是用mysql當database的版本</p><p>並按照下列的cmd指令輸入，下面的參數，若有需要變可以在自行修改</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>docker network create --subnet 172.20.0.0/16 --ip-range 172.20.240.0/20 zabbix-net
+</code></pre></td></tr></table></div></div><hr><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>docker run --name postgres-server -t -e <span class=nv>POSTGRES_USER</span><span class=o>=</span><span class=s2>&#34;zabbix&#34;</span> -e <span class=nv>POSTGRES_PASSWORD</span><span class=o>=</span><span class=s2>&#34;zabbix_pwd&#34;</span> -e <span class=nv>POSTGRES_DB</span><span class=o>=</span><span class=s2>&#34;zabbix&#34;</span> --network<span class=o>=</span>zabbix-net --restart unless-stopped -d postgres:latest
+</code></pre></td></tr></table></div></div><hr><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>docker run --name zabbix-snmptraps -t -v /zbx_instance/snmptraps:/var/lib/zabbix/snmptraps:rw -v /var/lib/zabbix/mibs:/usr/share/snmp/mibs:ro --network<span class=o>=</span>zabbix-net -p 162:1162/udp --restart unless-stopped -d zabbix/zabbix-snmptraps:alpine-5.0-latest
+</code></pre></td></tr></table></div></div><hr><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ddocker run --name zabbix-server-pgsql -t -e <span class=nv>DB_SERVER_HOST</span><span class=o>=</span><span class=s2>&#34;postgres-server&#34;</span> -e <span class=nv>POSTGRES_USER</span><span class=o>=</span><span class=s2>&#34;zabbix&#34;</span> -e <span class=nv>POSTGRES_PASSWORD</span><span class=o>=</span><span class=s2>&#34;zabbix_pwd&#34;</span> -e <span class=nv>POSTGRES_DB</span><span class=o>=</span><span class=s2>&#34;zabbix&#34;</span> -e <span class=nv>ZBX_ENABLE_SNMP_TRAPS</span><span class=o>=</span><span class=s2>&#34;true&#34;</span> --network<span class=o>=</span>zabbix-net -p 10051:10051 --volumes-from zabbix-snmptraps  --restart unless-stopped -d zabbix/zabbix-server-pgsql:alpine-5.0-latest
+</code></pre></td></tr></table></div></div><hr><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>docker run --name zabbix-web-nginx-pgsql -t -e <span class=nv>ZBX_SERVER_HOST</span><span class=o>=</span><span class=s2>&#34;zabbix-server-pgsql&#34;</span> -e <span class=nv>DB_SERVER_HOST</span><span class=o>=</span><span class=s2>&#34;postgres-server&#34;</span> -e <span class=nv>POSTGRES_USER</span><span class=o>=</span><span class=s2>&#34;zabbix&#34;</span> -e <span class=nv>POSTGRES_PASSWORD</span><span class=o>=</span><span class=s2>&#34;zabbix_pwd&#34;</span> -e <span class=nv>POSTGRES_DB</span><span class=o>=</span><span class=s2>&#34;zabbix&#34;</span> --network<span class=o>=</span>zabbix-net -p 443:8443 -p 80:8080 -v /etc/ssl/nginx:/etc/ssl/nginx:ro --restart unless-stopped -d zabbix/zabbix-web-nginx-pgsql:alpine-5.0-latest
+</code></pre></td></tr></table></div></div><h2 id=透過termianl訪問container中的資料庫以psql為例>透過termianl訪問Container中的資料庫，以psql為例</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>docker <span class=nb>exec</span> -it <span class=o>[</span>containerId<span class=o>]</span> bash
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>psql -U zabbix -h localhost zabbix
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/mVPKa6i.gif loading=lazy alt=demo></p><p>當全部都設置好後</p><p>訪問 http://localohst/ 即可訪問Zabbix頁面</p><p>帳號：Admin
+密碼：zabbix</p><p><img src=https://i.imgur.com/T8tGvQQ.png loading=lazy></p><h1 id=在window下安裝-zabbix-agent>在Window下安裝 Zabbix Agent</h1><p>這邊待補啦，不過先講一下Zabbix的Server端要怎麼對應</p><p>​ <img src=https://i.imgur.com/5CXeOx4.png loading=lazy alt=image-20230317111417481></p><p>Host Name：要和當初設定Agent的Name一致</p><p>Group：Templates/Operating systems</p><p>Agent：當Agent的那一台主機的IP</p><p><img src=https://i.imgur.com/Vre2glc.png loading=lazy alt=image-20230317111854438></p><p><img src=https://i.imgur.com/LQ0R9rk.png loading=lazy alt=image-20230317111428373></p><p>Temlate：Template OS Windows by Zabbix agent</p><h1 id=api的使用>API的使用</h1><p>可以到下列的網站使用線上的Zabbix API Test</p><p><a href=https://sbcode.net/zabbix/zabbix-api-test-form/>https://sbcode.net/zabbix/zabbix-api-test-form/</a></p><p><img src=https://i.imgur.com/SNBs6Z9.png loading=lazy></p><p>url都是 http://localhost/api_jsonrpc.php，差別在於Body的內容</p><h2 id=測試用api用以返回版本號>測試用API，用以返回版本號</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;method&#34;</span><span class=p>:</span> <span class=s2>&#34;apiinfo.version&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+    <span class=nt>&#34;auth&#34;</span><span class=p>:</span> <span class=kc>null</span><span class=p>,</span>
+    <span class=nt>&#34;params&#34;</span><span class=p>:</span> <span class=p>{}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>返回的結果</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;result&#34;</span><span class=p>:</span> <span class=s2>&#34;5.0.32&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>1</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=登入用的api用來取得token>登入用的API，用來取得Token</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;method&#34;</span><span class=p>:</span> <span class=s2>&#34;user.login&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;params&#34;</span><span class=p>:</span> <span class=p>{</span>
+        <span class=nt>&#34;user&#34;</span><span class=p>:</span> <span class=s2>&#34;Admin&#34;</span><span class=p>,</span>
+        <span class=nt>&#34;password&#34;</span><span class=p>:</span> <span class=s2>&#34;zabbix&#34;</span>
+    <span class=p>},</span>
+    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+    <span class=nt>&#34;auth&#34;</span><span class=p>:</span> <span class=kc>null</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>返回的結果</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;result&#34;</span><span class=p>:</span> <span class=s2>&#34;1a6022b1a01b787b2129d011763c73e6&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>1</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>result就是Token值</p><h2 id=返回目前存在的agent>返回目前存在的Agent</h2><p>記得把Auth的值改成login返回的token</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;method&#34;</span><span class=p>:</span> <span class=s2>&#34;host.get&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;params&#34;</span><span class=p>:</span> <span class=p>{</span>
+        <span class=nt>&#34;output&#34;</span><span class=p>:</span> <span class=p>[</span>
+            <span class=s2>&#34;hostid&#34;</span><span class=p>,</span>
+            <span class=s2>&#34;host&#34;</span>
+        <span class=p>],</span>
+        <span class=nt>&#34;selectInterfaces&#34;</span><span class=p>:</span> <span class=p>[</span>
+            <span class=s2>&#34;interfaceid&#34;</span><span class=p>,</span>
+            <span class=s2>&#34;ip&#34;</span>
+        <span class=p>]</span>
+    <span class=p>},</span>
+    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>2</span><span class=p>,</span>
+    <span class=nt>&#34;auth&#34;</span><span class=p>:</span> <span class=s2>&#34;1a6022b1a01b787b2129d011763c73e6&#34;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>返回的結果</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;result&#34;</span><span class=p>:</span> <span class=p>[</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;hostid&#34;</span><span class=p>:</span> <span class=s2>&#34;10084&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;host&#34;</span><span class=p>:</span> <span class=s2>&#34;Zabbix server&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;interfaces&#34;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=p>{</span>
+                    <span class=nt>&#34;interfaceid&#34;</span><span class=p>:</span> <span class=s2>&#34;1&#34;</span><span class=p>,</span>
+                    <span class=nt>&#34;ip&#34;</span><span class=p>:</span> <span class=s2>&#34;127.0.0.1&#34;</span>
+                <span class=p>}</span>
+            <span class=p>]</span>
+        <span class=p>},</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;hostid&#34;</span><span class=p>:</span> <span class=s2>&#34;10438&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;host&#34;</span><span class=p>:</span> <span class=s2>&#34;Ian&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;interfaces&#34;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=p>{</span>
+                    <span class=nt>&#34;interfaceid&#34;</span><span class=p>:</span> <span class=s2>&#34;2&#34;</span><span class=p>,</span>
+                    <span class=nt>&#34;ip&#34;</span><span class=p>:</span> <span class=s2>&#34;192.168.100.51&#34;</span>
+                <span class=p>}</span>
+            <span class=p>]</span>
+        <span class=p>},</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;hostid&#34;</span><span class=p>:</span> <span class=s2>&#34;10440&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;host&#34;</span><span class=p>:</span> <span class=s2>&#34;Bill&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;interfaces&#34;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=p>{</span>
+                    <span class=nt>&#34;interfaceid&#34;</span><span class=p>:</span> <span class=s2>&#34;4&#34;</span><span class=p>,</span>
+                    <span class=nt>&#34;ip&#34;</span><span class=p>:</span> <span class=s2>&#34;192.168.100.57&#34;</span>
+                <span class=p>}</span>
+            <span class=p>]</span>
+        <span class=p>},</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;hostid&#34;</span><span class=p>:</span> <span class=s2>&#34;10439&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;host&#34;</span><span class=p>:</span> <span class=s2>&#34;Jess&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;interfaces&#34;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=p>{</span>
+                    <span class=nt>&#34;interfaceid&#34;</span><span class=p>:</span> <span class=s2>&#34;3&#34;</span><span class=p>,</span>
+                    <span class=nt>&#34;ip&#34;</span><span class=p>:</span> <span class=s2>&#34;192.168.100.51&#34;</span>
+                <span class=p>}</span>
+            <span class=p>]</span>
+        <span class=p>}</span>
+    <span class=p>],</span>
+    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>2</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=zabbix-api介紹>Zabbix API介紹</h2><p><a href=https://sbcode.net/zabbix/zabbix-api-test-form/>https://sbcode.net/zabbix/zabbix-api-test-form/</a></p><p>在很多的API Parameter中，會常常看到</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span><span class=nt>&#34;output&#34;</span><span class=p>:</span> <span class=s2>&#34;extend&#34;</span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>這段。這句話的意思是這樣的
 output代表你想要返回的value值有什麼<code>下面會有詳細的介紹</code>
-而extend則代表「請提供給我，更多的資訊」，詳細的差異如下</p>
-<p><img src="https://i.imgur.com/gMtkkhr.gif"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>我們假設
-host.get的返回值為下</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;hostid&#34;</span><span class="p">:</span> <span class="s2">&#34;10084&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;proxy_hostid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;Zabbix server&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;disable_until&#34;</span><span class="p">:</span> <span class="s2">&#34;1679972679&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;error&#34;</span><span class="p">:</span> <span class="s2">&#34;Get value from agent failed: cannot connect to [[127.0.0.1]:10050]: [111] Connection refused&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;available&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;errors_from&#34;</span><span class="p">:</span> <span class="s2">&#34;1679019319&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;lastaccess&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;ipmi_authtype&#34;</span><span class="p">:</span> <span class="s2">&#34;-1&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;ipmi_privilege&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;ipmi_username&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;ipmi_password&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;ipmi_disable_until&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;ipmi_available&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;snmp_disable_until&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;snmp_available&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;maintenanceid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;maintenance_status&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;maintenance_type&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;maintenance_from&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;ipmi_errors_from&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;snmp_errors_from&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;ipmi_error&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;snmp_error&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;jmx_disable_until&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;jmx_available&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;jmx_errors_from&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;jmx_error&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Zabbix server&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;flags&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;templateid&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;tls_connect&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;tls_accept&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;tls_issuer&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;tls_subject&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;tls_psk_identity&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;tls_psk&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;proxy_address&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;auto_compress&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;inventory_mode&#34;</span><span class="p">:</span> <span class="s2">&#34;-1&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span> 
-</span></span><span class="line"><span class="cl">  <span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>但我們並不想要那麼多資訊，我們可能只想要其中幾項，比如說proxy_hostid,status而已，那我們就可以把我們Parameters的參數修改成這樣</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;output&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;hostid&#34;</span><span class="p">,</span><span class="s2">&#34;proxy_hostid&#34;</span><span class="p">]}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>回傳的結果就會變成這樣
-<img src="https://i.imgur.com/kbdlgvG.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<h2 id="使用zabbix來取得cpu-utilization-in-">使用Zabbix來取得CPU Utilization (in %)</h2>
-<ol>
-<li>先使用<code>host.get</code>來取得所有host資訊</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;host.get&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;output&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;hostid&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;host&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">],</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;selectInterfaces&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;interfaceid&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="s2">&#34;ip&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="s2">&#34;7cdc68d62750b0ed7ae693d1d7a52466&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>返回的結果如下</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;hostid&#34;</span><span class="p">:</span> <span class="s2">&#34;10084&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;Zabbix server&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;interfaces&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">                <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;interfaceid&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;ip&#34;</span><span class="p">:</span> <span class="s2">&#34;127.0.0.1&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;hostid&#34;</span><span class="p">:</span> <span class="s2">&#34;10438&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;Ian&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;interfaces&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">                <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;interfaceid&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;ip&#34;</span><span class="p">:</span> <span class="s2">&#34;192.168.100.51&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;hostid&#34;</span><span class="p">:</span> <span class="s2">&#34;10440&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;host&#34;</span><span class="p">:</span> <span class="s2">&#34;Bill&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;interfaces&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">                <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;interfaceid&#34;</span><span class="p">:</span> <span class="s2">&#34;4&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;ip&#34;</span><span class="p">:</span> <span class="s2">&#34;192.168.100.57&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">]</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="2">
-<li>透過item.get取得hostId的資料</li>
-</ol>
-<p>假設我們現在要找到hostId=10440的資料，我們的API BODY要這樣送</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;item.get&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;output&#34;</span><span class="p">:[</span><span class="s2">&#34;name&#34;</span><span class="p">,</span><span class="s2">&#34;description&#34;</span><span class="p">,</span><span class="s2">&#34;lastvalue&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;filter&#34;</span><span class="p">:{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;hostid&#34;</span><span class="p">:</span><span class="s2">&#34;10440&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="s2">&#34;7cdc68d62750b0ed7ae693d1d7a52466&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>其中 output的值代表，只顯示name,description,lastvalue這幾個key的資料，filter則代表我只要key-value為hostid:10440的資料</p>
-<p>返回的結果很長，這邊講個大概就好</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;itemid&#34;</span><span class="p">:</span> <span class="s2">&#34;37631&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Interface Intel(R) Ethernet Connection (14) I219-V(乙太網路): Outbound packets with errors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;The number of outgoing packets with errors on the network interface.&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;lastvalue&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;itemid&#34;</span><span class="p">:</span> <span class="s2">&#34;37632&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Interface Intel(R) Ethernet Connection (14) I219-V(乙太網路): Inbound packets discarded&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;The number of incoming packets dropped on the network interface.&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;lastvalue&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;itemid&#34;</span><span class="p">:</span> <span class="s2">&#34;37633&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Interface Intel(R) Ethernet Connection (14) I219-V(乙太網路): Inbound packets with errors&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;The number of incoming packets with errors on the network interface.&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;lastvalue&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;itemid&#34;</span><span class="p">:</span> <span class="s2">&#34;37634&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Interface Intel(R) Ethernet Connection (14) I219-V(乙太網路): Bits received&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Incoming traffic on the network interface.&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;lastvalue&#34;</span><span class="p">:</span> <span class="s2">&#34;6431168&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="err">...</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//以下略..
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="3">
-<li>找到CPU Utilization的資訊</li>
-</ol>
-<p>搜尋關鍵字 CPU</p>
-<p><img src="https://i.imgur.com/uP21l7n.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>這邊，那個lastValue其實就是最新的CPU使用率，這樣就成功取得CPU的使用率囉！</p>
-<ol start="4">
-<li>取得CPU Utilization的使用率</li>
-</ol>
-<p>API Body如下</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;method&#34;</span><span class="p">:</span> <span class="s2">&#34;history.get&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;params&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;history&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;itemids&#34;</span><span class="p">:</span> <span class="s2">&#34;37631&#34;</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;output&#34;</span><span class="p">:</span> <span class="s2">&#34;extend&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="s2">&#34;7cdc68d62750b0ed7ae693d1d7a52466&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>返回的結果如下</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;jsonrpc&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;result&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;itemid&#34;</span><span class="p">:</span> <span class="s2">&#34;37568&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;clock&#34;</span><span class="p">:</span> <span class="s2">&#34;1679900528&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;5.186729&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ns&#34;</span><span class="p">:</span> <span class="s2">&#34;297585693&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;itemid&#34;</span><span class="p">:</span> <span class="s2">&#34;37568&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;clock&#34;</span><span class="p">:</span> <span class="s2">&#34;1679900648&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;6.917095&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ns&#34;</span><span class="p">:</span> <span class="s2">&#34;233421931&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// ... 略
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 id="使用docker安裝可能導致api路徑不正確">使用Docker安裝，可能導致API路徑不正確</h1>
-<p>最近在學習zabbix時，安裝在Linux系統下時，透過Postman是可以正常取得資料的</p>
-<p><img src="https://i.imgur.com/DX2FgEJ.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>但是當我用Docker把Zabbix架設在Window環境下時卻一直出現</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">File not found.
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>的錯誤</p>
-<h2 id="發現錯誤">發現錯誤</h2>
-<p><img src="https://i.imgur.com/GNtvhd5.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>兩邊的版本、設置、Server Port都一樣，完全不知道到底發生了什麼問題，後來是透過網頁的開發人員工具才發現一小處的不同</p>
-<p><img src="https://i.imgur.com/W3r8xcI.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>這是Linux環境下的API請求</p>
-<p><img src="https://i.imgur.com/Y2XdCFb.png"
-	
-	
-	
-	loading="lazy"
-	
-	
->
-這是Window下的API請求</p>
-<p>聰明的你一定發現了，肏你媽的這兩個API請求的URL完全不一樣啊，幹你媽的</p>
-<h2 id="解決方法">解決方法</h2>
-<p>我個人猜應該是Docker在部屬的時候，不知道為什麼裡面檔案的結構層級直接跳過了\zabbix這一層，直接變成<code>http://localhost/api_jsonrpc.php</code>的路徑。</p>
-<p>將URL改成正確地之後就能正常訪問了</p>
-<p><img src="https://i.imgur.com/1OlT37p.gif"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
+而extend則代表「請提供給我，更多的資訊」，詳細的差異如下</p><p><img src=https://i.imgur.com/gMtkkhr.gif loading=lazy></p><p>我們假設
+host.get的返回值為下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+  <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+  <span class=nt>&#34;result&#34;</span><span class=p>:</span> <span class=p>[</span>
+    <span class=p>{</span>
+      <span class=nt>&#34;hostid&#34;</span><span class=p>:</span> <span class=s2>&#34;10084&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;proxy_hostid&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;host&#34;</span><span class=p>:</span> <span class=s2>&#34;Zabbix server&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;status&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;disable_until&#34;</span><span class=p>:</span> <span class=s2>&#34;1679972679&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;error&#34;</span><span class=p>:</span> <span class=s2>&#34;Get value from agent failed: cannot connect to [[127.0.0.1]:10050]: [111] Connection refused&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;available&#34;</span><span class=p>:</span> <span class=s2>&#34;2&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;errors_from&#34;</span><span class=p>:</span> <span class=s2>&#34;1679019319&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;lastaccess&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;ipmi_authtype&#34;</span><span class=p>:</span> <span class=s2>&#34;-1&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;ipmi_privilege&#34;</span><span class=p>:</span> <span class=s2>&#34;2&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;ipmi_username&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;ipmi_password&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;ipmi_disable_until&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;ipmi_available&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;snmp_disable_until&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;snmp_available&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;maintenanceid&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;maintenance_status&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;maintenance_type&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;maintenance_from&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;ipmi_errors_from&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;snmp_errors_from&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;ipmi_error&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;snmp_error&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;jmx_disable_until&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;jmx_available&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;jmx_errors_from&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;jmx_error&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;Zabbix server&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;flags&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;templateid&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;tls_connect&#34;</span><span class=p>:</span> <span class=s2>&#34;1&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;tls_accept&#34;</span><span class=p>:</span> <span class=s2>&#34;1&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;tls_issuer&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;tls_subject&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;tls_psk_identity&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;tls_psk&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;proxy_address&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;auto_compress&#34;</span><span class=p>:</span> <span class=s2>&#34;1&#34;</span><span class=p>,</span>
+      <span class=nt>&#34;inventory_mode&#34;</span><span class=p>:</span> <span class=s2>&#34;-1&#34;</span>
+    <span class=p>}</span> 
+  <span class=p>],</span>
+  <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>2</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>但我們並不想要那麼多資訊，我們可能只想要其中幾項，比如說proxy_hostid,status而已，那我們就可以把我們Parameters的參數修改成這樣</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span><span class=nt>&#34;output&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;hostid&#34;</span><span class=p>,</span><span class=s2>&#34;proxy_hostid&#34;</span><span class=p>]}</span>
+</code></pre></td></tr></table></div></div><p>回傳的結果就會變成這樣
+<img src=https://i.imgur.com/kbdlgvG.png loading=lazy></p><h2 id=使用zabbix來取得cpu-utilization-in->使用Zabbix來取得CPU Utilization (in %)</h2><ol><li>先使用<code>host.get</code>來取得所有host資訊</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;method&#34;</span><span class=p>:</span> <span class=s2>&#34;host.get&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;params&#34;</span><span class=p>:</span> <span class=p>{</span>
+        <span class=nt>&#34;output&#34;</span><span class=p>:</span> <span class=p>[</span>
+            <span class=s2>&#34;hostid&#34;</span><span class=p>,</span>
+            <span class=s2>&#34;host&#34;</span>
+        <span class=p>],</span>
+        <span class=nt>&#34;selectInterfaces&#34;</span><span class=p>:</span> <span class=p>[</span>
+            <span class=s2>&#34;interfaceid&#34;</span><span class=p>,</span>
+            <span class=s2>&#34;ip&#34;</span>
+        <span class=p>]</span>
+    <span class=p>},</span>
+    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>2</span><span class=p>,</span>
+    <span class=nt>&#34;auth&#34;</span><span class=p>:</span> <span class=s2>&#34;7cdc68d62750b0ed7ae693d1d7a52466&#34;</span>
+<span class=p>}</span>
 
-</section>
-
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/zabbix/">Zabbix</a>
-        
-    </section>
-
-
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
-    </footer>
-
-
-    
-        <link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
-            ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
-                defer
-                >
-            </script><script>
-    window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ]
-        });})
-</script>
-    
-</article>
-
-    
-
-    
-
-<aside class="related-content--wrapper">
-    <h2 class="section-title">Related content</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/1BTtOUL.png" loading="lazy" data-key="" data-hash="https://i.imgur.com/1BTtOUL.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">StoreProcedure跟PSQL的筆記</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://i.imgur.com/JdDwgHn.png%20" loading="lazy" data-key="" data-hash="https://i.imgur.com/JdDwgHn.png "/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Docker學習筆記</h2>
-        </div>
-    </a>
-</article>
-
-            
-        </div>
-    </div>
-</aside>
-
-     
-    
-        
-    <div id="gitalk-container"></div>
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
-/>
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
-<script>
-    const gitalk = new Gitalk({
-        clientID: "bf152013e92e48c1495f",
-        clientSecret: "bed32f8438cb1e00d8628d9b6d148003bb4bf25d",
-        repo: "comment",
-        owner: "Hoxton019030",
-        admin: ["Hoxton019030"],
-        distractionFreeMode: false, 
-        id: md5(location.pathname), 
-    });
-    (function () {
-        if (
-            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
-        ) {
-            document.getElementById("gitalk-container").innerHTML =
-                "Gitalk comments not available by default when the website is previewed locally.";
-            return;
-        }
-        gitalk.render("gitalk-container");
-    })();
-</script>
-
-
-
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2020 - 
-        
-        2023 Hoxton
-    </section>
-    
-    <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.14.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
-    </section>
-</footer>
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
-
-            </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#為什麼選擇zabbix">為什麼選擇Zabbix?</a>
-      <ol>
-        <li><a href="#nagios的介面">NagiOs的介面</a></li>
-        <li><a href="#cacti的介面">Cacti的介面</a></li>
-        <li><a href="#zabbix的介面">Zabbix的介面</a></li>
-      </ol>
-    </li>
-    <li><a href="#zabbix是什麼">Zabbix是什麼</a></li>
-    <li><a href="#zabbix術語">Zabbix術語</a></li>
-    <li><a href="#使用docker安裝-zabbix">使用Docker安裝 Zabbix</a>
-      <ol>
-        <li><a href="#透過termianl訪問container中的資料庫以psql為例">透過termianl訪問Container中的資料庫，以psql為例</a></li>
-      </ol>
-    </li>
-    <li><a href="#在window下安裝-zabbix-agent">在Window下安裝 Zabbix Agent</a></li>
-    <li><a href="#api的使用">API的使用</a>
-      <ol>
-        <li><a href="#測試用api用以返回版本號">測試用API，用以返回版本號</a></li>
-        <li><a href="#登入用的api用來取得token">登入用的API，用來取得Token</a></li>
-        <li><a href="#返回目前存在的agent">返回目前存在的Agent</a></li>
-        <li><a href="#zabbix-api介紹">Zabbix API介紹</a></li>
-        <li><a href="#使用zabbix來取得cpu-utilization-in-">使用Zabbix來取得CPU Utilization (in %)</a></li>
-      </ol>
-    </li>
-    <li><a href="#使用docker安裝可能導致api路徑不正確">使用Docker安裝，可能導致API路徑不正確</a>
-      <ol>
-        <li><a href="#發現錯誤">發現錯誤</a></li>
-        <li><a href="#解決方法">解決方法</a></li>
-      </ol>
-    </li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
-                
-                >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
-</html>
+</code></pre></td></tr></table></div></div><p>返回的結果如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;result&#34;</span><span class=p>:</span> <span class=p>[</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;hostid&#34;</span><span class=p>:</span> <span class=s2>&#34;10084&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;host&#34;</span><span class=p>:</span> <span class=s2>&#34;Zabbix server&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;interfaces&#34;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=p>{</span>
+                    <span class=nt>&#34;interfaceid&#34;</span><span class=p>:</span> <span class=s2>&#34;1&#34;</span><span class=p>,</span>
+                    <span class=nt>&#34;ip&#34;</span><span class=p>:</span> <span class=s2>&#34;127.0.0.1&#34;</span>
+                <span class=p>}</span>
+            <span class=p>]</span>
+        <span class=p>},</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;hostid&#34;</span><span class=p>:</span> <span class=s2>&#34;10438&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;host&#34;</span><span class=p>:</span> <span class=s2>&#34;Ian&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;interfaces&#34;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=p>{</span>
+                    <span class=nt>&#34;interfaceid&#34;</span><span class=p>:</span> <span class=s2>&#34;2&#34;</span><span class=p>,</span>
+                    <span class=nt>&#34;ip&#34;</span><span class=p>:</span> <span class=s2>&#34;192.168.100.51&#34;</span>
+                <span class=p>}</span>
+            <span class=p>]</span>
+        <span class=p>},</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;hostid&#34;</span><span class=p>:</span> <span class=s2>&#34;10440&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;host&#34;</span><span class=p>:</span> <span class=s2>&#34;Bill&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;interfaces&#34;</span><span class=p>:</span> <span class=p>[</span>
+                <span class=p>{</span>
+                    <span class=nt>&#34;interfaceid&#34;</span><span class=p>:</span> <span class=s2>&#34;4&#34;</span><span class=p>,</span>
+                    <span class=nt>&#34;ip&#34;</span><span class=p>:</span> <span class=s2>&#34;192.168.100.57&#34;</span>
+                <span class=p>}</span>
+            <span class=p>]</span>
+        <span class=p>}</span>
+    <span class=p>],</span>
+    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>2</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><ol start=2><li>透過item.get取得hostId的資料</li></ol><p>假設我們現在要找到hostId=10440的資料，我們的API BODY要這樣送</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;method&#34;</span><span class=p>:</span> <span class=s2>&#34;item.get&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;params&#34;</span><span class=p>:</span> <span class=p>{</span>
+        <span class=nt>&#34;output&#34;</span><span class=p>:[</span><span class=s2>&#34;name&#34;</span><span class=p>,</span><span class=s2>&#34;description&#34;</span><span class=p>,</span><span class=s2>&#34;lastvalue&#34;</span><span class=p>],</span>
+        <span class=nt>&#34;filter&#34;</span><span class=p>:{</span>
+            <span class=nt>&#34;hostid&#34;</span><span class=p>:</span><span class=s2>&#34;10440&#34;</span>
+        <span class=p>}</span>
+    <span class=p>},</span>
+    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>2</span><span class=p>,</span>
+    <span class=nt>&#34;auth&#34;</span><span class=p>:</span> <span class=s2>&#34;7cdc68d62750b0ed7ae693d1d7a52466&#34;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>其中 output的值代表，只顯示name,description,lastvalue這幾個key的資料，filter則代表我只要key-value為hostid:10440的資料</p><p>返回的結果很長，這邊講個大概就好</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;result&#34;</span><span class=p>:</span> <span class=p>[</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;itemid&#34;</span><span class=p>:</span> <span class=s2>&#34;37631&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;Interface Intel(R) Ethernet Connection (14) I219-V(乙太網路): Outbound packets with errors&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;The number of outgoing packets with errors on the network interface.&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;lastvalue&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span>
+        <span class=p>},</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;itemid&#34;</span><span class=p>:</span> <span class=s2>&#34;37632&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;Interface Intel(R) Ethernet Connection (14) I219-V(乙太網路): Inbound packets discarded&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;The number of incoming packets dropped on the network interface.&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;lastvalue&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span>
+        <span class=p>},</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;itemid&#34;</span><span class=p>:</span> <span class=s2>&#34;37633&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;Interface Intel(R) Ethernet Connection (14) I219-V(乙太網路): Inbound packets with errors&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;The number of incoming packets with errors on the network interface.&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;lastvalue&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span>
+        <span class=p>},</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;itemid&#34;</span><span class=p>:</span> <span class=s2>&#34;37634&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;Interface Intel(R) Ethernet Connection (14) I219-V(乙太網路): Bits received&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;description&#34;</span><span class=p>:</span> <span class=s2>&#34;Incoming traffic on the network interface.&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;lastvalue&#34;</span><span class=p>:</span> <span class=s2>&#34;6431168&#34;</span>
+        <span class=p>}</span>
+        <span class=err>...</span>
+        <span class=err>//以下略..</span>
+<span class=err>}</span>
+</code></pre></td></tr></table></div></div><ol start=3><li>找到CPU Utilization的資訊</li></ol><p>搜尋關鍵字 CPU</p><p><img src=https://i.imgur.com/uP21l7n.png loading=lazy></p><p>這邊，那個lastValue其實就是最新的CPU使用率，這樣就成功取得CPU的使用率囉！</p><ol start=4><li>取得CPU Utilization的使用率</li></ol><p>API Body如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;method&#34;</span><span class=p>:</span> <span class=s2>&#34;history.get&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;params&#34;</span><span class=p>:</span> <span class=p>{</span>
+        <span class=nt>&#34;history&#34;</span><span class=p>:</span> <span class=s2>&#34;0&#34;</span><span class=p>,</span>
+        <span class=nt>&#34;itemids&#34;</span><span class=p>:</span> <span class=s2>&#34;37631&#34;</span><span class=p>,</span> 
+        <span class=nt>&#34;output&#34;</span><span class=p>:</span> <span class=s2>&#34;extend&#34;</span>
+    <span class=p>},</span>
+    <span class=nt>&#34;auth&#34;</span><span class=p>:</span> <span class=s2>&#34;7cdc68d62750b0ed7ae693d1d7a52466&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=mi>1</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>返回的結果如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+    <span class=nt>&#34;jsonrpc&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;result&#34;</span><span class=p>:</span> <span class=p>[</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;itemid&#34;</span><span class=p>:</span> <span class=s2>&#34;37568&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;clock&#34;</span><span class=p>:</span> <span class=s2>&#34;1679900528&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;value&#34;</span><span class=p>:</span> <span class=s2>&#34;5.186729&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;ns&#34;</span><span class=p>:</span> <span class=s2>&#34;297585693&#34;</span>
+        <span class=p>},</span>
+        <span class=p>{</span>
+            <span class=nt>&#34;itemid&#34;</span><span class=p>:</span> <span class=s2>&#34;37568&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;clock&#34;</span><span class=p>:</span> <span class=s2>&#34;1679900648&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;value&#34;</span><span class=p>:</span> <span class=s2>&#34;6.917095&#34;</span><span class=p>,</span>
+            <span class=nt>&#34;ns&#34;</span><span class=p>:</span> <span class=s2>&#34;233421931&#34;</span>
+        <span class=p>}</span>
+        <span class=err>//</span> <span class=err>...</span> <span class=err>略</span>
+    <span class=p>]</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h1 id=使用docker安裝可能導致api路徑不正確>使用Docker安裝，可能導致API路徑不正確</h1><p>最近在學習zabbix時，安裝在Linux系統下時，透過Postman是可以正常取得資料的</p><p><img src=https://i.imgur.com/DX2FgEJ.png loading=lazy></p><p>但是當我用Docker把Zabbix架設在Window環境下時卻一直出現</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>File not found.
+</code></pre></td></tr></table></div></div><p>的錯誤</p><h2 id=發現錯誤>發現錯誤</h2><p><img src=https://i.imgur.com/GNtvhd5.png loading=lazy></p><p>兩邊的版本、設置、Server Port都一樣，完全不知道到底發生了什麼問題，後來是透過網頁的開發人員工具才發現一小處的不同</p><p><img src=https://i.imgur.com/W3r8xcI.png loading=lazy></p><p>這是Linux環境下的API請求</p><p><img src=https://i.imgur.com/Y2XdCFb.png loading=lazy>
+這是Window下的API請求</p><p>聰明的你一定發現了，肏你媽的這兩個API請求的URL完全不一樣啊，幹你媽的</p><h2 id=解決方法>解決方法</h2><p>我個人猜應該是Docker在部屬的時候，不知道為什麼裡面檔案的結構層級直接跳過了\zabbix這一層，直接變成<code>http://localhost/api_jsonrpc.php</code>的路徑。</p><p>將URL改成正確地之後就能正常訪問了</p><p><img src=https://i.imgur.com/1OlT37p.gif loading=lazy></p></section><footer class=article-footer><section class=article-tags><a href=/tags/zabbix/>Zabbix</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/><div class=article-image><img src=https://i.imgur.com/1BTtOUL.png loading=lazy data-key data-hash=https://i.imgur.com/1BTtOUL.png></div><div class=article-details><h2 class=article-title>StoreProcedure跟PSQL的筆記</h2></div></a></article><article class=has-image><a href=/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/><div class=article-image><img src=https://i.imgur.com/JdDwgHn.png%20 loading=lazy data-key data-hash=https://i.imgur.com/JdDwgHn.png></div><div class=article-details><h2 class=article-title>Docker學習筆記</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
+gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2023 Hoxton</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#為什麼選擇zabbix>為什麼選擇Zabbix?</a><ol><li><a href=#nagios的介面>NagiOs的介面</a></li><li><a href=#cacti的介面>Cacti的介面</a></li><li><a href=#zabbix的介面>Zabbix的介面</a></li></ol></li><li><a href=#zabbix是什麼>Zabbix是什麼</a></li><li><a href=#zabbix術語>Zabbix術語</a></li><li><a href=#使用docker安裝-zabbix>使用Docker安裝 Zabbix</a><ol><li><a href=#透過termianl訪問container中的資料庫以psql為例>透過termianl訪問Container中的資料庫，以psql為例</a></li></ol></li><li><a href=#在window下安裝-zabbix-agent>在Window下安裝 Zabbix Agent</a></li><li><a href=#api的使用>API的使用</a><ol><li><a href=#測試用api用以返回版本號>測試用API，用以返回版本號</a></li><li><a href=#登入用的api用來取得token>登入用的API，用來取得Token</a></li><li><a href=#返回目前存在的agent>返回目前存在的Agent</a></li><li><a href=#zabbix-api介紹>Zabbix API介紹</a></li><li><a href=#使用zabbix來取得cpu-utilization-in->使用Zabbix來取得CPU Utilization (in %)</a></li></ol></li><li><a href=#使用docker安裝可能導致api路徑不正確>使用Docker安裝，可能導致API路徑不正確</a><ol><li><a href=#發現錯誤>發現錯誤</a></li><li><a href=#解決方法>解決方法</a></li></ol></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>

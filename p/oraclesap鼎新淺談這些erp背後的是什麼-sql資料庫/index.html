@@ -1,1000 +1,165 @@
-<!DOCTYPE html>
-<html lang="zh" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='查帳的時候常常會看到有不同的ERP系統，我們來了解一下吧'><title>Oracle?SAP?鼎新?淺談這些ERP背後的是什麼-SQL資料庫</title>
-
-<link rel='canonical' href='https://hoxtonhsu.com/p/oraclesap%E9%BC%8E%E6%96%B0%E6%B7%BA%E8%AB%87%E9%80%99%E4%BA%9Berp%E8%83%8C%E5%BE%8C%E7%9A%84%E6%98%AF%E4%BB%80%E9%BA%BC-sql%E8%B3%87%E6%96%99%E5%BA%AB/'>
-
-<link rel="stylesheet" href="/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css"><meta property='og:title' content='Oracle?SAP?鼎新?淺談這些ERP背後的是什麼-SQL資料庫'>
-<meta property='og:description' content='查帳的時候常常會看到有不同的ERP系統，我們來了解一下吧'>
-<meta property='og:url' content='https://hoxtonhsu.com/p/oraclesap%E9%BC%8E%E6%96%B0%E6%B7%BA%E8%AB%87%E9%80%99%E4%BA%9Berp%E8%83%8C%E5%BE%8C%E7%9A%84%E6%98%AF%E4%BB%80%E9%BA%BC-sql%E8%B3%87%E6%96%99%E5%BA%AB/'>
-<meta property='og:site_name' content='Hoxton'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='SQL' /><meta property='article:published_time' content='2023-01-26T17:50:33&#43;08:00'/><meta property='article:modified_time' content='2023-01-26T17:50:33&#43;08:00'/><meta property='og:image' content='https://i.imgur.com/6aiiDXi.png' />
-<meta name="twitter:title" content="Oracle?SAP?鼎新?淺談這些ERP背後的是什麼-SQL資料庫">
-<meta name="twitter:description" content="查帳的時候常常會看到有不同的ERP系統，我們來了解一下吧"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://i.imgur.com/6aiiDXi.png' />
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/92/92031.png" />
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-9N16MVLR0Q', { 'anonymize_ip': false });
-}
-</script>
-
-    </head>
-    <body class="
-    article-page
-    ">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            localStorage.setItem(colorSchemeKey, "dark");
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-
-    <header>
-        
-            
-            <figure class="site-avatar">
-                <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_3.png" width="300"
-                            height="301" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
-                </a>
-                
-            </figure>
-            
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">Hoxton</a></h1>
-            <h2 class="site-description">快樂的CRUD Boy, API Caller</h2>
-        </div>
-    </header><ol class="social-menu">
-            
-                <li>
-                    <a 
-                        href='https://discordapp.com/users/840906423076782082'
-                        target="_blank"
-                        title="Discord"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <circle cx="9" cy="12" r="1" />
-  <circle cx="15" cy="12" r="1" />
-  <path d="M7.5 7.5c3.5 -1 5.5 -1 9 0" />
-  <path d="M7 16.5c3.5 1 6.5 1 10 0" />
-  <path d="M15.5 17c0 1 1.5 3 2 3c1.5 0 2.833 -1.667 3.5 -3c.667 -1.667 .5 -5.833 -1.5 -11.5c-1.457 -1.015 -3 -1.34 -4.5 -1.5l-1 2.5" />
-  <path d="M8.5 17c0 1 -1.356 3 -1.832 3c-1.429 0 -2.698 -1.667 -3.333 -3c-.635 -1.667 -.476 -5.833 1.428 -11.5c1.388 -1.015 2.782 -1.34 4.237 -1.5l1 2.5" />
-</svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://github.com/Hoxton019030'
-                        target="_blank"
-                        title="GitHub"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://www.instagram.com/hoxton_8a31/'
-                        target="_blank"
-                        title="Instagram"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <rect x="4" y="4" width="16" height="16" rx="4" />
-  <circle cx="12" cy="12" r="3" />
-  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
-</svg>
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-
-        <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>Home</span>
-            </a>
-        </li>
-        
-        
-
-        <li >
-            <a href='/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>Archives</span>
-            </a>
-        </li>
-        
-        
-
-        <li >
-            <a href='/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>Search</span>
-            </a>
-        </li>
-        
-
-        <div class="menu-bottom-section">
-            
-            
-        </div>
-    </ol>
-</aside>
-<main class="main full-width">
-    <article class="has-image main-article">
-    <header class="article-header">
-        <div class="article-image">
-            <a href="/p/oraclesap%E9%BC%8E%E6%96%B0%E6%B7%BA%E8%AB%87%E9%80%99%E4%BA%9Berp%E8%83%8C%E5%BE%8C%E7%9A%84%E6%98%AF%E4%BB%80%E9%BA%BC-sql%E8%B3%87%E6%96%99%E5%BA%AB/">
-                
-                    <img src="https://i.imgur.com/6aiiDXi.png" loading="lazy" alt="Featured image of post Oracle?SAP?鼎新?淺談這些ERP背後的是什麼-SQL資料庫" />
-                
-            </a>
-        </div>
-    
-
-    <div class="article-details">
-    
-    <header class="article-category">
-        
-            <a href="/categories/%E7%94%9F%E6%B4%BB/" style="background-color: #2a9d8f; color: #fff;">
-                生活
-            </a>
-        
-    </header>
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/p/oraclesap%E9%BC%8E%E6%96%B0%E6%B7%BA%E8%AB%87%E9%80%99%E4%BA%9Berp%E8%83%8C%E5%BE%8C%E7%9A%84%E6%98%AF%E4%BB%80%E9%BA%BC-sql%E8%B3%87%E6%96%99%E5%BA%AB/">Oracle?SAP?鼎新?淺談這些ERP背後的是什麼-SQL資料庫</a>
-        </h2>
-    
-        
-        <h3 class="article-subtitle">
-            查帳的時候常常會看到有不同的ERP系統，我們來了解一下吧
-        </h3>
-        
-    </div>
-
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">Jan 26, 2023</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    3 minute read
-                </time>
-            </div>
-        
-    </footer>
-    
-
-    
-</div>
-</header>
-
-    <section class="article-content">
-    
-    
-    <h1 id="前言">前言</h1>
-<p>記得在某次外勤的時候，那時候好像是要做稅抽還是要查什麼東西，需要用客戶的電腦SAP裡面查一些資料，可是我按了老半天，一直出現錯誤，迷迷糊糊地從那些文字中拼湊出一些單詞，只記得有什麼SQL Error，當時把這件事情跟客戶的會計反應，他旋即請了工程師過來處理，弄了一下之後跟我說需要明天才會好，要我明天再去撈</p>
-<p><img src="https://i.imgur.com/23Rnl3H.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230126231514168"
-	
-	
-></p>
-<p>(範例，非當事錯誤)</p>
-<p>後來這幾年工作上常常接觸到資料庫的東西，最近又想起這件事來，也總算知道當時遇到的錯誤是什麼了<code>我猜是IP連不到</code>。因此繼續趁著年假這個真的不知道做什麼事的時間點來科普一下ERP系統後面的東西，<strong>SQL DataBase是什麼</strong>？</p>
-<h1 id="什麼是sql">什麼是SQL</h1>
-<p>首先要知道SQL怎麼發音，我都念SQL，但也有些人念SQL，SQL的念法是，<code>C闊(Ess-cue-ell')</code>。SQL這個詞的由來有人說沒意義，就是叫SQL，也有人認為是有意義的，也就是Structured Query Language(結構化查詢語言)的縮寫。簡而言之SQL就是用來跟資料庫(Database)溝通的一種Syntax(語法)，SQL與資料庫的關係像魔法師與魔法書的關係，魔法師透過詠唱咒語(SQL語法)來使用魔法書(Database)的能力。</p>
-<p>第一次接觸到SQL是在大四大三的時候吧，那時候好像有個系必修是什麼資訊概論類似的課程，老師上課的時候有提到一個東西，他的介面是隻海豚，然後有很多奇怪的按鈕，</p>
-<p><img src="https://i.imgur.com/OCEIz1x.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230126232635060"
-	
-	
-></p>
-<p><img src="https://i.imgur.com/UNAw0Ua.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230126232700834"
-	
-	
-></p>
-<p>當時的我完全不知道這些是啥，甚至連SQL是什麼都沒有半點頭緒，那門課我記得我只負責處理一些很瑣碎的事情，其他都靠我同學Carry過的XD。結果沒想到逃的了一時，逃不了一世，現在天天都會看到，感嘆命運多舛啊。</p>
-<p>話說回來，所以什麼是SQL呢？他是用來做什麼的？我們首先先來講一下什麼是<strong>關聯式資料庫</strong>。大家應該有上過學吧，學校裡，有班級、有學生、有班導，有科任老師，這些東西都是互相有關聯的，比如說一個班導可以有很多學生，但每個學生只能有一個班導，一個科任老師也可以有很多學生，每個學生也可以有很多的科任老師。用來記錄這些資訊的資料庫就是所謂的關聯式資料庫<code>注：有關聯式就會有非關聯式資料庫，但這部分我就不熟了</code>。</p>
-<p><img src="https://i.imgur.com/5SQaANf.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230126235342454"
-	
-	
-></p>
-<p>(注：我事後回來看，我覺得這樣設計有很多問題，其實可以在精簡一點的，大佬就別鞭太大力了）</p>
-<p>畫成關聯圖大概就是長這樣，原諒我畫的真的有點醜，不過大概看的出來它們彼此有哪些關係吧？學生跟班級、導師、科任老師有關聯、班級跟學生還有班導有關聯、班導跟科任老師沒有關聯(其實這邊設計的不太好，會違反資料正規化，但只是示範而已）。SQL Database我們每天都會碰到，比如說你每天上車逼的悠遊卡，你的卡號就被記在政府的悠遊卡SQL Database裡面，只要你遺失後，就會把你的那筆資料拉出來，標注已遺失。或是會計師考試報名時，會給你一組准考證號碼，所以考試院的SQL資料庫裏面，也會有這筆准考證的資料，這筆資料包含你的身分證、考試成績等等，只要涉及資料儲存的部分，其實背後都有資料庫的存在，也包含你的手機裡面的通訊錄等等，裡面都有小型的資料庫在裡面處理你的information。</p>
-<h1 id="sql的實作">SQL的實作</h1>
-<p>多說無益，我們就用線上版的SQL編輯器來看看SQL是怎麼運作的吧，建議這邊點開我上面的HackMd，我有用Gif的方式錄影下來。</p>
-<p>線上的SQL編輯器：https://sqliteonline.com/</p>
-<p><img src="https://i.imgur.com/7VRZOgp.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127001046262"
-	
-	
-></p>
-<p>點進去後會看到裡面長這個樣子，時間寶貴，我把左邊的欄位講一下就好，其實左邊就是各是各樣的SQL Database，不同的Database都有一些特性</p>
-<p><img src="https://i.imgur.com/haqbgQm.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127001150655"
-	
-	
-></p>
-<ul>
-<li>SQLite：輕量化的SQL資料庫，常用於手機端。</li>
-<li>MariaDB：MySQL的作者獨立出來開發的SQL資料庫</li>
-<li>PostgreSQL：也是SQL資料庫</li>
-<li>MSSQL：微軟開發的SQL資料庫，會有微軟的奧援</li>
-</ul>
-<p>當然不只這些，像常聽到的Oracle，不只有做ERP系統，其實還有做SQL資料庫，當然Oracle做的不止這些。話說回來，這些語法都大同小異，但為了方便各位，我們這次就用SQLite做示範，因為這個頁面一點進來就是SQLite了。</p>
-<p><img src="https://i.imgur.com/tshXLM8.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127001853263"
-	
-	
-></p>
-<p>這個紅色框框的地方就是讓我們打SQL語法的部分，我們先來創一些資料吧！秉持著能交給別人做的事情絕對不自己來的原則，這部分我們請ChatGPT來幫我們就好：）</p>
-<p><img src="https://i.imgur.com/tJsfb2U.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127002300239"
-	
-	
-></p>
-<p>ChatGPT產生的語法如上，這邊先講解一下會出現的名詞代表的意思，首先</p>
-<ul>
-<li>Table：近似於Excel裡面的活頁表，每個活頁表都拿來描述不同的東西，比如說學生這張Table就是拿來存放跟學生有關的資料，比如說姓名、學號之類的東西。</li>
-<li>DROP：近似於刪除</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Name</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">　
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ClassTeacherName</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">StudentID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ClassroomID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Birthdate</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Subjects</span><span class="w"> </span><span class="nb">TEXT</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>這樣的語法代表創建一張名為Student的表格，裡面要有</p>
-<ul>
-<li>名為Name的欄位，資料型別是文字</li>
-<li>名為ClassTeacherName的欄位，資料型別是文字</li>
-<li>名為StudentID的欄位，資料型別是數字</li>
-<li>名為ClassroomID的欄位，資料型別是數字</li>
-<li>名為Birthdate的欄位，資料型別是DATE(日期，亦即只能存放日期格式的東西)</li>
-<li>名為Subjects的欄位，資料型別是文字</li>
-</ul>
-<p><code>資料型別代表這個欄位只能存什麼東西，如果資料型別是數字，就代表只能存在羅馬數字，如果輸入 天氣 就會出錯</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 如果已經存在這些表就刪除，確保每次都是產生全新的Table
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">demo</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">Student</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">Teacher</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">Classroom</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">SubjectTeacher</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Create Student table
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Name</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ClassTeacherName</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">StudentID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ClassroomID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Birthdate</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Subjects</span><span class="w"> </span><span class="nb">TEXT</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Create Teacher table
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Teacher</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Name</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">TeacherID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ClassroomID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Create Classroom table
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Classroom</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ClassroomID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ClassID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Create SubjectTeacher table
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SubjectTeacher</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Name</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">TeacherID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Subject</span><span class="w"> </span><span class="nb">TEXT</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://i.imgur.com/IFDjvKq.gif"
-	
-	
-	
-	loading="lazy"
-	
-		alt="demo"
-	
-	
-></p>
-<p>完成後我們可以看到我們的左邊就出現很多的東西，就代表我們成功創建了Table喔！</p>
-<p>但此時Table裡面的東西都是空的，我們試著塞一些資料進去Table裡面吧，這邊再次邀請我們的勞模ChatGPT</p>
-<p><img src="https://i.imgur.com/qa8OxpY.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127003349573"
-	
-	
-></p>
-<p>這邊的INSERT其實就是新增資料進去的意思。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- Insert data into the Teacher table
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Teacher</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">TeacherID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;John Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">101</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Teacher</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">TeacherID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">102</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Teacher</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">TeacherID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Bob Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">103</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Insert data into the Classroom table
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Classroom</span><span class="w"> </span><span class="p">(</span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassID</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">101</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Classroom</span><span class="w"> </span><span class="p">(</span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassID</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Classroom</span><span class="w"> </span><span class="p">(</span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassID</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">103</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Insert data into the SubjectTeacher table
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SubjectTeacher</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">TeacherID</span><span class="p">,</span><span class="w"> </span><span class="n">Subject</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;John Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Math&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SubjectTeacher</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">TeacherID</span><span class="p">,</span><span class="w"> </span><span class="n">Subject</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Science&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SubjectTeacher</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">TeacherID</span><span class="p">,</span><span class="w"> </span><span class="n">Subject</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Bob Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;English&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SubjectTeacher</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">TeacherID</span><span class="p">,</span><span class="w"> </span><span class="n">Subject</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Bob Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;History&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Insert data into the Student table
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">ClassTeacherName</span><span class="p">,</span><span class="w"> </span><span class="n">StudentID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">Birthdate</span><span class="p">,</span><span class="w"> </span><span class="n">Subjects</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Alice Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;John Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Math, Science&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">ClassTeacherName</span><span class="p">,</span><span class="w"> </span><span class="n">StudentID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">Birthdate</span><span class="p">,</span><span class="w"> </span><span class="n">Subjects</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Bob Brown&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;John Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2001-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Math, English&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">ClassTeacherName</span><span class="p">,</span><span class="w"> </span><span class="n">StudentID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">Birthdate</span><span class="p">,</span><span class="w"> </span><span class="n">Subjects</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Charlie Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2002-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Science, History&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">ClassTeacherName</span><span class="p">,</span><span class="w"> </span><span class="n">StudentID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">Birthdate</span><span class="p">,</span><span class="w"> </span><span class="n">Subjects</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;David Wilson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2003-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Science, English&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">ClassTeacherName</span><span class="p">,</span><span class="w"> </span><span class="n">StudentID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">Birthdate</span><span class="p">,</span><span class="w"> </span><span class="n">Subjects</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Eve Davis&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bob Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2004-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;English, History&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">ClassTeacherName</span><span class="p">,</span><span class="w"> </span><span class="n">StudentID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">Birthdate</span><span class="p">,</span><span class="w"> </span><span class="n">Subjects</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Frank Miller&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;John Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2005-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Math&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">ClassTeacherName</span><span class="p">,</span><span class="w"> </span><span class="n">StudentID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">Birthdate</span><span class="p">,</span><span class="w"> </span><span class="n">Subjects</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Gary Moore&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2006-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Science&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">ClassTeacherName</span><span class="p">,</span><span class="w"> </span><span class="n">StudentID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">Birthdate</span><span class="p">,</span><span class="w"> </span><span class="n">Subjects</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Helen Anderson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bob Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2007-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;English, History&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">ClassTeacherName</span><span class="p">,</span><span class="w"> </span><span class="n">StudentID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">Birthdate</span><span class="p">,</span><span class="w"> </span><span class="n">Subjects</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Irene Thomas&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;John Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2008-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Math, Science&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="n">ClassTeacherName</span><span class="p">,</span><span class="w"> </span><span class="n">StudentID</span><span class="p">,</span><span class="w"> </span><span class="n">ClassroomID</span><span class="p">,</span><span class="w"> </span><span class="n">Birthdate</span><span class="p">,</span><span class="w"> </span><span class="n">Subjects</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;James Hernandez&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jane Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2009-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Science, English&#39;</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://i.imgur.com/MQUkQKO.gif"
-	
-	
-	
-	loading="lazy"
-	
-		alt="demo"
-	
-	
-></p>
-<p>完成後，在Table上面點選右鍵，選擇SELECT即可這張表的所有屬性喔 ！</p>
-<ul>
-<li>教室Table</li>
-</ul>
-<p><img src="https://i.imgur.com/GcMuljK.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127004124644"
-	
-	
-></p>
-<ul>
-<li>學生Table <code>這邊也違反資料庫正規化，一個應該只塞一筆資料的原則，我的subject塞了複數筆資料，但單純Demo而已，有點懶得改了</code></li>
-</ul>
-<p><img src="https://i.imgur.com/VcUjfIc.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127004142876"
-	
-	
-></p>
-<ul>
-<li>
-<p>科任老師Table<img src="https://i.imgur.com/c4JRzJa.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127004158587"
-	
-	
-></p>
-</li>
-<li>
-<p>老師Table</p>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/K9jpTXv.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127004517825"
-	
-	
-></p>
-<h1 id="sql語法的介紹">SQL語法的介紹</h1>
-<p>我們一樣在框框裡面操作</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Teacher</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://i.imgur.com/vUOj64t.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127004832304"
-	
-	
-></p>
-<p>這個語法的意思就是 SELECT<code>選擇</code> *<code>全部欄位</code> FROM<code>來自</code> Teacher<code>這張表</code>，翻成白話文的意思就是，幫我選出Teacher這張表的全部內容，當然我們也可以再複雜一點，比如說</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Teacher</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">teacherid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://i.imgur.com/z9vNNK2.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127005357191"
-	
-	
-></p>
-<p>也就是從Teacher這張表裡面選出TeacherId為2的欄位</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">subjects</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%Math%&#39;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://i.imgur.com/Ea8nwnc.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127011847946"
-	
-	
-></p>
-<p>當然我們再複雜一點點，這個語法會找出所有在Student這張Table裡面subjects欄位裡有Math的學生，聽起來有點繞口對吧XD，接著我們就把這些語法組合起來，試著找看看</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="o">*</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">SubjectTeacher</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">ClassTeacherName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SubjectTeacher</span><span class="p">.</span><span class="n">Name</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Birthdate</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="s1">&#39;2001-01-01&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="s1">&#39;2005-12-31&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SubjectTeacher</span><span class="p">.</span><span class="n">Subject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Math&#39;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><img src="https://i.imgur.com/P1RI9MH.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20230127011903188"
-	
-	
-></p>
-<p>我們再複雜一點點點點，我們想找出所有在2001年至2005年出生，並且有修Math的學生，看到這邊這個語法大家是不是有點感覺了，是不是很像我們去撈資料常常用到的，要撈發生在本年度的100018應付帳款全部資料XD。其實背後的SQL語法就像這樣子。</p>
-<p>當然實際上的情況SQL語法還會更複雜一點，因為這些這是關聯式資料庫，彼此間可能可以關聯到很遠很遠的Table，只是為了做科普而已就不弄得那麼複雜了。另外SQL Syntax(語法)也不只SELECT，常見的還有UPDATA, DELETE, CREATE等等，只是這些審計人員一般不會碰到。</p>
-<h1 id="結語">結語</h1>
-<p>其實沒啥想講的，只是覺得很閒而已，想說趁年假時後把想寫的東西寫一寫，順便也當科普一樣，感覺會計這個圈子好像很少人在寫科普或是知識介紹的東西，就花個一兩個小時的時間寫一下，如果對SQL有興趣的話，可以去載來玩看看</p>
-<ul>
-<li>MySQL：全英介面，一開始可能不太友好，但網路上資源最多</li>
-<li>MSSQL：微軟的SQL，有中文介面，但網路上資源相對較少，其實SQL的語法都大同小異，但其實還是有一些不同處</li>
-<li>PostgreSQL：通常不會用這個入門，我個人覺得它GUI的介面很爛，我用這個的話通常都是用Terminal</li>
-<li>SQLite：不太推薦，因為這算是輕量化版的，有很多資料型別是特規的。</li>
-</ul>
-<p>我文章常提到的資料庫正規化介紹如下</p>
-<p><a class="link" href="https://ithelp.ithome.com.tw/articles/10229472"  target="_blank" rel="noopener"
-    >https://ithelp.ithome.com.tw/articles/10229472</a></p>
-<p>忙季加油！債見</p>
-
-</section>
-
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/sql/">SQL</a>
-        
-    </section>
-
-
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
-    </footer>
-
-
-    
-        <link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
-            ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
-                defer
-                >
-            </script><script>
-    window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ]
-        });})
-</script>
-    
-</article>
-
-    
-
-    
-
-     
-    
-        
-    <div id="gitalk-container"></div>
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"
-/>
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
-<script>
-    const gitalk = new Gitalk({
-        clientID: "bf152013e92e48c1495f",
-        clientSecret: "bed32f8438cb1e00d8628d9b6d148003bb4bf25d",
-        repo: "comment",
-        owner: "Hoxton019030",
-        admin: ["Hoxton019030"],
-        distractionFreeMode: false, 
-        id: md5(location.pathname), 
-    });
-    (function () {
-        if (
-            ["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1
-        ) {
-            document.getElementById("gitalk-container").innerHTML =
-                "Gitalk comments not available by default when the website is previewed locally.";
-            return;
-        }
-        gitalk.render("gitalk-container");
-    })();
-</script>
-
-
-
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2020 - 
-        
-        2023 Hoxton
-    </section>
-    
-    <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.14.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
-    </section>
-</footer>
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
-
-            </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#前言">前言</a></li>
-    <li><a href="#什麼是sql">什麼是SQL</a></li>
-    <li><a href="#sql的實作">SQL的實作</a></li>
-    <li><a href="#sql語法的介紹">SQL語法的介紹</a></li>
-    <li><a href="#結語">結語</a></li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
-                
-                >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
-</html>
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="查帳的時候常常會看到有不同的ERP系統，我們來了解一下吧"><title>Oracle?SAP?鼎新?淺談這些ERP背後的是什麼-SQL資料庫</title><link rel=canonical href=https://hoxtonhsu.com/p/oraclesap%E9%BC%8E%E6%96%B0%E6%B7%BA%E8%AB%87%E9%80%99%E4%BA%9Berp%E8%83%8C%E5%BE%8C%E7%9A%84%E6%98%AF%E4%BB%80%E9%BA%BC-sql%E8%B3%87%E6%96%99%E5%BA%AB/><link rel=stylesheet href=/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css><meta property="og:title" content="Oracle?SAP?鼎新?淺談這些ERP背後的是什麼-SQL資料庫"><meta property="og:description" content="查帳的時候常常會看到有不同的ERP系統，我們來了解一下吧"><meta property="og:url" content="https://hoxtonhsu.com/p/oraclesap%E9%BC%8E%E6%96%B0%E6%B7%BA%E8%AB%87%E9%80%99%E4%BA%9Berp%E8%83%8C%E5%BE%8C%E7%9A%84%E6%98%AF%E4%BB%80%E9%BA%BC-sql%E8%B3%87%E6%96%99%E5%BA%AB/"><meta property="og:site_name" content="Hoxton"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="SQL"><meta property="article:published_time" content="2023-01-26T17:50:33+08:00"><meta property="article:modified_time" content="2023-01-26T17:50:33+08:00"><meta property="og:image" content="https://i.imgur.com/6aiiDXi.png"><meta name=twitter:title content="Oracle?SAP?鼎新?淺談這些ERP背後的是什麼-SQL資料庫"><meta name=twitter:description content="查帳的時候常常會看到有不同的ERP系統，我們來了解一下吧"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://i.imgur.com/6aiiDXi.png"><link rel="shortcut icon" href=https://cdn-icons-png.flaticon.com/512/92/92031.png><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-9N16MVLR0Q','auto');ga('send','pageview');}</script></head><body class=article-page><script>(function(){const colorSchemeKey='StackColorScheme';localStorage.setItem(colorSchemeKey,"dark");})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.documentElement.dataset.scheme='dark';}else{document.documentElement.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy, API Caller</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/oraclesap%E9%BC%8E%E6%96%B0%E6%B7%BA%E8%AB%87%E9%80%99%E4%BA%9Berp%E8%83%8C%E5%BE%8C%E7%9A%84%E6%98%AF%E4%BB%80%E9%BA%BC-sql%E8%B3%87%E6%96%99%E5%BA%AB/><img src=https://i.imgur.com/6aiiDXi.png loading=lazy alt="Featured image of post Oracle?SAP?鼎新?淺談這些ERP背後的是什麼-SQL資料庫"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%94%9F%E6%B4%BB/ style=background-color:#2a9d8f;color:#fff>生活</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/oraclesap%E9%BC%8E%E6%96%B0%E6%B7%BA%E8%AB%87%E9%80%99%E4%BA%9Berp%E8%83%8C%E5%BE%8C%E7%9A%84%E6%98%AF%E4%BB%80%E9%BA%BC-sql%E8%B3%87%E6%96%99%E5%BA%AB/>Oracle?SAP?鼎新?淺談這些ERP背後的是什麼-SQL資料庫</a></h2><h3 class=article-subtitle>查帳的時候常常會看到有不同的ERP系統，我們來了解一下吧</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Jan 26, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>3 minute read</time></div></footer></div></header><section class=article-content><h1 id=前言>前言</h1><p>記得在某次外勤的時候，那時候好像是要做稅抽還是要查什麼東西，需要用客戶的電腦SAP裡面查一些資料，可是我按了老半天，一直出現錯誤，迷迷糊糊地從那些文字中拼湊出一些單詞，只記得有什麼SQL Error，當時把這件事情跟客戶的會計反應，他旋即請了工程師過來處理，弄了一下之後跟我說需要明天才會好，要我明天再去撈</p><p><img src=https://i.imgur.com/23Rnl3H.png loading=lazy alt=image-20230126231514168></p><p>(範例，非當事錯誤)</p><p>後來這幾年工作上常常接觸到資料庫的東西，最近又想起這件事來，也總算知道當時遇到的錯誤是什麼了<code>我猜是IP連不到</code>。因此繼續趁著年假這個真的不知道做什麼事的時間點來科普一下ERP系統後面的東西，<strong>SQL DataBase是什麼</strong>？</p><h1 id=什麼是sql>什麼是SQL</h1><p>首先要知道SQL怎麼發音，我都念SQL，但也有些人念SQL，SQL的念法是，<code>C闊(Ess-cue-ell')</code>。SQL這個詞的由來有人說沒意義，就是叫SQL，也有人認為是有意義的，也就是Structured Query Language(結構化查詢語言)的縮寫。簡而言之SQL就是用來跟資料庫(Database)溝通的一種Syntax(語法)，SQL與資料庫的關係像魔法師與魔法書的關係，魔法師透過詠唱咒語(SQL語法)來使用魔法書(Database)的能力。</p><p>第一次接觸到SQL是在大四大三的時候吧，那時候好像有個系必修是什麼資訊概論類似的課程，老師上課的時候有提到一個東西，他的介面是隻海豚，然後有很多奇怪的按鈕，</p><p><img src=https://i.imgur.com/OCEIz1x.png loading=lazy alt=image-20230126232635060></p><p><img src=https://i.imgur.com/UNAw0Ua.png loading=lazy alt=image-20230126232700834></p><p>當時的我完全不知道這些是啥，甚至連SQL是什麼都沒有半點頭緒，那門課我記得我只負責處理一些很瑣碎的事情，其他都靠我同學Carry過的XD。結果沒想到逃的了一時，逃不了一世，現在天天都會看到，感嘆命運多舛啊。</p><p>話說回來，所以什麼是SQL呢？他是用來做什麼的？我們首先先來講一下什麼是<strong>關聯式資料庫</strong>。大家應該有上過學吧，學校裡，有班級、有學生、有班導，有科任老師，這些東西都是互相有關聯的，比如說一個班導可以有很多學生，但每個學生只能有一個班導，一個科任老師也可以有很多學生，每個學生也可以有很多的科任老師。用來記錄這些資訊的資料庫就是所謂的關聯式資料庫<code>注：有關聯式就會有非關聯式資料庫，但這部分我就不熟了</code>。</p><p><img src=https://i.imgur.com/5SQaANf.png loading=lazy alt=image-20230126235342454></p><p>(注：我事後回來看，我覺得這樣設計有很多問題，其實可以在精簡一點的，大佬就別鞭太大力了）</p><p>畫成關聯圖大概就是長這樣，原諒我畫的真的有點醜，不過大概看的出來它們彼此有哪些關係吧？學生跟班級、導師、科任老師有關聯、班級跟學生還有班導有關聯、班導跟科任老師沒有關聯(其實這邊設計的不太好，會違反資料正規化，但只是示範而已）。SQL Database我們每天都會碰到，比如說你每天上車逼的悠遊卡，你的卡號就被記在政府的悠遊卡SQL Database裡面，只要你遺失後，就會把你的那筆資料拉出來，標注已遺失。或是會計師考試報名時，會給你一組准考證號碼，所以考試院的SQL資料庫裏面，也會有這筆准考證的資料，這筆資料包含你的身分證、考試成績等等，只要涉及資料儲存的部分，其實背後都有資料庫的存在，也包含你的手機裡面的通訊錄等等，裡面都有小型的資料庫在裡面處理你的information。</p><h1 id=sql的實作>SQL的實作</h1><p>多說無益，我們就用線上版的SQL編輯器來看看SQL是怎麼運作的吧，建議這邊點開我上面的HackMd，我有用Gif的方式錄影下來。</p><p>線上的SQL編輯器：https://sqliteonline.com/</p><p><img src=https://i.imgur.com/7VRZOgp.png loading=lazy alt=image-20230127001046262></p><p>點進去後會看到裡面長這個樣子，時間寶貴，我把左邊的欄位講一下就好，其實左邊就是各是各樣的SQL Database，不同的Database都有一些特性</p><p><img src=https://i.imgur.com/haqbgQm.png loading=lazy alt=image-20230127001150655></p><ul><li>SQLite：輕量化的SQL資料庫，常用於手機端。</li><li>MariaDB：MySQL的作者獨立出來開發的SQL資料庫</li><li>PostgreSQL：也是SQL資料庫</li><li>MSSQL：微軟開發的SQL資料庫，會有微軟的奧援</li></ul><p>當然不只這些，像常聽到的Oracle，不只有做ERP系統，其實還有做SQL資料庫，當然Oracle做的不止這些。話說回來，這些語法都大同小異，但為了方便各位，我們這次就用SQLite做示範，因為這個頁面一點進來就是SQLite了。</p><p><img src=https://i.imgur.com/tshXLM8.png loading=lazy alt=image-20230127001853263></p><p>這個紅色框框的地方就是讓我們打SQL語法的部分，我們先來創一些資料吧！秉持著能交給別人做的事情絕對不自己來的原則，這部分我們請ChatGPT來幫我們就好：）</p><p><img src=https://i.imgur.com/tJsfb2U.png loading=lazy alt=image-20230127002300239></p><p>ChatGPT產生的語法如上，這邊先講解一下會出現的名詞代表的意思，首先</p><ul><li>Table：近似於Excel裡面的活頁表，每個活頁表都拿來描述不同的東西，比如說學生這張Table就是拿來存放跟學生有關的資料，比如說姓名、學號之類的東西。</li><li>DROP：近似於刪除</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>Student</span> <span class=p>(</span>
+    <span class=n>Name</span> <span class=nb>TEXT</span><span class=p>,</span>　
+    <span class=n>ClassTeacherName</span> <span class=nb>TEXT</span><span class=p>,</span>
+    <span class=n>StudentID</span> <span class=nb>INTEGER</span><span class=p>,</span>
+    <span class=n>ClassroomID</span> <span class=nb>INTEGER</span><span class=p>,</span>
+    <span class=n>Birthdate</span> <span class=nb>DATE</span><span class=p>,</span>
+    <span class=n>Subjects</span> <span class=nb>TEXT</span>
+<span class=p>);</span>
+</code></pre></td></tr></table></div></div><p>這樣的語法代表創建一張名為Student的表格，裡面要有</p><ul><li>名為Name的欄位，資料型別是文字</li><li>名為ClassTeacherName的欄位，資料型別是文字</li><li>名為StudentID的欄位，資料型別是數字</li><li>名為ClassroomID的欄位，資料型別是數字</li><li>名為Birthdate的欄位，資料型別是DATE(日期，亦即只能存放日期格式的東西)</li><li>名為Subjects的欄位，資料型別是文字</li></ul><p><code>資料型別代表這個欄位只能存什麼東西，如果資料型別是數字，就代表只能存在羅馬數字，如果輸入 天氣 就會出錯</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=c1>-- 如果已經存在這些表就刪除，確保每次都是產生全新的Table
+</span><span class=c1></span><span class=k>DROP</span> <span class=k>TABLE</span> <span class=k>IF</span> <span class=k>EXISTS</span> <span class=n>demo</span><span class=p>;</span>
+<span class=k>DROP</span> <span class=k>TABLE</span> <span class=k>IF</span> <span class=k>EXISTS</span> <span class=n>Student</span><span class=p>;</span>
+<span class=k>DROP</span> <span class=k>TABLE</span> <span class=k>IF</span> <span class=k>EXISTS</span> <span class=n>Teacher</span><span class=p>;</span>
+<span class=k>DROP</span> <span class=k>TABLE</span> <span class=k>IF</span> <span class=k>EXISTS</span> <span class=n>Classroom</span><span class=p>;</span>
+<span class=k>DROP</span> <span class=k>TABLE</span> <span class=k>IF</span> <span class=k>EXISTS</span> <span class=n>SubjectTeacher</span><span class=p>;</span>
+
+<span class=c1>-- Create Student table
+</span><span class=c1></span><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>Student</span> <span class=p>(</span>
+    <span class=n>Name</span> <span class=nb>TEXT</span><span class=p>,</span>
+    <span class=n>ClassTeacherName</span> <span class=nb>TEXT</span><span class=p>,</span>
+    <span class=n>StudentID</span> <span class=nb>INTEGER</span><span class=p>,</span>
+    <span class=n>ClassroomID</span> <span class=nb>INTEGER</span><span class=p>,</span>
+    <span class=n>Birthdate</span> <span class=nb>DATE</span><span class=p>,</span>
+    <span class=n>Subjects</span> <span class=nb>TEXT</span>
+<span class=p>);</span>
+
+<span class=c1>-- Create Teacher table
+</span><span class=c1></span><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>Teacher</span> <span class=p>(</span>
+    <span class=n>Name</span> <span class=nb>TEXT</span><span class=p>,</span>
+    <span class=n>TeacherID</span> <span class=nb>INTEGER</span><span class=p>,</span>
+    <span class=n>ClassroomID</span> <span class=nb>INTEGER</span>
+<span class=p>);</span>
+
+<span class=c1>-- Create Classroom table
+</span><span class=c1></span><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>Classroom</span> <span class=p>(</span>
+    <span class=n>ClassroomID</span> <span class=nb>INTEGER</span><span class=p>,</span>
+    <span class=n>ClassID</span> <span class=nb>INTEGER</span>
+<span class=p>);</span>
+
+<span class=c1>-- Create SubjectTeacher table
+</span><span class=c1></span><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>SubjectTeacher</span> <span class=p>(</span>
+    <span class=n>Name</span> <span class=nb>TEXT</span><span class=p>,</span>
+    <span class=n>TeacherID</span> <span class=nb>INTEGER</span><span class=p>,</span>
+    <span class=n>Subject</span> <span class=nb>TEXT</span>
+<span class=p>);</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/IFDjvKq.gif loading=lazy alt=demo></p><p>完成後我們可以看到我們的左邊就出現很多的東西，就代表我們成功創建了Table喔！</p><p>但此時Table裡面的東西都是空的，我們試著塞一些資料進去Table裡面吧，這邊再次邀請我們的勞模ChatGPT</p><p><img src=https://i.imgur.com/qa8OxpY.png loading=lazy alt=image-20230127003349573></p><p>這邊的INSERT其實就是新增資料進去的意思。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=c1>-- Insert data into the Teacher table
+</span><span class=c1></span><span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Teacher</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>TeacherID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;John Smith&#39;</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>101</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Teacher</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>TeacherID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Jane Doe&#39;</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>102</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Teacher</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>TeacherID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Bob Johnson&#39;</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>103</span><span class=p>);</span>
+
+<span class=c1>-- Insert data into the Classroom table
+</span><span class=c1></span><span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Classroom</span> <span class=p>(</span><span class=n>ClassroomID</span><span class=p>,</span> <span class=n>ClassID</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=mi>101</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Classroom</span> <span class=p>(</span><span class=n>ClassroomID</span><span class=p>,</span> <span class=n>ClassID</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=mi>102</span><span class=p>,</span> <span class=mi>2</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Classroom</span> <span class=p>(</span><span class=n>ClassroomID</span><span class=p>,</span> <span class=n>ClassID</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=mi>103</span><span class=p>,</span> <span class=mi>3</span><span class=p>);</span>
+
+<span class=c1>-- Insert data into the SubjectTeacher table
+</span><span class=c1></span><span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>SubjectTeacher</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>TeacherID</span><span class=p>,</span> <span class=n>Subject</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;John Smith&#39;</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=s1>&#39;Math&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>SubjectTeacher</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>TeacherID</span><span class=p>,</span> <span class=n>Subject</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Jane Doe&#39;</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=s1>&#39;Science&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>SubjectTeacher</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>TeacherID</span><span class=p>,</span> <span class=n>Subject</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Bob Johnson&#39;</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=s1>&#39;English&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>SubjectTeacher</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>TeacherID</span><span class=p>,</span> <span class=n>Subject</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Bob Johnson&#39;</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=s1>&#39;History&#39;</span><span class=p>);</span>
+
+<span class=c1>-- Insert data into the Student table
+</span><span class=c1></span><span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Student</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>ClassTeacherName</span><span class=p>,</span> <span class=n>StudentID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>,</span> <span class=n>Birthdate</span><span class=p>,</span> <span class=n>Subjects</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Alice Smith&#39;</span><span class=p>,</span> <span class=s1>&#39;John Smith&#39;</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>101</span><span class=p>,</span> <span class=s1>&#39;2000-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;Math, Science&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Student</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>ClassTeacherName</span><span class=p>,</span> <span class=n>StudentID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>,</span> <span class=n>Birthdate</span><span class=p>,</span> <span class=n>Subjects</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Bob Brown&#39;</span><span class=p>,</span> <span class=s1>&#39;John Smith&#39;</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>101</span><span class=p>,</span> <span class=s1>&#39;2001-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;Math, English&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Student</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>ClassTeacherName</span><span class=p>,</span> <span class=n>StudentID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>,</span> <span class=n>Birthdate</span><span class=p>,</span> <span class=n>Subjects</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Charlie Johnson&#39;</span><span class=p>,</span> <span class=s1>&#39;Jane Doe&#39;</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>102</span><span class=p>,</span> <span class=s1>&#39;2002-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;Science, History&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Student</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>ClassTeacherName</span><span class=p>,</span> <span class=n>StudentID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>,</span> <span class=n>Birthdate</span><span class=p>,</span> <span class=n>Subjects</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;David Wilson&#39;</span><span class=p>,</span> <span class=s1>&#39;Jane Doe&#39;</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=mi>102</span><span class=p>,</span> <span class=s1>&#39;2003-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;Science, English&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Student</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>ClassTeacherName</span><span class=p>,</span> <span class=n>StudentID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>,</span> <span class=n>Birthdate</span><span class=p>,</span> <span class=n>Subjects</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Eve Davis&#39;</span><span class=p>,</span> <span class=s1>&#39;Bob Johnson&#39;</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>103</span><span class=p>,</span> <span class=s1>&#39;2004-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;English, History&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Student</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>ClassTeacherName</span><span class=p>,</span> <span class=n>StudentID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>,</span> <span class=n>Birthdate</span><span class=p>,</span> <span class=n>Subjects</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Frank Miller&#39;</span><span class=p>,</span> <span class=s1>&#39;John Smith&#39;</span><span class=p>,</span> <span class=mi>6</span><span class=p>,</span> <span class=mi>101</span><span class=p>,</span> <span class=s1>&#39;2005-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;Math&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Student</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>ClassTeacherName</span><span class=p>,</span> <span class=n>StudentID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>,</span> <span class=n>Birthdate</span><span class=p>,</span> <span class=n>Subjects</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Gary Moore&#39;</span><span class=p>,</span> <span class=s1>&#39;Jane Doe&#39;</span><span class=p>,</span> <span class=mi>7</span><span class=p>,</span> <span class=mi>102</span><span class=p>,</span> <span class=s1>&#39;2006-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;Science&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Student</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>ClassTeacherName</span><span class=p>,</span> <span class=n>StudentID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>,</span> <span class=n>Birthdate</span><span class=p>,</span> <span class=n>Subjects</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Helen Anderson&#39;</span><span class=p>,</span> <span class=s1>&#39;Bob Johnson&#39;</span><span class=p>,</span> <span class=mi>8</span><span class=p>,</span> <span class=mi>103</span><span class=p>,</span> <span class=s1>&#39;2007-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;English, History&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Student</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>ClassTeacherName</span><span class=p>,</span> <span class=n>StudentID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>,</span> <span class=n>Birthdate</span><span class=p>,</span> <span class=n>Subjects</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;Irene Thomas&#39;</span><span class=p>,</span> <span class=s1>&#39;John Smith&#39;</span><span class=p>,</span> <span class=mi>9</span><span class=p>,</span> <span class=mi>101</span><span class=p>,</span> <span class=s1>&#39;2008-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;Math, Science&#39;</span><span class=p>);</span>
+<span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>Student</span> <span class=p>(</span><span class=n>Name</span><span class=p>,</span> <span class=n>ClassTeacherName</span><span class=p>,</span> <span class=n>StudentID</span><span class=p>,</span> <span class=n>ClassroomID</span><span class=p>,</span> <span class=n>Birthdate</span><span class=p>,</span> <span class=n>Subjects</span><span class=p>)</span> <span class=k>VALUES</span> <span class=p>(</span><span class=s1>&#39;James Hernandez&#39;</span><span class=p>,</span> <span class=s1>&#39;Jane Doe&#39;</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>102</span><span class=p>,</span> <span class=s1>&#39;2009-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;Science, English&#39;</span><span class=p>);</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/MQUkQKO.gif loading=lazy alt=demo></p><p>完成後，在Table上面點選右鍵，選擇SELECT即可這張表的所有屬性喔 ！</p><ul><li>教室Table</li></ul><p><img src=https://i.imgur.com/GcMuljK.png loading=lazy alt=image-20230127004124644></p><ul><li>學生Table <code>這邊也違反資料庫正規化，一個應該只塞一筆資料的原則，我的subject塞了複數筆資料，但單純Demo而已，有點懶得改了</code></li></ul><p><img src=https://i.imgur.com/VcUjfIc.png loading=lazy alt=image-20230127004142876></p><ul><li><p>科任老師Table<img src=https://i.imgur.com/c4JRzJa.png loading=lazy alt=image-20230127004158587></p></li><li><p>老師Table</p></li></ul><p><img src=https://i.imgur.com/K9jpTXv.png loading=lazy alt=image-20230127004517825></p><h1 id=sql語法的介紹>SQL語法的介紹</h1><p>我們一樣在框框裡面操作</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>SELECT</span> <span class=o>*</span> <span class=k>FROM</span> <span class=n>Teacher</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/vUOj64t.png loading=lazy alt=image-20230127004832304></p><p>這個語法的意思就是 SELECT<code>選擇</code> *<code>全部欄位</code> FROM<code>來自</code> Teacher<code>這張表</code>，翻成白話文的意思就是，幫我選出Teacher這張表的全部內容，當然我們也可以再複雜一點，比如說</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>SELECT</span> <span class=o>*</span> <span class=k>FROM</span> <span class=n>Teacher</span> <span class=k>WHERE</span> <span class=n>teacherid</span> <span class=o>=</span> <span class=mi>2</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/z9vNNK2.png loading=lazy alt=image-20230127005357191></p><p>也就是從Teacher這張表裡面選出TeacherId為2的欄位</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>SELECT</span> <span class=o>*</span> <span class=k>FROM</span> <span class=n>Student</span> <span class=k>WHERE</span> <span class=n>subjects</span> <span class=k>LIKE</span> <span class=s1>&#39;%Math%&#39;</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/Ea8nwnc.png loading=lazy alt=image-20230127011847946></p><p>當然我們再複雜一點點，這個語法會找出所有在Student這張Table裡面subjects欄位裡有Math的學生，聽起來有點繞口對吧XD，接著我們就把這些語法組合起來，試著找看看</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>SELECT</span> <span class=n>Student</span><span class=p>.</span><span class=o>*</span>
+<span class=k>FROM</span> <span class=n>Student</span>
+<span class=k>JOIN</span> <span class=n>SubjectTeacher</span> <span class=k>ON</span> <span class=n>Student</span><span class=p>.</span><span class=n>ClassTeacherName</span> <span class=o>=</span> <span class=n>SubjectTeacher</span><span class=p>.</span><span class=n>Name</span>
+<span class=k>WHERE</span> <span class=n>Birthdate</span> <span class=k>BETWEEN</span> <span class=s1>&#39;2001-01-01&#39;</span> <span class=k>AND</span> <span class=s1>&#39;2005-12-31&#39;</span> <span class=k>AND</span> <span class=n>SubjectTeacher</span><span class=p>.</span><span class=n>Subject</span> <span class=o>=</span> <span class=s1>&#39;Math&#39;</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/P1RI9MH.png loading=lazy alt=image-20230127011903188></p><p>我們再複雜一點點點點，我們想找出所有在2001年至2005年出生，並且有修Math的學生，看到這邊這個語法大家是不是有點感覺了，是不是很像我們去撈資料常常用到的，要撈發生在本年度的100018應付帳款全部資料XD。其實背後的SQL語法就像這樣子。</p><p>當然實際上的情況SQL語法還會更複雜一點，因為這些這是關聯式資料庫，彼此間可能可以關聯到很遠很遠的Table，只是為了做科普而已就不弄得那麼複雜了。另外SQL Syntax(語法)也不只SELECT，常見的還有UPDATA, DELETE, CREATE等等，只是這些審計人員一般不會碰到。</p><h1 id=結語>結語</h1><p>其實沒啥想講的，只是覺得很閒而已，想說趁年假時後把想寫的東西寫一寫，順便也當科普一樣，感覺會計這個圈子好像很少人在寫科普或是知識介紹的東西，就花個一兩個小時的時間寫一下，如果對SQL有興趣的話，可以去載來玩看看</p><ul><li>MySQL：全英介面，一開始可能不太友好，但網路上資源最多</li><li>MSSQL：微軟的SQL，有中文介面，但網路上資源相對較少，其實SQL的語法都大同小異，但其實還是有一些不同處</li><li>PostgreSQL：通常不會用這個入門，我個人覺得它GUI的介面很爛，我用這個的話通常都是用Terminal</li><li>SQLite：不太推薦，因為這算是輕量化版的，有很多資料型別是特規的。</li></ul><p>我文章常提到的資料庫正規化介紹如下</p><p><a href=https://ithelp.ithome.com.tw/articles/10229472>https://ithelp.ithome.com.tw/articles/10229472</a></p><p>忙季加油！債見</p></section><footer class=article-footer><section class=article-tags><a href=/tags/sql/>SQL</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
+gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2023 Hoxton</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前言>前言</a></li><li><a href=#什麼是sql>什麼是SQL</a></li><li><a href=#sql的實作>SQL的實作</a></li><li><a href=#sql語法的介紹>SQL語法的介紹</a></li><li><a href=#結語>結語</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
