@@ -58,9 +58,13 @@
 <span class=o>}</span>
 </code></pre></td></tr></table></div></div><p>這個方法會把傳進來的值，包裝成一個ArrayList並回傳出去，而它參數的型別則是與Link的泛型一致，比如說</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=n>Link</span> <span class=n>link</span><span class=o>=</span><span class=k>new</span> <span class=n>Link</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;;</span>
-<span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>list</span><span class=o>=</span><span class=n>link</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=s>&#34;早安&#34;</span><span class=o>);</span>
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/cpeYA8T.png loading=lazy alt=image-20230401002712243></p><p>也就是說addToList這個<strong>方法的型別和Link的泛型型別是綁定在一起</strong>的。</p><h1 id=何謂回傳型別前的泛型>何謂回傳型別前的泛型</h1><p>承上，因為方法的參數型別與類的泛型型別基本上綁定在一起，如果我宣告了一個Link<integer>，我的addToList就只能吃Integer的參數，那為了要解決這種問題，就有了在回傳型別前的泛型的寫法，釋例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>arg</span><span class=o>){</span>
+    <span class=n>Link</span> <span class=n>link</span><span class=o>=</span><span class=k>new</span> <span class=n>Link</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;;</span>
+    <span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>list</span><span class=o>=</span><span class=n>link</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=s>&#34;早安&#34;</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/cpeYA8T.png loading=lazy alt=image-20230401002712243></p><p>也就是說addToList這個<strong>方法的型別和Link的泛型型別是綁定在一起</strong>的。</p><h1 id=何謂回傳型別前的泛型>何謂回傳型別前的泛型</h1><p>承上，因為方法的參數型別與類的泛型型別基本上綁定在一起，如果我宣告了一個Link&lt;Integer>，我的addToList就只能吃Integer的參數，那為了要解決這種問題，就有了在回傳型別前的泛型的寫法，釋例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -88,7 +92,7 @@
     <span class=o>}</span>
 
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>可以看到addToList2這個方法的回傳值List<e>前，我加了一個<e>，先別管這個到底能做什麼，我們現在先使用這個方法看看</p><p><img src=https://i.imgur.com/2kuQ8Ol.png loading=lazy alt=image-20230401003453849></p><p>這時候你發現了，addToList2能吃的參數變成Object類了，當我們輸入一個String</p><p><img src=https://i.imgur.com/RGzbhFK.png loading=lazy alt=image-20230401003608198></p><p>輸入一個Double</p><p><img src=https://i.imgur.com/z7QKtUI.png loading=lazy alt=image-20230401003718395></p><p>可以感受到addToList跟addToList2的差異了嗎？沒錯，addToList2的泛型不受Link的影響，可以自己有自己的泛型</p><h1 id=應用>應用</h1><p>這樣的用法不只可以拿來用在泛型類裡的方法，也可以用在一個非泛型類，比如說</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>可以看到addToList2這個方法的回傳值List&lt;E>前，我加了一個&lt;E>，先別管這個到底能做什麼，我們現在先使用這個方法看看</p><p><img src=https://i.imgur.com/2kuQ8Ol.png loading=lazy alt=image-20230401003453849></p><p>這時候你發現了，addToList2能吃的參數變成Object類了，當我們輸入一個String</p><p><img src=https://i.imgur.com/RGzbhFK.png loading=lazy alt=image-20230401003608198></p><p>輸入一個Double</p><p><img src=https://i.imgur.com/z7QKtUI.png loading=lazy alt=image-20230401003718395></p><p>可以感受到addToList跟addToList2的差異了嗎？沒錯，addToList2的泛型不受Link的影響，可以自己有自己的泛型</p><h1 id=應用>應用</h1><p>這樣的用法不只可以拿來用在泛型類裡的方法，也可以用在一個非泛型類，比如說</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4

@@ -87,10 +87,14 @@
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">Link&lt;/span> &lt;span class="n">link&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;;&lt;/span>
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">arg&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">Link&lt;/span> &lt;span class="n">link&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;;&lt;/span>
 &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">link&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;早安&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/cpeYA8T.png"
@@ -99,7 +103,7 @@ alt="image-20230401002712243"
 >&lt;/p>
 &lt;p>也就是說addToList這個&lt;strong>方法的型別和Link的泛型型別是綁定在一起&lt;/strong>的。&lt;/p>
 &lt;h1 id="何謂回傳型別前的泛型">何謂回傳型別前的泛型&lt;/h1>
-&lt;p>承上，因為方法的參數型別與類的泛型型別基本上綁定在一起，如果我宣告了一個Link&lt;Integer>，我的addToList就只能吃Integer的參數，那為了要解決這種問題，就有了在回傳型別前的泛型的寫法，釋例如下&lt;/p>
+&lt;p>承上，因為方法的參數型別與類的泛型型別基本上綁定在一起，如果我宣告了一個Link&amp;lt;Integer&amp;gt;，我的addToList就只能吃Integer的參數，那為了要解決這種問題，就有了在回傳型別前的泛型的寫法，釋例如下&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -132,7 +136,7 @@ alt="image-20230401002712243"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>可以看到addToList2這個方法的回傳值List&lt;E>前，我加了一個&lt;E>，先別管這個到底能做什麼，我們現在先使用這個方法看看&lt;/p>
+&lt;/div>&lt;p>可以看到addToList2這個方法的回傳值List&amp;lt;E&amp;gt;前，我加了一個&amp;lt;E&amp;gt;，先別管這個到底能做什麼，我們現在先使用這個方法看看&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/2kuQ8Ol.png"
 loading="lazy"
 alt="image-20230401003453849"
