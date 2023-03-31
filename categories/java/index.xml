@@ -184,7 +184,39 @@ alt="image-20230401004844813"
 loading="lazy"
 alt="image-20230401005044108"
 >&lt;/p>
-&lt;p>如此一來，addPeopleList就可以吃任何型別的參數了，以上就是所謂的泛型方法約束。&lt;/p></description></item><item><title>基礎AOP介紹-Filter Interceptor AspectJ</title><link>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link><pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</guid><description>&lt;img src="https://i.imgur.com/B7GhSw1.png" alt="Featured image of post 基礎AOP介紹-Filter Interceptor AspectJ" />&lt;h1 id="目錄">目錄&lt;/h1>
+&lt;p>如此一來，addPeopleList就可以吃任何型別的參數了，以上就是所謂的泛型方法約束。&lt;/p></description></item><item><title>Java中的throw,throws,try...catch，受檢例外與非受檢例外</title><link>https://hoxtonhsu.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</link><pubDate>Tue, 27 Dec 2022 15:12:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</guid><description>&lt;img src="https://i.imgur.com/dwbYvaF.png" alt="Featured image of post Java中的throw,throws,try...catch，受檢例外與非受檢例外" />&lt;h1 id="開頭">開頭&lt;/h1>
+&lt;p>Java中的例外分為受檢例外與非受檢例外(RuntimeExcetption)兩大類，可以先看到這張圖。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/apUx0mu.png"
+loading="lazy"
+alt="image-20221227160151705"
+>&lt;/p>
+&lt;p>所謂的&lt;strong>非受檢例外就是指繼承了RuntimeException的Exception&lt;/strong>，這類的Exception發生，而非受檢例外就是指沒有繼承RuntimeException的Exception。可以看下列的圖片&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/FdZYptn.png"
+loading="lazy"
+alt="image-20221227161807341"
+>&lt;/p>
+&lt;h1 id="何謂受檢例外與非受檢例外">何謂受檢例外與非受檢例外&lt;/h1>
+&lt;p>受檢例外之所以叫受檢例外，就在於這些例外是工程師必須明確檢查並處理的例外，例如讀取檔案時發生的FileNotFoundException，這類的Exception，JVM沒有辦法進行處理，因此需要工程師去做處理。而RumtimeException則是指那些工程師不需要去明確處理的Exception，比如說NullPointerException, ArrayIndexOutOfBoundsException，這類的例外都是繼承自RuntimeException，可以由JVM進行處理，當然要處理也是可以的，比如說這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/9drhRUY.png"
+loading="lazy"
+alt="image-20221227164624742"
+>&lt;/p>
+&lt;p>(可以看到左邊第13行的方法，沒有被try..catch包住也沒事，因為該方法拋出的例外是NumberFormatException，這個例外繼承了RuntimeException，因此不用try&amp;hellip;catch處理也沒關係，JVM會自動幫我們處理，如果要放到try&amp;hellip;catch的話，則是在catch段裡去catch NumberFormatException)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xsozyoG.png"
+loading="lazy"
+alt="image-20221227164726651"
+>&lt;/p>
+&lt;p>將方法放入try&amp;hellip;catch之後，因為catch是抓RuntimeException，所以被抓到後會print出catch error。&lt;/p>
+&lt;p>另外比較實務上的說法即是，受檢例外(checked Exception)是可被修復的例外，可以試看看retry，而不可修復的例外就是非受檢例外(RunTimeException)，這種時候就代表程式出了問題，有bug，需要工程師下來進行處理，把問題處理掉&lt;/p>
+&lt;p>來源：&lt;a class="link" href="https://medium.com/kuma%E8%80%81%E5%B8%AB%E7%9A%84%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B%E6%95%99%E5%AE%A4/2021-it-%E9%90%B5%E4%BA%BA-day-09-%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E8%88%87%E4%BE%8B%E5%A4%96%E8%99%95%E7%90%86-f571f577f72" target="_blank" rel="noopener"
+>2021 IT 鐵人 Day 09 單元測試與例外處理&lt;/a>&lt;/p>
+&lt;p>那如果一個method會拋出受檢例外，而在該method中又沒有做處理，則會需要呼叫它的那一個method進行處理。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/mLLBczf.png"
+loading="lazy"
+alt="image-20221227165544804"
+>&lt;/p>
+&lt;p>右邊的方法實際上不會拋出IOException，所以會顯示為灰色的，這邊只是作為Demo先寫上去。可以看到畫面左邊的地方，此時IDE跟我們報錯，說這個方法會拋出一個IOException，要我們進行處理，&lt;strong>因為IOException是一個受檢例外&lt;/strong>，JVM本身沒有能力可以進行處理。&lt;/p>
+&lt;p>大概先這樣，其他想到後補。&lt;/p></description></item><item><title>基礎AOP介紹-Filter Interceptor AspectJ</title><link>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link><pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</guid><description>&lt;img src="https://i.imgur.com/B7GhSw1.png" alt="Featured image of post 基礎AOP介紹-Filter Interceptor AspectJ" />&lt;h1 id="目錄">目錄&lt;/h1>
 &lt;ul>
 &lt;li>&lt;a class="link" href="#Filter%28%e9%81%8e%e6%bf%be%e5%99%a8%29Interceptor%28%e6%94%94%e6%88%aa%e5%99%a8%29AOP%28%e5%89%96%e9%9d%a2%e5%b0%8e%e5%90%91%e7%a8%8b%e5%bc%8f%e8%a8%ad%e8%a8%88%29%e4%b9%8b%e5%b7%ae%e7%95%b0" >Filter(過濾器)Interceptor(攔截器)AOP(剖面導向程式設計)之差異&lt;/a>
 &lt;ul>
