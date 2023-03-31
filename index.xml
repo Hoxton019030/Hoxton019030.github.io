@@ -1,4 +1,186 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 24 Mar 2023 01:41:57 +0000</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>論@Value與Environment之優劣</title><link>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link><pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid><description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" />&lt;p>&lt;img src="https://i.imgur.com/JQHz275.png"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 01 Apr 2023 00:03:03 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Java中回傳值前的泛型標識符是什麼意思呢</title><link>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</link><pubDate>Sat, 01 Apr 2023 00:03:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/Eoww5Cd.png" alt="Featured image of post Java中回傳值前的泛型標識符是什麼意思呢" />&lt;p>前一陣子在寫DiscordBot的時候，曾經在教學中看過這種寫法&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">GymBotConfiguration&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Bean&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">Event&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">GatewayDiscordClient&lt;/span> &lt;span class="nf">gatewayDiscordClient&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kd">final&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">EventListener&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;&lt;/span> &lt;span class="n">eventListeners&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="kd">final&lt;/span> &lt;span class="n">GatewayDiscordClient&lt;/span> &lt;span class="n">client&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">DiscordClientBuilder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">create&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">token&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">()&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">login&lt;/span>&lt;span class="o">()&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">block&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">EventListener&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">listener&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">eventListeners&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">client&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">on&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getEventType&lt;/span>&lt;span class="o">())&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">flatMap&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">onErrorResume&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">handleError&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">subscribe&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">client&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>對於其中&lt;T extends Event>的寫法感到非常困惑，不知道為什麼回傳值前還會有泛型符號，直到最近在研究一些OpenSource的框架時，才又更了解這件事情。&lt;/p>
+&lt;h1 id="如何宣告泛型">如何宣告泛型&lt;/h1>
+&lt;p>在講這件事情之前，要先有個基礎知識，就是關於Java是如何宣告一個泛型Class的，其實就是在Class後面加上&lt;T>就可以了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如此一來，就可以在其他地方創建一個泛型的Link類&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">Link&lt;/span> &lt;span class="n">link&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">&amp;gt;;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>現在我們在這個Link類裡新增一個方法&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這個方法會把傳進來的值，包裝成一個ArrayList並回傳出去，而它參數的型別則是與Link的泛型一致，比如說&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">Link&lt;/span> &lt;span class="n">link&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;;&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">link&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;早安&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/cpeYA8T.png"
+loading="lazy"
+alt="image-20230401002712243"
+>&lt;/p>
+&lt;p>也就是說addToList這個&lt;strong>方法的型別和Link的泛型型別是綁定在一起&lt;/strong>的。&lt;/p>
+&lt;h1 id="何謂回傳型別前的泛型">何謂回傳型別前的泛型&lt;/h1>
+&lt;p>承上，因為方法的參數型別與類的泛型型別基本上綁定在一起，如果我宣告了一個Link&lt;Integer>，我的addToList就只能吃Integer的參數，那為了要解決這種問題，就有了在回傳型別前的泛型的寫法，釋例如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList2&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以看到addToList2這個方法的回傳值List&lt;E>前，我加了一個&lt;E>，先別管這個到底能做什麼，我們現在先使用這個方法看看&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2kuQ8Ol.png"
+loading="lazy"
+alt="image-20230401003453849"
+>&lt;/p>
+&lt;p>這時候你發現了，addToList2能吃的參數變成Object類了，當我們輸入一個String&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/RGzbhFK.png"
+loading="lazy"
+alt="image-20230401003608198"
+>&lt;/p>
+&lt;p>輸入一個Double&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/z7QKtUI.png"
+loading="lazy"
+alt="image-20230401003718395"
+>&lt;/p>
+&lt;p>可以感受到addToList跟addToList2的差異了嗎？沒錯，addToList2的泛型不受Link的影響，可以自己有自己的泛型&lt;/p>
+&lt;h1 id="應用">應用&lt;/h1>
+&lt;p>這樣的用法不只可以拿來用在泛型類裡的方法，也可以用在一個非泛型類，比如說&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Student&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Student&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addPeopleList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Student&lt;/span> &lt;span class="n">student&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Student&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">student&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>今天我們希望這個addPeopleList的方法可以吃任何型別的參數，我們如果這樣寫是會報錯的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2VxQDBU.png"
+loading="lazy"
+alt="image-20230401004844813"
+>&lt;/p>
+&lt;p>原因就在於我們並沒有一個地方告訴編譯器，什麼是T，因為我們的Student類並不是一個泛型類，但我們又不能去修改Student，所以我們修改addPeopleList，讓它變成這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vAcAm7y.png"
+loading="lazy"
+alt="image-20230401005044108"
+>&lt;/p>
+&lt;p>如此一來，addPeopleList就可以吃任何型別的參數了，以上就是所謂的泛型方法約束。&lt;/p></description></item><item><title>論@Value與Environment之優劣</title><link>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link><pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid><description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" />&lt;p>&lt;img src="https://i.imgur.com/JQHz275.png"
 loading="lazy"
 >&lt;/p>
 &lt;p>SpringBoot中想要從Application.properties中取的值，有兩種常見的方式，其中一種是利用@Value的方式&lt;/p>
@@ -2519,7 +2701,19 @@ alt="image-20230205211814078"
 loading="lazy"
 alt="image-20230205213904945"
 >&lt;/p>
-&lt;p>接著只要上傳是使用SSH方式上傳，就不需要再登入github了&lt;/p></description></item><item><title>Wednesday 星期三與她的暈船夥伴們</title><link>https://hoxtonhsu.com/p/wednesday-%E6%98%9F%E6%9C%9F%E4%B8%89%E8%88%87%E5%A5%B9%E7%9A%84%E6%9A%88%E8%88%B9%E5%A4%A5%E4%BC%B4%E5%80%91/</link><pubDate>Sun, 29 Jan 2023 17:20:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/wednesday-%E6%98%9F%E6%9C%9F%E4%B8%89%E8%88%87%E5%A5%B9%E7%9A%84%E6%9A%88%E8%88%B9%E5%A4%A5%E4%BC%B4%E5%80%91/</guid><description>&lt;img src="https://i.imgur.com/C9FgAaF.jpg" alt="Featured image of post Wednesday 星期三與她的暈船夥伴們" />&lt;h1 id="緣起">緣起&lt;/h1>
+&lt;p>接著只要上傳是使用SSH方式上傳，就不需要再登入github了&lt;/p></description></item><item><title>Wednesday 星期三與她的暈船夥伴</title><link>https://hoxtonhsu.com/p/wednesday-%E6%98%9F%E6%9C%9F%E4%B8%89%E8%88%87%E5%A5%B9%E7%9A%84%E6%9A%88%E8%88%B9%E5%A4%A5%E4%BC%B4/</link><pubDate>Sun, 29 Jan 2023 17:20:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/wednesday-%E6%98%9F%E6%9C%9F%E4%B8%89%E8%88%87%E5%A5%B9%E7%9A%84%E6%9A%88%E8%88%B9%E5%A4%A5%E4%BC%B4/</guid><description>&lt;img src="https://hoxtonhsu.com/%20" alt="Featured image of post Wednesday 星期三與她的暈船夥伴" />&lt;p>年假實在太無聊了，有點廢到連書都讀不下去，就打開Netflix想看看有什麼好看的，原本想看初戀First Love的，但無奈我對於愛情類型的東西實在沒什麼太大的興趣，正好看到了wednesday出現在推薦名單上，稍微看了一下預告，覺得Wednesday這種厭世到極限的人設深得我心，再搭配上女配角伊妮形成的反差，兩邊的對比實在太過強烈，讓我忍不住好奇到底這部在演什麼，於是就點進去了。&lt;/p>
+&lt;p>&lt;a class="link" href="" >插入圖片&lt;/a>&lt;/p>
+&lt;p>先講結論，我覺得整部人設滿分，劇情真的不行，後面劇情感覺沒一個人是用腦袋在做事的，看完只覺得我的智商被狠狠的強暴了一遍。&lt;/p>
+&lt;p>前面四集算是蠻多記憶點的，比如說舞會、拉大提琴、雕像爆破等等，對於星期三的角色塑造也算豐滿(就是個怪胎)。但無奈到後面幾集感覺整部劇情的調性就開始脫離了Addams Family的那種黑色幽默。&lt;/p>
+&lt;p>首先是第五集，這一集家庭探訪日，校長要求Addams一家去做心理諮商，我本以為可以看到她們一家人「與眾不同」的那面，比如說互相挖苦、愛彼此愛到要殺死對方的那一種關心方式，但沒想到話鋒一轉，她們一家人居然整整齊齊的認真在做一場諮商，當問到Gormoz年輕時是否真的殺過人，Morticia還牙起來，要Wedensday不要再繼續追問下去了。當時心裡在想，這家人不是一群outcast嗎？怎麼突然間會這麼嚴肅地在講這件事情？整場諮商下來完全沒有任何Addams Family的感覺，跟一般家庭沒什麼不同的地方。直到後面謎題揭曉時，我還想說這麼嚴肅肯定是有什麼天大的事情所以才不能說，原來就只是爸爸幫媽媽背黑鍋而已，請問這件事情有必要瞞著Wednesday嗎？有必要故弄玄虛嗎？&lt;/p>
+&lt;p>緊接著到第六集，莫名其妙的Xavier跟Tyler都對Wednesday暈船，而且暈船的不清，相繼說出什麼「舞會過後，我只想忘掉妳，卻都忘不掉」，「雖然可能是我的錯覺，星期三，但你明明不停對我明示暗示」，我的天，我以為點進來是黑色幽默的懸疑片，沒想到點進來的原來是三角戀修羅場連續劇，再回頭看看前面的劇情，實在不覺得星期三跟這兩人的互動有什麼地方會讓人暈船的，可能這兩人都是易暈體質吧，只能說Wednesday有海王天份，深諳各種小心機吧，有一幕好像是Xavier看到Wednesday跟Tyler去舞會還是啥的，再生悶氣，沒想到Wedensday居然問Xavier到底在不開心什麼，我當時心裡在想「你這不是很懂嗎？海王Wednesday」，只能說男人終究是抵抗不了神祕正妹的邀請，唉。&lt;/p>
+&lt;p>到了後面進入主線，Wednesday騙Enid跟Tyler想要出去，結果實際上是去Gates家調查，結果調查不順遭到Hyde的攻擊，結尾時看到Enid生氣的對Wedensday說「你根本不在乎你身邊的人，你只在乎你自己」時，我心裡想說終於啊，有人終於講出實話了，結果下一集Enid又活蹦亂跳的來找Wednesday聊天，不只是這幕，其實之前也有很多類似的劇情&lt;/p>
+&lt;p>Wednesday搞了些什麼讓大家很不爽，結果過沒幾集大家又主動來找Wednesday聊天，道歉。奇怪，到底為什麼要跟她道歉啊，難道人長得正就可以這樣子嗎。&lt;/p>
+&lt;p>接著劇情在往下走，發現更加弱智，星期三指認Xavier就是兇手，結果實際上抓錯了，我個人認為沒問題，畢竟人總是有出錯的時候，而且確實很多證據都指向Xavier。但當Wednesaday說她抓錯，Tyler才是兇手時，她的快樂夥伴依然是無條件地相信Wednesday，甚至連證據都沒提供，她的快樂夥伴沒有絲毫的懷疑她講得到底是真是假，整個抓捕過程細絲極恐，我甚至覺得，假使Tyler不是兇手，Wednesday說Ajax是兇手，那群快樂夥伴也是會很樂意地把Ajax抓起來上供給Wednesday。也就是說其實星期三的行為根本是村霸的行為吧，說你有罪就有罪，抓犯人不靠腦袋而是靠拳頭，全程硬A，甚至最後抓犯人還是靠幻視才抓到的，0邏輯思考、解謎。&lt;/p>
+&lt;p>到最後一集則是弱智情節大集合，知道主謀是Thornhill老師，校長用變形術變成Tyler的樣子去跟Wednesday包圍她，結果校長在Thornhill面前解除變形後，我本以為會有什麼刺激的對決畫面，結果Thornhill只是提起「手中」的針筒，就往校長的「脖子」刺下去，校長就死了，那到底為什麼要變形接近老師啊，不能躲在旁邊聽就好嗎？退一萬步來說，校長你真的不是在演嗎？你身高190，老師身高155，能不能反應一下啊，結果就這樣死了，完全沒有任何推進劇情的作用，校長在不在那個場景對於劇情影響都不大，真的就只是為了過來死而已。&lt;/p>
+&lt;p>後來Crackstone復活，我本以為會有什麼超炫的技能，結果完全沒有，戰力值低落到我甚至認為Nevermore學生每個人都衝上去，他就會活活當場被打死在現場，就只有進Nevermore後放個火焰風暴後，接著就拿起法仗當一個進戰法師，跟Wednesday近身平A起來，不知道是不是腦袋還沒熱起來，忘記自己是一個法師，應該拉開距離，或是趁隙放個什麼魔法之類的，最後還被Bianca從後面背刺，當他轉過去打飛Bianca後，接著又被Wednesday背刺，看到這幕的時候我還以為在看周星馳的零零漆大戰金鎗客，這種古靈金怪槍的幽默沒想到也被洋人發揚光大去了。最後Thornhill老師拿了一把槍走出來時，我心裡在想「終於啊！大人，時代變了，該拿槍了」，結果拿槍抖了老半天，講了一堆話就是沒開下去，結果後面被蜜蜂叮的時候才開槍，真的不是當年腦子進水嗎？Crackerstone復活後不就叫你閉嘴，警告你話太多了嗎？結果最後還是沒把他的話聽進去，難怪不成大氣。&lt;/p>
+&lt;p>最後快樂大結局，該發糖的發糖、該狼化的狼化，Xavier繼續暈船Wednesday，結尾還送了台Iphone給Wednesday，看到這幕時，我忽然想起知道為什麼Xavier一開始會懷疑自己被Bianca蠱惑，從劇情表現上看起來他確實是暈到神智不清，我也懷疑他最後真的被星期三蠱惑了，印證了那句「星期三虐我千百遍，我仍待她如初戀」，鋼鐵星期三粉實至名歸。&lt;/p>
+&lt;p>認真回想了一下，整部劇情最大該吐槽的點就是Wednesday身邊的人對她近乎盲目的包容，校長包容她、警長包容她、狼妹包容她、男配也包容她，Wednesday至始至終除了小手外，幾乎沒對任何人道過歉，也沒深刻的反省，但就是所有的人都會莫名其妙的原諒她，毫無邏輯與深度可言。第二季出的話我應該還是會看，畢竟人設實在太香了，希望第二季不要在虎頭蛇尾了。&lt;/p></description></item><item><title>Wednesday 星期三與她的暈船夥伴們</title><link>https://hoxtonhsu.com/p/wednesday-%E6%98%9F%E6%9C%9F%E4%B8%89%E8%88%87%E5%A5%B9%E7%9A%84%E6%9A%88%E8%88%B9%E5%A4%A5%E4%BC%B4%E5%80%91/</link><pubDate>Sun, 29 Jan 2023 17:20:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/wednesday-%E6%98%9F%E6%9C%9F%E4%B8%89%E8%88%87%E5%A5%B9%E7%9A%84%E6%9A%88%E8%88%B9%E5%A4%A5%E4%BC%B4%E5%80%91/</guid><description>&lt;img src="https://i.imgur.com/C9FgAaF.jpg" alt="Featured image of post Wednesday 星期三與她的暈船夥伴們" />&lt;h1 id="緣起">緣起&lt;/h1>
 &lt;p>年假實在太無聊了，有點廢到連書都讀不下去，就打開Netflix想看看有什麼好看的，原本想看初戀First Love的，但無奈我對於愛情類型的東西實在沒什麼太大的興趣，正好看到了wednesday出現在推薦名單上，稍微看了一下預告，覺得Wednesday這種厭世到極限的人設深得我心，再搭配上女配角伊妮形成的反差，兩邊的對比實在太過強烈，讓我忍不住好奇到底這部在演什麼，於是就點進去了。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/nYPidWy.jpg"
 loading="lazy"

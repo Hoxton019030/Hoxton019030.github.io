@@ -1,4 +1,186 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Hoxton</title><link>https://hoxtonhsu.com/tags/java/</link><description>Recent content in Java on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 27 Dec 2022 15:12:58 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>Java中的throw,throws,try...catch，受檢例外與非受檢例外</title><link>https://hoxtonhsu.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</link><pubDate>Tue, 27 Dec 2022 15:12:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</guid><description>&lt;img src="https://i.imgur.com/dwbYvaF.png" alt="Featured image of post Java中的throw,throws,try...catch，受檢例外與非受檢例外" />&lt;h1 id="開頭">開頭&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Hoxton</title><link>https://hoxtonhsu.com/tags/java/</link><description>Recent content in Java on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 01 Apr 2023 00:03:03 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>Java中回傳值前的泛型標識符是什麼意思呢</title><link>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</link><pubDate>Sat, 01 Apr 2023 00:03:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/Eoww5Cd.png" alt="Featured image of post Java中回傳值前的泛型標識符是什麼意思呢" />&lt;p>前一陣子在寫DiscordBot的時候，曾經在教學中看過這種寫法&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">GymBotConfiguration&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Bean&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">Event&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">GatewayDiscordClient&lt;/span> &lt;span class="nf">gatewayDiscordClient&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kd">final&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">EventListener&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;&lt;/span> &lt;span class="n">eventListeners&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="kd">final&lt;/span> &lt;span class="n">GatewayDiscordClient&lt;/span> &lt;span class="n">client&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">DiscordClientBuilder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">create&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">token&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">()&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">login&lt;/span>&lt;span class="o">()&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">block&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">EventListener&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">listener&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">eventListeners&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">client&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">on&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getEventType&lt;/span>&lt;span class="o">())&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">flatMap&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">onErrorResume&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">handleError&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">subscribe&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">client&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>對於其中&lt;T extends Event>的寫法感到非常困惑，不知道為什麼回傳值前還會有泛型符號，直到最近在研究一些OpenSource的框架時，才又更了解這件事情。&lt;/p>
+&lt;h1 id="如何宣告泛型">如何宣告泛型&lt;/h1>
+&lt;p>在講這件事情之前，要先有個基礎知識，就是關於Java是如何宣告一個泛型Class的，其實就是在Class後面加上&lt;T>就可以了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如此一來，就可以在其他地方創建一個泛型的Link類&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">Link&lt;/span> &lt;span class="n">link&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">&amp;gt;;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>現在我們在這個Link類裡新增一個方法&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這個方法會把傳進來的值，包裝成一個ArrayList並回傳出去，而它參數的型別則是與Link的泛型一致，比如說&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">Link&lt;/span> &lt;span class="n">link&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;;&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">link&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;早安&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/cpeYA8T.png"
+loading="lazy"
+alt="image-20230401002712243"
+>&lt;/p>
+&lt;p>也就是說addToList這個&lt;strong>方法的型別和Link的泛型型別是綁定在一起&lt;/strong>的。&lt;/p>
+&lt;h1 id="何謂回傳型別前的泛型">何謂回傳型別前的泛型&lt;/h1>
+&lt;p>承上，因為方法的參數型別與類的泛型型別基本上綁定在一起，如果我宣告了一個Link&lt;Integer>，我的addToList就只能吃Integer的參數，那為了要解決這種問題，就有了在回傳型別前的泛型的寫法，釋例如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList2&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以看到addToList2這個方法的回傳值List&lt;E>前，我加了一個&lt;E>，先別管這個到底能做什麼，我們現在先使用這個方法看看&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2kuQ8Ol.png"
+loading="lazy"
+alt="image-20230401003453849"
+>&lt;/p>
+&lt;p>這時候你發現了，addToList2能吃的參數變成Object類了，當我們輸入一個String&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/RGzbhFK.png"
+loading="lazy"
+alt="image-20230401003608198"
+>&lt;/p>
+&lt;p>輸入一個Double&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/z7QKtUI.png"
+loading="lazy"
+alt="image-20230401003718395"
+>&lt;/p>
+&lt;p>可以感受到addToList跟addToList2的差異了嗎？沒錯，addToList2的泛型不受Link的影響，可以自己有自己的泛型&lt;/p>
+&lt;h1 id="應用">應用&lt;/h1>
+&lt;p>這樣的用法不只可以拿來用在泛型類裡的方法，也可以用在一個非泛型類，比如說&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Student&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Student&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addPeopleList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Student&lt;/span> &lt;span class="n">student&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Student&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">student&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>今天我們希望這個addPeopleList的方法可以吃任何型別的參數，我們如果這樣寫是會報錯的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2VxQDBU.png"
+loading="lazy"
+alt="image-20230401004844813"
+>&lt;/p>
+&lt;p>原因就在於我們並沒有一個地方告訴編譯器，什麼是T，因為我們的Student類並不是一個泛型類，但我們又不能去修改Student，所以我們修改addPeopleList，讓它變成這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vAcAm7y.png"
+loading="lazy"
+alt="image-20230401005044108"
+>&lt;/p>
+&lt;p>如此一來，addPeopleList就可以吃任何型別的參數了，以上就是所謂的泛型方法約束。&lt;/p></description></item><item><title>Java中的throw,throws,try...catch，受檢例外與非受檢例外</title><link>https://hoxtonhsu.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</link><pubDate>Tue, 27 Dec 2022 15:12:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</guid><description>&lt;img src="https://i.imgur.com/dwbYvaF.png" alt="Featured image of post Java中的throw,throws,try...catch，受檢例外與非受檢例外" />&lt;h1 id="開頭">開頭&lt;/h1>
 &lt;p>Java中的例外分為受檢例外與非受檢例外(RuntimeExcetption)兩大類，可以先看到這張圖。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/apUx0mu.png"
 loading="lazy"
