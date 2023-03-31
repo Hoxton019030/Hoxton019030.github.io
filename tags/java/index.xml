@@ -151,6 +151,11 @@ alt="image-20230401003608198"
 loading="lazy"
 alt="image-20230401003718395"
 >&lt;/p>
+&lt;p>也可以輸入一個自定義的類&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/UV8qiDo.png"
+loading="lazy"
+alt="image-20230401013130560"
+>&lt;/p>
 &lt;p>可以感受到addToList跟addToList2的差異了嗎？沒錯，addToList2的泛型不受Link的影響，可以自己有自己的泛型&lt;/p>
 &lt;h1 id="應用">應用&lt;/h1>
 &lt;p>這樣的用法不只可以拿來用在泛型類裡的方法，也可以用在一個非泛型類，比如說&lt;/p>
