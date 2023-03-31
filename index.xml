@@ -179,7 +179,7 @@ alt="image-20230401003718395"
 loading="lazy"
 alt="image-20230401004844813"
 >&lt;/p>
-&lt;p>原因就在於我們並沒有一個地方告訴編譯器，什麼是T，因為我們的Student類並不是一個泛型類，但我們又不能去修改Student，所以我們修改addPeopleList，讓它變成這樣&lt;/p>
+&lt;p>原因就在於我們並沒有一個地方告訴編譯器，什麼是T，因為我們的Student類並不是一個泛型類，但實務上，我們又不太可能去修改原有的類，避免破壞掉一些東西，所以我們修改addPeopleList，讓它變成這樣&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/vAcAm7y.png"
 loading="lazy"
 alt="image-20230401005044108"
