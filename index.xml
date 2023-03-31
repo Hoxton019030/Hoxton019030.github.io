@@ -13522,8 +13522,67 @@ alt="image-20230329231152261"
 &lt;/li>
 &lt;/ol>
 &lt;h3 id="multilevels-paging">Multilevels Paging&lt;/h3>
-&lt;p>定義：並不是把分頁表縮小，而是縮減抓進來的分頁表的內容，只抓有需要的區間，不需要將整個Page Table 載入進memory中，而是&lt;span style='color:yellow'>載入部分需要的內容就好&lt;/span>，因此提出多層次的Paging的做法，例：&lt;strong>以two-level paging 為例&lt;/strong>&lt;/p>
-&lt;blockquote class="twitter-tweet">&lt;p lang="en" dir="ltr">Sunsets don&amp;#39;t get much better than this one over &lt;a href="https://twitter.com/GrandTetonNPS?ref_src=twsrc%5Etfw">@GrandTetonNPS&lt;/a>. &lt;a href="https://twitter.com/hashtag/nature?src=hash&amp;amp;ref_src=twsrc%5Etfw">#nature&lt;/a> &lt;a href="https://twitter.com/hashtag/sunset?src=hash&amp;amp;ref_src=twsrc%5Etfw">#sunset&lt;/a> &lt;a href="http://t.co/YuKy2rcjyU">pic.twitter.com/YuKy2rcjyU&lt;/a>&lt;/p>&amp;mdash; US Department of the Interior (@Interior) &lt;a href="https://twitter.com/Interior/status/463440424141459456?ref_src=twsrc%5Etfw">May 5, 2014&lt;/a>&lt;/blockquote> &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8">&lt;/script></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;p>定義：並不是把分頁表縮小，而是縮減抓進來的分頁表的內容，只抓有需要的區間，不需要將整個Page Table 載入進memory中，而是&lt;span style='color:yellow'>載入部分需要的內容就好&lt;/span>，因此提出多層次的Paging的做法，例：&lt;strong>以2-level paging 為例&lt;/strong>，當然你想要分3, 4 ,5 層都可以，你爽就好&lt;/p>
+&lt;p>&lt;img src="https://hoxtonhsu.com/C:%5cUsers%5cza546%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230330003135347.png"
+loading="lazy"
+alt="image-20230330003135347"
+>&lt;/p>
+&lt;ul>
+&lt;li>Level 1 Page Table ：有2&lt;sup>x&lt;/sup>個entry，每個entry 紀錄某個Level-2 Page Table&lt;/li>
+&lt;li>Level 2 Page Table ：有2&lt;sup>y&lt;/sup>個entry，每個entry紀錄Frame No.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i.imgur.com/dRpeTZW.png"
+loading="lazy"
+alt="image-20230330003742535"
+>&lt;/p>
+&lt;ul>
+&lt;li>Process在執行時只須1個Level 1- Page Table以及某1個 Level 2 - Page Table在memory中即可，因此可大幅降低Pable Table占用之Memory Space&lt;/li>
+&lt;/ul>
+&lt;p>缺點：&lt;strong>effective Memory Access Time更久&lt;/strong>，因為須多次Memory Access存取Page Table&lt;/p>
+&lt;p>例如&lt;/p>
+&lt;p>Two-Level Paging -&amp;gt; 整個過程須三次MA&lt;/p>
+&lt;p>Three-Level Paging - &amp;gt; 整個過程須四次MA&lt;/p>
+&lt;p>相關計算：&lt;/p>
+&lt;p>例一：&lt;/p>
+&lt;ul>
+&lt;li>TLB Time：100ns&lt;/li>
+&lt;li>TLB Hit Ratio：80%&lt;/li>
+&lt;li>Memory Access(MA) Time ：200ns&lt;/li>
+&lt;li>Two-Level Paging 採用&lt;/li>
+&lt;/ul>
+&lt;p>求有效Memory Access Time&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>0.8 * (100ns + 200ms) +0.2 * (100ns+3*200ns)&lt;/p>
+&lt;p>例二：&lt;/p>
+&lt;ul>
+&lt;li>Logical Address= 32 bits&lt;/li>
+&lt;li>Page Size = 4KB&lt;/li>
+&lt;li>Page Table Entry 佔 4 bytes&lt;/li>
+&lt;/ul>
+&lt;p>在以下幾種情下，求Max. Page Table Size&lt;/p>
+&lt;ol>
+&lt;li>Single-level-paging&lt;/li>
+&lt;li>Two-level paging 且Level-1 Paging與Level 2 Paging Bit數相等&lt;/li>
+&lt;/ol>
+&lt;p>Ans.&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;img src="https://i.imgur.com/ez1sZgK.png"
+loading="lazy"
+alt="image-20230331005008885"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;img src="https://i.imgur.com/uvmaBGc.png"
+loading="lazy"
+alt="image-20230331005534600"
+>&lt;/p>
+&lt;p>因為Level-1及Level-2 Paging 各佔 20/2 = 10bits，所以&lt;/p>
+&lt;p>1個level-1 Page Table MAX Size = 2&lt;sup>10&lt;/sup>*4bytes = 4 KB,&lt;/p>
+&lt;p>1個Level-2 Page Table MAX Size = 2&lt;sup>10&lt;/sup>*4bytes=4KB&lt;/p>
+&lt;p>因此頂多4KB+4KB= 8KB in the memory&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
