@@ -40,7 +40,7 @@
 &lt;/div>
 &lt;/div>&lt;p>對於其中&lt;T extends Event>的寫法感到非常困惑，不知道為什麼回傳值前還會有泛型符號，直到最近在研究一些OpenSource的框架時，才又更了解這件事情。&lt;/p>
 &lt;h1 id="如何宣告泛型">如何宣告泛型&lt;/h1>
-&lt;p>在講這件事情之前，要先有個基礎知識，就是關於Java是如何宣告一個泛型Class的，其實就是在Class後面加上&lt;T>就可以了&lt;/p>
+&lt;p>在講這件事情之前，要先有個基礎知識，就是關於Java是如何宣告一個泛型Class的，其實就是在Class後面加上&amp;lt;T&amp;gt;就可以了&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1

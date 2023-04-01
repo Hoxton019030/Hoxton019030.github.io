@@ -34,7 +34,7 @@
         <span class=k>return</span> <span class=n>client</span><span class=o>;</span>
     <span class=o>}</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>對於其中<t extends event>的寫法感到非常困惑，不知道為什麼回傳值前還會有泛型符號，直到最近在研究一些OpenSource的框架時，才又更了解這件事情。</p><h1 id=如何宣告泛型>如何宣告泛型</h1><p>在講這件事情之前，要先有個基礎知識，就是關於Java是如何宣告一個泛型Class的，其實就是在Class後面加上<t>就可以了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>對於其中<t extends event>的寫法感到非常困惑，不知道為什麼回傳值前還會有泛型符號，直到最近在研究一些OpenSource的框架時，才又更了解這件事情。</p><h1 id=如何宣告泛型>如何宣告泛型</h1><p>在講這件事情之前，要先有個基礎知識，就是關於Java是如何宣告一個泛型Class的，其實就是在Class後面加上&lt;T>就可以了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Link</span><span class=o>&lt;</span><span class=n>E</span><span class=o>&gt;</span> <span class=o>{</span>
