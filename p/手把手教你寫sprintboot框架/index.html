@@ -1,0 +1,643 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="連假太無聊，來手寫一個SpringBoot框架吧！"><title>手把手教你寫SprintBoot框架</title><link rel=canonical href=https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/><link rel=stylesheet href=/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css><meta property="og:title" content="手把手教你寫SprintBoot框架"><meta property="og:description" content="連假太無聊，來手寫一個SpringBoot框架吧！"><meta property="og:url" content="https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/"><meta property="og:site_name" content="Hoxton"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="SpringBoot"><meta property="article:published_time" content="2023-04-01T19:40:36+08:00"><meta property="article:modified_time" content="2023-04-01T19:40:36+08:00"><meta property="og:image" content="https://i.imgur.com/2DJUEU4.png"><meta name=twitter:title content="手把手教你寫SprintBoot框架"><meta name=twitter:description content="連假太無聊，來手寫一個SpringBoot框架吧！"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://i.imgur.com/2DJUEU4.png"><link rel="shortcut icon" href=https://cdn-icons-png.flaticon.com/512/92/92031.png><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-9N16MVLR0Q','auto');ga('send','pageview');}</script></head><body class=article-page><script>(function(){const colorSchemeKey='StackColorScheme';localStorage.setItem(colorSchemeKey,"dark");})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.documentElement.dataset.scheme='dark';}else{document.documentElement.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy, API Caller</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/><img src=https://i.imgur.com/2DJUEU4.png loading=lazy alt="Featured image of post 手把手教你寫SprintBoot框架"></a></div><div class=article-details><header class=article-category><a href=/categories/%E6%95%99%E5%AD%B8/ style=background-color:#2a9d8f;color:#fff>教學</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/>手把手教你寫SprintBoot框架</a></h2><h3 class=article-subtitle>連假太無聊，來手寫一個SpringBoot框架吧！</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Apr 01, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>6 minute read</time></div></footer></div></header><section class=article-content><p>前言</p><p>連假實在有點無聊，打算來手寫一個SprintBoot專案，來加深自己對這種IoC框架的理解，我打算把這個框架叫做<strong>Winter</strong>，象徵我每況愈下的人生，唉</p><h1 id=sprintboot-單例池>SprintBoot 單例池</h1><h2 id=一切開始的地方main>一切開始的地方，Main</h2><p>啟動類的寫法如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Main</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>WinterApplicationContext</span> <span class=n>applicationContext</span> <span class=o>=</span> <span class=k>new</span> <span class=n>WinterApplicationContext</span><span class=o>(</span><span class=n>AppConfig</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>這邊看到兩個陌生的Class，<strong>WinterApplicationContext</strong>，以及<strong>AppConfig</strong>。先講AppConfig是什麼，它是Winter的配置類，我們會在這邊去配置我們Winter Bean的位置在哪邊，所以我們要加上@ComponentScan這個註解，讓我們的Winter框架知道它要去什麼package底下找到Bean。這邊我們就先創這個Class就好，目前先不會寫到它。</p><h2 id=appconfig>AppConfig</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=cm>/**
+</span><span class=cm> * Winter的配置文件
+</span><span class=cm> */</span>
+<span class=nd>@ComponentScan</span><span class=o>(</span><span class=s>&#34;org.hoxton.service&#34;</span><span class=o>)</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>AppConfig</span> <span class=o>{</span>
+
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><h2 id=componentscan>@ComponentScan</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@Retention</span><span class=o>(</span><span class=n>RetentionPolicy</span><span class=o>.</span><span class=na>RUNTIME</span><span class=o>)</span>
+<span class=nd>@Target</span><span class=o>(</span><span class=n>ElementType</span><span class=o>.</span><span class=na>TYPE</span><span class=o>)</span>
+<span class=kd>public</span> <span class=nd>@interface</span> <span class=n>ComponentScan</span> <span class=o>{</span>
+    <span class=n>String</span> <span class=nf>value</span><span class=o>()</span> <span class=k>default</span> <span class=s>&#34;&#34;</span> <span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>用來示意我們的Winter框架，要去哪邊找到我們的Bean，我們的Bean都會寫在org.hoxton.service這個路徑下面。</p><p><img src=https://i.imgur.com/nSgswbb.png loading=lazy alt=image-20230401195655052></p><h2 id=component>@Component</h2><p>這個大家熟的吧，將當前類變成一個Spring Bean的註解</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@Retention</span><span class=o>(</span><span class=n>RetentionPolicy</span><span class=o>.</span><span class=na>RUNTIME</span><span class=o>)</span>
+<span class=nd>@Target</span><span class=o>(</span><span class=n>ElementType</span><span class=o>.</span><span class=na>TYPE</span><span class=o>)</span>
+<span class=kd>public</span> <span class=nd>@interface</span> <span class=n>Component</span> <span class=o>{</span>
+
+    <span class=n>String</span> <span class=nf>value</span><span class=o>()</span> <span class=k>default</span> <span class=s>&#34;&#34;</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><h2 id=scope>@Scope</h2><p>標示當前類所要創建的Bean是一個單例還是一個Prototype的Bean</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@Retention</span><span class=o>(</span><span class=n>RetentionPolicy</span><span class=o>.</span><span class=na>RUNTIME</span><span class=o>)</span>
+<span class=nd>@Target</span><span class=o>(</span><span class=n>ElementType</span><span class=o>.</span><span class=na>TYPE</span><span class=o>)</span>
+<span class=kd>public</span> <span class=nd>@interface</span> <span class=n>Scope</span> <span class=o>{</span>
+    <span class=n>String</span> <span class=nf>value</span><span class=o>();</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><h2 id=userservice>UserService</h2><p>用來假設MVC架構中的Service層</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@Component</span><span class=o>(</span><span class=s>&#34;userService&#34;</span><span class=o>)</span>
+<span class=nd>@Scope</span><span class=o>(</span><span class=s>&#34;singleton&#34;</span><span class=o>)</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>UserService</span> <span class=o>{</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><h2 id=winterapplicationcontext>WinterApplicationContext</h2><p>這個類就是SpringBoot框架中的容器類，我們接下來要來手寫一個容器類，首先先創這個類出來，並且它要吃一個Class參數作為Constructor</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>WinterApplicationContext</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=n>Class</span> <span class=n>configClass</span><span class=o>;</span>
+    
+	<span class=kd>public</span> <span class=nf>WinterApplicationContext</span><span class=o>(</span><span class=n>Class</span> <span class=n>configClass</span><span class=o>){</span>
+    	<span class=k>this</span><span class=o>.</span><span class=na>configClass</span><span class=o>=</span><span class=n>configClass</span><span class=o>;</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>接下來我們寫一個方法，叫做Scan，這個Scan方法會去得到@ComponentScan這個註解的值，取得要掃描的Package路徑，取得路徑之後，會去掃描路徑底下有哪些類有被@Componet這個註解所修飾，並且會去找尋@Scop這個註解，得知哪些Bean是Singleton，哪些Bean是prototype，將這些資訊放入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>private</span> <span class=n>ConcurrentHashMap</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span> <span class=n>BeanDefinition</span><span class=o>&gt;</span> <span class=n>beanDefinitionMap</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ConcurrentHashMap</span><span class=o>&lt;&gt;();</span>
+</code></pre></td></tr></table></div></div><p>這個ConcurrentHashMap中</p><h2 id=步驟>步驟</h2><ol><li>從Config類中取得ComponetScan註解的值，其值即為路徑</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>private</span> <span class=kt>void</span> <span class=nf>scan</span><span class=o>(</span><span class=n>Class</span> <span class=n>configClass</span><span class=o>)</span> <span class=o>{</span>
+    <span class=c1>// 從Config類中取得ComponetScan註解的值，其值即為路徑
+</span><span class=c1></span>        <span class=n>ComponentScan</span> <span class=n>componentScanAnnotation</span> <span class=o>=</span> <span class=o>(</span><span class=n>ComponentScan</span><span class=o>)</span> <span class=n>configClass</span><span class=o>.</span><span class=na>getAnnotation</span><span class=o>(</span><span class=n>ComponentScan</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+        <span class=n>String</span> <span class=n>path</span> <span class=o>=</span> <span class=n>componentScanAnnotation</span><span class=o>.</span><span class=na>value</span><span class=o>();</span>
+       
+    <span class=o>}</span>
+</code></pre></td></tr></table></div></div></br><ol start=2><li>使用類加載，讀出Class檔案的資訊</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>private</span> <span class=kt>void</span> <span class=nf>scan</span><span class=o>(</span><span class=n>Class</span> <span class=n>configClass</span><span class=o>)</span> <span class=o>{</span>
+    <span class=c1>// 從Config類中取得ComponetScan註解的值，其值即為路徑
+</span><span class=c1></span>        <span class=n>ComponentScan</span> <span class=n>componentScanAnnotation</span> <span class=o>=</span> <span class=o>(</span><span class=n>ComponentScan</span><span class=o>)</span> <span class=n>configClass</span><span class=o>.</span><span class=na>getAnnotation</span><span class=o>(</span><span class=n>ComponentScan</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+        <span class=n>String</span> <span class=n>path</span> <span class=o>=</span> <span class=n>componentScanAnnotation</span><span class=o>.</span><span class=na>value</span><span class=o>();</span>
+       <span class=c1>//掃描 org.hoxton.service
+</span><span class=c1></span>        <span class=c1>// 類加載器 (Class Loader)
+</span><span class=c1></span>        <span class=c1>// Java中有三種類加載器，以及對應的加載路徑
+</span><span class=c1></span>        <span class=c1>// BootStrap ---&gt; jre/lib
+</span><span class=c1></span>        <span class=c1>// Ext ---&gt; jre/ext/lib
+</span><span class=c1></span>        <span class=c1>// App ---&gt; classpath ---&gt;  &#34;C:\Program Files\Java\jdk-11\bin\java.exe&#34; &#34;-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.2\lib\idea_rt.jar=5445:C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.2\bin&#34; -Dfile.encoding=UTF-8 -classpath C:\Users\za546\Desktop\Winter\target\classes org.hoxton.Test 編譯器顯示的資訊
+</span><span class=c1></span>    <span class=o>}</span>
+</code></pre></td></tr></table></div></div></br><p><img src=https://i.imgur.com/olz0WaZ.png loading=lazy alt=image-20230401202057765></p><ol start=3><li>BeanDefinition</li></ol><p>我們先來討論一個東西叫做BeanDefinition，這個類用來描述一個Bean的資訊，我們目前讓這個類盡量簡單一點，我們只需要紀錄一個Bean它的類型以及它的作用範圍</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>BeanDefinition</span> <span class=o>{</span>
+
+    <span class=cm>/**
+</span><span class=cm>     * 當前Bean類型
+</span><span class=cm>     */</span>
+    <span class=kd>private</span> <span class=n>Class</span> <span class=n>clazz</span><span class=o>;</span>
+
+    <span class=cm>/**
+</span><span class=cm>     * 當前Bean作用範圍
+</span><span class=cm>     */</span>
+    <span class=kd>private</span> <span class=n>String</span> <span class=n>scope</span><span class=o>;</span>
+
+    <span class=kd>public</span> <span class=nf>BeanDefinition</span><span class=o>()</span> <span class=o>{</span>
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=nf>BeanDefinition</span><span class=o>(</span><span class=n>Class</span> <span class=n>clazz</span><span class=o>,</span> <span class=n>String</span> <span class=n>scope</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>clazz</span> <span class=o>=</span> <span class=n>clazz</span><span class=o>;</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>scope</span> <span class=o>=</span> <span class=n>scope</span><span class=o>;</span>
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=n>Class</span> <span class=nf>getClazz</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=n>clazz</span><span class=o>;</span>
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>setClazz</span><span class=o>(</span><span class=n>Class</span> <span class=n>clazz</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>clazz</span> <span class=o>=</span> <span class=n>clazz</span><span class=o>;</span>
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=n>String</span> <span class=nf>getScope</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=n>scope</span><span class=o>;</span>
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>setScope</span><span class=o>(</span><span class=n>String</span> <span class=n>scope</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>scope</span> <span class=o>=</span> <span class=n>scope</span><span class=o>;</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+
+</code></pre></td></tr></table></div></div><ol start=4><li>使用類加載器，依照@ComponentScan的值，去掃描底下的Bean，</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java>    <span class=kd>private</span> <span class=kt>void</span> <span class=nf>scan</span><span class=o>(</span><span class=n>Class</span> <span class=n>configClass</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>ComponentScan</span> <span class=n>componentScanAnnotation</span> <span class=o>=</span> <span class=o>(</span><span class=n>ComponentScan</span><span class=o>)</span> <span class=n>configClass</span><span class=o>.</span><span class=na>getAnnotation</span><span class=o>(</span><span class=n>ComponentScan</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+        <span class=n>String</span> <span class=n>path</span> <span class=o>=</span> <span class=n>componentScanAnnotation</span><span class=o>.</span><span class=na>value</span><span class=o>();</span> <span class=c1>//掃描路徑
+</span><span class=c1></span>
+        <span class=c1>//掃描 org.hoxton.service
+</span><span class=c1></span>        <span class=c1>// 類加載器 (Class Loader)
+</span><span class=c1></span>        <span class=c1>// Java中有三種類加載器，以及對應的加載路徑
+</span><span class=c1></span>        <span class=c1>// BootStrap ---&gt; jre/lib
+</span><span class=c1></span>        <span class=c1>// Ext ---&gt; jre/ext/lib
+</span><span class=c1></span>        <span class=c1>// App ---&gt; classpath ---&gt;  &#34;C:\Program Files\Java\jdk-11\bin\java.exe&#34; &#34;-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.2\lib\idea_rt.jar=5445:C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.2\bin&#34; -Dfile.encoding=UTF-8 -classpath C:\Users\za546\Desktop\Winter\target\classes org.hoxton.Test 編譯器顯示的資訊
+</span><span class=c1></span>
+        <span class=n>ClassLoader</span> <span class=n>classLoader</span> <span class=o>=</span> <span class=n>WinterApplicationContext</span><span class=o>.</span><span class=na>class</span><span class=o>.</span><span class=na>getClassLoader</span><span class=o>();</span> <span class=c1>//app加載器
+</span><span class=c1></span>        <span class=n>URL</span> <span class=n>resource</span> <span class=o>=</span> <span class=n>classLoader</span><span class=o>.</span><span class=na>getResource</span><span class=o>(</span><span class=s>&#34;org/hoxton/service&#34;</span><span class=o>);</span> <span class=c1>//使用類加載，掃苗檔案下的.class檔
+</span><span class=c1></span>        <span class=n>File</span> <span class=n>file</span> <span class=o>=</span> <span class=k>new</span> <span class=n>File</span><span class=o>(</span><span class=n>resource</span><span class=o>.</span><span class=na>getFile</span><span class=o>());</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>file</span><span class=o>.</span><span class=na>isDirectory</span><span class=o>())</span> <span class=o>{</span>
+            <span class=n>File</span><span class=o>[]</span> <span class=n>files</span> <span class=o>=</span> <span class=n>file</span><span class=o>.</span><span class=na>listFiles</span><span class=o>();</span>
+            <span class=k>for</span> <span class=o>(</span><span class=n>File</span> <span class=n>f</span> <span class=o>:</span> <span class=n>files</span><span class=o>)</span> <span class=o>{</span>
+                <span class=n>String</span> <span class=n>fileName</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=na>getAbsolutePath</span><span class=o>();</span>
+                <span class=k>if</span> <span class=o>(</span><span class=n>fileName</span><span class=o>.</span><span class=na>endsWith</span><span class=o>(</span><span class=s>&#34;.class&#34;</span><span class=o>))</span> <span class=o>{</span> <span class=c1>//若檔案以.class結尾即為.class檔，則進入流程判斷
+</span><span class=c1></span>                    <span class=n>String</span> <span class=n>className</span> <span class=o>=</span> <span class=n>fileName</span><span class=o>.</span><span class=na>substring</span><span class=o>(</span><span class=n>fileName</span><span class=o>.</span><span class=na>indexOf</span><span class=o>(</span><span class=s>&#34;org&#34;</span><span class=o>),</span> <span class=n>fileName</span><span class=o>.</span><span class=na>indexOf</span><span class=o>(</span><span class=s>&#34;.class&#34;</span><span class=o>));</span>
+                    <span class=n>className</span> <span class=o>=</span> <span class=n>className</span><span class=o>.</span><span class=na>replace</span><span class=o>(</span><span class=s>&#34;\\&#34;</span><span class=o>,</span> <span class=s>&#34;.&#34;</span><span class=o>);</span>
+                    <span class=n>Class</span><span class=o>&lt;?&gt;</span> <span class=n>clazz</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+                    <span class=k>try</span> <span class=o>{</span>
+                        <span class=n>clazz</span> <span class=o>=</span> <span class=n>classLoader</span><span class=o>.</span><span class=na>loadClass</span><span class=o>(</span><span class=n>className</span><span class=o>);</span>
+                    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>ClassNotFoundException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+                        <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+                    <span class=o>}</span>
+                    <span class=k>if</span> <span class=o>(</span><span class=n>clazz</span><span class=o>.</span><span class=na>isAnnotationPresent</span><span class=o>(</span><span class=n>Component</span><span class=o>.</span><span class=na>class</span><span class=o>))</span> <span class=o>{</span> <span class=c1>//類上若有@Component註解，代表為一個Bean
+</span><span class=c1></span>                        <span class=c1>//表示這個類是個Bean
+</span><span class=c1></span>                        <span class=c1>// ...? Class -- &gt; bean ?
+</span><span class=c1></span>                        <span class=c1>// 解析類，判斷當前Bean是單例Bean還是Prototype的Bean，生成BeanDefinition
+</span><span class=c1></span>
+                        <span class=n>Component</span> <span class=n>componentAnnotation</span> <span class=o>=</span> <span class=n>clazz</span><span class=o>.</span><span class=na>getDeclaredAnnotation</span><span class=o>(</span><span class=n>Component</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+                        <span class=n>String</span> <span class=n>beanName</span> <span class=o>=</span> <span class=n>componentAnnotation</span><span class=o>.</span><span class=na>value</span><span class=o>();</span> <span class=c1>//取得@Component的值(bean名)
+</span><span class=c1></span>
+                        <span class=c1>//BeanDefinition- Bean定義
+</span><span class=c1></span>                        <span class=n>BeanDefinition</span> <span class=n>beanDefinition</span> <span class=o>=</span> <span class=k>new</span> <span class=n>BeanDefinition</span><span class=o>();</span>  <span class=c1>//取得一個BeanDefinition物件
+</span><span class=c1></span>                        <span class=n>beanDefinition</span><span class=o>.</span><span class=na>setClazz</span><span class=o>(</span><span class=n>clazz</span><span class=o>);</span>  
+                        <span class=k>if</span> <span class=o>(</span><span class=n>clazz</span><span class=o>.</span><span class=na>isAnnotationPresent</span><span class=o>(</span><span class=n>Scope</span><span class=o>.</span><span class=na>class</span><span class=o>))</span> <span class=o>{</span>
+                            <span class=n>Scope</span> <span class=n>scopeAnnotation</span> <span class=o>=</span> <span class=n>clazz</span><span class=o>.</span><span class=na>getDeclaredAnnotation</span><span class=o>(</span><span class=n>Scope</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+                            <span class=n>beanDefinition</span><span class=o>.</span><span class=na>setScope</span><span class=o>(</span><span class=n>scopeAnnotation</span><span class=o>.</span><span class=na>value</span><span class=o>());</span> 
+                        <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+                            <span class=n>beanDefinition</span><span class=o>.</span><span class=na>setScope</span><span class=o>(</span><span class=n>SINGLETON</span><span class=o>);</span> <span class=c1>//沒加Scope註解，預設為單例
+</span><span class=c1></span>                        <span class=o>}</span>
+
+                        <span class=n>beanDefinitionMap</span><span class=o>.</span><span class=na>put</span><span class=o>(</span><span class=n>beanName</span><span class=o>,</span> <span class=n>beanDefinition</span><span class=o>);</span> <span class=c1>// 將beanDefinition放進ConcurrentHashMap中
+</span><span class=c1></span>
+                    <span class=o>}</span>
+
+                <span class=o>}</span>
+            <span class=o>}</span>
+
+        <span class=o>}</span>
+    <span class=o>}</span>
+</code></pre></td></tr></table></div></div><ol start=5><li>我們先來稍微預覽一下整個Class完成後會長什麼樣子，讓大家更有一個概念</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>WinterApplicationContext</span> <span class=o>{</span>
+
+    <span class=kd>final</span> <span class=n>String</span> <span class=n>SINGLETON</span> <span class=o>=</span><span class=s>&#34;singleton&#34;</span><span class=o>;</span>
+    <span class=kd>private</span> <span class=n>Class</span> <span class=n>configClass</span><span class=o>;</span>
+
+    <span class=cm>/**
+</span><span class=cm>     * 一個單例池，存放Spring Bean
+</span><span class=cm>     */</span>
+    <span class=kd>private</span> <span class=n>ConcurrentHashMap</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span> <span class=n>Object</span><span class=o>&gt;</span> <span class=n>singletonPool</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ConcurrentHashMap</span><span class=o>&lt;&gt;();</span>
+    <span class=cm>/**
+</span><span class=cm>     * 存放所有Spring Bean的定義
+</span><span class=cm>     */</span>
+    <span class=kd>private</span> <span class=n>ConcurrentHashMap</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span> <span class=n>BeanDefinition</span><span class=o>&gt;</span> <span class=n>beanDefinitionMap</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ConcurrentHashMap</span><span class=o>&lt;&gt;();</span>
+
+    <span class=cm>/**
+</span><span class=cm>     * @param configClass Winter的配置文件
+</span><span class=cm>     */</span>
+    <span class=kd>public</span> <span class=nf>WinterApplicationContext</span><span class=o>(</span><span class=n>Class</span> <span class=n>configClass</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>configClass</span> <span class=o>=</span> <span class=n>configClass</span><span class=o>;</span>
+        <span class=c1>//解析配置類
+</span><span class=c1></span>        <span class=c1>// ComponentScan註解解析 -&gt; 掃描路徑 -&gt; 掃描 ---&gt; BeanDefinition ---&gt; BeanDefinitionMap
+</span><span class=c1></span>        <span class=n>scan</span><span class=o>(</span><span class=n>configClass</span><span class=o>);</span>
+
+        <span class=k>for</span> <span class=o>(</span><span class=n>String</span> <span class=n>beanName</span> <span class=o>:</span> <span class=n>beanDefinitionMap</span><span class=o>.</span><span class=na>keySet</span><span class=o>())</span> <span class=o>{</span>
+            <span class=n>BeanDefinition</span> <span class=n>beanDefinition</span> <span class=o>=</span> <span class=n>beanDefinitionMap</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>beanName</span><span class=o>);</span>
+            <span class=c1>//如果bean scope是單例，則放進單例池中
+</span><span class=c1></span>            <span class=k>if</span><span class=o>(</span><span class=n>beanDefinition</span><span class=o>.</span><span class=na>getScope</span><span class=o>().</span><span class=na>equals</span><span class=o>(</span><span class=n>SINGLETON</span><span class=o>)){</span>
+                <span class=n>Object</span> <span class=n>bean</span> <span class=o>=</span> <span class=n>creatBean</span><span class=o>(</span><span class=n>beanDefinition</span><span class=o>);</span>
+                <span class=n>singletonPool</span><span class=o>.</span><span class=na>put</span><span class=o>(</span><span class=n>beanName</span><span class=o>,</span> <span class=n>bean</span><span class=o>);</span>
+            <span class=o>}</span>
+
+        <span class=o>}</span>
+
+
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=n>Object</span> <span class=nf>creatBean</span><span class=o>(</span><span class=n>BeanDefinition</span> <span class=n>beanDefinition</span><span class=o>){</span>
+        <span class=n>Class</span> <span class=n>clazz</span> <span class=o>=</span> <span class=n>beanDefinition</span><span class=o>.</span><span class=na>getClazz</span><span class=o>();</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>Object</span> <span class=n>instance</span> <span class=o>=</span> <span class=n>clazz</span><span class=o>.</span><span class=na>getDeclaredConstructor</span><span class=o>().</span><span class=na>newInstance</span><span class=o>();</span>
+            <span class=k>return</span> <span class=n>instance</span><span class=o>;</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InstantiationException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>IllegalAccessException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InvocationTargetException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>NoSuchMethodException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+    <span class=kd>private</span> <span class=kt>void</span> <span class=nf>scan</span><span class=o>(</span><span class=n>Class</span> <span class=n>configClass</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>ComponentScan</span> <span class=n>componentScanAnnotation</span> <span class=o>=</span> <span class=o>(</span><span class=n>ComponentScan</span><span class=o>)</span> <span class=n>configClass</span><span class=o>.</span><span class=na>getAnnotation</span><span class=o>(</span><span class=n>ComponentScan</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+        <span class=n>String</span> <span class=n>path</span> <span class=o>=</span> <span class=n>componentScanAnnotation</span><span class=o>.</span><span class=na>value</span><span class=o>();</span> <span class=c1>//掃描路徑
+</span><span class=c1></span>
+        <span class=c1>//掃描 org.hoxton.service
+</span><span class=c1></span>        <span class=c1>// 類加載器 (Class Loader)
+</span><span class=c1></span>        <span class=c1>// Java中有三種類加載器，以及對應的加載路徑
+</span><span class=c1></span>        <span class=c1>// BootStrap ---&gt; jre/lib
+</span><span class=c1></span>        <span class=c1>// Ext ---&gt; jre/ext/lib
+</span><span class=c1></span>        <span class=c1>// App ---&gt; classpath ---&gt;  &#34;C:\Program Files\Java\jdk-11\bin\java.exe&#34; &#34;-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.2\lib\idea_rt.jar=5445:C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.2\bin&#34; -Dfile.encoding=UTF-8 -classpath C:\Users\za546\Desktop\Winter\target\classes org.hoxton.Test 編譯器顯示的資訊
+</span><span class=c1></span>
+        <span class=n>ClassLoader</span> <span class=n>classLoader</span> <span class=o>=</span> <span class=n>WinterApplicationContext</span><span class=o>.</span><span class=na>class</span><span class=o>.</span><span class=na>getClassLoader</span><span class=o>();</span> <span class=c1>//app加載器
+</span><span class=c1></span>        <span class=n>URL</span> <span class=n>resource</span> <span class=o>=</span> <span class=n>classLoader</span><span class=o>.</span><span class=na>getResource</span><span class=o>(</span><span class=s>&#34;org/hoxton/service&#34;</span><span class=o>);</span> <span class=c1>//使用類加載，掃苗檔案下的.class檔
+</span><span class=c1></span>        <span class=n>File</span> <span class=n>file</span> <span class=o>=</span> <span class=k>new</span> <span class=n>File</span><span class=o>(</span><span class=n>resource</span><span class=o>.</span><span class=na>getFile</span><span class=o>());</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>file</span><span class=o>.</span><span class=na>isDirectory</span><span class=o>())</span> <span class=o>{</span>
+            <span class=n>File</span><span class=o>[]</span> <span class=n>files</span> <span class=o>=</span> <span class=n>file</span><span class=o>.</span><span class=na>listFiles</span><span class=o>();</span>
+            <span class=k>for</span> <span class=o>(</span><span class=n>File</span> <span class=n>f</span> <span class=o>:</span> <span class=n>files</span><span class=o>)</span> <span class=o>{</span>
+                <span class=n>String</span> <span class=n>fileName</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=na>getAbsolutePath</span><span class=o>();</span>
+                <span class=k>if</span> <span class=o>(</span><span class=n>fileName</span><span class=o>.</span><span class=na>endsWith</span><span class=o>(</span><span class=s>&#34;.class&#34;</span><span class=o>))</span> <span class=o>{</span>
+                    <span class=n>String</span> <span class=n>className</span> <span class=o>=</span> <span class=n>fileName</span><span class=o>.</span><span class=na>substring</span><span class=o>(</span><span class=n>fileName</span><span class=o>.</span><span class=na>indexOf</span><span class=o>(</span><span class=s>&#34;org&#34;</span><span class=o>),</span> <span class=n>fileName</span><span class=o>.</span><span class=na>indexOf</span><span class=o>(</span><span class=s>&#34;.class&#34;</span><span class=o>));</span>
+                    <span class=n>className</span> <span class=o>=</span> <span class=n>className</span><span class=o>.</span><span class=na>replace</span><span class=o>(</span><span class=s>&#34;\\&#34;</span><span class=o>,</span> <span class=s>&#34;.&#34;</span><span class=o>);</span>
+                    <span class=n>Class</span><span class=o>&lt;?&gt;</span> <span class=n>clazz</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+                    <span class=k>try</span> <span class=o>{</span>
+                        <span class=n>clazz</span> <span class=o>=</span> <span class=n>classLoader</span><span class=o>.</span><span class=na>loadClass</span><span class=o>(</span><span class=n>className</span><span class=o>);</span>
+                    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>ClassNotFoundException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+                        <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+                    <span class=o>}</span>
+                    <span class=k>if</span> <span class=o>(</span><span class=n>clazz</span><span class=o>.</span><span class=na>isAnnotationPresent</span><span class=o>(</span><span class=n>Component</span><span class=o>.</span><span class=na>class</span><span class=o>))</span> <span class=o>{</span>
+                        <span class=c1>//表示這個類是個Bean
+</span><span class=c1></span>                        <span class=c1>// ...? Class -- &gt; bean ?
+</span><span class=c1></span>                        <span class=c1>// 解析類，判斷當前Bean是單例Bean還是Prototype的Bean，生成BeanDefinition
+</span><span class=c1></span>
+                        <span class=n>Component</span> <span class=n>componentAnnotation</span> <span class=o>=</span> <span class=n>clazz</span><span class=o>.</span><span class=na>getDeclaredAnnotation</span><span class=o>(</span><span class=n>Component</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+                        <span class=n>String</span> <span class=n>beanName</span> <span class=o>=</span> <span class=n>componentAnnotation</span><span class=o>.</span><span class=na>value</span><span class=o>();</span>
+
+                        <span class=c1>//BeanDefinition- Bean定義
+</span><span class=c1></span>                        <span class=n>BeanDefinition</span> <span class=n>beanDefinition</span> <span class=o>=</span> <span class=k>new</span> <span class=n>BeanDefinition</span><span class=o>();</span>
+                        <span class=n>beanDefinition</span><span class=o>.</span><span class=na>setClazz</span><span class=o>(</span><span class=n>clazz</span><span class=o>);</span>
+                        <span class=k>if</span> <span class=o>(</span><span class=n>clazz</span><span class=o>.</span><span class=na>isAnnotationPresent</span><span class=o>(</span><span class=n>Scope</span><span class=o>.</span><span class=na>class</span><span class=o>))</span> <span class=o>{</span>
+                            <span class=n>Scope</span> <span class=n>scopeAnnotation</span> <span class=o>=</span> <span class=n>clazz</span><span class=o>.</span><span class=na>getDeclaredAnnotation</span><span class=o>(</span><span class=n>Scope</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+                            <span class=n>beanDefinition</span><span class=o>.</span><span class=na>setScope</span><span class=o>(</span><span class=n>scopeAnnotation</span><span class=o>.</span><span class=na>value</span><span class=o>());</span>
+                        <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+                            <span class=n>beanDefinition</span><span class=o>.</span><span class=na>setScope</span><span class=o>(</span><span class=n>SINGLETON</span><span class=o>);</span>
+                        <span class=o>}</span>
+
+                        <span class=n>beanDefinitionMap</span><span class=o>.</span><span class=na>put</span><span class=o>(</span><span class=n>beanName</span><span class=o>,</span> <span class=n>beanDefinition</span><span class=o>);</span>
+
+                    <span class=o>}</span>
+
+                <span class=o>}</span>
+<span class=c1>//
+</span><span class=c1></span>
+            <span class=o>}</span>
+
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=n>Object</span> <span class=nf>getBean</span><span class=o>(</span><span class=n>String</span> <span class=n>beanName</span><span class=o>)</span> <span class=o>{</span>
+        <span class=c1>// 依照beanName去判斷是單例Bean還是Prototype Bean
+</span><span class=c1></span>        <span class=k>if</span> <span class=o>(</span><span class=n>beanDefinitionMap</span><span class=o>.</span><span class=na>containsKey</span><span class=o>(</span><span class=n>beanName</span><span class=o>))</span> <span class=o>{</span>
+            <span class=n>BeanDefinition</span> <span class=n>beanDefinition</span> <span class=o>=</span> <span class=n>beanDefinitionMap</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>beanName</span><span class=o>);</span>
+            <span class=k>if</span> <span class=o>(</span><span class=n>beanDefinition</span><span class=o>.</span><span class=na>getScope</span><span class=o>().</span><span class=na>equals</span><span class=o>(</span><span class=n>SINGLETON</span><span class=o>))</span> <span class=o>{</span>
+                <span class=n>Object</span> <span class=n>bean</span> <span class=o>=</span> <span class=n>singletonPool</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>beanName</span><span class=o>);</span>
+                <span class=k>return</span> <span class=n>bean</span><span class=o>;</span>
+            <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+            <span class=c1>//創建bean對象嗎?
+</span><span class=c1></span>                <span class=n>Object</span> <span class=n>bean</span> <span class=o>=</span> <span class=n>creatBean</span><span class=o>(</span><span class=n>beanDefinition</span><span class=o>);</span>
+                <span class=k>return</span> <span class=n>bean</span><span class=o>;</span>
+            <span class=o>}</span>
+        <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>NullPointerException</span><span class=o>(</span><span class=s>&#34;沒有這個Bean&#34;</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><ol start=6><li>接下來我們繼續回到WinterApplicationContext這個Constructor，我們已經把我們Package底下的Bean掃描完，放進beanDefinitionMap中，那我們接下來要依照這個Map，創建SINGLETON的bean，接著把SINGLETON的Bean放進singletonPool中，這個singletonPool也就是Spring中的<strong>單例池</strong></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=nf>WinterApplicationContext</span><span class=o>(</span><span class=n>Class</span> <span class=n>configClass</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>configClass</span> <span class=o>=</span> <span class=n>configClass</span><span class=o>;</span>
+        <span class=c1>//解析配置類
+</span><span class=c1></span>        <span class=c1>// ComponentScan註解解析 -&gt; 掃描路徑 -&gt; 掃描 ---&gt; BeanDefinition ---&gt; BeanDefinitionMap
+</span><span class=c1></span>        <span class=n>scan</span><span class=o>(</span><span class=n>configClass</span><span class=o>);</span>
+
+        <span class=k>for</span> <span class=o>(</span><span class=n>String</span> <span class=n>beanName</span> <span class=o>:</span> <span class=n>beanDefinitionMap</span><span class=o>.</span><span class=na>keySet</span><span class=o>())</span> <span class=o>{</span> <span class=c1>//遍例整個beanDefinitionMap，找出單例的Bean，放進singletonPool忠
+</span><span class=c1></span>            <span class=n>BeanDefinition</span> <span class=n>beanDefinition</span> <span class=o>=</span> <span class=n>beanDefinitionMap</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>beanName</span><span class=o>);</span>
+            <span class=c1>//如果bean scope是單例，則放進單例池中
+</span><span class=c1></span>            <span class=k>if</span><span class=o>(</span><span class=n>beanDefinition</span><span class=o>.</span><span class=na>getScope</span><span class=o>().</span><span class=na>equals</span><span class=o>(</span><span class=n>SINGLETON</span><span class=o>)){</span>
+                <span class=n>Object</span> <span class=n>bean</span> <span class=o>=</span> <span class=n>creatBean</span><span class=o>(</span><span class=n>beanDefinition</span><span class=o>);</span>
+                <span class=n>singletonPool</span><span class=o>.</span><span class=na>put</span><span class=o>(</span><span class=n>beanName</span><span class=o>,</span> <span class=n>bean</span><span class=o>);</span>
+            <span class=o>}</span>
+
+        <span class=o>}</span>
+
+
+    <span class=o>}</span>
+</code></pre></td></tr></table></div></div><ol start=7><li>撰寫createBean方法會吃一個BeanDefinition為參數，這個方法會用BeanDefinition的Clazz創建一個Class，接著調用class底下的<code>getDeclaredConstructor()</code>取得建構子，並用<code>newInstance()</code>方法創造出一個那個bean的物件出來</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java>    <span class=kd>public</span> <span class=n>Object</span> <span class=nf>creatBean</span><span class=o>(</span><span class=n>BeanDefinition</span> <span class=n>beanDefinition</span><span class=o>){</span>
+        <span class=n>Class</span> <span class=n>clazz</span> <span class=o>=</span> <span class=n>beanDefinition</span><span class=o>.</span><span class=na>getClazz</span><span class=o>();</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>Object</span> <span class=n>instance</span> <span class=o>=</span> <span class=n>clazz</span><span class=o>.</span><span class=na>getDeclaredConstructor</span><span class=o>().</span><span class=na>newInstance</span><span class=o>();</span>
+            <span class=k>return</span> <span class=n>instance</span><span class=o>;</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InstantiationException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>IllegalAccessException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InvocationTargetException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>NoSuchMethodException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=n>e</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+</code></pre></td></tr></table></div></div><ol start=8><li>到Main中，使用getBean來取得singletonpoll中的Bean</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Main</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+
+        <span class=n>WinterApplicationContext</span> <span class=n>applicationContext</span> <span class=o>=</span> <span class=k>new</span> <span class=n>WinterApplicationContext</span><span class=o>(</span><span class=n>AppConfig</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;可以看到這三個的值是一模一樣的，代表這幾個物件都是同一個&#34;</span><span class=o>);</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>applicationContext</span><span class=o>.</span><span class=na>getBean</span><span class=o>(</span><span class=s>&#34;userService&#34;</span><span class=o>));</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>applicationContext</span><span class=o>.</span><span class=na>getBean</span><span class=o>(</span><span class=s>&#34;userService&#34;</span><span class=o>));</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>applicationContext</span><span class=o>.</span><span class=na>getBean</span><span class=o>(</span><span class=s>&#34;userService&#34;</span><span class=o>));</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/KfVnRwp.png loading=lazy alt=image-20230401205329971></p><p><img src=https://i.imgur.com/5v3ykLV.gif loading=lazy alt=demo></p><p>這樣就是一個基礎的SprintBoot 單例池的創建</p><h1 id=autowired之實現原理>Autowired之實現原理</h1><p>To Be Coutinued &mldr;</p></section><footer class=article-footer><section class=article-tags><a href=/tags/springboot/>SpringBoot</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/><div class=article-image><img src=https://i.imgur.com/UDvSvgw.png loading=lazy data-key data-hash=https://i.imgur.com/UDvSvgw.png></div><div class=article-details><h2 class=article-title>論@Value與Environment之優劣</h2></div></a></article><article class=has-image><a href=/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/><div class=article-image><img src=https://i.imgur.com/Eoww5Cd.png loading=lazy data-key data-hash=https://i.imgur.com/Eoww5Cd.png></div><div class=article-details><h2 class=article-title>Java中回傳值前的泛型標識符是什麼意思呢</h2></div></a></article><article class=has-image><a href=/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/><div class=article-image><img src=https://i.imgur.com/l3t70N4.png loading=lazy data-key data-hash=https://i.imgur.com/l3t70N4.png></div><div class=article-details><h2 class=article-title>在window Terminal中使用Cmder</h2></div></a></article><article class=has-image><a href=/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/><div class=article-image><img src=https://i.imgur.com/AP3wJLN.png loading=lazy data-key data-hash=https://i.imgur.com/AP3wJLN.png></div><div class=article-details><h2 class=article-title>使用Docker在window會出現的File Not Found問題</h2></div></a></article><article class=has-image><a href=/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/><div class=article-image><img src=https://i.imgur.com/teYQFXk.png loading=lazy data-key data-hash=https://i.imgur.com/teYQFXk.png></div><div class=article-details><h2 class=article-title>只要按個鍵，圖片立刻上傳至雲端 PicGo介紹</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
+gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2023 Hoxton</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#sprintboot-單例池>SprintBoot 單例池</a><ol><li><a href=#一切開始的地方main>一切開始的地方，Main</a></li><li><a href=#appconfig>AppConfig</a></li><li><a href=#componentscan>@ComponentScan</a></li><li><a href=#component>@Component</a></li><li><a href=#scope>@Scope</a></li><li><a href=#userservice>UserService</a></li><li><a href=#winterapplicationcontext>WinterApplicationContext</a></li><li><a href=#步驟>步驟</a></li></ol></li><li><a href=#autowired之實現原理>Autowired之實現原理</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
