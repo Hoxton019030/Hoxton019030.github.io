@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 01 Apr 2023 19:40:36 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>手把手教你寫SprintBoot框架</title><link>https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</link><pubDate>Sat, 01 Apr 2023 19:40:36 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</guid><description>&lt;img src="https://i.imgur.com/2DJUEU4.png" alt="Featured image of post 手把手教你寫SprintBoot框架" />&lt;p>前言&lt;/p>
 &lt;p>連假實在有點無聊，打算來手寫一個SprintBoot專案，來加深自己對這種IoC框架的理解，我打算把這個框架叫做&lt;strong>Winter&lt;/strong>，象徵我每況愈下的人生，唉&lt;/p>
 &lt;h1 id="sprintboot-單例池">SprintBoot 單例池&lt;/h1>
+&lt;p>本章所用到的程式碼存放在這&lt;/p>
+&lt;p>&lt;a href="https://github.com/Hoxton019030/Winter/tree/bean-scan-and-beandefinition">https://github.com/Hoxton019030/Winter/tree/bean-scan-and-beandefinition&lt;/a>&lt;/p>
 &lt;h2 id="一切開始的地方main">一切開始的地方，Main&lt;/h2>
 &lt;p>啟動類的寫法如下&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
