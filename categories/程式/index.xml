@@ -9905,9 +9905,154 @@ alt="image-20230402153519417"
 &lt;/li>
 &lt;li>
 &lt;p>圖示：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2uhiWfP.png"
+loading="lazy"
+alt="image-20230402163145272"
+>&lt;/p>
 &lt;/li>
-&lt;li>&lt;/li>
-&lt;/ol></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;li>
+&lt;p>&lt;strong>Logical Address轉physical Address&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Logical Address initially是&lt;u>兩個量&lt;/u>&lt;/strong>，[ s | d ]其中s是段編號，d是段的offset&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>依S查分段表，取得它的limit及Base&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>**Check d &amp;lt; limit ?**若成立，代表合法，所以physical address = Base + d，若不成立，則代表非法存取&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/WoBKZJK.png"
+loading="lazy"
+alt="image-20230402164329222"
+>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;p>例題：&lt;/p>
+&lt;p>分段表如下，求下列Logical Address&lt;sub>s,d &lt;/sub>之physical Address?&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>Limit&lt;/th>
+&lt;th>Base&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>0&lt;/td>
+&lt;td>100&lt;/td>
+&lt;td>4200&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>1&lt;/td>
+&lt;td>500&lt;/td>
+&lt;td>80&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>2&lt;/td>
+&lt;td>830&lt;/td>
+&lt;td>7300&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>3&lt;/td>
+&lt;td>940&lt;/td>
+&lt;td>1000&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ol>
+&lt;li>(0,90)&lt;/li>
+&lt;li>(1,380)&lt;/li>
+&lt;li>(2,900)&lt;/li>
+&lt;li>(3,940)&lt;/li>
+&lt;/ol>
+&lt;p>Ans.&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>因為90&amp;lt;100，所以合法。4200+90 = 4290&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>因為380&amp;lt; 500，所以合法。80+380 = 460&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>因為900 &amp;gt; 830，不合法。非法存取&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>因為940 不小於940，不合法。非法存取&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>優點&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>沒有內部碎裂&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>可支持Memory Sharing及Memory protection，且比Page容易實施(因為段是採用Logical viewpoint)&lt;/p>
+&lt;p>eg. 以Protection為例&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/gau5RjN.png"
+loading="lazy"
+alt="image-20230402171913562"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>可支持Dynamic Loading , Linking 及 Vitual Memory 實施&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>缺點&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>有外部碎裂&lt;/strong>&lt;/li>
+&lt;li>必須要有額外硬體支持，例如分段表的保存、logical address轉physical address&lt;/li>
+&lt;li>Effective memory access time 更久&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="page與segment比較表">Page與Segment比較表&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Page&lt;/th>
+&lt;th>Segment&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>各Page Size相同&lt;/td>
+&lt;td>各段大小不一定相同&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>用physical viewpoint&lt;/td>
+&lt;td>logical viewpoint&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>無外部碎裂&lt;/td>
+&lt;td>有外部碎裂&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>有內部碎裂&lt;/td>
+&lt;td>無內部碎裂&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Memory protection及Sharing&lt;span style='color:yellow'>較難實施&lt;/span>&lt;/td>
+&lt;td>&lt;span style='color:yellow'>較容易實施&lt;/span>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;span style='color:yellow'>無須&lt;/span>Check page offset &amp;lt; page size&lt;/td>
+&lt;td>&lt;span style='color:yellow'>須 check 段 offset &amp;lt; 段大小&lt;/span>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Logical address initially &lt;span style='color:yellow'>單一量&lt;/span>&lt;/td>
+&lt;td>&lt;span style='color:yellow'>兩個量&amp;lt;s,d&amp;gt;&lt;/span>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Page Table紀錄Frame No&lt;/td>
+&lt;td>分段表紀錄段的Limit 及Base&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
