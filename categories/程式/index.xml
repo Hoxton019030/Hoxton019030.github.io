@@ -9743,7 +9743,7 @@ alt="image-20230329231152261"
 &lt;/ul>
 &lt;p>因為Page size = 16KB = 2 &lt;sup>14&lt;/sup> bytes，所以d佔14 bits，因為MAX Page Table Size = One Page = 16KB。因為MAX Page Table = 16KB/ 4 bytes = 2&lt;sup>12&lt;/sup>entry，因此P佔12bits，因此12+14= 26 bits&lt;/p>
 &lt;h3 id="型四-page-table-size-太大之解法的相關計算-考試必考">[型四] Page Table Size 太大之解法的相關計算 (考試必考)&lt;/h3>
-&lt;p>Page Table Size 太大 之解決方案&lt;/p>
+&lt;h2 id="page-table-size-太大-之解決方案">Page Table Size 太大 之解決方案&lt;/h2>
 &lt;ol>
 &lt;li>
 &lt;p>&lt;strong>☆☆☆☆☆MultiLevel Paging(Hierarchical Paging)(Paging the Page Table)(Forward Mapping)&lt;/strong>&lt;/p>
@@ -9756,6 +9756,7 @@ alt="image-20230329231152261"
 &lt;/li>
 &lt;/ol>
 &lt;h3 id="multilevels-paging">Multilevels Paging&lt;/h3>
+&lt;p>考的頻率較高&lt;/p>
 &lt;p>定義：並不是把分頁表縮小，而是縮減抓進來的分頁表的內容，只抓有需要的區間，不需要將整個Page Table 載入進memory中，而是&lt;span style='color:yellow'>載入部分需要的內容就好&lt;/span>，因此提出多層次的Paging的做法，例：&lt;strong>以2-level paging 為例&lt;/strong>，當然你想要分3, 4 ,5 層都可以，你爽就好&lt;/p>
 &lt;p>&lt;img src="https://hoxtonhsu.com/C:%5cUsers%5cza546%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230330003135347.png"
 loading="lazy"
@@ -9816,6 +9817,96 @@ alt="image-20230331005534600"
 &lt;p>1個Level-2 Page Table MAX Size = 2&lt;sup>10&lt;/sup>*4bytes=4KB&lt;/p>
 &lt;p>因此頂多4KB+4KB= 8KB in the memory&lt;/p>
 &lt;/li>
+&lt;/ol>
+&lt;p>例三：&lt;/p>
+&lt;ul>
+&lt;li>Logical Address = 65 bits&lt;/li>
+&lt;li>Page Size = 16kb&lt;/li>
+&lt;li>Page Table entry 佔 4 bytes;&lt;/li>
+&lt;li>&lt;strong>任一 Level Paging之MAX Page Table Size頂多為One Page&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>則至少分幾層 ?-level Paging&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/5BqLTFC.png"
+loading="lazy"
+alt="image-20230331011238059"
+>&lt;/p>
+&lt;p>因為任一level之MAX Page table Size = One Page = 16KB，&lt;/p>
+&lt;p>所以任一Level之Page Table 最多有 16KB / 4 bytes =span 2&lt;sup>12&lt;/sup>個Entry&lt;/p>
+&lt;p>所以任意Level Paging Bits數 ≦ 12bits&lt;/p>
+&lt;p>50 / 12 = 5 Level&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DVVkFug.png"
+loading="lazy"
+alt="image-20230331011244762"
+>&lt;/p>
+&lt;h3 id="hashing-page-table">Hashing Page Table&lt;/h3>
+&lt;p>考的機會較少&lt;/p>
+&lt;p>定義：利用Hashing 技巧，將Page Table 視為Hash Table，具有相同的Hasing Address的Page No及他的Frame No資訊，會置入於同一個Entry(Bucket)中，且已&lt;strong>Link List&lt;/strong>(Chain)串接，圖示如下：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QqvinfA.png"
+loading="lazy"
+alt="image-20230402145915308"
+>&lt;/p>
+&lt;p>缺點：&lt;strong>使用Linear Search 在Link List中找符合的Page No，較為耗時&lt;/strong>&lt;/p>
+&lt;p>例題：&lt;/p>
+&lt;ul>
+&lt;li>H(x)= X % 53&lt;/li>
+&lt;li>Page Table Entry 佔 4 bytes&lt;/li>
+&lt;li>求Hashing Page Table Size&lt;/li>
+&lt;/ul>
+&lt;p>Ans：有53個entry ，所以53 * 4 = 212 bytes&lt;/p>
+&lt;h3 id="inverted-page-table">Inverted Page Table&lt;/h3>
+&lt;p>反轉分頁表，考的頻率較高&lt;/p>
+&lt;p>定義：大部分的解決方案都是以Process為對象，這個方法改為以記憶體為對象。&lt;strong>是以Physical Memory為記錄對象，並非以Process為對象&lt;/strong>，即若有N個Frames，則此表就有n個entry，&lt;span style='color:yellow'>&lt;strong>每個entry紀錄 &amp;lt;Process Id, Page No&amp;gt;，配對資訊，代表此Frame存放的是哪個Process的哪個Page&lt;/strong>，如此一來，整個系統只有一份表格&lt;/span>&lt;/p>
+&lt;p>圖示：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/o8CZLoB.png"
+loading="lazy"
+alt="image-20230402153519417"
+>&lt;/p>
+&lt;p>缺點：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>必須使用&amp;lt;Process Id, Page No&amp;gt; 資訊，一一比對查詢，此舉&lt;u>甚為耗時&lt;/u>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>&lt;span style='color:yellow'>喪失了Memory Sharaing之好處，即無法支持其實現&lt;/span>&lt;/strong>，因為Process Id不一樣&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>例題：&lt;/p>
+&lt;ul>
+&lt;li>Page Size = 8 KB&lt;/li>
+&lt;li>Physical Memory = 16 GB&lt;/li>
+&lt;li>Page Table entry 佔 4 bytes&lt;/li>
+&lt;li>求Inverted Page Table 之 size?&lt;/li>
+&lt;/ul>
+&lt;p>Ans.&lt;/p>
+&lt;p>&lt;em>&lt;em>physical memory 有 16 GB/ 8 KB= 2&lt;sup>34&lt;/sup> / 2&lt;sup>13&lt;/sup> = 2 &lt;sup>21&lt;/sup>個frames，所以Inverted page table 有2&lt;sup>21&lt;/sup>個entry，所以size = 2&lt;sup>21&lt;/sup>&lt;/em> 4 bytes= 8MB&lt;/em>*&lt;/p>
+&lt;h2 id="segment-memory-management">Segment Memory Management&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>&lt;strong>Physical&lt;/strong> &lt;strong>Memory&lt;/strong>&lt;/span> 視為一個夠大的連續可用空間&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>&lt;strong>Logical memory(process)視為一組Segment(段)之集合，且各段大小不一定相同，段的觀點是採用Logical viewpoint&lt;/strong>&lt;/span>，與user對memory之看法一致&lt;/p>
+&lt;p>例：&lt;span style='color:yellow'>code segment, Data segment, stack segment&lt;/span> etc&amp;hellip;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>配置原則：&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>段與段之間可以是非連續性配置&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>但對每一個段而言，必須占用連續的(Sapce)空間&lt;/span>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>Os會替每個Process建立&lt;strong>Segment Table分段表&lt;/strong>，紀錄每個段的&lt;strong>Limit&lt;/strong>(大小)即&lt;strong>Base&lt;/strong>(起始位址)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>圖示：&lt;/p>
+&lt;/li>
+&lt;li>&lt;/li>
 &lt;/ol></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
