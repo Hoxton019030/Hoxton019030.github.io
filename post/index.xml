@@ -14810,6 +14810,7 @@ alt="image-20230403162821988"
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;p>047&lt;/p>
 &lt;h1 id="ch8-virtula-memory-虛擬記憶體">Ch8 Virtula Memory (虛擬記憶體)&lt;/h1>
 &lt;blockquote>
 &lt;p>[基本]主要目的(優點)以及附帶好處&lt;/p>
@@ -14835,7 +14836,308 @@ alt="image-20230403162821988"
 &lt;li>programmer只須專心寫好程式即可，毋須煩惱程式過大無法執行之問題，這是OS的責任，所以Programmer也不須要，過時的overlay技術&lt;/li>
 &lt;/ol>
 &lt;h2 id="實現virtual-memory的技術之一demand-paging需求分頁">實現Virtual Memory的技術之一　Demand Paging(需求分頁)&lt;/h2>
-&lt;p>是架構在Page Memory Management 基礎上。差別在於採用&lt;span style='color:yellow'>Lazy Swapper觀念&lt;/span>&lt;span style='color:yellow'>，即Process在執行之初，毋須事先載入全部的Page，而是指仔入部分的Pages(甚至不載入任何Page，Pure demand paging)&lt;/span>，Process即可執行&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;p>是架構在Page Memory Management 基礎上。差別在於採用&lt;span style='color:yellow'>Lazy Swapper觀念&lt;/span>&lt;span style='color:yellow'>，即Process在執行之初，毋須事先載入全部的Page，而是指載入部分的Pages(甚至不載入任何Page，Pure demand paging)&lt;/span>，Process即可執行。&lt;/p>
+&lt;ul>
+&lt;li>若Process執行時，它所需要的Pages皆在Memory中，則Process本身一切無誤地執行&lt;/li>
+&lt;li>&lt;span style='color:yellow'>若Process執行時，企圖存取不在memory中的Pages，則稱為發生&lt;strong>Page Fault&lt;/strong>，OS必須處理，將Process所需的lost Page(missed page)載入到Memory 中 from disk，&lt;/span>process才可執行&lt;/li>
+&lt;/ul>
+&lt;p>在Page Table中須引進一個欄位：&lt;span style='color:yellow'>Valid/ Invalid Bit ，用以區分此page是否在memory當中&lt;/span>&lt;/p>
+&lt;p>V：表在memory&lt;/p>
+&lt;p>I：表不在memory&lt;/p>
+&lt;p>Note：此Bit是由OS set and modify。MMU reference&lt;/p>
+&lt;p>圖示：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/YqMmrBa.png"
+loading="lazy"
+alt="image-20230403222803230"
+>&lt;/p>
+&lt;h2 id="page-fault-之處理-steps">Page fault 之處理 Steps&lt;/h2>
+&lt;ol>
+&lt;li>MMU會發出一個Address error interrupt 通知OS&lt;/li>
+&lt;li>OS收到中斷後，必須要暫停目前Process之執行且保存其Status info&lt;/li>
+&lt;li>OS檢查Process之存取位址是否合法。
+&lt;ol>
+&lt;li>若非法，則終止此Process&lt;/li>
+&lt;li>&lt;span style='color:yellow'>若合法，則SO判定是由Page Fault所引起&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>OS先去Memory中檢查有無Free的Frame
+&lt;ol>
+&lt;li>&lt;span style='color:yellow'>若沒有，則OS必須執行Page Replacement工作，&lt;/span>以空出一個Free Frame&lt;/li>
+&lt;li>有的話就把頁面抓近來&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>&lt;span style='color:yellow'>OS再到Disk中找出Lost Page所在位置，啟動I/O運作，將Lost Page 載入到Free Frame中&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>然後，OS修改Page Table&lt;/span>紀錄此Page的Frame No&lt;span style='color:yellow'>，以及將Invailaid 值改為Valid值&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>OS 恢復中斷之前Process的執行&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>No.&lt;/p>
+&lt;ol>
+&lt;li>p8-5簡單一點&lt;/li>
+&lt;li>p8-7 更多一些stpes&lt;/li>
+&lt;/ol>
+&lt;h2 id="effective-memory-access-time計算-in-virtual-memory">Effective Memory Access Time計算 in Virtual Memory&lt;/h2>
+&lt;p>公式：&lt;/p>
+&lt;p>$$
+(1-p) \times \begin{matrix}\text{memory} \ \text{Access} \\text{Time}\end{matrix} + P \times \begin{matrix}\text{Page Fault} \ \text{Process Time} \\end{matrix}
+$$&lt;/p>
+&lt;p>&lt;span style='color:yellow'>Process Fault Process Time的時間超級久！&lt;/span>&lt;/p>
+&lt;p>where P is Page Fault Ration&lt;/p>
+&lt;p>範例1.&lt;/p>
+&lt;ul>
+&lt;li>Memory Access Time: 200ns&lt;/li>
+&lt;li>Page Fault process time: 5ms&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>若Page Fault ration = 10 %，求effective memory access time&lt;/li>
+&lt;/ol>
+&lt;p>ans. &lt;span style='color:yellow'>(1-0.1) * 200ns + 0.1 *5ms = 180ns + 0.1 * 5 % 10 &lt;sup>6&lt;/sup>ns = 500180ns&lt;/span>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>m&lt;/td>
+&lt;td>milli&lt;/td>
+&lt;td>毫&lt;/td>
+&lt;td>10&lt;sup>-3&lt;/sup>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>u&lt;/td>
+&lt;td>micro&lt;/td>
+&lt;td>微&lt;/td>
+&lt;td>10&lt;sup>-6&lt;/sup>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>n&lt;/td>
+&lt;td>nano&lt;/td>
+&lt;td>奈&lt;/td>
+&lt;td>10&lt;sup>-9&lt;/sup>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>範例2. `&lt;/p>
+&lt;p>若希望effective memory access time不超過2 ms，則Page fault ration應為?&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>&lt;span style='color:yellow'>(1-p) * 200ms + p * 5ms ≦ 2ms &lt;/span>&lt;/p>
+&lt;p>= p ≒ 2/5&lt;/p>
+&lt;h2 id="小結-2">小結&lt;/h2>
+&lt;p>&lt;span style='color:yellow'>欲降低effective memory Access Time&lt;/span>提升VM效益，關鍵做法在於&lt;span style='color:yellow'>降低Page Fault Ration&lt;/span>&lt;/p>
+&lt;p>[049]&lt;/p>
+&lt;h2 id="影響page-fault-ration因素">影響Page Fault ration因素&lt;/h2>
+&lt;blockquote>
+&lt;ol>
+&lt;li>Page Replacement 法則之選擇&lt;/li>
+&lt;li>Frame 數目分配多寡之影響&lt;/li>
+&lt;li>Page Size 影響&lt;/li>
+&lt;li>Program Structure 之影響&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;h2 id="page-replacement頁面替換">Page Replacement(頁面替換)&lt;/h2>
+&lt;p>定義：當&lt;span style='color:yellow'>Page Fault發生&lt;/span>且&lt;span style='color:yellow'>Memory中無Free frame時&lt;/span>，OS必續執行此工作，&lt;span style='color:yellow'>即選一個Victim Page (or the replaced page)&lt;/span>將它Swap out到Disk保存，以空出一個Free Frame&lt;/p>
+&lt;p>圖示：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/KPYXyYi.png"
+loading="lazy"
+alt="image-20230404114127009"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>會額外多出一個Disk I/O運作，所以Page falut process time更久&lt;/span>&lt;/p>
+&lt;p>如何降低Swap out此一額外I/O次數？&lt;/p>
+&lt;p>作法：在Page Table 再引進一個欄位，&lt;span style='color:yellow'>Modification Bit 或 Dirty Bit&lt;/span>，用以表示Page上次載入後，到現在，內容是否被修改過&lt;/p>
+&lt;blockquote>
+&lt;p>0：沒有&lt;/p>
+&lt;p>１：有&lt;/p>
+&lt;/blockquote>
+&lt;p>引進這件事情後，&lt;span style='color:yellow'>OS可檢查Victim page的modification Bit值，若為0，則無需Swap it out&lt;/span>，因此可降低I/O次數，&lt;span style='color:yellow'>反之，則需Swap it out &lt;/span>&lt;/p>
+&lt;p>Note：此Bit由MMU set(0&amp;mdash;&amp;gt;1)，OS Reference 及 Reset (1 &amp;mdash;&amp;gt; 0)&lt;/p>
+&lt;p>例題：&lt;/p>
+&lt;ul>
+&lt;li>Page Fault process time：8ms&lt;/li>
+&lt;/ul>
+&lt;p>​ if 有可用頁框，或 the replaced page is not modified&lt;/p>
+&lt;ul>
+&lt;li>Page fault process tiem if victim page is modified : 20ms&lt;/li>
+&lt;li>memory access time：100ns&lt;/li>
+&lt;li>victim page is modified 之機率 ：70%&lt;/li>
+&lt;/ul>
+&lt;p>求Page fault ration ≦ ? if effective memory access time ≦ 200ns&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>(1-p) * 100ns + p * page fault process time&lt;code>(0.3 * 8ms + 0.7 * 20ms)=16.4ms&lt;/code>&lt;/p>
+&lt;p>= (1-p * 100ns + p * 16.4 ms ≦ 200ns )&lt;/p>
+&lt;p>= 100 - 100p + P* 16.4 * 10 &lt;sup>6&lt;/sup> ≦　200 &lt;span style='color:yellow'>p  ≦ 1/ 163999&lt;/span>&lt;/p>
+&lt;p>例題：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>1次 I/O time ：10 ms&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>page Fault Ration：10 %&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Victim page modified ration：60%&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>memory access time：200ns&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>求Effective memory access time&lt;/p>
+&lt;p>Ans .&lt;/p>
+&lt;p>&lt;span style='color:yellow'>0.9 * 200ns + 0.1 *(page fault process time)&lt;code>(0.4 * 10 ms + 0.6 * 10ms *2 兩次I/O)&lt;/code>&lt;/span>&lt;/p>
+&lt;p>replacement policy 有兩種&lt;/p>
+&lt;ol>
+&lt;li>Local replacement policy&lt;/li>
+&lt;li>Global replacement policy&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>
+&lt;p>Local：OS只能從發生Page Fault 的process 之Pages中，去挑victim page ，&lt;span style='color:yellow'>不可以從其他processes之pages&lt;code>(in memory)&lt;/code>挑victim page&lt;/span>&lt;/p>
+&lt;p>缺點：&lt;/p>
+&lt;ul>
+&lt;li>&lt;span style='color:yellow'>Memory utilization較差&lt;/span>&lt;/li>
+&lt;/ul>
+&lt;p>優點：&lt;/p>
+&lt;ul>
+&lt;li>&lt;span style='color:yellow'>可限縮Thrashing 的範圍&lt;/span>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Global：OS可從其他processes挑victim page(目前都是採此方案)
+缺點：&lt;/p>
+&lt;ul>
+&lt;li>不能限縮Thrasing的範圍&lt;/li>
+&lt;/ul>
+&lt;p>優點：&lt;/p>
+&lt;ul>
+&lt;li>Memory Utilization較佳&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="page--replacement法則介紹">Page replacement法則介紹&lt;/h2>
+&lt;ol>
+&lt;li>FIFO&lt;/li>
+&lt;li>OPT&lt;/li>
+&lt;li>LRU&lt;/li>
+&lt;li>LRUU近似
+&lt;ol>
+&lt;li>Additional Reference Bitws Usage&lt;/li>
+&lt;li>Second chance&lt;/li>
+&lt;li>Enhanced Second Chance&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>LFU與MFU&lt;/li>
+&lt;li>Page Buffering algo (偏向機制)&lt;/li>
+&lt;/ol>
+&lt;h3 id="fifo-法則">FIFO 法則&lt;/h3>
+&lt;p>定義：最早載入&lt;span style='color:yellow;font-size:17px;'>(Loading Time最小)&lt;/span>的Page，作為Victim page&lt;/p>
+&lt;p>[049 00:45:00]&lt;/p>
+&lt;p>範例：給予&lt;u>3個&lt;/u>Frames, Initially, they are all empty(或 pure demand paging)有下列的&lt;span style='color:yellow'>Page Reference String &lt;/span>，求Page Fault次數&lt;/p>
+&lt;p>頁面編號：7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1&lt;/p>
+&lt;p>或　Page Size = 100，下列存取位址：731, 008, 117, 258, 039 , 331, 047 &amp;hellip;&lt;/p>
+&lt;p>或　Logical address= 12 bits, Page No佔3 bits，存取位址如下：7AF, 8BD, 259, 047, EAF, D72&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/PfZ4cK2.png"
+loading="lazy"
+alt="image-20230404143314093"
+>&lt;/p>
+&lt;p>分析：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>Simple , easy, implementation&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>效能不是很好，Page Fault ration相當高&lt;/span>&lt;/p>
+&lt;p>Note：Page replacement法則中，&lt;span style='color:yellow'>只有最佳，沒有最差&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>可能有&lt;span style='color:yellow'>Belady Anormaly(異常現象)&lt;/span>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="belady--anormaly">Belady Anormaly&lt;/h2>
+&lt;p>定義：&lt;span style='color:yellow'>process 分配到的頁框數增加，其Page Fault ration卻不降反升之異常現象&lt;/span>&lt;/p>
+&lt;p>例子：&lt;/p>
+&lt;p>頁面編號：1,2,3,4,1,2,5,1,2,3,4,5&lt;/p>
+&lt;ol>
+&lt;li>3個頁框&lt;/li>
+&lt;/ol>
+&lt;p>​ &lt;img src="https://i.imgur.com/BsK6dO1.png"
+loading="lazy"
+alt="image-20230404145501311"
+>&lt;/p>
+&lt;ol start="2">
+&lt;li>
+&lt;p>4個頁框&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/GGBSJWi.png"
+loading="lazy"
+alt="image-20230404145029156"
+>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="stack-property">Stack Property&lt;/h2>
+&lt;p>定義：：&lt;span style='color:yellow'>ｎ個Frames所包含的Page Set保證是(n+1)個Frames &amp;hellip; 之子集合(subset)&lt;/span>，此性質稱之&lt;/p>
+&lt;p>性質：&lt;span style='color:yellow'>若具有 stack property，保證不會有Belady Anormaly&lt;/span>，只有&lt;span style='color:yellow'>OPT&lt;/span>與&lt;span style='color:yellow'>LRU&lt;/span>法則，具有stack property，&lt;span style='color:yellow'>所以他們不會發生belady anomaly&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/HwcvNND.png"
+loading="lazy"
+alt="image-20230404150301566"
+>&lt;/p>
+&lt;h2 id="opt-uoptuional-最佳法則">OPT (&lt;u>Opt&lt;/u>ional 最佳)法則&lt;/h2>
+&lt;p>定義：&lt;span style='color:yellow'>選擇將來(未來)長期不會用到的Page為Victim Page&lt;/span>&lt;/p>
+&lt;p>範例：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/31vOE5C.png"
+loading="lazy"
+alt="image-20230404170523441"
+>&lt;/p>
+&lt;p>分析：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>Page Fault ration最低，因此最佳&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>不會有Belady AnomalyS&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>無法被實作&lt;/span>(因為 needs the future knowledge)，通常做為理論上研究比較對象之用&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="lruulueast-uruecently-uuused法則">LRU(&lt;u>L&lt;/u>east &lt;u>R&lt;/u>ecently &lt;u>U&lt;/u>sed)法則&lt;/h2>
+&lt;p>定義：&lt;span style='color:yellow'>選擇過去不常使用的Page&lt;/span>作為Victim Page，即&lt;span style='color:yellow'>相當於是OPT reverse (依歷史info 做決定的OPT)&lt;/span>即挑選the last reference time 最小的page&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/0tQ7M1w.png"
+loading="lazy"
+alt="image-20230404180556546"
+>&lt;/p>
+&lt;p>分析：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow'>Page fault ration可以接受&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>不會發生Belady Anomaly&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>LRU的製作，須要大量Hardware支持，因此Cost很高&lt;/span>，因此才有LRU近&lt;/li>
+&lt;/ol>
+&lt;h2 id="lru的製作方法">LRU的製作方法&lt;/h2>
+&lt;h3 id="方法一counter法">方法一：Counter法&lt;/h3>
+&lt;p>步驟&lt;/p>
+&lt;ol>
+&lt;li>每發生memory Acess，Counter值++&lt;/li>
+&lt;li>Copy Counter值到Access Page的&amp;quot;the last reference time&amp;quot;欄位，&lt;span style='color:yellow'>將來OS要選LRU Page時，就挑the last reference time最小的Page &lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h3 id="方法二stack-法">方法二：Stack 法　&lt;/h3>
+&lt;p>&lt;code>此為Stack property之由來&lt;/code>&lt;/p>
+&lt;p>定義：&lt;/p>
+&lt;ul>
+&lt;li>最後一次存取之Page 必置於Stack &lt;span style='color:yellow'>Top端&lt;/span>&lt;/li>
+&lt;li>Stack 之 &lt;span style='color:yellow'>Botton(底端)&lt;/span>，即為&lt;span style='color:yellow'>LRU Page&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>Stack大小=Frame數目&lt;/span>&lt;/li>
+&lt;/ul>
+&lt;p>釋例：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/oQbJlwZ.png"
+loading="lazy"
+alt="image-20230404183208550"
+>&lt;/p>
+&lt;h2 id="lru近似法則">LRU近似法則&lt;/h2>
+&lt;p>主要是以&lt;span style='color:yellow'>Reference Bit(參考位元)&lt;/span>為基礎，此作法較為簡單&lt;/p>
+&lt;p>0：此Page&lt;span style='color:yellow'>不曾被參考過&lt;/span>&lt;/p>
+&lt;p>1：此Page&lt;span style='color:yellow'>曾被參考過&lt;/span>&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
