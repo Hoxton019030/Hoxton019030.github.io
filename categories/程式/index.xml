@@ -9191,7 +9191,7 @@ end
 &lt;p>假設Process A目前卡在 x condition 變數之 waiting Queue(因為 Q 先前執行了 X.wait目前，**Process P is active in the **)&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;h1 id="幹他媽的這邊也拖太久了我受不了我想先去看記憶體管理-2023323">幹他媽的，這邊也拖太久了，我受不了，我想先去看記憶體管理 2023/3/23&lt;/h1>
+&lt;h2 id="幹他媽的這邊也拖太久了我受不了我想先去看記憶體管理-2023323">幹他媽的，這邊也拖太久了，我受不了，我想先去看記憶體管理 2023/3/23&lt;/h2>
 &lt;h1 id="chapter-7-memory-management">Chapter 7 Memory Management&lt;/h1>
 &lt;p>&lt;strong>本章的考試重點是圖，有圖的都很重要&lt;/strong>&lt;/p>
 &lt;blockquote>
@@ -10052,7 +10052,71 @@ alt="image-20230402171913562"
 &lt;td>分段表紀錄段的Limit 及Base&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;/table>
+&lt;h2 id="paged-segment-memory-management">Paged Segment Memory Management&lt;/h2>
+&lt;p>[恐]現已移除，當作補充&lt;/p>
+&lt;p>觀念：process &amp;mdash;&amp;gt; 段組成 &amp;mdash;&amp;gt; Page 組成。&lt;u>段在分頁&lt;/u>&lt;code>(Process由一堆段構成，段再由頁面構成)&lt;/code>&lt;/p>
+&lt;p>動機：希望保有分段採logical viewpoint的好處，且又要解決外部碎裂，所以段再分頁&lt;/p>
+&lt;p>圖示：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/kwg8e5y.png"
+loading="lazy"
+alt="image-20230403162821988"
+>&lt;/p>
+&lt;h2 id="小結-1">小結&lt;/h2>
+&lt;p>四大記憶體管理方式，&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>Contiguous Allocation&lt;/th>
+&lt;th>Page(主角，考最多)&lt;/th>
+&lt;th>Segment&lt;/th>
+&lt;th>Paged Segment&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>外部碎裂&lt;/td>
+&lt;td>有&lt;/td>
+&lt;td>無&lt;/td>
+&lt;td>有&lt;/td>
+&lt;td>無&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>內部碎裂&lt;/td>
+&lt;td>無&lt;/td>
+&lt;td>有&lt;/td>
+&lt;td>無&lt;/td>
+&lt;td>有&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h1 id="ch8-virtula-memory-虛擬記憶體">Ch8 Virtula Memory (虛擬記憶體)&lt;/h1>
+&lt;blockquote>
+&lt;p>[基本]主要目的(優點)以及附帶好處&lt;/p>
+&lt;p>[基本]Demand Paging技術&lt;/p>
+&lt;p>☆☆☆Page fault 即其處理步驟&lt;/p>
+&lt;p>☆☆☆☆☆Effective Memory Access time計算 in virtual memory&lt;/p>
+&lt;p>影響Page fault ration之因素&lt;/p>
+&lt;p>☆☆☆☆☆Page replacement 及其法則、計算題、及相關名詞(Modification Bit, Belady Anomaly, stack property)&lt;/p>
+&lt;p>☆Frame數分配多寡之影響&lt;/p>
+&lt;p>☆☆☆☆☆Thrashing現象及其解法&lt;/p>
+&lt;p>☆☆Page Size 大小之影響&lt;/p>
+&lt;p>☆☆☆Program structure 之影響&lt;/p>
+&lt;p>☆☆☆☆Copy-on-write之技術 (3種Fork())&lt;/p>
+&lt;p>☆TLB Reach&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="主要目的優點以及附帶好處">主要目的(優點)以及附帶好處&lt;/h2>
+&lt;p>優點：&lt;strong>允許Process size 在超過physical memory 可用空間大小情況下，process仍能進行&lt;/strong>，是OS的責任(負擔)，programmerr沒什麼負擔&lt;/p>
+&lt;p>附帶好處：&lt;/p>
+&lt;ol>
+&lt;li>Memory Utilization較高&lt;/li>
+&lt;li>盡可能地的提升Multiprogramming Degree，增高CPU Utilization，Note：Thrasing除外&lt;/li>
+&lt;li>I/O Transfer(傳輸) Time較小 Note：&lt;strong>I/O次數、Total Time增加&lt;/strong>&lt;/li>
+&lt;li>programmer只須專心寫好程式即可，毋須煩惱程式過大無法執行之問題，這是OS的責任，所以Programmer也不須要，過時的overlay技術&lt;/li>
+&lt;/ol>
+&lt;h2 id="實現virtual-memory的技術之一demand-paging需求分頁">實現Virtual Memory的技術之一　Demand Paging(需求分頁)&lt;/h2>
+&lt;p>是架構在Page Memory Management 基礎上。差別在於採用&lt;span style='color:yellow'>Lazy Swapper觀念&lt;/span>&lt;span style='color:yellow'>，即Process在執行之初，毋須事先載入全部的Page，而是指仔入部分的Pages(甚至不載入任何Page，Pure demand paging)&lt;/span>，Process即可執行&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
