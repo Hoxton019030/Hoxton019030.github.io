@@ -138,7 +138,7 @@ alt="image-20230401195655052"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>接下來我們寫一個方法，叫做Scan，這個Scan方法會去得到@ComponentScan這個註解的值，取得要掃描的Package路徑，取得路徑之後，會去掃描路徑底下有哪些類有被@Componet這個註解所修飾，並且會去找尋@Scop這個註解，得知哪些Bean是Singleton，哪些Bean是prototype，將這些資訊放入&lt;/p>
+&lt;/div>&lt;p>接下來我們寫一個方法，叫做Scan，這個Scan方法會去得到@ComponentScan這個註解的值，取得要掃描的Package路徑，取得路徑之後，會去掃描路徑底下有哪些類有被@Component這個註解所修飾，並且會去找尋@Scope這個註解，得知哪些Bean是Singleton，哪些Bean是prototype，將這些資訊放入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -150,7 +150,7 @@ alt="image-20230401195655052"
 &lt;/div>&lt;p>這個ConcurrentHashMap中&lt;/p>
 &lt;h2 id="步驟">步驟&lt;/h2>
 &lt;ol>
-&lt;li>從Config類中取得ComponetScan註解的值，其值即為路徑&lt;/li>
+&lt;li>從Config類中取得ComponentScan註解的值，其值即為路徑&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -189,7 +189,7 @@ alt="image-20230401195655052"
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">private&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">scan&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Class&lt;/span> &lt;span class="n">configClass&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="c1">// 從Config類中取得ComponetScan註解的值，其值即為路徑
+&lt;span class="c1">// 從Config類中取得ComponentScan註解的值，其值即為路徑
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">ComponentScan&lt;/span> &lt;span class="n">componentScanAnnotation&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">ComponentScan&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">configClass&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getAnnotation&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ComponentScan&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="n">String&lt;/span> &lt;span class="n">path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">componentScanAnnotation&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">value&lt;/span>&lt;span class="o">();&lt;/span>
 &lt;span class="c1">//掃描 org.hoxton.service
@@ -197,7 +197,7 @@ alt="image-20230401195655052"
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// Java中有三種類加載器，以及對應的加載路徑
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// BootStrap ---&amp;gt; jre/lib
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// Ext ---&amp;gt; jre/ext/lib
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// App ---&amp;gt; classpath ---&amp;gt; &amp;#34;C:\Program Files\Java\jdk-11\bin\java.exe&amp;#34; &amp;#34;-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.2\lib\idea_rt.jar=5445:C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.2\bin&amp;#34; -Dfile.encoding=UTF-8 -classpath C:\Users\za546\Desktop\Winter\target\classes org.hoxton.Test 編譯器顯示的資訊
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// App ---&amp;gt; classpath ---&amp;gt; &amp;#34;C:\Program Files\Java\jdk-11\bin\java.exe&amp;#34; &amp;#34;-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.2\lib\idea_rt.jar=5445:C:\Program Files\JetBrains\IntelliJ IDEA 2022.2.2\bin&amp;#34; -Dfile.encoding=UTF-8 -classpath C:\Users\hoxton\Desktop\Winter\target\classes org.hoxton.Test 編譯器顯示的資訊
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
@@ -551,12 +551,12 @@ alt="image-20230401202057765"
 &lt;span class="n">BeanDefinition&lt;/span> &lt;span class="n">beanDefinition&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">beanDefinitionMap&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanName&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="c1">//如果bean scope是單例，則放進單例池中
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getScope&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">equals&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">SINGLETON&lt;/span>&lt;span class="o">)){&lt;/span>
-&lt;span class="n">Object&lt;/span> &lt;span class="n">bean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">creatBean&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Object&lt;/span> &lt;span class="n">bean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">createBean&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="n">singletonPool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">bean&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;span class="o">}&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="n">Object&lt;/span> &lt;span class="nf">creatBean&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">BeanDefinition&lt;/span> &lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">Object&lt;/span> &lt;span class="nf">createBean&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">BeanDefinition&lt;/span> &lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">){&lt;/span>
 &lt;span class="n">Class&lt;/span> &lt;span class="n">clazz&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getClazz&lt;/span>&lt;span class="o">();&lt;/span>
 &lt;span class="k">try&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="n">Object&lt;/span> &lt;span class="n">instance&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">clazz&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getDeclaredConstructor&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">newInstance&lt;/span>&lt;span class="o">();&lt;/span>
@@ -631,7 +631,7 @@ alt="image-20230401202057765"
 &lt;span class="k">return&lt;/span> &lt;span class="n">bean&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="c1">//創建bean對象嗎?
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">Object&lt;/span> &lt;span class="n">bean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">creatBean&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">Object&lt;/span> &lt;span class="n">bean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">createBean&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="k">return&lt;/span> &lt;span class="n">bean&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
@@ -671,11 +671,11 @@ alt="image-20230401202057765"
 &lt;span class="c1">//解析配置類
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// ComponentScan註解解析 -&amp;gt; 掃描路徑 -&amp;gt; 掃描 ---&amp;gt; BeanDefinition ---&amp;gt; BeanDefinitionMap
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">scan&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">configClass&lt;/span>&lt;span class="o">);&lt;/span>
-&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">beanName&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">beanDefinitionMap&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">keySet&lt;/span>&lt;span class="o">())&lt;/span> &lt;span class="o">{&lt;/span> &lt;span class="c1">//遍例整個beanDefinitionMap，找出單例的Bean，放進singletonPool忠
+&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">beanName&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">beanDefinitionMap&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">keySet&lt;/span>&lt;span class="o">())&lt;/span> &lt;span class="o">{&lt;/span> &lt;span class="c1">//遍整個beanDefinitionMap，找出單例的Bean，放進singletonPool中
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">BeanDefinition&lt;/span> &lt;span class="n">beanDefinition&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">beanDefinitionMap&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanName&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="c1">//如果bean scope是單例，則放進單例池中
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getScope&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">equals&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">SINGLETON&lt;/span>&lt;span class="o">)){&lt;/span>
-&lt;span class="n">Object&lt;/span> &lt;span class="n">bean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">creatBean&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Object&lt;/span> &lt;span class="n">bean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">createBean&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="n">singletonPool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">beanName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">bean&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;span class="o">}&lt;/span>
@@ -704,7 +704,7 @@ alt="image-20230401202057765"
 &lt;/span>&lt;span class="lnt">15
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java"> &lt;span class="kd">public&lt;/span> &lt;span class="n">Object&lt;/span> &lt;span class="nf">creatBean&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">BeanDefinition&lt;/span> &lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java"> &lt;span class="kd">public&lt;/span> &lt;span class="n">Object&lt;/span> &lt;span class="nf">createBean&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">BeanDefinition&lt;/span> &lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">){&lt;/span>
 &lt;span class="n">Class&lt;/span> &lt;span class="n">clazz&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">beanDefinition&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getClazz&lt;/span>&lt;span class="o">();&lt;/span>
 &lt;span class="k">try&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="n">Object&lt;/span> &lt;span class="n">instance&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">clazz&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getDeclaredConstructor&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">newInstance&lt;/span>&lt;span class="o">();&lt;/span>
@@ -722,7 +722,7 @@ alt="image-20230401202057765"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ol start="8">
-&lt;li>到Main中，使用getBean來取得singletonpoll中的Bean&lt;/li>
+&lt;li>到Main中，使用getBean來取得singletonpool中的Bean&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -759,7 +759,7 @@ alt="demo"
 >&lt;/p>
 &lt;p>這樣就是一個基礎的SprintBoot 單例池的創建&lt;/p>
 &lt;h1 id="autowired之實現原理">Autowired之實現原理&lt;/h1>
-&lt;p>To Be Coutinued &amp;hellip;&lt;/p></description></item><item><title>如何將Junit的測試粒度控制在最小單元</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</link><pubDate>Wed, 30 Nov 2022 13:30:27 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</guid><description>&lt;img src="https://i.imgur.com/4qePz5L.png " alt="Featured image of post 如何將Junit的測試粒度控制在最小單元" />&lt;p>在Junit5中，有對一些Junit的測試的註解進行調整&lt;/p>
+&lt;p>To Be Continued &amp;hellip;&lt;/p></description></item><item><title>如何將Junit的測試粒度控制在最小單元</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</link><pubDate>Wed, 30 Nov 2022 13:30:27 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</guid><description>&lt;img src="https://i.imgur.com/4qePz5L.png " alt="Featured image of post 如何將Junit的測試粒度控制在最小單元" />&lt;p>在Junit5中，有對一些Junit的測試的註解進行調整&lt;/p>
 &lt;p>比如說&lt;/p>
 &lt;table>
 &lt;thead>
