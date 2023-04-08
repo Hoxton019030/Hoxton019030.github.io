@@ -10435,7 +10435,185 @@ alt="image-20230406010708144"
 >&lt;/p>
 &lt;h2 id="second-chance">Second Chance&lt;/h2>
 &lt;p>二次機會法則&lt;/p>
-&lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;p>定義：以FIFO為基礎，搭配Reference Bit使用，挑victim page之Steps如下&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>先以FIFO order 挑出一個Page&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>檢查此page的Reference Bit值&lt;/span>&lt;/p>
+&lt;p>Case 1：若為0，則它即Victim Page&lt;/p>
+&lt;p>Case 2：&lt;span style='color:yellow'>若為1，則給它機會，不讓它當犧牲頁面。但Reset its Reference Bit值為0。並將它的Loading Time(載入時間)更改為現在，因此FIFO指針往下指。接回Step1&lt;/span>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>例：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2F59EKU.png"
+loading="lazy"
+alt="image-20230407230307064"
+>&lt;/p>
+&lt;p>挑犧牲頁面&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/6WhmKL2.png"
+loading="lazy"
+alt="image-20230407230516510"
+>&lt;/p>
+&lt;p>例：3個Frames&lt;/p>
+&lt;p>頁面參考：1,2,3,4,2,5,2,6,1,2，求Second Change&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/tiyTry7.gif"
+loading="lazy"
+alt="未命名的作品"
+>&lt;/p>
+&lt;p>Note：當所有Pages之Reference Bit皆相同，&lt;span style='color:yellow'>則退化成FIFO。也叫Clock Algorithm&lt;/span>&lt;/p>
+&lt;h2 id="enhanced-second-chance">Enhanced Second Chance&lt;/h2>
+&lt;p>加強型二次機會&lt;/p>
+&lt;p>定義：&lt;span style='color:yellow'>以&amp;lt;Reference Bit, Modification Bit&amp;gt;配對值&lt;/span>，作為挑選Victim Page之依據，&lt;span style='color:yellow'>值最小之Page，作為Victim&lt;/span>。若有多個Pages具相同值，則以FIFO為準&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:center">值&lt;/th>
+&lt;th>&amp;lt;R bit, M bit&amp;gt;&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:center">第一小&lt;/td>
+&lt;td>&amp;lt;0,0&amp;gt;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">第二小&lt;/td>
+&lt;td>&amp;lt;0,1&amp;gt;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">第三小&lt;/td>
+&lt;td>&amp;lt;1,0&amp;gt;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">第四小&lt;/td>
+&lt;td>&amp;lt;1,1&amp;gt;&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="lfu與mfu法則">LFU與MFU法則&lt;/h2>
+&lt;p>定義：以Page的&lt;span style='color:yellow'>累積參考總次數&lt;/span>作為挑Victim Page之依據，分為兩種：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>LFU(Least Frequently Used)&lt;/span>&lt;/p>
+&lt;p>次數最小的Page為Victim&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>MFU(Most Frequently Used)&lt;/span>&lt;/p>
+&lt;p>次數最大的page 為Vimtim&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>若多個Pages具相同值，也是FIFO為準&lt;/p>
+&lt;p>分析：計算題FIFO,OPT,LRU最常考。&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow'>Page Fault Ration相當高　&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>有Belady Anomoaly&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>製作需大量Hardware支持，因此Cost很高&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
+&lt;p>例：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Page&lt;/th>
+&lt;th>Loading　TIme&lt;/th>
+&lt;th>The Last reference Time&lt;/th>
+&lt;th>R bit&lt;/th>
+&lt;th>M Bit&lt;/th>
+&lt;th>參考次數&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Page1&lt;/td>
+&lt;td>493&lt;/td>
+&lt;td>800&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>410&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Page2&lt;/td>
+&lt;td>172&lt;/td>
+&lt;td>700&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>235&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Page3&lt;/td>
+&lt;td>333&lt;/td>
+&lt;td>430&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>147&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Page4&lt;/td>
+&lt;td>584&lt;/td>
+&lt;td>621&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>875&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Page5&lt;/td>
+&lt;td>256&lt;/td>
+&lt;td>564&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>432&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;span style='color:yellow'>在下列情況中，victim page為&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>FIFO：Page2&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>LRU：Page3&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Second Chance：Page5&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Enhanced Second Chance：Page1&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>LFU：Page3&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>MFU：Page4&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="page-buffering機制">Page Buffering機制&lt;/h2>
+&lt;p>緣由：當挑出Victim Page之後，且它被Modified過，步驟如下&lt;/p>
+&lt;p>&lt;span style='color:yellow'>1. 則把Victim Page&lt;u>Swap Out&lt;/u> 到 Disk&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>2. &lt;u>載入&lt;/u>Lost Page&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>3. Process resume execution&lt;/span>&lt;/p>
+&lt;p>&amp;ndash;&amp;gt; IO太多，&lt;u>Process恢復執行的時間點拖太久，想要改善&lt;/u>&lt;/p>
+&lt;h3 id="方法一">方法一&lt;/h3>
+&lt;p>&lt;span style='color:yellow'>OS 會 Keeps一個 Free Frames Pool&lt;/span>(OS的私房錢，不是配置給Process的)&lt;/p>
+&lt;p>圖示：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/oiSstEn.png"
+loading="lazy"
+alt="image-20230408011210426"
+>&lt;/p>
+&lt;p>流程：&lt;/p>
+&lt;p>OS挑完犧牲頁面(Modified)&lt;/p>
+&lt;p>&lt;span style='color:yellow'>步驟更改如下&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>1. OS從Free Frame pool中，取出一個Free Frame，供Lost Page使用，讓它先載入&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>2. 載入完後，Process恢復執行&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>3. Process Resume execution&lt;/span>&lt;/p>
+&lt;p>OS可稍後將Victim Page 寫回Disk，空出Frame&lt;span style='color:yellow'>再還給OS，加入Free Frame Pool中&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/p5vQabo.png"
+loading="lazy"
+alt="image-20230408012305710"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
+&lt;p>&lt;u>&lt;/u>&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
