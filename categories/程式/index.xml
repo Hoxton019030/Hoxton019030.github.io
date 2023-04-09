@@ -10220,7 +10220,7 @@ $$&lt;/p>
 &lt;/ol>
 &lt;/blockquote>
 &lt;h2 id="page-replacement頁面替換">Page Replacement(頁面替換)&lt;/h2>
-&lt;p>定義：當&lt;span style='color:yellow'>Page Fault發生&lt;/span>且&lt;span style='color:yellow'>Memory中無Free frame時&lt;/span>，OS必續執行此工作，&lt;span style='color:yellow'>即選一個Victim Page (or the replaced page)&lt;/span>將它Swap out到Disk保存，以空出一個Free Frame&lt;/p>
+&lt;p>定義：當&lt;span style='color:yellow'>Page Fault發生&lt;/span>且&lt;span style='color:yellow'>Memory中無Free frame時&lt;/span>，OS必須執行此工作，&lt;span style='color:yellow'>即選一個Victim Page (or the replaced page)&lt;/span>將它Swap out到Disk保存，以空出一個Free Frame&lt;/p>
 &lt;p>圖示：&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/KPYXyYi.png"
 loading="lazy"
@@ -10419,6 +10419,7 @@ alt="image-20230404183208550"
 &lt;p>主要是以&lt;span style='color:yellow'>Reference Bit(參考位元)&lt;/span>為基礎，此作法較為簡單&lt;/p>
 &lt;p>0：此Page&lt;span style='color:yellow'>不曾被參考過&lt;/span>&lt;/p>
 &lt;p>1：此Page&lt;span style='color:yellow'>曾被參考過&lt;/span>&lt;/p>
+&lt;p>[050]&lt;/p>
 &lt;h2 id="additional-reference-bits-usage">Additional Reference Bits usage&lt;/h2>
 &lt;p>作法：每個Page 有一個欄位(or Register) ，例如：8 bits&lt;/p>
 &lt;p>當發生Memory Access，該被Access Page之Ref Bit 會 Set為1&lt;/p>
@@ -10612,7 +10613,110 @@ alt="image-20230408011210426"
 loading="lazy"
 alt="image-20230408012305710"
 >&lt;/p>
-&lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
+&lt;h3 id="方法二">方法二&lt;/h3>
+&lt;p>OS會Keep一條&lt;span style='color:yellow'>Modification List，記錄所有被Modified過的Page info(即Modification Bit值=1之Pages)&lt;/span>，OS會等Paging I/O Device有空時，將此List中某些Pages寫回Disk，&lt;span style='color:yellow'>同時自此List中，移走這些Pages，Reset their Modification Bit值為0。如此可增加Victim pages是unmodified 之機率，這樣直接把Lost Page抓進來就好&lt;/span>，這樣Process有較高機會快速resume exec&lt;/p>
+&lt;p>[051 00:00:00 ~00:40:00]&lt;/p>
+&lt;h3 id="方法三">方法三&lt;/h3>
+&lt;p>&lt;span style='color:yellow'>希望連一次I/O都不要有。是以方法一為基礎，差別在於針對Free Frames Pool(私房錢)中的每個Frame，紀錄放的是哪個Process的哪個Page(&amp;lt;process ID, Page No&amp;gt;)，這些Page內容必定是最新的&lt;/span>&lt;/p>
+&lt;p>流程：&lt;/p>
+&lt;ol>
+&lt;li>OS選完Victim Page(modified)&lt;/li>
+&lt;li>&lt;span style='color:yellow'>OS去Free Frames Pool中尋找有無Lost Page存在。若存在，代表其內容為最新的，則將此Free Frame加入Resident Frames Pool中，Process即可Resume exec，連一次I/O都不用！&lt;/span>，OS寫回Victim Page後，再加入(還給)Free Frames Pool，&lt;span style='color:yellow'>若不存在，則依方法一步驟處理&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>.
+.&lt;/p>
+&lt;p>.&lt;/p>
+&lt;p>&lt;span style='color:red;font-size:32px;'>這邊看不太懂，先Pass&lt;/span>&lt;/p>
+&lt;p>.&lt;/p>
+&lt;p>.&lt;/p>
+&lt;p>.&lt;/p>
+&lt;h2 id="frame-數目分配多寡之影響">Frame 數目分配多寡之影響&lt;/h2>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>一般而言&lt;/span>Process分配到的頁框數增加，其Page Fault Ration理應下降&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>OS在分配Process頁框數時，必須滿足最少及最多數目之限制，這兩個限制均由&lt;u>Hardware&lt;/u>決定的，非OS&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>最多數目限制&lt;/span>即是Physical Memory Size(頁框總數)&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>最少數目限制即是CPU完成機器指令執行過程中，最多的可能Memory存取次數&lt;/span>，否則機器指令可能永遠無法完成&lt;/p>
+&lt;p>例：&lt;/p>
+&lt;p>[051] 01:10:00 看不太懂，需要計組知識&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/V6mHUyB.png"
+loading="lazy"
+alt="image-20230408163437049"
+>&lt;/p>
+&lt;ul>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>假設指令不跨頁面&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>運算元(memory變數)是採用Direct Addressing &lt;/span>&lt;/li>
+&lt;/ul>
+&lt;p>則最多可能需要3次Memory Access(M.A.)，&lt;span style='color:yellow;font-size:16px;'>因此os至少要分給process ≧3個Frames&lt;/span>&lt;/p>
+&lt;h2 id="thrashing現象-">Thrashing現象 ☆☆☆☆☆&lt;/h2>
+&lt;p>Thrashing meaning 徒勞無功&lt;/p>
+&lt;p>定義：&lt;span style='color:yellow;font-size:16px;'>若Process分配到的頁框數不足時&lt;/span>，則此Process會經常Page Fault，且OS要做Page Replacement，若OS採用Global replacement policy，所以OS可能挑其他Process之Page，而這也會造成其他Process Page Fault，它們也會去搶奪別的Process之Frame來用，如此一來，幾乎所有的Processes皆Page Fault，&lt;span style='color:yellow;font-size:16px;'>大家皆在等待Paging I/O Device 之I/O 運作(swap  out/in)完成，CPU Utilization下降，系統會企圖調高Multiprogramming degree&lt;/span>，引入更多Process進入執行，&lt;span style='color:yellow;font-size:16px;'>但是Memory本來就不夠，&lt;/span>Process也立刻Page Fault，系統&lt;span style='color:yellow;font-size:16px;'>又&lt;/span>調高Multiprogramming Degree，&lt;span style='color:yellow;font-size:16px;'>如此循環下去，此時系統呈現&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>CPU Utilization急速下降&lt;/li>
+&lt;li>Paging I/O Device 異常忙碌&lt;/li>
+&lt;li>Processes花在Page Fault Processing Time(就是閒置時間啦)遠大於正常執行時間，此一現象稱為Thrashing&lt;/li>
+&lt;/ol>
+&lt;h2 id="解決預防-thrashing">解決/預防 Thrashing&lt;/h2>
+&lt;h3 id="方法一-1">方法一&lt;/h3>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>減少 Multiprogramming Degree &lt;/span>&lt;/p>
+&lt;p>例如挑選一些lower-priority 或完成度低 Process swap-out&lt;/p>
+&lt;h3 id="方法二-1">方法二&lt;/h3>
+&lt;p>利用&lt;span style='color:yellow;font-size:16px;'>Page Fault Frequency Control 機制，來防止/預防Thrashimg發生&lt;/span>&lt;/p>
+&lt;p>作法：&lt;span style='color:yellow;font-size:16px;'>OS會去制定process Page Fault Ration之合理的上限與下限值&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/3Tzqy5P.png"
+loading="lazy"
+alt="image-20230408173939031"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vXUwbG3.png"
+loading="lazy"
+alt="image-20230408173954495"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>OS若發現Process的Page Fault ration&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>高於上限，則OS應增加額外Frame數目給此Process，降低其Ratio，回到合理區間&lt;/li>
+&lt;li>低於下限，則OS自此Process取走多餘的Frame，分給其他有需要之Processes&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>若OS能夠控制所有processes之Page Fault ratio 在合理區間，則理當不會有Thrashing&lt;/span>&lt;/p>
+&lt;p>方法三&lt;/p>
+&lt;p>運用&lt;span style='color:yellow;font-size:16px;'>Working Set Model技術預估&lt;/span>Process在不同執行時期所需之頁框數，並依此分配各Process&lt;span style='color:yellow;font-size:16px;'>足夠的Frame數目，以防止Thrashing&lt;/span>&lt;/p>
+&lt;h2 id="working-set-model-技術">Working Set Model 技術&lt;/h2>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>是架在&amp;quot;Locality Mode&amp;quot;之理論基礎上&lt;/span>&lt;/p>
+&lt;p>定義：Process執行時，對於所存取的Memory Area，&lt;span style='color:yellow;font-size:16px;'>並非是均勻的，而是具有某種局部/集中區域存取之特性&lt;/span>，一般分為兩種Locality&lt;/p>
+&lt;ol>
+&lt;li>Temporal&lt;code>時間&lt;/code> Locality&lt;/li>
+&lt;li>Spatial&lt;code>空間&lt;/code> Locality&lt;/li>
+&lt;/ol>
+&lt;h3 id="temporal-locality">Temporal Locality&lt;/h3>
+&lt;p>目前所存取的區域，&lt;span style='color:yellow;font-size:16px;'>過不久&lt;/span>又會再度被存取&lt;span style='color:yellow;font-size:16px;'>(或此區域經常被存取)&lt;/span>&lt;/p>
+&lt;p>例：&lt;span style='color:yellow;font-size:16px;'>For Loop &lt;/span>(while, for , repeat &amp;hellip;), &lt;span style='color:yellow;font-size:16px;'>Subroutine&lt;/span>&lt;code>副程式&lt;/code>(function, pure code), &lt;span style='color:yellow;font-size:16px;'>Counter&lt;/span>, &lt;span style='color:yellow;font-size:16px;'>Stack&lt;/span>&lt;/p>
+&lt;h3 id="spatial-locality">Spatial Locality&lt;/h3>
+&lt;p>定義：目前所存取之區域，&lt;span style='color:yellow;font-size:16px;'>其鄰近的區域，也即有可能被存取&lt;/span>&lt;/p>
+&lt;p>例：&lt;span style='color:yellow;font-size:16px;'>Array, Sequential Code Execution, Common Data area, Linear Search, Vector operat&lt;/span>&lt;/p>
+&lt;p>[052]&lt;/p>
+&lt;p>只要Program中用到的指令, Data Structures, algo 符合 Locality Model 則為&lt;span style='color:yellow;font-size:16px;'>Good(所以 Page Fault Ratio 度會下降) 若違反，則為Bad&lt;/span>&lt;/p>
+&lt;p>例：BAD Samples&lt;/p>
+&lt;p>Ans：&lt;span style='color:yellow;font-size:16px;'>Hashing&lt;code>(分散在各個記憶體頁面，不符空間局部性)&lt;/code>, Binary Search&lt;code>(跳來跳去)&lt;/code>, LinkedList&lt;code>(散落在不同頁面)&lt;/code>, goto Jump指令&lt;code>(跳來跳去)&lt;/code>, Indirect Addressing mode(間接定址模式)&lt;/span>&lt;/p>
+&lt;p>Working Set Model相關術語解析：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Working Set window&lt;/span>：記為&lt;span style='color:yellow;font-size:16px;'>△&lt;/span>表示以&lt;span style='color:yellow;font-size:16px;'>△次　Pages reference 作為統計Working Set之依據&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Working Set: &lt;/span> 在△次Page參考中，&lt;span style='color:yellow;font-size:16px;'>所參考到的不同Pages之集合&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Working Set Size(WSS)&lt;/span>：working Set之 元素(Page)個數，&lt;span style='color:yellow;font-size:16px;'>代表Process 此時所需之頁框數&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>[052] 00:13:00&lt;/p>
+&lt;p>&lt;span style='color:red;font-size:32px;'>例題：到時候再來補&lt;/span>&lt;/p>
+&lt;h2 id="page-size-之影響">Page Size 之影響&lt;/h2>
+&lt;p>若Page Size越小，則&lt;/p>
+&lt;blockquote>
+&lt;ol>
+&lt;li>Page Fault ratio：&lt;span style='color:yellow;font-size:16px;'>上升&lt;/span>&lt;/li>
+&lt;li>Page Table Size ：&lt;span style='color:yellow;font-size:16px;'>變數&lt;/span>&lt;/li>
+&lt;li>I/O次數(total Time)：&lt;span style='color:yellow;font-size:16px;'>增加&lt;/span>&lt;/li>
+&lt;li>內部碎裂：&lt;span style='color:yellow;font-size:16px;'>輕微&lt;/span>&lt;/li>
+&lt;li>I/O Transfer Time：&lt;span style='color:yellow;font-size:16px;'>變小&lt;/span>&lt;/li>
+&lt;li>Locality：&lt;span style='color:yellow;font-size:16px;'>越佳&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>趨勢：朝Page size大的更新，因為我們只關心Page Fault ration&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
