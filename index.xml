@@ -14344,6 +14344,10 @@ alt="image-20230329002106932"
 effective Memory Access Time=P \times (TLB time+ Memory Access Time)+ (1-P) * (TLB Time +2*Memory Access Time) \&lt;br>
 where P is TLB Hit Ration
 $$&lt;/p>
+&lt;blockquote>
+&lt;p>Translation Lookaside Buffer (TLB) 是一種硬體快取，用於加速虛擬記憶體的地址轉換過程。當程式存取一個虛擬記憶體頁面時，處理器需要將虛擬地址轉換成實體地址，才能夠從記憶體中取得資料。這個轉換過程需要查詢一個由作業系統維護的稱為頁表的資料結構，以獲取虛擬地址和實體地址的對應關係。但是，這個查詢過程需要訪問主記憶體，因此非常耗時。為了加速這個過程，處理器使用 TLB 快取了最近的地址轉換資料，以便在下一次存取相同虛擬頁面時可以直接從快取中取得資料，而不必再次查詢頁表。&lt;/p>
+&lt;p>TLB 是一種關鍵的虛擬記憶體子系統，因為地址轉換是虛擬記憶體系統中最常見、最複雜和最耗時的操作之一。TLB 的效能直接影響了系統的整體效能，因此設計高效的 TLB 是非常重要的。&lt;/p>
+&lt;/blockquote>
 &lt;p>範例：&lt;/p>
 &lt;p>&lt;strong>Register access Time : 0 ns(ignored)&lt;/strong>&lt;/p>
 &lt;p>&lt;strong>Memory Access Time：200ns&lt;/strong>&lt;/p>
@@ -15436,6 +15440,277 @@ alt="image-20230408173954495"
 &lt;/ol>
 &lt;/blockquote>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>趨勢：朝Page size大的更新，因為我們只關心Page Fault ration&lt;/span>&lt;/p>
+&lt;h2 id="program-structures-之影響">Program Structures 之影響&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>若Profram中使用的指令Data Structure, Algo 符合 &amp;ldquo;Locality Model&amp;rdquo;，則為GOOD(有助於降低Page Fault Ratio)&lt;/span>，反之，若違反，則為BAD&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>程式中對於Arrray元素的處理順序最好與Array元素在Memory中的儲存方式(Row-Major或Column-mahor)對應，有助於降低Page Fault  ratio&lt;/span>&lt;/p>
+&lt;p>例：A：Array[1..128,1..128] of int;&lt;/p>
+&lt;p>每個int 佔 1 bytes&lt;/p>
+&lt;p>A以&lt;span style='color:yellow;font-size:32px;'>Row-major&lt;/span>&lt;code>(第一列放完再放第二列在放第三列...)&lt;/code>方式存於Memory&lt;/p>
+&lt;p>Page Size= 128 byte&lt;/p>
+&lt;p>給3個Frames，且程式已在Memory中&lt;/p>
+&lt;p>採FIFO Replacemenrt policy&lt;/p>
+&lt;p>求下列Code之Page Fault次數&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">for i = 1 to 128 do
+for j = 1 to 128 do
+A[i,j]=0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">for j=1 to 128 do
+for i to 128 do
+A[i,j] = 0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:32px;'>Row-Major&lt;/span> 的排列方式&lt;img src="https://i.imgur.com/KDo64vw.png"
+loading="lazy"
+alt="image-20230409122905579"
+>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:32px;'>Column-Major&lt;/span>&lt;img src="https://i.imgur.com/EPP3g9a.png"
+loading="lazy"
+alt="image-20230409123224894"
+>&lt;/li>
+&lt;/ol>
+&lt;p>例2：A：Array[1..100,1..100] of int;&lt;/p>
+&lt;p>每個int 佔 1 bytes&lt;/p>
+&lt;p>A以&lt;span style='color:yellow;font-size:32px;'>Row-major&lt;/span>&lt;code>(第一列放完再放第二列在放第三列...)&lt;/code>方式存於Memory&lt;/p>
+&lt;p>Page Size= &lt;span style='color:yellow;font-size:16px;'>200&lt;/span> byte&lt;/p>
+&lt;p>給3個Frames，且程式已在Memory中&lt;/p>
+&lt;p>採&lt;span style='color:yellow;font-size:16px;'>LRU&lt;/span> Replacemenrt policy&lt;/p>
+&lt;p>求下列Code之Page Fault次數&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">for i = 1 to 100 do
+for j = 1 to 100 do
+A[i,j]=0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">for j=1 to 100 do
+for i to 100 do
+A[i,j] = 0
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>&lt;img src="https://i.imgur.com/vrNwxGu.png"
+loading="lazy"
+alt="image-20230409124706967"
+>&lt;/li>
+&lt;li>&lt;img src="https://i.imgur.com/qHVjqWq.png"
+loading="lazy"
+alt="image-20230409124835188"
+>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="copy-on-write技術">Copy-On-Write技術&lt;/h2>
+&lt;p>(此處主要是討論3種Fork())&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>傳統的Fork() &lt;code>ch4&lt;/code>&lt;/span>&lt;/p>
+&lt;p>(fork () without &amp;ldquo;copy-on-write&amp;rdquo;)&lt;/p>
+&lt;p>定義：Parent process fork() 建立出Child process，&lt;span style='color:yellow;font-size:16px;'>OS會配置New Frames給Child Process&lt;/span>(即Child 與 Parent 占用不同的Memory Space)，&lt;span style='color:yellow;font-size:16px;'>同時OS也要複製(Copy)Parent Process內容(code Sec 及 Data Sec)給Child Process initially&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>此舉會導致兩個缺失&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Memory(Frames)需求量大增&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Slower Child Process Creation&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>而且上述做法在&lt;span style='color:yellow;font-size:16px;'>Child 生出後，立刻執行execlp()作其他Task時，更加顯得無用 unnecessary(不適合，因為沒有共通的東西，卻要Copy不用的東西給child)&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Fork() with copy-on-write&lt;/span>&lt;/p>
+&lt;p>定義：當Parent Process 生出child process 之初，&lt;span style='color:yellow;font-size:16px;'>OS會讓child共享parent process之memory(frames)空間&lt;/span>，如此，&lt;span style='color:yellow;font-size:16px;'>無須配置給Child process New Frames 且也不用Copy Parent 內容給Child，因此可降低頁框需求量及加速Speed Up process Creation&lt;/span>。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/owOY29K.png"
+loading="lazy"
+alt="image-20230409161126347"
+>&lt;/p>
+&lt;p>但是，&lt;span style='color:yellow;font-size:16px;'>任何一方改變了某Page內容，則另一方會受到影響(此為risk)，所以引入&lt;/span>&lt;span style='color:yellow;font-size:16px;'>Copy-on-write技術，即eg. 若Child Process 想要更改某Page內容(eg. Stack內容)，則OS會配置一個New Frame給Child，且Copy Page內容到new Frame中，且修改Child的page Table 指向 New Frame，供Child 使用/修改&lt;/span>，如此，則不會影響Parent&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Exzz7a8.png"
+loading="lazy"
+alt="image-20230409161809333"
+>&lt;/p>
+&lt;p>因此那些有Modified可能的Pages，須標示Copy-on-write，而有些不會Modified 的Page(eg: read-only code/data)則不須標示，&lt;span style='color:yellow;font-size:16px;'>則可共享&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Vfork() &lt;code>(virtual memory fork())&lt;/code>&lt;/span>&lt;/p>
+&lt;p>定義：Parent 生出Child 之初，&lt;span style='color:yellow;font-size:16px;'>也是讓Child共享parent相同的frames，但是，它&lt;u>並未提供Copy-on-weite技術&lt;/u>&lt;/span>，所以，&lt;span style='color:yellow;font-size:16px;'>任何一方改變了某Page內容，則另一方會受到影響&lt;/span>，故務必小心使用。&lt;span style='color:yellow;font-size:16px;'>這個東西特別適合用在：當生出Child 後，Child立刻執行execlp()去作其他task時，Vfork()非常有效率。例如：Command Interpreter製作(eg：Unix shell)&lt;/span>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="tlb-reach">TLB Reach&lt;/h2>
+&lt;p>定義：經由TLB Mapping 所能存取到的Memory Area大小，&lt;span style='color:yellow;font-size:16px;'>即TLB Reach  = TLB Entry數目 * Page Size&lt;/span>&lt;/p>
+&lt;p>eg. TLB有8個Entry，且Page Szie= 16 KB，所以TLB reach = 8 * 16kb = 128 kb&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Note：希望 TLB Reach 越大越好&lt;/span>&lt;/p>
+&lt;p>Q：如何加大TLB Reach?&lt;/p>
+&lt;h3 id="方法一-2">方法一&lt;/h3>
+&lt;p>提高TLB Entry數目&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>優點：&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>TLB Reach 變大&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>連帶TLB Hit Ratio也較高&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>TLB (Translation Lookaside Buffer) Hit Ratio 是計算虛擬記憶體管理中 TLB 命中率的一個指標。TLB 是處理器中一種硬體快取，用於加速虛擬記憶體的地址轉換過程。當程式存取一個虛擬記憶體頁面時，處理器會先在 TLB 中查找是否已經有該頁面的轉換資料。如果有，就可以直接進行地址轉換，稱為 TLB 命中。如果沒有，則需要從主記憶體中讀取轉換資料，並且更新 TLB 中的內容，稱為 TLB 錯誤。&lt;/p>
+&lt;p>TLB Hit Ratio 就是 TLB 命中率，即在虛擬記憶體管理中，TLB 命中的次數與總存取次數之比。這個指標反映了 TLB 的效率，也可以用來評估虛擬記憶體子系統的效能。一般來說，高的 TLB Hit Ratio 表示處理器能夠更快速地完成地址轉換，因為有更多的轉換資料被快取在 TLB 中。&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>缺點：&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>成本貴(高)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>有時TLB Entry數仍不足以涵蓋Process &lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h3 id="方法二-2">方法二&lt;/h3>
+&lt;p>加大Page Size&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>優點：&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>加大TLB Reach Cost可接受&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>缺點：&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>內部碎裂會很嚴重&lt;/span>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>解決方法：現代很多硬體均提供一些不同大小的Page&lt;span style='color:yellow;font-size:16px;'>(Multiple Page Size)&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>eg . 提供乙組Page Size (4 KB, 2 MB)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>因此TLB 紀錄項目多增加一個Page(Frame) Size&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Page No&lt;/th>
+&lt;th>Frame No&lt;/th>
+&lt;th>&lt;span style='color:yellow;font-size:16px;'>Page(Frame) Size&lt;/span>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;/table>
+&lt;/li>
+&lt;li>
+&lt;p>此外，TLB管理以前是Hardware管理，&lt;span style='color:yellow;font-size:16px;'>現在委由OS管理，這樣帶來的好處遠大於效能下降的壞處&lt;/span>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;p>[053 1:29:23]&lt;/p>
+&lt;h1 id="ch9-disk-management">Ch9 Disk Management&lt;/h1>
+&lt;blockquote>
+&lt;p>Disk System 組成即大小計算 ☆☆&lt;/p>
+&lt;p>Disk Access Time 組成 計算 ☆☆☆☆&lt;/p>
+&lt;p>Disk Free Space Management(4種) &lt;code>很少考&lt;/code>&lt;/p>
+&lt;p>File Allocatation Method(3種) ☆☆☆☆☆&lt;/p>
+&lt;p>Disk Scheduling Algo (6種) ☆☆☆☆☆&lt;/p>
+&lt;p>其他名詞 &lt;code>考個一兩次吧&lt;/code>&lt;/p>
+&lt;blockquote>
+&lt;p>Formatting ☆&lt;/p>
+&lt;p>Raw-I/O x&lt;/p>
+&lt;p>Bootstrap loader, Boot Disk ☆☆&lt;/p>
+&lt;p>Bad Sectors 處理方法(3種) ☆☆☆&lt;/p>
+&lt;p>Swap Space Mangement (2方法) ☆&lt;/p>
+&lt;p>RAID 介紹 ☆☆☆☆&lt;/p>
+&lt;/blockquote>
+&lt;/blockquote>
+&lt;p>​&lt;/p>
+&lt;h2 id="disk-system組成">Disk System組成&lt;/h2>
+&lt;p>定義：Disk System 由多片Disks組成，&lt;/p>
+&lt;ul>
+&lt;li>每片Disk通常&lt;u>雙面(Double-side)&lt;/u>，可存Data&lt;/li>
+&lt;li>每一面(surface)劃分為多個同心圓軌道，叫做磁軌(Track)&lt;/li>
+&lt;li>每條Track由多個Sector(磁區)所組成&lt;/li>
+&lt;li>不同面之相同Track No組成之Track 集合，叫做Cylinder(磁柱)&lt;/li>
+&lt;/ul>
+&lt;p>圖示：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/5CCRoN2.png"
+loading="lazy"
+alt="image-20230409175639147"
+>&lt;/p>
+&lt;p>例：Disk System有10片Disk&lt;/p>
+&lt;ul>
+&lt;li>每片皆雙面可存&lt;/li>
+&lt;li>每面有2048條Tracks&lt;/li>
+&lt;li>每條Track有4096個Sectors&lt;/li>
+&lt;li>每個Sector可存16KB Data&lt;/li>
+&lt;/ul>
+&lt;p>求Disk System Size?&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>10 * 2 * 2048 * 4096 * 16KB = 20 * 2&lt;sup>11&lt;/sup> * 2 &lt;sup>12&lt;/sup> * 2 &lt;sup>14&lt;/sup> Bytes&lt;/p>
+&lt;p>= 10 * 2&lt;sup>38&lt;/sup> bytes = 2.5 * 2 &lt;sup>40&lt;/sup> bytes = 2.5 TB&lt;/p>
+&lt;h2 id="disk-access-time">Disk Access Time&lt;/h2>
+&lt;p>定義：Disk Access Time 由下列3個時間加總而得&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Seek Time&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Latency Time (or Rotation&lt;code>旋轉&lt;/code> Time)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Transfer Time&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>分述如下：&lt;/p>
+&lt;ol>
+&lt;li>Seek Time：&lt;span style='color:yellow;font-size:16px;'>將Head(磁頭)移到欲存取之Track上方&lt;/span>所花的時間&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Latency Time：將欲存取之Sector 轉到Head 下方所花的時間&lt;/span>&lt;/li>
+&lt;li>Transfer Time：&lt;span style='color:yellow;font-size:16px;'> Data在Disk 與 Memory 之間的傳輸時間&lt;/span>，與傳輸量成正比&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/GpPfT5M.png"
+loading="lazy"
+alt="image-20230409225106416"
+>&lt;/p>
+&lt;p>此外上述3者通常&lt;span style='color:yellow;font-size:16px;'>以 Seek time 佔比較大&lt;/span>&lt;/p>
+&lt;p>計算：&lt;/p>
+&lt;p>例1：&lt;/p>
+&lt;p>Disk 轉速 7200 rpm，求Avg Latency (rotation) Time?&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>7200 rpm = 一分鐘轉7200次 = 一秒鐘120次 = 轉一圈1/120 秒&lt;/p>
+&lt;p>平均Rotation Time = 1/2 * 1/120 = 1/240 秒&lt;/p>
+&lt;p>例2：&lt;/p>
+&lt;p>Disk System 有3片Disks，雙面可存&lt;/p>
+&lt;ul>
+&lt;li>每面有1024條Tracks&lt;/li>
+&lt;li>每條Track有40%個Sectors&lt;/li>
+&lt;li>每個Sector可存32KB&lt;/li>
+&lt;li>轉速6000 rpm&lt;/li>
+&lt;/ul>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>求Transfer Rate(即每秒可傳輸多大量Data)&lt;/span>&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>6000 Rpm = 1秒可轉 6000/60 = 100圈&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>每轉一圈可傳輸一個Cylinder容量(多面時)&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>因為一條Track容量 = 4096 * 32 Kb&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>一條Cylinder容量 = 6條Track * 4096 * 32KB&lt;/span>&lt;/p>
+&lt;p>= 6 * 128 MB&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Transfer Rate = 100 * 6 * 128 MB/sec &lt;/span>&lt;/p>
+&lt;p>= 600 * 128 Mb/Sec&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
+&lt;p>&lt;u>&lt;/u>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
+&lt;p>&lt;u>&lt;/u>&lt;/p>
+&lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
