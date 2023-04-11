@@ -10987,6 +10987,146 @@ alt="image-20230409225106416"
 &lt;p>= 6 * 128 MB&lt;/p>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>Transfer Rate = 100 * 6 * 128 MB/sec &lt;/span>&lt;/p>
 &lt;p>= 600 * 128 Mb/Sec&lt;/p>
+&lt;p>例3：&lt;/p>
+&lt;p>承上，若Disk平均Seek Time = 10 ms，今有一個File大小=2MB，欲read this file，要花多少I/O TIme?&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>SeekTime + Latency time + Transfer Time = 10 ms +(1/2 * 1/100)秒 + 2MB / 500 * 128MB&lt;/p>
+&lt;p>= 10 ms + ms + 10 / 3*128 ms&lt;/p>
+&lt;h2 id="disk-free-space-management">Disk Free Space Management&lt;/h2>
+&lt;p>有四種方法&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Bit Vector(或Bit Map)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Link List&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Grouping&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Counting&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h3 id="bit-vectorbit-map">Bit Vector(Bit Map)&lt;/h3>
+&lt;p>(位元向量/地圖)&lt;/p>
+&lt;p>定義：每一個Block皆用一個Bit表示Free與否&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>0：表Free&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>1：表Allocated&lt;/span>&lt;/p>
+&lt;p>Disk有&lt;span style='color:yellow;font-size:16px;'>n個Block&lt;/span>，則Bit Vector大小= &lt;span style='color:yellow;font-size:16px;'>n Bit&lt;/span>&lt;/p>
+&lt;p>例&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/B5Olcdc.png"
+loading="lazy"
+alt="image-20230411000727084"
+>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>0&lt;/th>
+&lt;th>1&lt;/th>
+&lt;th>2&lt;/th>
+&lt;th>3&lt;/th>
+&lt;th>4&lt;/th>
+&lt;th>5&lt;/th>
+&lt;th>6&lt;/th>
+&lt;th>7&lt;/th>
+&lt;th>8&lt;/th>
+&lt;th>9&lt;/th>
+&lt;th>10&lt;/th>
+&lt;th>11&lt;/th>
+&lt;th>12&lt;/th>
+&lt;th>13&lt;/th>
+&lt;th>14&lt;/th>
+&lt;th>15&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>0&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>0&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>優點：&lt;/p>
+&lt;ul>
+&lt;li>簡單易實施&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>容易找到連續的Free Block&lt;/span>(即連續的0)&lt;/li>
+&lt;/ul>
+&lt;p>缺點：&lt;/p>
+&lt;ul>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>小型Disk適用，但大型Disk不適用&lt;/span>，因為Block數目龐大，造成Block Vector Size很大，很佔Memory Space甚至被迫置於Disk&lt;/li>
+&lt;/ul>
+&lt;h3 id="link-list">Link List&lt;/h3>
+&lt;p>定義：OS直接在Disk上，將這些Free Blocks以Linking方式串接，進行管理&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/7TpScYL.png"
+loading="lazy"
+alt="image-20230411004147771"
+>&lt;/p>
+&lt;p>優點：&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>1. 大型Disk適用&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>2. 插入/刪除 Free Block方便&lt;/span>&lt;/p>
+&lt;p>缺點：&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>1. 不夠迅速去找大量的可用區塊，因為Disk上讀取Link Info耗時(I/O)&lt;/span>&lt;/p>
+&lt;p>Note：用Grouping法改善&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>2. 不容易找到連續的Free Blocks&lt;/span>&lt;/p>
+&lt;p>Note：用Counting法改善&lt;/p>
+&lt;h3 id="grouping">Grouping&lt;/h3>
+&lt;p>定義：是Link List法之變形，&lt;span style='color:yellow;font-size:16px;'>在Free Block內除了紀錄 Link Info之外，另額外紀錄其他Free Block之No(Address)&lt;/span>&lt;/p>
+&lt;p>例：(Assume one Block 可記5個欄位)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/r200h5S.png"
+loading="lazy"
+alt="image-20230411005506514"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>優點：可迅速找到大量的Free Blocks&lt;/span>&lt;/p>
+&lt;h3 id="counting">Counting&lt;/h3>
+&lt;p>定義：利用連續性配置及連續性歸還之特性，稍加改變Link List記錄方式，Free Block 內除了紀錄Linking info以外，&lt;span style='color:yellow;font-size:16px;'>另外紀錄在此Free Block之後的連續Free Block之個數&lt;/span>&lt;/p>
+&lt;p>例：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/IZjL1OX.png"
+loading="lazy"
+alt="image-20230411013244700"
+>&lt;/p>
+&lt;p>優點：&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>適用於連續性配置，方便找到連續性的Free Block，且若連續的Free Block很多，Link List長度也可大幅縮短&lt;/span>&lt;/p>
+&lt;h2 id="file-allocation-methods-">File Allocation Methods ☆☆☆☆☆&lt;/h2>
+&lt;p>主要有三大方法&lt;/p>
+&lt;ol>
+&lt;li>Contiguous Allocation(連續性)&lt;/li>
+&lt;li>Linked Allocation(鏈結式)
+&lt;ul>
+&lt;li>有一個變形叫做 FAT metohd&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Index Allocation(索引式)
+&lt;ul>
+&lt;li>例：UNIX的I-Node Structure&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="contiguous-allocation">Contiguous Allocation&lt;/h3>
+&lt;p>定義：若File大小=n個Blocks，則&lt;span style='color:yellow;font-size:16px;'>OS必須在Disk中找到n個連續性的Free Blocks&lt;/span>才能配置給它，此外OS在Physical Directory，會記錄下列資訊&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>File Name&lt;/th>
+&lt;th>Strat Block No&lt;/th>
+&lt;th>Size(區塊數)&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>例：&lt;/p>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
