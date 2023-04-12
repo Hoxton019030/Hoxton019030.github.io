@@ -15846,6 +15846,111 @@ alt="image-20230411013244700"
 &lt;/tbody>
 &lt;/table>
 &lt;p>例：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/jPTzaSV.png"
+loading="lazy"
+alt="image-20230411230013638"
+>&lt;/p>
+&lt;p>若File1大小=3個Blocks，則OS配置&lt;span style='color:yellow;font-size:16px;'>6,7,8號&lt;/span>Block給它，且Physical Directory紀錄如下&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>File Name&lt;/th>
+&lt;th>State No&lt;/th>
+&lt;th>Size&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>File1&lt;/td>
+&lt;td>6&lt;/td>
+&lt;td>3&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>優點&lt;/span>：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>平均SeekTime較小(因為Blocks大都落在同一條Track或鄰近Track上)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>可支持Ramdom(Direct) Access及Sequential Access&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>可靠度較高(than Linked Allocation)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>循序存取速度較快(than LinkedList)&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>缺點：&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>會有External Fragmentation(外部碎裂)&lt;/span>(Note：Disk用Repack(磁碟重組)方式解決，&lt;span style='color:yellow;font-size:16px;'>類似Memory的Compaction&lt;/span>)&lt;span style='color:yellow;font-size:16px;'>(Note：所有File配置方法皆有內部碎裂)&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>eg. Block Size = 10KB, File大小=44 KB, 配5個Blocks，內碎=5*16-44 = 6KB&lt;/li>
+&lt;/ul>
+&lt;ol start="2">
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>File大小不易動態擴充&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>建檔之前須要事先宣告大小&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h3 id="linked-allocation">Linked Allocation&lt;/h3>
+&lt;p>定義：若File大小=n個 Blocks，則OS只須在Disk中找到n個Free Blocks&lt;span style='color:yellow;font-size:16px;'>(不須連續)&lt;/span>，即可配置且&lt;span style='color:yellow;font-size:16px;'>Allocated Blocks之間以Link方式串連&lt;/span>，另OS在Physical Directory紀錄下列Info&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>File Name&lt;/th>
+&lt;th>Start Block No&lt;/th>
+&lt;th>End Block No&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>File2&lt;/td>
+&lt;td>3&lt;/td>
+&lt;td>4&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>例：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/VbqucJ1.png"
+loading="lazy"
+alt="image-20230411234232077"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>優缺點與Contiguous相反&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>優點&lt;/span>：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>沒有外部碎裂&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>File大小容易動態擴充&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>建File前無需事先宣告大小&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>缺點：&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Seek Time較長(因為不連續的block可能散落在許多不同的Track上)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>不支援Random Access&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>可靠度較差(因為萬一Link斷裂，Data Lost)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>循序存取速度慢(因為要在Disk上讀取Link資訊，才知下一個Block為何)&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
+&lt;p>若File2大小=3個Blocks，則OS可配置 &lt;span style='color:yellow;font-size:16px;'>3, 1, 4 號&lt;/span>&lt;/p>
+&lt;h2 id="fatfile-allocation-table">FAT(File Allocation Table)&lt;/h2>
+&lt;p>定義：是&lt;span style='color:yellow;font-size:16px;'>LinkedAllocation&lt;/span>之變形，主要差異如下&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Allocated Block之間的Linked Info存於OS Memory Area中的一個表格，叫FAT&lt;/span>，而非存於Disk中&lt;/p>
+&lt;p>例：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/BupNs2O.png"
+loading="lazy"
+alt="image-20230412000447471"
+>&lt;/p>
+&lt;p>File Directory&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>File Name&lt;/th>
+&lt;th>FAT Entry&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>File 2&lt;/td>
+&lt;td>3&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>優點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>想要加速Random Access In the Linked Allocation&lt;/span>(因為可以在memory中的FAT找到第i個區塊的號碼，相比於在Disk中找更快。找完後再去Disk Access i th Block)，&lt;span style='color:yellow;font-size:16px;'>不用在Disk 中Traverse Linking In&lt;/span>&lt;/li>
+&lt;/ol>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
