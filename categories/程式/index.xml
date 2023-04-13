@@ -11093,6 +11093,7 @@ alt="image-20230411013244700"
 >&lt;/p>
 &lt;p>優點：&lt;/p>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>適用於連續性配置，方便找到連續性的Free Block，且若連續的Free Block很多，Link List長度也可大幅縮短&lt;/span>&lt;/p>
+&lt;p>[054]&lt;/p>
 &lt;h2 id="file-allocation-methods-">File Allocation Methods ☆☆☆☆☆&lt;/h2>
 &lt;p>主要有三大方法&lt;/p>
 &lt;ol>
@@ -11205,6 +11206,7 @@ alt="image-20230411234232077"
 &lt;/ol>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
 &lt;p>若File2大小=3個Blocks，則OS可配置 &lt;span style='color:yellow;font-size:16px;'>3, 1, 4 號&lt;/span>&lt;/p>
+&lt;p>[055]&lt;/p>
 &lt;h2 id="fatfile-allocation-table">FAT(File Allocation Table)&lt;/h2>
 &lt;p>定義：是&lt;span style='color:yellow;font-size:16px;'>LinkedAllocation&lt;/span>之變形，主要差異如下&lt;/p>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>Allocated Block之間的Linked Info存於OS Memory Area中的一個表格，叫FAT&lt;/span>，而非存於Disk中&lt;/p>
@@ -11230,10 +11232,170 @@ alt="image-20230412000447471"
 &lt;/table>
 &lt;p>優點：&lt;/p>
 &lt;ol>
-&lt;li>&lt;span style='color:yellow;font-size:16px;'>想要加速Random Access In the Linked Allocation&lt;/span>(因為可以在memory中的FAT找到第i個區塊的號碼，相比於在Disk中找更快。找完後再去Disk Access i th Block)，&lt;span style='color:yellow;font-size:16px;'>不用在Disk 中Traverse Linking In&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>想要加速Random Access In the Linked Allocation&lt;/span>(因為可以在memory中的FAT找到第i個區塊的號碼，相比於在Disk中找更快。找完後再去Disk Access i th Block)，&lt;span style='color:yellow;font-size:16px;'>不用在Disk 中Traverse LinkedList&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h2 id="index-allocation">Index Allocation&lt;/h2>
+&lt;p>定義：若File大小=n個Blocks，則OS除了配置n個Blocks&lt;span style='color:yellow;font-size:16px;'>(無須連續)&lt;/span>存放Data之外，&lt;span style='color:yellow;font-size:16px;'>另須額外配置Index Block，儲存所有Data Block 之No(address)&lt;/span> ，且OS在Physical Directory&lt;/p>
+&lt;p>紀錄：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>File Name&lt;/th>
+&lt;th>Index Block No&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>例：File3大小=3個Blocks，則OS可配置&lt;u>11,0,14號&lt;/u>Block給它存放Data，另外配置&lt;u>15&lt;/u>號Block作為&lt;span style='color:yellow;font-size:16px;'>Index Block 而Index Block內容為&lt;/span>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>File Name&lt;/th>
+&lt;th>Index Block No&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>File3&lt;/td>
+&lt;td>15&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;img src="https://i.imgur.com/r5VjRQY.png"
+loading="lazy"
+alt="image-20230412214600748"
+>&lt;/p>
+&lt;p>想要融合連續性配置與鏈結式配置部分的好處&lt;/p>
+&lt;p>優點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>不會有外部碎裂&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>支援Ramdom Access&lt;/span>及Sequential Access&lt;/li>
+&lt;li>File大小容易動態擴充&lt;/li>
+&lt;li>建File之前無須事先宣告大小，&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>缺點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Index Block 占用額外空間&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Linking Space浪費(OverHead)比Linked Allocation&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>若File很大，則單一個Index Block可能無法容納(保存)File的所有Data Block No，&lt;/span>此問題須被解決&lt;/li>
+&lt;/ol>
+&lt;h2 id="解決單一index-block-不夠存放所有data-block-no之問題">解決單一Index Block 不夠存放所有Data Block No之問題&lt;/h2>
+&lt;h3 id="方法一-3">方法一&lt;/h3>
+&lt;p>使用多個Index Blocks，&lt;span style='color:yellow;font-size:16px;'>且彼此以Link方式串連&lt;/span>&lt;/p>
+&lt;p>例：&lt;/p>
+&lt;p>Assume一個index Block可存5個No&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/BBxjv7d.png"
+loading="lazy"
+alt="image-20230412224917945"
+>&lt;/p>
+&lt;p>缺點：&lt;/p>
+&lt;p>Random Access of i th Block之平均I/O次數大幅增長(線性成長)&lt;/p>
+&lt;h3 id="方法二-3">方法二&lt;/h3>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>使用階層式Index Structure &lt;/span>&lt;/p>
+&lt;p>例：&lt;/p>
+&lt;p>Two-Level Index Structure&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/eqLbyUn.png"
+loading="lazy"
+alt="image-20230412230302769"
+>&lt;/p>
+&lt;p>優點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Random  Access of i th Block之I/O次數是固定值&lt;/span> eg 2層-&amp;gt; 3次I/O&lt;/li>
+&lt;li>適合大型檔案&lt;/li>
+&lt;/ol>
+&lt;p>缺點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>對小型檔案極不合適&lt;/span>，因為Index Blocks太佔空間，甚至多於Data Block 數目(目錄20頁，內文2頁)&lt;/li>
+&lt;/ol>
+&lt;h3 id="方法三-1">方法三☆☆☆☆☆&lt;/h3>
+&lt;p>混合法，即&lt;span style='color:yellow;font-size:16px;'>UNIX的I-Node結構&lt;/span>，一定要會，狠狠地記下來&lt;/p>
+&lt;p>例：I-Node有15格(entry)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/9qQrFgJ.png"
+loading="lazy"
+alt="image-20230412232955337"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>第1~第12格：&lt;/span>直接用來記錄Data Block No&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>第13格：pointer to Single-Level Index&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>第14格：pointer To Two-Level Index&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>第15格：pointer To Three-Level Index&lt;/span>&lt;/p>
+&lt;p>&amp;hellip; 以此類推&lt;/p>
+&lt;p>MAX.FILE size = (12+n&lt;sup>2&lt;/sup>+n&lt;sup>3&lt;/sup>+&amp;hellip; ) 個Data Blocks&lt;/p>
+&lt;p>優點：&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>小型、大型File皆適合&lt;/span>&lt;/p>
+&lt;p>[055 1:20:00]&lt;/p>
+&lt;p>例題1：&lt;/p>
+&lt;p>I-Node之定義同上所述(15個Entry)&lt;/p>
+&lt;ul>
+&lt;li>Block-Size = 16Kb&lt;/li>
+&lt;li>Block No(Address) 佔4Bytes&lt;/li>
+&lt;/ul>
+&lt;p>求MAX File Size多大?&lt;/p>
+&lt;p>Ans&lt;/p>
+&lt;p>一個Index Block可以存 16KB/4Byte = 2&lt;sup>12&lt;/sup>Data Block No&lt;/p>
+&lt;p>因此MAX File SIZE&lt;/p>
+&lt;p>=12+2&lt;sup>12&lt;/sup>+(2&lt;sup>12&lt;/sup>)&lt;sup>&lt;sup>2&lt;/sup>&lt;/sup>+(2&lt;sup>12&lt;/sup>)&lt;sup>&lt;sup>3&lt;/sup>&lt;/sup>&lt;/p>
+&lt;p>=(12+2&lt;sup>12&lt;/sup>+2&lt;sup>24&lt;/sup>+&lt;sup>36&lt;/sup>) * 16kb&lt;/p>
+&lt;p>= 2&lt;sup>50&lt;/sup> byte&lt;/p>
+&lt;p>≒ 1PB&lt;/p>
+&lt;p>例題2：&lt;/p>
+&lt;p>承上，若File大小 = 8000個Blocks，假設I-Node已在Memory中，則要存取此File的第6000個Data Block，需要?次I/O&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>前12個：6000-12 = 5988&lt;/p>
+&lt;p>第13個：5988-4096= 1892&lt;/p>
+&lt;p>第14個：大概就在這&lt;/p>
+&lt;p>共3次的I/O&lt;/p>
+&lt;p>例題3：&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>循序存取前面6000個Data Blocks，則要?次I/O&lt;/span>&lt;/p>
+&lt;p>Ans.&lt;/p>
+&lt;p>6000+3= 6003次 I/O&lt;/p>
+&lt;p>[055 1:39:00]&lt;/p>
+&lt;h2 id="disk-scheduling-algo">Disk Scheduling Algo&lt;/h2>
+&lt;p>目的在於降低軌道移動總數&lt;/p>
+&lt;ol>
+&lt;li>FCFS&lt;/li>
+&lt;li>SSTF&lt;/li>
+&lt;li>SCAN&lt;/li>
+&lt;li>C-SCAN (C:Cirular)&lt;/li>
+&lt;li>Look&lt;/li>
+&lt;li>C-Look&lt;/li>
+&lt;/ol>
+&lt;h3 id="fcfsfirst-come-first-service">FCFS(First-Come-First-Service)&lt;/h3>
+&lt;p>定義：&lt;span style='color:yellow;font-size:16px;'>最早到達的Track request，優先服務&lt;/span>&lt;/p>
+&lt;p>例子：&lt;/p>
+&lt;p>Disk有200軌，編號0~199，&lt;u>Head目前停在第53軌&lt;/u>，剛剛服務完第40軌，現在Disk Queue中有下列Track request依序為&lt;/p>
+&lt;p>&lt;u>98, 183, 37, 122, 14, 124, 65, 67&lt;/u>&lt;/p>
+&lt;p>求Track移動總數&lt;/p>
+&lt;p>Ans&lt;/p>
+&lt;p>(183-53)+(183-37)+(122-37)+(122-14)+(124-14)+(124-65)+(67-65) = 640軌&lt;/p>
+&lt;p>分析：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>排班效果並不是很好，Track移動數較多，Seek Time  較長&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>Note：Disk Scheduling法則，&lt;span style='color:yellow;font-size:16px;'>既無最佳，也無最差&lt;/span>&lt;/p>
+&lt;ol start="2">
+&lt;li>公平，&lt;span style='color:yellow;font-size:16px;'>No Starvation&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h3 id="sstfshortest-seek-time-track-first">SSTF(Shortest Seek-Time Track First)&lt;/h3>
+&lt;p>定義：&lt;span style='color:yellow;font-size:16px;'>距離Head目前位置最近的Track request，優先服務&lt;/span>&lt;/p>
+&lt;p>例：&lt;/p>
+&lt;p>&lt;u>98, 183, 37, 122, 14, 124, 65, 67&lt;/u>&lt;/p>
+&lt;p>ans&lt;/p>
+&lt;p>53-&amp;gt;65-&amp;gt;67-&amp;gt;37-&amp;gt;14-&amp;gt;98-&amp;gt;122-&amp;gt;124-&amp;gt;183&lt;/p>
+&lt;p>= 236軌&lt;/p>
+&lt;p>分析：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>排班效果不錯，Track移動數較少，Seek Time小，但並非是Optimal&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>不公平，有可能Starvation&lt;/span>&lt;/li>
 &lt;/ol>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
+&lt;p>&lt;sup>&lt;/sup>&lt;/p>
+&lt;p>&lt;sub>&lt;/sub>&lt;/p>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
