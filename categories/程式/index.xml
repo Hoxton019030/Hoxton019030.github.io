@@ -11392,6 +11392,334 @@ alt="image-20230412232955337"
 &lt;li>&lt;span style='color:yellow;font-size:16px;'>排班效果不錯，Track移動數較少，Seek Time小，但並非是Optimal&lt;/span>&lt;/li>
 &lt;li>&lt;span style='color:yellow;font-size:16px;'>不公平，有可能Starvation&lt;/span>&lt;/li>
 &lt;/ol>
+&lt;h3 id="scan法則">SCAN法則&lt;/h3>
+&lt;p>SCAN is Suck Do not Use&lt;/p>
+&lt;p>定義：Head來回雙向移動掃描，遇有Track request，即行服務，Head遇到Track開端或盡頭時，才會折返提供服務&lt;/p>
+&lt;p>示意圖：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/qzzII7w.png"
+loading="lazy"
+alt="image-20230415025348792"
+>&lt;/p>
+&lt;p>分析：&lt;/p>
+&lt;ol>
+&lt;li>排班效能可接受&lt;span style='color:yellow;font-size:16px;'>適用於大量負載之情況&lt;/span>(因為在Track Request有較均勻一致之等待時間)&lt;/li>
+&lt;/ol>
+&lt;p>Note：&lt;span style='color:yellow;font-size:16px;'>Look也是&lt;/span>&lt;/p>
+&lt;ol start="2">
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>在某些時刻對某些Track Request，似乎不盡公平&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/pVPUioT.png"
+loading="lazy"
+alt="image-20230415030344217"
+>&lt;/p>
+&lt;p>​ Note：用C-SCAN解&lt;/p>
+&lt;ol start="3">
+&lt;li>Head需要遇到Track 開端或盡頭才折返，&lt;span style='color:yellow;font-size:16px;'>此舉耗費不必要的Seek Time&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>​ Note：用Look解決&lt;/p>
+&lt;p>[056]&lt;/p>
+&lt;h3 id="c-scan">C-SCAN&lt;/h3>
+&lt;p>定義：C Stand for circuler，是SCAN變形&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>差別：只提供單項服務&lt;/span>，折返回程不提供服務&lt;/p>
+&lt;p>示意：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ca6UODu.png"
+loading="lazy"
+alt="image-20230415032118760"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>爭議在計算上，折返的Track移動數要列入還是不列入計算?&lt;/span>&lt;/p>
+&lt;h3 id="look">Look&lt;/h3>
+&lt;p>定義：&lt;span style='color:yellow;font-size:16px;'>是SCAN之變形&lt;/span>&lt;/p>
+&lt;p>差別：Head服務完該方向最後一個Track Request後，即可&lt;span style='color:yellow;font-size:16px;'>折返&lt;/span>提供回程服務&lt;/p>
+&lt;p>示意圖：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/gcbuHUo.png"
+loading="lazy"
+alt="image-20230415032803987"
+>&lt;/p>
+&lt;h3 id="c-look">C-LOOK&lt;/h3>
+&lt;p>定義：Look之變形&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>差別：只提供單向服務&lt;/span>，折返的Track&lt;span style='color:yellow;font-size:16px;'>列入計算&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/huKsRAG.png"
+loading="lazy"
+alt="image-20230415033339377"
+>&lt;/p>
+&lt;h3 id="補充">補充&lt;/h3>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>[恐]&lt;/th>
+&lt;th>[Modern]其他版&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>SCAN&lt;/td>
+&lt;td>x&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>C-SCAN&lt;/td>
+&lt;td>x&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Look&lt;/td>
+&lt;td>SCAN&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>C-Look&lt;/td>
+&lt;td>C-SCAN&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;img src="https://i.imgur.com/HPad7CS.png"
+loading="lazy"
+alt="image-20230415033647324"
+>&lt;/p>
+&lt;h2 id="其他名詞項">其他名詞項&lt;/h2>
+&lt;h3 id="formatting-格式化">Formatting (格式化)&lt;/h3>
+&lt;p>分為兩種&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Physical format&lt;/span>&lt;/p>
+&lt;p>又稱&lt;span style='color:yellow;font-size:16px;'>low-level format&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>工廠生產Disk System時執行&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>主要是劃分出Disk Controller可以存取的Sector&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/dVrGobS.png"
+loading="lazy"
+alt="image-20230415122707706"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>偵測有無不良Sector&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Logical formatting&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>user在使用Disk之前，必須做兩件事情
+&lt;ol>
+&lt;li>Partition：切割分區，即Logical drive，ec: C,D,E磁碟機&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Logical Format：OS製作(寫入) File Management System 所需之資料結構&lt;/span>
+&lt;ol>
+&lt;li>Free Space管理(eg. Bit Vector)&lt;/li>
+&lt;li>FAT, I-Node (配置方法)&lt;/li>
+&lt;li>空的Physical Directory&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="row原始的-io-基本上沒考過">Row&lt;code>原始的&lt;/code>-I/O (基本上沒考過)&lt;/h3>
+&lt;p>定義：將Disk視為大型Array在使用，一個Sector好比是Array的一格，&lt;span style='color:yellow;font-size:16px;'>無File System之資源&lt;/span>，這樣的優點是&lt;span style='color:yellow;font-size:16px;'>檔案存取速度快速&lt;/span>，缺點是&lt;span style='color:yellow;font-size:16px;'>User不易使用，&lt;/span>&lt;span style='color:yellow;font-size:16px;'>通常在DBMS底層使用&lt;/span>&lt;/p>
+&lt;p>[057]&lt;/p>
+&lt;h3 id="bootstrap-loader-">Bootstrap Loader ☆☆☆☆☆&lt;/h3>
+&lt;p>主要目的：&lt;span style='color:yellow;font-size:16px;'>開機時，用以從Disk載入 OS Object Code 到Memory(RAM) 的特殊Loader&lt;/span>&lt;/p>
+&lt;h4 id="早期的作法">早期的作法&lt;/h4>
+&lt;p>&lt;img src="https://i.imgur.com/EFdPndB.png"
+loading="lazy"
+alt="image-20230415130102305"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>缺點：&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Bootstrap Loader無法任意變更&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>ROM Size有限，BootStrap Loader 無法很大&lt;/span>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h4 id="現代的做法">現代的做法&lt;/h4>
+&lt;p>&lt;img src="https://i.imgur.com/rlv7vxW.png"
+loading="lazy"
+alt="image-20230415133110047"
+>&lt;/p>
+&lt;h2 id="bad-sectors-之處理方法">BAD Sectors 之處理方法&lt;/h2>
+&lt;p>Sector會壞的原因&lt;/p>
+&lt;ol>
+&lt;li>工廠生產時已Bad&lt;/li>
+&lt;li>正常使用一段時間後，Bad&lt;/li>
+&lt;/ol>
+&lt;p>處理方法：&lt;/p>
+&lt;h3 id="方法一-4">[方法一]&lt;/h3>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Mark(標示) Bad Sectors&lt;/span>，以後不用&lt;/p>
+&lt;p>例：&lt;span style='color:yellow;font-size:16px;'>IDE Disk Controller&lt;/span>&lt;/p>
+&lt;h3 id="方法二-4">[方法二]&lt;/h3>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Spare(備品) Sectors方法&lt;/span>&lt;/p>
+&lt;p>例：SCSI Disk Controller採用&lt;/p>
+&lt;p>作法：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/26P30P5.png"
+loading="lazy"
+alt="image-20230415150125529"
+>&lt;/p>
+&lt;p>一旦有BAD Sector(eg 87號 Sector BAD)，則Disk Controller 會從 &lt;span style='color:yellow;font-size:16px;'>Spare Sectors選擇一個Spare Sector (eg. 333號 Sector) 來替代BAD Sector&lt;/span>。將來OS在存取87號Sector時，SCSI Controller會將它&lt;span style='color:yellow;font-size:16px;'>轉向成對333號之存取&lt;/span>(但OS不知道這件事情)&lt;/p>
+&lt;p>缺點：&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>此一Sector轉向存取之動作，可能會破壞掉OS Disk Scheduling之最適效益，破壞磁碟排班效能&lt;/span>&lt;/p>
+&lt;p>例：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/NaycwX0.png"
+loading="lazy"
+alt="image-20230415153156232"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>改善作法：&lt;/span>&lt;/p>
+&lt;p>將Spare Sectors 分散到每條Track (or cylinder)上，不要集中存放&lt;/p>
+&lt;p>若Sector BAD，則用&lt;span style='color:yellow;font-size:16px;'>相同軌道或鄰近的Track 上的Spare Sector作替代&lt;/span>&lt;/p>
+&lt;p>舉例來說：維修中心如果都在台東，那運送時間會拖很長，要讓時間降低的做法就是讓全省各地都有維修中心，降低運送時間&lt;/p>
+&lt;h3 id="方法三-2">[方法三]&lt;/h3>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'> Sector Sliping 法&lt;/span>&lt;/p>
+&lt;p>例：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Cp7JpAT.png"
+loading="lazy"
+alt="image-20230415155647865"
+>&lt;/p>
+&lt;h2 id="swap-space-management">Swap Space Management&lt;/h2>
+&lt;p>[交大成大有考過一次，至此之後滅跡]&lt;/p>
+&lt;p>在Virtual Memory, Medium-term Scheduler，會將Disk作為Swap out的page或process image之暫存處&lt;/p>
+&lt;p>Swap Space空間大小，&lt;span style='color:yellow;font-size:16px;'>宜超估，比較安全&lt;/span>&lt;/p>
+&lt;p>如果留太小的示意圖：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/8HR7DK7.png"
+loading="lazy"
+alt="image-20230415235501768"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Swap Space Management方式&lt;/span>&lt;/p>
+&lt;p>(用什麼方式保存Swap out page/process image?)&lt;/p>
+&lt;p>方法一&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>用File Sy(stem，仍然以File型式保存(.temp)&lt;/span>&lt;/p>
+&lt;p>優點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Easy implementation&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>缺點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>有外部碎裂(因為大都採Contiguous Allocatation)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>效能比較差&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>方法二&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>使用一個獨立的Partition來保存(使用者看不到)&lt;/span>&lt;/p>
+&lt;p>優點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>效能佳，因為採用Row-I/O，無File System 支持&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>缺點：&lt;/p>
+&lt;ol>
+&lt;li>內部碎裂(但老實說，超估比低估安全)&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>若Partition一開始切不夠大，導致不夠用，則需要重新re-partition&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h2 id="提升disk-data-access-performance效能之技術-datadisk-stripinginterleaving--技術">提升Disk Data Access Performance(效能)之技術-Data(Disk) Striping(Interleaving) 技術&lt;/h2>
+&lt;p>定義：把多部Physical Disks，組成單一的Logical Disk，&lt;span style='color:yellow;font-size:16px;'>運用平行存取技巧來提升效能&lt;/span>，一班分為兩種&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Bit-Level Striping&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Block-Level Stirping&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>示意圖：　　&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/5Z0BPFi.png"
+loading="lazy"
+alt="image-20230416004324667"
+>&lt;/p>
+&lt;h2 id="提升disk-reliability可靠度之技術">提升Disk Reliability(可靠度)之技術&lt;/h2>
+&lt;p>當Block壞了，Data Lost，如何作Data Recovery?&lt;/p>
+&lt;p>兩種&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Mirror(或Shadow)技術&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Parity-check技術&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h3 id="mirror">Mirror&lt;/h3>
+&lt;p>定義：每一部正常的Disk，均配備有對應的&lt;span style='color:yellow;font-size:16px;'>Mirror Disk&lt;/span>，資料必須同時存入正常Disk及its Mirror Disk，將來，若正常Disk is Bad，則用its Mirror Disk替代&lt;/p>
+&lt;p>優點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>可靠度最高&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Data Recovery 速度最快&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>缺點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>成本高(貴)&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h3 id="parity-check-技術">Parity-Check 技術&lt;/h3>
+&lt;p>定義：多準備一部Disk作為儲存&lt;span style='color:yellow;font-size:16px;'>Parity-Check Block之用&lt;/span>，資料寫入時，需要額外算出Pariry-check Block內容&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/wy7aE4F.png"
+loading="lazy"
+alt="image-20230416012116833"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>將來，若某一個Block BAD，只要用其他Block及Pariry Block作偶同位，即可Recovery Data&lt;/span>&lt;/p>
+&lt;p>優點：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>成本比Mirror便宜許多&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>缺點：&lt;/p>
+&lt;ol>
+&lt;li>可靠度低，因為如果同時有多個Block壞掉，則無法復原&lt;/li>
+&lt;li>資料恢復速度慢於Mirror&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>資料寫入速度也慢&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h2 id="raid-規格">RAID 規格&lt;/h2>
+&lt;p>(Redundant Array Of Independent Disks)&lt;/p>
+&lt;p>磁碟冗餘陣列&lt;/p>
+&lt;ul>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>RAID 0~6&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>RAID-0與RAID-1組合&lt;/span>&lt;/li>
+&lt;/ul>
+&lt;p>範例：&lt;/p>
+&lt;p>皆以4部正常使用的Disk為例，&lt;/p>
+&lt;h3 id="span-stylecoloryellowfont-size16pxraid-0span">&lt;span style='color:yellow;font-size:16px;'>RAID-0&lt;/span>&lt;/h3>
+&lt;p>只提供&lt;span style='color:yellow;font-size:16px;'>Block-Level Striping(Interleaving)&lt;/span>而已，&lt;span style='color:yellow;font-size:16px;'>未提供任何可靠度技術(eg. mirror, parity-Check&lt;/span>，用在強調&lt;span style='color:yellow;font-size:16px;'>存取效能要求高，但可靠度不重要之場合&lt;/span>&lt;/p>
+&lt;p>eg. VOD(Video Of Demand) Server&lt;/p>
+&lt;h3 id="raid-1">RAID-1&lt;/h3>
+&lt;p>就是Mirror&lt;/p>
+&lt;h3 id="raid-2">RAID-2&lt;/h3>
+&lt;p>採用Memory的ECC技術來改善可靠度，希望降低Mirror成本，&lt;span style='color:yellow;font-size:16px;'>但是成本降低有限(只比Mirror少一部Disk而以)&lt;/span>&lt;/p>
+&lt;p>例&lt;/p>
+&lt;p>Disk數=2n-1&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xGQayhh.png"
+loading="lazy"
+alt="image-20230416014729591"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>此外，與RAID-3相比，可靠度一樣，但成本高於RAID-3，因此RAID-2無實際產品，跟RAID-6一樣，跟RAID-2一樣沒實際產品，口訣2266&lt;/span>&lt;/p>
+&lt;h3 id="raid-3">RAID-3&lt;/h3>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>採用Bit-Level Striping 及 Parity-Check技術&lt;/span>&lt;/p>
+&lt;p>DisK數=n+1&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Hqdhh6j.png"
+loading="lazy"
+alt="image-20230416015642161"
+>&lt;/p>
+&lt;h3 id="raid-4">RAID-4&lt;/h3>
+&lt;p>採用&lt;span style='color:yellow;font-size:16px;'>Block-Level&lt;/span>及Pariry-Check技術&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Hqdhh6j.png"
+loading="lazy"
+alt="image-20230416015642161"
+>&lt;/p>
+&lt;h3 id="raid-5">RAID-5&lt;/h3>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>採用Block-Level Striping及Parity-Check技術&lt;/span>，與RAID-3,RAID-4之主要差別在，&lt;span style='color:yellow;font-size:16px;'>將parity Block分散存於不同Disk，並非集中在一部Disk&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/VfC0Xtp.png"
+loading="lazy"
+alt="image-20230416020200561"
+>&lt;/p>
+&lt;h3 id="raid-6">RAID-6&lt;/h3>
+&lt;p>不用Parity-Check技術，改用類似Reed-Solomon技術，可以做到2部Disk Block同時出錯，&lt;/p>
+&lt;p>還能Recovery，&lt;span style='color:yellow;font-size:16px;'>但Cost太高(≧ Mirror成本)，因此也無實際產品&lt;/span>&lt;/p>
+&lt;h3 id="raid-0--raid-1-之組合">RAID-0 &amp;amp; RAID-1 之組合&lt;/h3>
+&lt;p>用在高效能以及高可度要求之場合，雖然很高，但不計任何代價&lt;/p>
+&lt;p>組合方式有：&lt;/p>
+&lt;ol>
+&lt;li>RAID0+1&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>RAID1+0[優秀]&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='color:yellow;font-size:32px;'>這邊考畫圖&lt;/span>&lt;/p>
+&lt;h3 id="raid01">RAID0+1&lt;/h3>
+&lt;p>先Striping，再整體Mirror&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/t6yfRfz.png"
+loading="lazy"
+alt="image-20230416021106242"
+>&lt;/p>
+&lt;p>一部Disk BAD，整組的Disk都要換成Mirror的，不可以只換一個Disk&lt;/p>
+&lt;h3 id="raid10">RAID1+0&lt;/h3>
+&lt;p>先Mirror，再Striping&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/zAYamYe.png"
+loading="lazy"
+alt="image-20230416021307561"
+>&lt;/p>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
