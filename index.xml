@@ -10,10 +10,10 @@
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>何時使用&lt;/td>
-&lt;td>將一條分支合進另一條分支中&lt;/td>
-&lt;td>將當前分支與目標分支結合，並以目標分支為底(base)重新出發&lt;/td>
-&lt;td>只想要某個分支的某些commit，不希望把整個分支搬過來&lt;/td>
+&lt;td>說明&lt;/td>
+&lt;td>將一條分支合進另一條分支中。不會破壞提交歷史的完整性，但缺點是合併後的提交歷史較為混亂，有時可能會產生冗長的提交歷史。&lt;/td>
+&lt;td>將當前分支與目標分支結合，並以目標分支為底(base)重新出發。將一個分支中的提交歷史應用到另一個分支上，使得目標分支中的提交歷史變得更加緊湊和簡潔&lt;/td>
+&lt;td>命令可以從一個分支中選擇單個提交，並將其應用到另一個分支上，通常用於需要特定提交的情況。只想要某個分支的某些commit，不希望把整個分支搬過來&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>指令&lt;/td>
@@ -38,15 +38,21 @@ alt="demo"
 &lt;/tr>
 &lt;tr>
 &lt;td>優點&lt;/td>
-&lt;td>簡單易操作&lt;/td>
+&lt;td>簡單易操作，不破壞commit歷史&lt;/td>
 &lt;td>不產生多餘commit 與分支線&lt;/td>
 &lt;td>不會更動到Commit的歷史順序&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>缺點&lt;/td>
 &lt;td>會產生額外的分支合成線&lt;/td>
-&lt;td>不可以在共用分支上使用，否則將打斷commit順序&lt;/td>
+&lt;td>不可以在共用分支上使用，否則將打斷commit順序，破壞commit完整性&lt;/td>
 &lt;td>若cherry pick commit過多，易產生重複的commit紀錄&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>應用場景&lt;/td>
+&lt;td>整合分支&lt;/td>
+&lt;td>用以取得別的分支整個進度&lt;/td>
+&lt;td>用以取得別的分支的個別進度&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
