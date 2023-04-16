@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 16 Apr 2023 17:30:28 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>Cherry Pick的一點研究</title><link>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/b6PCkNq.png" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 16 Apr 2023 17:30:28 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>Cherry Pick的一點研究</title><link>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/b6PCkNq.png" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章，&lt;/p>
 &lt;h1 id="預覽">預覽&lt;/h1>
-&lt;p>檔案結構如下&lt;/p>
+&lt;p>這是一個SpringBoot專案，Main分支目前長這樣，並且還有兩個協作者，分別是Hoxton跟Dallas&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/fU4UxrO.png"
 loading="lazy"
 alt="image-20230416174208891"
@@ -28,7 +28,7 @@ alt="image-20230416174431279"
 &lt;ol>
 &lt;li>創建README fce6&lt;/li>
 &lt;/ol>
-&lt;p>接下來在不同情境下，使用CherryPick，看看會有什麼結果與問題&lt;/p>
+&lt;p>接下來在不同情境下，使用Cherry Pick，看看會有什麼結果與問題&lt;/p>
 &lt;h1 id="實際演練">實際演練&lt;/h1>
 &lt;h2 id="main需要hoxton的進度其中有包含main上未有的檔案99b2">Main需要hoxton的進度，其中有包含Main上未有的檔案(99b2)&lt;/h2>
 &lt;p>&lt;img src="https://i.imgur.com/FiXE5kh.gif"
@@ -36,10 +36,10 @@ loading="lazy"
 alt="demo"
 >&lt;/p>
 &lt;p>結果：&lt;/p>
-&lt;p>發生衝突，因Main上沒有MemberController。雖然最新的Commit 只有對MemberController更新，沒有創建，但因為要Cherry Pick的關係，所以還是會把MemberController創建起來，至於Service、Dao則不會帶過來，因此最終是長這樣&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/LIwEFHy.png"
+&lt;p>發生衝突，因Main上沒有MemberController。&lt;span style='color:yellow'>雖然最新的Commit 只有對MemberController更新，沒有創建MemberController的部分，但因為要Cherry Pick的關係，所以還是會把MemberController創建起來，&lt;/span>至於Service、Dao則不會帶過來，因為那是屬於別的Commit的，因此最終是長這樣，&lt;span style='color:lightgreen'>綠色部分是新增的部分&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/OFdw53w.png"
 loading="lazy"
-alt="image-20230416180525471"
+alt="image-20230417001936376"
 >&lt;/p>
 &lt;blockquote>
 &lt;p>hoxton-310a 創建Member Controller&lt;/p>
@@ -72,9 +72,9 @@ alt="demo"
 &lt;/div>
 &lt;/div>&lt;p>&lt;span style='color:yellow'>因此Commit 的順序調換了，變成先Controller在Dao&lt;/span>&lt;/p>
 &lt;p>檔案長這樣&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/sZ2SKWf.png"
+&lt;p>&lt;img src="https://i.imgur.com/zFZG77L.png"
 loading="lazy"
-alt="image-20230416182559309"
+alt="image-20230417002958197"
 >&lt;/p>
 &lt;h2 id="main只需要hoxton的幾個進度其中的commit並非連續f198-310a">Main只需要Hoxton的幾個進度，其中的commit並非連續(f198, 310a)&lt;/h2>
 &lt;p>&lt;img src="https://i.imgur.com/CAHlXtn.gif"
@@ -93,17 +93,26 @@ alt="demo"
 &lt;/div>
 &lt;/div>&lt;p>&lt;span style='color:yellow'>因此Commit 順序與hoxton上分支的順序一樣&lt;/span>&lt;/p>
 &lt;p>檔案長這樣&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/fBCDHEY.png"
+&lt;p>&lt;img src="https://i.imgur.com/XAk8wDk.png"
 loading="lazy"
-alt="image-20230416182607444"
+alt="image-20230417003029528"
 >&lt;/p>
 &lt;h2 id="cherry-pick一個只有刪除檔案的commit是否能成功">Cherry-pick一個只有刪除檔案的commit，是否能成功&lt;/h2>
-&lt;p>3ea9這個Commit是將MemberController刪掉，在Main上cherry Pick後會發生什麼事情呢?&lt;/p>
+&lt;p>fd8b這個Commit是將MemberController刪掉，在Main上cherry Pick後會發生什麼事情呢?&lt;/p>
 &lt;p>結果&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/8eCzAem.gif"
 loading="lazy"
 alt="demo"
 >&lt;/p>
+&lt;p>結果：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/dshKQgP.png"
+loading="lazy"
+alt="image-20230417003832083"
+>&lt;/p>
+&lt;p>顯示&lt;/p>
+&lt;blockquote>
+&lt;p>Bad revision&lt;/p>
+&lt;/blockquote>
 &lt;p>直接不讓cherry-pick，&lt;span style='color:yellow'>我猜多半是因為這個Commit只有包含刪除，因此沒辦法pick&lt;/span>&lt;/p>
 &lt;h2 id="cherry-pick一個範圍的commit最終的結果呈現如何">Cherry-pick一個範圍的commit，最終的結果呈現如何?&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -123,14 +132,14 @@ alt="demo"
 loading="lazy"
 alt="image-20230416184130708"
 >&lt;/p>
-&lt;h2 id="假設現在dallas需要hoxton的commit它和進去main後會長什麼樣子呢">假設現在Dallas需要Hoxton的Commit，它和進去Main後會長什麼樣子呢?&lt;/h2>
+&lt;h2 id="假設現在dallas需要hoxton的commit它合進去main後會長什麼樣子呢">假設現在Dallas需要Hoxton的Commit，它合進去Main後會長什麼樣子呢?&lt;/h2>
 &lt;p>如果兩邊合進Main之後會長怎麼樣呢？會不會兩邊都有重複的Commit導致畫面很亂呢?&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/jTslNLf.png"
 loading="lazy"
 alt="image-20230416190945774"
 >&lt;/p>
 &lt;p>結果：&lt;/p>
-&lt;p>會，合進去後會有許多重複的commit，因為Cherry pick過去後，雖然看起來一樣，但它們的HashCode已經有所不同，因此會有重複的情形發生&lt;/p>
+&lt;p>會，合進去後會有許多重複的commit，因為Cherry pick過去後，雖然看起來一樣，但它們的Hash Code已經有所不同，因此會有重複的情形發生&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/3K4v8s3.png"
 loading="lazy"
 alt="image-20230416191527528"
