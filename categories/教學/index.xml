@@ -40,7 +40,7 @@ alt="demo"
 &lt;td>優點&lt;/td>
 &lt;td>簡單易操作&lt;/td>
 &lt;td>不產生多餘commit 與分支線&lt;/td>
-&lt;td>不會更動到Commit的歷史順序，&lt;/td>
+&lt;td>不會更動到Commit的歷史順序&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>缺點&lt;/td>
