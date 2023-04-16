@@ -87,7 +87,7 @@ loading="lazy"
 alt="demo"
 >&lt;/p>
 &lt;p>結果：&lt;/p>
-&lt;p>發生衝突，因Main上沒有MemberController。&lt;span style='color:yellow'>雖然最新的Commit 只有對MemberController更新，沒有創建MemberController的部分，但因為要Cherry Pick的關係，所以還是會把MemberController創建起來，&lt;/span>至於Service、Dao則不會帶過來，因為那是屬於別的Commit的，因此最終是長這樣，&lt;span style='color:lightgreen'>綠色部分是新增的部分&lt;/span>&lt;/p>
+&lt;p>發生衝突，因Main上沒有MemberController。&lt;span style='color:yellow'>雖然最新的Commit 只有對MemberController更新，沒有創建MemberController的部分，但因為要Cherry Pick的關係，所以還是會把MemberController創建起來，並且其內容是最新的內容&lt;/span>至於Service、Dao則不會帶過來，因為那是屬於別的Commit的，因此最終是長這樣，&lt;span style='color:lightgreen'>綠色部分是新增的部分&lt;/span>&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/OFdw53w.png"
 loading="lazy"
 alt="image-20230417001936376"
