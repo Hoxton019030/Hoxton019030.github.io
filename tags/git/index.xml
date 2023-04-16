@@ -1,4 +1,139 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Hoxton</title><link>https://hoxtonhsu.com/tags/git/</link><description>Recent content in Git on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 08 Mar 2023 20:48:18 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git在第一次使用的credentialhelperselector該怎麼設定呢</title><link>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</link><pubDate>Wed, 08 Mar 2023 20:48:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/PFJUZO4.png" alt="Featured image of post Git在第一次使用的credentialhelperselector該怎麼設定呢" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Hoxton</title><link>https://hoxtonhsu.com/tags/git/</link><description>Recent content in Git on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 16 Apr 2023 17:30:28 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Cherry PicK的一點研究</title><link>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/J9vy2W5.png" alt="Featured image of post Cherry PicK的一點研究" />&lt;h1 id="預覽">預覽&lt;/h1>
+&lt;p>檔案結構如下&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/fU4UxrO.png"
+loading="lazy"
+alt="image-20230416174208891"
+>&lt;/p>
+&lt;p>SourceTree如下&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/dFK8O3Z.png"
+loading="lazy"
+alt="image-20230416174431279"
+>&lt;/p>
+&lt;p>Hoxton這個有四個Commit&lt;/p>
+&lt;p>依序如下&lt;/p>
+&lt;ol>
+&lt;li>創建MemberDao　f198&lt;/li>
+&lt;li>創建MemberService 185a&lt;/li>
+&lt;li>創建MemberController 310a&lt;/li>
+&lt;li>為MemberController新增一個方法 99b2&lt;/li>
+&lt;li>刪除MemberController fd8b&lt;/li>
+&lt;/ol>
+&lt;p>Dallas這個分支有兩個Commit&lt;/p>
+&lt;ol>
+&lt;li>創建LoginContorller 7eb2&lt;/li>
+&lt;li>為LogingController新增一個方法 e92a&lt;/li>
+&lt;/ol>
+&lt;p>Main這個分支有一個Commit&lt;/p>
+&lt;ol>
+&lt;li>創建README fce6&lt;/li>
+&lt;/ol>
+&lt;p>接下來在不同情境下，使用CherryPick，看看會有什麼結果與問題&lt;/p>
+&lt;h1 id="實際演練">實際演練&lt;/h1>
+&lt;h2 id="main需要hoxton的進度其中有包含main上未有的檔案99b2">Main需要hoxton的進度，其中有包含Main上未有的檔案(99b2)&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/FiXE5kh.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>結果：&lt;/p>
+&lt;p>發生衝突，因Main上沒有MemberController。雖然最新的Commit 只有對MemberController更新，沒有創建，但因為要Cherry Pick的關係，所以還是會把MemberController創建起來，至於Service、Dao則不會帶過來，因此最終是長這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/LIwEFHy.png"
+loading="lazy"
+alt="image-20230416180525471"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>hoxton-310a 創建Member Controller&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i.imgur.com/lbKRTTw.png"
+loading="lazy"
+alt="image-20230416180321809"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>hoxton-99b2 在Member Controller新增方法&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i.imgur.com/qAWo1AT.png"
+loading="lazy"
+alt="image-20230416180301204"
+>&lt;/p>
+&lt;h2 id="main只需要hoxton的幾個進度其中的commit並非連續310a-f198">Main只需要Hoxton的幾個進度，其中的commit並非連續(310a, f198)&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/tEj7v8u.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>結果：&lt;/p>
+&lt;p>將MemberController與Dao創建進來，其中不包含Dao，因為Cherry-pick的部分不包含，注意到的是，因為Cherry pick時我們的指令是這樣&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git cherry-pick 310a f198
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;span style='color:yellow'>因此Commit 的順序調換了，變成先Controller在Dao&lt;/span>&lt;/p>
+&lt;p>檔案長這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/sZ2SKWf.png"
+loading="lazy"
+alt="image-20230416182559309"
+>&lt;/p>
+&lt;h2 id="main只需要hoxton的幾個進度其中的commit並非連續f198-310a">Main只需要Hoxton的幾個進度，其中的commit並非連續(f198, 310a)&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/CAHlXtn.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>結果：&lt;/p>
+&lt;p>將MemberController與Dao創建進來，其中不包含Service，因為Cherry-pick的部分不包含，注意到的是，因為我們Cherry Pick的指令如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git cherry-pick f198 310a
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;span style='color:yellow'>因此Commit 順序與hoxton上分支的順序一樣&lt;/span>&lt;/p>
+&lt;p>檔案長這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/fBCDHEY.png"
+loading="lazy"
+alt="image-20230416182607444"
+>&lt;/p>
+&lt;h2 id="cherry-pick一個只有刪除檔案的commit是否能成功">Cherry-pick一個只有刪除檔案的commit，是否能成功&lt;/h2>
+&lt;p>3ea9這個Commit是將MemberController刪掉，在Main上cherry Pick後會發生什麼事情呢?&lt;/p>
+&lt;p>結果&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/8eCzAem.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>直接不讓cherry-pick，&lt;span style='color:yellow'>我猜多半是因為這個Commit只有包含刪除，因此沒辦法pick&lt;/span>&lt;/p>
+&lt;h2 id="cherry-pick一個範圍的commit最終的結果呈現如何">Cherry-pick一個範圍的commit，最終的結果呈現如何?&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> git cherry-pick f198 .. fd8b
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/odBYOhx.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>結果：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Bjhzwru.png"
+loading="lazy"
+alt="image-20230416184130708"
+>&lt;/p>
+&lt;h2 id="假設現在dallas需要hoxton的commit它和進去main後會長什麼樣子呢">假設現在Dallas需要Hoxton的Commit，它和進去Main後會長什麼樣子呢?&lt;/h2>
+&lt;p>如果兩邊合進Main之後會長怎麼樣呢？會不會兩邊都有重複的Commit導致畫面很亂呢?&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/jTslNLf.png"
+loading="lazy"
+alt="image-20230416190945774"
+>&lt;/p>
+&lt;p>結果：&lt;/p>
+&lt;p>會，合進去後會有許多重複的commit，因為Cherry pick過去後，雖然看起來一樣，但它們的HashCode已經有所不同，因此會有重複的情形發生&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/3K4v8s3.png"
+loading="lazy"
+alt="image-20230416191527528"
+>&lt;/p></description></item><item><title>Git在第一次使用的credentialhelperselector該怎麼設定呢</title><link>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</link><pubDate>Wed, 08 Mar 2023 20:48:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/PFJUZO4.png" alt="Featured image of post Git在第一次使用的credentialhelperselector該怎麼設定呢" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>每次在新電腦上使用Git的時候都會跳這個東西出來，但一直不知道這是啥，這次來研究一下&lt;/p>
 &lt;h1 id="總結">總結&lt;/h1>
 &lt;p>這東西其實是因為如果要推東西上去或是拉Private專案下來的話，會需要做認證(Credential)的部分，而這個視窗其實就是在問你，你所提供的這些登入資訊想存在哪邊?&lt;/p>
