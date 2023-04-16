@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 16 Apr 2023 03:55:44 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>SpringBoot啟動時，出現Missing table hibernate sequence之解決方法</title><link>https://hoxtonhsu.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</link><pubDate>Sun, 16 Apr 2023 03:55:44 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</guid><description>&lt;img src="https://i.imgur.com/kdTSaSC.png" alt="Featured image of post SpringBoot啟動時，出現Missing table hibernate sequence之解決方法" />&lt;h1 id="導因">導因&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 16 Apr 2023 16:01:05 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>MyBatis學習筆記</title><link>https://hoxtonhsu.com/p/mybatis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 16 Apr 2023 16:01:05 +0800</pubDate><guid>https://hoxtonhsu.com/p/mybatis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/wG62XWP.jpg" alt="Featured image of post MyBatis學習筆記" />&lt;p>本文參考至&lt;a class="link" href="https://www.bilibili.com/video/BV1Z3411E7QD/?spm_id_from=333.999.0.0&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
+>MyBatis入門教學&lt;/a>&lt;/p></description></item><item><title>SpringBoot啟動時，出現Missing table hibernate sequence之解決方法</title><link>https://hoxtonhsu.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</link><pubDate>Sun, 16 Apr 2023 03:55:44 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</guid><description>&lt;img src="https://i.imgur.com/kdTSaSC.png" alt="Featured image of post SpringBoot啟動時，出現Missing table hibernate sequence之解決方法" />&lt;h1 id="導因">導因&lt;/h1>
 &lt;p>通常是因為在JPA的地方使用了&lt;code>@GeneratedValue(strategy = GenerationType.AUTO)&lt;/code>這個註解，這個註解會由資料庫自動(AUTO)去配置，如果資料庫有就沒問題，但有些資料庫可能會沒有，比如說我用的資料庫是PostgresSQL就會出現這個問題&lt;/p>
 &lt;p>解決方式&lt;/p>
 &lt;p>將@GeneratedValue(strategy = GenerationType.AUTO)更改，更改為@GeneratedValue(strategy = GenerationType.IDENTITY)即可&lt;/p></description></item><item><title>手把手教你寫SprintBoot框架</title><link>https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</link><pubDate>Sat, 01 Apr 2023 19:40:36 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</guid><description>&lt;img src="https://i.imgur.com/1G2G1o4.png" alt="Featured image of post 手把手教你寫SprintBoot框架" />&lt;h1 id="前言">前言&lt;/h1>
@@ -5950,7 +5951,15 @@ alt="img"
 &lt;p>　　我會不滿這個結局的原因是因為，這個結局太快了，幾乎是在講完布克就是康斯姆托克，如果能帶一些畫面，說明康斯姆托克就是布克的一些伏筆會更好。比如說魔女之家的真結局，雖然不是100%相似，但都是在結局最後有一個大爆點，而這個大爆點可以貫穿整個遊戲，解釋所有的一切，當薇奧拉轉頭踢了魔女一腳，並說出「你煩不煩阿，這副身體已 經是我的了」的瞬間，在配合上後面的對白「雖然換了身體，但這棟房子還是知道誰才是真正的主人」，剎那間玩家就會回憶起所有在房子裡看見的「身體轉移祕法」「毒啞人的方法」到底是做什麼用的。但生化奇兵3的結局我並沒有這樣的感覺，遊戲過程中，我感覺不太到康斯姆托克與布克的關聯性在哪裡，他們語氣不同，外貌也不相似，也沒有一些共有的小習慣之類的，換言之，康斯姆托克跟布克的關聯性根本不高，這也有可能是因為遊戲中時不時在暗示你康斯姆托克不僅僅是康斯姆托克，比如說他預言了偽牧羊人、知道伊莉莎白的指頭，使得玩家很容易對他的背景有些預設立場，就有點像是看魔術時，大家的焦點都會注意在那杯被魔術師蓋起來的杯子一樣。我認為的一個好的伏筆，是屍人庄殺人事件，在故事的開頭主角戲水時把身上帶著的懷錶放在涼亭處，並要同學看好它，這件事情就只是一個很日常的描寫而已，但在故事的最後，在抓殺人嫌犯時，大家的報時都是1點32分、2點57分這樣精準的時間時，只有男主是說1點半左右，原因無它，因為旅館房間的時鐘都是電子式的，而當時男主根本不在房間裡，只能透過指針式的懷表查看時間，才會說出1點半這個模糊的答案。&lt;/p>
 &lt;p>　　以上的內容濃縮起來就是，康斯姆托克的身份的伏筆不太好，結局也太快進結局，沒有適當的鋪陳告訴玩家為什麼康斯姆托克要是，且必須是布克。&lt;/p>
 &lt;p>　 回顧整個遊戲，其實最讓我覺得很棒的伏筆是遊戲一開始進入哥倫比亞時，兄妹倆人 會要你猜人頭還是字，當你做出選擇後，哥哥會拿出一個早已畫上許多記號的記分板再加上新的一筆，但當你破完後再回頭看這段，會發現那些計分板上的痕跡，就是許多平行世界的布克都曾經猜過硬幣，都曾經在這計分板上畫上過一筆。 　　&lt;/p>
-&lt;p>最後講一下結論，心得這種東西因人而異，我講的也只是我的看法而已，大家生長環境的解讀有出入是很正常的事情，我知道很多人都說生化奇兵3的劇情很神之類的，但我玩過之後真的覺得還好，我盡量把我覺得不滿意的地方寫出來，讓大家知道我不滿意的地方 在哪裡，僅代表個人意見而已。很多人覺得很爛的FF15我卻覺得結局很不錯，大家狂推的槍彈辯駁2我也覺得真的很神，綜上所述，如果還是有人對我有意見的話，我只想說「很抱歉，我就是爛，玩魔物獵人、惡魔獵人這種不用動腦的遊戲就好，不應該玩這種劇情遊戲」&lt;/p></description></item><item><title>作業系統筆記</title><link>https://hoxtonhsu.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/HJLk11O.png" alt="Featured image of post 作業系統筆記" />&lt;p>[TOC]&lt;/p>
+&lt;p>最後講一下結論，心得這種東西因人而異，我講的也只是我的看法而已，大家生長環境的解讀有出入是很正常的事情，我知道很多人都說生化奇兵3的劇情很神之類的，但我玩過之後真的覺得還好，我盡量把我覺得不滿意的地方寫出來，讓大家知道我不滿意的地方 在哪裡，僅代表個人意見而已。很多人覺得很爛的FF15我卻覺得結局很不錯，大家狂推的槍彈辯駁2我也覺得真的很神，綜上所述，如果還是有人對我有意見的話，我只想說「很抱歉，我就是爛，玩魔物獵人、惡魔獵人這種不用動腦的遊戲就好，不應該玩這種劇情遊戲」&lt;/p></description></item><item><title>作業系統筆記</title><link>https://hoxtonhsu.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/HJLk11O.png" alt="Featured image of post 作業系統筆記" />&lt;p>[058]&lt;/p>
+&lt;p>作業系統怎麼念？筆記看熟，蓋起來唸，念架構，可以自己把章節結構畫出來&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/i3FOjym.png"
+loading="lazy"
+alt="image-20230416131258531"
+>&lt;/p>
+&lt;p>申論題平常在練習時，假設一天練習十題的情境下，&lt;/p>
+&lt;p>3題動手去寫，剩下7題把架構畫出來就好&lt;/p>
+&lt;p>[TOC]&lt;/p>
 &lt;h1 id="chapter1-intruduction">Chapter1 Intruduction&lt;/h1>
 &lt;p>管理硬體的軟體就是作業系統，硬體包含CPU，Memory，I/O設備等等…作業系統就是負責管理這些硬體的系統。一個電腦系統可以被粗略的劃分成下面四個組件：&lt;/p>
 &lt;ul>
@@ -14818,7 +14827,7 @@ alt="image-20230403162821988"
 &lt;/tbody>
 &lt;/table>
 &lt;p>047&lt;/p>
-&lt;h1 id="ch8-virtula-memory-虛擬記憶體">Ch8 Virtula Memory (虛擬記憶體)&lt;/h1>
+&lt;h1 id="chapter-8-virtula-memory-虛擬記憶體">Chapter 8 Virtula Memory (虛擬記憶體)&lt;/h1>
 &lt;blockquote>
 &lt;p>[基本]主要目的(優點)以及附帶好處&lt;/p>
 &lt;p>[基本]Demand Paging技術&lt;/p>
@@ -15626,7 +15635,7 @@ alt="image-20230409161809333"
 &lt;/li>
 &lt;/ol>
 &lt;p>[053 1:29:23]&lt;/p>
-&lt;h1 id="ch9-disk-management">Ch9 Disk Management&lt;/h1>
+&lt;h1 id="chapter-9-disk-management">Chapter 9 Disk Management&lt;/h1>
 &lt;blockquote>
 &lt;p>Disk System 組成即大小計算 ☆☆&lt;/p>
 &lt;p>Disk Access Time 組成 計算 ☆☆☆☆&lt;/p>
@@ -16442,6 +16451,88 @@ alt="image-20230416021106242"
 loading="lazy"
 alt="image-20230416021307561"
 >&lt;/p>
+&lt;h1 id="chapter10-filemanagement">Chapter10 FileManagement&lt;/h1>
+&lt;blockquote>
+&lt;p>File Open &amp;amp; Close 動作&lt;/p>
+&lt;p>Consistency semantic&lt;/p>
+&lt;p>File Protection&lt;/p>
+&lt;/blockquote>
+&lt;p>[058]&lt;/p>
+&lt;h2 id="file-open--close動作">File Open &amp;amp; Close動作&lt;/h2>
+&lt;p>緣由： OS 對 File 進行任何運作之前，都必須要Disk之Physical Directory 找出File的配置資訊，&lt;span style='color:yellow;font-size:16px;'>此舉會導致2個Problems&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>搜尋的時間很長(因為File數目太龐大)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Disk I/O Time(次數)很多，非常耗時&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;p>為了改善此問題，才有File Open及Close動作&lt;/p>
+&lt;h3 id="file-open運作">File Open運作&lt;/h3>
+&lt;p>定義：當File第一次被使用時，OS必須要Disk之Physical Directory找出File的配置資訊，&lt;span style='color:yellow;font-size:16px;'>Then，將此資訊Copy到OS Memory Area中的一個Table，叫做 「Open File Table」&lt;/span>，將來對此File進行任何運作之前，&lt;span style='color:yellow;font-size:16px;'>OS只需到此，搜尋取得File的配置資訊即可&lt;/span>，由於Open File Table中的File數目少(eg. 20個)，&lt;span style='color:yellow;font-size:16px;'>搜尋時間可大幅降低&lt;/span>，又此表格在&lt;span style='color:yellow;font-size:16px;'>Memory中，所以省下可觀的I/O Time(次數)&lt;/span>&lt;/p>
+&lt;p>由於File可被多個Processes共用之故，每個Process讀取到的位置可能不一樣，有的可能在第八行，有個可能在第八百航，所以Open File Table可進一步分成兩種&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>System-Open File Table&lt;/span>：保存File的共通配置資訊(File名稱、配置區塊、大小)，不因Process不同而有所不同。&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Process-open File Table：Process存取File時，會有不同的資訊要保存eg. File當前指標位置、File Access權利&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h3 id="file-close運作">File Close運作&lt;/h3>
+&lt;p>定義：當File不再使用時，&lt;span style='color:yellow;font-size:16px;'>OS會將Open File Table中此File的配置資訊更新回Disk之Physical Directory，且自Table中刪除此File的配置資訊&lt;/span>&lt;/p>
+&lt;h2 id="consistency-semantic">Consistency Semantic&lt;/h2>
+&lt;p>(一致性語言，翻成白話文就是。檔案可以被多個Process/user共享，而共享的模式(model)有哪幾種?)&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>分為三種&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>UNIX Semantic&lt;/span>：&lt;span style='color:yellow;font-size:16px;'>例如：訂票系統的座次表&lt;/span>
+&lt;ul>
+&lt;li>需要互斥存取&lt;/li>
+&lt;li>大家看到的File內容是一致的&lt;/li>
+&lt;li>某個Process對File作的任何改變，其他Processes會知道&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Session Semantic&lt;/span>：&lt;span style='color:yellow;font-size:16px;'>例如：空白報名表File 供人下載填字&lt;/span>
+&lt;ul>
+&lt;li>不須互斥存取，大家都在各自的Copy上read/write存取不受限制&lt;/li>
+&lt;li>大家看到的內容不一定一致&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;span style='color:yellow;font-size:16px;'>Immutable Sematic&lt;/span>：&lt;span style='color:yellow;font-size:16px;'>例如：總經理公告文件第005號.pdf&lt;/span>
+&lt;ul>
+&lt;li>Read-Only，不可更改內容&lt;/li>
+&lt;li>檔名不得重複&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="file-protection">File Protection&lt;/h2>
+&lt;p>Physical Protection：防止因為Disk BAD所造成的File Data Lost，方法：&lt;span style='color:yellow;font-size:16px;'>Backup only&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Logical Protection&lt;/span>：防止&lt;span style='color:yellow;font-size:16px;'>非法使用者對FIle之不當存取&lt;/span>&lt;/p>
+&lt;p>方法如下&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Name Protection&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Passwork Protection&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Access List&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>Access Group☆☆☆&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px;'>以UNIX為例&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>將User 分為三類
+&lt;ol>
+&lt;li>Owner&lt;/li>
+&lt;li>Group(Member)&lt;/li>
+&lt;li>Other(Universal)&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>File存取權利
+&lt;ol>
+&lt;li>R：Read&lt;/li>
+&lt;li>W：Write&lt;/li>
+&lt;li>Ｘ：eXecute&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
