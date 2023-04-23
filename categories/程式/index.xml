@@ -13059,6 +13059,66 @@ alt="1914A818-E923-4D51-854B-57E4AB2A9C3F"
 &lt;p>給一遞迴演算法Recursive algo/code寫出Time Function求解&lt;/p>
 &lt;/li>
 &lt;/ol>
+&lt;p>[006]&lt;/p>
+&lt;h2 id="複習-數學公式">[複習] 數學公式&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>等差數列&lt;/p>
+&lt;p>公式：(首項＋尾項) * 項數 / 2&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>等比數列&lt;/p>
+&lt;p>公式：((最高項)&lt;sup>exp+1&lt;/sup>- (最低項))/公比-1&lt;/p>
+&lt;p>範例：r&lt;sup>0&lt;/sup>+r&lt;sup>1&lt;/sup>+r&lt;sup>2&lt;/sup>+&amp;hellip;+r&lt;sup>n&lt;/sup> = (r&lt;sup>n+1&lt;/sup>-1) / r-1 = (r&lt;sup>n+1&lt;/sup> -r&lt;sup>0&lt;/sup>)/(r-1)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>平方和公式：&lt;/p>
+&lt;p>公式：(n(n+1)(2n+1))/6&lt;/p>
+&lt;p>範例：1&lt;sup>2&lt;/sup>+2&lt;sup>2&lt;/sup>+3&lt;sup>2&lt;/sup>+&amp;hellip;+n&lt;sup>2&lt;/sup>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Σ i&lt;sup>d&lt;/sup> 約莫是 n&lt;sup>d+1&lt;/sup>的多項式，d ≧之 int&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Σ 1/i = log n (底數為2) (調和數列)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>排列組合 C幾取幾之計算&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>n!之相關式子&lt;/p>
+&lt;ol>
+&lt;li>n! = 1* 2 * &amp;hellip; n ≦ n * n * n =n&lt;sup>n&lt;/sup>&lt;/li>
+&lt;li>n! ≧ (n/2) &lt;sup>n/2&lt;/sup> (離散)&lt;/li>
+&lt;li>Striling&amp;rsquo;s 公式&lt;/li>
+&lt;li>n ! ≒ n &lt;sup>n+(1/2)&lt;/sup> * e&lt;sup>-n&lt;/sup>, e 為自然對數之底&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>Σ i x 2 &lt;sup>i&lt;/sup> 解法為&lt;/p>
+&lt;p>令S= Σ i x 2 &lt;sup>i&lt;/sup>，因此S= 1x2 +2x2 &lt;sup>2&lt;/sup> + 3x3&lt;sup>3&lt;/sup>+&amp;hellip;nx2&lt;sup>n&lt;/sup>，兩邊同x2，為&lt;/p>
+&lt;p>2S = 1x2&lt;sup>2&lt;/sup> +2x2 &lt;sup>3&lt;/sup> + 3x3&lt;sup>4&lt;/sup>+&amp;hellip;nx2&lt;sup>n+1&lt;/sup>&lt;/p>
+&lt;p>然後兩邊相減，得出 S = -2&lt;sup>1&lt;/sup>-2&lt;sup>2&lt;/sup>-2&lt;sup>3&lt;/sup>-&amp;hellip;-2&lt;sup>n&lt;/sup> + n* 2 &lt;sup>n+1&lt;/sup>=經過很多推導之後=n*2&lt;sup>n+1&lt;/sup>-2&lt;sup>n+1&lt;/sup>+2&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/IzFs5at.png"
+loading="lazy"
+alt="image-20230422162944363"
+>&lt;/p>
+&lt;p>Note：其他相似型也是如此求法&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/FW5KmGA.png"
+loading="lazy"
+alt="image-20230422162934574"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>對數系列(底數預設為2)&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='color:red'>&lt;/span>&lt;/p>
+&lt;p>&lt;u>&lt;/u>&lt;/p>
+&lt;p>&lt;sup>&lt;/sup>&lt;/p>
+&lt;p>&lt;span style='color:red'>&lt;/span>&lt;/p>
+&lt;p>&lt;u>&lt;/u>&lt;/p>
+&lt;p>&lt;sup>&lt;/sup>&lt;/p>
 &lt;h1 id="ch5-tree-and-binary-tree-1">Ch5 Tree and Binary Tree&lt;/h1>
 &lt;p>&lt;strong>Tree跟BinaryTree不一樣&lt;/strong>&lt;/p>
 &lt;h2 id="學習路線-1">學習路線&lt;/h2>
