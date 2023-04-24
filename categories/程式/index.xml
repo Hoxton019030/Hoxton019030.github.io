@@ -13111,9 +13111,199 @@ alt="image-20230422162934574"
 &lt;/li>
 &lt;li>
 &lt;p>對數系列(底數預設為2)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/SuDvTIq.png"
+loading="lazy"
+alt="image-20230422164130892"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/nMuKk2l.png"
+loading="lazy"
+alt="image-20230422164402270"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/jYTm1Fo.png"
+loading="lazy"
+alt="image-20230422164740452"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/uZrADYQ.png"
+loading="lazy"
+alt="image-20230422165056867"
+>&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;p>&lt;span style='color:red'>&lt;/span>&lt;/p>
+&lt;h2 id="給code求某行指令執行次數或big-oh">給Code，求某行指令執行次數或Big-Oh&lt;/h2>
+&lt;p>例１&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">for i = 1 to n do
+for j = 1 to n do
+x++;
+求x ++ 執行次數
+ans :　ｎ＊ｎ次
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>例２&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">for i = 1 to n do
+for j = 1 to i do
+x++;
+求x ++ 執行次數
+ans :　(1+n)*n/2次
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;span style='color:yellow'>針對i++, i&amp;ndash;之 Loop，可用級數求解&lt;/span>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-ps" data-lang="ps">&lt;span class="nf">for&lt;/span> &lt;span class="nf">i&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="mf">1&lt;/span> &lt;span class="nf">to&lt;/span> &lt;span class="nf">n&lt;/span> &lt;span class="nf">do&lt;/span>
+&lt;span class="nf">for&lt;/span> &lt;span class="nf">j&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="nf">i&lt;/span> &lt;span class="nf">to&lt;/span> &lt;span class="nf">n&lt;/span> &lt;span class="nf">do&lt;/span>
+&lt;span class="nf">x++;&lt;/span>
+&lt;span class="nf">求x&lt;/span> &lt;span class="nf">++&lt;/span> &lt;span class="nf">執行次數&lt;/span>
+&lt;span class="nf">ans&lt;/span> &lt;span class="nf">:&lt;/span>　&lt;span class="nf">n+&lt;/span>&lt;span class="s">(n-1)&lt;/span>&lt;span class="nf">+&lt;/span>&lt;span class="s">(n-2)&lt;/span>&lt;span class="nf">...+1&lt;/span> &lt;span class="nf">=&lt;/span> &lt;span class="s">(n+1)&lt;/span>&lt;span class="nf">n&lt;/span>&lt;span class="nv">/2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/P9HN3rX.png"
+loading="lazy"
+alt="image-20230422171306799"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ItHy0Kw.png"
+loading="lazy"
+alt="image-20230422171624148"
+>&lt;/p>
+&lt;p>​&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:32px'>太基本，直接跳過&lt;/span>&lt;/p>
+&lt;p>[007]&lt;/p>
+&lt;p>例題一&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">for i = 1 to n do
+for j = 1 to n*n
+if(j%i ==0) then
+for k = 1 to j do
+x++
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>i=1&lt;/th>
+&lt;th>i=2&lt;/th>
+&lt;th>i=3&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>j=1 to 1&lt;/td>
+&lt;td>j=1 to 4&lt;/td>
+&lt;td>j= 1 to 9&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>j % i ==0 when j=1&lt;/td>
+&lt;td>j % i == 0 when j = 2 and 4&lt;/td>
+&lt;td>j % i ==0 when j = 3 ,6 and 9&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>1次&lt;/td>
+&lt;td>2+4次&lt;/td>
+&lt;td>3+6+9次&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>若i=4時，x會加 4+8+12+16次，也就是4(1+2+3+4)，若i是n時，x會加&lt;/p>
+&lt;p>n(1+2+..+n)次 = n((1+n)*n)/2&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/M2zZgGv.png"
+loading="lazy"
+alt="image-20230422231955941"
+>&lt;/p>
+&lt;h2 id="asymptotic-notations">Asymptotic Notations&lt;/h2>
+&lt;p>漸進式符號&lt;/p>
+&lt;p>目的：表示時間函數之&lt;span style='color:yellow'>成長速率(Growth rate)之等級&lt;/span>&lt;/p>
+&lt;p>符號種類：&lt;/p>
+&lt;ol>
+&lt;li>Big-Oh：O&lt;/li>
+&lt;li>Omega：Ω&lt;/li>
+&lt;li>Theta：θ&lt;/li>
+&lt;li>Little-Oh：o&lt;/li>
+&lt;li>Little-Omega：ω&lt;/li>
+&lt;/ol>
+&lt;h2 id="big-oh">Big-Oh&lt;/h2>
+&lt;p>定義：F(n)= O(g(n)) iff&lt;code>(若且為若)&lt;/code> exitst two postitive constatnts C and N0 such that f(n)≦ C* g(n)，對所有n≧N0&lt;/p>
+&lt;p>Note：Big-Oh代表理論之上限值(upper-Bound)&lt;/p>
+&lt;p>例：f(n)=5n&lt;sup>2&lt;/sup>+8n-3，則f(n) = O(n&lt;sup>2&lt;/sup>)&lt;/p>
+&lt;p>proof：&lt;span style='color:yellow'>可找到兩個正常數，C=6,N0=8，使得5n&lt;sup>2&lt;/sup>+8n-3≦C*n&lt;sup>2&lt;/sup>&lt;/span>，所以f(n) = O(n&lt;sup>2&lt;/sup>)&lt;/p>
+&lt;p>解法如下，通常會先取最大次項的項數，將他+1&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/uckRsKC.png"
+loading="lazy"
+alt="image-20230423000037106"
+>&lt;/p>
+&lt;p>例：f(n) = 3n&lt;sup>2&lt;/sup>+8，則f(n)=O(n)是錯的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/7wTxgD1.png"
+loading="lazy"
+alt="image-20230423115002262"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>例：log(n!) = O (nLogn) ☆☆☆☆&lt;/span>&lt;/p>
+&lt;p>ans&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/COCV1GI.png"
+loading="lazy"
+alt="image-20230423120053961"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>例&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ODQ2Db1.png"
+loading="lazy"
+alt="image-20230423123121376"
+>&lt;/p>
+&lt;p>例：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">for (i=1;i&amp;lt;=n;i++)
+for(j=1; j&amp;lt;=i; j*=2)
+x++;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>求此Code之Time=O(?)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/drPI5Oh.png"
+loading="lazy"
+alt="image-20230423125327318"
+>&lt;/p>
+&lt;h2 id="比較growth-rate等級之大小">比較Growth rate等級之大小&lt;/h2>
+&lt;h3 id="例１基本型">例１基本型&lt;/h3>
+&lt;p>Growth rate：小 &amp;mdash;&amp;gt; 大&lt;/p>
+&lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
 &lt;p>&lt;span style='color:red'>&lt;/span>&lt;/p>
