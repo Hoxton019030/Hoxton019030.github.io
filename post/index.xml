@@ -60,7 +60,31 @@ alt="image-20230425110509871"
 >&lt;/p>
 &lt;p>(左圖為Database Driven Development)&lt;/p>
 &lt;p>&lt;a class="link" href="https://youtu.be/cPH5AiqLQTo?t=966" target="_blank" rel="noopener"
->影片戳記時間&lt;/a>&lt;/p></description></item><item><title>Cherry Pick的一點研究</title><link>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/n1qX6TQ.gif" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章，並且這個指令常常與Rebase, Merge兩者來對比，目前感覺如下&lt;/p>
+>影片戳記時間&lt;/a>&lt;/p>
+&lt;p>若要執行依賴反轉原則，那麼Domain層不應該依賴Persistence層，而是反轉過來，(Use Case等同於Service層)，&lt;/p>
+&lt;p>這樣做的好處是什麼？我們可以選擇任何Code的依賴方向&lt;/p>
+&lt;h3 id="single-responsibility-priniciple">Single Responsibility Priniciple&lt;/h3>
+&lt;p>&lt;del>一個Class或一個Module只做一件事情&lt;/del>&lt;/p>
+&lt;p>一個Class或一個Module只能有一個原因被修改(Change)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/UvVdypj.png"
+loading="lazy"
+alt="image-20230425115237259"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/zQdGYnL.png"
+loading="lazy"
+alt="image-20230425115334794"
+>&lt;/p>
+&lt;p>分層式架構下，若Persistence修改了，那麼Business層有很大機率也會連動修改，但在Clean Architecture的架構下，Persistence由於不處於最核心的部分(Entity)，因此不需要一起改動&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/PDigadQ.png"
+loading="lazy"
+alt="image-20230425115740567"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:32px'>Only a Domain-Centric Architecture Allows Domian-Driven Design&lt;/span>&lt;/p>
+&lt;h1 id="clean-architecture">Clean Architecture&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/RMCKijJ.png"
+loading="lazy"
+alt="image-20230425114053702"
+>&lt;/p></description></item><item><title>Cherry Pick的一點研究</title><link>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/n1qX6TQ.gif" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章，並且這個指令常常與Rebase, Merge兩者來對比，目前感覺如下&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
