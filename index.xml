@@ -79,11 +79,71 @@ alt="image-20230425115334794"
 loading="lazy"
 alt="image-20230425115740567"
 >&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2PYznPe.png"
+loading="lazy"
+alt="image-20230425132945444"
+>&lt;/p>
+&lt;p>假使我們有一個Order Service，其中有三個user Roles，當其中一個User Roles改變後，我們就要去改動我們的Service&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/qHqvWX2.png"
+loading="lazy"
+alt="image-20230425133140173"
+>&lt;/p>
+&lt;p>但當我們把Service分割成不同的Use Cases，每一個Cases指對應一個Use Roles，那麼&lt;strong>這個Use Case也只會有一個原因被修改&lt;/strong>&lt;/p>
+&lt;blockquote>
+&lt;p>Service應該被切割成許多不同的Use Case(First-Class Citizens)&lt;/p>
+&lt;/blockquote>
 &lt;p>&lt;span style='color:yellow;font-size:32px'>Only a Domain-Centric Architecture Allows Domian-Driven Design&lt;/span>&lt;/p>
 &lt;h1 id="clean-architecture">Clean Architecture&lt;/h1>
 &lt;p>&lt;img src="https://i.imgur.com/RMCKijJ.png"
 loading="lazy"
 alt="image-20230425114053702"
+>&lt;/p>
+&lt;h1 id="hexagons">Hexagons&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/rhnsRLC.png"
+loading="lazy"
+alt="image-20230425133410510"
+>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px'>六角架構是Clean Architecture的具現化&lt;/span>&lt;/p>
+&lt;ul>
+&lt;li>Input Port：對外暴露的API&lt;/li>
+&lt;/ul>
+&lt;p>use case class implements an input port, the input port is just a Java interface, then the use case class modifies the domain model&lt;/p>
+&lt;h1 id="問題時間這個應用程式在做什麼">問題時間：這個應用程式在做什麼？&lt;/h1>
+&lt;p>分層架構下，只透過Class名稱無法獲得有用的訊息&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/FCi8jd0.png"
+loading="lazy"
+alt="image-20230425134701498"
+>&lt;/p>
+&lt;p>六角架構中，將Service拆分成不同的Use Case，所有的職責會更加一目了然&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/E6ykzXs.png"
+loading="lazy"
+alt="image-20230425134819273"
+>&lt;/p>
+&lt;h1 id="實作時間">實作時間&lt;/h1>
+&lt;p>Code連結：&lt;a class="link" href="https://github.com/thombergs" target="_blank" rel="noopener"
+>thombergs&lt;/a>/&lt;strong>&lt;a class="link" href="https://github.com/thombergs/buckpal" target="_blank" rel="noopener"
+>buckpal&lt;/a>&lt;/strong>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px'>&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px'>&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px'>&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow;font-size:16px'>&lt;/span>&lt;/p>
+&lt;h1 id="summary">Summary&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/pyLQga0.png"
+loading="lazy"
+alt="image-20230425143339079"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Fx6tMgj.png"
+loading="lazy"
+alt="image-20230425143423176"
+>&lt;/p>
+&lt;p>如何強迫我們使用這個架構&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/y1MCBRv.png"
+loading="lazy"
+alt="image-20230425143656605"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/LwiBx8b.png"
+loading="lazy"
+alt="image-20230425143713734"
 >&lt;/p></description></item><item><title>Cherry Pick的一點研究</title><link>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/n1qX6TQ.gif" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章，並且這個指令常常與Rebase, Merge兩者來對比，目前感覺如下&lt;/p>
 &lt;table>
 &lt;thead>
