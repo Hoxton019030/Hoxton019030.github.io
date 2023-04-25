@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 16 Apr 2023 17:30:28 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Cherry Pick的一點研究</title><link>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/n1qX6TQ.gif" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章，並且這個指令常常與Rebase, Merge兩者來對比，目前感覺如下&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 25 Apr 2023 10:24:57 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring中的Clean Architecture</title><link>https://hoxtonhsu.com/p/spring%E4%B8%AD%E7%9A%84clean-architecture/</link><pubDate>Tue, 25 Apr 2023 10:24:57 +0800</pubDate><guid>https://hoxtonhsu.com/p/spring%E4%B8%AD%E7%9A%84clean-architecture/</guid><description>&lt;img src="https://i.imgur.com/wlAKij1.jpg" alt="Featured image of post Spring中的Clean Architecture" />&lt;p>參考影片：&lt;a class="link" href="https://www.youtube.com/watch?v=cPH5AiqLQTo&amp;amp;ab_channel=SpringI%2FO" target="_blank" rel="noopener"
+>Clean Architecture with Spring by Tom Hombergs @ Spring I/O 2019&lt;/a>&lt;/p>
+&lt;h1 id="架構的目標">架構的目標&lt;/h1>
+&lt;ul>
+&lt;li>Facilitate Development&lt;/li>
+&lt;li>Facilitate Deployment&lt;/li>
+&lt;li>Facilitatte maintenance&lt;/li>
+&lt;li>keep software soft&lt;/li>
+&lt;li>keep frameworks of arm&amp;rsquo;s length&lt;/li>
+&lt;li>keep options open&lt;/li>
+&lt;/ul>
+&lt;h1 id="架構的終極目標">架構的終極目標&lt;/h1>
+&lt;p>&lt;strong>The Goal of software Achitecture is to minimize the lifetime cost of the software&lt;/strong>&lt;/p>
+&lt;h1 id="分層式layers架構有什麼問題">分層式(Layers)架構有什麼問題？&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/nzk6jyB.png"
+loading="lazy"
+alt="image-20230425103609358"
+>&lt;/p>
+&lt;h2 id="分層架構是一種可靠的架構模式但是如果沒有額外的限制它們容易出現設計缺陷">分層架構是一種可靠的架構模式！但是如果沒有額外的限制，它們容易出現設計缺陷。&lt;/h2>
+&lt;p>根據講者的經驗，我們有很多的架構是所謂的資料庫驅動設計(Database Driven design)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/KauKKyu.png"
+loading="lazy"
+alt="image-20230425104040987"
+>&lt;/p>
+&lt;p>在我們的Domain Layer，我們有Service Layer、Persistence Layer，裡面存在著我們的Entity以及JPA相關的一些資訊&lt;/p>
+&lt;h2 id="模糊的界線blurred-boundaries">模糊的界線(Blurred Boundaries)&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/iBJD4wf.png"
+loading="lazy"
+alt="image-20230425104746565"
+>&lt;/p>
+&lt;p>另一個關於Layer的議題是，我們通常會有一個工具類(utili)來封裝我們常用的一些函式庫，這些東西會在各層之間流竄，這樣會使得各層之間的關係越發模糊。&lt;/p>
+&lt;h2 id="難以測試">難以測試&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/1AKqyHF.png"
+loading="lazy"
+alt="image-20230425105152281"
+>&lt;/p>
+&lt;p>需要Mock很多東西，比如說Service、Repository。&lt;/p>
+&lt;h2 id="許多功能被隱藏起來了">許多功能被隱藏起來了&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/PiS69fE.png"
+loading="lazy"
+alt="image-20230425105419213"
+>&lt;/p>
+&lt;p>假使我們有一個Order的系統，那我們所有對Order的CRUD都會集中在OrderService中，一旦這個方法有很多個，那麼很多方法(Functionality)就會被埋沒起來&lt;/p>
+&lt;p>那麼如何解決這些問題呢 ？&lt;/p>
+&lt;h1 id="do-circles-instead">Do Circles Instead&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/ksOQDW6.png"
+loading="lazy"
+alt="image-20230425110140878"
+>&lt;/p>
+&lt;h2 id="再議solid設計模式">再議SOLID設計模式&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/tpPjn1f.png"
+loading="lazy"
+alt="image-20230425110249239"
+>&lt;/p>
+&lt;h3 id="dependency-inverision-principle">Dependency Inverision Principle&lt;/h3>
+&lt;p>依賴反轉原則&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QH9PAgx.png"
+loading="lazy"
+alt="image-20230425110509871"
+>&lt;/p>
+&lt;p>(左圖為Database Driven Development)&lt;/p>
+&lt;p>&lt;a class="link" href="https://youtu.be/cPH5AiqLQTo?t=966" target="_blank" rel="noopener"
+>影片戳記時間&lt;/a>&lt;/p></description></item><item><title>Cherry Pick的一點研究</title><link>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/n1qX6TQ.gif" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章，並且這個指令常常與Rebase, Merge兩者來對比，目前感覺如下&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
