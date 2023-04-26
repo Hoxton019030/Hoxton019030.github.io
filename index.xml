@@ -18404,7 +18404,23 @@ loading="lazy"
 alt="C965C8BB-F7B7-4E1B-AEF3-7F823DDECE9C"
 >&lt;/p>
 &lt;p>例三&lt;/p>
-&lt;p>![F72EDF02-DD51-4AB7-9028-5383349D5350](E:\Line image\F72EDF02-DD51-4AB7-9028-5383349D5350.jpg)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/tl5TJJa.jpg"
+loading="lazy"
+alt="F72EDF02-DD51-4AB7-9028-5383349D5350"
+>&lt;/p>
+&lt;h2 id="omega-ω">Omega Ω&lt;/h2>
+&lt;p>定義：f(n)=Ω(g(n) iff exists two positive constants C and no. such that f(n)≧ c.g(n)，對所有大於N0的n而言&lt;/p>
+&lt;p>Note：Ω視為理論之下限值(low-bound)&lt;/p>
+&lt;p>例題：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/MdsuGk5.png"
+loading="lazy"
+alt="image-20230425222040787"
+>&lt;/p>
+&lt;p>例題&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1rloQWg.png"
+loading="lazy"
+alt="image-20230425223102662"
+>&lt;/p>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
