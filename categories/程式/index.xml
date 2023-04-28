@@ -13261,6 +13261,7 @@ alt="image-20230422231955941"
 &lt;li>Little-Omega：ω&lt;/li>
 &lt;/ol>
 &lt;h2 id="big-oh">Big-Oh&lt;/h2>
+&lt;p>小於等於&lt;/p>
 &lt;p>定義：F(n)= O(g(n)) iff&lt;code>(若且為若)&lt;/code> exitst two postitive constatnts C and N0 such that f(n)≦ C* g(n)，對所有n≧N0&lt;/p>
 &lt;p>Note：Big-Oh代表理論之上限值(upper-Bound)&lt;/p>
 &lt;p>例：f(n)=5n&lt;sup>2&lt;/sup>+8n-3，則f(n) = O(n&lt;sup>2&lt;/sup>)&lt;/p>
@@ -13338,6 +13339,7 @@ loading="lazy"
 alt="F72EDF02-DD51-4AB7-9028-5383349D5350"
 >&lt;/p>
 &lt;h2 id="omega-ω">Omega Ω&lt;/h2>
+&lt;p>大於等於&lt;/p>
 &lt;p>定義：f(n)=Ω(g(n) iff exists two positive constants C and no. such that f(n)≧ c.g(n)，對所有大於N0的n而言&lt;/p>
 &lt;p>Note：Ω視為理論之下限值(low-bound)&lt;/p>
 &lt;p>例題：&lt;/p>
@@ -13350,6 +13352,44 @@ alt="image-20230425222040787"
 loading="lazy"
 alt="image-20230425223102662"
 >&lt;/p>
+&lt;h2 id="theta-θ">Theta θ&lt;/h2>
+&lt;p>等於&lt;/p>
+&lt;p>一個夾擊&lt;/p>
+&lt;p>定義：f(n) = θ(g(n)) if exists &lt;span style='color:yellow'>three&lt;/span> positive&lt;/p>
+&lt;p>Constants：&lt;span style='color:yellow'>C1, C2, and N0&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>Such That C1.g(n) ≦ f(n) ≦ C2.g(n), &lt;/span>對所有的&lt;/p>
+&lt;p>Note：&lt;/p>
+&lt;ol>
+&lt;li>θ is more precise than O and Ω&lt;/li>
+&lt;li>f(n) = &lt;span style='color:yellow'>θ (n)&lt;/span>&lt;/li>
+&lt;li>f(n) = O(g(n)) and f(n) = Ω(g(n))&lt;/li>
+&lt;/ol>
+&lt;p>o 就像小於&lt;/p>
+&lt;p>w 就像大於&lt;/p>
+&lt;h2 id="相關性質關係">相關性質/關係&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>反身性(Reflexive)：自己與自己之間的關係&lt;/p>
+&lt;ul>
+&lt;li>f(n)=O(f(n))。f(n)≦1*f(n), ∀ n≧n0&lt;/li>
+&lt;li>f(n)=Ω(f(n))。&lt;/li>
+&lt;li>f(n)=θ(f(n))。&lt;/li>
+&lt;/ul>
+&lt;p>這三者皆滿足反身性&lt;/p>
+&lt;ul>
+&lt;li>f(n)=o(f(n)) 不成立，自己絕對不小於自己&lt;/li>
+&lt;li>f(n)=ω(f(n)) 不成立，自己也不大於自己&lt;/li>
+&lt;/ul>
+&lt;p>這兩者不滿足反身性&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>遞移性(Transitive)：若a R b, b R c, 則 a R c 也成立&lt;/p>
+&lt;p>O, Ω. θ ,o, ω皆滿足遞移性&lt;/p>
+&lt;ul>
+&lt;li>f(n)=O(g(n))且g(n)=O(h(n))，則f(n)=O(h(n))&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
