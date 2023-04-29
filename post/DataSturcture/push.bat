@@ -4,4 +4,3 @@ git add .
 git commit -m "%Time% %DATE%"
 git push -u origin main
 pause
-exit
