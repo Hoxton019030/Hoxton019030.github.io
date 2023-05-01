@@ -1,4 +1,144 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 30 Apr 2023 02:39:36 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>結合Lombok寫出更整潔的程式碼</title><link>https://hoxtonhsu.com/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/</link><pubDate>Sun, 30 Apr 2023 02:39:36 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/</guid><description>&lt;img src="https://i.imgur.com/1OBx1AG.png" alt="Featured image of post 結合Lombok寫出更整潔的程式碼" />&lt;p>SpringBoot的Bean有三種注入方式&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 01 May 2023 11:45:37 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Dcard後端技術分享－純紀錄</title><link>https://hoxtonhsu.com/p/dcard%E5%BE%8C%E7%AB%AF%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB%E7%B4%94%E7%B4%80%E9%8C%84/</link><pubDate>Mon, 01 May 2023 11:45:37 +0800</pubDate><guid>https://hoxtonhsu.com/p/dcard%E5%BE%8C%E7%AB%AF%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB%E7%B4%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/dqGgQLi.png" alt="Featured image of post Dcard後端技術分享－純紀錄" />&lt;p>&lt;a class="link" href="https://www.facebook.com/100083606190924/videos/956290855544266/" target="_blank" rel="noopener"
+>參考影片&lt;/a>&lt;/p>
+&lt;h1 id="dcard如何進行cache">Dcard如何進行Cache&lt;/h1>
+&lt;p>先Pass掉，&lt;/p>
+&lt;h1 id="dcard-database之選擇與調整">Dcard DataBase之選擇與調整&lt;/h1>
+&lt;p>資料儲存類型、資料儲存量、資料是被大量儲存還是被修改?&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QJ4E3mP.png"
+loading="lazy"
+alt="image-20230501115209551"
+>&lt;/p>
+&lt;p>Dcard之RDB選擇-Postgres&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/VgBuBqx.png"
+loading="lazy"
+alt="image-20230501115417173"
+>&lt;/p>
+&lt;h1 id="monggodb">MongGODB&lt;/h1>
+&lt;p>Dcard的通知、愛心，運用Mogodb的Sharding功能&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Oj1pch9.png"
+loading="lazy"
+alt="image-20230501115432077"
+>&lt;/p>
+&lt;p>REDIS&lt;/p>
+&lt;p>用來儲存User的Token，或是會大量被使用的資料&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/HUTKcZY.png"
+loading="lazy"
+alt="image-20230501115527127"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/n3YIcVB.png"
+loading="lazy"
+alt="image-20230501115618188"
+>&lt;/p>
+&lt;p>Cache實戰學習-Serving Post List&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/NdKLYeq.png"
+loading="lazy"
+alt="image-20230501115711896"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/XRBqDlF.png"
+loading="lazy"
+alt="image-20230501115809911"
+>&lt;/p>
+&lt;p>除了最左邊的三張表以外，其他都是Materialize View，因為在實際取用文章時，學校、系所、性別相關的資訊、以及在哪一個看板，這樣的Materilize View在遇到Migration時就會遇到很大的問題，幾乎全部都要重寫&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vkQGcAs.png"
+loading="lazy"
+alt="image-20230501120457833"
+>&lt;/p>
+&lt;p>使用Paging Service來替代Materlize View&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/eXJmJFC.png"
+loading="lazy"
+alt="image-20230501120529418"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/i57iFIu.png"
+loading="lazy"
+alt="image-20230501120634736"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/nJ1imOQ.png"
+loading="lazy"
+alt="image-20230501120803941"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/LEEOTVf.png"
+loading="lazy"
+alt="image-20230501120945776"
+>&lt;/p>
+&lt;p>Case Studies Handle Reaction&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/wN4KMf9.png"
+loading="lazy"
+alt="image-20230501121124867"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xdihNRA.png"
+loading="lazy"
+alt="image-20230501121509116"
+>&lt;/p>
+&lt;p>將Reaction的服務抽離出來，讓Loading降低&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/p5Ub0Rp.png"
+loading="lazy"
+alt="image-20230501121721679"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/mSZFYX9.png"
+loading="lazy"
+alt="image-20230501121727179"
+>&lt;/p>
+&lt;p>Q&amp;amp;A&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ynM3ELl.png"
+loading="lazy"
+alt="image-20230501121828994"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/FISgzdZ.png"
+loading="lazy"
+alt="image-20230501121954733"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Q4bb8Jh.png"
+loading="lazy"
+alt="image-20230501122058594"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/5UV7A5j.png"
+loading="lazy"
+alt="image-20230501122159448"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/i49LVHy.png"
+loading="lazy"
+alt="image-20230501122255874"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/slqLIIo.png"
+loading="lazy"
+alt="image-20230501125330535"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/EYkshIO.png"
+loading="lazy"
+alt="image-20230501125444048"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QGx8JFc.png"
+loading="lazy"
+alt="image-20230501131646925"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/X9Ie3gp.png"
+loading="lazy"
+alt="image-20230501131829190"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/j34LMzu.png"
+loading="lazy"
+alt="image-20230501132035733"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/eJ68wYs.png"
+loading="lazy"
+alt="image-20230501132208760"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QZPgsfq.png"
+loading="lazy"
+alt="image-20230501132417740"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/cHMw8sL.png"
+loading="lazy"
+alt="image-20230501132745783"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/yku6sVb.png"
+loading="lazy"
+alt="image-20230501133133486"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/opDDQDd.png"
+loading="lazy"
+alt="image-20230501133359357"
+>&lt;/p></description></item><item><title>結合Lombok寫出更整潔的程式碼</title><link>https://hoxtonhsu.com/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/</link><pubDate>Sun, 30 Apr 2023 02:39:36 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/</guid><description>&lt;img src="https://i.imgur.com/1OBx1AG.png" alt="Featured image of post 結合Lombok寫出更整潔的程式碼" />&lt;p>SpringBoot的Bean有三種注入方式&lt;/p>
 &lt;ol>
 &lt;li>@Autowired&lt;/li>
 &lt;li>Constructor Injection&lt;/li>
