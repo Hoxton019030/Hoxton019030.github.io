@@ -18582,25 +18582,8 @@ loading="lazy"
 alt="F72EDF02-DD51-4AB7-9028-5383349D5350"
 >&lt;/p>
 &lt;h2 id="omega-ω">Omega Ω&lt;/h2>
-&lt;h1 id="定義fnωgn-iff-exists-two-positive-constants-c-and-no-such-that-fn-cgn對所有大於n0的n而言">&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD
-定義：f(n)=Ω(g(n)) iff exists two positive constants C and no. such that f(n)≧ c.g(n)，對所有大於N0的n而言&lt;/h1>
 &lt;p>大於等於&lt;/p>
 &lt;p>定義：f(n)=Ω(g(n) iff exists two positive constants C and no. such that f(n)≧ c.g(n)，對所有大於N0的n而言&lt;/p>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;p>c012a0f61d58957818c546549c6800331b623e25&lt;/p>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
 &lt;p>Note：Ω視為理論之下限值(low-bound)&lt;/p>
 &lt;p>例題：&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/MdsuGk5.png"
@@ -18612,13 +18595,13 @@ alt="image-20230425222040787"
 loading="lazy"
 alt="image-20230425223102662"
 >&lt;/p>
-&lt;p>&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD&lt;/p>
-&lt;p>Theta：θ&lt;/p>
+&lt;h2 id="theta-θ">Theta θ&lt;/h2>
 &lt;p>定義：f(n)= θ (g(n)) iff exists &lt;span style='color:yellow'>three&lt;/span> positive constrants &lt;span style='color:yellow'>C1, C2, and N0&lt;/span>, such that，&lt;span style='color:yellow'>C1*g(n) ≦ f(n) ≦C2*g(n)，對所有大於n0的n而言。&lt;/span>&lt;/p>
 &lt;p>Note：&lt;/p>
 &lt;ol>
 &lt;li>θ is more &lt;span style='color:yellow'>precise&lt;/span> than O and Ω&lt;/li>
-&lt;li>f(n) = θ(n) &amp;lt;=&amp;gt; f(n) = O(g(n)) and f(n) = Ω(g　(n))&lt;/li>
+&lt;li>f(n) = &lt;span style='color:yellow'>θ (n)&lt;/span>&lt;/li>
+&lt;li>f(n) = O(g(n)) and f(n) = Ω(g(n))&lt;/li>
 &lt;/ol>
 &lt;p>例：&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/6fAUJIr.png"
@@ -18626,42 +18609,15 @@ loading="lazy"
 alt="image-20230427002152181"
 >&lt;/p>
 &lt;p>例：&lt;/p>
-&lt;h1 id="image-20230427002552546httpsiimgurcomuamvgkwpng">&lt;img src="https://i.imgur.com/UaMvgKW.png"
+&lt;p>&lt;img src="https://i.imgur.com/UaMvgKW.png"
 loading="lazy"
 alt="image-20230427002552546"
->&lt;/h1>
-&lt;h2 id="theta-θ">Theta θ&lt;/h2>
-&lt;p>等於&lt;/p>
-&lt;p>一個夾擊&lt;/p>
-&lt;p>定義：f(n) = θ(g(n)) if exists &lt;span style='color:yellow'>three&lt;/span> positive&lt;/p>
-&lt;p>Constants：&lt;span style='color:yellow'>C1, C2, and N0&lt;/span>&lt;/p>
-&lt;p>&lt;span style='color:yellow'>Such That C1.g(n) ≦ f(n) ≦ C2.g(n), &lt;/span>對所有的&lt;/p>
-&lt;p>Note：&lt;/p>
-&lt;ol>
-&lt;li>θ is more precise than O and Ω&lt;/li>
-&lt;li>f(n) = &lt;span style='color:yellow'>θ (n)&lt;/span>&lt;/li>
-&lt;li>f(n) = O(g(n)) and f(n) = Ω(g(n))&lt;/li>
-&lt;/ol>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;p>c012a0f61d58957818c546549c6800331b623e25&lt;/p>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;p>&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD&lt;/p>
+>&lt;/p>
 &lt;h2 id="little-oho">Little-Oh：o&lt;/h2>
 &lt;blockquote>
 &lt;p>哲學意義在於絕對小於&lt;/p>
 &lt;/blockquote>
+&lt;p>o 就像小於&lt;/p>
 &lt;p>定義：f(n) = o (g(n)) iff 對於所有的C，存在n0，且C為正常數，使得f(n) ≦ C*g(n)，對於所有的n0皆大於n&lt;/p>
 &lt;p>大部分都考是非題&lt;/p>
 &lt;p>例：&lt;/p>
@@ -18673,14 +18629,12 @@ alt="image-20230427004044210"
 &lt;blockquote>
 &lt;p>哲學意義在於絕對大於&lt;/p>
 &lt;/blockquote>
+&lt;p>w 就像大於&lt;/p>
 &lt;p>定義：f(n) = ω (g(n)) iff 對於所有的C，存在n0，且C為正常數，使得f(n) &amp;gt; C*g(n)，對於所有的n0皆大於n&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/qJTJRGx.png"
 loading="lazy"
 alt="image-20230427005653632"
 >&lt;/p>
-&lt;p>=======
-o 就像小於&lt;/p>
-&lt;p>w 就像大於&lt;/p>
 &lt;h2 id="相關性質關係">相關性質/關係&lt;/h2>
 &lt;ol>
 &lt;li>
@@ -18704,22 +18658,45 @@ o 就像小於&lt;/p>
 &lt;li>f(n)=O(g(n))且g(n)=O(h(n))，則f(n)=O(h(n))&lt;/li>
 &lt;/ul>
 &lt;/li>
+&lt;li>
+&lt;p>對稱性(Symmetric)：若aＲb成立，則bＲa也成立&lt;/p>
+&lt;ul>
+&lt;li>&lt;span style='color:yellow'>只有θ滿足這個性質(==)&lt;/span>，其他均不滿足。&lt;/li>
+&lt;li>即&lt;span style='color:yellow'>f(n)=θ(g(n))成立，則g(n)=θ(f(n))也會成立&lt;/span>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>反對稱性(Asymmetric)：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>若f(n)=O(g(n))，則g(n)=Ω(f(n))為True&lt;/p>
+&lt;blockquote>
+&lt;p>f(n)≦c*g(n) =&amp;gt; g(n)≧1/c*f(n)&lt;/p>
+&lt;/blockquote>
+&lt;/li>
+&lt;li>
+&lt;p>若f(n)=o(g(n))，則g(n)=ω(f(n))為True&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;/ol>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;blockquote>
-&lt;p>c012a0f61d58957818c546549c6800331b623e25&lt;/p>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;/blockquote>
+&lt;h2 id="綜合練習">綜合練習&lt;/h2>
+&lt;p>[009 00:40:00]&lt;/p>
+&lt;p>例題一：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/MzdjnDC.jpg"
+loading="lazy"
+alt="image-20230430160922704"
+>&lt;/p>
+&lt;p>例題二：下列哪些是polynomial-Bounded(≦多項式時間等級)?&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/qhPDIzi.jpg"
+loading="lazy"
+alt="6FDB9D79-A067-43BB-AB9F-A7115084C4BB"
+>&lt;/p>
+&lt;p>例題３&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/4nWNymw.jpg"
+loading="lazy"
+alt="3100F4A8-BB07-4D2F-BFBC-71D7C4C283CC"
+>&lt;/p>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
