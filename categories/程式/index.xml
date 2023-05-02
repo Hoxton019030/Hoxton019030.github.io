@@ -13479,113 +13479,70 @@ alt="6FDB9D79-A067-43BB-AB9F-A7115084C4BB"
 loading="lazy"
 alt="3100F4A8-BB07-4D2F-BFBC-71D7C4C283CC"
 >&lt;/p>
+&lt;p>[010]&lt;/p>
+&lt;h2 id="recursive-time-function求解">Recursive Time Function求解&lt;/h2>
+&lt;ol>
+&lt;li>展開代入法&lt;/li>
+&lt;li>Master Theory&lt;/li>
+&lt;li>Extended Master Theory&lt;/li>
+&lt;li>Recursive Tree&lt;/li>
+&lt;li>[離散]特徵方程組&lt;/li>
+&lt;li>猜測、近似法則&lt;/li>
+&lt;/ol>
+&lt;h3 id="展開代入法">展開代入法&lt;/h3>
+&lt;p>例一：Tower Of Hanoi&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">T(n)= 2*T(n-1)+1, T(1)=1
+求T(n)=? O=?
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Ans ：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/i55mUkw.jpg"
+loading="lazy"
+alt="291AF098-A2D6-4740-9A82-6DE19C81AE8A"
+>&lt;/p>
+&lt;p>例題二&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/NL4DGTc.png"
+loading="lazy"
+alt="image-20230501170206600"
+>&lt;/p>
+&lt;p>例題三&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/9zQVTz3.png"
+loading="lazy"
+alt="image-20230501173920709"
+>&lt;/p>
+&lt;p>例題四&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/LmOX0fX.png"
+loading="lazy"
+alt="image-20230501235606138"
+>&lt;/p>
+&lt;p>例題五&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DpfLs2i.png"
+loading="lazy"
+alt="image-20230502001912248"
+>&lt;/p>
+&lt;p>例題六：&lt;span style='color:yellow'>陷阱題&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/bJBM3Xs.jpg"
+loading="lazy"
+alt="A74F2CBF-7070-416A-A5CD-38D05A277074"
+>&lt;/p>
+&lt;p>　&lt;/p>
+&lt;p>例題七：好難，不懂&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/k3mdNJE.png"
+loading="lazy"
+alt="image-20230502034220410"
+>&lt;/p>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
 &lt;p>&lt;span style='color:red'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
-&lt;p>&lt;sup>&lt;/sup>&lt;/p>
-&lt;h1 id="ch5-tree-and-binary-tree-1">Ch5 Tree and Binary Tree&lt;/h1>
-&lt;p>&lt;strong>Tree跟BinaryTree不一樣&lt;/strong>&lt;/p>
-&lt;h2 id="學習路線-1">學習路線&lt;/h2>
-&lt;blockquote>
-&lt;p>Tree Def 相關術語&lt;/p>
-&lt;p>Tree的表示方法(4種)☆☆&lt;/p>
-&lt;p>Binary Tree之 Def 與 &lt;u>Tree不同比較☆☆☆☆☆&lt;/u>&lt;/p>
-&lt;p>B.T的3個基本定理☆☆☆☆☆☆&lt;/p>
-&lt;p>B.T的種類(4種)☆☆&lt;/p>
-&lt;p>B.T的表示方式(2種)☆☆&lt;/p>
-&lt;p>B.T Traversal (前中後序及level-order)及其應用☆☆&lt;/p>
-&lt;p>&lt;strong>Binary Search Tree(BST)☆☆☆☆☆&lt;/strong>&lt;/p>
-&lt;p>&lt;strong>Heap☆☆☆☆☆&lt;/strong>&lt;/p>
-&lt;p>Thread Binary Tree(有效利用空鏈結，但非考試重點)☆☆&lt;/p>
-&lt;p>Tree化成B.T,Forest化成BT&lt;/p>
-&lt;p>N個Node所形成的不同B.T Structures ☆☆☆&lt;/p>
-&lt;p>Disjoint Sets定義、表示、應用及Union(i,j) , Find(x)運作&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="tree樹">Tree(樹)&lt;/h2>
-&lt;ul>
-&lt;li>
-&lt;p>定義：是由&amp;gt;0個Node所構成之集合，&lt;strong>不可以為空&lt;/strong>，滿足以下的條件&lt;/p>
-&lt;ol>
-&lt;li>至少會有一個特定Node叫做&lt;strong>Root(樹根)&lt;/strong>&lt;/li>
-&lt;li>其餘的Node分成T1~Tm個互斥集合，T1~Tm稱之為Root之子樹(subtrees)&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="https://i.imgur.com/iwSOSZh.png"
-loading="lazy"
-alt="image-20230201220412599"
->&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>術語&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>&lt;strong>Node&amp;rsquo;s Degree&lt;/strong>：該節點的子樹個數&lt;/p>
-&lt;p>Ａ之Degree：３&lt;/p>
-&lt;p>Ｂ之Degree：２&lt;/p>
-&lt;p>Ｅ之Degree：０&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Leaf(樹葉)&lt;/strong>：Degree=0的Node&lt;/p>
-&lt;p>例如：E,F,G,H,I,J&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Non-Leaf(非樹葉)：非樹葉的點(Degree&amp;gt;0的點)&lt;/p>
-&lt;p>例如：Ａ,B,C,D&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Child與Parent&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Sibling(兄弟)：具有共同父點的Node，即為Sibling&lt;/p>
-&lt;p>&lt;strong>eg. B,C,D是sibling&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Ancestors(先祖)：沿著父節點往上延伸的Node即為Ancestors&lt;/p>
-&lt;p>eg. E之Ancestors{B,A}&lt;/p>
-&lt;p>​ I之Ancestors{D,A}&lt;/p>
-&lt;blockquote>
-&lt;p>Note：Descendents(後代)&lt;/p>
-&lt;p>eg. B之後代={E,F}&lt;/p>
-&lt;/blockquote>
-&lt;/li>
-&lt;li>
-&lt;p>Node&amp;rsquo;s Level值：各家定義不盡相同，有以下幾種，&lt;strong>差異在於Root是0還是1&lt;/strong>。&lt;/p>
-&lt;ul>
-&lt;li>定義：
-&lt;ol>
-&lt;li>Root Level = 1;&lt;/li>
-&lt;li>若 Parent 之 level=i，則it children level = i+1&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>Tree&amp;rsquo;s Degree：MAx{Node&amp;rsquo;s Degree}&lt;/p>
-&lt;p>eg. Tree&amp;rsquo;s Degree = 3&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Tree&amp;rsquo;s Height (or Depth) ：Max{Node&amp;rsquo;s Level}&lt;/p>
-&lt;p>eg. Tree高度=3(假設root為1)&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Forest(森林)&lt;/strong>：由≥0棵互斥Trees所形成之集合，&lt;strong>Forest可以為空&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="tree的表示方式">Tree的表示方式&lt;/h2>
-&lt;p>方法一：LinkedList直接表示&lt;/p>
-&lt;p>作法：假設Tree&amp;rsquo;s Degree=K，Node數=n，則Node Structure如下&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/jCq1OHY.png"
-loading="lazy"
-alt="image-20230201224708128"
->&lt;/p>
-&lt;p>分析：&lt;/p>
-&lt;p>&lt;strong>缺點:極度浪費Link空間&lt;/strong>，共準備n*K條Link，&lt;strong>☆☆☆☆☆有用的非Nil之Link有n-1條☆☆☆☆☆&lt;/strong>(扣掉樹根不用，概念類似相通的無向圖)，所以Nil Links(浪費的)有nk-(n-1)條，因為浪費比例&lt;/p>
-&lt;p>$$
-\frac{n&lt;em>k-(n-1)}{n&lt;/em>k} = \frac{nk-n+1}{nk}=\frac{k-1}{k} =0.99
-$$&lt;/p></description></item><item><title>基礎AOP介紹-Filter Interceptor AspectJ</title><link>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link><pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</guid><description>&lt;img src="https://i.imgur.com/B7GhSw1.png" alt="Featured image of post 基礎AOP介紹-Filter Interceptor AspectJ" />&lt;h1 id="目錄">目錄&lt;/h1>
+&lt;p>&lt;sup>&lt;/sup>&lt;/p></description></item><item><title>基礎AOP介紹-Filter Interceptor AspectJ</title><link>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link><pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</guid><description>&lt;img src="https://i.imgur.com/B7GhSw1.png" alt="Featured image of post 基礎AOP介紹-Filter Interceptor AspectJ" />&lt;h1 id="目錄">目錄&lt;/h1>
 &lt;ul>
 &lt;li>&lt;a class="link" href="#Filter%28%e9%81%8e%e6%bf%be%e5%99%a8%29Interceptor%28%e6%94%94%e6%88%aa%e5%99%a8%29AOP%28%e5%89%96%e9%9d%a2%e5%b0%8e%e5%90%91%e7%a8%8b%e5%bc%8f%e8%a8%ad%e8%a8%88%29%e4%b9%8b%e5%b7%ae%e7%95%b0" >Filter(過濾器)Interceptor(攔截器)AOP(剖面導向程式設計)之差異&lt;/a>
 &lt;ul>
