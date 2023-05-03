@@ -13490,6 +13490,9 @@ alt="3100F4A8-BB07-4D2F-BFBC-71D7C4C283CC"
 &lt;li>猜測、近似法則&lt;/li>
 &lt;/ol>
 &lt;h3 id="展開代入法">展開代入法&lt;/h3>
+&lt;blockquote>
+&lt;p>做苦工，通常沒問題，但缺點就是麻煩&lt;/p>
+&lt;/blockquote>
 &lt;p>例一：Tower Of Hanoi&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -13537,6 +13540,45 @@ alt="A74F2CBF-7070-416A-A5CD-38D05A277074"
 loading="lazy"
 alt="image-20230502034220410"
 >&lt;/p>
+&lt;p>例題八&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/dapbAny.png"
+loading="lazy"
+alt="image-20230502220504588"
+>&lt;/p>
+&lt;p>[010 1:30:00]&lt;/p>
+&lt;h3 id="master-theory">Master Theory&lt;/h3>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>若T(n)=a*T(n/b)+f(n)&lt;/span>,其中a≧1之constant，b是&amp;gt;1之constant，f(n)是positive-growth function，則可以使用此定理求出T(n)=θ(?)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>使用方式&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>先求出 &lt;img src="https://i.imgur.com/vzOv1jP.png"
+loading="lazy"
+alt="image-20230502222828531"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>與f(n)比較&lt;span style='color:yellow'>growth rate大小&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/j9zsz7J.png"
+loading="lazy"
+alt="image-20230502224531587"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/9X4Ppxb.png"
+loading="lazy"
+alt="image-20230502224927457"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/EJDRRto.png"
+loading="lazy"
+alt="image-20230502230436531"
+>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>a*T(n/b)：&lt;/p>
+&lt;/li>
+&lt;/ol>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
