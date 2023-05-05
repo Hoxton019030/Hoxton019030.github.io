@@ -18964,11 +18964,42 @@ alt="image-20230503234828768"
 loading="lazy"
 alt="image-20230503235505480"
 >&lt;/p>
+&lt;p>例三：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/RElaFsd.png"
+loading="lazy"
+alt="　"
+>&lt;/p>
+&lt;p>綜合練習：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/JGhgiU0.png"
+loading="lazy"
+alt="image-20230504224611301"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/wwnXUVm.png"
+loading="lazy"
+alt="image-20230504233728869"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/pvq65rg.png"
+loading="lazy"
+alt="image-20230504233735147"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/kTI1lr9.png"
+loading="lazy"
+alt="image-20230504233745485"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/SqyIAO3.png"
+loading="lazy"
+alt="image-20230504233955940"
+>&lt;/p>
 &lt;/li>
 &lt;/ol>
 &lt;/li>
 &lt;/ol>
-&lt;p>　&lt;/p>
+&lt;h4 id="master-theory-之例外狀況">Master Theory 之例外狀況&lt;/h4>
+&lt;p>&lt;img src="https://i.imgur.com/rZuZlNg.png"
+loading="lazy"
+alt="image-20230505001536322"
+>&lt;/p>
+&lt;p>若遇到這種情況，則用&lt;span style='color:yellow'>Extended Master Theory&lt;/span>&lt;/p>
 &lt;p>​&lt;/p>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
