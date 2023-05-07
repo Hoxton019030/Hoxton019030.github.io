@@ -13663,14 +13663,21 @@ alt="image-20230502222828531"
 &lt;/li>
 &lt;li>
 &lt;p>與f(n)比較&lt;span style='color:yellow'>growth rate大小&lt;/span>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h4 id="case1">Case1&lt;/h4>
 &lt;p>&lt;img src="https://i.imgur.com/j9zsz7J.png"
 loading="lazy"
 alt="image-20230502224531587"
 >&lt;/p>
+&lt;h4 id="case2">Case2&lt;/h4>
 &lt;p>&lt;img src="https://i.imgur.com/1lrX4PL.png"
 loading="lazy"
 alt="image-20230503234622323"
 >&lt;/p>
+&lt;h4 id="case3">Case3&lt;/h4>
 &lt;p>&lt;img src="https://i.imgur.com/EJDRRto.png"
 loading="lazy"
 alt="image-20230502230436531"
@@ -13711,17 +13718,254 @@ alt="image-20230504233745485"
 loading="lazy"
 alt="image-20230504233955940"
 >&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ol>
 &lt;h4 id="master-theory-之例外狀況">Master Theory 之例外狀況&lt;/h4>
 &lt;p>&lt;img src="https://i.imgur.com/rZuZlNg.png"
 loading="lazy"
 alt="image-20230505001536322"
 >&lt;/p>
 &lt;p>若遇到這種情況，則用&lt;span style='color:yellow'>Extended Master Theory&lt;/span>&lt;/p>
-&lt;p>​&lt;/p>
+&lt;p>[011] 00:30:00&lt;/p>
+&lt;h3 id="extended-master-theory">Extended Master Theory&lt;/h3>
+&lt;p>&lt;img src="https://i.imgur.com/Yq5RlTg.png"
+loading="lazy"
+alt="image-20230506151546429"
+>&lt;/p>
+&lt;p>以上面那一題為例，重新再解一次&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/4CWidT6.png"
+loading="lazy"
+alt="image-20230506152619767"
+>&lt;/p>
+&lt;p>例題一&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/VmqEL90.png"
+loading="lazy"
+alt="image-20230506154232088"
+>&lt;/p>
+&lt;p>例題二&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ZDaERbP.png"
+loading="lazy"
+alt="image-20230506153729266"
+>&lt;/p>
+&lt;p>綜合練習&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/3RqoE9j.png"
+loading="lazy"
+alt="image-20230506162320124"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/p6LXxEu.png"
+loading="lazy"
+alt="image-20230506162327009"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/4dgk7aW.png"
+loading="lazy"
+alt="image-20230506163736019"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DOSLZQE.png"
+loading="lazy"
+alt="image-20230506164240320"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/wtoXsGE.png"
+loading="lazy"
+alt="image-20230506164700523"
+>&lt;/p>
+&lt;h4 id="更特殊之例外">更特殊之例外&lt;/h4>
+&lt;p>&lt;img src="https://i.imgur.com/y7fKedA.png"
+loading="lazy"
+alt="image-20230506170316685"
+>&lt;/p>
+&lt;p>[011 01:30:00]&lt;/p>
+&lt;h3 id="recursive-tree遞迴樹求解">Recursive Tree(遞迴樹)求解&lt;/h3>
+&lt;p>就是結構化的展開帶入法啦&lt;/p>
+&lt;p>&lt;span style='font-size:32px;color:yellow'>太抽象了。之後再來看&lt;/span>&lt;/p>
+&lt;p>[012]&lt;/p>
+&lt;h3 id="特徵方程">特徵方程&lt;/h3>
+&lt;p>&lt;span style='font-size:32px;color:yellow'>太抽象了。之後再來看&lt;/span>&lt;/p>
+&lt;h3 id="近似值">近似值&lt;/h3>
+&lt;p>&lt;span style='font-size:32px;color:yellow'>太抽象了。之後再來看&lt;/span>&lt;/p>
+&lt;p>[013]&lt;/p>
+&lt;h1 id="ch3-stack-與-queue">Ch3 Stack 與 Queue&lt;/h1>
+&lt;blockquote>
+&lt;p>Stack Def 、應用、製作&lt;/p>
+&lt;p>Stack Permutations&lt;/p>
+&lt;p>Infix, Postfix, Perfix 轉換與計算 ☆☆☆☆☆&lt;/p>
+&lt;p>Complier Parsing Using stack例子 ☆☆☆&lt;/p>
+&lt;p>Queue 定義、應用、&amp;ldquo;製作&amp;rdquo;、種類&lt;/p>
+&lt;p>Stack與Queue相互製作 ☆☆☆&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="stack-堆疊">Stack (堆疊)&lt;/h2>
+&lt;p>定義：Stack 具有&lt;span style='color:yellow'>LIFO&lt;/span>之性質，其Insert元素動作叫做PUSH，DELETE元素之動作叫做POP，且PUSH、POP動作發生在同一端，稱為TOP(頂端)&lt;/p>
+&lt;p>就像品客洋芋片罐一樣&lt;/p>
+&lt;p>例：對空Stack執行&lt;/p>
+&lt;p>PushA&lt;/p>
+&lt;p>PushB&lt;/p>
+&lt;p>PushC&lt;/p>
+&lt;p>POP&lt;/p>
+&lt;p>PushD&lt;/p>
+&lt;p>POP&lt;/p>
+&lt;p>POP&lt;/p>
+&lt;p>PushE&lt;/p>
+&lt;p>後，Stack內容為何?&lt;/p>
+&lt;p>AE&lt;/p>
+&lt;h2 id="應用">應用&lt;/h2>
+&lt;ul>
+&lt;li>re-entrant routine&lt;/li>
+&lt;/ul>
+&lt;p>​ = pure code&lt;/p>
+&lt;p>​ = 可重複進入執行之程式&lt;/p>
+&lt;p>​ = 用在Utility program&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>走迷宮&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Palindrome(迴文)&lt;/p>
+&lt;p>= 由左而右 Reading 等於由右而左&lt;/p>
+&lt;p>= 若將一文字依序Push到Stack，再一一Pop輸出，等於加到Queue再一一刪除輸出，這一字串有什麼特性？&lt;span style='color:yellow'>Palindrome&lt;/span>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="stack之製作">Stack之製作&lt;/h2>
+&lt;p>一個Stack之ADT(abstract data type)應提供下列Operations供外界呼叫/使用&lt;/p>
+&lt;p>&lt;span style='color:yellow'>Create,push,pop,isEmpty,isFull&lt;/span>，有時候還會多一個&lt;span style='color:yellow'>TOP(只傳回TOP元素，但不刪除)&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>利用Arrray製作Stack&lt;/p>
+&lt;p>宣告&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>S : Array [1..n] of items 或 [0 .. (n-1)]&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Top：Int = 0 ; &lt;code>也有可能是-1 取決於你的Index怎麼訂&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">push (S, Item){
+if(top==n)then
+return &amp;#34;S is Full&amp;#34;;
+else {
+top = top+1;
+S[top] = item;
+}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">pop(s){
+if(top==0)then{
+return &amp;#34;s is empty&amp;#34;
+}
+else {
+item = s[top];
+top = top-1;
+return item;
+}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>利用Link List製作Stack&lt;/p>
+&lt;p>宣告&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Note Structure如下&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/EQAO0Hn.png"
+loading="lazy"
+alt="image-20230507042921084"
+>&lt;/p>
+&lt;p>若以C語言來看&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-c" data-lang="c">&lt;span class="k">struct&lt;/span> &lt;span class="n">Node&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">Data&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">Struct&lt;/span> &lt;span class="n">Node&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">Next&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>top : pointer = null;&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Push(S,Item){
+new(t); //向系統要求配置一個Node空間，讓t指標指向它
+t -&amp;gt; Data = item;
+t -&amp;gt; Next = Top;
+Top = t;
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Pop(s){
+if(top ==null){
+return &amp;#34;S is empty&amp;#34;
+}
+else {
+t = top;
+item = top - &amp;gt; Data;
+Top = Top -&amp;gt; Next ;
+release(t); //回收T所指的Node Space
+return
+}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
