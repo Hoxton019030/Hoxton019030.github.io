@@ -13957,7 +13957,7 @@ t = top;
 item = top - &amp;gt; Data;
 Top = Top -&amp;gt; Next ;
 release(t); //回收T所指的Node Space
-return
+return item;
 }
 }
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
@@ -13966,6 +13966,46 @@ return
 &lt;/ol>
 &lt;/li>
 &lt;/ol>
+&lt;h2 id="stack-permutation">Stack Permutation&lt;/h2>
+&lt;p>定義：給予N個Data，&lt;span style='color:yellow'>規定須依序push入Stack，但在過程中，可執行任意合法的POP輸出資料，則所有Data之輸出排列組合，稱之&lt;/span>&lt;/p>
+&lt;p>&lt;span style='color:yellow'>n個Data之Stack permutation數目 =&lt;img src="https://i.imgur.com/SAXJvNb.png"
+loading="lazy"
+alt="image-20230507133619981"
+>&lt;/span>&lt;/p>
+&lt;p>與下列問題同義：&lt;/p>
+&lt;ol>
+&lt;li>n個node可形成的不同Binary Tree結構(ch5)&lt;/li>
+&lt;li>n個&amp;quot;(&amp;ldquo;與n個&amp;rdquo;)&amp;ldquo;的合法配對數目&lt;/li>
+&lt;li>(n+1)個Matrix相乘之可能乘法配對順序數目&lt;/li>
+&lt;li>軌道問題&lt;/li>
+&lt;/ol>
+&lt;h2 id="infixpostfixprefix-之轉換-本章最常考">Infix,Postfix,Prefix 之轉換 (本章最常考)&lt;/h2>
+&lt;p>&lt;span style='color:yellow'>先介紹這3個式子&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>Infix中序置式&lt;/span>&lt;/p>
+&lt;p>格式：Operand1 &lt;span style='color:yellow'>Operator&lt;/span> Operand2 &lt;code>運算元 運算子 運算元&lt;/code>&lt;/p>
+&lt;p>eg. a+b, a*b, (a-b)/c&lt;/p>
+&lt;p>缺點：對Compiler 處理Infix計算十分不方便，&lt;span style='color:yellow'>因為必須考慮Operator之間的優先權及結合性，故可能導致來回多次的掃描式子，才可求出結果&lt;/span>，用白話文來講就是先乘除後加減的特性導致Compiler不方便&lt;/p>
+&lt;p>eg: a+b*c^d &amp;hellip;.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>Postfix(後序式)&lt;/span>&lt;/p>
+&lt;p>格式：Operand1 operand 2 &lt;span style='color:yellow'>Operator&lt;/span>&lt;/p>
+&lt;p>ag ab+, ab*, ab&amp;gt;&lt;/p>
+&lt;p>&lt;span style='color:yellow'>優點：Compilter處理Postfix計算，只須由左而右Scan一次&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>Perfix(前序式)&lt;/span>&lt;/p>
+&lt;p>格式：格式：&lt;span style='color:yellow'>Operator&lt;/span>Operand1 operand 2&lt;/p>
+&lt;p>eg. +ab, *ab, /ab&lt;/p>
+&lt;p>優點：同Postfix，&lt;span style='color:yellow'>但由右而左Scan&lt;/span>&lt;/p>
+&lt;p>缺點：中序轉前序須兩個Stack支持，但中序轉後序須1個Stack即可&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="infix轉postfixprefix計算題型">Infix轉Postfix/Prefix計算題型&lt;/h3>
+&lt;p>作法：使用&lt;span style='color:yellow'>括號法&lt;/span>&lt;/p>
+&lt;p>以Infix轉PostFix為例&lt;/p>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
