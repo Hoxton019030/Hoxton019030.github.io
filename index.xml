@@ -19337,6 +19337,7 @@ alt="image-20230507133619981"
 &lt;li>(n+1)個Matrix相乘之可能乘法配對順序數目&lt;/li>
 &lt;li>軌道問題&lt;/li>
 &lt;/ol>
+&lt;p>[014]&lt;/p>
 &lt;h2 id="infixpostfixprefix-之轉換-本章最常考">Infix,Postfix,Prefix 之轉換 (本章最常考)&lt;/h2>
 &lt;p>&lt;span style='color:yellow'>先介紹這3個式子&lt;/span>&lt;/p>
 &lt;ol>
@@ -19364,6 +19365,171 @@ alt="image-20230507133619981"
 &lt;h3 id="infix轉postfixprefix計算題型">Infix轉Postfix/Prefix計算題型&lt;/h3>
 &lt;p>作法：使用&lt;span style='color:yellow'>括號法&lt;/span>&lt;/p>
 &lt;p>以Infix轉PostFix為例&lt;/p>
+&lt;p>Steps&lt;/p>
+&lt;ol>
+&lt;li>對Infix加上&lt;span style='color:yellow'>完整的括號配對&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>Operator&lt;/span>取代最近的右括號&lt;/li>
+&lt;li>刪左括號，其他由左而右寫出即得Postfix&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='color:yellow'>一般而言，Operator之優先權等參考下表&lt;/span>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Operator&lt;/th>
+&lt;th>優先權&lt;/th>
+&lt;th>結合性&lt;/th>
+&lt;th>Binary 或 unary&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>括號()&lt;/td>
+&lt;td>高&lt;/td>
+&lt;td>Na&lt;/td>
+&lt;td>Na&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>負號 -&lt;/td>
+&lt;td>.&lt;/td>
+&lt;td>Na&lt;/td>
+&lt;td>unary&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>冪次方 ^&lt;/td>
+&lt;td>.&lt;/td>
+&lt;td>右結合&lt;/td>
+&lt;td>Binary&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>*,/ 乘除&lt;/td>
+&lt;td>.&lt;/td>
+&lt;td>左結合&lt;/td>
+&lt;td>Binary&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>+,-&lt;/td>
+&lt;td>.&lt;/td>
+&lt;td>左結合&lt;/td>
+&lt;td>Binary&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&amp;gt;,&amp;lt;,==,&amp;gt;=,&amp;lt;=,!=&lt;/td>
+&lt;td>.&lt;/td>
+&lt;td>左結合&lt;/td>
+&lt;td>Binary&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Not(否定),~&lt;/td>
+&lt;td>.&lt;/td>
+&lt;td>Na&lt;/td>
+&lt;td>Unary&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>AND,OR&lt;/td>
+&lt;td>.&lt;/td>
+&lt;td>左結合&lt;/td>
+&lt;td>Binary&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Assign = :=&lt;/td>
+&lt;td>低&lt;/td>
+&lt;td>右結合&lt;/td>
+&lt;td>Binary&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;span style='color:yellow'>題目若有規定，則以題目為主&lt;/span>&lt;/p>
+&lt;p>例一：Infix轉Postfix&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>a+b*c-d/e*f&lt;/p>
+&lt;p>Ans. a+(b*c)-((d/e)*f))&lt;/p>
+&lt;p>&lt;span style='color:yellow'>abc*+de/f*-&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>a*(b-c/d)^e*(f/g+h)&lt;/p>
+&lt;p>Ans：abcd/-e&amp;amp;*fg&amp;amp;/f+*&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/pMLANIl.png"
+loading="lazy"
+alt="image-20230508001016753"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>(a+(b-c))^d^e*((f-g)/h)&lt;/p>
+&lt;p>Ans: abc-+de^^fg-h/*&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>~A and (B&amp;gt;C or D&amp;lt;E) or(~F)&lt;/p>
+&lt;p>Ans: A~BC&amp;gt;DE&amp;lt;or And F~ or&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>例二：Infix 轉 Prefix&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>a*((b/c)-d)+e*f/g&lt;/p>
+&lt;p>Ans: +*a-/bcd/*efg&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>a*(b-(c+d))/(e*f)^g&lt;/p>
+&lt;p>Ans：/*a-b+cd^*efg&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>a+((b-c)/d)-e*f&lt;/p>
+&lt;p>Ans：-+a/-bcd*ef&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>A or ((~B and C&amp;gt;D) and E&amp;gt;F)&lt;/p>
+&lt;p>Ans. Or A and and ~ B &amp;gt; CD &amp;gt; EF&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>規定：優先權：括號＞＋＞÷＞－＞╳。＋，÷，－為右結合。×為左結合&lt;/p>
+&lt;ol>
+&lt;li>(a*b)-c/d/e+f+g&lt;/li>
+&lt;li>(a/b/c)+d+(e*f*g)&lt;/li>
+&lt;/ol>
+&lt;p>Ans. (a*b)-c/d/e+f+g&lt;/p>
+&lt;p>Ans. +/a/bc+d**efg&lt;/p>
+&lt;p>例三：Postfix轉Infix&lt;/p>
+&lt;ul>
+&lt;li>找出Postfix 樣板&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>op1 op2 operator&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>改為Infix (op1 operator op2)&lt;/li>
+&lt;li>&lt;span style='color:yellow'>刪除不必要之括號&lt;/span>&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>
+&lt;p>AB+C*DE-FG+^-&lt;/p>
+&lt;p>Ans. (A+B)*C-(D-E)^(F+G)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ab/c-de*+ac*-&lt;/p>
+&lt;p>Ans. ((()))&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>[014 50:00:00]&lt;/p>
+&lt;p>&lt;span style='font-size:32px;color:yellow'>先跳過，太複雜了，之後來看&lt;/span>&lt;/p>
+&lt;p>[015]&lt;/p>
+&lt;p>&lt;span style='font-size:32px;color:yellow'>先跳過，太複雜了，之後來看&lt;/span>&lt;/p>
+&lt;p>[016]&lt;/p>
+&lt;h2 id="queue佇列">Queue(佇列)&lt;/h2>
+&lt;p>定義：具有&lt;span style='color:yellow'>FIFO(First-In-First-Out)先進先出&lt;/span>。性質之有序串列&lt;/p>
+&lt;ul>
+&lt;li>Insert(enqueue)元素在&lt;span style='color:yellow'>rear(尾端)&lt;/span>&lt;/li>
+&lt;li>Delete&lt;span style='color:yellow'>(dequeue)元素&lt;/span>在&lt;span style='color:yellow'>front(前端)&lt;/span>&lt;/li>
+&lt;/ul>
+&lt;p>所以是發生在&lt;span style='color:yellow'>不同端&lt;/span>&lt;/p>
+&lt;p>例：針對Empty Queue實施&lt;/p>
+&lt;p>enqueue(a)&lt;/p>
+&lt;p>enqueue(b)&lt;/p>
+&lt;p>enqueue(c)&lt;/p>
+&lt;p>dequeue&lt;/p>
+&lt;p>dequeue&lt;/p>
+&lt;p>enqueue(d)&lt;/p>
+&lt;p>enqueue(e)&lt;/p>
+&lt;p>dequeue&lt;/p>
+&lt;p>後，Queue內容為何?&lt;/p>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
