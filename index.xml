@@ -19530,12 +19530,19 @@ alt="image-20230508001016753"
 &lt;p>enqueue(e)&lt;/p>
 &lt;p>dequeue&lt;/p>
 &lt;p>後，Queue內容為何?&lt;/p>
+&lt;p>Ans&lt;/p>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
 &lt;p>&lt;span style='color:red'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
-&lt;p>&lt;sup>&lt;/sup>&lt;/p></description></item><item><title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title><link>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link><pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid><description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" />&lt;p>最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p>
+&lt;p>&lt;sup>&lt;/sup>&lt;/p>
+&lt;p>​&lt;/p>
+&lt;p>&lt;img src="https://p.ipic.vip/v29x8u.png"
+loading="lazy"
+alt="image-20230510002315303"
+>&lt;/p>
+&lt;p>![image-20230510002231103](/Users/hoxtonashes/Library/Application Support/typora-user-images/image-20230510002231103.png)&lt;/p></description></item><item><title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title><link>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link><pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid><description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" />&lt;p>最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p>
 &lt;p>圖片空間有Github跟imgur，就看你想要用哪個就用哪個吧，其實沒差太多，但imgur會稍微簡單一點點點點點點，以下是步驟&lt;/p>
 &lt;h2 id="開始">開始&lt;/h2>
 &lt;ul>
