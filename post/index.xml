@@ -19513,7 +19513,7 @@ alt="image-20230508001016753"
 &lt;p>[015]&lt;/p>
 &lt;p>&lt;span style='font-size:32px;color:yellow'>先跳過，太複雜了，之後來看&lt;/span>&lt;/p>
 &lt;p>[016]&lt;/p>
-&lt;h2 id="queue佇列">Queue(佇列)&lt;/h2>
+&lt;h2 id="queue佇列">Queue(佇列)☆☆☆&lt;/h2>
 &lt;p>定義：具有&lt;span style='color:yellow'>FIFO(First-In-First-Out)先進先出&lt;/span>。性質之有序串列&lt;/p>
 &lt;ul>
 &lt;li>Insert(enqueue)元素在&lt;span style='color:yellow'>rear(尾端)&lt;/span>&lt;/li>
@@ -19531,6 +19531,207 @@ alt="image-20230508001016753"
 &lt;p>dequeue&lt;/p>
 &lt;p>後，Queue內容為何?&lt;/p>
 &lt;p>Ans&lt;/p>
+&lt;p>d,e&lt;/p>
+&lt;p>應用：&lt;/p>
+&lt;ol>
+&lt;li>作業系統裡頭各式各樣的Queue eg: ready queue, waiting queue, i/o-device queue etc&lt;/li>
+&lt;li>&lt;span style='color:yellow'>Buffer(緩衝區)也採FIFO Queue &lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>佇列理論&lt;/span>：Simulation(模擬) System Performnace 評估&lt;/li>
+&lt;li>&lt;span style='color:yellow'>圖形的BFS(Breadth First Seatch)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>Binary Tree的Level-order Traversal&lt;/span>&lt;/li>
+&lt;li>日常生活的排隊行為&lt;/li>
+&lt;/ol>
+&lt;h3 id="queue-的製作">Queue 的製作&lt;/h3>
+&lt;ol>
+&lt;li>
+&lt;p>Queue 此一ADT必須提供下列運作供外界使用以及呼叫&lt;/p>
+&lt;p>&lt;span style='color:yellow'>Create, Enqueue, Dequeue,InFull, Isempty &lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;ol>
+&lt;li>利用Array製作
+&lt;ol>
+&lt;li>Linear Array&lt;/li>
+&lt;li>&lt;span style='color:yellow'>Circular Array(最多可利用(n-1)格 Space)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='color:yellow'>Circular Array(最多可利用n格space)&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="linear-array">Linear Array&lt;/h3>
+&lt;p>&lt;span style='color:yellow'>缺點：若Rear ==n成立，並不一定代表Queue真的滿，若此時Front&amp;gt;0，代表仍有Front 個Space可用，但卻無法加入東西&lt;/span>，代表有空間閒置、浪費&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">class&lt;/span> &lt;span class="nc">LinearStack&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">Integer&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">array&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Integer&lt;/span>&lt;span class="o">[]{&lt;/span>&lt;span class="n">10&lt;/span>&lt;span class="o">};&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 佇列前端
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">front&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 佇列尾端
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">rear&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">Enqueue&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Integer&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">rear&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">10&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span> &lt;span class="c1">//問題點
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Queue已滿&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">rear&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">rear&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">rear&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">Integer&lt;/span> &lt;span class="nf">Dequeue&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">rear&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">front&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Queue為空&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">front&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">front&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">Integer&lt;/span> &lt;span class="n">integer&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">front&lt;/span>&lt;span class="o">];&lt;/span>
+&lt;span class="n">array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">front&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">integer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>分析：&lt;/p>
+&lt;ul>
+&lt;li>解法一：一個直覺的做法當Rear==n，且front&amp;gt;0時，表示有front個空格所以可將[front+1]~[rear]這些元素往左移Front格，並設Rear=Rear-Front,Front=0; then 再作Enqueue。&lt;span style='color:yellow'>但缺點：導致Enqueue 平均Time從O(1)變成O(n)&lt;/span>&lt;/li>
+&lt;li>解法二：利用Circular Array來作Queue&lt;/li>
+&lt;/ul>
+&lt;h3 id="circular-array">Circular Array&lt;/h3>
+&lt;p>&lt;img src="https://i.imgur.com/kx0qCij.png"
+loading="lazy"
+alt="image-20230511002423718"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">class&lt;/span> &lt;span class="nc">CircularLinearStack&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">queueSize&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">10&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">Integer&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">array&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Integer&lt;/span>&lt;span class="o">[]{&lt;/span>&lt;span class="n">queueSize&lt;/span>&lt;span class="o">};&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 佇列前端
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">front&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 佇列尾端
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">rear&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">Enqueue&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Integer&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">rear&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">rear&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="n">queueSize&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">front&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">rear&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Queue已滿&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">rear&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">rear&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="n">queueSize&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">rear&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">Integer&lt;/span> &lt;span class="nf">Dequeue&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">front&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">rear&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Queue為空&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">front&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">front&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="n">queueSize&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">Integer&lt;/span> &lt;span class="n">integer&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">front&lt;/span>&lt;span class="o">];&lt;/span>
+&lt;span class="n">array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">front&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">integer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>分析：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>最多只能利用(n-1)格Space即front 所指之格不用&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/XKGLcGG.png"
+loading="lazy"
+alt="image-20230511003739381"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>若硬用此格(Front)&lt;/span>，則當front==rear成立時，&lt;span style='color:yellow'>無法區分Queue為空或Queue為滿&lt;/span>。eg. 明明滿了，但卻無法刪除&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='color:yellow'>判斷Queue空，及Queue滿之條件式一樣&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Enqueue 及 Dequeue 之 Time為O(1)&lt;/p>
+&lt;/li>
+&lt;/ol>
 &lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
@@ -19541,8 +19742,7 @@ alt="image-20230508001016753"
 &lt;p>&lt;img src="https://p.ipic.vip/v29x8u.png"
 loading="lazy"
 alt="image-20230510002315303"
->&lt;/p>
-&lt;p>![image-20230510002231103](/Users/hoxtonashes/Library/Application Support/typora-user-images/image-20230510002231103.png)&lt;/p></description></item><item><title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title><link>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link><pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid><description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" />&lt;p>最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p>
+>&lt;/p></description></item><item><title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title><link>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link><pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid><description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" />&lt;p>最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p>
 &lt;p>圖片空間有Github跟imgur，就看你想要用哪個就用哪個吧，其實沒差太多，但imgur會稍微簡單一點點點點點點，以下是步驟&lt;/p>
 &lt;h2 id="開始">開始&lt;/h2>
 &lt;ul>
