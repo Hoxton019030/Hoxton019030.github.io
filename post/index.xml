@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 06 May 2023 00:13:33 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>H2Database之配置檔紀錄</title><link>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</link><pubDate>Sat, 06 May 2023 00:13:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/xYmsInY.png" alt="Featured image of post H2Database之配置檔紀錄" />&lt;p>依賴如下&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 12 May 2023 11:05:10 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Git-rerere之介紹</title><link>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</link><pubDate>Fri, 12 May 2023 11:05:10 +0800</pubDate><guid>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</guid><description>&lt;h1 id="介紹">介紹&lt;/h1>
+&lt;p>最近公司提倡使用rebase而非merge來合併分支，但在rebase的情況下，常常出現多種commit會有重複confict的情形發生，往往可能要解個2,30個conflict，一來一往可能會耗費許多時間，於是上網查了一下，發現有&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git rerere
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這種神奇的指令&lt;/p>
+&lt;p>這是由3個單字縮寫所組成的指令，分別是reuse、recorded 與 resolution。git rerere有點像是一個記憶吐司的概念，能夠記錄你之前解Conflict的方式，然後自動幫你套用到相同的地方。&lt;/p>
+&lt;p>而這個rerere的行為預設是關閉的，想要打開的話可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global rerere.enabled &lt;span class="nb">true&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來啟用，若不想要使用的話可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --unset rerere.enabled
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>H2Database之配置檔紀錄</title><link>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</link><pubDate>Sat, 06 May 2023 00:13:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/xYmsInY.png" alt="Featured image of post H2Database之配置檔紀錄" />&lt;p>依賴如下&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1

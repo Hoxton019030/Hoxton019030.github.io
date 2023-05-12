@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Queue {
     public static void main(String[] args) {
 
-        CircularLinearStackBetter linearStack = new CircularLinearStackBetter();
+        CircularLinearStack linearStack = new CircularLinearStack();
         Scanner scanner = new Scanner(System.in);
         Integer[] integer = new Integer[10];
         while (true) {
@@ -23,7 +23,6 @@ public class Queue {
     }
 }
 
-
 class LinearStack {
 
     /**
@@ -36,7 +35,7 @@ class LinearStack {
     int rear = 0;
 
     public void Enqueue(Integer[] array, Integer item) {
-        if (rear == 10) { //問題點
+        if (rear == 10) { // 問題點
             System.out.println("Queue已滿");
         } else {
             rear = rear + 1;
@@ -51,7 +50,7 @@ class LinearStack {
         } else {
             front = front + 1;
             Integer integer = array[front];
-            array[front] = 0;
+            array[front] = null;
             return integer;
         }
     }
@@ -68,7 +67,6 @@ class CircularLinearStack {
      * 佇列尾端
      */
     int rear = 0;
-
 
     public void Enqueue(Integer[] array, Integer item) {
         rear = (rear + 1) % queueSize;
@@ -87,7 +85,7 @@ class CircularLinearStack {
         } else {
             front = (front + 1) % queueSize;
             Integer integer = array[front];
-            array[front] = 0;
+            array[front] = null;
             return integer;
         }
     }
@@ -95,9 +93,8 @@ class CircularLinearStack {
 
 class CircularLinearStackBetter {
 
-
     int queueSize = 10;
-    Integer[] array = new Integer[]{queueSize};
+    Integer[] array = new Integer[] { queueSize };
     /**
      * 佇列前端
      */
@@ -111,7 +108,6 @@ class CircularLinearStackBetter {
      *
      */
     boolean tag = false;
-
 
     public void Enqueue(Integer[] array, Integer item) {
         if (front == rear & tag == true) {
@@ -132,7 +128,7 @@ class CircularLinearStackBetter {
         } else {
             front = (front + 1) % queueSize;
             Integer integer = array[front];
-            array[front] = 0;
+            array[front] = null;
             if (front == rear) {
                 tag = false;
             }
@@ -140,10 +136,8 @@ class CircularLinearStackBetter {
         }
     }
 
-
 }
 
-class LinkedList{
+class LinkedList {
 
 }
-
