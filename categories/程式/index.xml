@@ -14279,7 +14279,7 @@ alt="image-20230508001016753"
 &lt;li>解法一：一個直覺的做法當Rear==n，且front&amp;gt;0時，表示有front個空格所以可將[front+1]~[rear]這些元素往左移Front格，並設Rear=Rear-Front,Front=0; then 再作Enqueue。&lt;span style='color:yellow'>但缺點：導致Enqueue 平均Time從O(1)變成O(n)&lt;/span>&lt;/li>
 &lt;li>解法二：利用Circular Array來作Queue&lt;/li>
 &lt;/ul>
-&lt;h3 id="circular-array">Circular Array&lt;/h3>
+&lt;h3 id="circular-arrayn-1">Circular Array(n-1)&lt;/h3>
 &lt;p>&lt;img src="https://i.imgur.com/kx0qCij.png"
 loading="lazy"
 alt="image-20230511002423718"
@@ -14376,12 +14376,122 @@ alt="image-20230511003739381"
 &lt;p>Enqueue 及 Dequeue 之 Time為O(1)&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;p>&lt;span style='color:yellow'>&lt;/span>&lt;/p>
+&lt;h3 id="circular-array-n">Circular Array (n)&lt;/h3>
+&lt;p>宣告：多加一個tag:boolean 變數，&lt;span style='color:yellow'>初值為false&lt;/span>&lt;/p>
+&lt;p>目的：&lt;span style='color:yellow'>協助&lt;/span>rear, front判斷Queue空orQueue滿，當rear==front成立時&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">class&lt;/span> &lt;span class="nc">CircularLinearStackBetter&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">queueSize&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">10&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">Integer&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">array&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Integer&lt;/span>&lt;span class="o">[]{&lt;/span>&lt;span class="n">queueSize&lt;/span>&lt;span class="o">};&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 佇列前端
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">front&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 佇列尾端
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">rear&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> *
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="kt">boolean&lt;/span> &lt;span class="n">tag&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">Enqueue&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Integer&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">front&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">rear&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">tag&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Queue已滿&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">rear&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">rear&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="n">queueSize&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">rear&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">front&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">rear&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">tag&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">Integer&lt;/span> &lt;span class="nf">Dequeue&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">front&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">rear&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">tag&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Queue為空&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">front&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">front&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="n">queueSize&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">Integer&lt;/span> &lt;span class="n">integer&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">front&lt;/span>&lt;span class="o">];&lt;/span>
+&lt;span class="n">array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">front&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">front&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">rear&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">tag&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">integer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>分析：&lt;/p>
+&lt;ol>
+&lt;li>&lt;span style='color:yellow'>最多可利用n格space&lt;/span>&lt;/li>
+&lt;li>Enqueue及Dequeue之Time皆為O(1);&lt;/li>
+&lt;li>&lt;span style='color:yellow'>與法二相比，此法Enqueue及Dequeue之時間會變長，因為每個運作中皆多了一條if額外測試，看tag值是否要改變&lt;/span>&lt;/li>
+&lt;/ol>
+&lt;h3 id="linkedlist作queue">LinkedList作Queue&lt;/h3>
+&lt;h4 id="使用single-link-list">使用Single Link List&lt;/h4>
+&lt;p>&lt;code>單向鏈結串列&lt;/code>&lt;/p>
+&lt;p>[017 00:55:00]&lt;/p>
+&lt;p>&lt;span style='font-size:32px;color:yellow'>跟Pointer有關，先跳過&lt;/span>&lt;/p>
+&lt;p>&lt;span style='font-size:16px;color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
 &lt;p>&lt;span style='color:red'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
+&lt;p>ㄑ&lt;/p>
 &lt;p>​&lt;/p>
 &lt;p>&lt;img src="https://p.ipic.vip/v29x8u.png"
 loading="lazy"
