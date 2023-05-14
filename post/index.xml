@@ -19944,13 +19944,165 @@ alt="image-20230511003739381"
 &lt;p>&lt;code>單向鏈結串列&lt;/code>&lt;/p>
 &lt;p>[017 00:55:00]&lt;/p>
 &lt;p>&lt;span style='font-size:32px;color:yellow'>跟Pointer有關，先跳過&lt;/span>&lt;/p>
+&lt;h3 id="queue的種類">Queue的種類&lt;/h3>
+&lt;ol>
+&lt;li>
+&lt;p>FIFO Queue （標準、內定、預設）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='font-size:16px;color:yellow'>Priority Ｑueue(優先權佇列)&lt;/span>&lt;/p>
+&lt;p>Def: &lt;span style='font-size:16px;color:yellow'>不見得是FIFO order 而是刪除時是Delete-MAX或Delete-Min value元素&lt;/span>&lt;/p>
+&lt;p>eg. OS中運用頗多(CPU Schedule)&lt;/p>
+&lt;p>&lt;span style='font-size:16px;color:yellow'>製作Priority Queue 合適之Data structure- Heap&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Double-ended Queue(雙邊佇列)&lt;/p>
+&lt;p>Def: 此佇列之兩端(front, rear)皆可&lt;span style='font-size:16px;color:yellow'>插入及刪除&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/gDBuehW.png"
+loading="lazy"
+alt="image-20230513225728318"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style='font-size:16px;color:yellow'>Double-ended Priority Queue(雙邊優先權佇列)&lt;/span>&lt;/p>
+&lt;p>Def: 此Queue支持3個主要運作&lt;/p>
+&lt;ol>
+&lt;li>Insert&lt;/li>
+&lt;li>Delete-Min&lt;/li>
+&lt;li>Delete-MAx&lt;/li>
+&lt;/ol>
+&lt;p>&lt;span style='font-size:16px;color:yellow'>製作此Queue之最合適Data Structure有&lt;/span>&lt;/p>
+&lt;ol>
+&lt;li>Min-Max Heap&lt;/li>
+&lt;li>Deop&lt;/li>
+&lt;li>SMMH&lt;/li>
+&lt;/ol>
+&lt;p>&lt;code>高等樹會碰到&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>練習題：用&lt;span style='font-size:16px;color:yellow'>Circular Array(法二)製作Queue，如何球出Queue中元素個數，使用Rear, front, n?&lt;/span>&lt;/p>
+&lt;p>Ans. (Rear-Front+n)%n&lt;/p>
+&lt;h2 id="stack與queue之相互製作">Stack與Queue之相互製作&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>利用stack製作(模擬)Queue&lt;code>兩個Stack&lt;/code>✩✩✩✩✩&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Enqueue(queue,item){
+if(isFull(stack1)) then return &amp;#34;Queue已滿&amp;#34;
+else push(stack1,item)
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Dequeue(queue){ //由於Stack無法讓你Dequeue最底下的element出去，因此要借助第二個Stack來實現這件事情
+if(IsEmpty(stack2))then
+if(IsEmpty(stack1)) then return &amp;#34;Queue空&amp;#34;
+else{
+while(!IsEmpty(stack1))do{
+x= pop(stack1);
+push(stack2,x);
+}
+}
+item = pop(stack2)
+return item;
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/lGexwnQ.png"
+loading="lazy"
+alt="image-20230514003454363"
+>&lt;/p>
+&lt;p>&lt;span style='font-size:16px;color:yellow'>Time分析：&lt;/span>&lt;/p>
+&lt;ul>
+&lt;li>&lt;span style='font-size:16px;color:yellow'>大部分case(T!=空) -&amp;gt; Time: O(1)&lt;/span>&lt;/li>
+&lt;li>&lt;span style='font-size:16px;color:yellow'>少部分case(S!=空,T=空) -&amp;gt; Time:O(n)&lt;/span>&lt;/li>
+&lt;/ul>
+&lt;p>&amp;mdash;&amp;gt; amortized cose:O(1)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>利用Queue製作Stack(假設是用Circular Array(法二)作的)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Push(stack, item){
+if(isFull(queue)) then return &amp;#34;Stack滿&amp;#34;
+else Enqueue(queue)
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">Pop(stack){
+if (isEmpty(queue)) then return &amp;#34;Stack為空&amp;#34;
+else{
+n = (rear-front+n) %n //求出元素個數
+for(i=1 to (n-1)) do
+{
+x= dequeue(queue)
+enqueue(queue,x)
+}
+item = dequeue(queue)
+return item
+}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h1 id="ch5-tree-and-binary-tree-1">Ch5 Tree And Binary Tree&lt;/h1>
+&lt;blockquote>
+&lt;p>Tree Def 相關術語&lt;/p>
+&lt;p>Tree的表示方法(4種)&lt;/p>
+&lt;p>Binary Tree之Def，與Tree不同比較&lt;/p>
+&lt;/blockquote>
 &lt;p>&lt;span style='font-size:16px;color:yellow'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
 &lt;p>&lt;span style='color:red'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;sup>&lt;/sup>&lt;/p>
-&lt;p>ㄑ&lt;/p>
 &lt;p>​&lt;/p>
 &lt;p>&lt;img src="https://p.ipic.vip/v29x8u.png"
 loading="lazy"

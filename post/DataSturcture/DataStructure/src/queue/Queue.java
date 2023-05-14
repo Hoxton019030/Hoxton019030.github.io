@@ -138,6 +138,3 @@ class CircularLinearStackBetter {
 
 }
 
-class LinkedList {
-
-}
