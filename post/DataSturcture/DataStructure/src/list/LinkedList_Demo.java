@@ -6,8 +6,14 @@ public class LinkedList_Demo {
         LinkedList linkedList = new LinkedList();
         linkedList.insert("Hoxton");
         linkedList.insert("Stasy");
+        linkedList.insert("Esther");
         linkedList.printLinkedList();
-        System.out.println("linkedList.isEmpty() = " + linkedList.isEmpty());
+//        linkedList.delete(new Node("Hoxton"));
+//        System.out.println("刪除完後");
+//        linkedList.printLinkedList();
+//        System.out.println("新增Node");
+//        linkedList.insert("Ian");
+//        linkedList.printLinkedList();
     }
 
 }
@@ -15,6 +21,38 @@ public class LinkedList_Demo {
 class LinkedList {
     private Node first;
     private Node last;
+
+    public void insert(String name) {
+        Node newNode = new Node(name); //近來後就變新的Node
+
+        if (first == null) {
+            first = newNode;
+            last = newNode;
+        } else {
+            last.next = newNode; //這一段不太懂，我不懂Stasy近來後，First的Next突然就有值了
+            last = newNode;
+        }
+    }
+
+    public void delete(Node node){
+        if(first.username.equals(node.username)){
+            first = first.next;
+        }
+        if(last.username.equals(node.username)){
+            Node currentNode =first;
+            while (currentNode.next!=last){
+                currentNode = currentNode.next;
+            }
+            currentNode.next=null;
+            last=currentNode;
+        }
+        else {
+            Node currentNode =first;
+            while (currentNode.next.username.equals(node.username)){
+                currentNode.next = currentNode.next.next;
+            }
+        }
+    }
 
     public boolean isEmpty() {
         if (first == null) {
@@ -32,18 +70,6 @@ class LinkedList {
         }
     }
 
-
-    public void insert(String name) {
-        Node insertNode = new Node(name);
-
-        if (first == null) {
-            first = insertNode;
-            last = insertNode;
-        } else {
-            last.next = insertNode;
-            last = insertNode;
-        }
-    }
 
 
 }
