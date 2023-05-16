@@ -29,7 +29,9 @@ class LinkedList {
             first = newNode;
             last = newNode;
         } else {
-            last.next = newNode; //這一段不太懂，我不懂Stasy近來後，First的Next突然就有值了
+            last.next = newNode;     //  在第二個Node進來前，first與last實際上都是同一個物件(HashCode一樣)。
+                                    // 但當執行到第32行last.next = newNode時，因為這兩個東西是一樣的，所以first的next跟last的next都會共同指向newNode
+                                    // 執行完後，first與last已經是不同物件了(hashcode不同)
             last = newNode;
         }
     }
