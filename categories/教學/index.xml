@@ -63,7 +63,16 @@ alt="demo"
 &lt;p>&lt;img src="https://i.imgur.com/YWKWBgv.png"
 loading="lazy"
 alt="image-20230518213418418"
->&lt;/p></description></item><item><title>ARM架構與x86架構下，Docker啟動問題</title><link>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 13 May 2023 19:09:41 +0800</pubDate><guid>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/xqj3WOb.png" alt="Featured image of post ARM架構與x86架構下，Docker啟動問題" />&lt;h1 id="導因">導因&lt;/h1>
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">open -na &lt;span class="s2">&amp;#34;IntelliJ IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ARM架構與x86架構下，Docker啟動問題</title><link>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 13 May 2023 19:09:41 +0800</pubDate><guid>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/xqj3WOb.png" alt="Featured image of post ARM架構與x86架構下，Docker啟動問題" />&lt;h1 id="導因">導因&lt;/h1>
 &lt;p>M1的CPU是使用ARM架構，而有些電腦則是使用x86架構，並且因Docker是Run在OS上方，所以在執行Image時也要考慮作業系統的問題&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
