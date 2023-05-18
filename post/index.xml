@@ -55,7 +55,7 @@ alt="image-20230518213215354"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">env
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>來查看目前的環境變數&lt;/p>
+&lt;/div>&lt;p>來查看目前的環境變數，確定是否有加入PATH中&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/YWKWBgv.png"
 loading="lazy"
 alt="image-20230518213418418"
