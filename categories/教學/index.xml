@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 18 May 2023 21:22:51 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>在MacBook M1環境下使用Terimnal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟IntelliJ" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前陣子買了Mac，影響我最大的應該就是不能再像Window一樣，使用右鍵開啟專案了！因為公司的產品有兩個專案，我也常常把專案砍掉重抓，如果不能用右鍵開啟，那就得從IntelliJ中手動匯入，這樣子一來一往真的是靠北麻煩。&lt;/p>
-&lt;h1 id="如何在mac中設置環境變數開啟idea">如何在Mac中設置環境變數開啟IDEA&lt;/h1>
+&lt;h1 id="如何使用terminal開啟intellij">如何使用Terminal開啟IntelliJ&lt;/h1>
+&lt;p>其實網路上我看了很多教學，到後面我才發現其實官網就有寫了，原來幸福的青鳥一直就在身邊，唉
+&lt;a href="https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html">https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html&lt;/a>&lt;/p>
+&lt;h2 id="切換至usrlocalbin">切換至/usr/local/bin/&lt;/h2>
+&lt;p>首先先切換至&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /usr/local/bin/
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="創建idea檔案">創建idea檔案&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">touch idea
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="編輯idea檔案中的內容">編輯idea檔案中的內容&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="cp">#!/bin/sh
+&lt;/span>&lt;span class="cp">&lt;/span>
+open -na &lt;span class="s2">&amp;#34;IntelliJ IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/uvt1d2m.png"
+loading="lazy"
+>&lt;/p>
+&lt;h2 id="存擋後使用chmod調整權限">存擋後使用Chmod調整權限&lt;/h2>
+&lt;p>輸入指令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">chmod &lt;span class="m">755&lt;/span> idea
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&amp;ldquo;chmod 755&amp;rdquo; 是一個用於設置檔案或目錄權限的命令。在 Linux 和其他類 Unix 系統中，&amp;ldquo;chmod&amp;rdquo; 是改變檔案權限的指令，而 &amp;ldquo;755&amp;rdquo; 是一個表示權限的數字。&lt;/p>
+&lt;p>在 &amp;ldquo;chmod 755&amp;rdquo; 中，&amp;ldquo;755&amp;rdquo; 是由三個數字組成的權限表示法。每個數字代表了不同的使用者類別和他們對檔案的權限。&lt;/p>
+&lt;p>第一個數字（7）表示檔案所有者的權限。在這種情況下，7 表示所有者具有讀取、寫入和執行的權限（4 + 2 + 1）。
+第二個數字（5）表示檔案所屬群組的權限。在這種情況下，5 表示群組具有讀取和執行的權限，但沒有寫入的權限（4 + 1）。
+第三個數字（5）表示其他使用者（非所有者且非群組成員）的權限。在這種情況下，5 表示其他使用者具有讀取和執行的權限，但沒有寫入的權限（4 + 1）。
+因此，&amp;ldquo;chmod 755&amp;rdquo; 的含義是將檔案設置為擁有者具有讀取、寫入和執行權限，群組成員和其他使用者具有讀取和執行權限，但不具有寫入權限。&lt;/p>
+&lt;h2 id="刷新頁面">刷新頁面&lt;/h2>
+&lt;p>確認mac os的檔案icon是否有更改成exec&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/24ushKG.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>如果更改成功，就可以透過&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用intelliJ開啟檔案了 ！&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
+loading="lazy"
+>&lt;/p>
+&lt;h1 id="以下內容作廢請勿參考這是我錯的紀錄">以下內容作廢，請勿參考，這是我錯的紀錄&lt;/h1>
+&lt;p>如何在Mac中設置環境變數開啟IDEA&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/lUFkVtz.png"
 loading="lazy"
 alt="image-20230518212755943"
@@ -46,6 +119,9 @@ alt="image-20230518213215354"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>用Idea開啟當前目錄&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
+loading="lazy"
+>&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/JWV7cRS.gif"
 loading="lazy"
 alt="demo"
