@@ -1298,6 +1298,17 @@ scp://svn.baidu.com/banseon:/var/www/localhost/banseon-web
 &lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">mvn install
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
+&lt;/div>&lt;ol start="6">
+&lt;li>查看啟用的profile&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">mvn help:active-profiles
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/rOmmWm8.png"
 loading="lazy"
 alt="image-20230529104953877"
@@ -1374,6 +1385,33 @@ alt="image-20230529104953877"
 &lt;span class="nt">&amp;lt;/profiles&amp;gt;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">server.port=8080
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2
+spring.sql.init.mode=always
+spring.datasource.url=jdbc:h2:~/dev;AUTO_SERVER=true
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=sa
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=update
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
 &lt;/div>&lt;p>在編譯project時&lt;/p>
 &lt;p>使用&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1385,7 +1423,221 @@ alt="image-20230529104953877"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>則可使用dev環境的properties來打包專案&lt;/p>
-&lt;p>不需要再手動在application.properties中修改&lt;/p></description></item><item><title>在MacBook M1環境下使用Terimnal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟IntelliJ" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>不需要再手動在application.properties中修改&lt;/p>
+&lt;h1 id="配置multimodule-">配置MultiModule ☆☆☆☆☆&lt;/h1>
+&lt;p>可參考至此Repository&lt;/p>
+&lt;p>&lt;a href="https://github.com/Hoxton019030/SpringBoot-MultiModule-MVC-Structure/tree/main">https://github.com/Hoxton019030/SpringBoot-MultiModule-MVC-Structure/tree/main&lt;/a>&lt;/p>
+&lt;p>在原有的專案中新增Module&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/eNMiOCn.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>根目錄的POM檔就會有相應的Module引入&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/m0vpb4Q.png"
+loading="lazy"
+alt="image-20230529183210234"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">...
+&lt;span class="nt">&amp;lt;modules&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;module&amp;gt;&lt;/span>service&lt;span class="nt">&amp;lt;/module&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;module&amp;gt;&lt;/span>dao&lt;span class="nt">&amp;lt;/module&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;module&amp;gt;&lt;/span>controller&lt;span class="nt">&amp;lt;/module&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/modules&amp;gt;&lt;/span>
+...
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>而子模塊的POM檔會紀錄副模塊的資訊&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/uwqeM8W.png"
+loading="lazy"
+alt="image-20230529183352977"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">...
+&lt;span class="nt">&amp;lt;parent&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>com.example&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>Maven_MultiModulePractice&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>0.0.1-SNAPSHOT&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/parent&amp;gt;&lt;/span>
+...
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果不特別設置的話，Parent的dependency會被child-module的project給繼承使用，所以例如Lombok這種東西就可以配置在parent module中，而gson這種東西，就可以專門配置在service-module中，避免POM檔無限制的增長&lt;/p>
+&lt;h1 id="指定不同開發環境">指定不同開發環境&lt;/h1>
+&lt;p>&lt;a href="https://github.com/Hoxton019030/SpringBoot-MultiModule-MVC-Structure">https://github.com/Hoxton019030/SpringBoot-MultiModule-MVC-Structure&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/sfieONT.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>在開發中，常常會需要不同的開發環境，比如說本地開發時，可能會連接本地的Database，當上線到雲端後，可能會需要連接雲端的VM，於是就可以在POM裡面去指定不同的環境、不同的情況、不同的作業系統會執行不同的application.properties，相關的配置如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="cp">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;project&lt;/span> &lt;span class="na">xmlns=&lt;/span>&lt;span class="s">&amp;#34;http://maven.apache.org/POM/4.0.0&amp;#34;&lt;/span>
+&lt;span class="na">xmlns:xsi=&lt;/span>&lt;span class="s">&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span>
+&lt;span class="na">xsi:schemaLocation=&lt;/span>&lt;span class="s">&amp;#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&amp;#34;&lt;/span>&lt;span class="nt">&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;modelVersion&amp;gt;&lt;/span>4.0.0&lt;span class="nt">&amp;lt;/modelVersion&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;parent&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>hoxton.multimodule&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>major&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>1.0-SNAPSHOT&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/parent&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;build&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;resources&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;resource&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;directory&amp;gt;&lt;/span>src/main/resources/resource-${env}&lt;span class="nt">&amp;lt;/directory&amp;gt;&lt;/span> &lt;span class="c">&amp;lt;!-- 這邊的env對應到(1)--&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/resource&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/resources&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/build&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;profiles&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;profile&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;id&amp;gt;&lt;/span>dev&lt;span class="nt">&amp;lt;/id&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;properties&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;env&amp;gt;&lt;/span>dev&lt;span class="nt">&amp;lt;/env&amp;gt;&lt;/span> &lt;span class="c">&amp;lt;!--(1)--&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/properties&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/profile&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;profile&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;id&amp;gt;&lt;/span>local&lt;span class="nt">&amp;lt;/id&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;properties&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;env&amp;gt;&lt;/span>local&lt;span class="nt">&amp;lt;/env&amp;gt;&lt;/span> &lt;span class="c">&amp;lt;!--(1)--&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/properties&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/profile&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;profile&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;id&amp;gt;&lt;/span>prod&lt;span class="nt">&amp;lt;/id&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;properties&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;env&amp;gt;&lt;/span>prod&lt;span class="nt">&amp;lt;/env&amp;gt;&lt;/span> &lt;span class="c">&amp;lt;!--(1)--&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/properties&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;activation&amp;gt;&lt;/span>
+&lt;span class="c">&amp;lt;!--這邊還有更多設定可以設定，比如說指定JDK版本、OS等等，但我現在懶得研究了--&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;activeByDefault&amp;gt;&lt;/span>true&lt;span class="nt">&amp;lt;/activeByDefault&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/activation&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/profile&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/profiles&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>application&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;properties&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;maven.compiler.source&amp;gt;&lt;/span>11&lt;span class="nt">&amp;lt;/maven.compiler.source&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;maven.compiler.target&amp;gt;&lt;/span>11&lt;span class="nt">&amp;lt;/maven.compiler.target&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;project.build.sourceEncoding&amp;gt;&lt;/span>UTF-8&lt;span class="nt">&amp;lt;/project.build.sourceEncoding&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/properties&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;dependencies&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>hoxton.multimodule&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>controller&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>1.0-SNAPSHOT&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependencies&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/project&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著就可以用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">mvn clean package -Pdev
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">mvn clean package -Pprod
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">mvn clean package -Plocal
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來打包成不同的jar了&lt;/p></description></item><item><title>在MacBook M1環境下使用Terimnal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟IntelliJ" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前陣子買了Mac，影響我最大的應該就是不能再像Window一樣，使用右鍵開啟專案了！因為公司的產品有兩個專案，我也常常把專案砍掉重抓，如果不能用右鍵開啟，那就得從IntelliJ中手動匯入，這樣子一來一往真的是靠北麻煩。&lt;/p>
 &lt;h1 id="如何使用terminal開啟intellij">如何使用Terminal開啟IntelliJ&lt;/h1>
 &lt;p>其實網路上我看了很多教學，到後面我才發現其實官網就有寫了，原來幸福的青鳥一直就在身邊，唉
