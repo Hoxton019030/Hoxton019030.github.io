@@ -11,7 +11,268 @@
 &lt;p>這樣外部就可以透過&lt;/p>
 &lt;p>http://{ip-address}:8081/&lt;/p>
 &lt;p>來訪問網站了&lt;/p>
-&lt;h2 id="123">123&lt;/h2></description></item><item><title>Maven詳細研究</title><link>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</link><pubDate>Fri, 19 May 2023 09:47:13 +0800</pubDate><guid>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/VcZp2b7.png" alt="Featured image of post Maven詳細研究" />&lt;p>最近換了一份新工作，發現我一直以來平淡無情的Maven原來也是有很多細節的（我一直以為就只是一個拿來自動下載Jar的無情機器而已），其實Maven的pom.xml就已經隱含了它的功能&lt;/p>
+&lt;h2 id="123">123&lt;/h2></description></item><item><title>在MacBook M1環境下使用Terimnal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟IntelliJ" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>前陣子買了Mac，影響我最大的應該就是不能再像Window一樣，使用右鍵開啟專案了！因為公司的產品有兩個專案，我也常常把專案砍掉重抓，如果不能用右鍵開啟，那就得從IntelliJ中手動匯入，這樣子一來一往真的是靠北麻煩。&lt;/p>
+&lt;h1 id="如何使用terminal開啟intellij">如何使用Terminal開啟IntelliJ&lt;/h1>
+&lt;p>其實網路上我看了很多教學，到後面我才發現其實官網就有寫了，原來幸福的青鳥一直就在身邊，唉
+&lt;a href="https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html">https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html&lt;/a>&lt;/p>
+&lt;h2 id="切換至usrlocalbin">切換至/usr/local/bin/&lt;/h2>
+&lt;p>首先先切換至&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /usr/local/bin/
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="創建idea檔案">創建idea檔案&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">touch idea
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="編輯idea檔案中的內容">編輯idea檔案中的內容&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="cp">#!/bin/sh
+&lt;/span>&lt;span class="cp">&lt;/span>
+open -na &lt;span class="s2">&amp;#34;IntelliJ IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/uvt1d2m.png"
+loading="lazy"
+>&lt;/p>
+&lt;h2 id="存擋後使用chmod調整權限">存擋後使用Chmod調整權限&lt;/h2>
+&lt;p>輸入指令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">chmod &lt;span class="m">755&lt;/span> idea
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&amp;ldquo;chmod 755&amp;rdquo; 是一個用於設置檔案或目錄權限的命令。在 Linux 和其他類 Unix 系統中，&amp;ldquo;chmod&amp;rdquo; 是改變檔案權限的指令，而 &amp;ldquo;755&amp;rdquo; 是一個表示權限的數字。&lt;/p>
+&lt;p>在 &amp;ldquo;chmod 755&amp;rdquo; 中，&amp;ldquo;755&amp;rdquo; 是由三個數字組成的權限表示法。每個數字代表了不同的使用者類別和他們對檔案的權限。&lt;/p>
+&lt;p>第一個數字（7）表示檔案所有者的權限。在這種情況下，7 表示所有者具有讀取、寫入和執行的權限（4 + 2 + 1）。
+第二個數字（5）表示檔案所屬群組的權限。在這種情況下，5 表示群組具有讀取和執行的權限，但沒有寫入的權限（4 + 1）。
+第三個數字（5）表示其他使用者（非所有者且非群組成員）的權限。在這種情況下，5 表示其他使用者具有讀取和執行的權限，但沒有寫入的權限（4 + 1）。
+因此，&amp;ldquo;chmod 755&amp;rdquo; 的含義是將檔案設置為擁有者具有讀取、寫入和執行權限，群組成員和其他使用者具有讀取和執行權限，但不具有寫入權限。&lt;/p>
+&lt;h2 id="刷新頁面">刷新頁面&lt;/h2>
+&lt;p>確認mac os的檔案icon是否有更改成exec&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/24ushKG.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>如果更改成功，就可以透過&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用intelliJ開啟檔案了 ！&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
+loading="lazy"
+>&lt;/p>
+&lt;h1 id="以下內容作廢請勿參考這是我錯的紀錄">以下內容作廢，請勿參考，這是我錯的紀錄&lt;/h1>
+&lt;p>如何在Mac中設置環境變數開啟IDEA&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/lUFkVtz.png"
+loading="lazy"
+alt="image-20230518212755943"
+>&lt;/p>
+&lt;p>在Terminal中輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim ~/.bash_profile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>進入輸入畫面後，輸入以下資訊&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/Applications/IntelliJ IDEA.app/Contents/MacOS:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/lpQPUO3.png"
+loading="lazy"
+alt="image-20230518213215354"
+>&lt;/p>
+&lt;p>儲存後退出，並輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">source&lt;/span> ~/.bash_profile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>即可使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>用Idea開啟當前目錄&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
+loading="lazy"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/JWV7cRS.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>也可在terminal輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">env
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看目前的環境變數，確定是否有加入PATH中&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/YWKWBgv.png"
+loading="lazy"
+alt="image-20230518213418418"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">open -na &lt;span class="s2">&amp;#34;IntelliJ IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ARM架構與x86架構下，Docker啟動問題</title><link>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 13 May 2023 19:09:41 +0800</pubDate><guid>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/xqj3WOb.png" alt="Featured image of post ARM架構與x86架構下，Docker啟動問題" />&lt;h1 id="導因">導因&lt;/h1>
+&lt;p>M1的CPU是使用ARM架構，而有些電腦則是使用x86架構，並且因Docker是Run在OS上方，所以在執行Image時也要考慮作業系統的問題&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">The requested image&lt;span class="err">&amp;#39;&lt;/span>s platform &lt;span class="o">(&lt;/span>linux/amd64&lt;span class="o">)&lt;/span> does not match the detected host platform &lt;span class="o">(&lt;/span>linux/arm64/v8&lt;span class="o">)&lt;/span> and no specific platform was requested
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="解決方法">解決方法&lt;/h1>
+&lt;p>在docker run啟動參數後加上&lt;code>--platform linux/amd64&lt;/code>即可解決這個問題&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker run --platform linux/amd64 -p 8080:8080 fe744192d855
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="解決方法二">解決方法二&lt;/h1>
+&lt;p>幹你媽的，我發現run的時候還是不行，還是要在build就控制它的架構&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker build . --platform linux/x86_64
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>如何更改Mac terminal的預設路徑</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</link><pubDate>Sat, 13 May 2023 17:44:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</guid><description>&lt;img src="https://i.imgur.com/ieJ6kkK.png" alt="Featured image of post 如何更改Mac terminal的預設路徑" />&lt;h1 id="簡介">簡介&lt;/h1>
+&lt;p>最近要換新工作了，正好新工作的公司有電腦補助，就趁這個機會把Macbook也買了，一拿到手之後發現超級難用，難用到靠北，真的不懂為什麼一堆人說好用。&lt;/p>
+&lt;h1 id="如何更改termial預設路徑">如何更改Termial預設路徑&lt;/h1>
+&lt;p>預設情況下，Terminal路徑都是&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/Users/&lt;span class="o">[&lt;/span>使用者名稱&lt;span class="o">]&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但我希望他開啟的路徑是&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/Users/&lt;span class="o">[&lt;/span>使用者名稱&lt;span class="o">]&lt;/span>/Desktop
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>因此要到.zshrc去更改&lt;/p>
+&lt;p>通常這個檔案都會放在&lt;/p>
+&lt;p>/Users/[使用者名稱]底下，如果沒有的話可以自己創一個就好&lt;/p>
+&lt;p>然後編輯裡面的內容，加上這段&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /Users/hoxtonashes/Desktop
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/C4yevFm.png"
+loading="lazy"
+alt="image-20230513180010374"
+>&lt;/p>
+&lt;p>這樣下次開啟的時候，預設的Terminal路徑就會是Desktop了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Q14Iy0n.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p></description></item><item><title>在IntelliJ中設定Class模板</title><link>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</link><pubDate>Fri, 12 May 2023 15:41:07 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/dEvsZm3.png" alt="Featured image of post 在IntelliJ中設定Class模板" />&lt;p>在IntelliJ開啟以下的路徑&lt;/p>
+&lt;p>&lt;code>Setting &amp;gt; Editor &amp;gt; File and Code Templates &amp;gt; Includes &amp;gt; File Header&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/sOjF3Yb.png"
+loading="lazy"
+alt="image-20230512154419942"
+>&lt;/p>
+&lt;p>即可在這邊編輯創建Class的模板，一旦設定好後，當你創建一個新的Class時，IntelliJ就會在你的Class上插入這些資訊&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/TWmvl80.png"
+loading="lazy"
+alt="image-20230512154507522"
+>&lt;/p></description></item><item><title>Git-rerere之介紹</title><link>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</link><pubDate>Fri, 12 May 2023 11:05:10 +0800</pubDate><guid>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/FJcgPVI.png" alt="Featured image of post Git-rerere之介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
+&lt;p>最近公司提倡使用rebase而非merge來合併分支，但在rebase的情況下，常常出現多種commit會有重複confict的情形發生，往往可能要解個2,30個conflict，一來一往可能會耗費許多時間，於是上網查了一下，發現有&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git rerere
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這種神奇的指令&lt;/p>
+&lt;p>這是由3個單字縮寫所組成的指令，分別是reuse、recorded 與 resolution。git rerere有點像是一個記憶吐司的概念，能夠記錄你之前解Conflict的方式，然後自動幫你套用到相同的地方。&lt;/p>
+&lt;p>而這個rerere的行為預設是關閉的，想要打開的話可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global rerere.enabled &lt;span class="nb">true&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來啟用，若不想要使用的話可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --unset rerere.enabled
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Maven詳細研究</title><link>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</link><pubDate>Tue, 09 May 2023 09:47:13 +0800</pubDate><guid>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/VcZp2b7.png" alt="Featured image of post Maven詳細研究" />&lt;p>最近換了一份新工作，發現我一直以來平淡無情的Maven原來也是有很多細節的（我一直以為就只是一個拿來自動下載Jar的無情機器而已），其實Maven的pom.xml就已經隱含了它的功能&lt;/p>
 &lt;p>&lt;span style="color:yellow">P&lt;/span>roject &lt;span style="color:yellow">O&lt;/span>bject &lt;span style="color:yellow">M&lt;/span>odel（專案物件模型）&lt;/p>
 &lt;p>望文生義其實也可以感受到它就是用來管理專案、或專案與專案之間關係的一個檔案，這篇文章的主題是我想要&lt;strong>了解Maven Module管理的部分&lt;/strong>&lt;/p>
 &lt;h1 id="maven項目結構">Maven項目結構&lt;/h1>
@@ -1637,268 +1898,7 @@ alt="demo"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">mvn clean package -Plocal
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>來打包成不同的jar了&lt;/p></description></item><item><title>在MacBook M1環境下使用Terimnal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟IntelliJ" />&lt;h1 id="前言">前言&lt;/h1>
-&lt;p>前陣子買了Mac，影響我最大的應該就是不能再像Window一樣，使用右鍵開啟專案了！因為公司的產品有兩個專案，我也常常把專案砍掉重抓，如果不能用右鍵開啟，那就得從IntelliJ中手動匯入，這樣子一來一往真的是靠北麻煩。&lt;/p>
-&lt;h1 id="如何使用terminal開啟intellij">如何使用Terminal開啟IntelliJ&lt;/h1>
-&lt;p>其實網路上我看了很多教學，到後面我才發現其實官網就有寫了，原來幸福的青鳥一直就在身邊，唉
-&lt;a href="https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html">https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html&lt;/a>&lt;/p>
-&lt;h2 id="切換至usrlocalbin">切換至/usr/local/bin/&lt;/h2>
-&lt;p>首先先切換至&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /usr/local/bin/
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="創建idea檔案">創建idea檔案&lt;/h2>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">touch idea
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="編輯idea檔案中的內容">編輯idea檔案中的內容&lt;/h2>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="cp">#!/bin/sh
-&lt;/span>&lt;span class="cp">&lt;/span>
-open -na &lt;span class="s2">&amp;#34;IntelliJ IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/uvt1d2m.png"
-loading="lazy"
->&lt;/p>
-&lt;h2 id="存擋後使用chmod調整權限">存擋後使用Chmod調整權限&lt;/h2>
-&lt;p>輸入指令&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">chmod &lt;span class="m">755&lt;/span> idea
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&amp;ldquo;chmod 755&amp;rdquo; 是一個用於設置檔案或目錄權限的命令。在 Linux 和其他類 Unix 系統中，&amp;ldquo;chmod&amp;rdquo; 是改變檔案權限的指令，而 &amp;ldquo;755&amp;rdquo; 是一個表示權限的數字。&lt;/p>
-&lt;p>在 &amp;ldquo;chmod 755&amp;rdquo; 中，&amp;ldquo;755&amp;rdquo; 是由三個數字組成的權限表示法。每個數字代表了不同的使用者類別和他們對檔案的權限。&lt;/p>
-&lt;p>第一個數字（7）表示檔案所有者的權限。在這種情況下，7 表示所有者具有讀取、寫入和執行的權限（4 + 2 + 1）。
-第二個數字（5）表示檔案所屬群組的權限。在這種情況下，5 表示群組具有讀取和執行的權限，但沒有寫入的權限（4 + 1）。
-第三個數字（5）表示其他使用者（非所有者且非群組成員）的權限。在這種情況下，5 表示其他使用者具有讀取和執行的權限，但沒有寫入的權限（4 + 1）。
-因此，&amp;ldquo;chmod 755&amp;rdquo; 的含義是將檔案設置為擁有者具有讀取、寫入和執行權限，群組成員和其他使用者具有讀取和執行權限，但不具有寫入權限。&lt;/p>
-&lt;h2 id="刷新頁面">刷新頁面&lt;/h2>
-&lt;p>確認mac os的檔案icon是否有更改成exec&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/24ushKG.png"
-loading="lazy"
->&lt;/p>
-&lt;p>如果更改成功，就可以透過&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>使用intelliJ開啟檔案了 ！&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
-loading="lazy"
->&lt;/p>
-&lt;h1 id="以下內容作廢請勿參考這是我錯的紀錄">以下內容作廢，請勿參考，這是我錯的紀錄&lt;/h1>
-&lt;p>如何在Mac中設置環境變數開啟IDEA&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/lUFkVtz.png"
-loading="lazy"
-alt="image-20230518212755943"
->&lt;/p>
-&lt;p>在Terminal中輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim ~/.bash_profile
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>進入輸入畫面後，輸入以下資訊&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/Applications/IntelliJ IDEA.app/Contents/MacOS:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/lpQPUO3.png"
-loading="lazy"
-alt="image-20230518213215354"
->&lt;/p>
-&lt;p>儲存後退出，並輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">source&lt;/span> ~/.bash_profile
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>即可使用&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>用Idea開啟當前目錄&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
-loading="lazy"
->&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/JWV7cRS.gif"
-loading="lazy"
-alt="demo"
->&lt;/p>
-&lt;p>也可在terminal輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">env
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>來查看目前的環境變數，確定是否有加入PATH中&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/YWKWBgv.png"
-loading="lazy"
-alt="image-20230518213418418"
->&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">open -na &lt;span class="s2">&amp;#34;IntelliJ IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description></item><item><title>ARM架構與x86架構下，Docker啟動問題</title><link>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 13 May 2023 19:09:41 +0800</pubDate><guid>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/xqj3WOb.png" alt="Featured image of post ARM架構與x86架構下，Docker啟動問題" />&lt;h1 id="導因">導因&lt;/h1>
-&lt;p>M1的CPU是使用ARM架構，而有些電腦則是使用x86架構，並且因Docker是Run在OS上方，所以在執行Image時也要考慮作業系統的問題&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">The requested image&lt;span class="err">&amp;#39;&lt;/span>s platform &lt;span class="o">(&lt;/span>linux/amd64&lt;span class="o">)&lt;/span> does not match the detected host platform &lt;span class="o">(&lt;/span>linux/arm64/v8&lt;span class="o">)&lt;/span> and no specific platform was requested
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h1 id="解決方法">解決方法&lt;/h1>
-&lt;p>在docker run啟動參數後加上&lt;code>--platform linux/amd64&lt;/code>即可解決這個問題&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker run --platform linux/amd64 -p 8080:8080 fe744192d855
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h1 id="解決方法二">解決方法二&lt;/h1>
-&lt;p>幹你媽的，我發現run的時候還是不行，還是要在build就控制它的架構&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker build . --platform linux/x86_64
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description></item><item><title>如何更改Mac terminal的預設路徑</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</link><pubDate>Sat, 13 May 2023 17:44:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</guid><description>&lt;img src="https://i.imgur.com/ieJ6kkK.png" alt="Featured image of post 如何更改Mac terminal的預設路徑" />&lt;h1 id="簡介">簡介&lt;/h1>
-&lt;p>最近要換新工作了，正好新工作的公司有電腦補助，就趁這個機會把Macbook也買了，一拿到手之後發現超級難用，難用到靠北，真的不懂為什麼一堆人說好用。&lt;/p>
-&lt;h1 id="如何更改termial預設路徑">如何更改Termial預設路徑&lt;/h1>
-&lt;p>預設情況下，Terminal路徑都是&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/Users/&lt;span class="o">[&lt;/span>使用者名稱&lt;span class="o">]&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>但我希望他開啟的路徑是&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/Users/&lt;span class="o">[&lt;/span>使用者名稱&lt;span class="o">]&lt;/span>/Desktop
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>因此要到.zshrc去更改&lt;/p>
-&lt;p>通常這個檔案都會放在&lt;/p>
-&lt;p>/Users/[使用者名稱]底下，如果沒有的話可以自己創一個就好&lt;/p>
-&lt;p>然後編輯裡面的內容，加上這段&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /Users/hoxtonashes/Desktop
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/C4yevFm.png"
-loading="lazy"
-alt="image-20230513180010374"
->&lt;/p>
-&lt;p>這樣下次開啟的時候，預設的Terminal路徑就會是Desktop了&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/Q14Iy0n.gif"
-loading="lazy"
-alt="demo"
->&lt;/p></description></item><item><title>在IntelliJ中設定Class模板</title><link>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</link><pubDate>Fri, 12 May 2023 15:41:07 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/dEvsZm3.png" alt="Featured image of post 在IntelliJ中設定Class模板" />&lt;p>在IntelliJ開啟以下的路徑&lt;/p>
-&lt;p>&lt;code>Setting &amp;gt; Editor &amp;gt; File and Code Templates &amp;gt; Includes &amp;gt; File Header&lt;/code>&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/sOjF3Yb.png"
-loading="lazy"
-alt="image-20230512154419942"
->&lt;/p>
-&lt;p>即可在這邊編輯創建Class的模板，一旦設定好後，當你創建一個新的Class時，IntelliJ就會在你的Class上插入這些資訊&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/TWmvl80.png"
-loading="lazy"
-alt="image-20230512154507522"
->&lt;/p></description></item><item><title>Git-rerere之介紹</title><link>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</link><pubDate>Fri, 12 May 2023 11:05:10 +0800</pubDate><guid>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/FJcgPVI.png" alt="Featured image of post Git-rerere之介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
-&lt;p>最近公司提倡使用rebase而非merge來合併分支，但在rebase的情況下，常常出現多種commit會有重複confict的情形發生，往往可能要解個2,30個conflict，一來一往可能會耗費許多時間，於是上網查了一下，發現有&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git rerere
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>這種神奇的指令&lt;/p>
-&lt;p>這是由3個單字縮寫所組成的指令，分別是reuse、recorded 與 resolution。git rerere有點像是一個記憶吐司的概念，能夠記錄你之前解Conflict的方式，然後自動幫你套用到相同的地方。&lt;/p>
-&lt;p>而這個rerere的行為預設是關閉的，想要打開的話可以輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global rerere.enabled &lt;span class="nb">true&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>來啟用，若不想要使用的話可以輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --unset rerere.enabled
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description></item><item><title>H2Database之配置檔紀錄</title><link>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</link><pubDate>Sat, 06 May 2023 00:13:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/xYmsInY.png" alt="Featured image of post H2Database之配置檔紀錄" />&lt;p>依賴如下&lt;/p>
+&lt;/div>&lt;p>來打包成不同的jar了&lt;/p></description></item><item><title>H2Database之配置檔紀錄</title><link>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</link><pubDate>Sat, 06 May 2023 00:13:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/xYmsInY.png" alt="Featured image of post H2Database之配置檔紀錄" />&lt;p>依賴如下&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
