@@ -3830,7 +3830,7 @@ alt="image-20230321104350045"
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">變數名稱：CMDER_ROOT
-變數值：C:\Users\You_userName\AppData\Roaming\cmder
+變數值：%USERPROFILE%/AppData/Roaming/cmder
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/evCanCt.png"
@@ -3844,7 +3844,7 @@ alt="image-20230321104927389"
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">變數名稱：ConEmuDir
-變數值：C:\Users\You_userName\AppData\Roaming\cmder\vendor\conemu-maximus5
+變數值：%USERPROFILE%/AppData/Roaming/cmder/vendor/conemu-maximus5
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/v6v0WUg.png"
