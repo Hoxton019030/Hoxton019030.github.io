@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mac on Hoxton</title><link>https://hoxtonhsu.com/tags/mac/</link><description>Recent content in Mac on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 18 May 2023 21:22:51 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/mac/index.xml" rel="self" type="application/rss+xml"/><item><title>在MacBook M1環境下使用Terimnal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟IntelliJ" />&lt;h1 id="前言">前言&lt;/h1>
-&lt;p>前陣子買了Mac，影響我最大的應該就是不能再像Window一樣，使用右鍵開啟專案了！因為公司的產品有兩個專案，我也常常把專案砍掉重抓，如果不能用右鍵開啟，那就得從IntelliJ中手動匯入，這樣子一來一往真的是靠北麻煩。&lt;/p>
-&lt;h1 id="如何使用terminal開啟intellij">如何使用Terminal開啟IntelliJ&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mac on Hoxton</title><link>https://hoxtonhsu.com/tags/mac/</link><description>Recent content in Mac on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 18 May 2023 21:22:51 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/mac/index.xml" rel="self" type="application/rss+xml"/><item><title>在MacBook M1環境下使用Terimnal開啟</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9F/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9F/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>前陣子買了Mac，影響我最大的應該就是不能再像Window一樣，使用右鍵開啟專案了！因為公司的產品有兩個專案，我也常常把專案砍掉重抓，如果不能用右鍵開啟，那就得從中手動匯入，這樣子一來一往真的是靠北麻煩。&lt;/p>
+&lt;h1 id="如何使用terminal開啟">如何使用Terminal開啟&lt;/h1>
 &lt;p>其實網路上我看了很多教學，到後面我才發現其實官網就有寫了，原來幸福的青鳥一直就在身邊，唉
 &lt;a href="https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html">https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html&lt;/a>&lt;/p>
 &lt;h2 id="切換至usrlocalbin">切換至/usr/local/bin/&lt;/h2>
@@ -32,7 +32,7 @@
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="cp">#!/bin/sh
 &lt;/span>&lt;span class="cp">&lt;/span>
-open -na &lt;span class="s2">&amp;#34;IntelliJ IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+open -na &lt;span class="s2">&amp;#34; IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/uvt1d2m.png"
@@ -68,7 +68,7 @@ loading="lazy"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>使用intelliJ開啟檔案了 ！&lt;/p>
+&lt;/div>&lt;p>使用開啟檔案了 ！&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
 loading="lazy"
 >&lt;/p>
@@ -93,7 +93,7 @@ alt="image-20230518212755943"
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/Applications/IntelliJ IDEA.app/Contents/MacOS:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/Applications/ IDEA.app/Contents/MacOS:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/lpQPUO3.png"
@@ -145,7 +145,7 @@ alt="image-20230518213418418"
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">open -na &lt;span class="s2">&amp;#34;IntelliJ IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">open -na &lt;span class="s2">&amp;#34; IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div></description></item><item><title>如何更改Mac terminal的預設路徑</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</link><pubDate>Sat, 13 May 2023 17:44:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</guid><description>&lt;img src="https://i.imgur.com/ieJ6kkK.png" alt="Featured image of post 如何更改Mac terminal的預設路徑" />&lt;h1 id="簡介">簡介&lt;/h1>
