@@ -1,4 +1,76 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 20 May 2023 11:40:25 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>將Linux的Port打開，讓外部可以訪問</title><link>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</link><pubDate>Sat, 20 May 2023 11:40:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</guid><description>&lt;img src="https://i.imgur.com/qKt7ANw.png" alt="Featured image of post 將Linux的Port打開，讓外部可以訪問" />&lt;p>在遠端的電腦上輸入&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 09 Jun 2023 20:56:38 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows系統中，使用Terminal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/windows%E7%B3%BB%E7%B5%B1%E4%B8%AD%E4%BD%BF%E7%94%A8terminal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Fri, 09 Jun 2023 20:56:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/windows%E7%B3%BB%E7%B5%B1%E4%B8%AD%E4%BD%BF%E7%94%A8terminal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://hoxtonhsu.com/ttps:/i.imgur.com/ZnWyHSE.jpg" alt="Featured image of post Windows系統中，使用Terminal開啟IntelliJ" />&lt;p>前一陣子買了Mac，讓Mac可以用Terminal開啟IntelliJ，關於Mac的設定可以查看&lt;a class="link" href="https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/" target="_blank" rel="noopener"
+>這篇文章&lt;/a>，但這是一直遲遲沒有把windows也設定起來，但今天它來啦！&lt;/p>
+&lt;h1 id="實際演示">實際演示&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/ds4v65X.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;h1 id="教學">教學&lt;/h1>
+&lt;ol>
+&lt;li>將IntelliJ的bin加到Path中&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>PATH是一個包含多個路徑的環境變數，系統使用它來尋找執行檔案。當你在命令提示字元或終端中輸入一個命令時，系統會檢查這些路徑，看是否有包含該命令的可執行檔案。&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">setx PATH &lt;span class="s2">&amp;#34;%PATH%;C:\Program Files\JetBrains\IntelliJ IDEA 2023.1.2\bin&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>切到IntelliJ的資料夾中&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> C:&lt;span class="se">\P&lt;/span>rogram Files&lt;span class="se">\J&lt;/span>etBrains&lt;span class="se">\I&lt;/span>ntelliJ IDEA 2023.1.2&lt;span class="se">\b&lt;/span>in
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>​ 其實做到這邊就差不多了，你已經可以使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>​ 來開啟檔案了，但如果這樣子你會發現你的termianl在啟動專案的時候就 被佔用了，原因是因為這個指令是在用\bin底下的idea.bat啟動，於是我 們要改成用idea64.exe的方式來開啟檔案，需要做以下的步驟&lt;/p>
+&lt;ol start="3">
+&lt;li>將名稱為idea的bat檔命名為idea64&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/wzE767g.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>其實要命名成什麼都沒差，不要再叫idea就好&lt;/p>
+&lt;/blockquote>
+&lt;ol start="4">
+&lt;li>將idea64.exe的檔案命名為idea&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/1P8PfIH.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;ol start="5">
+&lt;li>將idea64.exe.vmoptions命名為idea.exe.vmoptions&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/w4CORSE.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>如果不改的話，會出現找不到intelliJ 找不到vm option的問題&lt;/p>
+&lt;/blockquote>
+&lt;p>這樣就可以用idea .來 開啟檔案了&lt;/p>
+&lt;h1 id="注意事項">注意事項&lt;/h1>
+&lt;p>這樣的修改會導致桌面的捷徑出現問題，因為我們把啟動的程式從idea64.exe重新命名成idea.exe了，所以需要重新建立一個新的桌面捷徑&lt;/p></description></item><item><title>%Ans%</title><link>https://hoxtonhsu.com/p/ans/</link><pubDate>Mon, 05 Jun 2023 13:50:57 +0800</pubDate><guid>https://hoxtonhsu.com/p/ans/</guid><description/></item><item><title>將Linux的Port打開，讓外部可以訪問</title><link>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</link><pubDate>Sat, 20 May 2023 11:40:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</guid><description>&lt;img src="https://i.imgur.com/qKt7ANw.png" alt="Featured image of post 將Linux的Port打開，讓外部可以訪問" />&lt;p>在遠端的電腦上輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -2014,7 +2086,8 @@ alt="demo"
 loading="lazy"
 alt="image-20230506001229397"
 >&lt;/p>
-&lt;p>即可在專案中配置環境變數，並讓配置檔讀取&lt;/p></description></item><item><title>MacOS如何終止port,process</title><link>https://hoxtonhsu.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</link><pubDate>Wed, 03 May 2023 16:25:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</guid><description>&lt;img src="https://i.imgur.com/m3Lr6uG.png" alt="Featured image of post MacOS如何終止port,process" />&lt;div class="highlight">&lt;div class="chroma">
+&lt;p>即可在專案中配置環境變數，並讓配置檔讀取&lt;/p></description></item><item><title>網路安全概論</title><link>https://hoxtonhsu.com/p/%E7%B6%B2%E8%B7%AF%E5%AE%89%E5%85%A8%E6%A6%82%E8%AB%96/</link><pubDate>Fri, 05 May 2023 13:51:46 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%B6%B2%E8%B7%AF%E5%AE%89%E5%85%A8%E6%A6%82%E8%AB%96/</guid><description>&lt;img src="https://i.imgur.com/BEs83bX.png" alt="Featured image of post 網路安全概論" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>新工作需要了解這部分的資訊，老實說一開始看的時候是想睡，但覺得裡面講的一些東西好像有一些些&lt;/p></description></item><item><title>MacOS如何終止port,process</title><link>https://hoxtonhsu.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</link><pubDate>Wed, 03 May 2023 16:25:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</guid><description>&lt;img src="https://i.imgur.com/m3Lr6uG.png" alt="Featured image of post MacOS如何終止port,process" />&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
