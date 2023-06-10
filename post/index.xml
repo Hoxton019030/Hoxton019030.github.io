@@ -2107,8 +2107,7 @@ alt="demo"
 loading="lazy"
 alt="image-20230506001229397"
 >&lt;/p>
-&lt;p>即可在專案中配置環境變數，並讓配置檔讀取&lt;/p></description></item><item><title>網路安全概論</title><link>https://hoxtonhsu.com/p/%E7%B6%B2%E8%B7%AF%E5%AE%89%E5%85%A8%E6%A6%82%E8%AB%96/</link><pubDate>Fri, 05 May 2023 13:51:46 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%B6%B2%E8%B7%AF%E5%AE%89%E5%85%A8%E6%A6%82%E8%AB%96/</guid><description>&lt;img src="https://i.imgur.com/BEs83bX.png" alt="Featured image of post 網路安全概論" />&lt;h1 id="前言">前言&lt;/h1>
-&lt;p>新工作需要了解這部分的資訊，老實說一開始看的時候是想睡，但覺得裡面講的一些東西好像有一些些&lt;/p></description></item><item><title>MacOS如何終止port,process</title><link>https://hoxtonhsu.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</link><pubDate>Wed, 03 May 2023 16:25:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</guid><description>&lt;img src="https://i.imgur.com/m3Lr6uG.png" alt="Featured image of post MacOS如何終止port,process" />&lt;div class="highlight">&lt;div class="chroma">
+&lt;p>即可在專案中配置環境變數，並讓配置檔讀取&lt;/p></description></item><item><title>MacOS如何終止port,process</title><link>https://hoxtonhsu.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</link><pubDate>Wed, 03 May 2023 16:25:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</guid><description>&lt;img src="https://i.imgur.com/m3Lr6uG.png" alt="Featured image of post MacOS如何終止port,process" />&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
