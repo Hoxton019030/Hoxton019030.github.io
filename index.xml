@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 20 May 2023 11:40:25 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>將Linux的Port打開，讓外部可以訪問</title><link>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</link><pubDate>Sat, 20 May 2023 11:40:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</guid><description>&lt;img src="https://i.imgur.com/qKt7ANw.png" alt="Featured image of post 將Linux的Port打開，讓外部可以訪問" />&lt;p>在遠端的電腦上輸入&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 11 Jun 2023 15:06:55 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>使用shellScript讀取資料夾中的檔案個數</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</link><pubDate>Sun, 11 Jun 2023 15:06:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/mdbKbaT.png" alt="Featured image of post 使用shellScript讀取資料夾中的檔案個數" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>一直以來都覺得要在資料夾內搜尋是一件很麻煩的事情，原因是這樣的，我文章的資料夾長這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/c8GWeMt.png"
+loading="lazy"
+alt="image-20230611150948901"
+>&lt;/p>
+&lt;p>他的排序基本上就是依照英文字母(或ASCII)的方式排序，但我更希望的是他可依照我創建的時間排序。我是可以在windons總管和Finder內指定想要的排序方式，但我在線上的Github.dev不能，於是我就想讓我的每篇文章在創建的時後，能夠在前面的資料夾內加上排序，最早創立的是1，其次是2，以此類推&amp;hellip;&lt;/p>
+&lt;h1 id="實際操作">實際操作&lt;/h1>
+&lt;p>詳細的shellscript語法如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;請輸入文章標題&amp;#34;&lt;/span>
+&lt;span class="nb">read&lt;/span> title
+&lt;span class="c1"># cd content/post/$title&lt;/span>
+&lt;span class="c1"># 讀取資料夾內的檔案數量，為文章資料夾命名&lt;/span>
+&lt;span class="nv">file_count&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">$(&lt;/span>ls -1 content/post&lt;span class="p">|&lt;/span> wc -l&lt;span class="k">)&lt;/span>
+&lt;span class="nv">file_count&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">file_count&lt;/span>&lt;span class="p">// /&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="c1"># 去除file_count包含的空白&lt;/span>
+&lt;span class="nv">titleWithNumber&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">$file_count&lt;/span>-&lt;span class="nv">$title&lt;/span>
+hugo new post/&lt;span class="nv">$titleWithNumber&lt;/span>/index.md
+&lt;span class="nb">cd&lt;/span> content/post/&lt;span class="nv">$titleWithNumber&lt;/span>
+open index.md
+&lt;span class="nb">cd&lt;/span> ../../..
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>需要關注的就是那個file_count，那段就是去讀資料夾內當前的檔案數並回報，值得注意的是他取出來的值前面是會帶一個空白的，比如說&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> &lt;span class="m">51&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣子，所以需要再把它的空白去掉，這樣就可以在後面以字串串接的方式將文章的標題自動帶上編號了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/tEKouqD.png"
+loading="lazy"
+alt="image-20230611151534546"
+>&lt;/p></description></item><item><title>將Linux的Port打開，讓外部可以訪問</title><link>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</link><pubDate>Sat, 20 May 2023 11:40:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</guid><description>&lt;img src="https://i.imgur.com/qKt7ANw.png" alt="Featured image of post 將Linux的Port打開，讓外部可以訪問" />&lt;p>在遠端的電腦上輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
