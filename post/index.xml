@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 20 May 2023 11:40:25 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>將Linux的Port打開，讓外部可以訪問</title><link>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</link><pubDate>Sat, 20 May 2023 11:40:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</guid><description>&lt;img src="https://i.imgur.com/qKt7ANw.png" alt="Featured image of post 將Linux的Port打開，讓外部可以訪問" />&lt;p>在遠端的電腦上輸入&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 14 Jun 2023 15:34:15 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>62 如何為Mac設定環境變數</title><link>https://hoxtonhsu.com/p/62-%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</link><pubDate>Wed, 14 Jun 2023 15:34:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/62-%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/O9emCTx.png" alt="Featured image of post 62 如何為Mac設定環境變數" />&lt;h1 id="教學">教學&lt;/h1>
+&lt;p>可以先輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">env
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看自己目前的環境變數有什麼&lt;/p>
+&lt;p>再來透過&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim ~/.bash_profile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來編輯bash_profile，編輯裡面的內容&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">export&lt;/span> &lt;span class="nv">DESKTOP&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/Desktop&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/FFL4JEh.png"
+loading="lazy"
+alt="image-20230614153700891"
+>&lt;/p>
+&lt;p>之後再輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">source&lt;/span> ~/.bash_profile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣就可以囉！&lt;/p>
+&lt;p>之後可以再輸入一次env，來確認環境變數有被加入到系統中&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vmFlZhA.png"
+loading="lazy"
+alt="image-20230614153937948"
+>&lt;/p></description></item><item><title>將Linux的Port打開，讓外部可以訪問</title><link>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</link><pubDate>Sat, 20 May 2023 11:40:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</guid><description>&lt;img src="https://i.imgur.com/qKt7ANw.png" alt="Featured image of post 將Linux的Port打開，讓外部可以訪問" />&lt;p>在遠端的電腦上輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -82,7 +129,11 @@ alt="demo"
 &lt;/blockquote>
 &lt;p>這樣就可以用idea .來 開啟檔案了&lt;/p>
 &lt;h1 id="注意事項">注意事項&lt;/h1>
-&lt;p>這樣的修改會導致桌面的捷徑出現問題，因為我們把啟動的程式從idea64.exe重新命名成idea.exe了，所以需要重新建立一個新的桌面捷徑&lt;/p></description></item><item><title>使用shellScript讀取資料夾中的檔案個數</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</link><pubDate>Fri, 19 May 2023 15:06:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/mdbKbaT.png" alt="Featured image of post 使用shellScript讀取資料夾中的檔案個數" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>這樣的修改會導致桌面的捷徑出現問題，因為我們把啟動的程式從idea64.exe重新命名成idea.exe了，所以需要重新建立一個新的桌面捷徑&lt;/p></description></item><item><title>使用shellScript讀取資料夾中的檔案個數</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</link><pubDate>Fri, 19 May 2023 15:06:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/mdbKbaT.png" alt="Featured image of post 使用shellScript讀取資料夾中的檔案個數" />&lt;p>&lt;img src="https://i.imgur.com/8Z4DzGb.jpg"
+loading="lazy"
+alt="image-20230612100152377"
+>&lt;/p>
+&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>一直以來都覺得要在資料夾內搜尋是一件很麻煩的事情，原因是這樣的，我文章的資料夾長這樣&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/c8GWeMt.png"
 loading="lazy"
