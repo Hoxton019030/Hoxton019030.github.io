@@ -190,11 +190,7 @@ alt="demo"
 &lt;/blockquote>
 &lt;p>這樣就可以用idea .來 開啟檔案了&lt;/p>
 &lt;h1 id="注意事項">注意事項&lt;/h1>
-&lt;p>這樣的修改會導致桌面的捷徑出現問題，因為我們把啟動的程式從idea64.exe重新命名成idea.exe了，所以需要重新建立一個新的桌面捷徑&lt;/p></description></item><item><title>使用shellScript讀取資料夾中的檔案個數</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</link><pubDate>Fri, 19 May 2023 15:06:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/mdbKbaT.png" alt="Featured image of post 使用shellScript讀取資料夾中的檔案個數" />&lt;p>&lt;img src="https://i.imgur.com/8Z4DzGb.jpg"
-loading="lazy"
-alt="image-20230612100152377"
->&lt;/p>
-&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>這樣的修改會導致桌面的捷徑出現問題，因為我們把啟動的程式從idea64.exe重新命名成idea.exe了，所以需要重新建立一個新的桌面捷徑&lt;/p></description></item><item><title>使用shellScript讀取資料夾中的檔案個數</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</link><pubDate>Fri, 19 May 2023 15:06:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/mdbKbaT.png" alt="Featured image of post 使用shellScript讀取資料夾中的檔案個數" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>一直以來都覺得要在資料夾內搜尋是一件很麻煩的事情，原因是這樣的，我文章的資料夾長這樣&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/c8GWeMt.png"
 loading="lazy"
