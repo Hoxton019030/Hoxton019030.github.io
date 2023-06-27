@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 15 Jun 2023 16:32:19 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>如何讓Iterm2擁有如Window Terminal般的絲滑體驗</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</link><pubDate>Thu, 15 Jun 2023 16:32:19 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</guid><description>&lt;img src="https://i.imgur.com/w12QKbR.png" alt="Featured image of post 如何讓Iterm2擁有如Window Terminal般的絲滑體驗" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 27 Jun 2023 11:14:03 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>在Iterm2上持續顯示log, branch</title><link>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</link><pubDate>Tue, 27 Jun 2023 11:14:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</guid><description>&lt;img src="https://i.imgur.com/nivCoDF.png" alt="Featured image of post 在Iterm2上持續顯示log, branch" />&lt;h1 id="內文">內文&lt;/h1>
+&lt;p>Iterm2裡面，當我輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git log --oneline
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>時，會在我的terminal上顯示出來，但當我退出後，這些資訊又不見，會讓我在rebase的時候遇到很多困難，上網查了一下之後發現有這個功能可已開起&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --replace-all core.pager &lt;span class="s2">&amp;#34;less -F -X&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣就可以持續顯示了&lt;/p></description></item><item><title>如何讓Iterm2擁有如Window Terminal般的絲滑體驗</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</link><pubDate>Thu, 15 Jun 2023 16:32:19 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</guid><description>&lt;img src="https://i.imgur.com/w12QKbR.png" alt="Featured image of post 如何讓Iterm2擁有如Window Terminal般的絲滑體驗" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前一陣子花了65,000買了一台Macbook，不得不說，使用體驗還是覺得像一坨答辯一樣，很多東西都要自己來。用了快一個月左右，還是有很多地方不適應，最直觀的體驗就是Terinal吧，Windows有一個非常強的Terminal介面叫做Window Terminal，它的畫面設計還有使用體驗，海放了Iterm不知道幾條街，尤其是window鍵+`，快速開啟Terminal的功能至今讓我難以忘懷。換到Mac上，我試著熟悉左右切換視窗的方式來模擬那熟悉的感覺，但切換的動畫的那一秒還是讓我煩躁不已。於是搜尋了一下，發現Iterm本身就有內建如同Window Terminal快速開啟Terminal的方式。｀&lt;/p>
 &lt;h1 id="設定">設定&lt;/h1>
 &lt;p>將Exculde from Dock&amp;hellip;的設定打開&lt;/p>
