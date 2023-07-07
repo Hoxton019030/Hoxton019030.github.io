@@ -11,6 +11,8 @@
 &lt;p>除了Python解釋器和Conda外，Anaconda還包含了許多常用的Python套件，如NumPy、Pandas、Matplotlib、SciPy等，這些套件在數據科學和科學計算領域非常流行。此外，Anaconda還提供了一個名為Jupyter Notebook的環境，用於交互式的編寫和執行Python代碼、數據可視化和文檔編寫。&lt;/p>
 &lt;p>總的來說，Anaconda為Python開發者和數據科學家提供了一個便捷的工具集，使得安裝和管理Python套件變得更加容易，同時提供了一個豐富的生態系統，包含了許多常用的套件和工具，使得開發和數據科學工作更加高效和便利。&lt;/p>
 &lt;/blockquote>
+&lt;p>我個人是從這邊下載的&lt;/p>
+&lt;p>&lt;a href="https://docs.anaconda.com/free/anaconda/install/mac-os/">https://docs.anaconda.com/free/anaconda/install/mac-os/&lt;/a>&lt;/p>
 &lt;ol start="2">
 &lt;li>創建虛擬環境&lt;/li>
 &lt;/ol>
