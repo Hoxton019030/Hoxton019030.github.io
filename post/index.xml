@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 16 Jul 2023 14:58:17 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>以幾何意義來理解線性代數</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E5%B9%BE%E4%BD%95%E6%84%8F%E7%BE%A9%E4%BE%86%E7%90%86%E8%A7%A3%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</link><pubDate>Sun, 16 Jul 2023 14:58:17 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E5%B9%BE%E4%BD%95%E6%84%8F%E7%BE%A9%E4%BE%86%E7%90%86%E8%A7%A3%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/vd5T3J2.png" alt="Featured image of post 以幾何意義來理解線性代數" />&lt;p>參考網址：https://www.bilibili.com/video/BV1ys411472E?p=1&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/p></description></item><item><title>為什麼Javascript的getMonth會是-1的</title><link>https://hoxtonhsu.com/p/%E7%82%BA%E4%BB%80%E9%BA%BCjavascript%E7%9A%84getmonth%E6%9C%83%E6%98%AF-1%E7%9A%84/</link><pubDate>Wed, 12 Jul 2023 17:51:52 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%82%BA%E4%BB%80%E9%BA%BCjavascript%E7%9A%84getmonth%E6%9C%83%E6%98%AF-1%E7%9A%84/</guid><description>&lt;img src="https://i.imgur.com/nFBYwdj.png" alt="Featured image of post 為什麼Javascript的getMonth會是-1的" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 12 Jul 2023 17:51:52 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>為什麼Javascript的getMonth會是-1的</title><link>https://hoxtonhsu.com/p/%E7%82%BA%E4%BB%80%E9%BA%BCjavascript%E7%9A%84getmonth%E6%9C%83%E6%98%AF-1%E7%9A%84/</link><pubDate>Wed, 12 Jul 2023 17:51:52 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%82%BA%E4%BB%80%E9%BA%BCjavascript%E7%9A%84getmonth%E6%9C%83%E6%98%AF-1%E7%9A%84/</guid><description>&lt;img src="https://i.imgur.com/nFBYwdj.png" alt="Featured image of post 為什麼Javascript的getMonth會是-1的" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在一開始接觸Javasript，想要試圖做出一個小專案的菜雞，一定都會遇到這個令人無語的問題&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -2022,26 +2022,6 @@ alt="image-20230707200032473"
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/IttSFOW.gif"
 loading="lazy"
 alt="demo"
->&lt;/p></description></item><item><title>行列式為什麼是ab-bc?行列式之解析</title><link>https://hoxtonhsu.com/p/%E8%A1%8C%E5%88%97%E5%BC%8F%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AFab-bc%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B9%8B%E8%A7%A3%E6%9E%90/</link><pubDate>Thu, 06 Jul 2023 21:17:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%A1%8C%E5%88%97%E5%BC%8F%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AFab-bc%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B9%8B%E8%A7%A3%E6%9E%90/</guid><description>&lt;img src="https://i.imgur.com/kuvQKCh.png" alt="Featured image of post 行列式為什麼是ab-bc?行列式之解析" />&lt;p>設方程式&lt;/p>
-&lt;p>$$
-3x+2y=11 \&lt;br>
-2x+2y=8
-$$&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/0dcz8OM.png"
-loading="lazy"
-alt="image-20230706212347931"
->&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/OOA75T8.png"
-loading="lazy"
-alt="image-20230706212401607"
->&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/TOmu951.png"
-loading="lazy"
-alt="image-20230706212414114"
->&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/HuHVp8Z.png"
-loading="lazy"
-alt="image-20230706212424755"
 >&lt;/p></description></item><item><title>在Termianl中顯示完整的Git Tree</title><link>https://hoxtonhsu.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</link><pubDate>Mon, 03 Jul 2023 16:09:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</guid><description>&lt;img src="https://i.imgur.com/eESaO42.png" alt="Featured image of post 在Termianl中顯示完整的Git Tree" />&lt;p>前一陣子在公司被保哥唸了一頓，「只看Terminal而不看SourceTreeg是錯的，Tree才是Git的精髓！」&lt;/p>
 &lt;p>於是決定來學一下如何用Terminal查看Tree。&lt;/p>
 &lt;p>雖然不多人知道，但其實Git裡面是可以查看Git Tree的&lt;/p>
