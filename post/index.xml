@@ -58,449 +58,7 @@ alt="image-20230712181628780"
 loading="lazy"
 alt="image-20230712181804925"
 >&lt;/p>
-&lt;p>當之後有人在問為什麼Javascript的Ｍonth預設都會-1時，你就可以和對方分享這個小故事，並告訴對方寫程式要小心一點，難免你現在寫出來的Bug，在20年後變成大家習以為常的功能了&amp;gt;/////&amp;lt;&lt;/p></description></item><item><title>如何在M1,M2中安裝Airflow</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</link><pubDate>Fri, 07 Jul 2023 19:46:21 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</guid><description>&lt;img src="https://i.imgur.com/FWgJzl6.png" alt="Featured image of post 如何在M1,M2中安裝Airflow" />&lt;h1 id="參考">參考&lt;/h1>
-&lt;p>參考影片如下 &lt;a class="link" href="https://youtu.be/YDDMm9M6SFA" target="_blank" rel="noopener"
->Apache Airflow for Data Science #1 - How to Install Airflow Locally in 10 Minutes&lt;/a>&lt;/p>
-&lt;h1 id="教學">教學&lt;/h1>
-&lt;ol>
-&lt;li>首先先下載Anaconda&lt;/li>
-&lt;/ol>
-&lt;blockquote>
-&lt;p>Anaconda是一個開源的Python發行版本，旨在簡化Python開發和數據科學工作的流程。它包含了許多常用的Python套件和工具，並且提供了一個方便的環境管理系統。&lt;/p>
-&lt;p>Anaconda包含了Python解釋器以及一個稱為Conda的包管理和環境管理系統。Conda可以用於安裝、升級和刪除Python套件，並可以管理不同版本的套件和它們之間的相互依賴關係。這使得在不同的項目中使用不同版本的套件變得容易，同時避免了套件之間的衝突。&lt;/p>
-&lt;p>除了Python解釋器和Conda外，Anaconda還包含了許多常用的Python套件，如NumPy、Pandas、Matplotlib、SciPy等，這些套件在數據科學和科學計算領域非常流行。此外，Anaconda還提供了一個名為Jupyter Notebook的環境，用於交互式的編寫和執行Python代碼、數據可視化和文檔編寫。&lt;/p>
-&lt;p>總的來說，Anaconda為Python開發者和數據科學家提供了一個便捷的工具集，使得安裝和管理Python套件變得更加容易，同時提供了一個豐富的生態系統，包含了許多常用的套件和工具，使得開發和數據科學工作更加高效和便利。&lt;/p>
-&lt;/blockquote>
-&lt;p>我個人是從這邊下載的&lt;/p>
-&lt;p>&lt;a href="https://docs.anaconda.com/free/anaconda/install/mac-os/">https://docs.anaconda.com/free/anaconda/install/mac-os/&lt;/a>&lt;/p>
-&lt;p>這邊提供幾個常見的conda指令&lt;/p>
-&lt;ol>
-&lt;li>查看版本&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda -V
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol start="2">
-&lt;li>查看環境列表&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda env list
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol start="3">
-&lt;li>啟動環境&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda activate &amp;lt;環境名&amp;gt;
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol start="4">
-&lt;li>退出環境&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda deactivate
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol start="2">
-&lt;li>創建虛擬環境&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda create --name airflow_env &lt;span class="nv">python&lt;/span>&lt;span class="o">=&lt;/span>3.9 -y
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>如果成功的話，iterm2會顯示成這樣的畫面&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/rZPmQif.png"
-loading="lazy"
-alt="image-20230707195438483"
->&lt;/p>
-&lt;ol start="3">
-&lt;li>在terminal中執行指令&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">pip install &lt;span class="s2">&amp;#34;apache-airflow==2.2.3&amp;#34;&lt;/span> --constraint &lt;span class="s2">&amp;#34;https://raw.githubusercontent.com/apache/airflow/constraints-2.2.3/constraints-no-providers-3.9.txt&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol start="4">
-&lt;li>初始化資料庫&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">airflow db init
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol start="5">
-&lt;li>進入airflow資料夾中&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> ~/airflow
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>ls應該可以看到下面這些資訊&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/jWkvy61.png"
-loading="lazy"
-alt="image-20230707200032473"
->&lt;/p>
-&lt;ol start="6">
-&lt;li>創建airflow使用者&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">airflow users create --username admin --password admin --firstname hoxton --lastname Hsu --role Admin --email piyan@yahoo.com.tw
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol start="7">
-&lt;li>啟動Aiflow&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">airflow webserver --port &lt;span class="m">8080&lt;/span> -D
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">airflow scheduler -D
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/IttSFOW.gif"
-loading="lazy"
-alt="demo"
->&lt;/p></description></item><item><title>行列式為什麼是ab-bc?行列式之解析</title><link>https://hoxtonhsu.com/p/%E8%A1%8C%E5%88%97%E5%BC%8F%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AFab-bc%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B9%8B%E8%A7%A3%E6%9E%90/</link><pubDate>Thu, 06 Jul 2023 21:17:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%A1%8C%E5%88%97%E5%BC%8F%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AFab-bc%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B9%8B%E8%A7%A3%E6%9E%90/</guid><description>&lt;img src="https://i.imgur.com/kuvQKCh.png" alt="Featured image of post 行列式為什麼是ab-bc?行列式之解析" />&lt;p>設方程式&lt;/p>
-&lt;p>$$
-3x+2y=11 \&lt;br>
-2x+2y=8
-$$&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/0dcz8OM.png"
-loading="lazy"
-alt="image-20230706212347931"
->&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/OOA75T8.png"
-loading="lazy"
-alt="image-20230706212401607"
->&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/TOmu951.png"
-loading="lazy"
-alt="image-20230706212414114"
->&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/HuHVp8Z.png"
-loading="lazy"
-alt="image-20230706212424755"
->&lt;/p></description></item><item><title>在Termianl中顯示完整的Git Tree</title><link>https://hoxtonhsu.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</link><pubDate>Mon, 03 Jul 2023 16:09:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</guid><description>&lt;img src="https://i.imgur.com/eESaO42.png" alt="Featured image of post 在Termianl中顯示完整的Git Tree" />&lt;p>前一陣子在公司被保哥唸了一頓，「只看Terminal而不看SourceTreeg是錯的，Tree才是Git的精髓！」&lt;/p>
-&lt;p>於是決定來學一下如何用Terminal查看Tree。&lt;/p>
-&lt;p>雖然不多人知道，但其實Git裡面是可以查看Git Tree的&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git log --graph
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/HE6c4yb.png"
-loading="lazy"
-alt="image-20230703161758920"
->&lt;/p>
-&lt;p>但這樣子只會顯示當前分支的資訊，很多時候我們想知道的是更Overview的東西，於是我們就需要完成一下我們的command line&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git log --graph --decorate --oneline --all
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/69Y7xUp.png"
-loading="lazy"
-alt="image-20230703162317660"
->&lt;/p>
-&lt;p>但這個指令實在是太長了，我們可以透過git alias來讓他更好輸入一點！&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global alias.graph &lt;span class="s1">&amp;#39;log --graph --decorate --oneline --all&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>完成後可以輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --list
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>來看看我們是否有設定成功！&lt;/p>
-&lt;p>設定好了後我們就可以透過&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git graph
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>來查看完整的Tree了 ！&lt;/p></description></item><item><title>在Iterm2上持續顯示log, branch</title><link>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</link><pubDate>Tue, 27 Jun 2023 11:14:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</guid><description>&lt;img src="https://i.imgur.com/nivCoDF.png" alt="Featured image of post 在Iterm2上持續顯示log, branch" />&lt;h1 id="heading">&lt;/h1>
-&lt;p>Iterm2裡面，當我輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git log --oneline
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>時，會在我的terminal上顯示出來，但當我退出後，這些資訊又不見，會讓我在rebase的時候遇到很多困難，上網查了一下之後發現有這個功能可已開起&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --replace-all core.pager &lt;span class="s2">&amp;#34;less -F -X&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>這樣就可以持續顯示了&lt;/p></description></item><item><title>如何讓Iterm2擁有如Window Terminal般的絲滑體驗</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</link><pubDate>Thu, 15 Jun 2023 16:32:19 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</guid><description>&lt;img src="https://i.imgur.com/w12QKbR.png" alt="Featured image of post 如何讓Iterm2擁有如Window Terminal般的絲滑體驗" />&lt;h1 id="前言">前言&lt;/h1>
-&lt;p>前一陣子花了65,000買了一台Macbook，不得不說，使用體驗還是覺得像一坨答辯一樣，很多東西都要自己來。用了快一個月左右，還是有很多地方不適應，最直觀的體驗就是Terinal吧，Windows有一個非常強的Terminal介面叫做Window Terminal，它的畫面設計還有使用體驗，海放了Iterm不知道幾條街，尤其是window鍵+`，快速開啟Terminal的功能至今讓我難以忘懷。換到Mac上，我試著熟悉左右切換視窗的方式來模擬那熟悉的感覺，但切換的動畫的那一秒還是讓我煩躁不已。於是搜尋了一下，發現Iterm本身就有內建如同Window Terminal快速開啟Terminal的方式。｀&lt;/p>
-&lt;h1 id="設定">設定&lt;/h1>
-&lt;p>將Exculde from Dock&amp;hellip;的設定打開&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/LRZ2yjB.png"
-loading="lazy"
->&lt;/p>
-&lt;p>再將A hotkey opens a dedicated window &amp;hellip;打開&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/QmYN0Hx.png"
-loading="lazy"
-alt="image-20230615163929697"
->&lt;/p>
-&lt;p>設定你自己想要的快捷鍵，我就設成跟window一樣的設定了&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/kRGPX4U.png"
-loading="lazy"
-alt="image-20230615164011470"
->&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/BElMNec.gif"
-loading="lazy"
-alt="demo"
->&lt;/p></description></item><item><title>如何為Mac設定環境變數</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</link><pubDate>Wed, 14 Jun 2023 15:34:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/O9emCTx.png" alt="Featured image of post 如何為Mac設定環境變數" />&lt;h1 id="教學">教學&lt;/h1>
-&lt;p>可以先輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">env
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>來查看自己目前的環境變數有什麼&lt;/p>
-&lt;p>再來透過&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim ~/.bash_profile
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>來編輯bash_profile，編輯裡面的內容&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">export&lt;/span> &lt;span class="nv">DESKTOP&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/Desktop&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/FFL4JEh.png"
-loading="lazy"
-alt="image-20230614153700891"
->&lt;/p>
-&lt;p>之後再輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">source&lt;/span> ~/.bash_profile
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim ~/.zshrc
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>然後再開頭的地方加上&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">if [ -f ~/.bash_profile ]; then
-source ~/.bash_profile
-fi
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>保存後退出，並輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">source&lt;/span> ~/.zshrc
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>說明：https://www.twblogs.net/a/5eee14bd45d52357fb494be6&lt;/p>
-&lt;p>原因解釋如下：
-bash的配置文件是.bashrc, zsh的配置文件是.zshrc，當你使用zsh作爲默認shell工具的時候，它啓動時並不會加載bash的這兩個配置文件.bashrc和.bash_profile，而只會
-加載自己的配置文件.zshrc，爲了讓我們的配置文件生效，只能在.zshrc中添加上面的配置。&lt;/p>
-&lt;p>如果不做上述設置，你就會發現，只有當你每次source ~/.bash_profile後纔會生效，下次重新打開zsh窗口，還是不生效。&lt;/p>
-&lt;hr>
-&lt;p>這樣就可以囉！&lt;/p>
-&lt;p>之後可以再輸入一次env，來確認環境變數有被加入到系統中&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/vmFlZhA.png"
-loading="lazy"
-alt="image-20230614153937948"
->&lt;/p>
-&lt;h1 id="結果展示">結果展示&lt;/h1>
-&lt;p>&lt;img src="https://i.imgur.com/IP6jUjW.gif"
-loading="lazy"
-alt="demo"
->&lt;/p></description></item><item><title>將Linux的Port打開，讓外部可以訪問</title><link>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</link><pubDate>Sat, 20 May 2023 11:40:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</guid><description>&lt;img src="https://i.imgur.com/qKt7ANw.png" alt="Featured image of post 將Linux的Port打開，讓外部可以訪問" />&lt;p>在遠端的電腦上輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo ufw allow &lt;span class="m">8081&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>將8081 Port曝露出來&lt;/p>
-&lt;p>這樣外部就可以透過&lt;/p>
-&lt;p>http://{ip-address}:8081/&lt;/p>
-&lt;p>來訪問網站了&lt;/p></description></item><item><title>Windows系統中，使用Terminal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/windows%E7%B3%BB%E7%B5%B1%E4%B8%AD%E4%BD%BF%E7%94%A8terminal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Fri, 19 May 2023 20:56:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/windows%E7%B3%BB%E7%B5%B1%E4%B8%AD%E4%BD%BF%E7%94%A8terminal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/fkzGuEX.jpg" alt="Featured image of post Windows系統中，使用Terminal開啟IntelliJ" />&lt;p>前一陣子買了Mac，讓Mac可以用Terminal開啟IntelliJ，關於Mac的設定可以查看&lt;a class="link" href="https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/" target="_blank" rel="noopener"
->這篇文章&lt;/a>，但這是一直遲遲沒有把windows也設定起來，但今天它來啦！&lt;/p>
-&lt;h1 id="實際演示">實際演示&lt;/h1>
-&lt;p>&lt;img src="https://i.imgur.com/ds4v65X.gif"
-loading="lazy"
-alt="demo"
->&lt;/p>
-&lt;h1 id="教學">教學&lt;/h1>
-&lt;ol>
-&lt;li>將IntelliJ的bin加到Path中&lt;/li>
-&lt;/ol>
-&lt;blockquote>
-&lt;p>PATH是一個包含多個路徑的環境變數，系統使用它來尋找執行檔案。當你在命令提示字元或終端中輸入一個命令時，系統會檢查這些路徑，看是否有包含該命令的可執行檔案。&lt;/p>
-&lt;/blockquote>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">setx PATH &lt;span class="s2">&amp;#34;%PATH%;C:\Program Files\JetBrains\IntelliJ IDEA 2023.1.2\bin&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol start="2">
-&lt;li>切到IntelliJ的資料夾中&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> C:&lt;span class="se">\P&lt;/span>rogram Files&lt;span class="se">\J&lt;/span>etBrains&lt;span class="se">\I&lt;/span>ntelliJ IDEA 2023.1.2&lt;span class="se">\b&lt;/span>in
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>​ 其實做到這邊就差不多了，你已經可以使用&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>​ 來開啟檔案了，但如果這樣子你會發現你的termianl在啟動專案的時候就 被佔用了，原因是因為這個指令是在用\bin底下的idea.bat啟動，於是我 們要改成用idea64.exe的方式來開啟檔案，需要做以下的步驟&lt;/p>
-&lt;ol start="3">
-&lt;li>將名稱為idea的bat檔命名為idea64&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="https://i.imgur.com/wzE767g.gif"
-loading="lazy"
-alt="demo"
->&lt;/p>
-&lt;blockquote>
-&lt;p>其實要命名成什麼都沒差，不要再叫idea就好&lt;/p>
-&lt;/blockquote>
-&lt;ol start="4">
-&lt;li>將idea64.exe的檔案命名為idea&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="https://i.imgur.com/1P8PfIH.gif"
-loading="lazy"
-alt="demo"
->&lt;/p>
-&lt;ol start="5">
-&lt;li>將idea64.exe.vmoptions命名為idea.exe.vmoptions&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="https://i.imgur.com/w4CORSE.gif"
-loading="lazy"
-alt="demo"
->&lt;/p>
-&lt;blockquote>
-&lt;p>如果不改的話，會出現找不到intelliJ 找不到vm option的問題&lt;/p>
-&lt;/blockquote>
-&lt;p>這樣就可以用idea .來 開啟檔案了&lt;/p>
-&lt;h1 id="注意事項">注意事項&lt;/h1>
-&lt;p>這樣的修改會導致桌面的捷徑出現問題，因為我們把啟動的程式從idea64.exe重新命名成idea.exe了，所以需要重新建立一個新的桌面捷徑&lt;/p></description></item><item><title>使用shellScript讀取資料夾中的檔案個數</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</link><pubDate>Fri, 19 May 2023 15:06:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/mdbKbaT.png" alt="Featured image of post 使用shellScript讀取資料夾中的檔案個數" />&lt;h1 id="前言">前言&lt;/h1>
-&lt;p>一直以來都覺得要在資料夾內搜尋是一件很麻煩的事情，原因是這樣的，我文章的資料夾長這樣&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/c8GWeMt.png"
-loading="lazy"
-alt="image-20230611150948901"
->&lt;/p>
-&lt;p>他的排序基本上就是依照英文字母(或ASCII)的方式排序，但我更希望的是他可依照我創建的時間排序。我是可以在windons總管和Finder內指定想要的排序方式，但我在線上的Github.dev不能，於是我就想讓我的每篇文章在創建的時後，能夠在前面的資料夾內加上排序，最早創立的是1，其次是2，以此類推&amp;hellip;&lt;/p>
-&lt;h1 id="實際操作">實際操作&lt;/h1>
-&lt;p>詳細的shellscript語法如下&lt;/p>
+&lt;p>當之後有人在問為什麼Javascript的Ｍonth預設都會-1時，你就可以和對方分享這個小故事，並告訴對方寫程式要小心一點，難免你現在寫出來的Bug，在20年後變成大家習以為常的功能了&amp;gt;/////&amp;lt;&lt;/p></description></item><item><title>Java中回傳值前的泛型標識符是什麼意思呢</title><link>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</link><pubDate>Tue, 11 Jul 2023 00:03:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/Y9pLlYY.png" alt="Featured image of post Java中回傳值前的泛型標識符是什麼意思呢" />&lt;p>前一陣子在寫DiscordBot的時候，曾經在教學中看過這種寫法&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -514,59 +72,35 @@ alt="image-20230611150948901"
 &lt;/span>&lt;span class="lnt"> 9
 &lt;/span>&lt;span class="lnt">10
 &lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;請輸入文章標題&amp;#34;&lt;/span>
-&lt;span class="nb">read&lt;/span> title
-&lt;span class="c1"># cd content/post/$title&lt;/span>
-&lt;span class="c1"># 讀取資料夾內的檔案數量，為文章資料夾命名&lt;/span>
-&lt;span class="nv">file_count&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">$(&lt;/span>ls -1 content/post&lt;span class="p">|&lt;/span> wc -l&lt;span class="k">)&lt;/span>
-&lt;span class="nv">file_count&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">file_count&lt;/span>&lt;span class="p">// /&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="c1"># 去除file_count包含的空白&lt;/span>
-&lt;span class="nv">titleWithNumber&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">$file_count&lt;/span>-&lt;span class="nv">$title&lt;/span>
-hugo new post/&lt;span class="nv">$titleWithNumber&lt;/span>/index.md
-&lt;span class="nb">cd&lt;/span> content/post/&lt;span class="nv">$titleWithNumber&lt;/span>
-open index.md
-&lt;span class="nb">cd&lt;/span> ../../..
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">GymBotConfiguration&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Bean&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">Event&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">GatewayDiscordClient&lt;/span> &lt;span class="nf">gatewayDiscordClient&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kd">final&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">EventListener&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;&lt;/span> &lt;span class="n">eventListeners&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="kd">final&lt;/span> &lt;span class="n">GatewayDiscordClient&lt;/span> &lt;span class="n">client&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">DiscordClientBuilder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">create&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">token&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">()&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">login&lt;/span>&lt;span class="o">()&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">block&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">EventListener&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">listener&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">eventListeners&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">client&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">on&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getEventType&lt;/span>&lt;span class="o">())&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">flatMap&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">onErrorResume&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">handleError&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">subscribe&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">client&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>需要關注的就是那個file_count，那段就是去讀資料夾內當前的檔案數並回報，值得注意的是他取出來的值前面是會帶一個空白的，比如說&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> &lt;span class="m">51&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>這樣子，所以需要再把它的空白去掉，這樣就可以在後面以字串串接的方式將文章的標題自動帶上編號了&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/tEKouqD.png"
-loading="lazy"
-alt="image-20230611151534546"
->&lt;/p></description></item><item><title>在MacBook M1環境下使用Terimnal開啟</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9F/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9F/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟" />&lt;h1 id="前言">前言&lt;/h1>
-&lt;p>前陣子買了Mac，影響我最大的應該就是不能再像Window一樣，使用右鍵開啟專案了！因為公司的產品有兩個專案，我也常常把專案砍掉重抓，如果不能用右鍵開啟，那就得從中手動匯入，這樣子一來一往真的是靠北麻煩。&lt;/p>
-&lt;h1 id="如何使用terminal開啟">如何使用Terminal開啟&lt;/h1>
-&lt;p>其實網路上我看了很多教學，大概看了4、5天吧，到最後我才發現其實官網就有寫了，原來幸福的青鳥一直就在身邊，唉垃圾Mac&lt;/p>
-&lt;p>&lt;a href="https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html">https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html&lt;/a>&lt;/p>
-&lt;h2 id="切換至usrlocalbin">切換至/usr/local/bin/&lt;/h2>
-&lt;p>首先先切換至&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /usr/local/bin/
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="創建idea檔案">創建idea檔案&lt;/h2>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">touch idea
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="編輯idea檔案中的內容">編輯idea檔案中的內容&lt;/h2>
+&lt;/div>&lt;p>對於其中&lt;T extends Event>的寫法感到非常困惑，不知道為什麼回傳值前還會有泛型符號，直到最近在研究一些OpenSource的框架時，才又更了解這件事情。&lt;/p>
+&lt;h1 id="如何宣告泛型">如何宣告泛型&lt;/h1>
+&lt;p>在講這件事情之前，要先有個基礎知識，就是關於Java是如何宣告一個泛型Class的，其實就是在Class後面加上&amp;lt;T&amp;gt;就可以了&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -574,258 +108,148 @@ alt="image-20230611151534546"
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="cp">#!/bin/sh
-&lt;/span>&lt;span class="cp">&lt;/span>
-open -na &lt;span class="s2">&amp;#34; IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/uvt1d2m.png"
+&lt;/div>&lt;p>如此一來，就可以在其他地方創建一個泛型的Link類&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">Link&lt;/span> &lt;span class="n">link&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">&amp;gt;;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>現在我們在這個Link類裡新增一個方法&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這個方法會把傳進來的值，包裝成一個ArrayList並回傳出去，而它參數的型別則是與Link的泛型一致，比如說&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">arg&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">Link&lt;/span> &lt;span class="n">link&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;;&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">link&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;早安&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/cpeYA8T.png"
 loading="lazy"
+alt="image-20230401002712243"
 >&lt;/p>
-&lt;p>這一步我個人覺得算是「寫一個script腳本」然後讓terminal去運行，可以輸入&lt;/p>
+&lt;p>也就是說addToList這個&lt;strong>方法的型別和Link的泛型型別是綁定在一起&lt;/strong>的。&lt;/p>
+&lt;h1 id="何謂回傳型別前的泛型">何謂回傳型別前的泛型&lt;/h1>
+&lt;p>承上，因為方法的參數型別與類的泛型型別基本上綁定在一起，如果我宣告了一個Link&amp;lt;Integer&amp;gt;，我的addToList就只能吃Integer的參數，那為了要解決這種問題，就有了在回傳型別前的泛型的寫法，釋例如下&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">env
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList2&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/GueLdrH.png"
+&lt;/div>&lt;p>可以看到addToList2這個方法的回傳值List&amp;lt;E&amp;gt;前，我加了一個&amp;lt;E&amp;gt;，先別管這個到底能做什麼，我們現在先使用這個方法看看&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2kuQ8Ol.png"
 loading="lazy"
+alt="image-20230401003453849"
 >&lt;/p>
-&lt;p>發現我們的PATH變數中有包含&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/usr/local/bin
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>也就是我們idea腳本所儲存的位置&lt;/p>
-&lt;h2 id="存擋後使用chmod調整權限">存擋後使用Chmod調整權限&lt;/h2>
-&lt;p>輸入指令&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">chmod &lt;span class="m">755&lt;/span> idea
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&amp;ldquo;chmod 755&amp;rdquo; 是一個用於設置檔案或目錄權限的命令。在 Linux 和其他類 Unix 系統中，&amp;ldquo;chmod&amp;rdquo; 是改變檔案權限的指令，而 &amp;ldquo;755&amp;rdquo; 是一個表示權限的數字。&lt;/p>
-&lt;p>在 &amp;ldquo;chmod 755&amp;rdquo; 中，&amp;ldquo;755&amp;rdquo; 是由三個數字組成的權限表示法。每個數字代表了不同的使用者類別和他們對檔案的權限。&lt;/p>
-&lt;p>第一個數字（7）表示檔案所有者的權限。在這種情況下，7 表示所有者具有讀取、寫入和執行的權限（4 + 2 + 1）。
-第二個數字（5）表示檔案所屬群組的權限。在這種情況下，5 表示群組具有讀取和執行的權限，但沒有寫入的權限（4 + 1）。
-第三個數字（5）表示其他使用者（非所有者且非群組成員）的權限。在這種情況下，5 表示其他使用者具有讀取和執行的權限，但沒有寫入的權限（4 + 1）。
-因此，&amp;ldquo;chmod 755&amp;rdquo; 的含義是將檔案設置為擁有者具有讀取、寫入和執行權限，群組成員和其他使用者具有讀取和執行權限，但不具有寫入權限。&lt;/p>
-&lt;h2 id="刷新頁面">刷新頁面&lt;/h2>
-&lt;p>確認mac os的檔案icon是否有更改成exec&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/24ushKG.png"
+&lt;p>這時候你發現了，addToList2能吃的參數變成Object類了，當我們輸入一個String&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/httYHD6.png"
 loading="lazy"
+alt="image-20230401003608198"
 >&lt;/p>
-&lt;p>如果更改成功，就可以透過&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>使用開啟檔案了 ！&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
+&lt;p>輸入一個Double&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1MrUXaL.png"
 loading="lazy"
+alt="image-20230401003718395"
 >&lt;/p>
-&lt;h1 id="以下內容作廢請勿參考這是我錯的紀錄">以下內容作廢，請勿參考，這是我錯的紀錄&lt;/h1>
-&lt;p>如何在Mac中設置環境變數開啟IDEA&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/lUFkVtz.png"
+&lt;p>也可以輸入一個自定義的類&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/UV8qiDo.png"
 loading="lazy"
-alt="image-20230518212755943"
+alt="image-20230401013130560"
 >&lt;/p>
-&lt;p>在Terminal中輸入&lt;/p>
+&lt;p>可以感受到addToList跟addToList2的差異了嗎？沒錯，addToList2的泛型不受Link的影響，可以自己有自己的泛型&lt;/p>
+&lt;h1 id="應用">應用&lt;/h1>
+&lt;p>這樣的用法不只可以拿來用在泛型類裡的方法，也可以用在一個非泛型類，比如說&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim ~/.bash_profile
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Student&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Student&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addPeopleList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Student&lt;/span> &lt;span class="n">student&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Student&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">student&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>進入輸入畫面後，輸入以下資訊&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/Applications/ IDEA.app/Contents/MacOS:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/lpQPUO3.png"
+&lt;/div>&lt;p>今天我們希望這個addPeopleList的方法可以吃任何型別的參數，我們如果這樣寫是會報錯的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2VxQDBU.png"
 loading="lazy"
-alt="image-20230518213215354"
+alt="image-20230401004844813"
 >&lt;/p>
-&lt;p>儲存後退出，並輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">source&lt;/span> ~/.bash_profile
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>即可使用&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>用Idea開啟當前目錄&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
+&lt;p>原因就在於我們並沒有一個地方告訴編譯器，什麼是T，因為我們的Student類並不是一個泛型類，但實務上，我們又不太可能去修改原有的類，避免破壞掉一些東西，所以我們修改addPeopleList，讓它變成這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vAcAm7y.png"
 loading="lazy"
+alt="image-20230401005044108"
 >&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/JWV7cRS.gif"
-loading="lazy"
-alt="demo"
->&lt;/p>
-&lt;p>也可在terminal輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">env
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>來查看目前的環境變數，確定是否有加入PATH中&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/YWKWBgv.png"
-loading="lazy"
-alt="image-20230518213418418"
->&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">open -na &lt;span class="s2">&amp;#34; IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description></item><item><title>ARM架構與x86架構下，Docker啟動問題</title><link>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 13 May 2023 19:09:41 +0800</pubDate><guid>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/8XJ9XWE.png" alt="Featured image of post ARM架構與x86架構下，Docker啟動問題" />&lt;h1 id="導因">導因&lt;/h1>
-&lt;p>M1的CPU是使用ARM架構，而有些電腦則是使用x86架構，並且因Docker是Run在OS上方，所以在執行Image時也要考慮作業系統的問題&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">The requested image&lt;span class="err">&amp;#39;&lt;/span>s platform &lt;span class="o">(&lt;/span>linux/amd64&lt;span class="o">)&lt;/span> does not match the detected host platform &lt;span class="o">(&lt;/span>linux/arm64/v8&lt;span class="o">)&lt;/span> and no specific platform was requested
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h1 id="解決方法">解決方法&lt;/h1>
-&lt;p>在docker run啟動參數後加上&lt;code>--platform linux/amd64&lt;/code>即可解決這個問題&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker run --platform linux/amd64 -p 8080:8080 fe744192d855
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h1 id="解決方法二">解決方法二&lt;/h1>
-&lt;p>幹你媽的，我發現run的時候還是不行，還是要在build就控制它的架構&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker build . --platform linux/x86_64
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description></item><item><title>如何更改Mac terminal的預設路徑</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</link><pubDate>Sat, 13 May 2023 17:44:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</guid><description>&lt;img src="https://i.imgur.com/ieJ6kkK.png" alt="Featured image of post 如何更改Mac terminal的預設路徑" />&lt;h1 id="簡介">簡介&lt;/h1>
-&lt;p>最近要換新工作了，正好新工作的公司有電腦補助，就趁這個機會把Macbook也買了，一拿到手之後發現超級難用，難用到靠北，真的不懂為什麼一堆人說好用。&lt;/p>
-&lt;h1 id="如何更改termial預設路徑">如何更改Termial預設路徑&lt;/h1>
-&lt;p>預設情況下，Terminal路徑都是&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/Users/&lt;span class="o">[&lt;/span>使用者名稱&lt;span class="o">]&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>但我希望他開啟的路徑是&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/Users/&lt;span class="o">[&lt;/span>使用者名稱&lt;span class="o">]&lt;/span>/Desktop
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>因此要到.zshrc去更改&lt;/p>
-&lt;p>通常這個檔案都會放在&lt;/p>
-&lt;p>/Users/[使用者名稱]底下，如果沒有的話可以自己創一個就好&lt;/p>
-&lt;p>然後編輯裡面的內容，加上這段&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /Users/hoxtonashes/Desktop
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/C4yevFm.png"
-loading="lazy"
-alt="image-20230513180010374"
->&lt;/p>
-&lt;p>這樣下次開啟的時候，預設的Terminal路徑就會是Desktop了&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/Q14Iy0n.gif"
-loading="lazy"
-alt="demo"
->&lt;/p></description></item><item><title>在IntelliJ中設定Class模板</title><link>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</link><pubDate>Fri, 12 May 2023 15:41:07 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/dEvsZm3.png" alt="Featured image of post 在IntelliJ中設定Class模板" />&lt;p>在IntelliJ開啟以下的路徑&lt;/p>
-&lt;p>&lt;code>Setting &amp;gt; Editor &amp;gt; File and Code Templates &amp;gt; Includes &amp;gt; File Header&lt;/code>&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/sOjF3Yb.png"
-loading="lazy"
-alt="image-20230512154419942"
->&lt;/p>
-&lt;p>即可在這邊編輯創建Class的模板，一旦設定好後，當你創建一個新的Class時，IntelliJ就會在你的Class上插入這些資訊&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/TWmvl80.png"
-loading="lazy"
-alt="image-20230512154507522"
->&lt;/p></description></item><item><title>Git-rerere之介紹</title><link>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</link><pubDate>Fri, 12 May 2023 11:05:10 +0800</pubDate><guid>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/FJcgPVI.png" alt="Featured image of post Git-rerere之介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
-&lt;p>最近公司提倡使用rebase而非merge來合併分支，但在rebase的情況下，常常出現多種commit會有重複confict的情形發生，往往可能要解個2,30個conflict，一來一往可能會耗費許多時間，於是上網查了一下，發現有&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git rerere
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>這種神奇的指令&lt;/p>
-&lt;p>這是由3個單字縮寫所組成的指令，分別是reuse、recorded 與 resolution。git rerere有點像是一個記憶吐司的概念，能夠記錄你之前解Conflict的方式，然後自動幫你套用到相同的地方。&lt;/p>
-&lt;p>而這個rerere的行為預設是關閉的，想要打開的話可以輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global rerere.enabled &lt;span class="nb">true&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>來啟用，若不想要使用的話可以輸入&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --unset rerere.enabled
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description></item><item><title>Maven詳細研究</title><link>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</link><pubDate>Tue, 09 May 2023 09:47:13 +0800</pubDate><guid>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/VcZp2b7.png" alt="Featured image of post Maven詳細研究" />&lt;p>最近換了一份新工作，發現我一直以來平淡無情的Maven原來也是有很多細節的（我一直以為就只是一個拿來自動下載Jar的無情機器而已），其實Maven的pom.xml的名稱其實就已經隱含了它的功能&lt;/p>
+&lt;p>如此一來，addPeopleList就可以吃任何型別的參數了，以上就是所謂的泛型方法約束。&lt;/p></description></item><item><title>Maven詳細研究</title><link>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 09 Jul 2023 09:47:13 +0800</pubDate><guid>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/VcZp2b7.png" alt="Featured image of post Maven詳細研究" />&lt;p>最近換了一份新工作，發現我一直以來平淡無情的Maven原來也是有很多細節的（我一直以為就只是一個拿來自動下載Jar的無情機器而已），其實Maven的pom.xml的名稱其實就已經隱含了它的功能&lt;/p>
 &lt;p>&lt;span style="color:yellow">P&lt;/span>roject &lt;span style="color:yellow">O&lt;/span>bject &lt;span style="color:yellow">M&lt;/span>odel（專案物件模型）&lt;/p>
 &lt;p>望文生義其實也可以感受到它就是用來管理專案、或專案與專案之間關係的一個檔案，這篇文章的主題是我想要&lt;strong>了解Maven Module管理的部分&lt;/strong>&lt;/p>
 &lt;h1 id="maven項目結構">Maven項目結構&lt;/h1>
@@ -2451,7 +1875,774 @@ alt="demo"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">mvn clean package -Plocal
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>來打包成不同的jar了&lt;/p></description></item><item><title>H2Database之配置檔紀錄</title><link>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</link><pubDate>Sat, 06 May 2023 00:13:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/xYmsInY.png" alt="Featured image of post H2Database之配置檔紀錄" />&lt;p>依賴如下&lt;/p>
+&lt;/div>&lt;p>來打包成不同的jar了&lt;/p></description></item><item><title>如何在M1,M2中安裝Airflow</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</link><pubDate>Fri, 07 Jul 2023 19:46:21 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</guid><description>&lt;img src="https://i.imgur.com/FWgJzl6.png" alt="Featured image of post 如何在M1,M2中安裝Airflow" />&lt;h1 id="參考">參考&lt;/h1>
+&lt;p>參考影片如下 &lt;a class="link" href="https://youtu.be/YDDMm9M6SFA" target="_blank" rel="noopener"
+>Apache Airflow for Data Science #1 - How to Install Airflow Locally in 10 Minutes&lt;/a>&lt;/p>
+&lt;h1 id="教學">教學&lt;/h1>
+&lt;ol>
+&lt;li>首先先下載Anaconda&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>Anaconda是一個開源的Python發行版本，旨在簡化Python開發和數據科學工作的流程。它包含了許多常用的Python套件和工具，並且提供了一個方便的環境管理系統。&lt;/p>
+&lt;p>Anaconda包含了Python解釋器以及一個稱為Conda的包管理和環境管理系統。Conda可以用於安裝、升級和刪除Python套件，並可以管理不同版本的套件和它們之間的相互依賴關係。這使得在不同的項目中使用不同版本的套件變得容易，同時避免了套件之間的衝突。&lt;/p>
+&lt;p>除了Python解釋器和Conda外，Anaconda還包含了許多常用的Python套件，如NumPy、Pandas、Matplotlib、SciPy等，這些套件在數據科學和科學計算領域非常流行。此外，Anaconda還提供了一個名為Jupyter Notebook的環境，用於交互式的編寫和執行Python代碼、數據可視化和文檔編寫。&lt;/p>
+&lt;p>總的來說，Anaconda為Python開發者和數據科學家提供了一個便捷的工具集，使得安裝和管理Python套件變得更加容易，同時提供了一個豐富的生態系統，包含了許多常用的套件和工具，使得開發和數據科學工作更加高效和便利。&lt;/p>
+&lt;/blockquote>
+&lt;p>我個人是從這邊下載的&lt;/p>
+&lt;p>&lt;a href="https://docs.anaconda.com/free/anaconda/install/mac-os/">https://docs.anaconda.com/free/anaconda/install/mac-os/&lt;/a>&lt;/p>
+&lt;p>這邊提供幾個常見的conda指令&lt;/p>
+&lt;ol>
+&lt;li>查看版本&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda -V
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>查看環境列表&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda env list
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>啟動環境&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda activate &amp;lt;環境名&amp;gt;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>退出環境&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda deactivate
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>創建虛擬環境&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda create --name airflow_env &lt;span class="nv">python&lt;/span>&lt;span class="o">=&lt;/span>3.9 -y
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果成功的話，iterm2會顯示成這樣的畫面&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/rZPmQif.png"
+loading="lazy"
+alt="image-20230707195438483"
+>&lt;/p>
+&lt;ol start="3">
+&lt;li>在terminal中執行指令&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">pip install &lt;span class="s2">&amp;#34;apache-airflow==2.2.3&amp;#34;&lt;/span> --constraint &lt;span class="s2">&amp;#34;https://raw.githubusercontent.com/apache/airflow/constraints-2.2.3/constraints-no-providers-3.9.txt&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>初始化資料庫&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">airflow db init
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="5">
+&lt;li>進入airflow資料夾中&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> ~/airflow
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>ls應該可以看到下面這些資訊&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/jWkvy61.png"
+loading="lazy"
+alt="image-20230707200032473"
+>&lt;/p>
+&lt;ol start="6">
+&lt;li>創建airflow使用者&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">airflow users create --username admin --password admin --firstname hoxton --lastname Hsu --role Admin --email piyan@yahoo.com.tw
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="7">
+&lt;li>啟動Aiflow&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">airflow webserver --port &lt;span class="m">8080&lt;/span> -D
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">airflow scheduler -D
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/IttSFOW.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p></description></item><item><title>行列式為什麼是ab-bc?行列式之解析</title><link>https://hoxtonhsu.com/p/%E8%A1%8C%E5%88%97%E5%BC%8F%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AFab-bc%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B9%8B%E8%A7%A3%E6%9E%90/</link><pubDate>Thu, 06 Jul 2023 21:17:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%A1%8C%E5%88%97%E5%BC%8F%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AFab-bc%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B9%8B%E8%A7%A3%E6%9E%90/</guid><description>&lt;img src="https://i.imgur.com/kuvQKCh.png" alt="Featured image of post 行列式為什麼是ab-bc?行列式之解析" />&lt;p>設方程式&lt;/p>
+&lt;p>$$
+3x+2y=11 \&lt;br>
+2x+2y=8
+$$&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/0dcz8OM.png"
+loading="lazy"
+alt="image-20230706212347931"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/OOA75T8.png"
+loading="lazy"
+alt="image-20230706212401607"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/TOmu951.png"
+loading="lazy"
+alt="image-20230706212414114"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/HuHVp8Z.png"
+loading="lazy"
+alt="image-20230706212424755"
+>&lt;/p></description></item><item><title>在Termianl中顯示完整的Git Tree</title><link>https://hoxtonhsu.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</link><pubDate>Mon, 03 Jul 2023 16:09:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</guid><description>&lt;img src="https://i.imgur.com/eESaO42.png" alt="Featured image of post 在Termianl中顯示完整的Git Tree" />&lt;p>前一陣子在公司被保哥唸了一頓，「只看Terminal而不看SourceTreeg是錯的，Tree才是Git的精髓！」&lt;/p>
+&lt;p>於是決定來學一下如何用Terminal查看Tree。&lt;/p>
+&lt;p>雖然不多人知道，但其實Git裡面是可以查看Git Tree的&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git log --graph
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/HE6c4yb.png"
+loading="lazy"
+alt="image-20230703161758920"
+>&lt;/p>
+&lt;p>但這樣子只會顯示當前分支的資訊，很多時候我們想知道的是更Overview的東西，於是我們就需要完成一下我們的command line&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git log --graph --decorate --oneline --all
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/69Y7xUp.png"
+loading="lazy"
+alt="image-20230703162317660"
+>&lt;/p>
+&lt;p>但這個指令實在是太長了，我們可以透過git alias來讓他更好輸入一點！&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global alias.graph &lt;span class="s1">&amp;#39;log --graph --decorate --oneline --all&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>完成後可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --list
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來看看我們是否有設定成功！&lt;/p>
+&lt;p>設定好了後我們就可以透過&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git graph
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看完整的Tree了 ！&lt;/p></description></item><item><title>在Iterm2上持續顯示log, branch</title><link>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</link><pubDate>Tue, 27 Jun 2023 11:14:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</guid><description>&lt;img src="https://i.imgur.com/nivCoDF.png" alt="Featured image of post 在Iterm2上持續顯示log, branch" />&lt;h1 id="heading">&lt;/h1>
+&lt;p>Iterm2裡面，當我輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git log --oneline
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>時，會在我的terminal上顯示出來，但當我退出後，這些資訊又不見，會讓我在rebase的時候遇到很多困難，上網查了一下之後發現有這個功能可已開起&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --replace-all core.pager &lt;span class="s2">&amp;#34;less -F -X&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣就可以持續顯示了&lt;/p></description></item><item><title>如何讓Iterm2擁有如Window Terminal般的絲滑體驗</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</link><pubDate>Thu, 15 Jun 2023 16:32:19 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</guid><description>&lt;img src="https://i.imgur.com/w12QKbR.png" alt="Featured image of post 如何讓Iterm2擁有如Window Terminal般的絲滑體驗" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>前一陣子花了65,000買了一台Macbook，不得不說，使用體驗還是覺得像一坨答辯一樣，很多東西都要自己來。用了快一個月左右，還是有很多地方不適應，最直觀的體驗就是Terinal吧，Windows有一個非常強的Terminal介面叫做Window Terminal，它的畫面設計還有使用體驗，海放了Iterm不知道幾條街，尤其是window鍵+`，快速開啟Terminal的功能至今讓我難以忘懷。換到Mac上，我試著熟悉左右切換視窗的方式來模擬那熟悉的感覺，但切換的動畫的那一秒還是讓我煩躁不已。於是搜尋了一下，發現Iterm本身就有內建如同Window Terminal快速開啟Terminal的方式。｀&lt;/p>
+&lt;h1 id="設定">設定&lt;/h1>
+&lt;p>將Exculde from Dock&amp;hellip;的設定打開&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/LRZ2yjB.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>再將A hotkey opens a dedicated window &amp;hellip;打開&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QmYN0Hx.png"
+loading="lazy"
+alt="image-20230615163929697"
+>&lt;/p>
+&lt;p>設定你自己想要的快捷鍵，我就設成跟window一樣的設定了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/kRGPX4U.png"
+loading="lazy"
+alt="image-20230615164011470"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/BElMNec.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p></description></item><item><title>如何為Mac設定環境變數</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</link><pubDate>Wed, 14 Jun 2023 15:34:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/O9emCTx.png" alt="Featured image of post 如何為Mac設定環境變數" />&lt;h1 id="教學">教學&lt;/h1>
+&lt;p>可以先輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">env
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看自己目前的環境變數有什麼&lt;/p>
+&lt;p>再來透過&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim ~/.bash_profile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來編輯bash_profile，編輯裡面的內容&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">export&lt;/span> &lt;span class="nv">DESKTOP&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/Desktop&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/FFL4JEh.png"
+loading="lazy"
+alt="image-20230614153700891"
+>&lt;/p>
+&lt;p>之後再輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">source&lt;/span> ~/.bash_profile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim ~/.zshrc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然後再開頭的地方加上&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">if [ -f ~/.bash_profile ]; then
+source ~/.bash_profile
+fi
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>保存後退出，並輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">source&lt;/span> ~/.zshrc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>說明：https://www.twblogs.net/a/5eee14bd45d52357fb494be6&lt;/p>
+&lt;p>原因解釋如下：
+bash的配置文件是.bashrc, zsh的配置文件是.zshrc，當你使用zsh作爲默認shell工具的時候，它啓動時並不會加載bash的這兩個配置文件.bashrc和.bash_profile，而只會
+加載自己的配置文件.zshrc，爲了讓我們的配置文件生效，只能在.zshrc中添加上面的配置。&lt;/p>
+&lt;p>如果不做上述設置，你就會發現，只有當你每次source ~/.bash_profile後纔會生效，下次重新打開zsh窗口，還是不生效。&lt;/p>
+&lt;hr>
+&lt;p>這樣就可以囉！&lt;/p>
+&lt;p>之後可以再輸入一次env，來確認環境變數有被加入到系統中&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vmFlZhA.png"
+loading="lazy"
+alt="image-20230614153937948"
+>&lt;/p>
+&lt;h1 id="結果展示">結果展示&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/IP6jUjW.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p></description></item><item><title>將Linux的Port打開，讓外部可以訪問</title><link>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</link><pubDate>Sat, 20 May 2023 11:40:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</guid><description>&lt;img src="https://i.imgur.com/qKt7ANw.png" alt="Featured image of post 將Linux的Port打開，讓外部可以訪問" />&lt;p>在遠端的電腦上輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo ufw allow &lt;span class="m">8081&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>將8081 Port曝露出來&lt;/p>
+&lt;p>這樣外部就可以透過&lt;/p>
+&lt;p>http://{ip-address}:8081/&lt;/p>
+&lt;p>來訪問網站了&lt;/p></description></item><item><title>Windows系統中，使用Terminal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/windows%E7%B3%BB%E7%B5%B1%E4%B8%AD%E4%BD%BF%E7%94%A8terminal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Fri, 19 May 2023 20:56:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/windows%E7%B3%BB%E7%B5%B1%E4%B8%AD%E4%BD%BF%E7%94%A8terminal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/fkzGuEX.jpg" alt="Featured image of post Windows系統中，使用Terminal開啟IntelliJ" />&lt;p>前一陣子買了Mac，讓Mac可以用Terminal開啟IntelliJ，關於Mac的設定可以查看&lt;a class="link" href="https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/" target="_blank" rel="noopener"
+>這篇文章&lt;/a>，但這是一直遲遲沒有把windows也設定起來，但今天它來啦！&lt;/p>
+&lt;h1 id="實際演示">實際演示&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/ds4v65X.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;h1 id="教學">教學&lt;/h1>
+&lt;ol>
+&lt;li>將IntelliJ的bin加到Path中&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>PATH是一個包含多個路徑的環境變數，系統使用它來尋找執行檔案。當你在命令提示字元或終端中輸入一個命令時，系統會檢查這些路徑，看是否有包含該命令的可執行檔案。&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">setx PATH &lt;span class="s2">&amp;#34;%PATH%;C:\Program Files\JetBrains\IntelliJ IDEA 2023.1.2\bin&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>切到IntelliJ的資料夾中&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> C:&lt;span class="se">\P&lt;/span>rogram Files&lt;span class="se">\J&lt;/span>etBrains&lt;span class="se">\I&lt;/span>ntelliJ IDEA 2023.1.2&lt;span class="se">\b&lt;/span>in
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>​ 其實做到這邊就差不多了，你已經可以使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>​ 來開啟檔案了，但如果這樣子你會發現你的termianl在啟動專案的時候就 被佔用了，原因是因為這個指令是在用\bin底下的idea.bat啟動，於是我 們要改成用idea64.exe的方式來開啟檔案，需要做以下的步驟&lt;/p>
+&lt;ol start="3">
+&lt;li>將名稱為idea的bat檔命名為idea64&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/wzE767g.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>其實要命名成什麼都沒差，不要再叫idea就好&lt;/p>
+&lt;/blockquote>
+&lt;ol start="4">
+&lt;li>將idea64.exe的檔案命名為idea&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/1P8PfIH.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;ol start="5">
+&lt;li>將idea64.exe.vmoptions命名為idea.exe.vmoptions&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/w4CORSE.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>如果不改的話，會出現找不到intelliJ 找不到vm option的問題&lt;/p>
+&lt;/blockquote>
+&lt;p>這樣就可以用idea .來 開啟檔案了&lt;/p>
+&lt;h1 id="注意事項">注意事項&lt;/h1>
+&lt;p>這樣的修改會導致桌面的捷徑出現問題，因為我們把啟動的程式從idea64.exe重新命名成idea.exe了，所以需要重新建立一個新的桌面捷徑&lt;/p></description></item><item><title>使用shellScript讀取資料夾中的檔案個數</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</link><pubDate>Fri, 19 May 2023 15:06:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/mdbKbaT.png" alt="Featured image of post 使用shellScript讀取資料夾中的檔案個數" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>一直以來都覺得要在資料夾內搜尋是一件很麻煩的事情，原因是這樣的，我文章的資料夾長這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/c8GWeMt.png"
+loading="lazy"
+alt="image-20230611150948901"
+>&lt;/p>
+&lt;p>他的排序基本上就是依照英文字母(或ASCII)的方式排序，但我更希望的是他可依照我創建的時間排序。我是可以在windons總管和Finder內指定想要的排序方式，但我在線上的Github.dev不能，於是我就想讓我的每篇文章在創建的時後，能夠在前面的資料夾內加上排序，最早創立的是1，其次是2，以此類推&amp;hellip;&lt;/p>
+&lt;h1 id="實際操作">實際操作&lt;/h1>
+&lt;p>詳細的shellscript語法如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;請輸入文章標題&amp;#34;&lt;/span>
+&lt;span class="nb">read&lt;/span> title
+&lt;span class="c1"># cd content/post/$title&lt;/span>
+&lt;span class="c1"># 讀取資料夾內的檔案數量，為文章資料夾命名&lt;/span>
+&lt;span class="nv">file_count&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">$(&lt;/span>ls -1 content/post&lt;span class="p">|&lt;/span> wc -l&lt;span class="k">)&lt;/span>
+&lt;span class="nv">file_count&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">file_count&lt;/span>&lt;span class="p">// /&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="c1"># 去除file_count包含的空白&lt;/span>
+&lt;span class="nv">titleWithNumber&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">$file_count&lt;/span>-&lt;span class="nv">$title&lt;/span>
+hugo new post/&lt;span class="nv">$titleWithNumber&lt;/span>/index.md
+&lt;span class="nb">cd&lt;/span> content/post/&lt;span class="nv">$titleWithNumber&lt;/span>
+open index.md
+&lt;span class="nb">cd&lt;/span> ../../..
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>需要關注的就是那個file_count，那段就是去讀資料夾內當前的檔案數並回報，值得注意的是他取出來的值前面是會帶一個空白的，比如說&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> &lt;span class="m">51&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣子，所以需要再把它的空白去掉，這樣就可以在後面以字串串接的方式將文章的標題自動帶上編號了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/tEKouqD.png"
+loading="lazy"
+alt="image-20230611151534546"
+>&lt;/p></description></item><item><title>在MacBook M1環境下使用Terimnal開啟</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9F/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9F/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>前陣子買了Mac，影響我最大的應該就是不能再像Window一樣，使用右鍵開啟專案了！因為公司的產品有兩個專案，我也常常把專案砍掉重抓，如果不能用右鍵開啟，那就得從中手動匯入，這樣子一來一往真的是靠北麻煩。&lt;/p>
+&lt;h1 id="如何使用terminal開啟">如何使用Terminal開啟&lt;/h1>
+&lt;p>其實網路上我看了很多教學，大概看了4、5天吧，到最後我才發現其實官網就有寫了，原來幸福的青鳥一直就在身邊，唉垃圾Mac&lt;/p>
+&lt;p>&lt;a href="https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html">https://www.jetbrains.com/help/idea/working-with-the-ide-features-from-command-line.html&lt;/a>&lt;/p>
+&lt;h2 id="切換至usrlocalbin">切換至/usr/local/bin/&lt;/h2>
+&lt;p>首先先切換至&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /usr/local/bin/
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="創建idea檔案">創建idea檔案&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">touch idea
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="編輯idea檔案中的內容">編輯idea檔案中的內容&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="cp">#!/bin/sh
+&lt;/span>&lt;span class="cp">&lt;/span>
+open -na &lt;span class="s2">&amp;#34; IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/uvt1d2m.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>這一步我個人覺得算是「寫一個script腳本」然後讓terminal去運行，可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">env
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/GueLdrH.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>發現我們的PATH變數中有包含&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/usr/local/bin
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>也就是我們idea腳本所儲存的位置&lt;/p>
+&lt;h2 id="存擋後使用chmod調整權限">存擋後使用Chmod調整權限&lt;/h2>
+&lt;p>輸入指令&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">chmod &lt;span class="m">755&lt;/span> idea
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&amp;ldquo;chmod 755&amp;rdquo; 是一個用於設置檔案或目錄權限的命令。在 Linux 和其他類 Unix 系統中，&amp;ldquo;chmod&amp;rdquo; 是改變檔案權限的指令，而 &amp;ldquo;755&amp;rdquo; 是一個表示權限的數字。&lt;/p>
+&lt;p>在 &amp;ldquo;chmod 755&amp;rdquo; 中，&amp;ldquo;755&amp;rdquo; 是由三個數字組成的權限表示法。每個數字代表了不同的使用者類別和他們對檔案的權限。&lt;/p>
+&lt;p>第一個數字（7）表示檔案所有者的權限。在這種情況下，7 表示所有者具有讀取、寫入和執行的權限（4 + 2 + 1）。
+第二個數字（5）表示檔案所屬群組的權限。在這種情況下，5 表示群組具有讀取和執行的權限，但沒有寫入的權限（4 + 1）。
+第三個數字（5）表示其他使用者（非所有者且非群組成員）的權限。在這種情況下，5 表示其他使用者具有讀取和執行的權限，但沒有寫入的權限（4 + 1）。
+因此，&amp;ldquo;chmod 755&amp;rdquo; 的含義是將檔案設置為擁有者具有讀取、寫入和執行權限，群組成員和其他使用者具有讀取和執行權限，但不具有寫入權限。&lt;/p>
+&lt;h2 id="刷新頁面">刷新頁面&lt;/h2>
+&lt;p>確認mac os的檔案icon是否有更改成exec&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/24ushKG.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>如果更改成功，就可以透過&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用開啟檔案了 ！&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
+loading="lazy"
+>&lt;/p>
+&lt;h1 id="以下內容作廢請勿參考這是我錯的紀錄">以下內容作廢，請勿參考，這是我錯的紀錄&lt;/h1>
+&lt;p>如何在Mac中設置環境變數開啟IDEA&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/lUFkVtz.png"
+loading="lazy"
+alt="image-20230518212755943"
+>&lt;/p>
+&lt;p>在Terminal中輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim ~/.bash_profile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>進入輸入畫面後，輸入以下資訊&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">export&lt;/span> &lt;span class="nv">PATH&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/Applications/ IDEA.app/Contents/MacOS:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/lpQPUO3.png"
+loading="lazy"
+alt="image-20230518213215354"
+>&lt;/p>
+&lt;p>儲存後退出，並輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">source&lt;/span> ~/.bash_profile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>即可使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">idea .
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>用Idea開啟當前目錄&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/bWPg1Kj.gif"
+loading="lazy"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/JWV7cRS.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>也可在terminal輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">env
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看目前的環境變數，確定是否有加入PATH中&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/YWKWBgv.png"
+loading="lazy"
+alt="image-20230518213418418"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">open -na &lt;span class="s2">&amp;#34; IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>ARM架構與x86架構下，Docker啟動問題</title><link>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 13 May 2023 19:09:41 +0800</pubDate><guid>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/8XJ9XWE.png" alt="Featured image of post ARM架構與x86架構下，Docker啟動問題" />&lt;h1 id="導因">導因&lt;/h1>
+&lt;p>M1的CPU是使用ARM架構，而有些電腦則是使用x86架構，並且因Docker是Run在OS上方，所以在執行Image時也要考慮作業系統的問題&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">The requested image&lt;span class="err">&amp;#39;&lt;/span>s platform &lt;span class="o">(&lt;/span>linux/amd64&lt;span class="o">)&lt;/span> does not match the detected host platform &lt;span class="o">(&lt;/span>linux/arm64/v8&lt;span class="o">)&lt;/span> and no specific platform was requested
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="解決方法">解決方法&lt;/h1>
+&lt;p>在docker run啟動參數後加上&lt;code>--platform linux/amd64&lt;/code>即可解決這個問題&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker run --platform linux/amd64 -p 8080:8080 fe744192d855
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="解決方法二">解決方法二&lt;/h1>
+&lt;p>幹你媽的，我發現run的時候還是不行，還是要在build就控制它的架構&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker build . --platform linux/x86_64
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>如何更改Mac terminal的預設路徑</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</link><pubDate>Sat, 13 May 2023 17:44:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</guid><description>&lt;img src="https://i.imgur.com/ieJ6kkK.png" alt="Featured image of post 如何更改Mac terminal的預設路徑" />&lt;h1 id="簡介">簡介&lt;/h1>
+&lt;p>最近要換新工作了，正好新工作的公司有電腦補助，就趁這個機會把Macbook也買了，一拿到手之後發現超級難用，難用到靠北，真的不懂為什麼一堆人說好用。&lt;/p>
+&lt;h1 id="如何更改termial預設路徑">如何更改Termial預設路徑&lt;/h1>
+&lt;p>預設情況下，Terminal路徑都是&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/Users/&lt;span class="o">[&lt;/span>使用者名稱&lt;span class="o">]&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但我希望他開啟的路徑是&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/Users/&lt;span class="o">[&lt;/span>使用者名稱&lt;span class="o">]&lt;/span>/Desktop
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>因此要到.zshrc去更改&lt;/p>
+&lt;p>通常這個檔案都會放在&lt;/p>
+&lt;p>/Users/[使用者名稱]底下，如果沒有的話可以自己創一個就好&lt;/p>
+&lt;p>然後編輯裡面的內容，加上這段&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /Users/hoxtonashes/Desktop
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/C4yevFm.png"
+loading="lazy"
+alt="image-20230513180010374"
+>&lt;/p>
+&lt;p>這樣下次開啟的時候，預設的Terminal路徑就會是Desktop了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Q14Iy0n.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p></description></item><item><title>在IntelliJ中設定Class模板</title><link>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</link><pubDate>Fri, 12 May 2023 15:41:07 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/dEvsZm3.png" alt="Featured image of post 在IntelliJ中設定Class模板" />&lt;p>在IntelliJ開啟以下的路徑&lt;/p>
+&lt;p>&lt;code>Setting &amp;gt; Editor &amp;gt; File and Code Templates &amp;gt; Includes &amp;gt; File Header&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/sOjF3Yb.png"
+loading="lazy"
+alt="image-20230512154419942"
+>&lt;/p>
+&lt;p>即可在這邊編輯創建Class的模板，一旦設定好後，當你創建一個新的Class時，IntelliJ就會在你的Class上插入這些資訊&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/TWmvl80.png"
+loading="lazy"
+alt="image-20230512154507522"
+>&lt;/p></description></item><item><title>Git-rerere之介紹</title><link>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</link><pubDate>Fri, 12 May 2023 11:05:10 +0800</pubDate><guid>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/FJcgPVI.png" alt="Featured image of post Git-rerere之介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
+&lt;p>最近公司提倡使用rebase而非merge來合併分支，但在rebase的情況下，常常出現多種commit會有重複confict的情形發生，往往可能要解個2,30個conflict，一來一往可能會耗費許多時間，於是上網查了一下，發現有&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git rerere
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這種神奇的指令&lt;/p>
+&lt;p>這是由3個單字縮寫所組成的指令，分別是reuse、recorded 與 resolution。git rerere有點像是一個記憶吐司的概念，能夠記錄你之前解Conflict的方式，然後自動幫你套用到相同的地方。&lt;/p>
+&lt;p>而這個rerere的行為預設是關閉的，想要打開的話可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global rerere.enabled &lt;span class="nb">true&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來啟用，若不想要使用的話可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --unset rerere.enabled
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>H2Database之配置檔紀錄</title><link>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</link><pubDate>Sat, 06 May 2023 00:13:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/xYmsInY.png" alt="Featured image of post H2Database之配置檔紀錄" />&lt;p>依賴如下&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -4024,198 +4215,7 @@ alt="demo"
 >&lt;/p>
 &lt;p>這樣就是一個基礎的SprintBoot 單例池的創建&lt;/p>
 &lt;h1 id="autowired之實現原理">Autowired之實現原理&lt;/h1>
-&lt;p>To Be Continued &amp;hellip;&lt;/p></description></item><item><title>Java中回傳值前的泛型標識符是什麼意思呢</title><link>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</link><pubDate>Sat, 01 Apr 2023 00:03:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/Y9pLlYY.png" alt="Featured image of post Java中回傳值前的泛型標識符是什麼意思呢" />&lt;p>前一陣子在寫DiscordBot的時候，曾經在教學中看過這種寫法&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">GymBotConfiguration&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="nd">@Bean&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">Event&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">GatewayDiscordClient&lt;/span> &lt;span class="nf">gatewayDiscordClient&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kd">final&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">EventListener&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;&lt;/span> &lt;span class="n">eventListeners&lt;/span>&lt;span class="o">){&lt;/span>
-&lt;span class="kd">final&lt;/span> &lt;span class="n">GatewayDiscordClient&lt;/span> &lt;span class="n">client&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">DiscordClientBuilder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">create&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">token&lt;/span>&lt;span class="o">)&lt;/span>
-&lt;span class="o">.&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">()&lt;/span>
-&lt;span class="o">.&lt;/span>&lt;span class="na">login&lt;/span>&lt;span class="o">()&lt;/span>
-&lt;span class="o">.&lt;/span>&lt;span class="na">block&lt;/span>&lt;span class="o">();&lt;/span>
-&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">EventListener&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">listener&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">eventListeners&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="n">client&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">on&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getEventType&lt;/span>&lt;span class="o">())&lt;/span>
-&lt;span class="o">.&lt;/span>&lt;span class="na">flatMap&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="o">)&lt;/span>
-&lt;span class="o">.&lt;/span>&lt;span class="na">onErrorResume&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">listener&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">handleError&lt;/span>&lt;span class="o">)&lt;/span>
-&lt;span class="o">.&lt;/span>&lt;span class="na">subscribe&lt;/span>&lt;span class="o">();&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">client&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>對於其中&lt;T extends Event>的寫法感到非常困惑，不知道為什麼回傳值前還會有泛型符號，直到最近在研究一些OpenSource的框架時，才又更了解這件事情。&lt;/p>
-&lt;h1 id="如何宣告泛型">如何宣告泛型&lt;/h1>
-&lt;p>在講這件事情之前，要先有個基礎知識，就是關於Java是如何宣告一個泛型Class的，其實就是在Class後面加上&amp;lt;T&amp;gt;就可以了&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>如此一來，就可以在其他地方創建一個泛型的Link類&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">Link&lt;/span> &lt;span class="n">link&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">&amp;gt;;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>現在我們在這個Link類裡新增一個方法&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
-&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
-&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>這個方法會把傳進來的值，包裝成一個ArrayList並回傳出去，而它參數的型別則是與Link的泛型一致，比如說&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">arg&lt;/span>&lt;span class="o">){&lt;/span>
-&lt;span class="n">Link&lt;/span> &lt;span class="n">link&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;;&lt;/span>
-&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">link&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;早安&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/cpeYA8T.png"
-loading="lazy"
-alt="image-20230401002712243"
->&lt;/p>
-&lt;p>也就是說addToList這個&lt;strong>方法的型別和Link的泛型型別是綁定在一起&lt;/strong>的。&lt;/p>
-&lt;h1 id="何謂回傳型別前的泛型">何謂回傳型別前的泛型&lt;/h1>
-&lt;p>承上，因為方法的參數型別與類的泛型型別基本上綁定在一起，如果我宣告了一個Link&amp;lt;Integer&amp;gt;，我的addToList就只能吃Integer的參數，那為了要解決這種問題，就有了在回傳型別前的泛型的寫法，釋例如下&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Link&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
-&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
-&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;span class="kd">public&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addToList2&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">){&lt;/span>
-&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
-&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="o">);&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>可以看到addToList2這個方法的回傳值List&amp;lt;E&amp;gt;前，我加了一個&amp;lt;E&amp;gt;，先別管這個到底能做什麼，我們現在先使用這個方法看看&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/2kuQ8Ol.png"
-loading="lazy"
-alt="image-20230401003453849"
->&lt;/p>
-&lt;p>這時候你發現了，addToList2能吃的參數變成Object類了，當我們輸入一個String&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/httYHD6.png"
-loading="lazy"
-alt="image-20230401003608198"
->&lt;/p>
-&lt;p>輸入一個Double&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/1MrUXaL.png"
-loading="lazy"
-alt="image-20230401003718395"
->&lt;/p>
-&lt;p>也可以輸入一個自定義的類&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/UV8qiDo.png"
-loading="lazy"
-alt="image-20230401013130560"
->&lt;/p>
-&lt;p>可以感受到addToList跟addToList2的差異了嗎？沒錯，addToList2的泛型不受Link的影響，可以自己有自己的泛型&lt;/p>
-&lt;h1 id="應用">應用&lt;/h1>
-&lt;p>這樣的用法不只可以拿來用在泛型類裡的方法，也可以用在一個非泛型類，比如說&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Student&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Student&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">addPeopleList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Student&lt;/span> &lt;span class="n">student&lt;/span>&lt;span class="o">){&lt;/span>
-&lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Student&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
-&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">student&lt;/span>&lt;span class="o">);&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;span class="o">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>今天我們希望這個addPeopleList的方法可以吃任何型別的參數，我們如果這樣寫是會報錯的&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/2VxQDBU.png"
-loading="lazy"
-alt="image-20230401004844813"
->&lt;/p>
-&lt;p>原因就在於我們並沒有一個地方告訴編譯器，什麼是T，因為我們的Student類並不是一個泛型類，但實務上，我們又不太可能去修改原有的類，避免破壞掉一些東西，所以我們修改addPeopleList，讓它變成這樣&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/vAcAm7y.png"
-loading="lazy"
-alt="image-20230401005044108"
->&lt;/p>
-&lt;p>如此一來，addPeopleList就可以吃任何型別的參數了，以上就是所謂的泛型方法約束。&lt;/p></description></item><item><title>論@Value與Environment之優劣</title><link>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link><pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid><description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" />&lt;p>&lt;img src="https://i.imgur.com/JQHz275.png"
+&lt;p>To Be Continued &amp;hellip;&lt;/p></description></item><item><title>論@Value與Environment之優劣</title><link>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link><pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid><description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" />&lt;p>&lt;img src="https://i.imgur.com/JQHz275.png"
 loading="lazy"
 >&lt;/p>
 &lt;p>SpringBoot中想要從Application.properties中取的值，有兩種常見的方式，其中一種是利用@Value的方式&lt;/p>
