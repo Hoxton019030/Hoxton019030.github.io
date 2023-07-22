@@ -1,0 +1,553 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Airflow的Docker安裝檔，arm架構不可用"><title>Airflow的Dockerfile</title><link rel=canonical href=https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/><script type=text/javascript src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel=stylesheet href=/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css><meta property="og:title" content="Airflow的Dockerfile"><meta property="og:description" content="Airflow的Docker安裝檔，arm架構不可用"><meta property="og:url" content="https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/"><meta property="og:site_name" content="Hoxton"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content><meta property="article:published_time" content="2023-07-22T15:27:16+08:00"><meta property="article:modified_time" content="2023-07-22T15:27:16+08:00"><meta property="og:image" content="https://i.imgur.com/ib3Y4zY.png"><meta name=twitter:title content="Airflow的Dockerfile"><meta name=twitter:description content="Airflow的Docker安裝檔，arm架構不可用"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://i.imgur.com/ib3Y4zY.png"><link rel="shortcut icon" href=https://cdn-icons-png.flaticon.com/512/92/92031.png><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-9N16MVLR0Q','auto');ga('send','pageview');}</script></head><body class=article-page><script>(function(){const colorSchemeKey='StackColorScheme';localStorage.setItem(colorSchemeKey,"dark");})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.documentElement.dataset.scheme='dark';}else{document.documentElement.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/airflow%E7%9A%84dockerfile/><img src=https://i.imgur.com/ib3Y4zY.png loading=lazy alt="Featured image of post Airflow的Dockerfile"></a></div><div class=article-details><header class=article-category><a href=/categories/%E6%95%99%E5%AD%B8/ style=background-color:#2a9d8f;color:#fff>教學</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/airflow%E7%9A%84dockerfile/>Airflow的Dockerfile</a></h2><h3 class=article-subtitle>Airflow的Docker安裝檔，arm架構不可用</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Jul 22, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>5 minute read</time></div></footer></div></header><section class=article-content><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span><span class=lnt>219
+</span><span class=lnt>220
+</span><span class=lnt>221
+</span><span class=lnt>222
+</span><span class=lnt>223
+</span><span class=lnt>224
+</span><span class=lnt>225
+</span><span class=lnt>226
+</span><span class=lnt>227
+</span><span class=lnt>228
+</span><span class=lnt>229
+</span><span class=lnt>230
+</span><span class=lnt>231
+</span><span class=lnt>232
+</span><span class=lnt>233
+</span><span class=lnt>234
+</span><span class=lnt>235
+</span><span class=lnt>236
+</span><span class=lnt>237
+</span><span class=lnt>238
+</span><span class=lnt>239
+</span><span class=lnt>240
+</span><span class=lnt>241
+</span><span class=lnt>242
+</span><span class=lnt>243
+</span><span class=lnt>244
+</span><span class=lnt>245
+</span><span class=lnt>246
+</span><span class=lnt>247
+</span><span class=lnt>248
+</span><span class=lnt>249
+</span><span class=lnt>250
+</span><span class=lnt>251
+</span><span class=lnt>252
+</span><span class=lnt>253
+</span><span class=lnt>254
+</span><span class=lnt>255
+</span><span class=lnt>256
+</span><span class=lnt>257
+</span><span class=lnt>258
+</span><span class=lnt>259
+</span><span class=lnt>260
+</span><span class=lnt>261
+</span><span class=lnt>262
+</span><span class=lnt>263
+</span><span class=lnt>264
+</span><span class=lnt>265
+</span><span class=lnt>266
+</span><span class=lnt>267
+</span><span class=lnt>268
+</span><span class=lnt>269
+</span><span class=lnt>270
+</span><span class=lnt>271
+</span><span class=lnt>272
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=c># Licensed to the Apache Software Foundation (ASF) under one</span><span class=w>
+</span><span class=w></span><span class=c># or more contributor license agreements.  See the NOTICE file</span><span class=w>
+</span><span class=w></span><span class=c># distributed with this work for additional information</span><span class=w>
+</span><span class=w></span><span class=c># regarding copyright ownership.  The ASF licenses this file</span><span class=w>
+</span><span class=w></span><span class=c># to you under the Apache License, Version 2.0 (the</span><span class=w>
+</span><span class=w></span><span class=c># &#34;License&#34;); you may not use this file except in compliance</span><span class=w>
+</span><span class=w></span><span class=c># with the License.  You may obtain a copy of the License at</span><span class=w>
+</span><span class=w></span><span class=c>#</span><span class=w>
+</span><span class=w></span><span class=c>#   http://www.apache.org/licenses/LICENSE-2.0</span><span class=w>
+</span><span class=w></span><span class=c>#</span><span class=w>
+</span><span class=w></span><span class=c># Unless required by applicable law or agreed to in writing,</span><span class=w>
+</span><span class=w></span><span class=c># software distributed under the License is distributed on an</span><span class=w>
+</span><span class=w></span><span class=c># &#34;AS IS&#34; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span><span class=w>
+</span><span class=w></span><span class=c># KIND, either express or implied.  See the License for the</span><span class=w>
+</span><span class=w></span><span class=c># specific language governing permissions and limitations</span><span class=w>
+</span><span class=w></span><span class=c># under the License.</span><span class=w>
+</span><span class=w></span><span class=c>#</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=c># Basic Airflow cluster configuration for CeleryExecutor with Redis and PostgreSQL.</span><span class=w>
+</span><span class=w></span><span class=c>#</span><span class=w>
+</span><span class=w></span><span class=c># WARNING: This configuration is for local development. Do not use it in a production deployment.</span><span class=w>
+</span><span class=w></span><span class=c>#</span><span class=w>
+</span><span class=w></span><span class=c># This configuration supports basic configuration using environment variables or an .env file</span><span class=w>
+</span><span class=w></span><span class=c># The following variables are supported:</span><span class=w>
+</span><span class=w></span><span class=c>#</span><span class=w>
+</span><span class=w></span><span class=c># AIRFLOW_IMAGE_NAME           - Docker image name used to run Airflow.</span><span class=w>
+</span><span class=w></span><span class=c>#                                Default: apache/airflow:2.3.0</span><span class=w>
+</span><span class=w></span><span class=c># AIRFLOW_UID                  - User ID in Airflow containers</span><span class=w>
+</span><span class=w></span><span class=c>#                                Default: 50000</span><span class=w>
+</span><span class=w></span><span class=c># Those configurations are useful mostly in case of standalone testing/running Airflow in test/try-out mode</span><span class=w>
+</span><span class=w></span><span class=c>#</span><span class=w>
+</span><span class=w></span><span class=c># _AIRFLOW_WWW_USER_USERNAME   - Username for the administrator account (if requested).</span><span class=w>
+</span><span class=w></span><span class=c>#                                Default: airflow</span><span class=w>
+</span><span class=w></span><span class=c># _AIRFLOW_WWW_USER_PASSWORD   - Password for the administrator account (if requested).</span><span class=w>
+</span><span class=w></span><span class=c>#                                Default: airflow</span><span class=w>
+</span><span class=w></span><span class=c># _PIP_ADDITIONAL_REQUIREMENTS - Additional PIP requirements to add when starting all containers.</span><span class=w>
+</span><span class=w></span><span class=c>#                                Default: &#39;&#39;</span><span class=w>
+</span><span class=w></span><span class=c>#</span><span class=w>
+</span><span class=w></span><span class=c># Feel free to modify this file to suit your needs.</span><span class=w>
+</span><span class=w></span><span class=nn>---</span><span class=w>
+</span><span class=w></span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;3&#39;</span><span class=w>
+</span><span class=w></span><span class=nt>x-airflow-common</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span><span class=cp>&amp;airflow-common</span><span class=w>
+</span><span class=w>  </span><span class=c># In order to add custom dependencies or upgrade provider packages you can use your extended image.</span><span class=w>
+</span><span class=w>  </span><span class=c># Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml</span><span class=w>
+</span><span class=w>  </span><span class=c># and uncomment the &#34;build&#34; line below, Then run `docker compose build` to build the images.</span><span class=w>
+</span><span class=w>  </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>${AIRFLOW_IMAGE_NAME:-apache/airflow:2.3.0}</span><span class=w>
+</span><span class=w>  </span><span class=c># build: .</span><span class=w>
+</span><span class=w>  </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=cp>&amp;airflow-common-env</span><span class=w>
+</span><span class=w>    </span><span class=nt>AIRFLOW__CORE__EXECUTOR</span><span class=p>:</span><span class=w> </span><span class=l>CeleryExecutor</span><span class=w>
+</span><span class=w>    </span><span class=nt>AIRFLOW__DATABASE__SQL_ALCHEMY_CONN</span><span class=p>:</span><span class=w> </span><span class=l>postgresql+psycopg2://airflow:airflow@postgres/airflow</span><span class=w>
+</span><span class=w>    </span><span class=c># For backward compatibility, with Airflow &lt;2.3</span><span class=w>
+</span><span class=w>    </span><span class=nt>AIRFLOW__CORE__SQL_ALCHEMY_CONN</span><span class=p>:</span><span class=w> </span><span class=l>postgresql+psycopg2://airflow:airflow@postgres/airflow</span><span class=w>
+</span><span class=w>    </span><span class=nt>AIRFLOW__CELERY__RESULT_BACKEND</span><span class=p>:</span><span class=w> </span><span class=l>db+postgresql://airflow:airflow@postgres/airflow</span><span class=w>
+</span><span class=w>    </span><span class=nt>AIRFLOW__CELERY__BROKER_URL</span><span class=p>:</span><span class=w> </span><span class=l>redis://:@redis:6379/0</span><span class=w>
+</span><span class=w>    </span><span class=nt>AIRFLOW__CORE__FERNET_KEY</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;&#39;</span><span class=w>
+</span><span class=w>    </span><span class=nt>AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;true&#39;</span><span class=w>
+</span><span class=w>    </span><span class=nt>AIRFLOW__CORE__LOAD_EXAMPLES</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;true&#39;</span><span class=w>
+</span><span class=w>    </span><span class=nt>AIRFLOW__API__AUTH_BACKENDS</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;airflow.api.auth.backend.basic_auth&#39;</span><span class=w>
+</span><span class=w>    </span><span class=nt>_PIP_ADDITIONAL_REQUIREMENTS</span><span class=p>:</span><span class=w> </span><span class=l>${_PIP_ADDITIONAL_REQUIREMENTS:-}</span><span class=w>
+</span><span class=w>  </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span>- <span class=l>./dags:/opt/airflow/dags</span><span class=w>
+</span><span class=w>    </span>- <span class=l>./logs:/opt/airflow/logs</span><span class=w>
+</span><span class=w>    </span>- <span class=l>./plugins:/opt/airflow/plugins</span><span class=w>
+</span><span class=w>  </span><span class=nt>user</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;${AIRFLOW_UID:-50000}:0&#34;</span><span class=w>
+</span><span class=w>  </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=cp>&amp;airflow-common-depends-on</span><span class=w>
+</span><span class=w>    </span><span class=nt>redis</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>condition</span><span class=p>:</span><span class=w> </span><span class=l>service_healthy</span><span class=w>
+</span><span class=w>    </span><span class=nt>postgres</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>condition</span><span class=p>:</span><span class=w> </span><span class=l>service_healthy</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span><span class=nt>postgres</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>postgres:13</span><span class=w>
+</span><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>POSTGRES_USER</span><span class=p>:</span><span class=w> </span><span class=l>airflow</span><span class=w>
+</span><span class=w>      </span><span class=nt>POSTGRES_PASSWORD</span><span class=p>:</span><span class=w> </span><span class=l>airflow</span><span class=w>
+</span><span class=w>      </span><span class=nt>POSTGRES_DB</span><span class=p>:</span><span class=w> </span><span class=l>airflow</span><span class=w>
+</span><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=l>postgres-db-volume:/var/lib/postgresql/data</span><span class=w>
+</span><span class=w>    </span><span class=nt>healthcheck</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>test</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;CMD&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;pg_isready&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;-U&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;airflow&#34;</span><span class=p>]</span><span class=w>
+</span><span class=w>      </span><span class=nt>interval</span><span class=p>:</span><span class=w> </span><span class=l>5s</span><span class=w>
+</span><span class=w>      </span><span class=nt>retries</span><span class=p>:</span><span class=w> </span><span class=m>5</span><span class=w>
+</span><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=nt>redis</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>redis:latest</span><span class=w>
+</span><span class=w>    </span><span class=nt>expose</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=m>6379</span><span class=w>
+</span><span class=w>    </span><span class=nt>healthcheck</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>test</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;CMD&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;redis-cli&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;ping&#34;</span><span class=p>]</span><span class=w>
+</span><span class=w>      </span><span class=nt>interval</span><span class=p>:</span><span class=w> </span><span class=l>5s</span><span class=w>
+</span><span class=w>      </span><span class=nt>timeout</span><span class=p>:</span><span class=w> </span><span class=l>30s</span><span class=w>
+</span><span class=w>      </span><span class=nt>retries</span><span class=p>:</span><span class=w> </span><span class=m>50</span><span class=w>
+</span><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=nt>airflow-webserver</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common</span><span class=w>
+</span><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=l>webserver</span><span class=w>
+</span><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=m>8080</span><span class=p>:</span><span class=m>8080</span><span class=w>
+</span><span class=w>    </span><span class=nt>healthcheck</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>test</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;CMD&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;curl&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;--fail&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;http://localhost:8080/health&#34;</span><span class=p>]</span><span class=w>
+</span><span class=w>      </span><span class=nt>interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span><span class=w>      </span><span class=nt>timeout</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span><span class=w>      </span><span class=nt>retries</span><span class=p>:</span><span class=w> </span><span class=m>5</span><span class=w>
+</span><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
+</span><span class=w>    </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common-depends-on</span><span class=w>
+</span><span class=w>      </span><span class=nt>airflow-init</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>condition</span><span class=p>:</span><span class=w> </span><span class=l>service_completed_successfully</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=nt>airflow-scheduler</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common</span><span class=w>
+</span><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=l>scheduler</span><span class=w>
+</span><span class=w>    </span><span class=nt>healthcheck</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>test</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;CMD-SHELL&#34;</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;airflow jobs check --job-type SchedulerJob --hostname &#34;$${HOSTNAME}&#34;&#39;</span><span class=p>]</span><span class=w>
+</span><span class=w>      </span><span class=nt>interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span><span class=w>      </span><span class=nt>timeout</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span><span class=w>      </span><span class=nt>retries</span><span class=p>:</span><span class=w> </span><span class=m>5</span><span class=w>
+</span><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
+</span><span class=w>    </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common-depends-on</span><span class=w>
+</span><span class=w>      </span><span class=nt>airflow-init</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>condition</span><span class=p>:</span><span class=w> </span><span class=l>service_completed_successfully</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=nt>airflow-worker</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common</span><span class=w>
+</span><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=l>celery worker</span><span class=w>
+</span><span class=w>    </span><span class=nt>healthcheck</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>test</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span>- <span class=s2>&#34;CMD-SHELL&#34;</span><span class=w>
+</span><span class=w>        </span>- <span class=s1>&#39;celery --app airflow.executors.celery_executor.app inspect ping -d &#34;celery@$${HOSTNAME}&#34;&#39;</span><span class=w>
+</span><span class=w>      </span><span class=nt>interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span><span class=w>      </span><span class=nt>timeout</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span><span class=w>      </span><span class=nt>retries</span><span class=p>:</span><span class=w> </span><span class=m>5</span><span class=w>
+</span><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common-env</span><span class=w>
+</span><span class=w>      </span><span class=c># Required to handle warm shutdown of the celery workers properly</span><span class=w>
+</span><span class=w>      </span><span class=c># See https://airflow.apache.org/docs/docker-stack/entrypoint.html#signal-propagation</span><span class=w>
+</span><span class=w>      </span><span class=nt>DUMB_INIT_SETSID</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;0&#34;</span><span class=w>
+</span><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
+</span><span class=w>    </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common-depends-on</span><span class=w>
+</span><span class=w>      </span><span class=nt>airflow-init</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>condition</span><span class=p>:</span><span class=w> </span><span class=l>service_completed_successfully</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=nt>airflow-triggerer</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common</span><span class=w>
+</span><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=l>triggerer</span><span class=w>
+</span><span class=w>    </span><span class=nt>healthcheck</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>test</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;CMD-SHELL&#34;</span><span class=p>,</span><span class=w> </span><span class=s1>&#39;airflow jobs check --job-type TriggererJob --hostname &#34;$${HOSTNAME}&#34;&#39;</span><span class=p>]</span><span class=w>
+</span><span class=w>      </span><span class=nt>interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span><span class=w>      </span><span class=nt>timeout</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span><span class=w>      </span><span class=nt>retries</span><span class=p>:</span><span class=w> </span><span class=m>5</span><span class=w>
+</span><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
+</span><span class=w>    </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common-depends-on</span><span class=w>
+</span><span class=w>      </span><span class=nt>airflow-init</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>condition</span><span class=p>:</span><span class=w> </span><span class=l>service_completed_successfully</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=nt>airflow-init</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common</span><span class=w>
+</span><span class=w>    </span><span class=nt>entrypoint</span><span class=p>:</span><span class=w> </span><span class=l>/bin/bash</span><span class=w>
+</span><span class=w>    </span><span class=c># yamllint disable rule:line-length</span><span class=w>
+</span><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- -<span class=l>c</span><span class=w>
+</span><span class=w>      </span>- <span class=p>|</span><span class=sd>
+</span><span class=sd>        function ver() {
+</span><span class=sd>          printf &#34;%04d%04d%04d%04d&#34; $${1//./ }
+</span><span class=sd>        }
+</span><span class=sd>        airflow_version=$$(gosu airflow airflow version)
+</span><span class=sd>        airflow_version_comparable=$$(ver $${airflow_version})
+</span><span class=sd>        min_airflow_version=2.2.0
+</span><span class=sd>        min_airflow_version_comparable=$$(ver $${min_airflow_version})
+</span><span class=sd>        if (( airflow_version_comparable &lt; min_airflow_version_comparable )); then
+</span><span class=sd>          echo
+</span><span class=sd>          echo -e &#34;\033[1;31mERROR!!!: Too old Airflow version $${airflow_version}!\e[0m&#34;
+</span><span class=sd>          echo &#34;The minimum Airflow version supported: $${min_airflow_version}. Only use this or higher!&#34;
+</span><span class=sd>          echo
+</span><span class=sd>          exit 1
+</span><span class=sd>        fi
+</span><span class=sd>        if [[ -z &#34;${AIRFLOW_UID}&#34; ]]; then
+</span><span class=sd>          echo
+</span><span class=sd>          echo -e &#34;\033[1;33mWARNING!!!: AIRFLOW_UID not set!\e[0m&#34;
+</span><span class=sd>          echo &#34;If you are on Linux, you SHOULD follow the instructions below to set &#34;
+</span><span class=sd>          echo &#34;AIRFLOW_UID environment variable, otherwise files will be owned by root.&#34;
+</span><span class=sd>          echo &#34;For other operating systems you can get rid of the warning with manually created .env file:&#34;
+</span><span class=sd>          echo &#34;    See: https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html#setting-the-right-airflow-user&#34;
+</span><span class=sd>          echo
+</span><span class=sd>        fi
+</span><span class=sd>        one_meg=1048576
+</span><span class=sd>        mem_available=$$(($$(getconf _PHYS_PAGES) * $$(getconf PAGE_SIZE) / one_meg))
+</span><span class=sd>        cpus_available=$$(grep -cE &#39;cpu[0-9]+&#39; /proc/stat)
+</span><span class=sd>        disk_available=$$(df / | tail -1 | awk &#39;{print $$4}&#39;)
+</span><span class=sd>        warning_resources=&#34;false&#34;
+</span><span class=sd>        if (( mem_available &lt; 4000 )) ; then
+</span><span class=sd>          echo
+</span><span class=sd>          echo -e &#34;\033[1;33mWARNING!!!: Not enough memory available for Docker.\e[0m&#34;
+</span><span class=sd>          echo &#34;At least 4GB of memory required. You have $$(numfmt --to iec $$((mem_available * one_meg)))&#34;
+</span><span class=sd>          echo
+</span><span class=sd>          warning_resources=&#34;true&#34;
+</span><span class=sd>        fi
+</span><span class=sd>        if (( cpus_available &lt; 2 )); then
+</span><span class=sd>          echo
+</span><span class=sd>          echo -e &#34;\033[1;33mWARNING!!!: Not enough CPUS available for Docker.\e[0m&#34;
+</span><span class=sd>          echo &#34;At least 2 CPUs recommended. You have $${cpus_available}&#34;
+</span><span class=sd>          echo
+</span><span class=sd>          warning_resources=&#34;true&#34;
+</span><span class=sd>        fi
+</span><span class=sd>        if (( disk_available &lt; one_meg * 10 )); then
+</span><span class=sd>          echo
+</span><span class=sd>          echo -e &#34;\033[1;33mWARNING!!!: Not enough Disk space available for Docker.\e[0m&#34;
+</span><span class=sd>          echo &#34;At least 10 GBs recommended. You have $$(numfmt --to iec $$((disk_available * 1024 )))&#34;
+</span><span class=sd>          echo
+</span><span class=sd>          warning_resources=&#34;true&#34;
+</span><span class=sd>        fi
+</span><span class=sd>        if [[ $${warning_resources} == &#34;true&#34; ]]; then
+</span><span class=sd>          echo
+</span><span class=sd>          echo -e &#34;\033[1;33mWARNING!!!: You have not enough resources to run Airflow (see above)!\e[0m&#34;
+</span><span class=sd>          echo &#34;Please follow the instructions to increase amount of resources available:&#34;
+</span><span class=sd>          echo &#34;   https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html#before-you-begin&#34;
+</span><span class=sd>          echo
+</span><span class=sd>        fi
+</span><span class=sd>        mkdir -p /sources/logs /sources/dags /sources/plugins
+</span><span class=sd>        chown -R &#34;${AIRFLOW_UID}:0&#34; /sources/{logs,dags,plugins}
+</span><span class=sd>        exec /entrypoint airflow version</span><span class=w>        
+</span><span class=w>    </span><span class=c># yamllint enable rule:line-length</span><span class=w>
+</span><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common-env</span><span class=w>
+</span><span class=w>      </span><span class=nt>_AIRFLOW_DB_UPGRADE</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;true&#39;</span><span class=w>
+</span><span class=w>      </span><span class=nt>_AIRFLOW_WWW_USER_CREATE</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;true&#39;</span><span class=w>
+</span><span class=w>      </span><span class=nt>_AIRFLOW_WWW_USER_USERNAME</span><span class=p>:</span><span class=w> </span><span class=l>${_AIRFLOW_WWW_USER_USERNAME:-airflow}</span><span class=w>
+</span><span class=w>      </span><span class=nt>_AIRFLOW_WWW_USER_PASSWORD</span><span class=p>:</span><span class=w> </span><span class=l>${_AIRFLOW_WWW_USER_PASSWORD:-airflow}</span><span class=w>
+</span><span class=w>    </span><span class=nt>user</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;0:0&#34;</span><span class=w>
+</span><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=l>.:/sources</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=nt>airflow-cli</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common</span><span class=w>
+</span><span class=w>    </span><span class=nt>profiles</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=l>debug</span><span class=w>
+</span><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common-env</span><span class=w>
+</span><span class=w>      </span><span class=nt>CONNECTION_CHECK_MAX_COUNT</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;0&#34;</span><span class=w>
+</span><span class=w>    </span><span class=c># Workaround for entrypoint issue. See: https://github.com/apache/airflow/issues/16252</span><span class=w>
+</span><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=l>bash</span><span class=w>
+</span><span class=w>      </span>- -<span class=l>c</span><span class=w>
+</span><span class=w>      </span>- <span class=l>airflow</span><span class=w>
+</span><span class=w>
+</span><span class=w>  </span><span class=nt>flower</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common</span><span class=w>
+</span><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=l>celery flower</span><span class=w>
+</span><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=m>5555</span><span class=p>:</span><span class=m>5555</span><span class=w>
+</span><span class=w>    </span><span class=nt>healthcheck</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>test</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;CMD&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;curl&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;--fail&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;http://localhost:5555/&#34;</span><span class=p>]</span><span class=w>
+</span><span class=w>      </span><span class=nt>interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span><span class=w>      </span><span class=nt>timeout</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span><span class=w>      </span><span class=nt>retries</span><span class=p>:</span><span class=w> </span><span class=m>5</span><span class=w>
+</span><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
+</span><span class=w>    </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*airflow-common-depends-on</span><span class=w>
+</span><span class=w>      </span><span class=nt>airflow-init</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>condition</span><span class=p>:</span><span class=w> </span><span class=l>service_completed_successfully</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span><span class=nt>postgres-db-volume</span><span class=p>:</span><span class=w>
+</span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/><div class=article-image><img src=https://i.imgur.com/FWgJzl6.png loading=lazy data-key data-hash=https://i.imgur.com/FWgJzl6.png></div><div class=article-details><h2 class=article-title>如何在M1,M2中安裝Airflow</h2></div></a></article><article class=has-image><a href=/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/><div class=article-image><img src=https://i.imgur.com/eESaO42.png loading=lazy data-key data-hash=https://i.imgur.com/eESaO42.png></div><div class=article-details><h2 class=article-title>在Termianl中顯示完整的Git Tree</h2></div></a></article><article class=has-image><a href=/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/><div class=article-image><img src=https://i.imgur.com/qKt7ANw.png loading=lazy data-key data-hash=https://i.imgur.com/qKt7ANw.png></div><div class=article-details><h2 class=article-title>將Linux的Port打開，讓外部可以訪問</h2></div></a></article><article class=has-image><a href=/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/><div class=article-image><img src=https://i.imgur.com/mdbKbaT.png loading=lazy data-key data-hash=https://i.imgur.com/mdbKbaT.png></div><div class=article-details><h2 class=article-title>使用shellScript讀取資料夾中的檔案個數</h2></div></a></article><article class=has-image><a href=/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/><div class=article-image><img src=https://i.imgur.com/xYmsInY.png loading=lazy data-key data-hash=https://i.imgur.com/xYmsInY.png></div><div class=article-details><h2 class=article-title>H2Database之配置檔紀錄</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
+gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2023 Hoxton</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
