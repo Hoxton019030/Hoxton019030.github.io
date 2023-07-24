@@ -1,4 +1,78 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 09 Jul 2023 09:47:13 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>Maven詳細研究</title><link>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 09 Jul 2023 09:47:13 +0800</pubDate><guid>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/VcZp2b7.png" alt="Featured image of post Maven詳細研究" />&lt;p>最近換了一份新工作，發現我一直以來平淡無情的Maven原來也是有很多細節的（我一直以為就只是一個拿來自動下載Jar的無情機器而已），其實Maven的pom.xml的名稱其實就已經隱含了它的功能&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 23 Jul 2023 14:59:22 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>對遍歷中的集合類修改，會有什麼樣的問題呢</title><link>https://hoxtonhsu.com/p/%E5%B0%8D%E9%81%8D%E6%AD%B7%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E9%A1%9E%E4%BF%AE%E6%94%B9%E6%9C%83%E6%9C%89%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E5%91%A2/</link><pubDate>Sun, 23 Jul 2023 14:59:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%8D%E9%81%8D%E6%AD%B7%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E9%A1%9E%E4%BF%AE%E6%94%B9%E6%9C%83%E6%9C%89%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/oHOBik5.png" alt="Featured image of post 對遍歷中的集合類修改，會有什麼樣的問題呢" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>前一陣子面試了一家博奕業，他的第一題是這樣的&lt;/p>
+&lt;p>給一整數陣列，並把陣列中的0移到最後，其餘的數字保持原來的順序。
+例如輸入陣列{0,0,0,1,2,3,4,5,6,7,8}， (你不知道index)
+請寫個方法可輸出為{1,2,3,4,5,6,7,8,0,0,0}&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java"> &lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">numbList&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;(&lt;/span>&lt;span class="n">Arrays&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">asList&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">2&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">3&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">4&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">5&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">6&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">7&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">8&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">numbList2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="k">for&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Integer&lt;/span> &lt;span class="n">num&lt;/span> &lt;span class="o">:&lt;/span>&lt;span class="n">numbList&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">num&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * TODO
+&lt;/span>&lt;span class="cm"> * 尝试完成把 List中的0移到最後
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="n">numbList&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">remove&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">num&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">numbList2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">num&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">numbList&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>至於具體來說到底要怎麼寫不是我想討論的重點，而是這題藏在魔鬼裡的細節&lt;/p>
+&lt;h1 id="concurrentmodificationexception">ConcurrentModificationException&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/9xKVRt4.gif"
+loading="lazy"
+alt="im-a-little-confused"
+>&lt;/p>
+&lt;p>當你實際執行後就會出現這個錯誤ConcurrentModificationException&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/j1dvCGT.png"
+loading="lazy"
+alt="image-20230723152310712"
+>&lt;/p>
+&lt;p>他說錯誤出現在第12行，但實際上錯誤並不是出現在第12行，應該是在第18行的位置，我們可以開Debugger，看起來會更明顯一點&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/8F1e4Ay.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>他回報了這個錯誤，那這個錯誤具體而言是什麼呢？&lt;/p>
+&lt;p>ConcurrentModificationException這個錯誤會發生在對&lt;strong>遍歷的集合類進行刪除、增加時會出現&lt;/strong>這個併發修改錯誤，而會拋出這個錯誤的原因是因為&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/FPmyTNG.png"
+loading="lazy"
+alt="image-20230723153232134"
+>&lt;/p>
+&lt;p>集合類中的modCount跟expectModCount不相等而拋出的，由於本人才疏學淺，目前理解的概念像是這樣&lt;/p>
+&lt;p>因為Java常見的集合類本身並不是**執行緒安全(Thread Safe)**的，因此會有兩個int，expectModCount像是去紀錄理論的修改次數，modCount像是去記錄實際修改的次數，當兩邊的數字Match不起來，就會拋出錯誤，提醒你因為執行緒不安全的關係導致你執行的結果會與預期有落差，這樣的行為也稱之為Fast-Fail，&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/d2xQy1f.png"
+loading="lazy"
+alt="image-20230723154447030"
+>&lt;/p>
+&lt;p>(圖片來自於網路)&lt;/p>
+&lt;p>因為在remove這邊有modCount++的行為，導致兩邊值不同，因而拋出錯誤&lt;/p>
+&lt;p>​&lt;/p>
+&lt;h1 id="參考連結">參考連結&lt;/h1>
+&lt;p>&lt;a href="https://cloud.tencent.com/developer/article/1896820">https://cloud.tencent.com/developer/article/1896820&lt;/a>&lt;/p></description></item><item><title>Maven詳細研究</title><link>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 09 Jul 2023 09:47:13 +0800</pubDate><guid>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/VcZp2b7.png" alt="Featured image of post Maven詳細研究" />&lt;p>最近換了一份新工作，發現我一直以來平淡無情的Maven原來也是有很多細節的（我一直以為就只是一個拿來自動下載Jar的無情機器而已），其實Maven的pom.xml的名稱其實就已經隱含了它的功能&lt;/p>
 &lt;p>&lt;span style="color:yellow">P&lt;/span>roject &lt;span style="color:yellow">O&lt;/span>bject &lt;span style="color:yellow">M&lt;/span>odel（專案物件模型）&lt;/p>
 &lt;p>望文生義其實也可以感受到它就是用來管理專案、或專案與專案之間關係的一個檔案，這篇文章的主題是我想要&lt;strong>了解Maven Module管理的部分&lt;/strong>&lt;/p>
 &lt;h1 id="maven項目結構">Maven項目結構&lt;/h1>
