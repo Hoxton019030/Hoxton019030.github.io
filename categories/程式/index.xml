@@ -63,7 +63,7 @@ loading="lazy"
 alt="image-20230723153232134"
 >&lt;/p>
 &lt;p>集合類中的modCount跟expectModCount不相等而拋出的，由於本人才疏學淺，目前理解的概念像是這樣&lt;/p>
-&lt;p>因為Java常見的集合類本身並不是**執行緒安全(Thread Safe)**的，因此會有兩個int，expectModCount像是去紀錄理論的修改次數，modCount像是去記錄實際修改的次數，當兩邊的數字Match不起來，就會拋出錯誤，提醒你因為執行緒不安全的關係導致你執行的結果會與預期有落差，這樣的行為也稱之為Fast-Fail，&lt;/p>
+&lt;p>因為Java常見的集合類本身&lt;strong>並不是執行緒安全(Thread Safe)的&lt;/strong>，因此會有兩個int，expectModCount像是去紀錄理論的修改次數，modCount像是去記錄實際修改的次數，當兩邊的數字Match不起來，就會拋出錯誤，提醒你因為執行緒不安全的關係導致你執行的結果會與預期有落差，這樣的行為也稱之為Fast-Fail，&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/d2xQy1f.png"
 loading="lazy"
 alt="image-20230723154447030"
