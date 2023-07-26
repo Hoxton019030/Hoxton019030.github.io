@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 23 Jul 2023 14:59:22 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>對遍歷中的集合類修改，會有什麼樣的問題呢</title><link>https://hoxtonhsu.com/p/%E5%B0%8D%E9%81%8D%E6%AD%B7%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E9%A1%9E%E4%BF%AE%E6%94%B9%E6%9C%83%E6%9C%89%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E5%91%A2/</link><pubDate>Sun, 23 Jul 2023 14:59:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%8D%E9%81%8D%E6%AD%B7%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E9%A1%9E%E4%BF%AE%E6%94%B9%E6%9C%83%E6%9C%89%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/oHOBik5.png" alt="Featured image of post 對遍歷中的集合類修改，會有什麼樣的問題呢" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 27 Jul 2023 00:48:39 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>以線性代數求解車流量問題</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 00:48:39 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/wswxl2P.png" alt="Featured image of post 以線性代數求解車流量問題" />&lt;p>最近在學習線性代數，很感謝自己當初高中選的是自然組( •̀ ω •́ )✧，至少還保留一點交戰記憶，還有剛好是中原有教微積分的最後一屆商學院(我記得之後的都是教財務數學)，所以看到什麼導數、cosθ、之類的不至於太害怕。&lt;/p>
+&lt;p>今天再寫的時候看到一題交大資工的考古題，覺得非常的實用，上網查了一下解法，順便當作個紀錄&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/RvSv2rb.png"
+loading="lazy"
+alt="image-20230727005444212"
+>&lt;/p>
+&lt;p>第一次看到的時候有點嚇到，看了一下解答之後還是不太清楚怎麼求出下面的聯立方程的&lt;/p>
+&lt;p>$$
+\begin{align*}
+x_{1} &amp;amp;+ 10 = x_{2} \&lt;br>
+x_{2} &amp;amp;= 5 + x_{3}\&lt;br>
+x_{3} &amp;amp;= 10+ x_{4} \&lt;br>
+x_{4} &amp;amp;+20=x_{1}
+\end{align*}
+$$&lt;/p>
+&lt;p>後來看了一下國外的教學，發現概念很簡單，一個圓環，進來的車流量必定等於出去的流量，所以x₂就是x₁再加上10，而x₃就等於x₂再減去開出去的20輛車，也就就是x₂-20=x₃。於是就可以列出增廣矩陣&lt;/p>
+&lt;p>$$
+\begin{bmatrix}
+-1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; | &amp;amp; -20 \&lt;br>
+1 &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; -10 \&lt;br>
+0 &amp;amp; 1 &amp;amp; -1 &amp;amp; 0 &amp;amp; | &amp;amp; 20 \&lt;br>
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; -1 &amp;amp; | &amp;amp; 10 \&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>化成列梯陣
+$$
+\begin{bmatrix}
+1 &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; -10 \&lt;br>
+0 &amp;amp; 1 &amp;amp; -1 &amp;amp; 0 &amp;amp; | &amp;amp; 20 \&lt;br>
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; -1 &amp;amp; | &amp;amp; 10 \&lt;br>
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; 0 \&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>發現這個矩陣具有無窮多組解，Ax=B得x等於
+$$&lt;/p>
+&lt;p>$$&lt;/p>
+&lt;p>$$&lt;/p>
+&lt;p>\begin{bmatrix}
+20+t \&lt;br>
+30+t \&lt;br>
+10+t \&lt;br>
+t \&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>那回頭來解題目&lt;/p>
+&lt;p>題目1說可以化為strictly triangular matrix，答案是不可以的，因為對角元素不是全零&lt;/p>
+&lt;blockquote>
+&lt;p>嚴格三角矩陣定義：是三角矩陣，但對角項均為零&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/WoMdArl.png"
+loading="lazy"
+alt="image-20230727012953441"
+>&lt;/p>
+&lt;/blockquote>
+&lt;p>題目二說可以化為那樣的簡化列梯陣，當然答案也是錯的&lt;/p>
+&lt;p>題目三說這個線性系統是Consistent的，所謂的Consistent(一致)代表至少有一組解，那這邊是對的&lt;/p>
+&lt;p>題目四，最大交通的是X2，因為它是30+t&lt;/p>
+&lt;p>題目五問說如果現在所有的方向全部倒過來，那答案會一樣嗎，答案是對的，因為只是方向換過來，其實就只是在等號兩邊同乘負號而已&lt;/p></description></item><item><title>對遍歷中的集合類修改，會有什麼樣的問題呢</title><link>https://hoxtonhsu.com/p/%E5%B0%8D%E9%81%8D%E6%AD%B7%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E9%A1%9E%E4%BF%AE%E6%94%B9%E6%9C%83%E6%9C%89%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E5%91%A2/</link><pubDate>Sun, 23 Jul 2023 14:59:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%8D%E9%81%8D%E6%AD%B7%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E9%A1%9E%E4%BF%AE%E6%94%B9%E6%9C%83%E6%9C%89%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/oHOBik5.png" alt="Featured image of post 對遍歷中的集合類修改，會有什麼樣的問題呢" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前一陣子面試了一家博奕業，他的第一題是這樣的&lt;/p>
 &lt;p>給一整數陣列，並把陣列中的0移到最後，其餘的數字保持原來的順序。
 例如輸入陣列{0,0,0,1,2,3,4,5,6,7,8}， (你不知道index)

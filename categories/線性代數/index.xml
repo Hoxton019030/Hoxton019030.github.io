@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>線性代數 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</link><description>Recent content in 線性代數 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 16 Jul 2023 14:58:17 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>以幾何意義來理解線性代數</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E5%B9%BE%E4%BD%95%E6%84%8F%E7%BE%A9%E4%BE%86%E7%90%86%E8%A7%A3%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</link><pubDate>Sun, 16 Jul 2023 14:58:17 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E5%B9%BE%E4%BD%95%E6%84%8F%E7%BE%A9%E4%BE%86%E7%90%86%E8%A7%A3%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/vd5T3J2.png" alt="Featured image of post 以幾何意義來理解線性代數" />&lt;p>參考網址：https://www.bilibili.com/video/BV1ys411472E?p=1&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/p></description></item><item><title>行列式為什麼是ab-bc?行列式之解析</title><link>https://hoxtonhsu.com/p/%E8%A1%8C%E5%88%97%E5%BC%8F%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AFab-bc%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B9%8B%E8%A7%A3%E6%9E%90/</link><pubDate>Thu, 06 Jul 2023 21:17:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%A1%8C%E5%88%97%E5%BC%8F%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AFab-bc%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B9%8B%E8%A7%A3%E6%9E%90/</guid><description>&lt;img src="https://i.imgur.com/kuvQKCh.png" alt="Featured image of post 行列式為什麼是ab-bc?行列式之解析" />&lt;p>設方程式&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>線性代數 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</link><description>Recent content in 線性代數 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 27 Jul 2023 00:48:39 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>以線性代數求解車流量問題</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 00:48:39 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/wswxl2P.png" alt="Featured image of post 以線性代數求解車流量問題" />&lt;p>最近在學習線性代數，很感謝自己當初高中選的是自然組( •̀ ω •́ )✧，至少還保留一點交戰記憶，還有剛好是中原有教微積分的最後一屆商學院(我記得之後的都是教財務數學)，所以看到什麼導數、cosθ、之類的不至於太害怕。&lt;/p>
+&lt;p>今天再寫的時候看到一題交大資工的考古題，覺得非常的實用，上網查了一下解法，順便當作個紀錄&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/RvSv2rb.png"
+loading="lazy"
+alt="image-20230727005444212"
+>&lt;/p>
+&lt;p>第一次看到的時候有點嚇到，看了一下解答之後還是不太清楚怎麼求出下面的聯立方程的&lt;/p>
+&lt;p>$$
+\begin{align*}
+x_{1} &amp;amp;+ 10 = x_{2} \&lt;br>
+x_{2} &amp;amp;= 5 + x_{3}\&lt;br>
+x_{3} &amp;amp;= 10+ x_{4} \&lt;br>
+x_{4} &amp;amp;+20=x_{1}
+\end{align*}
+$$&lt;/p>
+&lt;p>後來看了一下國外的教學，發現概念很簡單，一個圓環，進來的車流量必定等於出去的流量，所以x₂就是x₁再加上10，而x₃就等於x₂再減去開出去的20輛車，也就就是x₂-20=x₃。於是就可以列出增廣矩陣&lt;/p>
+&lt;p>$$
+\begin{bmatrix}
+-1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; | &amp;amp; -20 \&lt;br>
+1 &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; -10 \&lt;br>
+0 &amp;amp; 1 &amp;amp; -1 &amp;amp; 0 &amp;amp; | &amp;amp; 20 \&lt;br>
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; -1 &amp;amp; | &amp;amp; 10 \&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>化成列梯陣
+$$
+\begin{bmatrix}
+1 &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; -10 \&lt;br>
+0 &amp;amp; 1 &amp;amp; -1 &amp;amp; 0 &amp;amp; | &amp;amp; 20 \&lt;br>
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; -1 &amp;amp; | &amp;amp; 10 \&lt;br>
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; 0 \&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>發現這個矩陣具有無窮多組解，Ax=B得x等於
+$$&lt;/p>
+&lt;p>$$&lt;/p>
+&lt;p>$$&lt;/p>
+&lt;p>\begin{bmatrix}
+20+t \&lt;br>
+30+t \&lt;br>
+10+t \&lt;br>
+t \&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>那回頭來解題目&lt;/p>
+&lt;p>題目1說可以化為strictly triangular matrix，答案是不可以的，因為對角元素不是全零&lt;/p>
+&lt;blockquote>
+&lt;p>嚴格三角矩陣定義：是三角矩陣，但對角項均為零&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/WoMdArl.png"
+loading="lazy"
+alt="image-20230727012953441"
+>&lt;/p>
+&lt;/blockquote>
+&lt;p>題目二說可以化為那樣的簡化列梯陣，當然答案也是錯的&lt;/p>
+&lt;p>題目三說這個線性系統是Consistent的，所謂的Consistent(一致)代表至少有一組解，那這邊是對的&lt;/p>
+&lt;p>題目四，最大交通的是X2，因為它是30+t&lt;/p>
+&lt;p>題目五問說如果現在所有的方向全部倒過來，那答案會一樣嗎，答案是對的，因為只是方向換過來，其實就只是在等號兩邊同乘負號而已&lt;/p></description></item><item><title>以幾何意義來理解線性代數</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E5%B9%BE%E4%BD%95%E6%84%8F%E7%BE%A9%E4%BE%86%E7%90%86%E8%A7%A3%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</link><pubDate>Sun, 16 Jul 2023 14:58:17 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E5%B9%BE%E4%BD%95%E6%84%8F%E7%BE%A9%E4%BE%86%E7%90%86%E8%A7%A3%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/vd5T3J2.png" alt="Featured image of post 以幾何意義來理解線性代數" />&lt;p>參考網址：https://www.bilibili.com/video/BV1ys411472E?p=1&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/p></description></item><item><title>行列式為什麼是ab-bc?行列式之解析</title><link>https://hoxtonhsu.com/p/%E8%A1%8C%E5%88%97%E5%BC%8F%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AFab-bc%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B9%8B%E8%A7%A3%E6%9E%90/</link><pubDate>Thu, 06 Jul 2023 21:17:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%A1%8C%E5%88%97%E5%BC%8F%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AFab-bc%E8%A1%8C%E5%88%97%E5%BC%8F%E4%B9%8B%E8%A7%A3%E6%9E%90/</guid><description>&lt;img src="https://i.imgur.com/kuvQKCh.png" alt="Featured image of post 行列式為什麼是ab-bc?行列式之解析" />&lt;p>設方程式&lt;/p>
 &lt;p>$$
 3x+2y=11 \&lt;br>
 2x+2y=8
