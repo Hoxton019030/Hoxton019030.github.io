@@ -7,39 +7,37 @@ alt="image-20230727005444212"
 &lt;p>第一次看到的時候有點嚇到，看了一下解答之後還是不太清楚怎麼求出下面的聯立方程的&lt;/p>
 &lt;p>$$
 \begin{align*}
-x_{1} &amp;amp;+ 10 = x_{2} \&lt;br>
-x_{2} &amp;amp;= 5 + x_{3}\&lt;br>
-x_{3} &amp;amp;= 10+ x_{4} \&lt;br>
+x_{1} &amp;amp;+ 10 = x_{2} \\&lt;br>
+x_{2} &amp;amp;= 5 + x_{3}\\&lt;br>
+x_{3} &amp;amp;= 10+ x_{4} \\&lt;br>
 x_{4} &amp;amp;+20=x_{1}
 \end{align*}
 $$&lt;/p>
 &lt;p>後來看了一下國外的教學，發現概念很簡單，一個圓環，進來的車流量必定等於出去的流量，所以x₂就是x₁再加上10，而x₃就等於x₂再減去開出去的20輛車，也就就是x₂-20=x₃。於是就可以列出增廣矩陣&lt;/p>
 &lt;p>$$
 \begin{bmatrix}
--1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; | &amp;amp; -20 \&lt;br>
-1 &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; -10 \&lt;br>
-0 &amp;amp; 1 &amp;amp; -1 &amp;amp; 0 &amp;amp; | &amp;amp; 20 \&lt;br>
-0 &amp;amp; 0 &amp;amp; 1 &amp;amp; -1 &amp;amp; | &amp;amp; 10 \&lt;br>
+-1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; | &amp;amp; -20 \\&lt;br>
+1 &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; -10 \\&lt;br>
+0 &amp;amp; 1 &amp;amp; -1 &amp;amp; 0 &amp;amp; | &amp;amp; 20 \\&lt;br>
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; -1 &amp;amp; | &amp;amp; 10 \\&lt;br>
 \end{bmatrix}
 $$&lt;/p>
 &lt;p>化成列梯陣
 $$
 \begin{bmatrix}
-1 &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; -10 \&lt;br>
-0 &amp;amp; 1 &amp;amp; -1 &amp;amp; 0 &amp;amp; | &amp;amp; 20 \&lt;br>
-0 &amp;amp; 0 &amp;amp; 1 &amp;amp; -1 &amp;amp; | &amp;amp; 10 \&lt;br>
-0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; 0 \&lt;br>
+1 &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; -10 \\&lt;br>
+0 &amp;amp; 1 &amp;amp; -1 &amp;amp; 0 &amp;amp; | &amp;amp; 20 \\&lt;br>
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; -1 &amp;amp; | &amp;amp; 10 \\&lt;br>
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; 0 \\&lt;br>
 \end{bmatrix}
 $$&lt;/p>
-&lt;p>發現這個矩陣具有無窮多組解，Ax=B得x等於
-$$&lt;/p>
-&lt;p>$$&lt;/p>
-&lt;p>$$&lt;/p>
-&lt;p>\begin{bmatrix}
-20+t \&lt;br>
-30+t \&lt;br>
-10+t \&lt;br>
-t \&lt;br>
+&lt;p>發現這個矩陣具有無窮多組解，Ax=B得x等於&lt;/p>
+&lt;p>$$
+\begin{bmatrix}
+20+t \\&lt;br>
+30+t \\&lt;br>
+10+t \\&lt;br>
+t \\&lt;br>
 \end{bmatrix}
 $$&lt;/p>
 &lt;p>那回頭來解題目&lt;/p>
