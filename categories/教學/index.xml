@@ -8,6 +8,10 @@
 loading="lazy"
 alt="image-20230727115603391"
 >&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/lyXMtLm.gif"
+loading="lazy"
+alt="what-are-you-talking-about-weird-look-gif"
+>&lt;/p>
 &lt;p>明明是方程跟矩陣，但看起來就是怪怪的，爬了很多文章之後都找不到結果，後來到我使用的這個theme的Github頁面查看，就知道問題了&lt;/p>
 &lt;p>&lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/issues/102" target="_blank" rel="noopener"
 >katex 分段函数不能正常显示&lt;/a>&lt;/p>

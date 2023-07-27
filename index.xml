@@ -8,6 +8,10 @@
 loading="lazy"
 alt="image-20230727115603391"
 >&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/lyXMtLm.gif"
+loading="lazy"
+alt="what-are-you-talking-about-weird-look-gif"
+>&lt;/p>
 &lt;p>明明是方程跟矩陣，但看起來就是怪怪的，爬了很多文章之後都找不到結果，後來到我使用的這個theme的Github頁面查看，就知道問題了&lt;/p>
 &lt;p>&lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/issues/102" target="_blank" rel="noopener"
 >katex 分段函数不能正常显示&lt;/a>&lt;/p>
@@ -61,6 +65,10 @@ $$
 loading="lazy"
 alt="image-20230727115915003"
 >&lt;/p></description></item><item><title>以線性代數求解車流量問題</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 00:48:39 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/wswxl2P.png" alt="Featured image of post 以線性代數求解車流量問題" />&lt;p>最近在學習線性代數，很感謝自己當初高中選的是自然組( •̀ ω •́ )✧，至少還保留一點交戰記憶，還有剛好是中原有教微積分的最後一屆商學院(我記得之後的都是教財務數學)，所以看到什麼導數、cosθ、之類的不至於太害怕。&lt;/p>
+&lt;p>&lt;img src="https://hoxtonhsu.com/private/var/folders/wy/sqds16_j7gqdpl23rjt99y680000gn/T/c47461458c41527c4251014c8fc914aa/cat-trigonometry-gif.gif"
+loading="lazy"
+alt="cat-trigonometry-gif"
+>&lt;/p>
 &lt;p>今天再寫的時候看到一題交大資工的考古題，覺得非常的實用，上網查了一下解法，順便當作個紀錄&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/RvSv2rb.png"
 loading="lazy"
