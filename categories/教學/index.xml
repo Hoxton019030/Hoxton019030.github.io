@@ -61,7 +61,8 @@ x_{4} &amp;amp;+20=x_{1}
 $$
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/k9zLUyu.png"
+&lt;/div>&lt;p>結果圖就如下這樣 ：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/k9zLUyu.png"
 loading="lazy"
 alt="image-20230727115915003"
 >&lt;/p></description></item><item><title>Airflow的Dockerfile</title><link>https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/</link><pubDate>Sat, 22 Jul 2023 15:27:16 +0800</pubDate><guid>https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/</guid><description>&lt;img src="https://i.imgur.com/ib3Y4zY.png" alt="Featured image of post Airflow的Dockerfile" />&lt;div class="highlight">&lt;div class="chroma">
