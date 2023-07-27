@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 22 Jul 2023 15:27:16 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>Airflow的Dockerfile</title><link>https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/</link><pubDate>Sat, 22 Jul 2023 15:27:16 +0800</pubDate><guid>https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/</guid><description>&lt;img src="https://i.imgur.com/ib3Y4zY.png" alt="Featured image of post Airflow的Dockerfile" />&lt;div class="highlight">&lt;div class="chroma">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 27 Jul 2023 11:51:18 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo中如何解決mathjax跑版問題</title><link>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 11:51:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/nnX2rBK.jpg" alt="Featured image of post Hugo中如何解決mathjax跑版問題" />&lt;p>最近很常在Hugo內寫一些數學式，比如說聯立方程，或是矩陣，微積分之類的，有時候會遇到Hugo中無法正確顯示畫面的情況，在這之前已經有參考很多人的文章了，比如說&lt;/p>
+&lt;p>[&lt;a class="link" href="https://www.vincentthh35.com/p/%e5%a6%82%e4%bd%95%e5%9c%a8-hugo-%e5%85%a7%e5%b5%8c-latex-%e6%95%b8%e5%ad%b8%e5%bc%8f/" target="_blank" rel="noopener"
+>如何在 Hugo 內嵌 Latex 數學式&lt;/a>](&lt;a href="https://www.vincentthh35.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8-hugo-%E5%85%A7%E5%B5%8C-latex-%E6%95%B8%E5%AD%B8%E5%BC%8F/">https://www.vincentthh35.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8-hugo-%E5%85%A7%E5%B5%8C-latex-%E6%95%B8%E5%AD%B8%E5%BC%8F/&lt;/a>)&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.gohugo.org/doc/tutorials/mathjax/" target="_blank" rel="noopener"
+>MathJax Support 中文文檔&lt;/a>&lt;/p>
+&lt;p>其實不外乎就是加上script裡面，但是我遇到的情況是我已經加上去了，但卻還是沒辦法render出來，我呈現出來的畫面會像這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/lFCu4c7.png"
+loading="lazy"
+alt="image-20230727115603391"
+>&lt;/p>
+&lt;p>明明是方程跟矩陣，但看起來就是怪怪的，爬了很多文章之後都找不到結果，後來到我使用的這個theme的Github頁面查看，就知道問題了&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/issues/102" target="_blank" rel="noopener"
+>katex 分段函数不能正常显示&lt;/a>&lt;/p>
+&lt;p>其實原因就是因為我的SourceCode長這樣&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">$$
+\begin{bmatrix}
+-1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; | &amp;amp; -20 \\
+1 &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; | &amp;amp; -10 \\
+0 &amp;amp; 1 &amp;amp; -1 &amp;amp; 0 &amp;amp; | &amp;amp; 20 \\
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; -1 &amp;amp; | &amp;amp; 10 \\
+\end{bmatrix}
+$$
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在渲染的時候把\\視作跳脫字元處理掉了，所以只要在換行的地方加上跳脫字元的跳脫字元，這樣就可以了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">$$
+\begin{align*}
+x_{1} &amp;amp;+ 10 = x_{2} \\\\
+x_{2} &amp;amp;= 5 + x_{3}\\\\
+x_{3} &amp;amp;= 10+ x_{4} \\\\
+x_{4} &amp;amp;+20=x_{1}
+\end{align*}
+$$
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/k9zLUyu.png"
+loading="lazy"
+alt="image-20230727115915003"
+>&lt;/p></description></item><item><title>Airflow的Dockerfile</title><link>https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/</link><pubDate>Sat, 22 Jul 2023 15:27:16 +0800</pubDate><guid>https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/</guid><description>&lt;img src="https://i.imgur.com/ib3Y4zY.png" alt="Featured image of post Airflow的Dockerfile" />&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
