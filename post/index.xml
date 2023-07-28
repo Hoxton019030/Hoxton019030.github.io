@@ -751,6 +751,8 @@ alt="image-20230723154447030"
 &lt;li>Raycaset&lt;/li>
 &lt;li>PicGo&lt;/li>
 &lt;li>Mission Control Plus&lt;/li>
+&lt;li>iShot&lt;/li>
+&lt;li>iBar&lt;/li>
 &lt;/ol></description></item><item><title>以幾何意義來理解線性代數</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E5%B9%BE%E4%BD%95%E6%84%8F%E7%BE%A9%E4%BE%86%E7%90%86%E8%A7%A3%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</link><pubDate>Sun, 16 Jul 2023 14:58:17 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E5%B9%BE%E4%BD%95%E6%84%8F%E7%BE%A9%E4%BE%86%E7%90%86%E8%A7%A3%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/vd5T3J2.png" alt="Featured image of post 以幾何意義來理解線性代數" />&lt;p>參考網址：https://www.bilibili.com/video/BV1ys411472E?p=1&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/p></description></item><item><title>為什麼Javascript的getMonth會是-1的</title><link>https://hoxtonhsu.com/p/%E7%82%BA%E4%BB%80%E9%BA%BCjavascript%E7%9A%84getmonth%E6%9C%83%E6%98%AF-1%E7%9A%84/</link><pubDate>Wed, 12 Jul 2023 17:51:52 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%82%BA%E4%BB%80%E9%BA%BCjavascript%E7%9A%84getmonth%E6%9C%83%E6%98%AF-1%E7%9A%84/</guid><description>&lt;img src="https://i.imgur.com/nFBYwdj.png" alt="Featured image of post 為什麼Javascript的getMonth會是-1的" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在一開始接觸Javasript，想要試圖做出一個小專案的菜雞，一定都會遇到這個令人無語的問題&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
