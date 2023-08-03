@@ -10,7 +10,7 @@ alt="iShot_2023-08-02_14.40.51"
 loading="lazy"
 alt="image-20230803152600325"
 >&lt;/p>
-&lt;p>然後Chrome就會自己動起來了。有時候我們可能需要某些網站的資訊，但它本身是前後端分離，資訊都是透過session、cookie來傳遞，而不是json，像這種情況，如果對速度沒有特別的要求，就可以使用Selenium來處理。接著我們就以104網頁的爬蟲為範例，示範看看Selenium使用&lt;/p>
+&lt;p>然後Chrome就會自己動起來了。有時候我們可能需要某些網站的資訊，但它本身不是走前後端分離，資訊都是透過session、cookie來傳遞，而不是json，像這種情況，如果對速度沒有特別的要求，就可以使用Selenium來處理。接著我們就以104網頁的爬蟲為範例，示範看看Selenium使用&lt;/p>
 &lt;h1 id="安裝">安裝&lt;/h1>
 &lt;p>老樣子，使用Anaconda&lt;/p>
 &lt;ol>
