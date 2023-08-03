@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 27 Jul 2023 11:51:18 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo中如何解決mathjax跑版問題</title><link>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 11:51:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/nnX2rBK.jpg" alt="Featured image of post Hugo中如何解決mathjax跑版問題" />&lt;p>最近很常在Hugo內寫一些數學式，比如說聯立方程，或是矩陣，微積分之類的，有時候會遇到Hugo中無法正確顯示畫面的情況，在這之前已經有參考很多人的文章了，比如說&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 03 Aug 2023 00:15:02 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Selenium學習筆記</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直再按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下&lt;/p>
+&lt;h1 id="介紹">介紹&lt;/h1>
+&lt;p>什麼是Selenium呢，簡單來講就是它可以去模擬使用者在網頁上的互動，比如說點擊、滾動、下一頁、登入等等，這邊可以示範一下畫面&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/HNEJaOj.gif"
+loading="lazy"
+alt="iShot_2023-08-02_14.40.51"
+>&lt;/p>
+&lt;p>這邊這段程式，就是指&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">graph LR;
+A[打開Chrome] --&amp;gt; B[找到搜尋欄]
+B --&amp;gt; C[輸入&amp;#39;武嶺&amp;#39;]
+C --&amp;gt; D[按下搜尋鍵]
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Hugo中如何解決mathjax跑版問題</title><link>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 11:51:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/nnX2rBK.jpg" alt="Featured image of post Hugo中如何解決mathjax跑版問題" />&lt;p>最近很常在Hugo內寫一些數學式，比如說聯立方程，或是矩陣，微積分之類的，有時候會遇到Hugo中無法正確顯示畫面的情況，在這之前已經有參考很多人的文章了，比如說&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.vincentthh35.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8-hugo-%E5%85%A7%E5%B5%8C-latex-%E6%95%B8%E5%AD%B8%E5%BC%8F/" target="_blank" rel="noopener"
 >如何在 Hugo 內嵌 Latex 數學式&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.gohugo.org/doc/tutorials/mathjax/" target="_blank" rel="noopener"
