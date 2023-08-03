@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 03 Aug 2023 00:15:02 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
 &lt;h1 id="介紹">介紹&lt;/h1>
 &lt;p>這邊這段程式，就是指&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/z4vwabI.png"
+&lt;p>&lt;img src="https://i.imgur.com/ZToRixq.png"
 loading="lazy"
-alt="image-20230803152600325"
+alt="image-20230803174957281"
 >&lt;/p>
 &lt;p>然後Chrome就會自己動起來了。有時候我們可能需要某些網站的資訊，但它本身不是走前後端分離，資訊都是透過session、cookie來傳遞，而不是json，像這種情況，如果對速度沒有特別的要求，就可以使用Selenium來處理。接著我們就以104網頁的爬蟲為範例，示範看看Selenium使用&lt;/p>
 &lt;h1 id="安裝">安裝&lt;/h1>
