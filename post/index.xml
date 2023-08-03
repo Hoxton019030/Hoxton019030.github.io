@@ -6,22 +6,11 @@ loading="lazy"
 alt="iShot_2023-08-02_14.40.51"
 >&lt;/p>
 &lt;p>這邊這段程式，就是指&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">graph LR;
-A[打開Chrome] --&amp;gt; B[找到搜尋欄]
-B --&amp;gt; C[輸入&amp;#39;武嶺&amp;#39;]
-C --&amp;gt; D[按下搜尋鍵]
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>然後Chrome就會自己動起來了。有時候我們可能需要某些網站的資訊，但它本身是前後端分離，資訊都是透過session、cookie來傳遞，而不是json，像這種情況，如果對速度沒有特別的要求，就可以使用Selenium來處理。接著我們就以104網頁的爬蟲為範例，示範看看Selenium使用&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/z4vwabI.png"
+loading="lazy"
+alt="image-20230803152600325"
+>&lt;/p>
+&lt;p>然後Chrome就會自己動起來了。有時候我們可能需要某些網站的資訊，但它本身是前後端分離，資訊都是透過session、cookie來傳遞，而不是json，像這種情況，如果對速度沒有特別的要求，就可以使用Selenium來處理。接著我們就以104網頁的爬蟲為範例，示範看看Selenium使用&lt;/p>
 &lt;h1 id="安裝">安裝&lt;/h1>
 &lt;p>老樣子，使用Anaconda&lt;/p>
 &lt;ol>
