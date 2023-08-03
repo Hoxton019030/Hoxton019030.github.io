@@ -21,7 +21,566 @@ B --&amp;gt; C[輸入&amp;#39;武嶺&amp;#39;]
 C --&amp;gt; D[按下搜尋鍵]
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>Hugo中如何解決mathjax跑版問題</title><link>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 11:51:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/nnX2rBK.jpg" alt="Featured image of post Hugo中如何解決mathjax跑版問題" />&lt;p>最近很常在Hugo內寫一些數學式，比如說聯立方程，或是矩陣，微積分之類的，有時候會遇到Hugo中無法正確顯示畫面的情況，在這之前已經有參考很多人的文章了，比如說&lt;/p>
+&lt;/div>&lt;p>然後Chrome就會自己動起來了。有時候我們可能需要某些網站的資訊，但它本身是前後端分離，資訊都是透過session、cookie來傳遞，而不是json，像這種情況，如果對速度沒有特別的要求，就可以使用Selenium來處理。接著我們就以104網頁的爬蟲為範例，示範看看Selenium使用&lt;/p>
+&lt;h1 id="安裝">安裝&lt;/h1>
+&lt;p>老樣子，使用Anaconda&lt;/p>
+&lt;ol>
+&lt;li>創建conda環境&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">conda create --name selenium &lt;span class="nv">python&lt;/span>&lt;span class="o">=&lt;/span>3.9 -y
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>進入環境&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="n">conda&lt;/span> &lt;span class="n">activate&lt;/span> &lt;span class="n">selenium&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="3">
+&lt;li>安裝所需要的pip&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="n">pip&lt;/span> &lt;span class="n">install&lt;/span> &lt;span class="n">selenium&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>查看pip是否安裝成功&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="n">pip&lt;/span> &lt;span class="nb">list&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/gPkFGSk.png"
+loading="lazy"
+alt="image-20230803152113458"
+>&lt;/p>
+&lt;h1 id="開頭">開頭&lt;/h1>
+&lt;p>程式碼放在這：https://github.com/Hoxton019030/Selenium&lt;/p>
+&lt;p>先寫一段Demo用的Code&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;span class="n">options&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ChromeOptions&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://www.google.com/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;成功&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>效果：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/9q8GV9e.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>讓我們現在把頁面改成104的頁面&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;span class="n">options&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ChromeOptions&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://www.104.com.tw/jobs/search/?keyword=Java&amp;amp;order=1&amp;amp;jobsource=2018indexpoc&amp;amp;ro=0&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;成功&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接下來這樣就可以開啟104的頁面了，那接下來我們就是要透過driver這個物件，來找到我們目前頁面的一些資訊，我們可以使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">page_source&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看頁面的一些資訊&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;span class="n">options&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ChromeOptions&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://www.104.com.tw/jobs/search/?keyword=Java&amp;amp;order=1&amp;amp;jobsource=2018indexpoc&amp;amp;ro=0&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">page_source&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;成功&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這個driver.page_source所包含的其實就是整個網頁的DOM，既然有html的東西，那接下來就要介紹各種不同的選擇器，來取得想要的資訊&lt;/p>
+&lt;h1 id="選擇器">選擇器&lt;/h1>
+&lt;p>Selenium提供了許多不同的選擇器，讓我們來定位我們的html內容，&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/8gVIOEY.png"
+loading="lazy"
+alt="image-20230803143636714"
+>&lt;/p>
+&lt;p>接下來會講幾個比較常用的，其實也就是css_selector跟class name，&lt;/p>
+&lt;h2 id="class選擇器">Class選擇器&lt;/h2>
+&lt;p>我們現在想要找到每份職缺的title&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/j2hRa5D.png"
+loading="lazy"
+alt="image-20230803143007904"
+>&lt;/p>
+&lt;p>查看DOM之後我們發現，它的html class 為 js-job-link&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vUY9mCt.png"
+loading="lazy"
+alt="image-20230803143101505"
+>&lt;/p>
+&lt;p>那我們就可以這樣寫&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium.webdriver.common.by&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">By&lt;/span>
+&lt;span class="n">options&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ChromeOptions&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://www.104.com.tw/jobs/search/?keyword=Java&amp;amp;order=1&amp;amp;jobsource=2018indexpoc&amp;amp;ro=0&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">titles&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLASS_NAME&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;js-job-link&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">title&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">titles&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>效果：&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Hb9uIZD.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;h2 id="css-選擇器">CSS 選擇器&lt;/h2>
+&lt;p>這是Selenium官方最為推薦的選擇方式，最大的優勢就在於它可以使用css選擇器來定位元素，比如說nth-child、first-child之類的，所以它可以找到幾乎所有的元素，比如說我想要找到工作的描述&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/dRA9zpL.png"
+loading="lazy"
+alt="image-20230803144104901"
+>&lt;/p>
+&lt;p>它的css選擇器就是這樣讀&lt;/p>
+&lt;p>「想要找到tag為p，並且有job-list-item__info, b-clearfix, b-content 這些class名稱的地方」&lt;/p>
+&lt;p>那python就是這樣寫&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium.webdriver.common.by&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">By&lt;/span>
+&lt;span class="n">options&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ChromeOptions&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://www.104.com.tw/jobs/search/?keyword=Java&amp;amp;order=1&amp;amp;jobsource=2018indexpoc&amp;amp;ro=0&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">titles&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLASS_NAME&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;js-job-link&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">jobInfos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CSS_SELECTOR&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;p.job-list-item__info.b-clearfix.b-content&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">element&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">jobInfos&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">element&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其實觀察一下可以發現，Google的開發人員工具已經幫我們把這個地方的css selector標出來了&lt;/p>
+&lt;p>&lt;img src="https://hoxtonhsu.com/C:%5cUsers%5cHoxton%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230803144508527.png"
+loading="lazy"
+alt="image-20230803144508527"
+>&lt;/p>
+&lt;p>我們可以直接複製貼上就好&lt;/p>
+&lt;p>剛剛有提到說可以使用css selector來做更仔細的定位，那麼該怎麼用呢？以104中的工作要求為例&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/PPwuyXb.png"
+loading="lazy"
+alt="image-20230803144756998"
+>&lt;/p>
+&lt;p>我們注意到，它其實是一個ul的結構，想要挑出「工作經驗」這一個區塊的東西，想要用class選擇器來定位基本上不可能，這時候就要使用css selector來達到我們想要的效果，而這邊的寫法就是這樣&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="n">experiences&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CSS_SELECTOR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s2">&amp;#34;ul.b-list-inline.b-clearfix.job-list-intro.b-content li:nth-child(3)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來通過選擇器找到li的第三個child，也就是工作經歷&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/h25vGYh.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;h2 id="id-選擇器">ID 選擇器&lt;/h2>
+&lt;p>id選擇器就是id選擇，使用方式就如同大家想的那樣，通常是用來定位一些unique的元素&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium.webdriver.common.by&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">By&lt;/span>
+&lt;span class="n">options&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ChromeOptions&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://www.104.com.tw/jobs/search/?keyword=Java&amp;amp;order=1&amp;amp;jobsource=2018indexpoc&amp;amp;ro=0&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">titles&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLASS_NAME&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;js-job-link&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">jobInfos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CSS_SELECTOR&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;p.job-list-item__info.b-clearfix.b-content&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">experiences&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CSS_SELECTOR&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;ul.b-list-inline.b-clearfix.job-list-intro.b-content li:nth-child(3)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">mainContent&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ID&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;main-content&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mainContent&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/FCwVSF4.gif"
+loading="lazy"
+>&lt;/p>
+&lt;h1 id="透過element來找到裡面的attribute">透過element來找到裡面的attribute&lt;/h1>
+&lt;p>現在想要把每個工作的超連結取出來，要怎麼做呢？&lt;/p>
+&lt;p>可以先透過選擇器選出想要的tag，變成一個webElement物件(相當於底下的hrefs)，然後再透過get_attribute來取得標籤內的值，我們就可以透過這樣的方式來取出想要的資料了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/9JUrUde.png"
+loading="lazy"
+alt="image-20230803150217709"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="n">hrefs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLASS_NAME&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;js-job-link&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">href&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">hrefs&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">link&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">href&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_attribute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;href&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">link&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/eTW84tm.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;h1 id="點擊的觸發">點擊的觸發&lt;/h1>
+&lt;p>當我們取得這個頁面的資料完後，想要接著點擊下一頁，那我們該怎麼做呢？&lt;/p>
+&lt;p>首先先透過選擇器，來選到下一頁的button&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/kJkQzrZ.png"
+loading="lazy"
+alt="image-20230803150842760"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="n">link&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLASS_NAME&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;js-next-page&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著可以透過link.click()來觸發點擊事件，切換到下一頁&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ElKnbdX.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;p>疑！！幹幹幹幹幹，怎麼出錯了&lt;/p>
+&lt;p>看了一下console區，它的回應是這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2RxOI7g.png"
+loading="lazy"
+alt="image-20230803151400266"
+>&lt;/p>
+&lt;p>「網頁中沒有可以互動的元素」，像這種情況多半是因為DOM元件還沒load進來，我們可以透過一些方式來延緩它加載的時間，最爛的做法其實就是用time.sleep()的方式來，但因為我現在只會用這個方式(✿◡‿◡)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium.webdriver.common.by&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">By&lt;/span>
+&lt;span class="n">options&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ChromeOptions&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://www.104.com.tw/jobs/search/?keyword=Java&amp;amp;order=1&amp;amp;jobsource=2018indexpoc&amp;amp;ro=0&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">link&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLASS_NAME&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;js-next-page&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">link&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/eu8bkNs.gif"
+loading="lazy"
+alt="demo"
+>&lt;/p>
+&lt;h1 id="實際的程式碼">實際的程式碼&lt;/h1>
+&lt;p>最後我們把上面的東西整合一下，並且把資料存到excel裡面，就可以達到我們想要的效果嚕&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;span class="lnt">83
+&lt;/span>&lt;span class="lnt">84
+&lt;/span>&lt;span class="lnt">85
+&lt;/span>&lt;span class="lnt">86
+&lt;/span>&lt;span class="lnt">87
+&lt;/span>&lt;span class="lnt">88
+&lt;/span>&lt;span class="lnt">89
+&lt;/span>&lt;span class="lnt">90
+&lt;/span>&lt;span class="lnt">91
+&lt;/span>&lt;span class="lnt">92
+&lt;/span>&lt;span class="lnt">93
+&lt;/span>&lt;span class="lnt">94
+&lt;/span>&lt;span class="lnt">95
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">openpyxl&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium.webdriver.common.by&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">By&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">JobDetail&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">JobDetail&lt;/span>
+&lt;span class="n">options&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ChromeOptions&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">options&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">add_argument&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;--ignore-certificate-errors&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">options&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">add_argument&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;--test-type&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">options&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">binary_location&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;/usr/bin/chromium&amp;#34;&lt;/span>
+&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;https://www.104.com.tw/jobs/search/?https://www.104.com.tw/jobs/search/?ro=0&amp;amp;kwop=7&amp;amp;keyword=Java&amp;amp;expansionType=area%2Cspec%2Ccom%2Cjob%2Cwf%2Cwktm&amp;amp;area=6001001001%2C6001001007%2C6001002000%2C6001001003%2C6001001006%2C6001001002%2C6001001012%2C6001001004%2C6001001005&amp;amp;order=15&amp;amp;asc=0&amp;amp;page=1&amp;amp;mode=s&amp;amp;jobsource=2018indexpoc&amp;amp;langFlag=0&amp;amp;langStatus=0&amp;amp;recommendJob=1&amp;amp;hotJob=1&amp;#34;&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">implicitly_wait&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">workbook&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">openpyxl&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Workbook&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">sheet&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">workbook&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">active&lt;/span>
+&lt;span class="n">headers&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;職務名稱&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;公司名稱&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;相關描述&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;工作簡述&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;公司地址&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;工作經驗要求&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;網址連結&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">sheet&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">headers&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">113&lt;/span>&lt;span class="p">):&lt;/span> &lt;span class="c1"># 頁面的interator&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">titles&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLASS_NAME&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;js-job-link&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">companyNames&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CSS_SELECTOR&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;ul.b-list-inline.b-clearfix a&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">hrefs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLASS_NAME&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;js-job-link&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># 這邊先註解掉，不知道怎麼把薪資抓出來&lt;/span>
+&lt;span class="c1"># tags = driver.find_elements(By.CLASS_NAME, &amp;#34;b-tag--default&amp;#34;)&lt;/span>
+&lt;span class="c1"># stringTag = &amp;#34;&amp;#34;&lt;/span>
+&lt;span class="c1"># for tag in tags:&lt;/span>
+&lt;span class="c1"># stringTag += tag.text&lt;/span>
+&lt;span class="c1"># jobInfos = driver.find_elements(By.CLASS_NAME, &amp;#34;job-list-item__info&amp;#34;)&lt;/span>
+&lt;span class="n">jobInfos&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CSS_SELECTOR&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;p.job-list-item__info.b-clearfix.b-content&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># for jobInfo in jobInfos:&lt;/span>
+&lt;span class="c1"># print(jobInfo.text)&lt;/span>
+&lt;span class="n">addresses&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CSS_SELECTOR&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;ul.b-list-inline.b-clearfix.job-list-intro.b-content li:first-child&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">experiences&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_elements&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CSS_SELECTOR&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;ul.b-list-inline.b-clearfix.job-list-intro.b-content li:nth-child(3)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">job_details_list&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">titles&lt;/span>&lt;span class="p">)):&lt;/span>
+&lt;span class="n">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="n">title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">titles&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="s2">&amp;#34;/&amp;#34;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">title&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">break&lt;/span>
+&lt;span class="n">companyName&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">companyNames&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>
+&lt;span class="n">href&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">hrefs&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_attribute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;href&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">jobInfo&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">jobInfos&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>
+&lt;span class="n">address&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">addresses&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>
+&lt;span class="n">experience&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">experiences&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>
+&lt;span class="n">job_detail&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">JobDetail&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">companyName&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">href&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">jobInfo&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">address&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">experience&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">job_details_list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">job_detail&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">job&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">job_details_list&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">rowData&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">job&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">job&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">companyName&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">job&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tags&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">job&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">jobInfo&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">job&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">address&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">job&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">experience&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">job&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">href&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="n">sheet&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">rowData&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">link&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLASS_NAME&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;js-next-page&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">link&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;目前處理到第&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;頁&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">workbook&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">save&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;test.xlsx&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;儲存&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">continue&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;儲存&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">workbook&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="c1"># for some in hrefs:&lt;/span>
+&lt;span class="c1"># print(some.get_dom_attribute(&amp;#39;href&amp;#39;))&lt;/span>
+&lt;span class="c1"># print(titles)&lt;/span>
+&lt;span class="c1"># time.sleep(10)&lt;/span>
+&lt;span class="c1"># a = JobDetail()&lt;/span>
+&lt;span class="c1"># for title in titles:&lt;/span>
+&lt;span class="c1"># print(title.text)&lt;/span>
+&lt;span class="c1"># for companyName in companyNameList:&lt;/span>
+&lt;span class="c1"># print(companyName.text)&lt;/span>
+&lt;span class="c1"># for tag in tags:&lt;/span>
+&lt;span class="c1"># print(tag.text)&lt;/span>
+&lt;span class="c1"># print(driver.page_source)&lt;/span>
+&lt;span class="c1"># 取得上一頁的文章標題&lt;/span>
+&lt;span class="c1"># time.sleep(10)&lt;/span>
+&lt;span class="c1"># driver.close()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/fjcufJy.png"
+loading="lazy"
+alt="image-20230803152251360"
+>&lt;/p>
+&lt;p>這樣就可以囉！&lt;/p></description></item><item><title>Hugo中如何解決mathjax跑版問題</title><link>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 11:51:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/nnX2rBK.jpg" alt="Featured image of post Hugo中如何解決mathjax跑版問題" />&lt;p>最近很常在Hugo內寫一些數學式，比如說聯立方程，或是矩陣，微積分之類的，有時候會遇到Hugo中無法正確顯示畫面的情況，在這之前已經有參考很多人的文章了，比如說&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.vincentthh35.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8-hugo-%E5%85%A7%E5%B5%8C-latex-%E6%95%B8%E5%AD%B8%E5%BC%8F/" target="_blank" rel="noopener"
 >如何在 Hugo 內嵌 Latex 數學式&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.gohugo.org/doc/tutorials/mathjax/" target="_blank" rel="noopener"
