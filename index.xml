@@ -3763,6 +3763,24 @@ alt="image-20230611151534546"
 open -na &lt;span class="s2">&amp;#34; IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
+&lt;/div>&lt;p>Chat GPT對這段的解釋如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">open: 這是 macOS 的一個內建命令，可以用來打開應用程式、檔案或網址。
+-na: 這是 open 命令的兩個參數。其中 -n 表示「Open a new instance even if one is already running」，意思是無論是否已經有一個 IntelliJ IDEA 執行中，都要打開一個新的實例。而 -a &amp;#34;IDEA.app&amp;#34; 則指定了要打開的應用程式是 &amp;#34;IDEA.app&amp;#34;，即 IntelliJ IDEA 的應用程式。
+--args &amp;#34;$@&amp;#34;: 這是傳遞給 &amp;#34;IDEA.app&amp;#34; 的參數。$@ 代表所有的命令列參數，這樣當你在終端機中輸入這個指令時，後面的任何參數都會被傳遞給 IntelliJ IDEA。
+綜合起來，這個指令的目的是在 macOS 中打開一個新的 IntelliJ IDEA 實例，並將後面的參數傳遞給 IntelliJ IDEA。這樣你可以從終端機中直接啟動 IntelliJ IDEA，同時可以指定特定的專案或檔案來開啟。
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/uvt1d2m.png"
 loading="lazy"
 >&lt;/p>

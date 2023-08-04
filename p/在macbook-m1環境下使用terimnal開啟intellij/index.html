@@ -9,6 +9,20 @@
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/sh
 </span><span class=cp></span>
 open -na <span class=s2>&#34; IDEA.app&#34;</span> --args <span class=s2>&#34;</span><span class=nv>$@</span><span class=s2>&#34;</span>
+</code></pre></td></tr></table></div></div><p>Chat GPT對這段的解釋如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>open: 這是 macOS 的一個內建命令，可以用來打開應用程式、檔案或網址。
+
+-na: 這是 open 命令的兩個參數。其中 -n 表示「Open a new instance even if one is already running」，意思是無論是否已經有一個 IntelliJ IDEA 執行中，都要打開一個新的實例。而 -a &#34;IDEA.app&#34; 則指定了要打開的應用程式是 &#34;IDEA.app&#34;，即 IntelliJ IDEA 的應用程式。
+
+--args &#34;$@&#34;: 這是傳遞給 &#34;IDEA.app&#34; 的參數。$@ 代表所有的命令列參數，這樣當你在終端機中輸入這個指令時，後面的任何參數都會被傳遞給 IntelliJ IDEA。
+
+綜合起來，這個指令的目的是在 macOS 中打開一個新的 IntelliJ IDEA 實例，並將後面的參數傳遞給 IntelliJ IDEA。這樣你可以從終端機中直接啟動 IntelliJ IDEA，同時可以指定特定的專案或檔案來開啟。
 </code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/uvt1d2m.png loading=lazy></p><p>這一步我個人覺得算是「寫一個script腳本」然後讓terminal去運行，可以輸入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>env
 </code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/GueLdrH.png loading=lazy></p><p>發現我們的PATH變數中有包含</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
