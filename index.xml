@@ -2,7 +2,10 @@
 &lt;blockquote>
 &lt;p>當函數中的自變數變動一個倍數，整個函數可以整理為該倍數的某個次方倍，此函數即為齊次函數，而剛剛說的次方，就會稱為這個齊次函數之階數。&lt;/p>
 &lt;p>判斷一個給定的函數是否為齊次函數，唯一的方法就是，「&lt;strong>將自變數變動一個倍數，看看整個函數值會不會變動那個倍數的某個次方倍&lt;/strong>」，會，那這個函數就是齊次函數，不會，那他就不是齊次函數了！&lt;/p>
-&lt;/blockquote></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
+&lt;/blockquote>
+&lt;p>給一方程&lt;/p>
+&lt;p>Ax=b&lt;/p>
+&lt;p>若b等於0，則稱為齊次方程組，否則稱為非齊次(nonhomogeneous)，因此&lt;span style="color:yellow">齊次方程使有零解&lt;/span>(就是所有未知數都代0進去就有解了)&lt;/p></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/8cus4pF.gif"
 loading="lazy"
 alt="bored-and-gif"

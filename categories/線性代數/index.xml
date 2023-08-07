@@ -2,7 +2,10 @@
 &lt;blockquote>
 &lt;p>當函數中的自變數變動一個倍數，整個函數可以整理為該倍數的某個次方倍，此函數即為齊次函數，而剛剛說的次方，就會稱為這個齊次函數之階數。&lt;/p>
 &lt;p>判斷一個給定的函數是否為齊次函數，唯一的方法就是，「&lt;strong>將自變數變動一個倍數，看看整個函數值會不會變動那個倍數的某個次方倍&lt;/strong>」，會，那這個函數就是齊次函數，不會，那他就不是齊次函數了！&lt;/p>
-&lt;/blockquote></description></item><item><title>以線性代數求解車流量問題</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 00:48:39 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/wswxl2P.png" alt="Featured image of post 以線性代數求解車流量問題" />&lt;p>最近在學習線性代數，很感謝自己當初高中選的是自然組( •̀ ω •́ )✧，至少還保留一點交戰記憶，還有剛好是中原有教微積分的最後一屆商學院(我記得之後的都是教財務數學)，所以看到什麼導數、cosθ、之類的不至於太害怕。&lt;/p>
+&lt;/blockquote>
+&lt;p>給一方程&lt;/p>
+&lt;p>Ax=b&lt;/p>
+&lt;p>若b等於0，則稱為齊次方程組，否則稱為非齊次(nonhomogeneous)，因此&lt;span style="color:yellow">齊次方程使有零解&lt;/span>(就是所有未知數都代0進去就有解了)&lt;/p></description></item><item><title>以線性代數求解車流量問題</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 00:48:39 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/wswxl2P.png" alt="Featured image of post 以線性代數求解車流量問題" />&lt;p>最近在學習線性代數，很感謝自己當初高中選的是自然組( •̀ ω •́ )✧，至少還保留一點交戰記憶，還有剛好是中原有教微積分的最後一屆商學院(我記得之後的都是教財務數學)，所以看到什麼導數、cosθ、之類的不至於太害怕。&lt;/p>
 &lt;p>&lt;img src="https://media.tenor.com/TxlRpDotUW0AAAAC/cat-trigonometry.gif"
 loading="lazy"
 alt="cat-trigonometry-gif"
