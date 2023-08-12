@@ -5,7 +5,31 @@
 &lt;/blockquote>
 &lt;p>給一方程&lt;/p>
 &lt;p>Ax=b&lt;/p>
-&lt;p>若b等於0，則稱為齊次方程組，否則稱為非齊次(nonhomogeneous)，因此&lt;span style="color:yellow">齊次方程使有零解&lt;/span>(就是所有未知數都代0進去就有解了)&lt;/p></description></item><item><title>以線性代數求解車流量問題</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 00:48:39 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/wswxl2P.png" alt="Featured image of post 以線性代數求解車流量問題" />&lt;p>最近在學習線性代數，很感謝自己當初高中選的是自然組( •̀ ω •́ )✧，至少還保留一點交戰記憶，還有剛好是中原有教微積分的最後一屆商學院(我記得之後的都是教財務數學)，所以看到什麼導數、cosθ、之類的不至於太害怕。&lt;/p>
+&lt;p>若b等於0，則稱為齊次方程組，否則稱為非齊次(nonhomogeneous)，因此&lt;span style="color:yellow">齊次方程使有零解&lt;/span>(就是所有未知數都代0進去就有解了)&lt;/p>
+&lt;h1 id="線性獨立線性相依">線性獨立/線性相依&lt;/h1>
+&lt;p>何謂線性獨立/線性相依，齊次方程只有零解的情況，即為線性無關，若存在非零解，則為線性相關。&lt;/p>
+&lt;p>線性相關-&amp;gt;齊次方程有非零解-&amp;gt;行列式為0
+線性無關-&amp;gt;其次方程只有零解-&amp;gt;行列式不為0&lt;/p>
+&lt;p>若&lt;/p>
+&lt;p>$$
+k_{1}a_{1}+k_{2}a_{2}=0 \\&lt;br>
+A=(a_{1} a_{2}) =\begin{bmatrix}
+2 &amp;amp; 1 \&lt;br>
+1 &amp;amp; 2 \&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>若能找到不為零的k1,k2(只要有一個不為零就可以)，則為線性相關。若只有0的話就是線性無關。
+其幾何意義在於，是否能透過線性的延伸、壓縮，與其他的線性相加起來，組合出0向量。&lt;/p>
+&lt;p>兩個平面向量，若線性無關則不共線&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Gkk76GD.png"
+loading="lazy"
+alt="Alt text"
+>&lt;/p>
+&lt;p>兩個平面向量，若線性相關則共線&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DPmFrCX.png"
+loading="lazy"
+alt="sd"
+>&lt;/p></description></item><item><title>以線性代數求解車流量問題</title><link>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 00:48:39 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BB%A5%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E6%B1%82%E8%A7%A3%E8%BB%8A%E6%B5%81%E9%87%8F%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/wswxl2P.png" alt="Featured image of post 以線性代數求解車流量問題" />&lt;p>最近在學習線性代數，很感謝自己當初高中選的是自然組( •̀ ω •́ )✧，至少還保留一點交戰記憶，還有剛好是中原有教微積分的最後一屆商學院(我記得之後的都是教財務數學)，所以看到什麼導數、cosθ、之類的不至於太害怕。&lt;/p>
 &lt;p>&lt;img src="https://media.tenor.com/TxlRpDotUW0AAAAC/cat-trigonometry.gif"
 loading="lazy"
 alt="cat-trigonometry-gif"

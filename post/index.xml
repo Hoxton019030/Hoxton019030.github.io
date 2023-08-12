@@ -5,7 +5,31 @@
 &lt;/blockquote>
 &lt;p>給一方程&lt;/p>
 &lt;p>Ax=b&lt;/p>
-&lt;p>若b等於0，則稱為齊次方程組，否則稱為非齊次(nonhomogeneous)，因此&lt;span style="color:yellow">齊次方程使有零解&lt;/span>(就是所有未知數都代0進去就有解了)&lt;/p></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
+&lt;p>若b等於0，則稱為齊次方程組，否則稱為非齊次(nonhomogeneous)，因此&lt;span style="color:yellow">齊次方程使有零解&lt;/span>(就是所有未知數都代0進去就有解了)&lt;/p>
+&lt;h1 id="線性獨立線性相依">線性獨立/線性相依&lt;/h1>
+&lt;p>何謂線性獨立/線性相依，齊次方程只有零解的情況，即為線性無關，若存在非零解，則為線性相關。&lt;/p>
+&lt;p>線性相關-&amp;gt;齊次方程有非零解-&amp;gt;行列式為0
+線性無關-&amp;gt;其次方程只有零解-&amp;gt;行列式不為0&lt;/p>
+&lt;p>若&lt;/p>
+&lt;p>$$
+k_{1}a_{1}+k_{2}a_{2}=0 \\&lt;br>
+A=(a_{1} a_{2}) =\begin{bmatrix}
+2 &amp;amp; 1 \&lt;br>
+1 &amp;amp; 2 \&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>若能找到不為零的k1,k2(只要有一個不為零就可以)，則為線性相關。若只有0的話就是線性無關。
+其幾何意義在於，是否能透過線性的延伸、壓縮，與其他的線性相加起來，組合出0向量。&lt;/p>
+&lt;p>兩個平面向量，若線性無關則不共線&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Gkk76GD.png"
+loading="lazy"
+alt="Alt text"
+>&lt;/p>
+&lt;p>兩個平面向量，若線性相關則共線&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DPmFrCX.png"
+loading="lazy"
+alt="sd"
+>&lt;/p></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/8cus4pF.gif"
 loading="lazy"
 alt="bored-and-gif"
