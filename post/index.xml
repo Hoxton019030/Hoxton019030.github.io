@@ -3,7 +3,8 @@
 loading="lazy"
 alt="image-20230817221454630"
 >&lt;/p>
-&lt;p>網路上查了很多東西，有人說把ftpClient設成enterLocalPassiveMode，還有setFileType(FTP.BINARY_FILE_TYPE)等等的問題，後來真的沒辦法，隨便亂調，調完之後發現是檔案名稱的問題，沒錯的，這一次又是因為檔案名稱是中文的關係，所導致的錯誤，只要將檔案名稱的中文去掉就可以囉！&lt;/p>
+&lt;p>網路上查了很多東西，有人說把ftpClient設成enterLocalPassiveMode，還有setFileType(FTP.BINARY_FILE_TYPE)等等的問題，但這些我都有設。&lt;/p>
+&lt;p>後來真的沒辦法，隨便亂調，調完之後發現是檔案名稱的問題，沒錯的，這一次又是因為檔案名稱是中文的關係，所導致的錯誤，只要將檔案名稱的中文去掉就可以囉！&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/lBxfTd4.gif"
 loading="lazy"
 alt="annoyed-fuck-gif"
