@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 17 Aug 2023 22:03:06 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Apache的FTP套件，storeFile()一直回傳550的問題該解決</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8apache%E7%9A%84ftp%E5%A5%97%E4%BB%B6storefile%E4%B8%80%E7%9B%B4%E5%9B%9E%E5%82%B3550%E7%9A%84%E5%95%8F%E9%A1%8C%E8%A9%B2%E8%A7%A3%E6%B1%BA/</link><pubDate>Thu, 17 Aug 2023 22:03:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8apache%E7%9A%84ftp%E5%A5%97%E4%BB%B6storefile%E4%B8%80%E7%9B%B4%E5%9B%9E%E5%82%B3550%E7%9A%84%E5%95%8F%E9%A1%8C%E8%A9%B2%E8%A7%A3%E6%B1%BA/</guid><description>&lt;img src="https://i.imgur.com/Zm0Sn6B.jpg" alt="Featured image of post 使用Apache的FTP套件，storeFile()一直回傳550的問題該解決" />&lt;p>這陣子到保哥的公司，過著天天被洗臉的日子，&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 17 Aug 2023 22:03:06 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Apache的FTP套件，storeFile()一直回傳550的問題該解決</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8apache%E7%9A%84ftp%E5%A5%97%E4%BB%B6storefile%E4%B8%80%E7%9B%B4%E5%9B%9E%E5%82%B3550%E7%9A%84%E5%95%8F%E9%A1%8C%E8%A9%B2%E8%A7%A3%E6%B1%BA/</link><pubDate>Thu, 17 Aug 2023 22:03:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8apache%E7%9A%84ftp%E5%A5%97%E4%BB%B6storefile%E4%B8%80%E7%9B%B4%E5%9B%9E%E5%82%B3550%E7%9A%84%E5%95%8F%E9%A1%8C%E8%A9%B2%E8%A7%A3%E6%B1%BA/</guid><description>&lt;img src="https://i.imgur.com/Zm0Sn6B.jpg" alt="Featured image of post 使用Apache的FTP套件，storeFile()一直回傳550的問題該解決" />&lt;h1 id="heading">&lt;/h1>
+&lt;p>這陣子到保哥的公司，過著天天被洗臉的日子，&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/qSelkYR.gif"
 loading="lazy"
 alt="i-hate-my-job-dead-inside-gif"
 >&lt;/p>
-&lt;p>最近派給了一個批次檔的功能翻新，主要是將檔案從本地上傳到FTP或是將檔案從FTP下載下來的功能，趁著最近來練習一下Java相關的FTP套件，在練習的時候發現不知道為什麼，檔案上傳永遠都是return False;&lt;/p>
+&lt;p>最近派給了一個批次檔的功能翻新，主要是將檔案從本地上傳到FTP或是將檔案從FTP下載下來的功能，趁著最近來練習一下Java相關的FTP套件，在練習的時候發現不知道為什麼，檔案上傳永遠都是return False，把錯誤訊息打印出來後，發現一直看到&lt;/p>
+&lt;p>FTP 550 No such file or directory的錯誤&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/S4x590g.png"
 loading="lazy"
 alt="image-20230817221454630"
 >&lt;/p>
+&lt;h1 id="heading-1">&lt;/h1>
 &lt;p>網路上查了很多東西，有人說把ftpClient設成enterLocalPassiveMode，還有setFileType(FTP.BINARY_FILE_TYPE)等等的問題，但這些我都有設。&lt;/p>
 &lt;p>後來真的沒辦法，隨便亂調，調完之後發現是檔案名稱的問題，沒錯的，這一次又是因為檔案名稱是中文的關係，所導致的錯誤，只要將檔案名稱的中文去掉就可以囉！&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/lBxfTd4.gif"
