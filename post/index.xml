@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 31 Aug 2023 10:19:14 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 31 Aug 2023 10:19:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/ezUyxYS.png" alt="Featured image of post 如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前陣子精蟲衝腦購買了Macbook，使用起來可以說是痛苦並痛苦的感覺。但在這段期間的摸索中，我確實有感受到Macbook系統某方面的好處(其實根本沒有)，也試著去將macbook調教成喜歡的模樣(其實就是windows的樣子)，以下是一些我認為必裝，不裝則根本沒辦法用的插件，有些是要付費的，但價格大約落在300之間，我認為是值得的。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/pon5NsB.gif"
+loading="lazy"
+alt="life-hack-life-hacks-gif"
+>&lt;/p>
 &lt;h1 id="raycast">RayCast&lt;/h1>
 &lt;p>&lt;img src="https://i.imgur.com/fntDLom.png"
 loading="lazy"
@@ -83,9 +87,9 @@ alt="image-20230905221617214"
 &lt;p>底下也有些不同的功能，比如說都非常的實用，$320真的是非常的物超所值&lt;/p>
 &lt;h1 id="ｍission-control-">Ｍission Control +&lt;/h1>
 &lt;p>Mission Control 普拉斯，顧名思義，他就只是在Mac內建的任務管理功能上多一個功能，什麼功能呢？你可以直接在MIssion Control的頁面上把頁面關掉&amp;hellip;，或是用command+w來關掉程式，對，就是一個這麼基本的功能，我不知道為什麼Mac居然沒有做，它用起來的樣子就像這樣，雖然看起來很廢，但這個功能我幾乎每五分鐘就會用到一次，我記得這個東西價錢也是300，非常的&amp;hellip;物超所值&lt;/p>
-&lt;p>&lt;img src="https://hoxtonhsu.com/var/folders/wy/sqds16_j7gqdpl23rjt99y680000gn/T/cn.better365.iShotPro/iShot_2023-09-06_13.40.13.gif"
+&lt;p>&lt;img src="https://hoxtonhsu.com/var/folders/wy/sqds16_j7gqdpl23rjt99y680000gn/T/cn.better365.iShotPro/iShot_2023-09-06_14.05.16.gif"
 loading="lazy"
-alt="iShot_2023-09-06_13.40.13"
+alt="iShot_2023-09-06_14.05.16"
 >&lt;/p>
 &lt;h1 id="alttab">AltTab&lt;/h1>
 &lt;p>這個功能是為了解決一個問題，就是MacBook的替換頁面的邏輯實在不太符合我自己的使用情況，舉例說我目前開兩個IntelliJ的畫面，這時候我左邊的螢幕想要查一下資料，按了一下Alt+Tab之後，噹噹，我的主螢幕還有副螢幕全部都跳成Google頁面了&lt;/p>
@@ -100,9 +104,9 @@ alt="iShot_2023-09-05_22.36.01"
 >&lt;/p>
 &lt;p>基本上就是window的那套邏輯搬過來用，並且你可以在這個畫面中，直接Quit掉整個App，對於我這種實在不習慣看到很多App出現在畫面中的人，非常方便，並且你也可以Hover到圖標上，按下command+w，或是commnad+q，直接關閉、終止掉整個程式的運行&lt;/p>
 &lt;h1 id="ibar">iBar&lt;/h1>
-&lt;p>&lt;img src="https://i.imgur.com/n1nTBDs.jpg"
+&lt;p>&lt;img src="https://i.imgur.com/E8B38oF.jpg"
 loading="lazy"
-alt="image-20230905224657231"
+alt="image-20230906140702492"
 >&lt;/p>
 &lt;p>在介紹完了這麼多插件，M1、M2用戶最擔心的應該就是裝了那麼多插件，我的meun bar可以顯示嗎？沒錯，問就是不行，這問題官方雖然有出一個解決方案，但還是沒辦法有效的解決我的問題，在這之前我是用一個叫做hidden bar的東西，但用了一段時間之後發現他還是解決不了什麼問題，他只是把圖標縮在一起，當展開的時候還是會被瀏海給吃到，後來在iShot同公司的網頁上，找到了這個App，也是完美的解決了我想要處理的問題&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/cPFak6V.png"
