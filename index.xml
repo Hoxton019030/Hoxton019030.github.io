@@ -189,6 +189,11 @@ alt="image-20230907134423468"
 &lt;p>}的形式存在&lt;/p>
 &lt;/li>
 &lt;/ol>
+&lt;h1 id="常見名詞解釋">常見名詞解釋&lt;/h1>
+&lt;h2 id="快存穿透cache-penetration">快存穿透(Cache Penetration)&lt;/h2>
+&lt;p>假設我們在redis中從資料庫暫存了數據1,2,3，當用戶索要這些資料時，redis都能立刻反應，吐給用戶。但當用戶索要數據4時，由於資料庫本身沒有這筆資料，redis當然也不會有這筆資料，所以請求就來到了資料庫，&lt;strong>不斷地跟要一筆不存在的資料&lt;/strong>，這就是快取穿透，相關的處理可以搜尋&lt;strong>布林過濾器&lt;/strong>。&lt;/p>
+&lt;h2 id="快取雪崩cache-avalanche">快取雪崩(Cache Avalanche)&lt;/h2>
+&lt;p>Redis的一群資料同時expire了，此時又有用戶大量請求這些資料，於是大量請求進入資料庫，造成資料庫負擔過大&lt;/p>
 &lt;h1 id="與springboot整合">與SpringBoot整合&lt;/h1>
 &lt;p>加入相關依賴&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -372,16 +377,15 @@ alt="image-20230907155531952"
 &lt;p>如果希望可以在redis裡面可以方便預覽的話，可以配置Serializer給RedisTemplate，變成json格式&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Bean&lt;/span>
@@ -667,7 +671,10 @@ alt="image-20230907171959151"
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/I78XhJa.png"
 loading="lazy"
 alt=" "
->&lt;/p></description></item><item><title>如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 31 Aug 2023 10:19:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/ezUyxYS.png" alt="Featured image of post 如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹" />&lt;h1 id="前言">前言&lt;/h1>
+>&lt;/p>
+&lt;p>參考資料&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Fd4y1T7pD/?spm_id_from=333.999.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
+>【趣话Redis第一弹】我是Redis，MySQL大哥被我坑惨了！&lt;/a>&lt;/p></description></item><item><title>如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 31 Aug 2023 10:19:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/ezUyxYS.png" alt="Featured image of post 如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前陣子精蟲衝腦購買了Macbook，使用起來可以說是痛苦並痛苦的感覺。但在這段期間的摸索中，我確實有感受到Macbook系統某方面的好處(其實根本沒有)，也試著去將macbook調教成喜歡的模樣(其實就是windows的樣子)，以下是一些我認為必裝，不裝則根本沒辦法用的插件，有些是要付費的，但價格大約落在300之間，我認為是值得的。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/pon5NsB.gif"
 loading="lazy"
