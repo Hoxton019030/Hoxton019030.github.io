@@ -225,7 +225,7 @@ spring.redis.host&lt;span class="o">=&lt;/span>localhost
 spring.redis.port&lt;span class="o">=&lt;/span>&lt;span class="m">6379&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>想要存進去的資料要實現Serializable的功能&lt;/p>
+&lt;/div>&lt;p>想要存進去的資料要實現Serializable的功能，因為你的資料是&lt;strong>存在記憶體&lt;/strong>當中&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/tZwrspo.png"
 loading="lazy"
 alt="image-20230907150533741"
@@ -277,7 +277,12 @@ alt="image-20230907150533741"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>由於單例池中是沒有RedisTemplate&amp;lt;String,User&amp;gt;這顆Bean的(只有RedisTemplate而已)，於是我們要自己創造一個給他&lt;/p>
+&lt;/div>&lt;p>其中&lt;img src="https://i.imgur.com/P5pwhJX.png"
+loading="lazy"
+alt="image-20230907161708717"
+>&lt;/p>
+&lt;p>&lt;span style="color:yellow;font-size:32px">&lt;strong>opsForValue、opsForHash、opsForSet&amp;hellip;其實就是對應redis存取的五種資料類型&lt;/strong>&lt;/span>&lt;/p>
+&lt;p>由於單例池中是沒有RedisTemplate&amp;lt;String,User&amp;gt;這顆Bean的(只有RedisTemplate而已)，於是我們要自己創造一個給他&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -346,6 +351,207 @@ alt="image-20230907155404265"
 &lt;p>&lt;img src="https://i.imgur.com/0U2PkXS.png"
 loading="lazy"
 alt="image-20230907155531952"
+>&lt;/p>
+&lt;p>之所以裡面的資料看起來像亂碼的原因，也是因為這些資料經過了序列化，不過不用擔心，我們在取出來的時候會再幫我們做一次反序列化的&lt;/p>
+&lt;h2 id="將資料從redis中取出">將資料從redis中取出&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.springbootinaction.controller&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.example.springbootinaction.entity.User&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">lombok.RequiredArgsConstructor&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.beans.factory.annotation.Autowired&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.data.redis.core.RedisTemplate&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.web.bind.annotation.*&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@RestController&lt;/span>
+&lt;span class="nd">@RequiredArgsConstructor&lt;/span>
+&lt;span class="nd">@RequestMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">UserController&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">RedisTemplate&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">redisTemplate&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@PostMapping&lt;/span>&lt;span class="o">()&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">save&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="nd">@RequestBody&lt;/span> &lt;span class="n">User&lt;/span> &lt;span class="n">user&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">redisTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">opsForValue&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">set&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">user&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="nd">@GetMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;{key}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">User&lt;/span> &lt;span class="nf">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="nd">@PathVariable&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;key&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">key&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">redisTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">opsForValue&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/fdSWGCA.png"
+loading="lazy"
+alt="image-20230907160354834"
+>&lt;/p>
+&lt;h2 id="將資料從redis中刪除">將資料從redis中刪除&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java"> &lt;span class="nd">@DeleteMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;delete/{key}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">Boolean&lt;/span> &lt;span class="nf">delete&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="nd">@PathVariable&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;key&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">key&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">redisTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">delete&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="與五種資料型別對應的操作">與五種資料型別對應的操作&lt;/h2>
+&lt;h3 id="value的操作">Value的操作&lt;/h3>
+&lt;p>參考上面&lt;/p>
+&lt;h3 id="list的操作">List的操作&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java"> &lt;span class="nd">@GetMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;list&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">listTest&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">ListOperations&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">stringUserListOperations&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">redisTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">opsForList&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">stringUserListOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">leftPush&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;list&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">stringUserListOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">leftPush&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;list&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">stringUserListOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">leftPush&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;list&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">stringUserListOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">range&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;list&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">2&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/hOOeVYc.png"
+loading="lazy"
+alt="image-20230907170751681"
+>&lt;/p>
+&lt;h3 id="set的操作">Set的操作&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java"> &lt;span class="nd">@GetMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;set&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">Set&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">setTest&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">SetOperations&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">stringUserSetOperations&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">redisTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">opsForSet&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">User&lt;/span> &lt;span class="n">hoxton&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">hoxton&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setUsername&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Hoxton&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">User&lt;/span> &lt;span class="n">yiwen&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">yiwen&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setUsername&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Selime&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">stringUserSetOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;set&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">hoxton&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">stringUserSetOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;set&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">hoxton&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">stringUserSetOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;set&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">yiwen&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">stringUserSetOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;set&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">yiwen&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Set&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">set&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">stringUserSetOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">members&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;set&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">set&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/TS4GV6m.png"
+loading="lazy"
+alt="image-20230907171211127"
+>&lt;/p>
+&lt;h3 id="有序set的操作">有序Set的操作&lt;/h3>
+&lt;p>塞進去的時候是312，取出來的時候是123&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@GetMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;zset&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">Set&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">zSetTest&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">ZSetOperations&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">stringUserZSetOperations&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">redisTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">opsForZSet&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">User&lt;/span> &lt;span class="n">hoxton1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">hoxton1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setUsername&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Hoxton&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">hoxton1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setId&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">1L&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">User&lt;/span> &lt;span class="n">hoxton2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">hoxton2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setUsername&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Hoxton&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">hoxton2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setId&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">2L&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">User&lt;/span> &lt;span class="n">hoxton3&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">User&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">hoxton3&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setUsername&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Hoxton&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">hoxton3&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setId&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">3L&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">stringUserZSetOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;zset&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">hoxton3&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">3&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">stringUserZSetOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;zset&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">hoxton1&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">stringUserZSetOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;zset&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">hoxton2&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">2&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Set&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">zset&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">stringUserZSetOperations&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">range&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;zset&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">2&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">zset&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/qe7yjrU.png"
+loading="lazy"
+alt="image-20230907171959151"
+>&lt;/p>
+&lt;h3 id="哈希">哈希&lt;/h3>
+&lt;p>幾乎不會用到，要用再來看^_^&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/PEF4624.gif"
+loading="lazy"
+alt="mocha-lazy-gif"
 >&lt;/p></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/8cus4pF.gif"
 loading="lazy"
