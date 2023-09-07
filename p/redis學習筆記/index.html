@@ -62,7 +62,7 @@ sudo spctl --master-enable
 <span class=c1># redis本身就是一個Database的概念，所以不需要分成什麼1,2,3號數據庫，固定都是0</span>
 spring.redis.database<span class=o>=</span><span class=m>0</span>
 spring.redis.host<span class=o>=</span>localhost
-spring.redis.port<span class=o>=</span><span class=m>6379</span>
+spring.redis.port<span class=o>=</span><span class=m>6379</span> 
 </code></pre></td></tr></table></div></div><p>想要存進去的資料要實現Serializable的功能，因為你的資料是<strong>存在記憶體</strong>當中</p><p><img src=https://i.imgur.com/tZwrspo.png loading=lazy alt=image-20230907150533741></p><h2 id=將資料加入redis中>將資料加入redis中</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -104,8 +104,8 @@ spring.redis.port<span class=o>=</span><span class=m>6379</span>
 
     <span class=nd>@PostMapping</span><span class=o>(</span><span class=s>&#34;user&#34;</span><span class=o>)</span>
     <span class=kd>public</span> <span class=kt>void</span> <span class=nf>save</span><span class=o>(</span><span class=nd>@RequestBody</span> <span class=n>User</span> <span class=n>user</span><span class=o>)</span> <span class=o>{</span>
-        <span class=n>redisTemplate</span><span class=o>.</span><span class=na>opsForValue</span><span class=o>().</span><span class=na>set</span><span class=o>(</span><span class=s>&#34;user&#34;</span><span class=o>,</span> <span class=n>user</span><span class=o>);</span>
-
+       <span class=n>redisTemplate</span><span class=o>.</span><span class=na>opsForValue</span><span class=o>().</span><span class=na>set</span><span class=o>(</span><span class=s>&#34;user&#34;</span><span class=o>,</span> <span class=n>user</span><span class=o>,</span> <span class=n>10L</span><span class=o>,</span> <span class=n>TimeUnit</span><span class=o>.</span><span class=na>SECONDS</span><span class=o>);</span> <span class=c1>//配置到期單位
+</span><span class=c1></span>
     <span class=o>}</span>
 <span class=o>}</span>
 

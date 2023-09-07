@@ -287,7 +287,8 @@ alt="image-20230907150533741"
 &lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">RedisTemplate&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">redisTemplate&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="nd">@PostMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
 &lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">save&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="nd">@RequestBody&lt;/span> &lt;span class="n">User&lt;/span> &lt;span class="n">user&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="n">redisTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">opsForValue&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">set&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">user&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">redisTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">opsForValue&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">set&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">user&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">10L&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">TimeUnit&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">SECONDS&lt;/span>&lt;span class="o">);&lt;/span> &lt;span class="c1">//配置到期單位
+&lt;/span>&lt;span class="c1">&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
