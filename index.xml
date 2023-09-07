@@ -34,6 +34,7 @@ alt="image-20230907094542350"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h1 id="啟動">啟動&lt;/h1>
+&lt;p>使用默認配置文件啟動 Redis 服務&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -97,6 +98,59 @@ loading="lazy"
 alt="image-20230907132914723"
 >&lt;/p>
 &lt;p>就可以進入到redis中了&lt;/p>
+&lt;h1 id="基本操作">基本操作&lt;/h1>
+&lt;h2 id="設置key-vale">設置key-vale&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">set&lt;/span> Hello World
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/ekGq3vO.png"
+loading="lazy"
+alt="image-20230907134116284"
+>&lt;/p>
+&lt;h2 id="依據key取出value">依據key取出value&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">get Hello
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/pFdHV1X.png"
+loading="lazy"
+alt="image-20230907134151180"
+>&lt;/p>
+&lt;h2 id="查看目前有哪些key">查看目前有哪些key&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">keys *
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/hQvE7ff.png"
+loading="lazy"
+alt="image-20230907134316465"
+>&lt;/p>
+&lt;h2 id="關閉服務">關閉服務&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">shutdown
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/PRaTI82.png"
+loading="lazy"
+alt="image-20230907134423468"
+>&lt;/p>
 &lt;h1 id="介紹">介紹&lt;/h1>
 &lt;p>基於記憶體進行存取，支持key-value的存儲形式，是使用C語言編寫的。由於是key-value的形式，結構非常簡單，&lt;strong>沒有數據表的概念&lt;/strong>，直接用鍵值對完成數據的管理&lt;/p>
 &lt;p>Redis支持5種數據類型&lt;/p>
