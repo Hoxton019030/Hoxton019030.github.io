@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 07 Sep 2023 09:32:15 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>Redis學習筆記</title><link>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/fF94VUc.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 07 Sep 2023 09:32:15 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>Redis學習筆記</title><link>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/hW7HRS8.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前一陣子被保哥給Fire掉了，但老實說自己的工作表現真的不太好，這點也確實怪不了人，所幸很快就找到了下一份工作，新的工作有個很大的優點，就是需要學很多我之前想學，但又因為懶惰而沒有去學的技術，而Redis就是其中的一款。於是前輩就跟我說，可以利用等待帳號申請的這一兩個禮拜，把這些技術學一學&lt;/p>
 &lt;p> &lt;img src="https://i.imgur.com/R3VMXoP.gif"
 loading="lazy"
@@ -574,7 +574,7 @@ alt="image-20230907171959151"
 &lt;/div>
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/I78XhJa.png"
 loading="lazy"
-alt="image-20230907173857823"
+alt=" "
 >&lt;/p></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/8cus4pF.gif"
 loading="lazy"
