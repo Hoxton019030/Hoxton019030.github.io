@@ -672,7 +672,82 @@ alt="image-20230907171959151"
 loading="lazy"
 alt=" "
 >&lt;/p>
-&lt;p>參考資料&lt;/p>
+&lt;h1 id="遇到的問題">遇到的問題&lt;/h1>
+&lt;h2 id="配置快取後出現javalangclasscastexception">配置快取後，出現java.lang.ClassCastException&lt;/h2>
+&lt;p>解決方式：&lt;/p>
+&lt;p>問題的原因是因為redis中的類轉換機制與SpringBoot中不同，換言之兩邊的要對得起來&lt;/p>
+&lt;p>相關的配置如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">private&lt;/span> &lt;span class="n">Jackson2JsonRedisSerializer&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Object&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">objectJackson2JsonRedisSerializer&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">Jackson2JsonRedisSerializer&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Object&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">jackson2JsonRedisSerializer&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;span class="k">new&lt;/span> &lt;span class="n">Jackson2JsonRedisSerializer&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;(&lt;/span>&lt;span class="n">Object&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">ObjectMapper&lt;/span> &lt;span class="n">objectMapper&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ObjectMapper&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">objectMapper&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setVisibility&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">PropertyAccessor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ALL&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">JsonAutoDetect&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">Visibility&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ANY&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">objectMapper&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">configure&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">MapperFeature&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">USE_ANNOTATIONS&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">objectMapper&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">configure&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">DeserializationFeature&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">FAIL_ON_UNKNOWN_PROPERTIES&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">objectMapper&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">configure&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">SerializationFeature&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">FAIL_ON_EMPTY_BEANS&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">// 此项必须配置，否则会报java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to XXX
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">objectMapper&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">enableDefaultTyping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ObjectMapper&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">DefaultTyping&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">NON_FINAL&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">JsonTypeInfo&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">As&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">PROPERTY&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">objectMapper&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setSerializationInclusion&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">JsonInclude&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">Include&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">NON_NULL&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">jackson2JsonRedisSerializer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setObjectMapper&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">objectMapper&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">jackson2JsonRedisSerializer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 將redis跟SpringBoot做結合
+&lt;/span>&lt;span class="cm"> *
+&lt;/span>&lt;span class="cm"> * @param redisConnectionFactory
+&lt;/span>&lt;span class="cm"> * @return
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="nd">@Bean&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">CacheManager&lt;/span> &lt;span class="nf">cacheManager&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">RedisConnectionFactory&lt;/span> &lt;span class="n">redisConnectionFactory&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">Jackson2JsonRedisSerializer&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Object&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">objectJackson2JsonRedisSerializer&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">objectJackson2JsonRedisSerializer&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">RedisCacheConfiguration&lt;/span> &lt;span class="n">redisCacheConfiguration&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">RedisCacheConfiguration&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;span class="nf">defaultCacheConfig&lt;/span>&lt;span class="o">().&lt;/span>
+&lt;span class="n">entryTtl&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Duration&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ofHours&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">))&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">serializeValuesWith&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">RedisSerializationContext&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">SerializationPair&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">fromSerializer&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">objectJackson2JsonRedisSerializer&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">RedisCacheManager&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">builder&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">RedisCacheWriter&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">nonLockingRedisCacheWriter&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">redisConnectionFactory&lt;/span>&lt;span class="o">))&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">cacheDefaults&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">redisCacheConfiguration&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="參考資料">參考資料&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Fd4y1T7pD/?spm_id_from=333.999.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >【趣话Redis第一弹】我是Redis，MySQL大哥被我坑惨了！&lt;/a>&lt;/p></description></item><item><title>如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 31 Aug 2023 10:19:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/ezUyxYS.png" alt="Featured image of post 如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前陣子精蟲衝腦購買了Macbook，使用起來可以說是痛苦並痛苦的感覺。但在這段期間的摸索中，我確實有感受到Macbook系統某方面的好處(其實根本沒有)，也試著去將macbook調教成喜歡的模樣(其實就是windows的樣子)，以下是一些我認為必裝，不裝則根本沒辦法用的插件，有些是要付費的，但價格大約落在300之間，我認為是值得的。&lt;/p>
