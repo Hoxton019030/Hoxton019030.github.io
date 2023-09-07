@@ -151,7 +151,27 @@ spring.redis.port<span class=o>=</span><span class=m>6379</span>
 
 </code></pre></td></tr></table></div></div><p>使用Postman將資料送出去</p><p><img src=https://i.imgur.com/n7Y0yy9.png loading=lazy alt=image-20230907155125354></p><p>送出去之後，在Terminal中輸入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>get user
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/rE42aXg.png loading=lazy alt=image-20230907155250427></p><p>會發現取了個寂寞，為什麼呢？因為redis在存進去的時候，會把我們的key做一個<strong>序列化</strong>，會在我們的keyname前面再加上一串字符</p><p><img src=https://i.imgur.com/Z3u3hTH.png loading=lazy alt=image-20230907155404265></p><p>所以說要取得的話，就是要再將序列化的字符串加上去，就取得到了</p><p><img src=https://i.imgur.com/0U2PkXS.png loading=lazy alt=image-20230907155531952></p><p>之所以裡面的資料看起來像亂碼的原因，也是因為這些資料經過了序列化，不過不用擔心，我們在取出來的時候會再幫我們做一次反序列化的</p><h2 id=將資料從redis中取出>將資料從redis中取出</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/rE42aXg.png loading=lazy alt=image-20230907155250427></p><p>會發現取了個寂寞，為什麼呢？因為redis在存進去的時候，會把我們的key做一個<strong>序列化</strong>，會在我們的keyname前面再加上一串字符</p><p><img src=https://i.imgur.com/Z3u3hTH.png loading=lazy alt=image-20230907155404265></p><p>所以說要取得的話，就是要再將序列化的字符串加上去，就取得到了</p><p><img src=https://i.imgur.com/0U2PkXS.png loading=lazy alt=image-20230907155531952></p><p>之所以裡面的資料看起來像亂碼的原因，也是因為這些資料經過了序列化，不過不用擔心，我們在取出來的時候會再幫我們做一次反序列化的</p><p>如果希望可以在redis裡面可以方便預覽的話，可以配置Serializer給RedisTemplate，變成json格式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@Bean</span>
+    <span class=kd>public</span> <span class=n>RedisTemplate</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span> <span class=n>User</span><span class=o>&gt;</span> <span class=nf>userRedisTemplate</span><span class=o>(</span><span class=n>RedisConnectionFactory</span> <span class=n>redisConnectionFactory</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>RedisTemplate</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span> <span class=n>User</span><span class=o>&gt;</span> <span class=n>template</span> <span class=o>=</span> <span class=k>new</span> <span class=n>RedisTemplate</span><span class=o>&lt;&gt;();</span>
+        <span class=n>Jackson2JsonRedisSerializer</span><span class=o>&lt;</span><span class=n>Object</span><span class=o>&gt;</span> <span class=n>objectJackson2JsonRedisSerializer</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Jackson2JsonRedisSerializer</span><span class=o>&lt;&gt;(</span><span class=n>Object</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+        <span class=c1>//配置序列化
+</span><span class=c1></span>        <span class=n>template</span><span class=o>.</span><span class=na>setValueSerializer</span><span class=o>(</span><span class=n>objectJackson2JsonRedisSerializer</span><span class=o>);</span>
+        <span class=n>template</span><span class=o>.</span><span class=na>setConnectionFactory</span><span class=o>(</span><span class=n>redisConnectionFactory</span><span class=o>);</span>
+        <span class=k>return</span> <span class=n>template</span><span class=o>;</span>
+
+    <span class=o>}</span>
+</code></pre></td></tr></table></div></div><h2 id=將資料從redis中取出>將資料從redis中取出</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -213,7 +233,39 @@ spring.redis.port<span class=o>=</span><span class=m>6379</span>
         <span class=k>return</span> <span class=n>redisTemplate</span><span class=o>.</span><span class=na>delete</span><span class=o>(</span><span class=n>key</span><span class=o>);</span>
     <span class=o>}</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><h2 id=與五種資料型別對應的操作>與五種資料型別對應的操作</h2><h3 id=value的操作>Value的操作</h3><p>參考上面</p><h3 id=list的操作>List的操作</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h2 id=與五種資料型別對應的操作>與五種資料型別對應的操作</h2><h3 id=value的操作>Value的操作</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java>    <span class=nd>@GetMapping</span><span class=o>(</span><span class=s>&#34;atom&#34;</span><span class=o>)</span>
+    <span class=kd>public</span> <span class=n>Long</span> <span class=nf>atom</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>ValueOperations</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span> <span class=n>Integer</span><span class=o>&gt;</span> <span class=n>count</span> <span class=o>=</span> <span class=n>intergerRedisTemplate</span><span class=o>.</span><span class=na>opsForValue</span><span class=o>();</span>
+        <span class=k>return</span> <span class=n>count</span><span class=o>.</span><span class=na>increment</span><span class=o>(</span><span class=s>&#34;count&#34;</span><span class=o>,</span><span class=n>1</span><span class=o>);</span>
+    <span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>記得配置序列化設定</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=nd>@Bean</span>
+<span class=kd>public</span> <span class=n>RedisTemplate</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span> <span class=n>Integer</span><span class=o>&gt;</span> <span class=nf>redisTemplate</span><span class=o>(</span><span class=n>RedisConnectionFactory</span> <span class=n>redisConnectionFactory</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>RedisTemplate</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span> <span class=n>Integer</span><span class=o>&gt;</span> <span class=n>template</span> <span class=o>=</span> <span class=k>new</span> <span class=n>RedisTemplate</span><span class=o>&lt;&gt;();</span>
+        <span class=n>GenericToStringSerializer</span><span class=o>&lt;</span><span class=n>Integer</span><span class=o>&gt;</span> <span class=n>genericToStringSerializer</span> <span class=o>=</span> <span class=k>new</span> <span class=n>GenericToStringSerializer</span><span class=o>&lt;&gt;(</span><span class=n>Integer</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+        <span class=c1>//配置序列化
+</span><span class=c1></span>        <span class=n>template</span><span class=o>.</span><span class=na>setValueSerializer</span><span class=o>(</span><span class=n>genericToStringSerializer</span><span class=o>);</span>
+        <span class=n>template</span><span class=o>.</span><span class=na>setConnectionFactory</span><span class=o>(</span><span class=n>redisConnectionFactory</span><span class=o>);</span>
+        <span class=k>return</span> <span class=n>template</span><span class=o>;</span>
+
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>如果不配置會出現</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>org.springframework.dao.InvalidDataAccessApiUsageException: ERR value is not an integer or out of range
+</code></pre></td></tr></table></div></div><p>的問題，就是因為序列化的問題</p><p><img src=https://i.imgur.com/0c0c3Ak.gif loading=lazy alt=iShot_2023-09-07_20.21.28></p><h3 id=list的操作>List的操作</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
