@@ -1,5 +1,110 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 08 Sep 2023 21:24:43 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>李宏毅線性代數筆記</title><link>https://hoxtonhsu.com/p/%E6%9D%8E%E5%AE%8F%E6%AF%85%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 21:24:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%9D%8E%E5%AE%8F%E6%AF%85%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/WnjTSDF.png" alt="Featured image of post 李宏毅線性代數筆記" />&lt;h1 id="參考網址">參考網址&lt;/h1>
-&lt;p>&lt;a href="https://www.cupoy.com/collection/000001699E6396C0000000046375706F795F72656C656173654355?layoutType=content">https://www.cupoy.com/collection/000001699E6396C0000000046375706F795F72656C656173654355?layoutType=content&lt;/a>&lt;/p></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>&lt;a href="https://www.cupoy.com/collection/000001699E6396C0000000046375706F795F72656C656173654355?layoutType=content">https://www.cupoy.com/collection/000001699E6396C0000000046375706F795F72656C656173654355?layoutType=content&lt;/a>&lt;/p>
+&lt;h1 id="linear-algebra-lecture-1what-are-we-going-to-learn">Linear Algebra Lecture 1：What are we going to learn?&lt;/h1>
+&lt;h2 id="何謂線性系統linear-system">何謂線性系統(Linear System)&lt;/h2>
+&lt;p>所謂系統，也可稱作一個function，通常會有一個input，一個output，而一**b **&lt;/p>
+&lt;ol>
+&lt;li>Perservering Multiplication&lt;/li>
+&lt;/ol>
+&lt;p>若x經過線性系統計算後得到y，那麼kx經過線性系統計算後應該也要得到ky&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ikXziCz.png"
+loading="lazy"
+alt="image-20230908214455489"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/C8jCMGn.png"
+loading="lazy"
+alt="image-20230908220555056"
+>&lt;/p>
+&lt;ol start="2">
+&lt;li>Persevering Addition&lt;/li>
+&lt;/ol>
+&lt;p>x1計算後得y1，x2計算後得y2，那麼(x1+x2)的計算結果為(y1+y2)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/wN1XvG1.png"
+loading="lazy"
+alt="image-20230908214540653"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/svesBGn.png"
+loading="lazy"
+alt="image-20230908220641944"
+>&lt;/p>
+&lt;p>Ask 矩陣的轉置是線性的嗎？&lt;/p>
+&lt;p>Yes&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/RlwJoju.jpg"
+loading="lazy"
+alt="image-20230908220948054"
+>&lt;/p>
+&lt;p>Ask 微分是線性的嗎？&lt;/p>
+&lt;p>Yes&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/KyPwaSJ.png"
+loading="lazy"
+alt="image-20230908221144318"
+>&lt;/p>
+&lt;p>Ask積分是線性的嗎&lt;/p>
+&lt;p>Yes，積分也是線性的^_^&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/pKiiDqI.png"
+loading="lazy"
+alt="image-20230908221449848"
+>&lt;/p>
+&lt;h2 id="線性系統的應用">線性系統的應用&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>電路學(ㄏ 沒修過)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/cOV3II0.png"
+loading="lazy"
+alt="image-20230909004418457"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>信號與系統(ㄏ 也沒學過)&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i.imgur.com/xqnobrl.png"
+loading="lazy"
+alt="image-20230909004736771"
+>&lt;/p>
+&lt;ul>
+&lt;li>傅立葉轉換(Fourier Transform)&lt;/li>
+&lt;li>搜尋引擎的Page Rank 演算法&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i.imgur.com/qaxomhS.png"
+loading="lazy"
+alt="image-20230909005521002"
+>&lt;/p>
+&lt;h1 id="linear-algebra-lecture-2-system-of-linear-equations">Linear Algebra Lecture 2: System of Linear Equations&lt;/h1>
+&lt;ul>
+&lt;li>A System of Linear equations(多元一次聯立方程式)&lt;/li>
+&lt;li>&lt;img src="https://i.imgur.com/CHAFaR3.png"
+loading="lazy"
+alt="image-20230909011919842"
+>&lt;/li>
+&lt;/ul>
+&lt;p>​ 定義域： y=x&lt;sup>2&lt;/sup>，x∈R&lt;/p>
+&lt;p>​ 對應域：不思考function的實際內容，大概猜一下可能的解範圍，故對應域為R&lt;/p>
+&lt;p>​ 值域：考慮一下function的實際內容，可以得知值域為x&amp;gt;=0&lt;/p>
+&lt;ul>
+&lt;li>&lt;img src="https://i.imgur.com/vaLjlgZ.png"
+loading="lazy"
+alt="image-20230909012454190"
+>&lt;/li>
+&lt;/ul>
+&lt;p>​ One-to-One： Domain跟range一樣大&lt;/p>
+&lt;p>​ Onto：Co-domain= range&lt;/p>
+&lt;h1 id="linear-algebra-lecture-3-vector">Linear Algebra Lecture 3: Vector&lt;/h1>
+&lt;ul>
+&lt;li>
+&lt;p>Vector&lt;/p>
+&lt;p>一組數字的集合
+$$
+\left[
+\begin{matrix}
+1 \&lt;br>
+2 \&lt;br>
+3
+\end{matrix}
+\right] \tag{3}
+$$&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>今天是第二天，學習RabbitMQ。第一次接觸到Message Queue是在御諾的時候，當時有個同事做了一個這個東西，在Sprint的結尾展示，那時候就覺得MessageQueue這個東西也太酷了，但一直沒有機會(懶)去接觸。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/I0mlQvo.gif"
 loading="lazy"

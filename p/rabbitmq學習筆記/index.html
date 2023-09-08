@@ -776,7 +776,7 @@ spring.rabbitmq.virtual-host=test1
         <span class=k>return</span> <span class=k>new</span> <span class=n>Queue</span><span class=o>(</span><span class=n>QUEUE_NAME</span><span class=o>,</span> <span class=kc>true</span><span class=o>,</span> <span class=kc>false</span><span class=o>,</span> <span class=kc>false</span><span class=o>);</span>
     <span class=o>}</span>
 
-    <span class=nd>@Bean</span>
+    <span class=nd>@Bean</span>  
     <span class=kd>public</span> <span class=n>Binding</span> <span class=nf>queueBinding</span><span class=o>(</span><span class=n>FanoutExchange</span> <span class=n>fanoutExchange</span><span class=o>,</span> <span class=n>Queue</span> <span class=n>queue</span><span class=o>)</span> <span class=o>{</span>
         <span class=k>return</span> <span class=n>BindingBuilder</span><span class=o>.</span><span class=na>bind</span><span class=o>(</span><span class=n>queue</span><span class=o>).</span><span class=na>to</span><span class=o>(</span><span class=n>fanoutExchange</span><span class=o>);</span>
     <span class=o>}</span>
