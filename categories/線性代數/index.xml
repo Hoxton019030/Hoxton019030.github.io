@@ -93,7 +93,7 @@ alt="image-20230909012454190"
 &lt;ul>
 &lt;li>
 &lt;p>Vector&lt;/p>
-&lt;p>一組數字的集合
+&lt;p>一組數字的集合 ex:
 $$
 \left[
 \begin{matrix}
@@ -101,7 +101,7 @@ $$
 2 \&lt;br>
 3
 \end{matrix}
-\right] \tag{3}
+\right]
 $$&lt;/p>
 &lt;/li>
 &lt;/ul></description></item><item><title>一些關於線性代數的Trivial</title><link>https://hoxtonhsu.com/p/%E4%B8%80%E4%BA%9B%E9%97%9C%E6%96%BC%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E7%9A%84trivial/</link><pubDate>Mon, 07 Aug 2023 12:36:49 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%B8%80%E4%BA%9B%E9%97%9C%E6%96%BC%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E7%9A%84trivial/</guid><description>&lt;img src="https://i.imgur.com/sHKwuek.png" alt="Featured image of post 一些關於線性代數的Trivial" />&lt;h1 id="齊次方程homogenous-function">齊次方程(Homogenous Function)&lt;/h1>
