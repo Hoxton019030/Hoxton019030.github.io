@@ -102,6 +102,44 @@ $$
 \end{bmatrix}
 $$&lt;/p>
 &lt;/li>
+&lt;li>
+&lt;p>Vector Set：一群向量組合在一起，且可以包含無限組的的向量，即稱為向量集合&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>$$
+\left{
+\begin{bmatrix}
+1 \\&lt;br>
+2 \\&lt;br>
+3
+\end{bmatrix}, \begin{bmatrix}
+4 \\&lt;br>
+5 \\&lt;br>
+6
+\end{bmatrix},
+\begin{bmatrix}
+7 \\&lt;br>
+8 \\&lt;br>
+9
+\end{bmatrix} ,
+\begin{bmatrix}
+10 \\&lt;br>
+11 \\&lt;br>
+12
+\end{bmatrix}
+\right}
+$$&lt;/p>
+&lt;p>$$
+L=
+\left{
+\begin{bmatrix}&lt;/p>
+&lt;p>x_1 \\&lt;br>
+x_2 \\&lt;br>
+\end{bmatrix}
+\right} \tag{2}= x_1+x_2 =1
+$$&lt;/p>
+&lt;ul>
+&lt;li>&lt;/li>
 &lt;/ul></description></item><item><title>一些關於線性代數的Trivial</title><link>https://hoxtonhsu.com/p/%E4%B8%80%E4%BA%9B%E9%97%9C%E6%96%BC%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E7%9A%84trivial/</link><pubDate>Mon, 07 Aug 2023 12:36:49 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%B8%80%E4%BA%9B%E9%97%9C%E6%96%BC%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E7%9A%84trivial/</guid><description>&lt;img src="https://i.imgur.com/sHKwuek.png" alt="Featured image of post 一些關於線性代數的Trivial" />&lt;h1 id="齊次方程homogenous-function">齊次方程(Homogenous Function)&lt;/h1>
 &lt;blockquote>
 &lt;p>當函數中的自變數變動一個倍數，整個函數可以整理為該倍數的某個次方倍，此函數即為齊次函數，而剛剛說的次方，就會稱為這個齊次函數之階數。&lt;/p>
