@@ -868,11 +868,108 @@ loading="lazy"
 alt="image-20230908173950517"
 >&lt;/p>
 &lt;h2 id="headers">Headers&lt;/h2>
-&lt;h2 id="heading">&lt;/h2>
 &lt;p>幾乎跟Direct一樣，所以基本上用不到，有需要再來看&lt;/p>
-&lt;p>參考網址&lt;/p>
+&lt;h1 id="在springboot中使用">在SpringBoot中使用&lt;/h1>
+&lt;p>加入依賴&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>com.rabbitmq&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>amqp-client&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>5.16.0&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>org.springframework.boot&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>spring-boot-starter-amqp&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>加入配置文件&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
+spring.rabbitmq.virtual-host=test1
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>生成Bean&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Configuration&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">RabbitMQConfig&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">EXCHANGE_NAME&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;my_boot_fanout_exchange&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">QUEUE_NAME&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;my_boot_fanout_queue1&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 聲明交換機
+&lt;/span>&lt;span class="cm"> * @return
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="nd">@Bean&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">FanoutExchange&lt;/span> &lt;span class="nf">fanoutExchange&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">FanoutExchange&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">EXCHANGE_NAME&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="nd">@Bean&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">Queue&lt;/span> &lt;span class="nf">queue&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Queue&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">QUEUE_NAME&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="nd">@Bean&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">Binding&lt;/span> &lt;span class="nf">queueBinding&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">FanoutExchange&lt;/span> &lt;span class="n">fanoutExchange&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Queue&lt;/span> &lt;span class="n">queue&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">BindingBuilder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">bind&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queue&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">to&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">fanoutExchange&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="參考資料">參考資料&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Am4y1z7Tu/?p=9&amp;amp;spm_id_from=pageDriver&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
->1小时学会RabbitMQ！快速掌握RabbitMQ的使用与原理实战&lt;/a>&lt;/p></description></item><item><title>Redis學習筆記</title><link>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/hW7HRS8.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+>1小时学会RabbitMQ！快速掌握RabbitMQ的使用与原理实战&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1dE411K7MG?p=14&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
+>编程不良人】MQ消息中间件之RabbitMQ以及整合SpringBoot2.x实战教程,已完结!&lt;/a>&lt;/p></description></item><item><title>Redis學習筆記</title><link>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/hW7HRS8.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前一陣子被保哥給Fire掉了，但老實說自己的工作表現真的不太好，這點也確實怪不了人，所幸很快就找到了下一份工作，新的工作有個很大的優點，就是需要學很多我之前想學，但又因為懶惰而沒有去學的技術，而Redis就是其中的一款。於是前輩就跟我說，可以利用等待帳號申請的這一兩個禮拜，把這些技術學一學&lt;/p>
 &lt;p> &lt;img src="https://i.imgur.com/R3VMXoP.gif"
 loading="lazy"
