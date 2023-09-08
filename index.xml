@@ -96,8 +96,8 @@ alt="image-20230909012454190"
 &lt;p>一組數字的集合 ex:
 $$
 \begin{bmatrix}
-1 \&lt;br>
-2 \&lt;br>
+1 \\&lt;br>
+2 \\&lt;br>
 3
 \end{bmatrix}
 $$&lt;/p>
