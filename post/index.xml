@@ -320,7 +320,8 @@ alt="image-20230908160203126"
 &lt;p>會發現已經沒有Messege在等待了&lt;/p>
 &lt;h1 id="交換機介紹">交換機介紹&lt;/h1>
 &lt;h2 id="direct">Direct&lt;/h2>
-&lt;p>路由鍵與隊列名「完全匹配」交換機&lt;/p>
+&lt;p>路由鍵與隊列名「完全匹配」交換機，通過與RoutingKey路由鍵將交換機與隊列進行綁定，消息被發送到exchange時，需要根據消息的RountingKey，來進行匹配，只將消息發送到&lt;strong>完全匹配到此RountingKey的隊列&lt;/strong>。&lt;/p>
+&lt;p>比如一個隊列綁定到交換機要求路由鍵為&amp;quot;key&amp;quot;，則只轉發RountingKey標記為&amp;quot;key&amp;quot;的消息，不會轉發&amp;quot;key1&amp;quot;、“key.&amp;quot; &amp;hellip;等等，他是完全匹配、單撥的形式&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/sjHZg6j.png"
 loading="lazy"
 alt="image-20230908160823867"
@@ -501,7 +502,10 @@ alt="image-20230908162254880"
 &lt;h2 id="fanout">Fanout&lt;/h2>
 &lt;h2 id="topic">Topic&lt;/h2>
 &lt;h2 id="headers">Headers&lt;/h2>
-&lt;h2 id="heading">&lt;/h2></description></item><item><title>Redis學習筆記</title><link>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/hW7HRS8.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;h2 id="heading">&lt;/h2>
+&lt;p>參考網址&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Am4y1z7Tu/?p=9&amp;amp;spm_id_from=pageDriver&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
+>1小时学会RabbitMQ！快速掌握RabbitMQ的使用与原理实战&lt;/a>&lt;/p></description></item><item><title>Redis學習筆記</title><link>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/hW7HRS8.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前一陣子被保哥給Fire掉了，但老實說自己的工作表現真的不太好，這點也確實怪不了人，所幸很快就找到了下一份工作，新的工作有個很大的優點，就是需要學很多我之前想學，但又因為懶惰而沒有去學的技術，而Redis就是其中的一款。於是前輩就跟我說，可以利用等待帳號申請的這一兩個禮拜，把這些技術學一學&lt;/p>
 &lt;p> &lt;img src="https://i.imgur.com/R3VMXoP.gif"
 loading="lazy"
