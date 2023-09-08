@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 08 Sep 2023 03:00:58 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>今天是第二天，學習RabbitMQ。第一次接觸到Message Queue是在御諾的時候，當時有個同事做了一個這個東西，在Sprint的結尾展示，那時候就覺得MessageQueue這個東西也太酷了，但一直沒有機會(懶)去接觸。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/I0mlQvo.gif"
+loading="lazy"
+alt="line-up"
+>&lt;/p>
 &lt;h1 id="什麼是message-queue">什麼是Message Queue&lt;/h1>
 &lt;p>&lt;img src="https://i.imgur.com/jymb4cT.jpg"
 loading="lazy"
@@ -320,7 +324,7 @@ alt="image-20230908160203126"
 &lt;p>會發現已經沒有Messege在等待了&lt;/p>
 &lt;h1 id="交換機介紹">交換機介紹&lt;/h1>
 &lt;h2 id="direct">Direct&lt;/h2>
-&lt;p>路由鍵與隊列名「完全匹配」交換機，通過與RoutingKey路由鍵將交換機與隊列進行綁定，消息被發送到exchange時，需要根據消息的RountingKey，來進行匹配，只將消息發送到&lt;strong>完全匹配到此RountingKey的隊列&lt;/strong>。&lt;/p>
+&lt;p>路由鍵與隊列名「完全匹配」交換機，通過與RoutingKey路由鍵將交換機與隊列進行綁定，消息被發送到exchange時，需要根據消息的RountingKey，來進行匹配，只將消息發送到&lt;strong>完全匹配到此RountingKey的隊列&lt;/strong>，如果想要模糊匹配的話要用Topic。&lt;/p>
 &lt;p>比如一個隊列綁定到交換機要求路由鍵為&amp;quot;key&amp;quot;，則只轉發RountingKey標記為&amp;quot;key&amp;quot;的消息，不會轉發&amp;quot;key1&amp;quot;、“key.&amp;quot; &amp;hellip;等等，他是完全匹配、單撥的形式&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/sjHZg6j.png"
 loading="lazy"
@@ -500,9 +504,372 @@ loading="lazy"
 alt="image-20230908162254880"
 >&lt;/p>
 &lt;h2 id="fanout">Fanout&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/3sHwEqk.png"
+loading="lazy"
+alt="image-20230908173139493"
+>&lt;/p>
+&lt;p>扇出類型的exchange，會將消息分發給所有綁定了此exchange的隊列，&lt;strong>此時RountingKey參數無效&lt;/strong>，因此不管給哪個Queue送消息、&lt;strong>屬於同一個exchange底下的都會共享&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;span class="lnt">83
+&lt;/span>&lt;span class="lnt">84
+&lt;/span>&lt;span class="lnt">85
+&lt;/span>&lt;span class="lnt">86
+&lt;/span>&lt;span class="lnt">87
+&lt;/span>&lt;span class="lnt">88
+&lt;/span>&lt;span class="lnt">89
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.springbootinaction.rabbitmq.fanout&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.rabbitmq.client.BuiltinExchangeType&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.rabbitmq.client.Channel&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.rabbitmq.client.Connection&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.rabbitmq.client.ConnectionFactory&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.io.IOException&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.util.concurrent.TimeoutException&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">ProducerFanout&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">TimeoutException&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">exchangeName&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;xc_exchange_fanout_name&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">queueName_1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;xc_queue_name_fanout_1&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">queueName_2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;xc_queue_name_fanout_2&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">queueName_3&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;xc_queue_name_fanout_3&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">queueName_4&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;xc_queue_name_fanout_4&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">key_1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;key_1&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">key_3&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;key_3&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">key_4&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;key_4&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">ConnectionFactory&lt;/span> &lt;span class="n">connectionFactory&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ConnectionFactory&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="c1">//服務地址
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setHost&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;127.0.0.1&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//帳號
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setUsername&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;guest&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//密碼
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setPassword&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;guest&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//端口號
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setPort&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">5672&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//創建連接
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">Connection&lt;/span> &lt;span class="n">connection&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">newConnection&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="c1">//創建channel
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">Channel&lt;/span> &lt;span class="n">channel&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">connection&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">createChannel&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 創建交換機
+&lt;/span>&lt;span class="cm"> * 1. 交換機名稱
+&lt;/span>&lt;span class="cm"> * 2. 交換機類型 direct, topic, fanout, headers
+&lt;/span>&lt;span class="cm"> * 3. 指定交換機是否需要持久化，如果設置為True，那麼交換機的元數據要持久化
+&lt;/span>&lt;span class="cm"> * 4. 指定交換機在沒有隊列綁定時，是否刪除？
+&lt;/span>&lt;span class="cm"> * 5. Map&amp;lt;String,Object&amp;gt;類型，用來指定我們交換機其他的一些機構話參數，我們在這裡直接設置成Null
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">exchangeDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">BuiltinExchangeType&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">FANOUT&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 生產一個隊列
+&lt;/span>&lt;span class="cm"> * 1. 隊列名稱
+&lt;/span>&lt;span class="cm"> * 2. 隊列是否需要持久化，但是要注意，這裡的持久化只是隊列名稱等這些元數據的持久化，不是隊列中消息的持久化
+&lt;/span>&lt;span class="cm"> * 3. 表示隊列是不是私有，如果是私有的，只有唱見他的應用程序才能消費消息
+&lt;/span>&lt;span class="cm"> * 4. 隊列在沒有消費者訂閱的情況下，是否自動刪除
+&lt;/span>&lt;span class="cm"> * 5. 隊列的一些結構化訊息，比如說聲明死信隊列，磁盤隊列會用到
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_1&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_2&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_3&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_4&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 將交換機與隊列綁定
+&lt;/span>&lt;span class="cm"> * 1. 隊列名稱
+&lt;/span>&lt;span class="cm"> * 2. 交換機名稱
+&lt;/span>&lt;span class="cm"> * 3. 路由鍵，在我們直連模式下，可以為我們的隊列名稱
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueBind&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_1&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">key_1&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueBind&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_2&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">key_1&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueBind&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_3&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">key_3&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueBind&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_4&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">key_4&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">// 要發送的消息
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">message&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Hello rabbitMQ&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 發送消息
+&lt;/span>&lt;span class="cm"> * 1. 發送到哪個交換機
+&lt;/span>&lt;span class="cm"> * 2. 隊列名稱
+&lt;/span>&lt;span class="cm"> * 3. 其他參數訊息
+&lt;/span>&lt;span class="cm"> * 4. 發送消息的消息體
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">basicPublish&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">key_1&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;key_1 fanout message&amp;#34;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="c1">//註解掉，其他的，來看看會變什麼樣
+&lt;/span>&lt;span class="c1">// channel.basicPublish(exchangeName, key_3, null, &amp;#34;key_3 message&amp;#34;.getBytes());
+&lt;/span>&lt;span class="c1">// channel.basicPublish(exchangeName, key_4, null, &amp;#34;key_4 message&amp;#34;.getBytes());
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">close&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">connection&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">close&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>執行後會出現一個新的交換機&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/MMjegL8.png"
+loading="lazy"
+alt="image-20230908164448373"
+>&lt;/p>
+&lt;p>在Queue中多出了四個Queue&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/BATZdvj.png"
+loading="lazy"
+alt="image-20230908172557300"
+>&lt;/p>
+&lt;p>&lt;span style="color:red;font-size:32px">Warning&lt;/span>&lt;/p>
+&lt;p>如果你的Queue有不該跳起來的卻跳了起來，很可能是你不小心綁定到了同一個exchange。如果你的xc_queue_name_fanout，一直沒跳起來，很可能是你的consumer持續在背景執行，一直消費你的Queue，記得關掉&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ejOQKNG.gif"
+loading="lazy"
+alt="joker-dont-say-i-didnt-warn-you-gif"
+>&lt;/p>
+&lt;p>接著啟動消費者，來看看他拿到什麼&lt;/p>
 &lt;h2 id="topic">Topic&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/zZuoUJb.png"
+loading="lazy"
+alt="image-20230908173439226"
+>&lt;/p>
+&lt;p>主題類型交換機，此種交換機與Direct類似，也是需要透過routingKey路由鍵進行匹配分發，區別在&lt;strong>Topic可以模糊匹配&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>Topic中，將RoutingKey通過&amp;quot;.&amp;ldquo;來分為多個部分&lt;/li>
+&lt;li>&amp;ldquo;*&amp;quot;：代表一部分&lt;/li>
+&lt;li>&amp;ldquo;#&amp;quot;：代表0個或多個部分，如果綁定的路由為#時，則接受所有消息，因為路由鍵所有都匹配&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">ProducerTopic&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">TimeoutException&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">exchangeName&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;xc_exchange_topic _name&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">queueName_1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;xc_queue_topic_name_1&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">queueName_2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;xc_queue_topic_name_2&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">queueName_3&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;xc_queue_topic_name_3&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">queueName_4&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;xc_queue_topic_name_4&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="c1">//key的名稱綁定有變！！！
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">key_1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;key_1.key2.key3.*&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">key_2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;key_1.#&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">key_3&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;*.key_2.*.key_4&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">key_4&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;#.key_3.key_4&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">ConnectionFactory&lt;/span> &lt;span class="n">connectionFactory&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ConnectionFactory&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="c1">//服務地址
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setHost&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;127.0.0.1&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//帳號
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setUsername&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;guest&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//密碼
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setPassword&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;guest&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//端口號
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setPort&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">5672&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//創建連接
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">Connection&lt;/span> &lt;span class="n">connection&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">newConnection&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="c1">//創建channel
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">Channel&lt;/span> &lt;span class="n">channel&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">connection&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">createChannel&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 創建交換機
+&lt;/span>&lt;span class="cm"> * 1. 交換機名稱
+&lt;/span>&lt;span class="cm"> * 2. 交換機類型 direct, topic, fanout, headers
+&lt;/span>&lt;span class="cm"> * 3. 指定交換機是否需要持久化，如果設置為True，那麼交換機的元數據要持久化
+&lt;/span>&lt;span class="cm"> * 4. 指定交換機在沒有隊列綁定時，是否刪除？
+&lt;/span>&lt;span class="cm"> * 5. Map&amp;lt;String,Object&amp;gt;類型，用來指定我們交換機其他的一些機構話參數，我們在這裡直接設置成Null
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">exchangeDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">BuiltinExchangeType&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">TOPIC&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 生產一個隊列
+&lt;/span>&lt;span class="cm"> * 1. 隊列名稱
+&lt;/span>&lt;span class="cm"> * 2. 隊列是否需要持久化，但是要注意，這裡的持久化只是隊列名稱等這些元數據的持久化，不是隊列中消息的持久化
+&lt;/span>&lt;span class="cm"> * 3. 表示隊列是不是私有，如果是私有的，只有唱見他的應用程序才能消費消息
+&lt;/span>&lt;span class="cm"> * 4. 隊列在沒有消費者訂閱的情況下，是否自動刪除
+&lt;/span>&lt;span class="cm"> * 5. 隊列的一些結構化訊息，比如說聲明死信隊列，磁盤隊列會用到
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_1&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_2&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_3&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_4&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 將交換機與隊列綁定
+&lt;/span>&lt;span class="cm"> * 1. 隊列名稱
+&lt;/span>&lt;span class="cm"> * 2. 交換機名稱
+&lt;/span>&lt;span class="cm"> * 3. 路由鍵，在我們直連模式下，可以為我們的隊列名稱
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueBind&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_1&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">key_1&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueBind&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_2&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">key_2&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueBind&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_3&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">key_3&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueBind&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName_4&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">key_4&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">// 要發送的消息
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">message&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Hello rabbitMQ&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 發送消息
+&lt;/span>&lt;span class="cm"> * 1. 發送到哪個交換機
+&lt;/span>&lt;span class="cm"> * 2. 隊列名稱
+&lt;/span>&lt;span class="cm"> * 3. 其他參數訊息
+&lt;/span>&lt;span class="cm"> * 4. 發送消息的消息體
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">basicPublish&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;key_1&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;key 1 topic message&amp;#34;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">close&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">connection&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">close&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>執行完後&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/f68tPug.png"
+loading="lazy"
+alt="image-20230908173950517"
+>&lt;/p>
 &lt;h2 id="headers">Headers&lt;/h2>
 &lt;h2 id="heading">&lt;/h2>
+&lt;p>幾乎跟Direct一樣，所以基本上用不到，有需要再來看&lt;/p>
 &lt;p>參考網址&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Am4y1z7Tu/?p=9&amp;amp;spm_id_from=pageDriver&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >1小时学会RabbitMQ！快速掌握RabbitMQ的使用与原理实战&lt;/a>&lt;/p></description></item><item><title>Redis學習筆記</title><link>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/hW7HRS8.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
