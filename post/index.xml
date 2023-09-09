@@ -106,41 +106,14 @@ $$&lt;/p>
 &lt;p>Vector Set：一群向量組合在一起，且可以包含無限組的的向量，即稱為向量集合&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>$$
-\left{
-\begin{bmatrix}
-1 \\&lt;br>
-2 \\&lt;br>
-3
-\end{bmatrix}, \begin{bmatrix}
-4 \\&lt;br>
-5 \\&lt;br>
-6
-\end{bmatrix},
-\begin{bmatrix}
-7 \\&lt;br>
-8 \\&lt;br>
-9
-\end{bmatrix} ,
-\begin{bmatrix}
-10 \\&lt;br>
-11 \\&lt;br>
-12
-\end{bmatrix}
-\right}
-$$&lt;/p>
-&lt;p>$$
-L=
-\left{
-\begin{bmatrix}&lt;/p>
-&lt;p>x_1 \\&lt;br>
-x_2 \\&lt;br>
-\end{bmatrix}
-\right} \tag{2}= x_1+x_2 =1
-$$&lt;/p>
+&lt;p>​ &lt;img src="https://i.imgur.com/T1HajOV.png"
+loading="lazy"
+alt="image-20230909022355971"
+>&lt;/p>
 &lt;ul>
-&lt;li>&lt;/li>
-&lt;/ul></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;li>Matrix：多組向量組合成Ｍatrix&lt;/li>
+&lt;/ul>
+&lt;p>​ ![image-20230909023009609](/Users/hoxtonashes/Library/Application Support/typora-user-images/image-20230909023009609.png)&lt;/p></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>今天是第二天，學習RabbitMQ。第一次接觸到Message Queue是在御諾的時候，當時有個同事做了一個這個東西，在Sprint的結尾展示，那時候就覺得MessageQueue這個東西也太酷了，但一直沒有機會(懶)去接觸。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/I0mlQvo.gif"
 loading="lazy"
@@ -1038,6 +1011,11 @@ alt="image-20230908173950517"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>加入配置文件&lt;/p>
+&lt;p>&lt;span style="color:yellow;font-size:32px">注意，這邊記得要自己創建一個使用者，不要用guest，有可能會出錯== 不要問我為什麼會知道&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vyWmaSq.png"
+loading="lazy"
+alt="image-20230909111727803"
+>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1049,12 +1027,12 @@ alt="image-20230908173950517"
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">spring.rabbitmq.host=localhost
 spring.rabbitmq.port=5672
-spring.rabbitmq.username=guest
-spring.rabbitmq.password=guest
+spring.rabbitmq.username=hoxton
+spring.rabbitmq.password=123456
 spring.rabbitmq.virtual-host=test1
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>生成Bean&lt;/p>
+&lt;/div>&lt;p>生成關於exchange、queue的，再將兩者綁在一起Bean&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1107,7 +1085,155 @@ spring.rabbitmq.virtual-host=test1
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="參考資料">參考資料&lt;/h1>
+&lt;/div>&lt;p>在配置個&lt;/p>
+&lt;h2 id="producer">Producer&lt;/h2>
+&lt;p>我們這邊用RestAPI的方式發送請求過去。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.springbootinaction.controller&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.example.springbootinaction.service.RabbitMQProducer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">lombok.RequiredArgsConstructor&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.http.ResponseEntity&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.web.bind.annotation.GetMapping&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.web.bind.annotation.RequestMapping&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.web.bind.annotation.RestController&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@RestController&lt;/span>
+&lt;span class="nd">@RequestMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;rabbit&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="nd">@RequiredArgsConstructor&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">MessageController&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">RabbitMQProducer&lt;/span> &lt;span class="n">rabbitMQProducer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@GetMapping&lt;/span>&lt;span class="o">()&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">senedMessage&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">rabbitMQProducer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">sendMessage&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;我是來自前端的訊息&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ok&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">body&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;完成&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中的rabbitTemplate是SpringBoot用來與rabbitMq交互的一個類&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.springbootinaction.service&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">lombok.RequiredArgsConstructor&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.amqp.rabbit.core.RabbitTemplate&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.stereotype.Service&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import static&lt;/span> &lt;span class="nn">com.example.springbootinaction.config.RabbitMQConfig.EXCHANGE_NAME&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Service&lt;/span>
+&lt;span class="nd">@RequiredArgsConstructor&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">RabbitMQProducer&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">RabbitTemplate&lt;/span> &lt;span class="n">rabbitTemplate&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">sendMessage&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;送出訊息&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">rabbitTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">convertAndSend&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">EXCHANGE_NAME&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著再寫一個&lt;/p>
+&lt;h2 id="consumer">Consumer&lt;/h2>
+&lt;p>的&lt;/p>
+&lt;h2 id="listener">Listener&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.springbootinaction.listener&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.amqp.core.Message&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.amqp.rabbit.annotation.RabbitListener&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.stereotype.Component&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import static&lt;/span> &lt;span class="nn">com.example.springbootinaction.config.RabbitMQConfig.QUEUE_NAME&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Component&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">ConsumerListener&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 監聽隊列：當隊列中有消息，則監聽器工作，處理接收到的訊息
+&lt;/span>&lt;span class="cm"> * @param message
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="nd">@RabbitListener&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queues&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">QUEUE_NAME&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">process&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Message&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kt">byte&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">body&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBody&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;接收到的消息&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">body&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這個方法會去監聽指定Queue的Messege，並且做相應的處理&lt;/p>
+&lt;p>目前這邊的方式就是把收到的訊息Print出來，並把那個Messege清空，請特別注意，這邊是由rabbit自動幫你ack(acknowledge)的，如果不想要的話也可以去設定把這部分關掉，這邊就不展示了。&lt;/p>
+&lt;p>範例圖&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/MWAsnpn.gif"
+loading="lazy"
+alt="iShot_2023-09-09_22.28.49"
+>&lt;/p>
+&lt;h1 id="參考資料">參考資料&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Am4y1z7Tu/?p=9&amp;amp;spm_id_from=pageDriver&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >1小时学会RabbitMQ！快速掌握RabbitMQ的使用与原理实战&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1dE411K7MG?p=14&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
