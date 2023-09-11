@@ -127,14 +127,76 @@ alt="image-20230909232938335"
 &lt;/ul>
 &lt;h1 id="linear-algebra-lecture-5matrix-vector-productlinear-algebra-lecture-5matrix-vector-product">Linear Algebra Lecture 5：Matrix-vector ProductLinear Algebra Lecture 5：Matrix-vector Product&lt;/h1>
 &lt;h2 id="何謂向量內積">何謂向量內積&lt;/h2>
-&lt;p>&lt;img src="https://i.imgur.com/a0UvRu8.png"
+&lt;p>內積的值是一個&lt;strong>純量&lt;/strong>，不是一個向量。D&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/FMKwj1S.jpg"
 loading="lazy"
-alt="image-20230910020711848"
+alt="73E633E6-B93A-418A-A71D-8B9C5A4B46B1"
 >&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/lt7b58S.jpg"
+&lt;h2 id="以rowcolumn觀點來看矩陣乘法">以Row、Column觀點來看矩陣乘法&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/QUAoZPI.png"
 loading="lazy"
-alt="image-20230910025533914"
->&lt;/p></description></item><item><title>一些關於線性代數的Trivial</title><link>https://hoxtonhsu.com/p/%E4%B8%80%E4%BA%9B%E9%97%9C%E6%96%BC%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E7%9A%84trivial/</link><pubDate>Mon, 07 Aug 2023 12:36:49 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%B8%80%E4%BA%9B%E9%97%9C%E6%96%BC%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E7%9A%84trivial/</guid><description>&lt;img src="https://i.imgur.com/sHKwuek.png" alt="Featured image of post 一些關於線性代數的Trivial" />&lt;h1 id="齊次方程homogenous-function">齊次方程(Homogenous Function)&lt;/h1>
+alt="image-20230911175610905"
+>&lt;/p>
+&lt;p>現有一方程
+$$
+\begin{align*}
+x_1 + 4x_2 &amp;amp;= b_1 \\&lt;br>
+-3x_1 - 2x_2 &amp;amp;= b_2
+\end{align*}
+$$&lt;/p>
+&lt;p>對其輸入，[-2,0.5]，得到的結果是
+$$
+\begin{bmatrix}
+0 \\&lt;br>
+7&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>以Row觀點來理解這件事情&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/WmH2r5s.png"
+loading="lazy"
+alt="image-20230911180128872"
+>&lt;/p>
+&lt;p>那麼0相當於是輸入向量與Row1進行內積，得出的結果。而7相當於是輸入向量與Row2得出來的結果&lt;/p>
+&lt;p>以Column觀點來看這件事情&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/a7rr6rY.png"
+loading="lazy"
+alt="image-20230911180636532"
+>&lt;/p>
+&lt;p>那麼相當於是將
+$$
+\begin{bmatrix}
+1 \\&lt;br>
+3&lt;br>
+\end{bmatrix}
+$$
+這個向量拉長-2倍變成
+$$
+\begin{bmatrix}
+-2 \\&lt;br>
+-6&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>然後再將
+$$
+\begin{bmatrix}
+4 \\&lt;br>
+2&lt;br>
+\end{bmatrix}
+$$
+這個向量拉長0.5倍變成
+$$
+\begin{bmatrix}
+2 \\&lt;br>
+1
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>兩個向量在相加，變成
+$$
+\begin{bmatrix}
+0 \\&lt;br>
+7&lt;br>
+\end{bmatrix}
+$$&lt;/p></description></item><item><title>一些關於線性代數的Trivial</title><link>https://hoxtonhsu.com/p/%E4%B8%80%E4%BA%9B%E9%97%9C%E6%96%BC%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E7%9A%84trivial/</link><pubDate>Mon, 07 Aug 2023 12:36:49 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%B8%80%E4%BA%9B%E9%97%9C%E6%96%BC%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8%E7%9A%84trivial/</guid><description>&lt;img src="https://i.imgur.com/sHKwuek.png" alt="Featured image of post 一些關於線性代數的Trivial" />&lt;h1 id="齊次方程homogenous-function">齊次方程(Homogenous Function)&lt;/h1>
 &lt;blockquote>
 &lt;p>當函數中的自變數變動一個倍數，整個函數可以整理為該倍數的某個次方倍，此函數即為齊次函數，而剛剛說的次方，就會稱為這個齊次函數之階數。&lt;/p>
 &lt;p>判斷一個給定的函數是否為齊次函數，唯一的方法就是，「&lt;strong>將自變數變動一個倍數，看看整個函數值會不會變動那個倍數的某個次方倍&lt;/strong>」，會，那這個函數就是齊次函數，不會，那他就不是齊次函數了！&lt;/p>
