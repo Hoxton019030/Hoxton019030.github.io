@@ -235,7 +235,42 @@ $$
 0 \\&lt;br>
 7&lt;br>
 \end{bmatrix}
-$$&lt;/p></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+$$&lt;/p>
+&lt;h1 id="linear-algebra-lecture-6-having-solution-or-not">Linear Algebra Lecture 6： Having Solution or Not&lt;/h1>
+&lt;ul>
+&lt;li>
+&lt;p>一線性系統有解稱之為consistent，無解稱 之為inconsistent&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>現一線性系統Ax=B，若這個系統有解，則代表這個系統是consistent，也&lt;strong>代表B是可以通過A的線性組合而來&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;img src="https://i.imgur.com/e3BLqfz.png"
+loading="lazy"
+alt="image-20230911185513550"
+>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i.imgur.com/LGbdL6h.png"
+loading="lazy"
+alt="image-20230911185420873"
+>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;span style="color:yellow">任兩條非平行的向量，都可以組合出平面空間中的所有向量&lt;/span>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;span style="color:yellow">但任三條非平行的向量，不可以組合出立體空間中的所有向量，有可能第三條向量，落在前兩條向量張成的向量空間中&lt;/span>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="span">Span&lt;/h2>
+&lt;p>假設現在你有一堆向量集合，u&lt;sub>1&lt;/sub>,u&lt;sub>2&lt;/sub>,u&lt;sub>3&lt;/sub>&amp;hellip;然後去窮舉這些向量能做的線性組合，這個得出的集合就叫做Span&lt;/p>
+&lt;h3 id="生成集generating--set">生成集(generating set)&lt;/h3>
+&lt;p>&lt;img src="https://i.imgur.com/vlPDxIN.png"
+loading="lazy"
+alt="image-20230911191806823"
+>&lt;/p>
+&lt;h1 id="linear-algebra-lecture-7how-many-solutions">Linear Algebra Lecture 7：How many solutions?&lt;/h1></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>今天是第二天，學習RabbitMQ。第一次接觸到Message Queue是在御諾的時候，當時有個同事做了一個這個東西，在Sprint的結尾展示，那時候就覺得MessageQueue這個東西也太酷了，但一直沒有機會(懶)去接觸。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/I0mlQvo.gif"
 loading="lazy"
