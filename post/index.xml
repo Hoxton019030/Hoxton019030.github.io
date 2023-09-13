@@ -270,7 +270,62 @@ alt="image-20230911185420873"
 loading="lazy"
 alt="image-20230911191806823"
 >&lt;/p>
-&lt;h1 id="linear-algebra-lecture-7how-many-solutions">Linear Algebra Lecture 7：How many solutions?&lt;/h1></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;h1 id="linear-algebra-lecture-7how-many-solutions">Linear Algebra Lecture 7：How many solutions?&lt;/h1>
+&lt;p>&lt;span style="color:yellow">&lt;strong>King Crimson&lt;/strong>&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2IbyOEw.gif"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;h1 id="linear-algebra-lecture-18-subspace">Linear Algebra Lecture 18: Subspace&lt;/h1>
+&lt;h2 id="subspace-子空間">Subspace 子空間&lt;/h2>
+&lt;p>若一組向量集合V，滿足以下三種性質，即可稱之為子空間(subspace)&lt;/p>
+&lt;ol>
+&lt;li>向量集合V包含0向量(確保向量集合不是空集合)&lt;/li>
+&lt;li>向量集合V中，任取兩個向量，u和w，則u+w也在向量集合V中(滿足加法封閉性)&lt;/li>
+&lt;li>向量集合V中，取一個向量u，將它成上某\數後，依然在向量集合V中(滿足乘法封閉性)&lt;/li>
+&lt;/ol>
+&lt;p>以上2,3可以簡單地說，也就是線性組合&lt;/p>
+&lt;p>範例&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/zT5BAua.png"
+loading="lazy"
+alt="image-20230914000850204"
+>&lt;/p>
+&lt;h2 id="span-1">Span&lt;/h2>
+&lt;p>假設現在有一組向量集合S，我們&lt;strong>把這個向量集合S中的所有向量拿出來做Linear Combinations&lt;/strong>，然後集合起來，這樣就產生另一個向量集合，叫Span S。&lt;/p>
+&lt;p>我們現在稱這個Span S為向量集合V，此時，向量集合S產生了V，向量集合S也就是V的生成集&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Tm23OB5.png"
+loading="lazy"
+alt="image-20230914011033741"
+>&lt;/p>
+&lt;h2 id="subspace-vs-span">Subspace Vs Span&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/0KlbqOc.png"
+loading="lazy"
+alt="image-20230914012411242"
+>&lt;/p>
+&lt;h2 id="null-space">Null Space&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/0VEnB4n.png"
+loading="lazy"
+alt="image-20230914012513294"
+>&lt;/p>
+&lt;h1 id="linear-algebra-lecture-19-basis">Linear Algebra Lecture 19: Basis&lt;/h1>
+&lt;p>設向量集合V是R&lt;sup>n&lt;/sup>的一個子空間，那麼向量集合V的Basis要滿足以下兩個條件&lt;/p>
+&lt;ol>
+&lt;li>是線性獨立的&lt;/li>
+&lt;li>可以組合出V的所有向量&lt;/li>
+&lt;/ol>
+&lt;p>比如說
+$$
+\begin{bmatrix}
+1 \\&lt;br>
+0&lt;br>
+\end{bmatrix}
+\begin{bmatrix}
+0 \\&lt;br>
+1&lt;br>
+\end{bmatrix}
+是R^2的Basis
+$$&lt;/p>
+&lt;p>因為這兩個向量是&lt;strong>線性獨立&lt;/strong>的、且可以組合出R&lt;sup>2&lt;/sup>的所有向量，因此是R&lt;sup>2&lt;/sup>的Basis&lt;/p></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>今天是第二天，學習RabbitMQ。第一次接觸到Message Queue是在御諾的時候，當時有個同事做了一個這個東西，在Sprint的結尾展示，那時候就覺得MessageQueue這個東西也太酷了，但一直沒有機會(懶)去接觸。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/I0mlQvo.gif"
 loading="lazy"
