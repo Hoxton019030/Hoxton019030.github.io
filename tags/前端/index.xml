@@ -337,4 +337,15 @@ alt="image-20231006001337093"
 &lt;li>style&lt;/li>
 &lt;/ol>
 &lt;p>這三個部分組成的&lt;/p>
-&lt;p>​&lt;/p></description></item></channel></rss>
+&lt;h1 id="tmplate-refs">Tmplate Refs&lt;/h1>
+&lt;p>控制dom的一些東西，比如說改變它的class，修改它的文字等等&amp;hellip;&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/tmvkTQh.png"
+loading="lazy"
+alt="image-20231006014901337"
+>&lt;/p>
+&lt;h1 id="mulitple-component">Mulitple Component&lt;/h1>
+&lt;p>有時候有一些重複性很高的dom，或是一些有的沒有的東西，反正就是重複性很高的東西，應該要可以重複利用，而Vue借鑒(抄襲)了react的概念，也是用component的方式去實作這個概念&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/CJ0cRow.png"
+loading="lazy"
+alt="image-20231006022325697"
+>&lt;/p></description></item></channel></rss>
