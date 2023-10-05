@@ -205,7 +205,139 @@ alt="image-20231005213848945"
 &lt;p>&lt;img src="https://i.imgur.com/QOWQYq4.png"
 loading="lazy"
 alt="image-20231005225449584"
->&lt;/p></description></item><item><title>BitBurner筆記</title><link>https://hoxtonhsu.com/p/bitburner%E7%AD%86%E8%A8%98/</link><pubDate>Mon, 25 Sep 2023 18:00:16 +0800</pubDate><guid>https://hoxtonhsu.com/p/bitburner%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/B1MjQbp.jpg" alt="Featured image of post BitBurner筆記" />&lt;p>不知道到底從玩幾次了= = 每次都玩一玩，然後過一段時間又忘記怎麼開始&lt;/p>
+>&lt;/p>
+&lt;h1 id="vue-cli">Vue Cli&lt;/h1>
+&lt;p>記得要安裝node.js&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">node -v
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著安裝Vue Cli&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">npm intsall -g @vue/cli
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安裝完之後就可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vue create project-name
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來創建vue專案囉！&lt;/p>
+&lt;h1 id="專案目錄">專案目錄&lt;/h1>
+&lt;p>創建好的專案目錄就像這樣子，稍微看起來有點複雜，但其實很簡單的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2yh98Xv.png"
+loading="lazy"
+alt="image-20231005235956127"
+>&lt;/p>
+&lt;ul>
+&lt;li>public&lt;/li>
+&lt;/ul>
+&lt;p>​ 底下就是放html的東西 &lt;img src="https://i.imgur.com/AsuEv7P.png"
+loading="lazy"
+alt="image-20231006001224454"
+>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Source&lt;/p>
+&lt;p>底下放的是js檔案跟vue檔案&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/y1OI39Z.png"
+loading="lazy"
+alt="image-20231006001337093"
+>&lt;/p>
+&lt;p>其中js檔案跟我們初始學得不太一樣，他長得是這個樣子&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">createApp&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;vue&amp;#39;&lt;/span>
+&lt;span class="kr">import&lt;/span> &lt;span class="nx">App&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;./App.vue&amp;#39;&lt;/span>
+&lt;span class="nx">createApp&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">App&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">mount&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;#app&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;p>​ 但其實概念是差不多的，比較特別的是vue檔案&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">img&lt;/span> &lt;span class="na">alt&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Vue logo&amp;#34;&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;./assets/logo.png&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">HelloWorld&lt;/span> &lt;span class="na">msg&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Welcome to Your Vue.js App&amp;#34;&lt;/span>&lt;span class="p">/&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="kr">import&lt;/span> &lt;span class="nx">HelloWorld&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;./components/HelloWorld.vue&amp;#39;&lt;/span>
+&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;App&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nx">components&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">HelloWorld&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">style&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="err">#&lt;/span>&lt;span class="nx">app&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">font&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">family&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Avenir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">Helvetica&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">Arial&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">sans&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">serif&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="o">-&lt;/span>&lt;span class="nx">webkit&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">font&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">smoothing&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">antialiased&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="o">-&lt;/span>&lt;span class="nx">moz&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">osx&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">font&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">smoothing&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">grayscale&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">text&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">align&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">center&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">color&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="nx">c3e50&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">margin&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">top&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">60&lt;/span>&lt;span class="nx">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">style&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>每一個vue檔案都是由&lt;/p>
+&lt;ol>
+&lt;li>template&lt;/li>
+&lt;li>script&lt;/li>
+&lt;li>style&lt;/li>
+&lt;/ol>
+&lt;p>這三個部分組成的&lt;/p>
+&lt;p>​&lt;/p></description></item><item><title>BitBurner筆記</title><link>https://hoxtonhsu.com/p/bitburner%E7%AD%86%E8%A8%98/</link><pubDate>Mon, 25 Sep 2023 18:00:16 +0800</pubDate><guid>https://hoxtonhsu.com/p/bitburner%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/B1MjQbp.jpg" alt="Featured image of post BitBurner筆記" />&lt;p>不知道到底從玩幾次了= = 每次都玩一玩，然後過一段時間又忘記怎麼開始&lt;/p>
 &lt;h1 id="教學">教學&lt;/h1>
 &lt;h1 id="面板查看">面板查看&lt;/h1>
 &lt;h2 id="stats">stats&lt;/h2>
