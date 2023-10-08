@@ -163,6 +163,7 @@ alt="image-20231005211056641"
 >&lt;/p>
 &lt;h2 id="v-bind">v-bind&lt;/h2>
 &lt;p>屬性綁定！&lt;/p>
+&lt;p>&lt;code>v-bind:屬性名&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/5aimAvM.png"
 loading="lazy"
 alt="image-20231005212601554"
@@ -348,4 +349,11 @@ alt="image-20231006014901337"
 &lt;p>&lt;img src="https://i.imgur.com/CJ0cRow.png"
 loading="lazy"
 alt="image-20231006022325697"
->&lt;/p></description></item></channel></rss>
+>&lt;/p>
+&lt;h1 id="props">Props&lt;/h1>
+&lt;p>傳基本資料的一個東西，例如String, Boolean&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/0BbOSO6.png"
+loading="lazy"
+alt="image-20231007013059077"
+>&lt;/p>
+&lt;h1 id="slot">Slot&lt;/h1></description></item></channel></rss>
