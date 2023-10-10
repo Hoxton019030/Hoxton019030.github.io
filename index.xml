@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 08 Oct 2023 19:25:56 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>簡單的聊聊SpringBoot中的非同步操作@Async</title><link>https://hoxtonhsu.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</link><pubDate>Sun, 08 Oct 2023 19:25:56 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</guid><description>&lt;img src="https://i.imgur.com/LTjIYLa.png" alt="Featured image of post 簡單的聊聊SpringBoot中的非同步操作@Async" />&lt;p>在SpringBoot中要實現非同步有很多種方式，比如說你自己手寫一個ThreadPool、或是藉由外部的RabbitMQ都可以實現非同步的方法。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 10 Oct 2023 18:00:19 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>視覺化的理解特徵向量(Eigenvector)、特徵根(Eigenvalue)</title><link>https://hoxtonhsu.com/p/%E8%A6%96%E8%A6%BA%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3%E7%89%B9%E5%BE%B5%E5%90%91%E9%87%8Feigenvector%E7%89%B9%E5%BE%B5%E6%A0%B9eigenvalue/</link><pubDate>Tue, 10 Oct 2023 18:00:19 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%A6%96%E8%A6%BA%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3%E7%89%B9%E5%BE%B5%E5%90%91%E9%87%8Feigenvector%E7%89%B9%E5%BE%B5%E6%A0%B9eigenvalue/</guid><description>&lt;img src="https://i.imgur.com/Rv7zjbh.jpg" alt="Featured image of post 視覺化的理解特徵向量(Eigenvector)、特徵根(Eigenvalue)" />&lt;h1 id="何謂特徵根特徵向量">何謂特徵根、特徵向量&lt;/h1>
+&lt;p>Eigen是德文的一個詞彙，意即「自己的」，而中文翻譯成特徵根、特徵向量確實有點摸不著頭腦。所謂特徵根以及特徵向量，代表的是一個向量，經過線性轉換(Linear Transformation)後，向量的方向不會改變，可以看這張圖&lt;/p>
+&lt;p>這張圖相當於是說，將向量(0.71,0.71)與矩陣
+$$
+\begin{bmatrix}
+-3&amp;amp;0\\&lt;br>
+0&amp;amp;1 \\&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>相乘後，該向量會指向什麼哪裏、長度多少&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QHe2qdI.png"
+loading="lazy"
+alt="image-20231010182110039"
+>&lt;/p>
+&lt;p>下圖中黑色的部分是線性轉換之前的向量，而紅色則是線性變換之後的位置&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/BbNWLaN.png"
+loading="lazy"
+alt="image-20231010181705279"
+>&lt;/p>
+&lt;p>那什麼是特徵向量呢，所謂的特徵向量，就是指那些&lt;strong>經過線性變換後，向量方向不變（只有長度、正負號）改變的向量&lt;/strong>，就叫特徵向量，舉個最簡單的例子，假設現在有個線性變換是這樣&lt;/p>
+&lt;p>$$
+\begin{bmatrix}
+2&amp;amp;0\\&lt;br>
+0&amp;amp;2 \\&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>也就說把每個單位向量都拉伸兩倍，那麼它實際看起來就會像是這個樣子&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/gmnfqQu.gif"
+loading="lazy"
+alt="iShot_2023-10-10_18.26.23"
+>&lt;/p>
+&lt;p>我們會發現它的每一個向量，經過線性變換後，都和它原先的向量只差一倍，那這個一倍的值就是它的&lt;strong>特徵根(EigenValue)&lt;/strong>。&lt;/p>
+&lt;h1 id="以畫面來表示特徵根特徵向量">以畫面來表示特徵根、特徵向量&lt;/h1>
+&lt;p>比如說現在有一個線性變化如下&lt;/p>
+&lt;p>$$
+\begin{bmatrix}
+1&amp;amp;2\\&lt;br>
+2&amp;amp;1 \\&lt;br>
+\end{bmatrix}
+$$&lt;/p>
+&lt;p>(1,0)轉換的結果就像紅色的那樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/fs50NK1.gif"
+loading="lazy"
+alt="iShot_2023-10-10_18.37.09"
+>&lt;/p>
+&lt;p>我們觀察上圖可以發現，是不是在某些時候，紅色跟黑色的線是共線的情形&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/GsmNrxG.png"
+loading="lazy"
+alt="image-20231010183922178"
+>&lt;/p>
+&lt;p>（▲長度相差3倍）&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/8KMu8XS.png"
+loading="lazy"
+alt="image-20231010183957973"
+>&lt;/p>
+&lt;p>（▲長度相差-1倍）&lt;/p>
+&lt;p>像這樣的情況&lt;/p>
+&lt;p>(0.71,0.71)、(-0.7,0.71)就是特徵向量(不只一組)，而3、-1就是特徵值&lt;/p></description></item><item><title>簡單的聊聊SpringBoot中的非同步操作@Async</title><link>https://hoxtonhsu.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</link><pubDate>Sun, 08 Oct 2023 19:25:56 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</guid><description>&lt;img src="https://i.imgur.com/LTjIYLa.png" alt="Featured image of post 簡單的聊聊SpringBoot中的非同步操作@Async" />&lt;p>在SpringBoot中要實現非同步有很多種方式，比如說你自己手寫一個ThreadPool、或是藉由外部的RabbitMQ都可以實現非同步的方法。&lt;/p>
 &lt;p>那這邊我選擇實做的方法是使用SpringBoot提供的@Async，什麼是非同步呢？&lt;/p>
 &lt;p>舉個例子假設我在做櫃檯，現在有10個客人要辦帳戶，每個客人過來我這邊，都要寫10分鐘的表格，寫完後我在幫他們登記，花兩分鐘。如果一個客人一個客人這樣過來，我需要花120分鐘才可以消化掉。但如果我可以先把表格發給全部10個人填，這樣我只要花10+10*2=30分鐘就可以。&lt;/p>
 &lt;p>這就是非同步操作，簡而言之就是&lt;strong>避免無意義的等待&lt;/strong>。&lt;/p>
