@@ -1,4 +1,199 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 10 Oct 2023 18:00:19 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>視覺化的理解特徵向量(Eigenvector)、特徵根(Eigenvalue)</title><link>https://hoxtonhsu.com/p/%E8%A6%96%E8%A6%BA%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3%E7%89%B9%E5%BE%B5%E5%90%91%E9%87%8Feigenvector%E7%89%B9%E5%BE%B5%E6%A0%B9eigenvalue/</link><pubDate>Tue, 10 Oct 2023 18:00:19 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%A6%96%E8%A6%BA%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3%E7%89%B9%E5%BE%B5%E5%90%91%E9%87%8Feigenvector%E7%89%B9%E5%BE%B5%E6%A0%B9eigenvalue/</guid><description>&lt;img src="https://i.imgur.com/Rv7zjbh.jpg" alt="Featured image of post 視覺化的理解特徵向量(Eigenvector)、特徵根(Eigenvalue)" />&lt;h1 id="何謂特徵根特徵向量">何謂特徵根、特徵向量&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 11 Oct 2023 11:58:32 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>如何在SpringBoot中實現基礎的I18n</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</link><pubDate>Wed, 11 Oct 2023 11:58:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</guid><description>&lt;img src="https://i.imgur.com/Tb5xdM6.png" alt="Featured image of post 如何在SpringBoot中實現基礎的I18n" />&lt;h1 id="專案中i18n之實現">專案中i18n之實現&lt;/h1>
+&lt;p>i18n全名internationalization，因為中間的字母有18個，於是就用i18n來稱呼它。所謂的i18n就是根據不同的語系會有不同的Message回傳，比如說臺灣人在登入失敗時會出現「登入失敗」，美國人在登入時會出現「Login Fail」，這種因應不同地區的使用者來客製化訊息的工作，就是i18n。&lt;/p>
+&lt;h1 id="涉及到的基本知識">涉及到的基本知識&lt;/h1>
+&lt;h2 id="resourcebundle">ResourceBundle&lt;/h2>
+&lt;p>想要做到i18n，最重要的就是地區（Locale）的資料，地區資料有兩個部分組成，分別是語言編碼&lt;a class="link" href="https://zh.wikipedia.org/wiki/ISO_639" target="_blank" rel="noopener"
+>ISO 639&lt;/a>加上區域編碼&lt;a class="link" href="https://zh.wikipedia.org/zh-tw/ISO_3166" target="_blank" rel="noopener"
+>ISO3166&lt;/a>，比如說&lt;/p>
+&lt;ul>
+&lt;li>en_US：英文_美國&lt;/li>
+&lt;li>en-AU：英文_澳洲&lt;/li>
+&lt;li>en-HK ：英文_香港&lt;/li>
+&lt;/ul>
+&lt;p>等等的，詳細資訊可以查看http://www.i18nguy.com/unicode/language-identifiers.html&lt;/p>
+&lt;p>而在Java中，想要實現這樣的功能就會涉及到ResouceBundle&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xHO2rFP.png"
+loading="lazy"
+alt="image-20231011110511503"
+>&lt;/p>
+&lt;p>這個類可以用來將程式中的文本，與程式碼分離出來，而不是寫死在程式中，具體可以來看下面的Code。&lt;/p>
+&lt;h1 id="java中如何實現i18n">Java中如何實現i18n&lt;/h1>
+&lt;p>首先先開一個新的Java Maven專案，並在resources的資料夾底下建立兩個檔案&lt;/p>
+&lt;ol>
+&lt;li>messages_en_US.properties&lt;/li>
+&lt;li>messages_zh_TW.properties&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/7G6YvFD.png"
+loading="lazy"
+alt="image-20231011111140222"
+>&lt;/p>
+&lt;p>再來到我們的Main方法中，先創建出一個Locale物件&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Main&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">Locale&lt;/span> &lt;span class="n">locale&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Locale&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;zh&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;TW&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以看出是Language跟Country參數&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/2IoQWcx.png"
+loading="lazy"
+alt="image-20231011111558995"
+>&lt;/p>
+&lt;p>接著創造ResourceBundle物件，其中messages就是我們properties檔案的base name，讓程式知道哪些properties是i18n的文本&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Main&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">Locale&lt;/span> &lt;span class="n">locale&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Locale&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;zh&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;TW&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">ResourceBundle&lt;/span> &lt;span class="n">resourceBundle&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ResourceBundle&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBundle&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;messages&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">locale&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/cHMItE4.png"
+loading="lazy"
+alt="image-20231011111954460"
+>&lt;/p>
+&lt;p>接著我們可以用getString 的方式來取得properties中的值&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/sZRijFU.gif"
+loading="lazy"
+alt="iShot_2023-10-11_11.21.12"
+>&lt;/p>
+&lt;p>只要改變Locale的參數，我們就可以去調整打印出來的內容，比如說現在將Locale改成en_US&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/zBPdOyr.gif"
+loading="lazy"
+alt="iShot_2023-10-11_11.23.36"
+>&lt;/p>
+&lt;p>這樣就是最基礎的，在Java中實現i18n的方法&lt;/p>
+&lt;h1 id="在springboot中如何實現i18n基礎">在SpringBoot中如何實現i18n（基礎）&lt;/h1>
+&lt;p>首先先創造一個SpringBoot專案，接著到application.yml中配置一些基礎資訊&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="nt">spring&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">messages&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">basename&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">i18n/messages&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">encoding&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">UTF-8&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其中basename就和上面的Java Basename一樣，都是在指定我們的i18配置檔是放在什麼地方，以這個basename為例，就代表放在resources/i18n底下&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/b0ZGPWa.png"
+loading="lazy"
+alt="image-20231011113215740"
+>&lt;/p>
+&lt;p>設置好後，就到resources/i18n資料夾中，配置i18n相關的檔案&lt;/p>
+&lt;blockquote>
+&lt;p>[{0}]代表的是格式化訊息的占位符&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i.imgur.com/CfTG0Dd.png"
+loading="lazy"
+alt="image-20231011114926863"
+>&lt;/p>
+&lt;p>然後配置一個controller，並加入MessageSource的Bean&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;code>MessageSource&lt;/code> 是 Spring Framework 提供的一個介面，用於支援應用程式的國際化（Internationalization）和本地化（Localization）。它提供了一種在應用程式中輕鬆管理文本訊息的機制，以便根據使用者的語言和地區首選項來提供相應的文本訊息。&lt;/p>
+&lt;p>&lt;code>MessageSource&lt;/code> 介面的主要功能包括：&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>文本訊息檢索：&lt;/strong> &lt;code>MessageSource&lt;/code> 允許您在應用程式中定義和存儲文本訊息，通常以鍵值對的形式。這些文本訊息可以是應用程式中的各種提示、標籤、錯誤訊息等。&lt;/li>
+&lt;li>&lt;strong>國際化支援：&lt;/strong> 您可以配置不同語言和地區的訊息，以便根據使用者的首選語言和地區設定來動態選擇合適的訊息。這使得應用程式能夠以多語言和本地化方式呈現訊息。&lt;/li>
+&lt;li>&lt;strong>參數替換：&lt;/strong> &lt;code>MessageSource&lt;/code> 支援將參數插入訊息中，以便將動態值嵌入到訊息中。這對於包含佔位符的訊息非常有用。&lt;/li>
+&lt;li>&lt;strong>訊息格式化：&lt;/strong> 您可以定義訊息的格式，以適應不同的訊息類型，如日期、時間、貨幣等。&lt;/li>
+&lt;/ol>
+&lt;p>&lt;code>MessageSource&lt;/code> 介面的常見實現是 &lt;code>ResourceBundleMessageSource&lt;/code>，它使用 Java 的 &lt;code>ResourceBundle&lt;/code> 機制來存儲和檢索訊息。但 Spring 也提供其他實現，如 &lt;code>ReloadableResourceBundleMessageSource&lt;/code>，允許在不重啟應用程式的情況下重新加載訊息資源。&lt;/p>
+&lt;p>使用 &lt;code>MessageSource&lt;/code> 的主要步驟包括：&lt;/p>
+&lt;ol>
+&lt;li>配置 &lt;code>MessageSource&lt;/code> Bean，通常在 Spring 配置文件中或 Java 配置類中完成。&lt;/li>
+&lt;li>在應用程式中使用 &lt;code>MessageSource&lt;/code> 的 &lt;code>getMessage&lt;/code> 方法來檢索訊息，指定訊息的鍵和可選參數。&lt;/li>
+&lt;li>根據使用者的語言和地區首選項，&lt;code>MessageSource&lt;/code> 會動態地返回適當的訊息。&lt;/li>
+&lt;/ol>
+&lt;p>總之，&lt;code>MessageSource&lt;/code> 是 Spring Framework 中的一個重要元件，用於實現國際化和本地化，幫助開發者構建多語言和多地區支援的應用程式，提高使用者體驗。&lt;/p>
+&lt;p>&amp;ndash;Generate By ChatGPT&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@RestController&lt;/span>
+&lt;span class="nd">@RequiredArgsConstructor&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">DemoController&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">MessageSource&lt;/span> &lt;span class="n">messageSource&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@GetMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;/&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">demo&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">message&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">messageSource&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getMessage&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;error&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">[]{&lt;/span>&lt;span class="s">&amp;#34;發生錯誤&amp;#34;&lt;/span>&lt;span class="o">},&lt;/span> &lt;span class="n">Locale&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">TAIWAN&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ok&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">body&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Hello&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/Acno9qy.gif"
+loading="lazy"
+alt="iShot_2023-10-11_11.46.41"
+>&lt;/p>
+&lt;p>可以看出MessageSource，依照我們配置的Locale去i18n底下找到對應的文本，並且打印出來。我們可以修改Locale的值來改變打印出來的文本&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/sTh2ItT.gif"
+loading="lazy"
+alt="iShot_2023-10-11_11.54.27"
+>&lt;/p>
+&lt;p>想當然耳，我們不可能是把i18n的配置寫死，所以可以用 LocaleContextHolder.getLocale()來取得目前使用者的語言來動態注入Locale資料&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@GetMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;/&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">demo&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">message&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">messageSource&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getMessage&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;error&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">[]{&lt;/span>&lt;span class="s">&amp;#34;發生錯誤&amp;#34;&lt;/span>&lt;span class="o">},&lt;/span> &lt;span class="n">LocaleContextHolder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getLocale&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ok&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">body&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Hello&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這部分動態注入的方式，實際實現可以有很多種方式，比如說Interceptor、Filter作轉換，然後用AOP的方式轉換，都是可以行的方案。&lt;/p></description></item><item><title>視覺化的理解特徵向量(Eigenvector)、特徵根(Eigenvalue)</title><link>https://hoxtonhsu.com/p/%E8%A6%96%E8%A6%BA%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3%E7%89%B9%E5%BE%B5%E5%90%91%E9%87%8Feigenvector%E7%89%B9%E5%BE%B5%E6%A0%B9eigenvalue/</link><pubDate>Tue, 10 Oct 2023 18:00:19 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%A6%96%E8%A6%BA%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3%E7%89%B9%E5%BE%B5%E5%90%91%E9%87%8Feigenvector%E7%89%B9%E5%BE%B5%E6%A0%B9eigenvalue/</guid><description>&lt;img src="https://i.imgur.com/Rv7zjbh.jpg" alt="Featured image of post 視覺化的理解特徵向量(Eigenvector)、特徵根(Eigenvalue)" />&lt;h1 id="何謂特徵根特徵向量">何謂特徵根、特徵向量&lt;/h1>
 &lt;p>Eigen是德文的一個詞彙，意即「自己的」，而中文翻譯成特徵根、特徵向量確實有點摸不著頭腦。所謂特徵根以及特徵向量，代表的是一個向量，經過線性轉換(Linear Transformation)後，向量的方向不會改變，可以看這張圖&lt;/p>
 &lt;p>這張圖相當於是說，將向量(0.71,0.71)與矩陣
 $$
