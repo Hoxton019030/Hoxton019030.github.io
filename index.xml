@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 19 Oct 2023 15:32:09 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tYEqULJ.png)" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;p>最近工作上接觸到了這個套件，覺得令人歎為觀止，居然用這麼簡單的方式實現了我一直想做但不知道怎麼做的功能。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 19 Oct 2023 15:32:09 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tYEqULJ.png)" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>最近工作上接觸到了這個套件，覺得令人歎為觀止，居然用這麼簡單的方式實現了我一直想做但不知道怎麼做的功能。&lt;/p>
 &lt;p>Xxl-Job說白話一點，就是一個中央定時任務調度平台，如果是單體式服務的話，我們可能是用Quartz或是Spring Schedule來實現，在這種情況管理這些Job(Batch)相對單純，因為所有東西都可以在單體式應用找到。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/al6dEbK.png"
 loading="lazy"
@@ -335,7 +336,182 @@ alt="iShot_2023-10-23_14.20.58"
 &lt;p>&lt;img src="https://i.imgur.com/1mpzCSe.png"
 loading="lazy"
 alt="image-20231023142159066"
->&lt;/p></description></item><item><title>如何在SpringBoot中實現基礎的I18n</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</link><pubDate>Wed, 11 Oct 2023 11:58:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</guid><description>&lt;img src="https://i.imgur.com/Tb5xdM6.png" alt="Featured image of post 如何在SpringBoot中實現基礎的I18n" />&lt;h1 id="專案中i18n之實現">專案中i18n之實現&lt;/h1>
+>&lt;/p>
+&lt;h2 id="xxl-job-master的配置檔">Xxl-job-master的配置檔&lt;/h2>
+&lt;p>在xxl-job-admin/src/main/resources/application.properties底下是整個master的配置檔，在其中我們可以調整一些內容，比如說Job發生錯誤時，應該寄信給哪個mail、log的保存期間等等，其中有一個叫做AccessToken的值。這個值會跟我們之後啟動後的Job有對應關係（簡單來說就是Master跟Slave會比對AccessToken）如果相互匹配就可以執行Job&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/og0ahe3.png"
+loading="lazy"
+alt="image-20231023160056137"
+>&lt;/p>
+&lt;h1 id="slave的啟動">Slave的啟動&lt;/h1>
+&lt;blockquote>
+&lt;p>現在好像為了避免歧視，都不能用Slave這個詞了&lt;/p>
+&lt;/blockquote>
+&lt;p>我們新建一個SpringBoot專案，並在專案中加入xxl-job的dependency&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>com.xuxueli&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>xxl-job-core&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>2.2.0&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然後編輯一下我們的application.properties&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"># 這邊會改的原因是因為我的master已經佔掉8080port了
+server.port=8081
+# 你的xxl-job的master啟動地址是哪一個
+xxl.job.admin.adresses=http://localhost:8080/xxl-job-admin
+# 要跟master的accessToken一致
+xxl.job.accessToken=default_token
+# 隨便要叫啥都可以
+xxl.job.executor.appname=xxl-job-executor-sample
+xxl.job.executor.address=http://127.0.0.1:9999
+xxl.job.executor.ip=127.0.0.1
+# executor要佔用哪個port
+xxl.job.executor.port=9999
+xxl.job.executor.logpath=/Users/hoxtonashes/Documents/xxl-job-demo/log
+xxl.job.executor.logretentiondays=30
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>accessToken的話就是要跟master(上面提到的那個)一致。這邊寫好之後就配一個SpringBean給它&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Configuration&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">XxlJobConfig&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${xxl.job.admin.adresses}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">adminAddresses&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${xxl.job.accessToken}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">accessToken&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${xxl.job.executor.appname}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">appName&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${xxl.job.executor.address}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">address&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${xxl.job.executor.ip}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">ip&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${xxl.job.executor.port}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">port&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${xxl.job.executor.logpath}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">logPath&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${xxl.job.executor.logretentiondays}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">logRetentionDays&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Bean&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">XxlJobSpringExecutor&lt;/span> &lt;span class="nf">xxlJobSpringExecutor&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">XxlJobSpringExecutor&lt;/span> &lt;span class="n">xxlJobSpringExecutor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">XxlJobSpringExecutor&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">xxlJobSpringExecutor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setAdminAddresses&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">adminAddresses&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">xxlJobSpringExecutor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setAppname&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">appName&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">xxlJobSpringExecutor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setAddress&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">address&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">xxlJobSpringExecutor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setIp&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ip&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">xxlJobSpringExecutor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setPort&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">xxlJobSpringExecutor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setAccessToken&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">accessToken&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">xxlJobSpringExecutor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setLogPath&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">logPath&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">xxlJobSpringExecutor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setLogRetentionDays&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">logRetentionDays&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">xxlJobSpringExecutor&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣單例池中就有我們的XxlJobSpringExecutor的資訊了。&lt;/p>
+&lt;p>接著使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Component&lt;/span>
+&lt;span class="nd">@Slf4j&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">SimpleXxlJob&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="c1">//等等要被master識別的名稱
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nd">@XxlJob&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;demoJobHandler&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">ReturnT&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">demoJobHandler&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">jobParam&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">info&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;執行定時任務，執行時間:{}&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ReturnT&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;(&lt;/span>&lt;span class="n">ReturnT&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">SUCCESS_CODE&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;成功&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來寫一個執行器，寫好之後就把這個Slave啟動起來。&lt;/p>
+&lt;h1 id="實際運行">實際運行&lt;/h1>
+&lt;p>啟動完後就到master的頁面，將這個Job註冊起來，這邊我們是設定成每5秒執行一次&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/gVce9jR.png"
+loading="lazy"
+alt="image-20231023163645992"
+>&lt;/p>
+&lt;p>接下來就可以去執行它了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/rgNUlCC.gif"
+loading="lazy"
+alt="iShot_2023-10-23_17.22.00"
+>&lt;/p>
+&lt;p>這樣就是Xxl-Job的一個簡單介紹&lt;/p></description></item><item><title>如何在SpringBoot中實現基礎的I18n</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</link><pubDate>Wed, 11 Oct 2023 11:58:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</guid><description>&lt;img src="https://i.imgur.com/Tb5xdM6.png" alt="Featured image of post 如何在SpringBoot中實現基礎的I18n" />&lt;h1 id="專案中i18n之實現">專案中i18n之實現&lt;/h1>
 &lt;p>i18n全名internationalization，因為中間的字母有18個，於是就用i18n來稱呼它。所謂的i18n就是根據不同的語系會有不同的Message回傳，比如說臺灣人在登入失敗時會出現「登入失敗」，美國人在登入時會出現「Login Fail」，這種因應不同地區的使用者來客製化訊息的工作，就是i18n。&lt;/p>
 &lt;h1 id="涉及到的基本知識">涉及到的基本知識&lt;/h1>
 &lt;h2 id="resourcebundle">ResourceBundle&lt;/h2>
