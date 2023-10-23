@@ -1,4 +1,341 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 11 Oct 2023 11:58:32 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>如何在SpringBoot中實現基礎的I18n</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</link><pubDate>Wed, 11 Oct 2023 11:58:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</guid><description>&lt;img src="https://i.imgur.com/Tb5xdM6.png" alt="Featured image of post 如何在SpringBoot中實現基礎的I18n" />&lt;h1 id="專案中i18n之實現">專案中i18n之實現&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 19 Oct 2023 15:32:09 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tYEqULJ.png)" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;p>最近工作上接觸到了這個套件，覺得令人歎為觀止，居然用這麼簡單的方式實現了我一直想做但不知道怎麼做的功能。&lt;/p>
+&lt;p>Xxl-Job說白話一點，就是一個中央定時任務調度平台，如果是單體式服務的話，我們可能是用Quartz或是Spring Schedule來實現，在這種情況管理這些Job(Batch)相對單純，因為所有東西都可以在單體式應用找到。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/al6dEbK.png"
+loading="lazy"
+alt="image-20231023135323601"
+>&lt;/p>
+&lt;p>但當專案擴展成微服務後，可能有各種不同的定時任務需要去調度，此時就有可能出現相同的任務，由於缺少任務發現中心，而在不同的服務去實現一樣的功能，此外，要配置這些定時任務時就得去各自的模塊去實現，相當的耗時費力。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/wCFpgFX.png"
+loading="lazy"
+alt="image-20231023135642572"
+>&lt;/p>
+&lt;p>因此xxl-job就是來處理這些場景的，他有以下兩個功能&lt;/p>
+&lt;ol>
+&lt;li>任務發現中心，可以將寫好的Job註冊在這邊，方便管理&lt;/li>
+&lt;li>統一調用、修改、停止、測試定時任務&lt;/li>
+&lt;/ol>
+&lt;p>在我上手之後，第一個感想就是&lt;/p>
+&lt;p>「榮恩，這比魔杖還要好用呀！」&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/kwDv6h9.gif"
+loading="lazy"
+alt="harry-potter-gif"
+>&lt;/p>
+&lt;p>以下附上作者的介紹&lt;/p>
+&lt;h2 id="introductionhttpsgithubcomxuxuelixxl-jobintroduction">&lt;a class="link" href="https://github.com/xuxueli/xxl-job#introduction" target="_blank" rel="noopener"
+>Introduction&lt;/a>&lt;/h2>
+&lt;p>XXL-JOB is a distributed task scheduling framework. It&amp;rsquo;s core design goal is to develop quickly and learn simple, lightweight, and easy to expand. Now, it&amp;rsquo;s already open source, and many companies use it in production environments, real &amp;ldquo;out-of-the-box&amp;rdquo;.&lt;/p>
+&lt;p>XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。现已开放源代码并接入多家公司线上产品线，开箱即用。&lt;/p>
+&lt;h2 id="developmenthttpsgithubcomxuxuelixxl-jobdevelopment">&lt;a class="link" href="https://github.com/xuxueli/xxl-job#development" target="_blank" rel="noopener"
+>Development&lt;/a>&lt;/h2>
+&lt;p>于2015年中，我在github上创建XXL-JOB项目仓库并提交第一个commit，随之进行系统结构设计，UI选型，交互设计……&lt;/p>
+&lt;p>于2015-11月，XXL-JOB终于RELEASE了第一个大版本V1.0， 随后我将之发布到OSCHINA，XXL-JOB在OSCHINA上获得了@红薯的热门推荐，同期分别达到了OSCHINA的“热门动弹”排行第一和git.oschina的开源软件月热度排行第一，在此特别感谢红薯，感谢大家的关注和支持。&lt;/p>
+&lt;p>于2015-12月，我将XXL-JOB发表到我司内部知识库，并且得到内部同事认可。&lt;/p>
+&lt;p>于2016-01月，我司展开XXL-JOB的内部接入和定制工作，在此感谢袁某和尹某两位同事的贡献，同时也感谢内部其他给与关注与支持的同事。&lt;/p>
+&lt;p>于2017-05-13，在上海举办的 &amp;ldquo;&lt;a class="link" href="https://www.oschina.net/event/2236961" target="_blank" rel="noopener"
+>第62期开源中国源创会&lt;/a>&amp;rdquo; 的 &amp;ldquo;放码过来&amp;rdquo; 环节，我登台对XXL-JOB做了演讲，台下五百位在场观众反响热烈（&lt;a class="link" href="https://www.oschina.net/question/2686220_2242120" target="_blank" rel="noopener"
+>图文回顾&lt;/a> ）。&lt;/p>
+&lt;p>于2017-10-22，又拍云 Open Talk 联合 Spring Cloud 中国社区举办的 &amp;ldquo;&lt;a class="link" href="https://opentalk.upyun.com/303.html" target="_blank" rel="noopener"
+>进击的微服务实战派上海站&lt;/a>&amp;quot;，我登台对XXL-JOB做了演讲，现场观众反响热烈并在会后与XXL-JOB用户热烈讨论交流。&lt;/p>
+&lt;p>于2017-12-11，XXL-JOB有幸参会《&lt;a class="link" href="http://bj2017.archsummit.com/" target="_blank" rel="noopener"
+>InfoQ ArchSummit全球架构师峰会&lt;/a>》，并被拍拍贷架构总监&amp;quot;杨波老师&amp;quot;在专题 &amp;ldquo;&lt;a class="link" href="http://bj2017.archsummit.com/training/2" target="_blank" rel="noopener"
+>微服务原理、基础架构和开源实践&lt;/a>&amp;rdquo; 中现场介绍。&lt;/p>
+&lt;p>于2017-12-18，XXL-JOB参与&amp;rdquo;&lt;a class="link" href="http://www.oschina.net/project/top_cn_2017?sort=1" target="_blank" rel="noopener"
+>2017年度最受欢迎中国开源软件&lt;/a>&amp;ldquo;评比，在当时已录入的约九千个国产开源项目中角逐，最终进入了前30强。&lt;/p>
+&lt;p>于2018-01-15，XXL-JOB参与&amp;rdquo;&lt;a class="link" href="https://www.oschina.net/news/92438/2017-mayun-top-50" target="_blank" rel="noopener"
+>2017码云最火开源项目&lt;/a>&amp;ldquo;评比，在当时已录入的约六千五百个码云项目中角逐，最终进去了前20强。&lt;/p>
+&lt;p>于2018-04-14，iTechPlus在上海举办的 &amp;ldquo;&lt;a class="link" href="http://www.itdks.com/eventlist/detail/2065" target="_blank" rel="noopener"
+>2018互联网开发者大会&lt;/a>&amp;quot;，我登台对XXL-JOB做了演讲，现场观众反响热烈并在会后与XXL-JOB用户热烈讨论交流。&lt;/p>
+&lt;p>于2018-05-27，在上海举办的 &amp;ldquo;&lt;a class="link" href="https://www.oschina.net/event/2278742" target="_blank" rel="noopener"
+>第75期开源中国源创会&lt;/a>&amp;rdquo; 的 &amp;ldquo;架构&amp;rdquo; 主题专场，我登台进行“基础架构与中间件图谱”主题演讲，台下上千位在场观众反响热烈（&lt;a class="link" href="https://www.oschina.net/question/3802184_2280606" target="_blank" rel="noopener"
+>图文回顾&lt;/a> ）。&lt;/p>
+&lt;p>于2018-12-05，XXL-JOB参与&amp;rdquo;&lt;a class="link" href="https://www.oschina.net/project/top_cn_2018?sort=1" target="_blank" rel="noopener"
+>2018年度最受欢迎中国开源软件&lt;/a>&amp;ldquo;评比，在当时已录入的一万多个开源项目中角逐，最终排名第19名。&lt;/p>
+&lt;p>于2019-12-10，XXL-JOB参与&amp;rdquo;&lt;a class="link" href="https://www.oschina.net/project/top_cn_2019" target="_blank" rel="noopener"
+>2019年度最受欢迎中国开源软件&lt;/a>&amp;ldquo;评比，在当时已录入的一万多个开源项目中角逐，最终排名&amp;quot;开发框架和基础组件类&amp;quot;第9名。&lt;/p>
+&lt;p>于2020-11-16，XXL-JOB参与&amp;rdquo;&lt;a class="link" href="https://www.oschina.net/project/top_cn_2020" target="_blank" rel="noopener"
+>2020年度最受欢迎中国开源软件&lt;/a>&amp;ldquo;评比，在当时已录入的一万多个开源项目中角逐，最终排名&amp;quot;开发框架和基础组件类&amp;quot;第8名。&lt;/p>
+&lt;p>于2021-12-06，XXL-JOB参与&amp;rdquo;&lt;a class="link" href="https://www.oschina.net/project/top_cn_2021" target="_blank" rel="noopener"
+>2021年度OSC中国开源项目评选&lt;/a> &amp;ldquo;评比，在当时已录入的一万多个开源项目中角逐，最终当选&amp;quot;最受欢迎项目&amp;rdquo;。&lt;/p>
+&lt;h1 id="啟動專案">啟動專案&lt;/h1>
+&lt;p>先到作者的&lt;/p>
+&lt;p>&lt;a href="https://github.com/xuxueli/xxl-job">https://github.com/xuxueli/xxl-job&lt;/a>&lt;/p>
+&lt;p>將專案clone下來，clone下來後修改這兩個地方&lt;/p>
+&lt;ol>
+&lt;li>要連接的jdbc資訊（預設是mysql）&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/B6kJC93.png"
+loading="lazy"
+alt="image-20231023141255638"
+>&lt;/p>
+&lt;ol start="2">
+&lt;li>Log檔的儲存位置&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/zzzfaNM.png"
+loading="lazy"
+alt="image-20231023141340807"
+>&lt;/p>
+&lt;p>設定好連線後，再去資料庫中將Table創建出來，語法在此&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ICUEPNE.png"
+loading="lazy"
+alt="image-20231023141502728"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="o">#&lt;/span>
+&lt;span class="o">#&lt;/span> &lt;span class="n">XXL&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">JOB&lt;/span> &lt;span class="n">v2&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">SNAPSHOT&lt;/span>
+&lt;span class="o">#&lt;/span> &lt;span class="n">Copyright&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">2015&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">present&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">xuxueli&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">database&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">EXISTS&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="nb">character&lt;/span> &lt;span class="k">set&lt;/span> &lt;span class="n">utf8mb4&lt;/span> &lt;span class="k">collate&lt;/span> &lt;span class="n">utf8mb4_unicode_ci&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">use&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">SET&lt;/span> &lt;span class="k">NAMES&lt;/span> &lt;span class="n">utf8mb4&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_info&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">job_group&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器主键ID&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">job_desc&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">add_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">update_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">author&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;作者&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">alarm_email&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;报警邮件&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">schedule_type&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;NONE&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;调度类型&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">schedule_conf&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">128&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;调度配置，值含义取决于调度类型&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">misfire_strategy&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;DO_NOTHING&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;调度过期策略&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_route_strategy&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器路由策略&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_handler&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器任务handler&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_param&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">512&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器任务参数&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_block_strategy&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;阻塞处理策略&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_timeout&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;任务执行超时时间，单位秒&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_fail_retry_count&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;失败重试次数&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">glue_type&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;GLUE类型&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">glue_source&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">mediumtext&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;GLUE源代码&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">glue_remark&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">128&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;GLUE备注&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">glue_updatetime&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;GLUE更新时间&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">child_jobid&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;子任务ID，多个逗号分隔&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">trigger_status&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">tinyint&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;调度状态：0-停止，1-运行&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">trigger_last_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">bigint&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">13&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;上次调度时间&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">trigger_next_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">bigint&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">13&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;下次调度时间&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">ENGINE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">InnoDB&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="n">CHARSET&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_log&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">bigint&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">job_group&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器主键ID&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">job_id&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;任务，主键ID&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_address&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器地址，本次执行的地址&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_handler&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器任务handler&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_param&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">512&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器任务参数&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_sharding_param&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器任务分片参数，格式如 1/2&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">executor_fail_retry_count&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;失败重试次数&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">trigger_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;调度-时间&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">trigger_code&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;调度-结果&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">trigger_msg&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">text&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;调度-日志&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">handle_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行-时间&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">handle_code&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行-状态&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">handle_msg&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">text&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行-日志&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">alarm_status&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">tinyint&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;告警状态：0-默认、1-无需告警、2-告警成功、3-告警失败&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="k">KEY&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">I_trigger_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">trigger_time&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="k">KEY&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">I_handle_code&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">handle_code&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">ENGINE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">InnoDB&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="n">CHARSET&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_log_report&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">trigger_day&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;调度-时间&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">running_count&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;运行中-日志数量&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">suc_count&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行成功-日志数量&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">fail_count&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行失败-日志数量&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">update_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="k">UNIQUE&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">i_trigger_day&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">trigger_day&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">USING&lt;/span> &lt;span class="n">BTREE&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">ENGINE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">InnoDB&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="n">CHARSET&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_logglue&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">job_id&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;任务，主键ID&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">glue_type&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;GLUE类型&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">glue_source&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">mediumtext&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;GLUE源代码&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">glue_remark&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">128&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;GLUE备注&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">add_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">update_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">ENGINE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">InnoDB&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="n">CHARSET&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_registry&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">registry_group&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">registry_key&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">registry_value&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">update_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="k">KEY&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">i_g_k_v&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">registry_group&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">registry_key&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">registry_value&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">ENGINE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">InnoDB&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="n">CHARSET&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_group&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">app_name&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器AppName&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">12&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器名称&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">address_type&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">tinyint&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="s1">&amp;#39;0&amp;#39;&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器地址类型：0=自动注册、1=手动录入&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">address_list&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">text&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;执行器地址列表，多地址逗号分隔&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">update_time&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">datetime&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">ENGINE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">InnoDB&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="n">CHARSET&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_user&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="n">AUTO_INCREMENT&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;账号&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">password&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;密码&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="k">role&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="n">tinyint&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;角色：0-普通用户、1-管理员&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">permission&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">255&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;权限：执行器ID列表，多个逗号分割&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="k">UNIQUE&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">i_username&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">USING&lt;/span> &lt;span class="n">BTREE&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">ENGINE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">InnoDB&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="n">CHARSET&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">CREATE&lt;/span> &lt;span class="k">TABLE&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_lock&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;span class="o">`&lt;/span>&lt;span class="n">lock_name&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="nb">varchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">NOT&lt;/span> &lt;span class="k">NULL&lt;/span> &lt;span class="k">COMMENT&lt;/span> &lt;span class="s1">&amp;#39;锁名称&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="k">PRIMARY&lt;/span> &lt;span class="k">KEY&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">lock_name&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">)&lt;/span> &lt;span class="n">ENGINE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">InnoDB&lt;/span> &lt;span class="k">DEFAULT&lt;/span> &lt;span class="n">CHARSET&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">utf8mb4&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">INSERT&lt;/span> &lt;span class="k">INTO&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_group&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">app_name&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">address_type&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">address_list&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">update_time&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">VALUES&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;xxl-job-executor-sample&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;示例执行器&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;2018-11-03 22:21:31&amp;#39;&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="k">INSERT&lt;/span> &lt;span class="k">INTO&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_info&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">job_group&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">job_desc&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">add_time&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">update_time&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">author&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">alarm_email&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">schedule_type&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">schedule_conf&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">misfire_strategy&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">executor_route_strategy&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">executor_handler&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">executor_param&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">executor_block_strategy&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">executor_timeout&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">executor_fail_retry_count&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">glue_type&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">glue_source&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">glue_remark&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">glue_updatetime&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">child_jobid&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">VALUES&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;测试任务1&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;2018-11-03 22:21:31&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;2018-11-03 22:21:31&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;XXL&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;CRON&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;0 0 0 * * ? *&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;DO_NOTHING&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;FIRST&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;demoJobHandler&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;SERIAL_EXECUTION&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;BEAN&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;GLUE代码初始化&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;2018-11-03 22:21:31&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">INSERT&lt;/span> &lt;span class="k">INTO&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_user&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">password&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="k">role&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">permission&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">VALUES&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;admin&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;e10adc3949ba59abbe56e057f20f883e&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">NULL&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">INSERT&lt;/span> &lt;span class="k">INTO&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">xxl_job_lock&lt;/span>&lt;span class="o">`&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="o">`&lt;/span>&lt;span class="n">lock_name&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">VALUES&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="s1">&amp;#39;schedule_lock&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="k">commit&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>創建完後的樣子&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/D8LesWf.png"
+loading="lazy"
+alt="image-20231023142012298"
+>&lt;/p>
+&lt;p>這樣就可以去啟動專案了，啟動完後輸入&lt;/p>
+&lt;p>http://localhost:8080/xxl-job-admin/&lt;/p>
+&lt;p>訪問頁面，帳號密碼預設是&lt;/p>
+&lt;p>admin&lt;/p>
+&lt;p>123456&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/PewSmQn.gif"
+loading="lazy"
+alt="iShot_2023-10-23_14.20.58"
+>&lt;/p>
+&lt;p>像這邊會有數字是因為我之前已經啟動過一次了，所以會顯示資料，否則一開始進來的時候是不會有這些東西的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1mpzCSe.png"
+loading="lazy"
+alt="image-20231023142159066"
+>&lt;/p></description></item><item><title>如何在SpringBoot中實現基礎的I18n</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</link><pubDate>Wed, 11 Oct 2023 11:58:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</guid><description>&lt;img src="https://i.imgur.com/Tb5xdM6.png" alt="Featured image of post 如何在SpringBoot中實現基礎的I18n" />&lt;h1 id="專案中i18n之實現">專案中i18n之實現&lt;/h1>
 &lt;p>i18n全名internationalization，因為中間的字母有18個，於是就用i18n來稱呼它。所謂的i18n就是根據不同的語系會有不同的Message回傳，比如說臺灣人在登入失敗時會出現「登入失敗」，美國人在登入時會出現「Login Fail」，這種因應不同地區的使用者來客製化訊息的工作，就是i18n。&lt;/p>
 &lt;h1 id="涉及到的基本知識">涉及到的基本知識&lt;/h1>
 &lt;h2 id="resourcebundle">ResourceBundle&lt;/h2>
