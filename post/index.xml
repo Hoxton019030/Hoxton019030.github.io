@@ -1,4 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 26 Oct 2023 21:39:32 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>微服務筆記</title><link>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 26 Oct 2023 21:39:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tNdn4as.png" alt="Featured image of post 微服務筆記" /></description></item><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dveNGtg.png" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 26 Oct 2023 21:39:32 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>微服務筆記</title><link>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 26 Oct 2023 21:39:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tNdn4as.png" alt="Featured image of post 微服務筆記" />&lt;p>本文參考至&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=1aWhYEynZQw&amp;amp;t=4102s&amp;amp;ab_channel=Amigoscode" target="_blank" rel="noopener"
+>Java and Spring Boot Microservices | 10 Hour Full Course&lt;/a>&lt;/p>
+&lt;p>我使用的Repository如下&lt;/p>
+&lt;p>&lt;a href="https://github.com/Hoxton019030/SpringCloud">https://github.com/Hoxton019030/SpringCloud&lt;/a>&lt;/p>
+&lt;p>最近公司需要打考績，其中有一項是關於下一季的自評，我想了一下，就寫了下面這些&lt;/p>
+&lt;ol>
+&lt;li>入門ElasticSearch&lt;/li>
+&lt;li>學習如何進行資料庫的備份&lt;/li>
+&lt;li>學習如何製作讀寫分離的資料庫&lt;/li>
+&lt;li>SpringCloud入門&lt;/li>
+&lt;li>Java鎖的機制&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/x5dlgq1.gif"
+loading="lazy"
+alt="gif"
+>&lt;/p>
+&lt;p>所以這是一篇為了完成考績而寫的文章^_^，這邊先說一下我對微服務的理解。想像以Dcard作舉例，假設他們就用一台Server去處理註冊、登入、發布文章、回應請求，那麼這台Server可能要配置到很頂才能有辦法處理這件事情，因為當訪問量一大時，很容易就會導致其他功能的阻塞，所以我們的想法就是將不同的服務部署在不同的機器上面，讓A Server負責做登入、B Server負責做發布文章的事情&amp;hellip;等等，如此一來我們就可以讓一些請求頻率比較少，但較耗時的工作(註冊、發布文章)，和請求頻率高，但不耗時的工作(瀏覽文章)，獨立開來，並且某一項服務掛掉時，不會影響到其他Server的運行，不需要整個網站關閉起來來做Hotfix。&lt;/p>
+&lt;h1 id="學習目標">學習目標&lt;/h1>
+&lt;ol>
+&lt;li>建立多模塊(Module的專案)&lt;/li>
+&lt;li>啟用Eureka作為服務發現中心&lt;/li>
+&lt;li>理解附載均衡(Load Balance)&lt;/li>
+&lt;li>使用Open Feign將類統整&lt;/li>
+&lt;li>使用Sleuth做Trace&lt;/li>
+&lt;li>理解Spring Cloud GateWay&lt;/li>
+&lt;li>Message Queue之實作&lt;/li>
+&lt;/ol></description></item><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dveNGtg.png" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>最近工作上接觸到了這個套件，覺得令人歎為觀止，居然用這麼簡單的方式實現了我一直想做但不知道怎麼做的功能。&lt;/p>
 &lt;p>Xxl-Job說白話一點，就是一個中央定時任務調度平台，如果是單體式服務的話，我們可能是用Quartz或是Spring Schedule來實現，在這種情況管理這些Job(Batch)相對單純，因為所有東西都可以在單體式應用找到。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/al6dEbK.png"
