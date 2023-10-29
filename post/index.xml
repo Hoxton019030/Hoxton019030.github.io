@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 26 Oct 2023 21:39:32 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>微服務筆記</title><link>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 26 Oct 2023 21:39:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tNdn4as.png" alt="Featured image of post 微服務筆記" />&lt;p>本文參考至&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 29 Oct 2023 15:28:49 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>95 ElasticSearch學習筆記</title><link>https://hoxtonhsu.com/p/95-elasticsearch%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 29 Oct 2023 15:28:49 +0800</pubDate><guid>https://hoxtonhsu.com/p/95-elasticsearch%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/XH8Zv6P.jpg" alt="Featured image of post 95 ElasticSearch學習筆記" />&lt;p>我的主管底下有三個員工，我是其中一位，今天主管說有一個新需求要交代，派給了另外兩個同事，但沒派給我，為了展現本人一心向學的個性(快打考績了，要狗腿一點，希望可以苟過適用期)，我便很假掰的問了一下&lt;/p>
+&lt;p>「不好意思，請問等等的會議，雖然我沒有被分配到工作，但我也想參加，不知道可以嗎？」&lt;/p>
+&lt;p>中午參加會議完後，主管便打電話給我&lt;/p>
+&lt;p>「Hoxton，剛剛的會議你有參加齁？現在有多了一個新的需求OOO，再請你處理一下」&lt;/p>
+&lt;p>ㄏㄏ ，結果新的需求會用到Elastic Search 我完全不懂，死定&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/TYV3JeD.gif"
+loading="lazy"
+alt="at-that-point-i-knew-it-was-over-reece-harle-gif"
+>&lt;/p>
+&lt;h1 id="安裝">安裝&lt;/h1>
+&lt;p>&lt;a class="link" href="https://www.udemy.com/course/elasticsearch-complete-guide/" target="_blank" rel="noopener"
+>教學連結Udemy&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/8Fnpv1s.png"
+loading="lazy"
+alt="image-20231029153825942"
+>&lt;/p>
+&lt;p>相關的安裝可以到Udemy上查看，這也是我最推薦的方式，安裝的部分是免費可以看的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/c5HM4ro.png"
+loading="lazy"
+alt="image-20231029153808666"
+>&lt;/p></description></item><item><title>微服務筆記</title><link>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 26 Oct 2023 21:39:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tNdn4as.png" alt="Featured image of post 微服務筆記" />&lt;p>本文參考至&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=1aWhYEynZQw&amp;amp;t=4102s&amp;amp;ab_channel=Amigoscode" target="_blank" rel="noopener"
 >Java and Spring Boot Microservices | 10 Hour Full Course&lt;/a>&lt;/p>
 &lt;p>我使用的Repository如下&lt;/p>
@@ -42,13 +62,13 @@ alt="james-brown-dancing-gif"
 &lt;p>&lt;img src="https://i.imgur.com/DjpHaGT.png"
 loading="lazy"
 >&lt;/p>
-&lt;h2 id="path">Path&lt;/h2>
+&lt;h3 id="path">Path&lt;/h3>
 &lt;p>路徑必須為&amp;hellip;才做路由轉發&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/SStJaHK.png"
 loading="lazy"
 alt="image-20231028162954288"
 >&lt;/p>
-&lt;h2 id="query">Query&lt;/h2>
+&lt;h3 id="query">Query&lt;/h3>
 &lt;p>請求參數必須包含&amp;hellip;才做路由轉發&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/nOoaoEZ.png"
 loading="lazy"
@@ -58,31 +78,62 @@ alt="image-20231028162956583"
 loading="lazy"
 alt="image-20231028164027169"
 >&lt;/p>
-&lt;h2 id="header">Header&lt;/h2>
+&lt;h3 id="header">Header&lt;/h3>
 &lt;p>請求頭中應該包含的內容，如果只有一個值，代表請求頭必須包含的參數名(key),如果有兩個值，則第一個代表是參數名(key)，第二個代表是參數的值(value)&lt;/p>
-&lt;h2 id="method">Method&lt;/h2>
+&lt;h3 id="method">Method&lt;/h3>
 &lt;p>用什麼請求方式。比如說Get, Post 之類的&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/PCy1poO.png"
 loading="lazy"
 alt="image-20231028171326580"
 >&lt;/p>
-&lt;h2 id="remoteaddr">RemoteAddr&lt;/h2>
+&lt;h3 id="remoteaddr">RemoteAddr&lt;/h3>
 &lt;p>允許訪問的客戶端地址，限制哪些IP可以訪問Gateway，注意不可以寫localhost！&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/LoAZGyU.png"
 loading="lazy"
 alt="image-20231028171527655"
 >&lt;/p>
-&lt;h2 id="host">Host&lt;/h2>
+&lt;h3 id="host">Host&lt;/h3>
 &lt;p>功能跟Header差不多&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/L3i8WhE.png"
 loading="lazy"
 alt="image-20231028172914218"
 >&lt;/p>
-&lt;h2 id="cookie">Cookie&lt;/h2>
+&lt;h3 id="cookie">Cookie&lt;/h3>
 &lt;p>要求請求必須包含指定的key跟value&lt;/p>
-&lt;h2 id="after-before-between">After, Before, Between&lt;/h2>
+&lt;h3 id="after-before-between">After, Before, Between&lt;/h3>
 &lt;p>在指定時間之前、之後、之中才可以訪問&lt;/p>
-&lt;p>![image-20231028173913225](/Users/hoxtonashes/Library/Application Support/typora-user-images/image-20231028173913225.png)&lt;/p></description></item><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dveNGtg.png" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/mqezaAy.png"
+loading="lazy"
+alt="image-20231028173913225"
+>&lt;/p>
+&lt;h3 id="ｗeigh">Ｗeigh&lt;/h3>
+&lt;p>負載均衡中的權重，對同一組url做load Balance&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1u4xRCl.png"
+loading="lazy"
+alt="image-20231028174511190"
+>&lt;/p>
+&lt;h2 id="filter">Filter&lt;/h2>
+&lt;p>通過了predicate之後就到Filter這層，Filter有以下三種&lt;/p>
+&lt;ol>
+&lt;li>內置Filter，都是Gateway的實現類&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/VZqX0fq.png"
+loading="lazy"
+alt="image-20231028182453512"
+>&lt;/p>
+&lt;ol start="2">
+&lt;li>內置GlobalFilter，所有的路由都會經過這個&lt;/li>
+&lt;li>自定義GatewayFilter，在特定路由上生效&lt;/li>
+&lt;/ol>
+&lt;h2 id="常用的filter">常用的Filter&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/L2w3unU.png"
+loading="lazy"
+alt="image-20231029015731883"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Mikvx8M.png"
+loading="lazy"
+alt="image-20231028183714521"
+>&lt;/p></description></item><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dveNGtg.png" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>最近工作上接觸到了這個套件，覺得令人歎為觀止，居然用這麼簡單的方式實現了我一直想做但不知道怎麼做的功能。&lt;/p>
 &lt;p>Xxl-Job說白話一點，就是一個中央定時任務調度平台，如果是單體式服務的話，我們可能是用Quartz或是Spring Schedule來實現，在這種情況管理這些Job(Batch)相對單純，因為所有東西都可以在單體式應用找到。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/al6dEbK.png"
