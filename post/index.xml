@@ -115,7 +115,8 @@ alt="image-20231029190008273"
 &lt;p>&lt;img src="https://i.imgur.com/eqSNlgS.png"
 loading="lazy"
 alt="image-20231029190020589"
->&lt;/p></description></item><item><title>微服務筆記</title><link>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 26 Oct 2023 21:39:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tNdn4as.png" alt="Featured image of post 微服務筆記" />&lt;p>本文參考至&lt;/p>
+>&lt;/p>
+&lt;h1 id="了解基本架構">了解基本架構｀&lt;/h1></description></item><item><title>微服務筆記</title><link>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 26 Oct 2023 21:39:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tNdn4as.png" alt="Featured image of post 微服務筆記" />&lt;p>本文參考至&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=1aWhYEynZQw&amp;amp;t=4102s&amp;amp;ab_channel=Amigoscode" target="_blank" rel="noopener"
 >Java and Spring Boot Microservices | 10 Hour Full Course&lt;/a>&lt;/p>
 &lt;p>我使用的Repository如下&lt;/p>
