@@ -133,6 +133,7 @@ loading="lazy"
 alt="image-20231030222238463"
 >&lt;/p>
 &lt;p>常見的使用場景有：Uber在搜尋駕駛、搜尋附近的餐廳、遊戲的數據搜集、Tinder配對、火星好奇心號的數據收集、Log紀錄、安全性分析等等&lt;/p>
+&lt;p>並不是一個Database，他更像是一個搜尋與分析的工具&lt;/p>
 &lt;h3 id="index">Index&lt;/h3>
 &lt;h1 id="elasticsearch的request格式">ElasticSearch的Request格式&lt;/h1>
 &lt;p>本章節參考至&lt;/p>
