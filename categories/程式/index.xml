@@ -313,7 +313,7 @@ alt="image-20231031020205194"
 loading="lazy"
 alt="image-20231031021009493"
 >&lt;/p>
-&lt;h2 id="儲存document到index中">儲存Document到index中&lt;/h2>
+&lt;h2 id="儲存document到index中create">儲存Document到index中(Create)&lt;/h2>
 &lt;p>有兩種方式，一種是透過&lt;strong>PUT&lt;/strong>、另一種是透過&lt;strong>POST&lt;/strong>，兩者的差別如下&lt;/p>
 &lt;ol>
 &lt;li>當使用&lt;strong>POST&lt;/strong>時，elastic search會自動為你的document創建id&lt;/li>
@@ -519,7 +519,7 @@ alt="image-20231031024625583"
 loading="lazy"
 alt="image-20231031033202475"
 >&lt;/p>
-&lt;h2 id="查看ducument">查看Ducument&lt;/h2>
+&lt;h2 id="查看ducumentretrive">查看Ducument(Retrive)&lt;/h2>
 &lt;p>GET {index名稱}/_doc/{id}&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -533,7 +533,7 @@ alt="image-20231031033202475"
 loading="lazy"
 alt="image-20231031024427798"
 >&lt;/p>
-&lt;h2 id="更新document">更新Document&lt;/h2>
+&lt;h2 id="更新documentupdate">更新Document(Update)&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -576,7 +576,7 @@ alt="image-20231031024427798"
 loading="lazy"
 alt="image-20231031034236909"
 >&lt;/p>
-&lt;h2 id="刪除document">刪除Document&lt;/h2>
+&lt;h2 id="刪除documentdelete">刪除Document(Delete)&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
