@@ -990,7 +990,7 @@ loading="lazy"
 alt="image-20231101013712366"
 >&lt;/p>
 &lt;h3 id="increase-precision">Increase Precision&lt;/h3>
-&lt;p>其實就是多增加一個operator and就可以了啦&lt;/p>
+&lt;p>這個搜尋是精確搜尋，會找到更符合預期的結果，語法其實就是多增加一個operator and就可以了啦&lt;/p>
 &lt;p>唉，好累，不知道為啥10/31半夜還在這邊卷&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/BXe1Cee.gif"
 loading="lazy"
@@ -1052,7 +1052,81 @@ alt="sleepy-tired-gif"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dveNGtg.png" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/jhLGtvT.png"
+loading="lazy"
+alt="image-20231101015222615"
+>&lt;/p>
+&lt;h3 id="最小匹配搜尋minimum_should_match">最小匹配搜尋(minimum_should_match)&lt;/h3>
+&lt;p>minimum_should_match是用來微調(fined tuning)匹配量的，我們的搜尋最初是包含Khloe Kardashian Kendall Jenner這四個詞的搜尋，但我們可以選擇到底要匹配幾個，比如說可以匹配3個，那就是C4取3，可以看下面的範例&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">enter_name_of_index_here/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;headline&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Enter search term here&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;minimum_should_match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">Enter&lt;/span> &lt;span class="err">a&lt;/span> &lt;span class="err">number&lt;/span> &lt;span class="err">here&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">news_headlines/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;headline&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Khloe Kardashian Kendall Jenner&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;minimum_should_match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">3&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>不同最小匹配量的值所影響到的結果&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DrQgXL8.png"
+loading="lazy"
+alt="image-20231101015715026"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Rk01b9m.png"
+loading="lazy"
+alt="image-20231101015740997"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/oaXPz7N.png"
+loading="lazy"
+alt="image-20231101015832703"
+>&lt;/p></description></item><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dveNGtg.png" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>最近工作上接觸到了這個套件，覺得令人歎為觀止，居然用這麼簡單的方式實現了我一直想做但不知道怎麼做的功能。&lt;/p>
 &lt;p>Xxl-Job說白話一點，就是一個中央定時任務調度平台，如果是單體式服務的話，我們可能是用Quartz或是Spring Schedule來實現，在這種情況管理這些Job(Batch)相對單純，因為所有東西都可以在單體式應用找到。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/al6dEbK.png"
