@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 29 Oct 2023 15:28:49 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>ElasticSearch學習筆記</title><link>https://hoxtonhsu.com/p/elasticsearch%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 29 Oct 2023 15:28:49 +0800</pubDate><guid>https://hoxtonhsu.com/p/elasticsearch%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/IJFdjpO.png" alt="Featured image of post ElasticSearch學習筆記" />&lt;p>本文會用到的連結&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 01 Nov 2023 02:16:35 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>SpringBoot與ElasticSearch的結合</title><link>https://hoxtonhsu.com/p/springboot%E8%88%87elasticsearch%E7%9A%84%E7%B5%90%E5%90%88/</link><pubDate>Wed, 01 Nov 2023 02:16:35 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E8%88%87elasticsearch%E7%9A%84%E7%B5%90%E5%90%88/</guid><description>&lt;img src="https://i.imgur.com/PKZTCYE.png" alt="Featured image of post SpringBoot與ElasticSearch的結合" />&lt;p>非常痛苦&amp;hellip;為了苟過試用期、不成為團隊的bottleneck，被迫半夜在這邊學這個shit&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/nFUZYlM.gif"
+loading="lazy"
+alt="shit-leslie-jordan-gif"
+>&lt;/p>
+&lt;p>本文會用到的連結&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=g6AmXGI0RpQ&amp;amp;pp=ygUVU3ByaW5nIEVsYXN0aWMgc2VhcmNo" target="_blank" rel="noopener"
+>How to Integrate Elastic Search With Spring Boot CRUD Project| Spring Boot | Elasticsearch| EnggAdda&lt;/a>&lt;/p></description></item><item><title>ElasticSearch學習筆記</title><link>https://hoxtonhsu.com/p/elasticsearch%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 29 Oct 2023 15:28:49 +0800</pubDate><guid>https://hoxtonhsu.com/p/elasticsearch%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/IJFdjpO.png" alt="Featured image of post ElasticSearch學習筆記" />&lt;p>本文會用到的連結&lt;/p>
 &lt;p>&lt;a class="link" href="https://youtu.be/gS_nHTWZEJ8?list=PL_mJOmq4zsHZYAyK606y7wjQtC0aoE6Es" target="_blank" rel="noopener"
 >Beginner&amp;rsquo;s Crash Course to Elastic Stack - Part 1: Intro to Elasticsearch and Kibana&lt;/a>&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/Z9upk2s.png"
 loading="lazy"
 alt="image-20231029160640473"
 >&lt;/p>
-&lt;p>我的主管底下有三個員工，我是其中一位，今天主管說有一個新需求要交代，派給了另外兩個同事，但沒派給我，為了展現本人一心向學的個性(快打考績了，要狗腿一點，並且希望可以苟過適用期)，我便很假掰的問了一下&lt;/p>
+&lt;p>我的主¡管底下有三個員工，我是其中一位，今天主管說有一個新需求要交代，派給了另外兩個同事，但沒派給我，為了展現本人一心向學的個性(快打考績了，要狗腿一點，並且希望可以苟過適用期)，我便很假掰的問了一下&lt;/p>
 &lt;p>「不好意思，請問等等的會議，雖然我沒有被分配到工作，但我也想參加，不知道可以嗎？」&lt;/p>
 &lt;p>中午參加會議完後，主管便打電話給我&lt;/p>
 &lt;p>「Hoxton，剛剛的會議你有參加齁？現在有多了一個新的需求OOO，再請你處理一下」&lt;/p>
