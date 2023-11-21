@@ -26,7 +26,10 @@ loading="lazy"
 alt="image-20231122024608316"
 >&lt;/p>
 &lt;p>我們新增一個Java模板&lt;/p>
-&lt;p>![image-20231122024716130](/Users/hoxtonashes/Library/Application Support/typora-user-images/image-20231122024716130.png)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/EuWBmQ6.png"
+loading="lazy"
+alt="image-20231122024716130"
+>&lt;/p>
 &lt;p>然後照這樣輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
