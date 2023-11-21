@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 01 Nov 2023 02:16:35 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>SpringBoot與ElasticSearch的結合</title><link>https://hoxtonhsu.com/p/springboot%E8%88%87elasticsearch%E7%9A%84%E7%B5%90%E5%90%88/</link><pubDate>Wed, 01 Nov 2023 02:16:35 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E8%88%87elasticsearch%E7%9A%84%E7%B5%90%E5%90%88/</guid><description>&lt;img src="https://i.imgur.com/PKZTCYE.png" alt="Featured image of post SpringBoot與ElasticSearch的結合" />&lt;p>非常痛苦&amp;hellip;為了苟過試用期、不成為團隊的bottleneck，被迫半夜在這邊學這個shit&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 22 Nov 2023 02:05:31 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>97 IntelliJ快速產生log模板</title><link>https://hoxtonhsu.com/p/97-intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</link><pubDate>Wed, 22 Nov 2023 02:05:31 +0800</pubDate><guid>https://hoxtonhsu.com/p/97-intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/oRRgTer.jpg" alt="Featured image of post 97 IntelliJ快速產生log模板" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>唉呀呀，最近實在是太忙了，這陣子一直在忙公司的內容，沒啥時間更新部落格，趁著今天剛洗好澡的時候來更新一下，這次想講的是IntelliJ的一個功能叫做Code Complete，這功能是啥咧？&lt;/p>
+&lt;p>IntelliJ裡面你可以透過sout快速產生System.out.println(&amp;quot;&amp;quot;)的模板對吧，這個功能就叫做Code Complete。之所以會介紹這個功能，是因為公司的Code沒有辦法在本地環境運行，只能在伺服器上跑，所以debugger這個功能是完全不行的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ylZaByT.gif"
+loading="lazy"
+alt="we-are-rejecting-it-melissa-beck-gif"
+>&lt;/p>
+&lt;p>所以當我們要測試一個東西時，最常用的就是log了，我們log everything，List也log，object也log，不能log的就加上＠ToString讓他log出來，因此我產生了很大量需要log的需求，例如&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">info&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Hoxton查看list長度為{}&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">list&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">size&lt;/span>&lt;span class="o">())&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣的code，頻繁的出現在我的測試分支上，一來一往真的是很麻煩，於是我就想到了我可愛的sout，如果能讓log這件事情變得像sout一樣簡單，那麼我的產出一定會崗崗滴（事實證明沒有，我只是用更快的方式出錯而已）&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/GEwWHvQ.gif"
+loading="lazy"
+alt="iShot_2023-11-22_02.14.41"
+>&lt;/p>
+&lt;h1 id="實現">實現&lt;/h1>
+&lt;p>要實現這個功能，就要使用postfix complete這個功能，畫面如下&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/MOcIgbl.png"
+loading="lazy"
+alt="image-20231122024608316"
+>&lt;/p>
+&lt;p>我們新增一個Java模板&lt;/p>
+&lt;p>![image-20231122024716130](/Users/hoxtonashes/Library/Application Support/typora-user-images/image-20231122024716130.png)&lt;/p>
+&lt;p>然後照這樣輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-tex" data-lang="tex">log.info(&amp;#34;Hoxton log測試&lt;span class="s">$&lt;/span>&lt;span class="nb">EXPR&lt;/span>&lt;span class="s">$&lt;/span>:&lt;span class="nb">{}&lt;/span>&amp;#34;,&lt;span class="s">$&lt;/span>&lt;span class="nb">EXPR&lt;/span>&lt;span class="s">$&lt;/span>);
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/zEd1ENQ.png"
+loading="lazy"
+alt="image-20231122024642641"
+>&lt;/p>
+&lt;p>這樣就能夠快速的log出資料囉！&lt;/p>
+&lt;p>如果有需要log String的話，需要再新增一個logs，因為log這個postfix如果打印文字會出現格式錯誤的問題QQ，這我還沒想好怎麼修&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/qnXIGtz.png"
+loading="lazy"
+alt="image-20231122024903804"
+>&lt;/p>
+&lt;p>如此一來就能夠快速地打印出log囉！&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ACbADdQ.gif"
+loading="lazy"
+alt="iShot_2023-11-22_02.14.41"
+>&lt;/p></description></item><item><title>SpringBoot與ElasticSearch的結合</title><link>https://hoxtonhsu.com/p/springboot%E8%88%87elasticsearch%E7%9A%84%E7%B5%90%E5%90%88/</link><pubDate>Wed, 01 Nov 2023 02:16:35 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E8%88%87elasticsearch%E7%9A%84%E7%B5%90%E5%90%88/</guid><description>&lt;img src="https://i.imgur.com/PKZTCYE.png" alt="Featured image of post SpringBoot與ElasticSearch的結合" />&lt;p>非常痛苦&amp;hellip;為了苟過試用期、不成為團隊的bottleneck，被迫半夜在這邊學這個shit&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/nFUZYlM.gif"
 loading="lazy"
 alt="shit-leslie-jordan-gif"
