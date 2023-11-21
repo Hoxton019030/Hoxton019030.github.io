@@ -15,9 +15,9 @@ alt="we-are-rejecting-it-melissa-beck-gif"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>這樣的code，頻繁的出現在我的測試分支上，一來一往真的是很麻煩，於是我就想到了我可愛的sout，如果能讓log這件事情變得像sout一樣簡單，那麼我的產出一定會崗崗滴（事實證明沒有，我只是用更快的方式出錯而已）&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/GEwWHvQ.gif"
+&lt;p>&lt;img src="https://i.imgur.com/45Po2BV.gif"
 loading="lazy"
-alt="iShot_2023-11-22_02.14.41"
+alt="iShot_2023-11-22_02.58.44"
 >&lt;/p>
 &lt;h1 id="實現">實現&lt;/h1>
 &lt;p>要實現這個功能，就要使用postfix complete這個功能，畫面如下&lt;/p>
