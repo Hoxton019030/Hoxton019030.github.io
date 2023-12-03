@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 22 Nov 2023 02:05:31 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>IntelliJ快速產生log模板</title><link>https://hoxtonhsu.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</link><pubDate>Wed, 22 Nov 2023 02:05:31 +0800</pubDate><guid>https://hoxtonhsu.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/oRRgTer.jpg" alt="Featured image of post IntelliJ快速產生log模板" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 03 Dec 2023 11:34:45 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Java異步執行小精靈 CompletableFuture介紹</title><link>https://hoxtonhsu.com/p/java%E7%95%B0%E6%AD%A5%E5%9F%B7%E8%A1%8C%E5%B0%8F%E7%B2%BE%E9%9D%88-completablefuture%E4%BB%8B%E7%B4%B9/</link><pubDate>Sun, 03 Dec 2023 11:34:45 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E7%95%B0%E6%AD%A5%E5%9F%B7%E8%A1%8C%E5%B0%8F%E7%B2%BE%E9%9D%88-completablefuture%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/bbIoOnR.png" alt="Featured image of post Java異步執行小精靈 CompletableFuture介紹" />&lt;p>前陣子公司有個需求，是要用Elastic Search撈出四筆約20萬長度左右的List做數據處理，那時候看到同事用了這個CompletableFuture的Lambda，當時看到這個東西的時候&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/iHlPLHG.png"
+loading="lazy"
+alt="image-20231203115648801"
+>&lt;/p>
+&lt;p>後來稍微看了一下，我感覺這個應該就是Java8對於Async操作的封裝&lt;a class="link" href="https://hoxtonhsu.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/" target="_blank" rel="noopener"
+>詳請可以看這邊&lt;/a>。&lt;/p>
+&lt;p>如果用形象化一點的比喻的話，CompletableFuture就像是世紀帝國的農民、魔獸爭霸的建築工人一樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/iH0NJ8P.png"
+loading="lazy"
+alt="image-20231203120242244"
+>&lt;/p>
+&lt;p>你在遊戲一開始可能會派幾個農民去挖礦、砍樹，當然也會叫幾個農民去蓋建築物，而這些你下達指令，後續就不用在管他的行為其實就很像CompleteFuture的在做的事，而CompleteFuture與一般的Async，最大的差異在於CompleteFuture支援了一系列後續操作，比如說當你第一個Future完成，接著做的.thenApply .whenComplete .thenAccept ，或是Future 拋出例外時做的exceptionally等等，讓非同步的操作與Method chaining兩者結合在一起&lt;/p>
+&lt;h1 id="實際演練">實際演練&lt;/h1>
+&lt;h1 id="推薦的外部連結">推薦的外部連結&lt;/h1>
+&lt;p>&lt;a href="https://popcornylu.gitbooks.io/java_multithread/content/async/cfuture.html">https://popcornylu.gitbooks.io/java_multithread/content/async/cfuture.html&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.zhihu.com/question/433003386">https://www.zhihu.com/question/433003386&lt;/a>&lt;/p></description></item><item><title>IntelliJ快速產生log模板</title><link>https://hoxtonhsu.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</link><pubDate>Wed, 22 Nov 2023 02:05:31 +0800</pubDate><guid>https://hoxtonhsu.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/oRRgTer.jpg" alt="Featured image of post IntelliJ快速產生log模板" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>唉呀呀，最近實在是太忙了，這陣子一直在忙公司的內容，沒啥時間更新部落格，趁著今天剛洗好澡的時候來更新一下，這次想講的是IntelliJ的一個功能叫做Code Complete，這功能是啥咧？&lt;/p>
 &lt;p>IntelliJ裡面你可以透過sout快速產生System.out.println(&amp;quot;&amp;quot;)的模板對吧，這個功能就叫做Code Complete。之所以會介紹這個功能，是因為公司的Code沒有辦法在本地環境運行，只能在伺服器上跑，所以debugger這個功能是完全不行的&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/ylZaByT.gif"
