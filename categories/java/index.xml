@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Hoxton</title><link>https://hoxtonhsu.com/categories/java/</link><description>Recent content in Java on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 04 Dec 2023 16:28:43 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/java/index.xml" rel="self" type="application/rss+xml"/><item><title>處理 Mybatis導致的 Parameter 1 of constructor in ...required a bean of type ... that could not be found.</title><link>https://hoxtonhsu.com/p/%E8%99%95%E7%90%86-mybatis%E5%B0%8E%E8%87%B4%E7%9A%84-parameter-1-of-constructor-in-...required-a-bean-of-type-...-that-could-not-be-found./</link><pubDate>Mon, 04 Dec 2023 16:28:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%99%95%E7%90%86-mybatis%E5%B0%8E%E8%87%B4%E7%9A%84-parameter-1-of-constructor-in-...required-a-bean-of-type-...-that-could-not-be-found./</guid><description>&lt;img src="https://i.imgur.com/M3MOdZm.png" alt="Featured image of post 處理 Mybatis導致的 Parameter 1 of constructor in ...required a bean of type ... that could not be found." />&lt;h1 id="省流">省流&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Hoxton</title><link>https://hoxtonhsu.com/categories/java/</link><description>Recent content in Java on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 04 Dec 2023 16:28:43 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/java/index.xml" rel="self" type="application/rss+xml"/><item><title>處理 Mybatis導致的 Parameter 1 of constructor in ...required a bean of type ... that could not be found.</title><link>https://hoxtonhsu.com/p/%E8%99%95%E7%90%86-mybatis%E5%B0%8E%E8%87%B4%E7%9A%84-parameter-1-of-constructor-in-...required-a-bean-of-type-...-that-could-not-be-found./</link><pubDate>Mon, 04 Dec 2023 16:28:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%99%95%E7%90%86-mybatis%E5%B0%8E%E8%87%B4%E7%9A%84-parameter-1-of-constructor-in-...required-a-bean-of-type-...-that-could-not-be-found./</guid><description>&lt;img src="https://i.imgur.com/vlXYk5e.png" alt="Featured image of post 處理 Mybatis導致的 Parameter 1 of constructor in ...required a bean of type ... that could not be found." />&lt;h1 id="省流">省流&lt;/h1>
 &lt;p>如果你是用SpringBoot 3 的話，你的Mybatis版本也要更新到3，不然會一直出現&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -27,7 +27,7 @@
 &lt;/div>
 &lt;/div>&lt;h1 id="故事">故事&lt;/h1>
 &lt;p>這陣子在做SideProject，想練習redis, rebbitMQ, 以及Elastic Search。在引入MyBatis時出現了一個錯誤&lt;code>(圖是網路找的)&lt;/code>&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/1HHpMTm.png"
+&lt;p>&lt;img src="https://i.imgur.com/vlXYk5e.png"
 loading="lazy"
 alt="image-20231204163300670"
 >&lt;/p>
