@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 03 Dec 2023 11:34:45 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Java異步執行小精靈 CompletableFuture介紹</title><link>https://hoxtonhsu.com/p/java%E7%95%B0%E6%AD%A5%E5%9F%B7%E8%A1%8C%E5%B0%8F%E7%B2%BE%E9%9D%88-completablefuture%E4%BB%8B%E7%B4%B9/</link><pubDate>Sun, 03 Dec 2023 11:34:45 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E7%95%B0%E6%AD%A5%E5%9F%B7%E8%A1%8C%E5%B0%8F%E7%B2%BE%E9%9D%88-completablefuture%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/bbIoOnR.png" alt="Featured image of post Java異步執行小精靈 CompletableFuture介紹" />&lt;p>前陣子公司有個需求，是要用Elastic Search撈出四筆約20萬長度左右的List做數據處理，那時候看到同事用了這個CompletableFuture的Lambda，當時看到這個東西的時候&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 04 Dec 2023 16:28:43 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>處理 Mybatis導致的 Parameter 1 of constructor in ...required a bean of type ... that could not be found.</title><link>https://hoxtonhsu.com/p/%E8%99%95%E7%90%86-mybatis%E5%B0%8E%E8%87%B4%E7%9A%84-parameter-1-of-constructor-in-...required-a-bean-of-type-...-that-could-not-be-found./</link><pubDate>Mon, 04 Dec 2023 16:28:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%99%95%E7%90%86-mybatis%E5%B0%8E%E8%87%B4%E7%9A%84-parameter-1-of-constructor-in-...required-a-bean-of-type-...-that-could-not-be-found./</guid><description>&lt;img src="https://i.imgur.com/M3MOdZm.png" alt="Featured image of post 處理 Mybatis導致的 Parameter 1 of constructor in ...required a bean of type ... that could not be found." />&lt;h1 id="省流">省流&lt;/h1>
+&lt;p>如果你是用SpringBoot 3 的話，你的Mybatis版本也要更新到3，不然會一直出現&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">Parameter 1 of constructor in ...required a bean of type ... that could not be found.
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣的錯誤&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>org.mybatis.spring.boot&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>mybatis-spring-boot-starter&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>3.0.3&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="故事">故事&lt;/h1>
+&lt;p>這陣子在做SideProject，想練習redis, rebbitMQ, 以及Elastic Search。在引入MyBatis時出現了一個錯誤&lt;code>(圖是網路找的)&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1HHpMTm.png"
+loading="lazy"
+alt="image-20231204163300670"
+>&lt;/p>
+&lt;p>當時百思不得其解，我該加的Annotation加了，my-batis xml也配了，該處理的都處理了，但不知道為什麼就是找不到，期間來回試了多種方法，用ApplicationContext去找bean呀，改成用setter注入呀之類的方式都不行，大概這樣來回折騰了三四個小時。&lt;/p>
+&lt;p>後來實在沒辦法，跑去執行以前的專案，發現相同的配置下不知道為什麼跑得起來，但我的就不行，於是就想到了&lt;/p>
+&lt;p>「阿幹你媽的，SpringBoot最近好像升級到3.0了」&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/uwUaX9P.gif"
+loading="lazy"
+alt="fozzy-fuck-gif"
+>&lt;/p>
+&lt;p>（不管是IDEA或是Spring Initializr都沒辦法在下載2.0版本的SpringBoot了)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ZSMcWG8.png"
+loading="lazy"
+alt="image-20231204163535485"
+>&lt;/p>
+&lt;p>然後順著這個線索，到我的POM裡面去看，果然看到了我的MyBatis版本還留在2.0版，接著重新找一個支援3.0的版本&lt;/p>
+&lt;p>Shift shift -&amp;gt; reload maven project&lt;/p>
+&lt;p>這樣就可以運行起來了&lt;/p></description></item><item><title>Java異步執行小精靈 CompletableFuture介紹</title><link>https://hoxtonhsu.com/p/java%E7%95%B0%E6%AD%A5%E5%9F%B7%E8%A1%8C%E5%B0%8F%E7%B2%BE%E9%9D%88-completablefuture%E4%BB%8B%E7%B4%B9/</link><pubDate>Sun, 03 Dec 2023 11:34:45 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E7%95%B0%E6%AD%A5%E5%9F%B7%E8%A1%8C%E5%B0%8F%E7%B2%BE%E9%9D%88-completablefuture%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/bbIoOnR.png" alt="Featured image of post Java異步執行小精靈 CompletableFuture介紹" />&lt;p>前陣子公司有個需求，是要用Elastic Search撈出四筆約20萬長度左右的List做數據處理，那時候看到同事用了這個CompletableFuture的Lambda，當時看到這個東西的時候&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/iHlPLHG.png"
 loading="lazy"
 alt="image-20231203115648801"
