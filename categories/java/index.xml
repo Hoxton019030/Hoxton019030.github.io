@@ -8,7 +8,7 @@
 &lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">Parameter 1 of constructor in ...required a bean of type ... that could not be found.
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>這樣的錯誤&lt;/p>
+&lt;/div>&lt;p>這樣的錯誤，把你的pom更新成這樣就可以了&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
