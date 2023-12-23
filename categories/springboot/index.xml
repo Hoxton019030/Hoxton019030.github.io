@@ -781,6 +781,27 @@ alt="demo"
 &lt;p>若測試不想涉及SprintBoot的時候@ExtendWith(MockitoExtension.class)，以及@Mock, @InjectMocks，並且使用MockMvcBuilders.standaloneSetup來設置獨立測試，以下是Code的示範&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="c">&amp;lt;!-- https://mvnrepository.com/artifact/junit/junit --&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>junit&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>junit&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>4.12&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;scope&amp;gt;&lt;/span>test&lt;span class="nt">&amp;lt;/scope&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
 &lt;/span>&lt;span class="lnt"> 3
@@ -817,6 +838,7 @@ alt="demo"
 &lt;/span>&lt;span class="lnt">34
 &lt;/span>&lt;span class="lnt">35
 &lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.junit.jupiter.api.BeforeEach&lt;/span>&lt;span class="o">;&lt;/span>
@@ -827,6 +849,7 @@ alt="demo"
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.mockito.junit.jupiter.MockitoExtension&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.test.web.servlet.MockMvc&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.test.web.servlet.setup.MockMvcBuilders&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.assertj.core.api.Assertions&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="cm">/**
 &lt;/span>&lt;span class="cm"> * @author Hoxton on 2022/11/30
 &lt;/span>&lt;span class="cm"> */&lt;/span>
