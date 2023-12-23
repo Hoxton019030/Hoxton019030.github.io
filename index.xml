@@ -15276,7 +15276,7 @@ alt="image-20221207000519492"
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.mockito.junit.jupiter.MockitoExtension&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.test.web.servlet.MockMvc&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.test.web.servlet.setup.MockMvcBuilders&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.assertj.core.api.Assertions&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import static&lt;/span> &lt;span class="nn">org.assertj.core.api.Assertions.assertThat&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="cm">/**
 &lt;/span>&lt;span class="cm"> * @author Hoxton on 2022/11/30
 &lt;/span>&lt;span class="cm"> */&lt;/span>
