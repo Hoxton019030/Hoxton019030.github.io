@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 13 Dec 2023 01:14:25 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>SideProject開發(1)-台股監控Web</title><link>https://hoxtonhsu.com/p/sideproject%E9%96%8B%E7%99%BC1-%E5%8F%B0%E8%82%A1%E7%9B%A3%E6%8E%A7web/</link><pubDate>Wed, 13 Dec 2023 01:14:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/sideproject%E9%96%8B%E7%99%BC1-%E5%8F%B0%E8%82%A1%E7%9B%A3%E6%8E%A7web/</guid><description>&lt;img src="https://i.imgur.com/MWeeVVM.jpg" alt="Featured image of post SideProject開發(1)-台股監控Web" />&lt;p>大概前一陣子再刷BiliBili的時候，看到一個30up的程序員的影片，內容是說&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 24 Dec 2023 18:47:38 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>SideProjec2) 台股監控Web</title><link>https://hoxtonhsu.com/p/sideprojec2-%E5%8F%B0%E8%82%A1%E7%9B%A3%E6%8E%A7web/</link><pubDate>Sun, 24 Dec 2023 18:47:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/sideprojec2-%E5%8F%B0%E8%82%A1%E7%9B%A3%E6%8E%A7web/</guid><description>&lt;img src="https://i.imgur.com/LTNMTzI.png" alt="Featured image of post SideProjec2) 台股監控Web" />&lt;p>`&lt;/p>
+&lt;p>在我的構想中，這個專案底下應該要有兩個模塊&lt;/p>
+&lt;ol>
+&lt;li>是web端的模塊，負責到資料庫撈出一些比如說連續漲、連續跌的股票&lt;/li>
+&lt;li>是資料同步模塊，用來將股票資訊與台股觀測站的資料同步的，比如說歷史股價，本日股價&lt;/li>
+&lt;/ol>
+&lt;p>用意是為了當這個資料同步模塊需要更新時，我的Web還是可以讓別人訪問的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/l0pJjyz.png"
+loading="lazy"
+alt="image-20231224185405366"
+>&lt;/p>
+&lt;p>但不知道為啥，這個multiModule的功能我弄了快兩個禮拜，期間一直出錯，一直出現Class Not Found的錯誤，當我沒有任何module的時候都沒問題，但只要當我new Module時，我的專案就無法啟動，這期間我在網路上有查到很多解法，比如說指定spring maven的main檔案 或者是把m2資料夾全部刪除 或是mvn clear, mvn install都沒有辦法解決這個問題，有想過可能是SpringBoot 3的問題，但試過SpringBoot 2也有類似的情形發生。&lt;/p>
+&lt;p>&lt;img src="https://megapx-assets.dcard.tw/images/7c0302f2-35c2-4711-859d-573cce5494c7/full.webp"
+loading="lazy"
+alt="img"
+>&lt;/p>
+&lt;p>後來弄了老半天，我才發現我搞錯MultiModule的用法＝＝&lt;/p>
+&lt;p>如果要建立多模組的專案，底下是不能有src的，一但有src，專案會不清楚我們到底要執行哪個main，大概就這點事情弄了我兩個禮拜的時間^_^，真好玩，嘻嘻&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QU7XTA9.png"
+loading="lazy"
+alt="image-20231224185700439"
+>&lt;/p></description></item><item><title>SideProject開發(1)-台股監控Web</title><link>https://hoxtonhsu.com/p/sideproject%E9%96%8B%E7%99%BC1-%E5%8F%B0%E8%82%A1%E7%9B%A3%E6%8E%A7web/</link><pubDate>Wed, 13 Dec 2023 01:14:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/sideproject%E9%96%8B%E7%99%BC1-%E5%8F%B0%E8%82%A1%E7%9B%A3%E6%8E%A7web/</guid><description>&lt;img src="https://i.imgur.com/MWeeVVM.jpg" alt="Featured image of post SideProject開發(1)-台股監控Web" />&lt;p>大概前一陣子再刷BiliBili的時候，看到一個30up的程序員的影片，內容是說&lt;/p>
 &lt;p>「如果能給10年前的自己建議，會想說什麼」&lt;/p>
 &lt;p>其中有一項就是說「不要只學技術而不產出」不要學了很多技術，比如說redis呀、ElasticSearch等等的，結果卻沒有把它實際應用過。&lt;/p>
 &lt;p>雖然本人目前是要考研究所的狀態，但還是想做一些產出型的東西，於是左思右想決定就以台股網站為目標，來做一個SideProject。為什麼會想做這個的原因是因為我覺得目前市面上的股票App都太爛了，不符合我的需求，我希望可以看到每張股票的狀況，而不是只Show給我看什麼本日最多漲跌之類的訊息，並且我希望有Email通知的功能等等的。&lt;/p>
