@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sun, 24 Dec 2023 18:47:38 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>SideProjec2) 台股監控Web</title><link>https://hoxtonhsu.com/p/sideprojec2-%E5%8F%B0%E8%82%A1%E7%9B%A3%E6%8E%A7web/</link><pubDate>Sun, 24 Dec 2023 18:47:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/sideprojec2-%E5%8F%B0%E8%82%A1%E7%9B%A3%E6%8E%A7web/</guid><description>&lt;img src="https://i.imgur.com/LTNMTzI.png" alt="Featured image of post SideProjec2) 台股監控Web" />&lt;p>`&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 27 Dec 2023 00:34:04 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Java常用方法 將檔案讀成String</title><link>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</link><pubDate>Wed, 27 Dec 2023 00:34:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</guid><description>&lt;img src="https://i.imgur.com/RFS2LGT.png" alt="Featured image of post Java常用方法 將檔案讀成String" />&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java"> &lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="nf">readFileAsString&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">File&lt;/span> &lt;span class="n">file&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">StringBuilder&lt;/span> &lt;span class="n">content&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">StringBuilder&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">try&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">BufferedReader&lt;/span> &lt;span class="n">br&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">BufferedReader&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">FileReader&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">file&lt;/span>&lt;span class="o">)))&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">line&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">while&lt;/span> &lt;span class="o">((&lt;/span>&lt;span class="n">line&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">br&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">readLine&lt;/span>&lt;span class="o">())&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">content&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">append&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">line&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">append&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;\n&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">catch&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">IOException&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">e&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">printStackTrace&lt;/span>&lt;span class="o">();&lt;/span> &lt;span class="c1">// 可以根據需要進行錯誤處理
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="o">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">content&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">toString&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>SideProject開發(2)-台股監控Web</title><link>https://hoxtonhsu.com/p/sideproject%E9%96%8B%E7%99%BC2-%E5%8F%B0%E8%82%A1%E7%9B%A3%E6%8E%A7web/</link><pubDate>Sun, 24 Dec 2023 18:47:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/sideproject%E9%96%8B%E7%99%BC2-%E5%8F%B0%E8%82%A1%E7%9B%A3%E6%8E%A7web/</guid><description>&lt;img src="https://i.imgur.com/LTNMTzI.png" alt="Featured image of post SideProject開發(2)-台股監控Web" />&lt;p>`&lt;/p>
 &lt;p>在我的構想中，這個專案底下應該要有兩個模塊&lt;/p>
 &lt;ol>
 &lt;li>是web端的模塊，負責到資料庫撈出一些比如說連續漲、連續跌的股票&lt;/li>
