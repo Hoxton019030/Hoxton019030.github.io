@@ -111,9 +111,154 @@ alt="image-20231227032121782"
 &lt;li>apps.py 聲明應用的地方&lt;/li>
 &lt;li>test.py 編寫應用測試的地方&lt;/li>
 &lt;li>urls.py (要自行創建) 管理應用路由的地方&lt;/li>
-&lt;li>s&lt;/li>
 &lt;/ul>
-&lt;p>s&lt;/p></description></item><item><title>Java常用方法 將檔案讀成String</title><link>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</link><pubDate>Wed, 27 Dec 2023 00:34:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</guid><description>&lt;img src="https://i.imgur.com/RFS2LGT.png" alt="Featured image of post Java常用方法 將檔案讀成String" />&lt;div class="highlight">&lt;div class="chroma">
+&lt;h1 id="django視圖">Django視圖&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/mYe30Or.png"
+loading="lazy"
+alt="image-20231228030223880"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">django.shortcuts&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">render&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">django.http&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">HttpResponse&lt;/span>
+&lt;span class="c1"># Create your views here.&lt;/span>
+&lt;span class="c1"># request要加&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">hello_world&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="c1"># 要把回傳的東西包裝成HttpResponse物件&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">HttpResponse&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello world!&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="django-路由">Django 路由&lt;/h1>
+&lt;p>Django目前對我們的實現的視圖一無所知，請求無法到達，所以需要配置路由，將視圖函數與URL進行綁定&lt;/p>
+&lt;p>路由配置有分成&lt;/p>
+&lt;ol>
+&lt;li>應用層次的路由&lt;/li>
+&lt;li>項目層次的路由&lt;/li>
+&lt;/ol>
+&lt;p>首先配置應用層次的路由，首先新增urls.py的檔案&lt;/p>
+&lt;h2 id="應用層次的路由配置">應用層次的路由配置&lt;/h2>
+&lt;p>blog 中的urls.py這樣寫&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">from&lt;/span> &lt;span class="nn">django.urls&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">include&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">blog.views&lt;/span>
+&lt;span class="n">urlpatterns&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>
+&lt;span class="c1"># 如果路由含有hello_world，則轉發到blog.views.hello_world 記得不用帶()&lt;/span>
+&lt;span class="n">path&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;hello_world&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">blog&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">views&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">hello_world&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">]&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="項目層次的路由">項目層次的路由&lt;/h2>
+&lt;p>在項目的urls.py中，這樣寫&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;django_introduction URL Configuration
+&lt;/span>&lt;span class="s2">
+&lt;/span>&lt;span class="s2">The `urlpatterns` list routes URLs to views. For more information please see:
+&lt;/span>&lt;span class="s2"> https://docs.djangoproject.com/en/2.0/topics/http/urls/
+&lt;/span>&lt;span class="s2">Examples:
+&lt;/span>&lt;span class="s2">Function views
+&lt;/span>&lt;span class="s2"> 1. Add an import: from my_app import views
+&lt;/span>&lt;span class="s2"> 2. Add a URL to urlpatterns: path(&amp;#39;&amp;#39;, views.home, name=&amp;#39;home&amp;#39;)
+&lt;/span>&lt;span class="s2">Class-based views
+&lt;/span>&lt;span class="s2"> 1. Add an import: from other_app.views import Home
+&lt;/span>&lt;span class="s2"> 2. Add a URL to urlpatterns: path(&amp;#39;&amp;#39;, Home.as_view(), name=&amp;#39;home&amp;#39;)
+&lt;/span>&lt;span class="s2">Including another URLconf
+&lt;/span>&lt;span class="s2"> 1. Import the include() function: from django.urls import include, path
+&lt;/span>&lt;span class="s2"> 2. Add a URL to urlpatterns: path(&amp;#39;blog/&amp;#39;, include(&amp;#39;blog.urls&amp;#39;))
+&lt;/span>&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">django.contrib&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">admin&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">django.urls&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">path&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">include&lt;/span>
+&lt;span class="n">urlpatterns&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="n">path&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;admin/&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">admin&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">site&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">urls&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;span class="n">path&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;blog/&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">include&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;blog.urls&amp;#39;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="c1"># 若url包含blog/，則轉發至blog資料夾底下的urls&lt;/span>
+&lt;span class="p">]&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/qC4Y5EL.png"
+loading="lazy"
+alt="image-20231228031206144"
+>&lt;/p>
+&lt;h1 id="調整settingspy">調整settings.py&lt;/h1>
+&lt;p>最後去調整項目的settings.py，把blog的config添加到項目中&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QIn08mV.png"
+loading="lazy"
+alt="image-20231228031521629"
+>&lt;/p>
+&lt;h1 id="啟動專案">啟動專案&lt;/h1>
+&lt;p>輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">python manage.py runserver
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著訪問&lt;/p>
+&lt;p>http://127.0.0.1:8000/blog/hello_world&lt;/p>
+&lt;p>就有hello world了！&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/pbtvd0o.gif"
+loading="lazy"
+alt="hello-world-seytonic-gif"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ki9ynEp.png"
+loading="lazy"
+alt="image-20231228032117075"
+>&lt;/p>
+&lt;h1 id="django路由圖">Django路由圖&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/Wd78ebB.png"
+loading="lazy"
+alt="image-20231228032315240"
+>&lt;/p></description></item><item><title>Java常用方法 將檔案讀成String</title><link>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</link><pubDate>Wed, 27 Dec 2023 00:34:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</guid><description>&lt;img src="https://i.imgur.com/RFS2LGT.png" alt="Featured image of post Java常用方法 將檔案讀成String" />&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
