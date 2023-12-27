@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 27 Dec 2023 02:46:29 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Django學習筆記</title><link>https://hoxtonhsu.com/p/django%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 27 Dec 2023 02:46:29 +0800</pubDate><guid>https://hoxtonhsu.com/p/django%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/fIk8FK8.jpg" alt="Featured image of post Django學習筆記" />&lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a href="https://www.bilibili.com/video/BV1Sf4y1v77f?p=1">https://www.bilibili.com/video/BV1Sf4y1v77f?p=1&lt;/a>&lt;/p>
+&lt;h1 id="專案程式碼">專案程式碼&lt;/h1>
+&lt;p>&lt;a href="https://github.com/Hoxton019030/Django_pratice">https://github.com/Hoxton019030/Django_pratice&lt;/a>&lt;/p>
 &lt;h1 id="筆記">筆記&lt;/h1>
 &lt;p>使用conda來安裝DJango&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -92,7 +94,26 @@ alt="image-20231227031755748"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">python manage.py startapp blog
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>就會在創建一個名為blog的應用&lt;/p></description></item><item><title>Java常用方法 將檔案讀成String</title><link>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</link><pubDate>Wed, 27 Dec 2023 00:34:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</guid><description>&lt;img src="https://i.imgur.com/RFS2LGT.png" alt="Featured image of post Java常用方法 將檔案讀成String" />&lt;div class="highlight">&lt;div class="chroma">
+&lt;/div>&lt;p>就會在創建一個名為blog的應用&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/hRenbyF.png"
+loading="lazy"
+alt="image-20231227032109787"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/j9W2itU.png"
+loading="lazy"
+alt="image-20231227032121782"
+>&lt;/p>
+&lt;h1 id="django應用目錄介紹">Django應用目錄介紹&lt;/h1>
+&lt;ul>
+&lt;li>view.py 視圖處理的地方&lt;/li>
+&lt;li>models.py 定義應用模型的地方&lt;/li>
+&lt;li>admin.py 定義Admin模塊管理對象的地方&lt;/li>
+&lt;li>apps.py 聲明應用的地方&lt;/li>
+&lt;li>test.py 編寫應用測試的地方&lt;/li>
+&lt;li>urls.py (要自行創建) 管理應用路由的地方&lt;/li>
+&lt;li>s&lt;/li>
+&lt;/ul>
+&lt;p>s&lt;/p></description></item><item><title>Java常用方法 將檔案讀成String</title><link>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</link><pubDate>Wed, 27 Dec 2023 00:34:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</guid><description>&lt;img src="https://i.imgur.com/RFS2LGT.png" alt="Featured image of post Java常用方法 將檔案讀成String" />&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
