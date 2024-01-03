@@ -68,7 +68,7 @@ alt="image-20240103231657137"
 &lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">explain&lt;/span> &lt;span class="k">select&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">daily_stock_data&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>撈出來的資料就不是這個sql所執行的結果，而是這個sql執行下來的一些指標&lt;/p>
+&lt;/div>&lt;p>使用explain時，執行的就不是這個sql所執行的結果，而是這個sql執行下來的一些指標&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
