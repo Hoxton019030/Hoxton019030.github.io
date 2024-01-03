@@ -23,7 +23,7 @@
 loading="lazy"
 alt="gif"
 >&lt;/p>
-&lt;h1 id="爆炸">爆炸&lt;/h1>
+&lt;h1 id="服務器爆炸">服務器爆炸&lt;/h1>
 &lt;p>這個語法普遍出現在我所有需要做新舊資料兼容的SQL中，當時在寫的時候想說自己真是牛逼，多加了幾個字就解決兼容性的問題，真是個不世出的天才&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/QT46ZBQ.gif"
 loading="lazy"
