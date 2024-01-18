@@ -1535,7 +1535,31 @@ alt="image-20231101003957441"
 &lt;h2 id="兩種不同的搜尋-query-aggregation">兩種不同的搜尋 Query Aggregation&lt;/h2>
 &lt;p>Query用來搜尋一些符合特定指標的Document&lt;/p>
 &lt;p>Aggregation是將數據總結為指標、統計數據和其他分析的過程，簡單來講就是類似SQL中的GROUP&lt;/p>
-&lt;h3 id="使用query依照時間來做搜尋">使用Query依照時間來做搜尋&lt;/h3>
+&lt;h3 id="使用query依照關鍵字來做搜尋">使用Query依照關鍵字來做搜尋&lt;/h3>
+&lt;p>match中搭配filedname即可達到搜尋的效果&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">enter_name_of_the_index_here/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;username&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;abc123&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="使用query依照時間來做搜尋">使用Query依照時間來做搜尋&lt;/h3>
 &lt;p>範例：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
