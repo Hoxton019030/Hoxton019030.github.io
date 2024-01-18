@@ -344,7 +344,7 @@ gtag('js',new Date());gtag('config','G-9N16MVLR0Q');</script></head><body class=
 <span class=p>{</span>
   <span class=nt>&#34;track_total_hits&#34;</span><span class=p>:</span> <span class=kc>true</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/adFOZOZ.png loading=lazy alt=image-20231101003957441></p><h2 id=兩種不同的搜尋-query-aggregation>兩種不同的搜尋 Query Aggregation</h2><p>Query用來搜尋一些符合特定指標的Document</p><p>Aggregation是將數據總結為指標、統計數據和其他分析的過程，簡單來講就是類似SQL中的GROUP</p><h3 id=使用query依照關鍵字來做搜尋>使用Query依照關鍵字來做搜尋</h3><p>match中搭配filedname即可達到搜尋的效果</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/adFOZOZ.png loading=lazy alt=image-20231101003957441></p><h2 id=兩種不同的搜尋-query-aggregation>兩種不同的搜尋 Query Aggregation</h2><p>Query用來搜尋一些符合特定指標的Document</p><p>Aggregation是將數據總結為指標、統計數據和其他分析的過程，簡單來講就是類似SQL中的GROUP</p><h3 id=使用query依照關鍵字來做搜尋>使用Query依照關鍵字來做搜尋</h3><p>match中搭配filedname即可達到搜尋的效果－</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -352,7 +352,7 @@ gtag('js',new Date());gtag('config','G-9N16MVLR0Q');</script></head><body class=
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=err>GET</span> <span class=err>enter_name_of_the_index_here/_search</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=err>GET</span> <span class=err>user/_search</span>
 <span class=p>{</span>
   <span class=nt>&#34;query&#34;</span><span class=p>:</span> <span class=p>{</span>
     <span class=nt>&#34;match&#34;</span><span class=p>:</span> <span class=p>{</span>
