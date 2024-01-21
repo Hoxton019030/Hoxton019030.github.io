@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>生活 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%94%9F%E6%B4%BB/</link><description>Recent content in 生活 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 11 Jan 2024 21:57:14 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml"/><item><title>技術回顧以及2024學習目標</title><link>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</link><pubDate>Thu, 11 Jan 2024 21:57:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/kFNcWip.jpg" alt="Featured image of post 技術回顧以及2024學習目標" />&lt;p>&lt;img src="https://i.imgur.com/kFNcWip.jpg"
-loading="lazy"
-alt="Nah I&amp;rsquo;d Win | Know Your Meme"
->&lt;/p>
-&lt;h1 id="brief">Brief&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>生活 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%94%9F%E6%B4%BB/</link><description>Recent content in 生活 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 11 Jan 2024 21:57:14 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml"/><item><title>技術回顧以及2024學習目標</title><link>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</link><pubDate>Thu, 11 Jan 2024 21:57:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/kFNcWip.jpg" alt="Featured image of post 技術回顧以及2024學習目標" />&lt;h1 id="brief">Brief&lt;/h1>
 &lt;p>2023算是我正式轉職的第一年吧， 這段期間換了好幾份工作，也學到了很多技術，打算彙整一下這段時間學習到的技術並描繪一下2024的學習路線圖&lt;/p>
 &lt;h1 id="2023">2023&lt;/h1>
 &lt;h2 id="研究所相關">研究所相關&lt;/h2>
@@ -14,8 +10,8 @@ alt="Nah I&amp;rsquo;d Win | Know Your Meme"
 &lt;p>&lt;input checked="" disabled="" type="checkbox"> 線性代數&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>「看」完了作業系統跟線性代數，但兩個都沒有認真的好好寫過題目，記得在2023年初的時候想說我有一整年的時間可以來讀書，結果發現自己還是抱著三天打魚兩天曬網的方式，一整年下來就只讀了兩科，然後再過20幾天就要考研究所了，自己卻還在這邊打這篇廢文^_^&lt;/p>
-&lt;p>自己預計2024年末要能夠讀完所有的科目，寫完考古題並且拚搏看看，看能不能2025年考上&lt;/p>
+&lt;p>「看」完了作業系統跟線性代數，但兩個都沒有認真的好好寫過題目，記得在2023年初的時候想說我有一整年的時間可以來讀書，結果發現自己還是抱著三天打魚兩天曬網的方式，年初打戰神、年中打魔物、年末打Steam Deck，一整年下來就只讀了兩科，記得年終的時候有好幾個月都在忙著面試還有加班，有段時間荒廢掉，然後咻一下的發線再過20幾天就要考研究所了，自己卻還在這邊打這篇廢文^_^&lt;/p>
+&lt;p>自己預計2024年末要能夠讀完所有的科目，寫完考古題並且拚搏看看，看能不能拼2025年考上&lt;/p>
 &lt;h2 id="技術相關">技術相關&lt;/h2>
 &lt;p>技術相關的部分占了蠻大一部分的，基本上我2023年的生活就是三個重心&lt;/p>
 &lt;ol>
@@ -26,55 +22,67 @@ alt="Nah I&amp;rsquo;d Win | Know Your Meme"
 &lt;p>技術的部份盤點了一下，大概學了這些&lt;/p>
 &lt;ol>
 &lt;li>
-&lt;p>Junit單元測試框架：前陣子跟御諾的同事吃飯，我說在御諾10個月，我學到最多的就是怎麼講笑話逗大家開心，除此之外啥都沒學到，但騎車回去的路上想了一下，發現其實自己寫了泰半的單元測試還有整合測試，只是後面的工作都沒用上罷了^_^&lt;/p>
+&lt;p>Junit單元測試框架：當初忘了在哪邊看到[&lt;a class="link" href="https://ithelp.ithome.com.tw/users/20107429/ironman/3897" target="_blank" rel="noopener"
+>你就是都不寫測試才會沒時間&lt;/a>](&lt;a href="https://ithelp.ithome.com.tw/articles/10258902">https://ithelp.ithome.com.tw/articles/10258902&lt;/a>)這篇文章，當時就覺得寫單元測試真的是太酷了！所以在御諾的時候很認真的跟大家說一起來寫單元測試吧！然後就這樣子寫了半年的單元測試還有整合測試，前陣子跟御諾的同事吃飯，我說在御諾10個月，我學到最多的就是怎麼講笑話逗大家開心，除此之外啥都沒學到，但騎車回去的路上想了一下，發現其實自己學最多的是寫Test的部分 &lt;a class="link" href="https://hoxtonhsu.com/p/%e5%a6%82%e4%bd%95%e5%b0%87junit%e7%9a%84%e6%b8%ac%e8%a9%a6%e7%b2%92%e5%ba%a6%e6%8e%a7%e5%88%b6%e5%9c%a8%e6%9c%80%e5%b0%8f%e5%96%ae%e5%85%83/" target="_blank" rel="noopener"
+>如何將Junit的測試粒度控制在最小單元&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Docker：也是當初在御諾的時候看同事在用，覺得很有趣就學下來了，結果發現蠻有趣的，目前最常做的應用就是把WebApp包裝成Image，部屬到我的Digital Ocean上面&lt;/p>
+&lt;p>Docker：也是當初在御諾的時候看同事在用，覺得很有趣就學下來了，結果發現蠻實用也蠻有趣的，目前最常做的應用就是把WebApp包裝成Image，部屬到我的Digital Ocean上面 &lt;a class="link" href="https://hoxtonhsu.com/p/docker%e5%ad%b8%e7%bf%92%e7%ad%86%e8%a8%98/" target="_blank" rel="noopener"
+>Docker學習筆記&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>GitLab CI/CD：也是當初在御諾（發現在御諾真的沒啥事情要忙，都在學這些有的沒有的東西= =）看到同事每次上板都要自己手動去Deployment，覺得實在是太累了，所以把這個東西學起來，結果還沒等到我去做CI/CD我就離職了&lt;/p>
+&lt;p>GitLab CI/CD：也是當初在御諾（發現在御諾真的沒啥事情要忙，都在學這些有的沒有的東西= =）看到同事每次上板都要自己手動去Deployment，覺得實在是太累了，所以把這個東西學起來，結果還沒等到我去做CI/CD我就離職了，自己從小就對這種自動化的內容非常有興趣，最早原本是想學Jenkins的，結果Jenkins弄一弄發現也太難了= = 退而求其次跑去學GitLab CI/CD &lt;a class="link" href="https://hoxtonhsu.com/p/gitlab-ci/cd%e7%ad%86%e8%a8%98/" target="_blank" rel="noopener"
+>GitLab-CI/CD筆記&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Store Procedure：這個是有一次在御諾，同事需要到客戶那邊Create Table的時候學的，但好像也只用過那次，到後面幾乎都沒啥用到了，更常用的是Java排程或者是其他的定時工具(&lt;a class="link" href="https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" target="_blank" rel="noopener"
 >Xxl-Job 分布式任務調度中心學習筆記&lt;/a>)來做，畢竟預存程序這個東西要debug有點困難&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Zabbix：一個主從式的系統監控，也是在御諾那邊學的，記得當時勇哥(御諾的老闆)，希望說不要裝任何東西就能夠監控客戶的電腦，時至今日依然覺得這個想法真的是太Amazing了，後來極力勸說之下，終於同意我去研究Zabbix&lt;/p>
+&lt;p>Zabbix：一個主從式的系統監控，也是在御諾那邊學的，記得當時勇哥(御諾的老闆)，希望說不要裝任何東西就能夠監控客戶的電腦，時至今日依然覺得這個想法真的是太Amazing了，後來極力勸說之下，終於同意我去研究Zabbix，後來有為了Zabbix寫了一個Library&lt;a class="link" href="https://github.com/Hoxton019030/Zabbix-Sender" target="_blank" rel="noopener"
+>Zabbix-Sender&lt;/a>，當時很認真的投到Maven Repo中，結果自己太懶就沒動力了。&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>MyBatis：當初為了轉職換工作所學習的ORM框架，我從原本排斥到現在覺得這東西真的是太好用了&lt;/p>
+&lt;p>MyBatis：當初為了轉職換工作所學習的ORM框架，我從原本排斥到現在覺得這東西真的是太好用了，以前看MyBatis會覺得很麻煩，要自己寫SQL，現在反而是看Hibernate，覺得不能自己寫SQL也太可怕。&lt;/p>
 &lt;p>&lt;img src="https://media.tenor.com/bc9zWYrgwKYAAAAC/%E7%9C%9F%E9%A6%99-wangjingze.gif"
 loading="lazy"
 alt="img"
 >&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Mac：2023年度最盤的行為大概就是自費買了一台Mac電腦，用到現在依然覺得很難用^_^，所以為了它學了很多東西，寫了很多篇文章，因此歸類在技術類&lt;/p>
+&lt;p>Mac：2023年度最盤的行為大概就是自費買了一台Mac電腦，用到現在依然覺得很難用^_^，所以為了它學了很多東西，寫了很多篇文章，因此歸類在技術類 可參照：&lt;a class="link" href="https://hoxtonhsu.com/p/%e5%a6%82%e4%bd%95%e8%ae%93mac%e7%9a%84%e4%bd%bf%e7%94%a8%e9%ab%94%e9%a9%97%e6%9b%b4%e5%8a%a0%e7%b5%b2%e6%bb%91%e6%88%91%e7%9a%84mac%e5%af%a6%e7%94%a8%e6%8f%92%e4%bb%b6%e4%bb%8b%e7%b4%b9/" target="_blank" rel="noopener"
+>如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Maven：原本在資策會的時候覺得Maven就只是個管Jar包的，後來工作之後才發現是我格局小了，原來Maven有很多用處，包括現在依然在學習Maven的一些內容&lt;/p>
+&lt;p>Maven：原本在資策會的時候覺得Maven就只是個管Jar包的，後來工作之後才發現是我格局小了，原來Maven有很多用處，包括現在依然在學習Maven的一些內容，前陣子在開發Side Project要用多模組時也因為不熟Maven 出了一堆問題 &lt;a class="link" href="https://hoxtonhsu.com/p/maven%e8%a9%b3%e7%b4%b0%e7%a0%94%e7%a9%b6/" target="_blank" rel="noopener"
+>Maven詳細研究&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Selenium：當時在多奇當QA當的不是很開心，自己實在對QA的工作沒啥興趣，所以跑去學了一下Selenium，想說工作上可以用到，結果也沒用到，後來被我拿來做104跟CakeResume的爬蟲&lt;/p>
+&lt;p>Selenium：當時在多奇當QA當的不是很開心，自己實在對QA的工作沒啥興趣，所以跑去學了一下Selenium，想說工作上可以用到，結果也沒用到，後來被我拿來做104跟CakeResume的爬蟲^_^&lt;a class="link" href="https://hoxtonhsu.com/p/selenium%e5%ad%b8%e7%bf%92%e7%ad%86%e8%a8%98-%e4%bb%a5104%e4%ba%ba%e5%8a%9b%e9%8a%80%e8%a1%8c%e7%82%ba%e4%be%8b/" target="_blank" rel="noopener"
+>Selenium學習筆記-以104人力銀行為例&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Redis：加入新公司後學到的，原本就有興趣想要學這個技術，學了之後發現還蠻簡單的，但對於Cache的時機還是不太熟，之後的Side Project我也想要用這門技術試看看&lt;/p>
+&lt;p>Redis：加入新公司後學到的，原本就有興趣想要學這個技術，學了之後發現還蠻簡單的，但對於Cache的時機還是不太熟，之後的Side Project我也想要用這門技術試看看&lt;a class="link" href="https://hoxtonhsu.com/p/redis%e5%ad%b8%e7%bf%92%e7%ad%86%e8%a8%98/" target="_blank" rel="noopener"
+>Redis學習筆記&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>RabbitMQ：其實不能說學，應該說有碰過，大概知道是啥，但距離「學會」還有一段路要走&lt;/p>
+&lt;p>RabbitMQ：其實不能說學，應該說有碰過，大概知道是啥，但距離「學會」還有一段路要走 &lt;a class="link" href="https://hoxtonhsu.com/p/rabbitmq%e5%ad%b8%e7%bf%92%e7%ad%86%e8%a8%98/" target="_blank" rel="noopener"
+>RabbitMQ學習筆記&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Vue：學沒幾天就跑去打魔物獵人了= =&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Xxl-job：非常好用的一個分布式任務調度，概念就像是SpringBoot中的排程器，但是更猛更強大，讓我再次感嘆祖國的紅太陽的偉大，中國人實在是太牛啦！&lt;/p>
+&lt;p>Xxl-job：非常好用的一個分布式任務調度，概念就像是SpringBoot中的排程器，但是更猛更強大，讓我再次感嘆祖國的紅太陽的偉大，中國人實在是太牛啦！&lt;a class="link" href="https://hoxtonhsu.com/p/xxl-job-%e5%88%86%e5%b8%83%e5%bc%8f%e4%bb%bb%e5%8b%99%e8%aa%bf%e5%ba%a6%e4%b8%ad%e5%bf%83%e5%ad%b8%e7%bf%92%e7%ad%86%e8%a8%98/" target="_blank" rel="noopener"
+>Xxl-Job 分布式任務調度中心學習筆記&lt;/a>&lt;/p>
 &lt;p>&lt;img src="https://media.tenor.com/GqQfwreRCAAAAAAC/ccp-wumao.gif"
 loading="lazy"
 alt="img"
 >&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Elastic Search：也是一個碰過但沒學透的東西，前陣子公司因為ES資料太多然後爆炸了，有機會再繼續研究這塊，感覺是個很棒的技術&lt;/p>
+&lt;p>Elastic Search：也是一個碰過但沒學透的東西，前陣子公司因為ES資料太多然後爆炸了，有機會再繼續研究這塊，感覺是個很棒的技術 &lt;a class="link" href="https://hoxtonhsu.com/p/elasticsearch%e5%ad%b8%e7%bf%92%e7%ad%86%e8%a8%98/" target="_blank" rel="noopener"
+>ElasticSearch學習筆記&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Django：為了side project跑去學的，結果也沒學完就鴿了 = =&lt;/p>
@@ -94,17 +102,21 @@ alt="img"
 &lt;/ul>
 &lt;h2 id="技術相關-1">技術相關&lt;/h2>
 &lt;ol>
-&lt;li>Vue：為了做side project&lt;/li>
-&lt;li>微服務相關&lt;/li>
-&lt;li>Elastic Search&lt;/li>
-&lt;li>MongoDB&lt;/li>
-&lt;li>Github Action&lt;/li>
-&lt;li>完成Side Project&lt;/li>
-&lt;li>Rabbit MQ&lt;/li>
+&lt;li>Vue：為了做side project，也為了自己，不求能夠達到工作的水準，但至少要能夠做一些基本的開發，有時候想做一些有的沒的的東西&lt;/li>
+&lt;li>微服務相關：嘴巴上一直說想學，但一直沒碰= = ，想看一下SpringCloud、AlibabaCloud、Dubbo等等之類跟微服務相關的技術吧，都工作快兩年了，該碰看看了&lt;/li>
+&lt;li>Elastic Search：一個很酷的東西，目前還不知道他跟SQL具體差在哪裡，為什麼要用它？對於他的分片、分組機制都沒到很熟。&lt;/li>
+&lt;li>MongoDB：也是新公司有用到，但我完全沒碰過的東西= = 完全沒概念是啥&lt;/li>
+&lt;li>Github Action：就Github的CICD，我blog目前的發佈就是靠Github Action去啟動的&lt;/li>
+&lt;li>完成Side Project：沒啥好說的，就是&lt;a class="link" href="https://hoxtonhsu.com/p/sideproject%e9%96%8b%e7%99%bc1-%e5%8f%b0%e8%82%a1%e7%9b%a3%e6%8e%a7web/" target="_blank" rel="noopener"
+>SideProject開發(1)-台股監控Web&lt;/a>這個不知道我多久沒動的Side Project，因為前鎮子遭遇技術上的困難，等我考完試之後再來繼續完成這一部分。&lt;/li>
+&lt;li>Rabbit MQ：不熟的一個東西，但也是去學習&lt;/li>
 &lt;/ol>
 &lt;p>會想要做一個結合&lt;/p>
-&lt;p>SpringBoot + Vue + Redis + RabbitMQ + Elastic Search 的專案&lt;/p>
-&lt;p>來看看今年最後結尾會做得怎樣，GoGo&lt;/p></description></item><item><title>如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 31 Aug 2023 10:19:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/ezUyxYS.png" alt="Featured image of post 如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>SpringBoot + Vue + Redis + RabbitMQ + Elastic Search 的專案吧，&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/0wJdVZH.gif"
+loading="lazy"
+alt="brrr-so-cold-gif"
+>&lt;/p></description></item><item><title>如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 31 Aug 2023 10:19:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/ezUyxYS.png" alt="Featured image of post 如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前陣子精蟲衝腦購買了Macbook，使用起來可以說是痛苦並痛苦的感覺。但在這段期間的摸索中，我確實有感受到Macbook系統某方面的好處(其實根本沒有)，也試著去將macbook調教成喜歡的模樣(其實就是windows的樣子)，以下是一些我認為必裝，不裝則根本沒辦法用的插件，有些是要付費的，但價格大約落在300之間，我認為是值得的。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/pon5NsB.gif"
 loading="lazy"
