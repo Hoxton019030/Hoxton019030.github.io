@@ -181,27 +181,7 @@ alt="image-20240304123856462"
 &lt;h1 id="使用sdkman安裝java-maven">使用SDKMAN安裝JAVA Maven&lt;/h1>
 &lt;h1 id="來源">來源&lt;/h1>
 &lt;p>&lt;a href="https://www.jianshu.com/p/ddce36a50720">https://www.jianshu.com/p/ddce36a50720&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://blog.miniasp.com/post/2022/09/17/Useful-tool-SDKMAN">https://blog.miniasp.com/post/2022/09/17/Useful-tool-SDKMAN&lt;/a>&lt;/p></description></item><item><title>109 Zookeeper學習筆記</title><link>https://hoxtonhsu.com/p/109-zookeeper%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 25 Feb 2024 10:55:30 +0800</pubDate><guid>https://hoxtonhsu.com/p/109-zookeeper%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/KSSUs99.png" alt="Featured image of post 109 Zookeeper學習筆記" />&lt;h1 id="學習來源">學習來源&lt;/h1>
-&lt;p>&lt;a href="https://www.bilibili.com/video/BV1ns411c7jV/?p=6&amp;amp;spm_id_from=pageDriver&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1ns411c7jV/?p=6&amp;amp;spm_id_from=pageDriver&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p>
-&lt;h1 id="安裝">安裝&lt;/h1>
-&lt;p>&lt;a href="https://archive.apache.org/dist/zookeeper/zookeeper-3.4.13/">https://archive.apache.org/dist/zookeeper/zookeeper-3.4.13/&lt;/a>&lt;/p>
-&lt;p>下載完後解壓縮，先將 conf 底下的 zoo_sample.cfg複製一份，並重命名 zoo.cfg&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/HxmMUvS.png"
-loading="lazy"
-alt="image-20240225110553242"
->&lt;/p>
-&lt;p>接著將 zoo.cfg 中的 dataDir的值修改成這樣&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/QiNpX8E.png"
-loading="lazy"
-alt="image-20240225110751834"
->&lt;/p>
-&lt;p>&lt;img src="https://hoxtonhsu.com/Users/hoxtonashes/Library/Containers/cn.better365.iShotPro/Data/tmp/iShot_2024-02-25_11.37.49.gif"
-loading="lazy"
-alt="iShot_2024-02-25_11.37.49"
->&lt;/p></description></item><item><title>Dubbo學習筆記</title><link>https://hoxtonhsu.com/p/dubbo%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 07 Feb 2024 15:00:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/dubbo%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1MgicUX.png" alt="Featured image of post Dubbo學習筆記" />&lt;p>學習資料&lt;/p>
-&lt;p>&lt;a href="https://www.bilibili.com/video/BV1ns411c7jV/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1ns411c7jV/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.bilibili.com/video/BV1kS4y1B7gf/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1kS4y1B7gf/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p>
-&lt;h1 id="dubbo想解決什麼問題">Dubbo想解決什麼問題？&lt;/h1></description></item><item><title>技術回顧以及2024學習目標</title><link>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</link><pubDate>Thu, 11 Jan 2024 21:57:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/kFNcWip.jpg" alt="Featured image of post 技術回顧以及2024學習目標" />&lt;h1 id="brief">Brief&lt;/h1>
+&lt;p>&lt;a href="https://blog.miniasp.com/post/2022/09/17/Useful-tool-SDKMAN">https://blog.miniasp.com/post/2022/09/17/Useful-tool-SDKMAN&lt;/a>&lt;/p></description></item><item><title>技術回顧以及2024學習目標</title><link>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</link><pubDate>Thu, 11 Jan 2024 21:57:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/kFNcWip.jpg" alt="Featured image of post 技術回顧以及2024學習目標" />&lt;h1 id="brief">Brief&lt;/h1>
 &lt;p>2023算是我正式轉職的第一年吧， 這段期間換了好幾份工作，也學到了很多技術，打算彙整一下這段時間學習到的技術並描繪一下2024的學習路線圖&lt;/p>
 &lt;h1 id="2023回顧">2023回顧&lt;/h1>
 &lt;h2 id="研究所相關">研究所相關&lt;/h2>
