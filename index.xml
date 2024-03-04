@@ -1,4 +1,147 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 04 Mar 2024 12:03:14 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>108SDKMAN教學</title><link>https://hoxtonhsu.com/p/108sdkman%E6%95%99%E5%AD%B8/</link><pubDate>Mon, 04 Mar 2024 12:03:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/108sdkman%E6%95%99%E5%AD%B8/</guid><description/></item><item><title>Dubbo學習筆記</title><link>https://hoxtonhsu.com/p/dubbo%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 07 Feb 2024 15:00:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/dubbo%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1MgicUX.png" alt="Featured image of post Dubbo學習筆記" />&lt;h1 id="dubbo想解決什麼問題">Dubbo想解決什麼問題？&lt;/h1></description></item><item><title>技術回顧以及2024學習目標</title><link>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</link><pubDate>Thu, 11 Jan 2024 21:57:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/kFNcWip.jpg" alt="Featured image of post 技術回顧以及2024學習目標" />&lt;h1 id="brief">Brief&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 04 Mar 2024 12:03:14 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>DKMAN教學</title><link>https://hoxtonhsu.com/p/dkman%E6%95%99%E5%AD%B8/</link><pubDate>Mon, 04 Mar 2024 12:03:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/dkman%E6%95%99%E5%AD%B8/</guid><description>&lt;img src="https://i.imgur.com/2sYLJmc.png" alt="Featured image of post DKMAN教學" />&lt;p>第一次認識SDKMAN是那時候在多奇，一個叫Sam的同事，那時候問他怎麼設置環境的，他說他都用SDKMAN，只見他雙手在鍵盤上來來回回，各種JAVA版本就已經安裝好，設置Path也不用到什麼./bash、系統變數裡面去設定，因此自己就默默記下這個好用的工具了，今天終於有機會可以來學習他。&lt;/p>
+&lt;h1 id="安裝">安裝&lt;/h1>
+&lt;p>在MAC、Linux環境的安裝會比較簡單一點，這邊先介紹Window的安裝&lt;/p>
+&lt;h2 id="windows安裝">Windows安裝&lt;/h2>
+&lt;p>這個東西要在一個Linux環境下運行，比如說WLS、cygwin之類的，或者是安裝Git時會自動幫我們安裝的git bash&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/cdgrYIN.png"
+loading="lazy"
+alt="image-20240304121909905"
+>&lt;/p>
+&lt;p>這邊就預設各位已經有安裝了，畢竟連Git都沒安裝，想必也不會點進這篇文章的^_^&lt;/p>
+&lt;p>在bash中輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">curl -s &lt;span class="s2">&amp;#34;https://get.sdkman.io&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> bash
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>有可能會出現&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">Please install zip on your system using your favourite package manager.
+Restart after installing zip.
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這時候請到&lt;/p>
+&lt;p>&lt;a href="https://sourceforge.net/projects/gnuwin32/files/zip/3.0/">https://sourceforge.net/projects/gnuwin32/files/zip/3.0/&lt;/a>&lt;/p>
+&lt;p>這個網站，下載它的zip-3.0-bin.zip&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DTCe701.png"
+loading="lazy"
+alt="image-20240304122346500"
+>&lt;/p>
+&lt;p>然後把它丟到你的Git/mingw64/bin 就可以了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vJ0uYGq.png"
+loading="lazy"
+alt="image-20240304122419458"
+>&lt;/p>
+&lt;p>接著再重新安裝一次&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">curl -s &lt;span class="s2">&amp;#34;https://get.sdkman.io&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> bash
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>把sdkman加到Path中&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">source &lt;span class="s2">&amp;#34;$HOME/.sdkman/bin/sdkman-init.sh&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣就可以了！&lt;/p>
+&lt;p>此時我們可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">sdk version
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看目前sdkman的版本&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/NSastkE.png"
+loading="lazy"
+alt="image-20240304122921826"
+>&lt;/p>
+&lt;p>切記切記&lt;/p>
+&lt;p>SDKMAN只能運行在Linux環境，所以你要用SDKMAN就一定要用Bash&lt;/p>
+&lt;h1 id="sdkman常用指令">SDKMAN常用指令&lt;/h1>
+&lt;h2 id="常看幫助">常看幫助&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">sdk help
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="查看java有啥">查看Java有啥&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">sdk ls java
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/I7k462c.png"
+loading="lazy"
+alt="image-20240304124006396"
+>&lt;/p>
+&lt;h2 id="安裝java">安裝Java&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">sdk install java 17.0.10-zulu
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/k2PEojE.png"
+loading="lazy"
+alt="image-20240304124856210"
+>&lt;/p>
+&lt;h2 id="查看maven有啥">查看Maven有啥&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">sdk ls maven
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/urv0YCi.png"
+loading="lazy"
+alt="image-20240304123539833"
+>&lt;/p>
+&lt;h2 id="安裝maven">安裝Maven&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-cmd" data-lang="cmd">sdk install maven 3.9.6
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/RvGIGq4.png"
+loading="lazy"
+alt="image-20240304123856462"
+>&lt;/p>
+&lt;h1 id="使用sdkman安裝java-maven">使用SDKMAN安裝JAVA Maven&lt;/h1>
+&lt;h1 id="來源">來源&lt;/h1>
+&lt;p>&lt;a href="https://www.jianshu.com/p/ddce36a50720">https://www.jianshu.com/p/ddce36a50720&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://blog.miniasp.com/post/2022/09/17/Useful-tool-SDKMAN">https://blog.miniasp.com/post/2022/09/17/Useful-tool-SDKMAN&lt;/a>&lt;/p></description></item><item><title>Dubbo學習筆記</title><link>https://hoxtonhsu.com/p/dubbo%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 07 Feb 2024 15:00:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/dubbo%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1MgicUX.png" alt="Featured image of post Dubbo學習筆記" />&lt;h1 id="dubbo想解決什麼問題">Dubbo想解決什麼問題？&lt;/h1></description></item><item><title>技術回顧以及2024學習目標</title><link>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</link><pubDate>Thu, 11 Jan 2024 21:57:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%8A%80%E8%A1%93%E5%9B%9E%E9%A1%A7%E4%BB%A5%E5%8F%8A2024%E5%AD%B8%E7%BF%92%E7%9B%AE%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/kFNcWip.jpg" alt="Featured image of post 技術回顧以及2024學習目標" />&lt;h1 id="brief">Brief&lt;/h1>
 &lt;p>2023算是我正式轉職的第一年吧， 這段期間換了好幾份工作，也學到了很多技術，打算彙整一下這段時間學習到的技術並描繪一下2024的學習路線圖&lt;/p>
 &lt;h1 id="2023回顧">2023回顧&lt;/h1>
 &lt;h2 id="研究所相關">研究所相關&lt;/h2>
