@@ -1,10 +1,73 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 22 Mar 2024 05:27:09 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>矯正日記&lt;ㄧ></title><link>https://hoxtonhsu.com/p/%E7%9F%AF%E6%AD%A3%E6%97%A5%E8%A8%98%E3%84%A7/</link><pubDate>Fri, 22 Mar 2024 05:27:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%9F%AF%E6%AD%A3%E6%97%A5%E8%A8%98%E3%84%A7/</guid><description>&lt;img src="https://i.imgur.com/Em59IXr.png" alt="Featured image of post 矯正日記&lt;ㄧ>" />&lt;p>&lt;img src="https://i.imgur.com/lANoUxr.png"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 06 Apr 2024 03:03:13 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>115 MySql中的explain之說明</title><link>https://hoxtonhsu.com/p/115-mysql%E4%B8%AD%E7%9A%84explain%E4%B9%8B%E8%AA%AA%E6%98%8E/</link><pubDate>Sat, 06 Apr 2024 03:03:13 +0800</pubDate><guid>https://hoxtonhsu.com/p/115-mysql%E4%B8%AD%E7%9A%84explain%E4%B9%8B%E8%AA%AA%E6%98%8E/</guid><description>&lt;img src="https://i.imgur.com/cNCBPDA.png" alt="Featured image of post 115 MySql中的explain之說明" />&lt;h1 id="說明">說明&lt;/h1>
+&lt;p>Explain是MySQL中用來診測執行效能的一個滿好用的工具的，用法大概就是在SQL語句前加上Explain就可以，例如&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">explain&lt;/span> &lt;span class="k">select&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="k">user&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣子，就會跳出許多的欄位&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:left">id&lt;/th>
+&lt;th style="text-align:left">select_type&lt;/th>
+&lt;th style="text-align:left">table&lt;/th>
+&lt;th style="text-align:left">partitions&lt;/th>
+&lt;th style="text-align:left">type&lt;/th>
+&lt;th style="text-align:left">possible_keys&lt;/th>
+&lt;th style="text-align:left">key&lt;/th>
+&lt;th style="text-align:left">key_len&lt;/th>
+&lt;th style="text-align:left">ref&lt;/th>
+&lt;th style="text-align:left">rows&lt;/th>
+&lt;th style="text-align:left">filtered&lt;/th>
+&lt;th style="text-align:left">Extra&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:left">1&lt;/td>
+&lt;td style="text-align:left">SIMPLE&lt;/td>
+&lt;td style="text-align:left">url&lt;/td>
+&lt;td style="text-align:left">null&lt;/td>
+&lt;td style="text-align:left">ALL&lt;/td>
+&lt;td style="text-align:left">null&lt;/td>
+&lt;td style="text-align:left">null&lt;/td>
+&lt;td style="text-align:left">null&lt;/td>
+&lt;td style="text-align:left">null&lt;/td>
+&lt;td style="text-align:left">200&lt;/td>
+&lt;td style="text-align:left">100&lt;/td>
+&lt;td style="text-align:left">null&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>接下來會說明各個欄位代表的意思&lt;/p>
+&lt;p>Id: 代表SQL的執行順序&lt;/p>
+&lt;p>Select_type：有四種可能&lt;/p>
+&lt;ol>
+&lt;li>Simple：簡單查詢&lt;/li>
+&lt;li>Primary：代表是複雜查詢中，最外層的那個Select&lt;/li>
+&lt;li>Subquery：代表的是複雜查詢中裡面的那個Select&lt;/li>
+&lt;li>Derived：派生查詢，代表from後面跟著的查詢語句&lt;/li>
+&lt;/ol>
+&lt;p>Table：查了哪些表&lt;/p>
+&lt;p>Partitions：不太重要&lt;/p>
+&lt;p>Type：最為重要的屬性，代表Sql使用什麼樣的方式去查詢資料庫數據，由好到差分別是&lt;/p>
+&lt;p>System&amp;gt;const&amp;gt;eq_ref&amp;gt;ref&amp;gt;range&amp;gt;index&amp;gt;all&lt;/p>
+&lt;p>如果是Null代表不需要訪問表，可以從索引鍵中找出來&lt;/p>
+&lt;p>&amp;hellip;&lt;/p>
+&lt;p>我的天，我寫到一半發現我的參考資料寫的已經致臻完美了，看參考資料就可以了&lt;/p>
+&lt;h1 id="參考資料">參考資料&lt;/h1>
+&lt;p>&lt;a href="https://blog.csdn.net/bugNoneNull/article/details/107489256">https://blog.csdn.net/bugNoneNull/article/details/107489256&lt;/a>&lt;/p></description></item><item><title>矯正日記&lt;ㄧ></title><link>https://hoxtonhsu.com/p/%E7%9F%AF%E6%AD%A3%E6%97%A5%E8%A8%98%E3%84%A7/</link><pubDate>Fri, 22 Mar 2024 05:27:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%9F%AF%E6%AD%A3%E6%97%A5%E8%A8%98%E3%84%A7/</guid><description>&lt;img src="https://i.imgur.com/Em59IXr.png" alt="Featured image of post 矯正日記&lt;ㄧ>" />&lt;p>&lt;img src="https://i.imgur.com/lANoUxr.png"
 loading="lazy"
 alt="image-20240322054149931"
 >&lt;/p>
 &lt;p>在2024/3/19號之前如果你問我，我買過最貴的東西是啥，我會跟你說是我那臺垃圾Macbook，但在2024/3/20過後，我買過最貴的東西是牙齒矯正，花了我17萬^_^。&lt;/p>
 &lt;p>拔完了四顆小臼齒，過了兩個禮拜上了上排矯正器，剛上去的感想，大概就是感覺有很多根手指從各個方向一直按著你的牙齒，除此之外沒太大的感覺，原本以為會痛到睡不著的，但實際上不去咬、碰、敲他，是不會自發行疼痛的，但確實不太能咬東西，我看網路上很多人說酸軟，我感覺倒比較像是牙齦發炎的感覺，咬東西就會很痛，所以這幾天我大部分都是靠著麥當勞的玉米濃湯過生活，今天有順便叫了顆蘋果派，壓成一塊一塊的，送到最後一顆牙齒那邊咬，目前感覺沒太大問題= =&lt;/p>
-&lt;p>然後我矯正是在恆美做的，那時候在網路上看，2016年是12萬，但我做要17萬，ㄏ，謝謝你 蔡英文&lt;/p></description></item><item><title>MyBatis快速配置檔</title><link>https://hoxtonhsu.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</link><pubDate>Wed, 13 Mar 2024 00:34:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</guid><description>&lt;img src="https://i.imgur.com/TcbKVGe.jpeg" alt="Featured image of post MyBatis快速配置檔" />&lt;p>每次他媽用MyBatis，都他媽出一些白癡問題，真的不懂他媽一堆公司抱著MyBatis這垃圾到底是要欉三小&lt;/p>
+&lt;p>然後我矯正是在恆美做的，那時候在網路上看，2016年是12萬，但我做要17萬，ㄏ，謝謝你 蔡英文&lt;/p>
+&lt;p>1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890&lt;/p></description></item><item><title>MyBatis快速配置檔</title><link>https://hoxtonhsu.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</link><pubDate>Wed, 13 Mar 2024 00:34:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</guid><description>&lt;img src="https://i.imgur.com/TcbKVGe.jpeg" alt="Featured image of post MyBatis快速配置檔" />&lt;p>每次他媽用MyBatis，都他媽出一些白癡問題，真的不懂他媽一堆公司抱著MyBatis這垃圾到底是要欉三小&lt;/p>
 &lt;h1 id="mybatis相關dependency">MyBatis相關Dependency&lt;/h1>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
