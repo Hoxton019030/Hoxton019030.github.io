@@ -1,4 +1,243 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 13 Mar 2024 00:34:02 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>MyBatis快速配置檔</title><link>https://hoxtonhsu.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</link><pubDate>Wed, 13 Mar 2024 00:34:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</guid><description>&lt;img src="https://i.imgur.com/TcbKVGe.jpeg" alt="Featured image of post MyBatis快速配置檔" />&lt;p>每次他媽用MyBatis，都他媽出一些白癡問題，真的不懂他媽一堆公司抱著MyBatis這垃圾到底是要欉三小&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 26 Apr 2024 18:20:02 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>應用codegpt快速產生commit</title><link>https://hoxtonhsu.com/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/</link><pubDate>Fri, 26 Apr 2024 18:20:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/</guid><description>&lt;img src="https://i.imgur.com/o0SuW5w.png" alt="Featured image of post 應用codegpt快速產生commit" />&lt;p>在新的公司裡面，對於commit 還有分支其實是沒啥規範的，如果我資策會剛畢業，應該會覺得這家公司沒有規範，但我現在會覺得不規範可能也是好事，畢竟我實際去工作時，真的會去翻commit 的次數少之又少。&lt;/p>
+&lt;p>但時間久了發現這樣也有些問題，比如說我會有很多commit 是&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">log
+log
+log
+log 看看問題
+看看變數是啥
+log
+log
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這種基本上沒啥用的資訊，我看了也會有點不好意思，再加上之前有同事問我這段code改了什麼，結果我只有寫一個「錯誤修正」就commit出去了，當下還是有點難堪的。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/BLn1yx2.gif"
+loading="lazy"
+alt="the-simpsons-homer-gif"
+>&lt;/p>
+&lt;p>後來曾經有段時間想要認真把commit 內容寫一下，但有時候又沒什麼好靈感，不知道寫什麼，心裡就想著&lt;/p>
+&lt;p>「ChatGPT這麼屌，怎麼不讓他來幫我寫 commit 」&lt;/p>
+&lt;p>無獨有偶，網路上就有一位大神寫了個lib，可以用來產生git commit 的內容&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.wu-boy.com/2023/03/writes-git-commit-messages-using-chatgpt/" target="_blank" rel="noopener"
+>用 ChatGPT 自動幫開發者產生 Commit Message&lt;/a>&lt;/p>
+&lt;h1 id="安裝">安裝&lt;/h1>
+&lt;p>安裝方式在&lt;a class="link" href="https://github.com/appleboy/CodeGPT" target="_blank" rel="noopener"
+>GIthub&lt;/a>的README中有連結&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">brew tap appleboy/tap
+brew install codegpt
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>安裝好後可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">codegpt version
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來查看版本&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/n51h13U.png"
+loading="lazy"
+alt="image-20240426213306426"
+>&lt;/p>
+&lt;h1 id="設定">設定&lt;/h1>
+&lt;p>Codegpt 安裝完後需要設定一些參數，比如說openAI的token，這部分就需要花新台幣購買，我是買5鎂的token來用，目前用了快一個月，大概消耗0.2鎂而已，相當划算&lt;/p>
+&lt;p>&lt;a href="https://platform.openai.com/settings/organization/general">https://platform.openai.com/settings/organization/general&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/pRZlvPw.png"
+loading="lazy"
+alt="image-20240426213658147"
+>&lt;/p>
+&lt;h2 id="設定api-key">設定api key&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">codegpt config &lt;span class="nb">set&lt;/span> openai.provider &lt;span class="s2">&amp;#34;openai&amp;#34;&lt;/span>
+codegpt config &lt;span class="nb">set&lt;/span> openai.api_key &lt;span class="s2">&amp;#34;sk-xxxxxxx&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然後還有一些設定，可以在&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim &lt;span class="nv">$HOME&lt;/span>/.config/codegpt/.codegpt.yaml
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>中設定，比如說&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/pZQ2kKX.png"
+loading="lazy"
+alt="image-20240426214346850"
+>&lt;/p>
+&lt;h2 id="設定commit-語言">設定commit 語言&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">codegpt config &lt;span class="nb">set&lt;/span> output.lang &lt;span class="s2">&amp;#34;zh-tw&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="設定git_diff的行數">設定git_diff的行數&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">codegpt commit --preview --diff_unified &lt;span class="m">1&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這參數會決定codegpt會幫你產生的comit訊息的準確度，像藍色的部分就是抓5行的code，所以可能會包括你沒寫的內容，而選擇1的話就是紅色的部分，會產生較為精準的commit (參照before &amp;amp; after)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/NO9biLl.png"
+loading="lazy"
+alt="image-20240426215222422"
+>&lt;/p>
+&lt;h2 id="使用">使用&lt;/h2>
+&lt;p>使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">codegpt commit
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>自動產生commit訊息&lt;/p>
+&lt;p>或是輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">codegpt commit --preview
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來預覽&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/01iW3Ac.gif"
+loading="lazy"
+alt="iShot_2024-04-26_22.00.00"
+>&lt;/p>
+&lt;p>當然也可以透過git hook來使用&lt;/p>
+&lt;h1 id="使用githook">使用GitHook&lt;/h1>
+&lt;p>輸入安裝&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">codegpt hook install
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>輸入解除安裝&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">codegpt hook uninstall
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這個指令會在你專案的 .git/hooks底下產生一個 prepare-commit-msg&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/gQHbiqd.png"
+loading="lazy"
+alt="image-20240426221843383"
+>&lt;/p>
+&lt;p>內容如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">codegpt commit --file &lt;span class="nv">$1&lt;/span> --preview
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如此一來，我們每次輸入&lt;/p>
+&lt;p>git commit 時，就會自動呼叫codegpt幫我們產生commit 了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/zYIsxuB.gif"
+loading="lazy"
+alt="iShot_2024-04-26_22.17.51"
+>&lt;/p>
+&lt;p>但這其實有個問題，prepare-commit-msg這個hook，會在所有執行git commit的操作後執行，當然也包刮pull跟merge，像這些時候我們是不需要調用codegpt 的功能的，但我研究了一下git hook發現沒有這個功能，經過了幾天的研究，發現要滿足我的需求只能透過bash alias，詳見下篇&lt;/p>
+&lt;ol>
+&lt;li>當我需要時才調用codegpt commit，我也要保留 git commit 的功能&lt;/li>
+&lt;li>merge跟pull時都不要調用codegpt&lt;/li>
+&lt;li>我要能夠編輯codegpt 的commit內容，不能直接幫我儲存&lt;/li>
+&lt;/ol>
+&lt;h1 id="將codegpt-做成alias-快速執行">將codegpt 做成alias 快速執行&lt;/h1>
+&lt;p>編輯 bashrc&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">vim ~/.bash_profile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>將這段複製上去&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-tex" data-lang="tex">alias auto-commit=&amp;#39;codegpt commit &lt;span class="nb">&amp;amp;&amp;amp;&lt;/span> git commit --amend&amp;#39;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/sXRZzAV.png"
+loading="lazy"
+alt="image-20240426222405688"
+>&lt;/p>
+&lt;p>然後儲存，回到terminal中重新刷新&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">source&lt;/span> ~/.bash_profile
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如此一來當&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git add .
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>後，就能夠輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">auto-commit
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>來執行codegpt了喔&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/oV2UgVb.gif"
+loading="lazy"
+alt="iShot_2024-04-26_18.32.34"
+>&lt;/p></description></item><item><title>MyBatis快速配置檔</title><link>https://hoxtonhsu.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</link><pubDate>Wed, 13 Mar 2024 00:34:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</guid><description>&lt;img src="https://i.imgur.com/TcbKVGe.jpeg" alt="Featured image of post MyBatis快速配置檔" />&lt;p>每次他媽用MyBatis，都他媽出一些白癡問題，真的不懂他媽一堆公司抱著MyBatis這垃圾到底是要欉三小&lt;/p>
 &lt;h1 id="mybatis相關dependency">MyBatis相關Dependency&lt;/h1>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
