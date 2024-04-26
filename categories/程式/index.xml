@@ -112,7 +112,7 @@ alt="image-20240426214346850"
 loading="lazy"
 alt="image-20240426215222422"
 >&lt;/p>
-&lt;h2 id="使用">使用&lt;/h2>
+&lt;h1 id="使用">使用&lt;/h1>
 &lt;p>使用&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -138,7 +138,7 @@ loading="lazy"
 alt="iShot_2024-04-26_22.00.00"
 >&lt;/p>
 &lt;p>當然也可以透過git hook來使用&lt;/p>
-&lt;h1 id="使用githook">使用GitHook&lt;/h1>
+&lt;h1 id="使用githook不推薦">使用GitHook(不推薦)&lt;/h1>
 &lt;p>輸入安裝&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -183,7 +183,7 @@ alt="iShot_2024-04-26_22.17.51"
 &lt;li>merge跟pull時都不要調用codegpt&lt;/li>
 &lt;li>我要能夠編輯codegpt 的commit內容，不能直接幫我儲存&lt;/li>
 &lt;/ol>
-&lt;h1 id="將codegpt-做成alias-快速執行">將codegpt 做成alias 快速執行&lt;/h1>
+&lt;h1 id="將codegpt-做成alias-快速執行推薦">將codegpt 做成alias 快速執行(推薦)&lt;/h1>
 &lt;p>編輯 bashrc&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
