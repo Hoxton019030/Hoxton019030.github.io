@@ -1090,6 +1090,7 @@ alt="image-20231029172152420"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>就可以啟動Kibana，並且訪問對應的頁面&lt;/p>
+&lt;p>URL : http://localhost:5601/app/home#/&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/YBqa8X9.png"
 loading="lazy"
 alt="image-20231029185814041"
@@ -1114,6 +1115,7 @@ loading="lazy"
 alt="image-20231029190020589"
 >&lt;/p>
 &lt;h1 id="如何使用kibana">如何使用Kibana&lt;/h1>
+&lt;p>URL : http://localhost:5601/app/home#/&lt;/p>
 &lt;p>進入Kibana後點選這邊&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/lgRRUhm.png"
 loading="lazy"
