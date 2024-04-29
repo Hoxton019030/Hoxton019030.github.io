@@ -1,4 +1,103 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 26 Apr 2024 18:20:02 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>應用codegpt快速產生commit</title><link>https://hoxtonhsu.com/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/</link><pubDate>Fri, 26 Apr 2024 18:20:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/</guid><description>&lt;img src="https://i.imgur.com/o0SuW5w.png" alt="Featured image of post 應用codegpt快速產生commit" />&lt;p>在新的公司裡面，對於commit 還有分支其實是沒啥規範的，如果我資策會剛畢業，應該會覺得這家公司沒有規範，但我現在會覺得不規範可能也是好事，畢竟我實際去工作時，真的會去翻commit 的次數少之又少。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 29 Apr 2024 18:00:50 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>118 SpringBoot整合ElasticSearch</title><link>https://hoxtonhsu.com/p/118-springboot%E6%95%B4%E5%90%88elasticsearch/</link><pubDate>Mon, 29 Apr 2024 18:00:50 +0800</pubDate><guid>https://hoxtonhsu.com/p/118-springboot%E6%95%B4%E5%90%88elasticsearch/</guid><description>&lt;p>​&lt;/p>
+&lt;p>延續上一篇&lt;/p>
+&lt;p>本文會用到的連結&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=g6AmXGI0RpQ&amp;amp;pp=ygUVU3ByaW5nIEVsYXN0aWMgc2VhcmNo" target="_blank" rel="noopener"
+>How to Integrate Elastic Search With Spring Boot CRUD Project| Spring Boot | Elasticsearch| EnggAdda&lt;/a>&lt;/p>
+&lt;p>這東西的坑真的很多&lt;/p>
+&lt;p>springBoot Elastic Search 還有相關的套件版本必須一致&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/nFUZYlM.gif"
+loading="lazy"
+alt="shit-leslie-jordan-gif"
+>&lt;/p>
+&lt;h1 id="版本設置與maven">版本設置與Maven&lt;/h1>
+&lt;h2 id="elastic-search--kibana-版本">Elastic Search &amp;amp; Kibana 版本&lt;/h2>
+&lt;p>我個人使用的設置如下&lt;/p>
+&lt;p>Elastic Search: 8.13.2&lt;/p>
+&lt;p>Kibana:8.13.2&lt;/p>
+&lt;h2 id="maven">Maven&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml"> &lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>org.elasticsearch.client&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>elasticsearch-rest-high-level-client&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>7.4.0&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;exclusions&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;exclusion&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>log4j-api&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>org.apache.logging.log4j&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/exclusion&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/exclusions&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="sprignboot版本">SprignBoot版本&lt;/h2>
+&lt;p>SpringBoot:3.2.5&lt;/p>
+&lt;p>SpringBoot與Elastic連線設定&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.apache.http.HttpHost&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.elasticsearch.client.RestClient&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.elasticsearch.client.RestHighLevelClient&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.context.annotation.Bean&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.context.annotation.Configuration&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Configuration&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">ElasticSearchConfig&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">host&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">Integer&lt;/span> &lt;span class="n">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">9200&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 如果@Bean没有指定bean的名称，那么这个bean的名称就是方法名
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="nd">@Bean&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">RestHighLevelClient&lt;/span> &lt;span class="nf">restHighLevelClient&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">RestHighLevelClient&lt;/span>&lt;span class="o">(&lt;/span>
+&lt;span class="n">RestClient&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">builder&lt;/span>&lt;span class="o">(&lt;/span>
+&lt;span class="k">new&lt;/span> &lt;span class="n">HttpHost&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">port&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;http&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">)&lt;/span>
+&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>應用codegpt快速產生commit</title><link>https://hoxtonhsu.com/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/</link><pubDate>Fri, 26 Apr 2024 18:20:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/</guid><description>&lt;img src="https://i.imgur.com/o0SuW5w.png" alt="Featured image of post 應用codegpt快速產生commit" />&lt;p>在新的公司裡面，對於commit 還有分支其實是沒啥規範的，如果我資策會剛畢業，應該會覺得這家公司沒有規範，但我現在會覺得不規範可能也是好事，畢竟我實際去工作時，真的會去翻commit 的次數少之又少。&lt;/p>
 &lt;p>但時間久了發現這樣也有些問題，比如說我會有很多commit 是&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
