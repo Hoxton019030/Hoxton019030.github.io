@@ -1599,12 +1599,12 @@ loading="lazy"
 alt="image-20231031034703949"
 >&lt;/p>
 &lt;h1 id="precision-and-recall">Precision And Recall&lt;/h1>
-&lt;h1 id="hits-匹配到的總數">Hits 匹配到的總數&lt;/h1>
+&lt;h1 id="使用實際資料來練習elastic-search">使用實際資料來練習Elastic Search&lt;/h1>
 &lt;p>&lt;a class="link" href="https://github.com/LisaHJung/Part-2-Understanding-the-relevance-of-your-search-with-Elasticsearch-and-Kibana-" target="_blank" rel="noopener"
 >Part-2-Understanding-the-relevance-of-your-search-with-Elasticsearch-and-Kibana&lt;/a>&lt;/p>
-&lt;p>資料下載連結：&lt;a class="link" href="https://www.kaggle.com/" target="_blank" rel="noopener"
+&lt;p>資料下載連結：&lt;a class="link" href="https://www.kaggle.com/datasets/rmisra/news-category-dataset" target="_blank" rel="noopener"
 >Kaggle&lt;/a>&lt;/p>
-&lt;p>資料大概長這樣，就是一個新聞網站的json資料，l&lt;/p>
+&lt;p>資料大概長這樣，就是一個新聞網站的json資料，&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1663,7 +1663,13 @@ alt="image-20231031034703949"
 &lt;span class="p">]&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="查看有哪些index">查看有哪些index&lt;/h2>
+&lt;/div>&lt;h2 id="匯入資料">匯入資料&lt;/h2>
+&lt;p>index name : news_headlines&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/i2iIByP.png"
+loading="lazy"
+alt="image-20240427155756322"
+>&lt;/p>
+&lt;h2 id="查看有哪些index">查看有哪些index&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1672,7 +1678,11 @@ alt="image-20231031034703949"
 &lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">/_stats/indexing&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="查看index底下有哪些document">查看Index底下有哪些Document&lt;/h2>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/pDBxjKj.png"
+loading="lazy"
+alt="image-20240427155727987"
+>&lt;/p>
+&lt;h2 id="查看index底下有哪些document">查看Index底下有哪些Document&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1682,7 +1692,7 @@ alt="image-20231031034703949"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;blockquote>
-&lt;p>如果數量太多，會顯示預設的10個&lt;/p>
+&lt;p>如果數量太多，會顯示預設的10個，relation也會顯示 gte 代表 great than&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="https://i.imgur.com/vfg5iHS.png"
 loading="lazy"
@@ -1709,7 +1719,7 @@ alt="image-20231101003957441"
 >&lt;/p>
 &lt;h2 id="兩種不同的搜尋-query-aggregation">兩種不同的搜尋 Query Aggregation&lt;/h2>
 &lt;p>Query用來搜尋一些符合特定指標的Document&lt;/p>
-&lt;p>Aggregation是將數據總結為指標、統計數據和其他分析的過程，簡單來講就是類似SQL中的GROUP&lt;/p>
+&lt;p>Aggregation是將數據總結為指標、統計數據和其他分析的過程，更接近分析數據&lt;/p>
 &lt;h3 id="使用query依照關鍵字來做搜尋">使用Query依照關鍵字來做搜尋&lt;/h3>
 &lt;p>match中搭配filedname即可達到搜尋的效果－&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1734,8 +1744,105 @@ alt="image-20231101003957441"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">news_headlines/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;headline&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Khloe Kardashian Kendall Jenner&amp;#34;&lt;/span>
+&lt;span class="p">}}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>值得注意的是，這個不像是SQL的&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">news_headlines&lt;/span> &lt;span class="k">where&lt;/span> &lt;span class="n">headline&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Khloe Kardashian Kendall Jenner&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>而是像這樣&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">news_headlines&lt;/span> &lt;span class="k">where&lt;/span> &lt;span class="n">headline&lt;/span> &lt;span class="k">like&lt;/span> &lt;span class="s1">&amp;#39;%Khloe%&amp;#39;&lt;/span> &lt;span class="k">or&lt;/span> &lt;span class="n">headline&lt;/span> &lt;span class="k">like&lt;/span> &lt;span class="s1">&amp;#39;%Kardashian%&amp;#39;&lt;/span> &lt;span class="k">or&lt;/span> &lt;span class="n">headline&lt;/span> &lt;span class="k">like&lt;/span> &lt;span class="s1">&amp;#39;%Kendall%&amp;#39;&lt;/span> &lt;span class="k">or&lt;/span> &lt;span class="n">headline&lt;/span> &lt;span class="k">like&lt;/span> &lt;span class="s1">&amp;#39;%Jenner%&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/FngNYvN.png"
+loading="lazy"
+alt="image-20240427184337171"
+>&lt;/p>
+&lt;h3 id="使用operator-提升-query精準度">使用operator 提升 Query精準度&lt;/h3>
+&lt;p>如果我們是希望提升精准度，要找出包含 Khloe、Kardashian、Kendall、Jenner的，我們可以在搜尋加上operator&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">GET&lt;/span> &lt;span class="n">news_headlines&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_search&lt;/span>
+&lt;span class="err">{&lt;/span>
+&lt;span class="s2">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">{&lt;/span>&lt;span class="s2">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">{&lt;/span>
+&lt;span class="s2">&amp;#34;headline&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">{&lt;/span>
+&lt;span class="s2">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Khloe Kardashian Kendall Jenner&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;operator&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;AND&amp;#34;&lt;/span>
+&lt;span class="err">}&lt;/span>
+&lt;span class="err">}}&lt;/span>
+&lt;span class="err">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/Ntszmv1.png"
+loading="lazy"
+alt="image-20240427184737362"
+>&lt;/p>
+&lt;h3 id="使用minium_should_match">使用minium_should_match&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">news_headlines/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;headline&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Khloe Kardashian Kendall Jenner&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;minium_should_match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">3&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
 &lt;/div>&lt;h3 id="使用query依照時間來做搜尋">使用Query依照時間來做搜尋&lt;/h3>
 &lt;p>範例：&lt;/p>
+&lt;p>gte : greater than&lt;/p>
+&lt;p>lte : less than&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -2113,7 +2220,7 @@ alt="image-20231101004148376"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="使用aggregation做搜尋">使用Aggregation做搜尋&lt;/h3>
+&lt;/div>&lt;h2 id="使用aggregation做搜尋">使用Aggregation做搜尋&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -2175,7 +2282,13 @@ alt="image-20231101004148376"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/W6NQHtN.png"
+&lt;/div>&lt;p>原始資料&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/0tF0Wr3.png"
+loading="lazy"
+alt="image-20240427161300394"
+>&lt;/p>
+&lt;p>聚合出來的結果&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/W6NQHtN.png"
 loading="lazy"
 alt="image-20231101005948322"
 >&lt;/p>
