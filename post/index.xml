@@ -2817,7 +2817,7 @@ alt="image-20240429234249361"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="使用bool-query來進行搜尋">使用bool query來進行搜尋&lt;/h2>
+&lt;/div>&lt;h2 id="使用bool-query來進行搜尋">使用Bool Query來進行搜尋&lt;/h2>
 &lt;p>TimeCode標好了 &lt;a class="link" href="https://youtu.be/2KgJ6TQPIIA?si=TFZIPuciWgzkTYTA&amp;amp;t=1965" target="_blank" rel="noopener"
 >Beginner’s Crash Course to Elastic Stack - Part 3: Full text queries&lt;/a>&lt;/p>
 &lt;p>文章內容 ：https://github.com/LisaHJung/Part-3-Running-full-text-queries-and-combined-queries-with-Elasticsearch-and-Kibana&lt;/p>
@@ -3072,7 +3072,7 @@ alt="image-20240429234249361"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="bool-mustnot">Bool MustNot&lt;/h2>
+&lt;/div>&lt;h3 id="bool-mustnot">Bool MustNot&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -3100,7 +3100,7 @@ alt="image-20240429234249361"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="bool-多重搜尋match">Bool 多重搜尋(Match)&lt;/h2>
+&lt;/div>&lt;h3 id="bool-多重搜尋match">Bool 多重搜尋(Match)&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
