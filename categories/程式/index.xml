@@ -1140,7 +1140,7 @@ alt="image-20231030222238463"
 &lt;p>本章節參考至&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=gS_nHTWZEJ8&amp;amp;t=1403s&amp;amp;ab_channel=OfficialElasticCommunity" target="_blank" rel="noopener"
 >Beginner&amp;rsquo;s Crash Course to Elastic Stack - Part 1: Intro to Elasticsearch and Kibana&lt;/a>&lt;/p>
-&lt;p>&lt;a class="link" href="https://github.com/LisaHJung/Part-1-Intro-to-Elasticsearch-and-Kibana" target="_blank" rel="noopener"
+&lt;p>文章內容來自：&lt;a class="link" href="https://github.com/LisaHJung/Part-1-Intro-to-Elasticsearch-and-Kibana" target="_blank" rel="noopener"
 >Part-1-Intro-to-Elasticsearch-and-Kibana&lt;/a>&lt;/p>
 &lt;p>編輯一下elastic/congig/elasticsearch.yml的檔案，將這cluster跟node命名如下&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/PJ6ovK5.png"
@@ -1771,7 +1771,7 @@ alt="image-20231101003957441"
 &lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">select&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="k">from&lt;/span> &lt;span class="n">news_headlines&lt;/span> &lt;span class="k">where&lt;/span> &lt;span class="n">headline&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;Khloe Kardashian Kendall Jenner&amp;#39;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>而是像這樣&lt;/p>
+&lt;/div>&lt;p>而是像這樣，match query是一種全文檢索(Fulltext query)&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1946,22 +1946,239 @@ alt="image-20231101004148376"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
+&lt;/div>&lt;h2 id="各種不同的match-語法">各種不同的Match 語法&lt;/h2>
+&lt;h3 id="match_phrase">Match_Phrase&lt;/h3>
+&lt;p>假設我們要找一首歌「Shape of You」，如果只用以下的搜尋，會出現很多不相關的結果，因為Match Quert會把 Shape 、 of 、 You 當成三個不同的詞彙去找，想要避免這樣，就需要使用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">news_headlines/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;headline&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;shape of you&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/njJZa2t.png"
+loading="lazy"
+alt="image-20240429234135693"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">news_headlines/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;match_phrase&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;headline&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;shape of you&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/IVsbi2n.png"
+loading="lazy"
+alt="image-20240429234249361"
+>&lt;/p>
+&lt;h3 id="multi_match">Multi_Match&lt;/h3>
+&lt;p>在不同的Field中搜尋，效果就有點像SQL的&lt;/p>
+&lt;p>Select * from news_headlines where headline like &amp;lsquo;%Michelle Obama%&amp;rsquo; or short_description like &amp;lsquo;%Michelle Obama%&amp;rsquo; or authors like like &amp;lsquo;%Michelle Obama%&amp;rsquo;&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">news_headlines/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;multi_match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Michelle Obama&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;fields&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="s2">&amp;#34;headline&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;short_description&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;authors&amp;#34;&lt;/span>
+&lt;span class="p">]&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但這樣其實有一些問題，我們可能最主要是想找Michelle Obama的文章，但只要short_description裡面有提到Michelle Obama就會被包含進來，我們可能更 Focus 在 headline 的權重上面&lt;/p>
+&lt;h3 id="加權型multi_match">加權型Multi_Match&lt;/h3>
+&lt;p>就是在Field後多加一個次方，就能將 headline 有 Michelle Obama 的結果先列出來了(Per Field Boosting)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">news_headlines/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;multi_match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Michelle Obama&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;fields&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="s2">&amp;#34;headline^2&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;short_description&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;authors&amp;#34;&lt;/span>
+&lt;span class="p">]&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="將multi-match跟match_pharse結合">將Multi-Match跟Match_Pharse結合&lt;/h3>
+&lt;p>集百家之長，結合出來的搜尋&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">news_headlines/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;multi_match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Michelle Obama&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;fields&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="s2">&amp;#34;headline^2&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;short_description&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;authors&amp;#34;&lt;/span>
+&lt;span class="p">],&lt;/span>
+&lt;span class="nt">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;phrase&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
 &lt;/div>&lt;h2 id="使用bool-query來進行搜尋">使用bool query來進行搜尋&lt;/h2>
+&lt;p>TimeCode標好了 &lt;a class="link" href="https://youtu.be/2KgJ6TQPIIA?si=TFZIPuciWgzkTYTA&amp;amp;t=1965" target="_blank" rel="noopener"
+>Beginner’s Crash Course to Elastic Stack - Part 3: Full text queries&lt;/a>&lt;/p>
+&lt;p>文章內容 ：https://github.com/LisaHJung/Part-3-Running-full-text-queries-and-combined-queries-with-Elasticsearch-and-Kibana&lt;/p>
 &lt;p>所謂的bool query其實就是將不同條件整合再一起的一種搜尋，相當於SQL不是會有那種 where id = 1 and status=1的那種where and or語句嗎，bool query就是在做這個部分&lt;/p>
 &lt;p>常見的bool query有以下幾種&lt;/p>
 &lt;ul>
 &lt;li>must：相當於AND 代表一定要有&lt;/li>
 &lt;li>filter：表示過濾條件，類似where的用法&lt;/li>
-&lt;li>should：表示or&lt;/li>
+&lt;li>should：不會影響到搜尋的結果，但會影響到排序，符合的會靠上&lt;/li>
 &lt;li>Must_not：表示不匹配的，相當於NOT&lt;/li>
 &lt;/ul>
-&lt;p>這些bool也會跟基本查詢&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">name_of_index/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;bool&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;must&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="p">{&lt;/span>&lt;span class="err">One&lt;/span> &lt;span class="err">or&lt;/span> &lt;span class="err">more&lt;/span> &lt;span class="err">queries&lt;/span> &lt;span class="err">can&lt;/span> &lt;span class="err">be&lt;/span> &lt;span class="err">specified&lt;/span> &lt;span class="err">here.&lt;/span> &lt;span class="err">A&lt;/span> &lt;span class="err">document&lt;/span> &lt;span class="err">MUST&lt;/span> &lt;span class="err">match&lt;/span> &lt;span class="err">all&lt;/span> &lt;span class="err">of&lt;/span> &lt;span class="err">these&lt;/span> &lt;span class="err">queries&lt;/span> &lt;span class="err">to&lt;/span> &lt;span class="err">be&lt;/span> &lt;span class="err">considered&lt;/span> &lt;span class="err">as&lt;/span> &lt;span class="err">a&lt;/span> &lt;span class="err">hit.&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;span class="p">],&lt;/span>
+&lt;span class="nt">&amp;#34;must_not&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="p">{&lt;/span>&lt;span class="err">A&lt;/span> &lt;span class="err">document&lt;/span> &lt;span class="err">must&lt;/span> &lt;span class="err">NOT&lt;/span> &lt;span class="err">match&lt;/span> &lt;span class="err">any&lt;/span> &lt;span class="err">of&lt;/span> &lt;span class="err">the&lt;/span> &lt;span class="err">queries&lt;/span> &lt;span class="err">specified&lt;/span> &lt;span class="err">here.&lt;/span> &lt;span class="err">It&lt;/span> &lt;span class="err">it&lt;/span> &lt;span class="err">does,&lt;/span> &lt;span class="err">it&lt;/span> &lt;span class="err">is&lt;/span> &lt;span class="err">excluded&lt;/span> &lt;span class="err">from&lt;/span> &lt;span class="err">the&lt;/span> &lt;span class="err">search&lt;/span> &lt;span class="err">results.&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;span class="p">],&lt;/span>
+&lt;span class="nt">&amp;#34;should&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="p">{&lt;/span>&lt;span class="err">A&lt;/span> &lt;span class="err">document&lt;/span> &lt;span class="err">does&lt;/span> &lt;span class="err">not&lt;/span> &lt;span class="err">have&lt;/span> &lt;span class="err">to&lt;/span> &lt;span class="err">match&lt;/span> &lt;span class="err">any&lt;/span> &lt;span class="err">queries&lt;/span> &lt;span class="err">specified&lt;/span> &lt;span class="err">here.&lt;/span> &lt;span class="err">However,&lt;/span> &lt;span class="err">it&lt;/span> &lt;span class="err">if&lt;/span> &lt;span class="err">it&lt;/span> &lt;span class="err">does&lt;/span> &lt;span class="err">match,&lt;/span> &lt;span class="err">this&lt;/span> &lt;span class="err">document&lt;/span> &lt;span class="err">is&lt;/span> &lt;span class="err">given&lt;/span> &lt;span class="err">a&lt;/span> &lt;span class="err">higher&lt;/span> &lt;span class="err">score.&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;span class="p">],&lt;/span>
+&lt;span class="nt">&amp;#34;filter&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="p">{&lt;/span>&lt;span class="err">These&lt;/span> &lt;span class="err">filters(queries)&lt;/span> &lt;span class="err">place&lt;/span> &lt;span class="err">documents&lt;/span> &lt;span class="err">in&lt;/span> &lt;span class="err">either&lt;/span> &lt;span class="err">yes&lt;/span> &lt;span class="err">or&lt;/span> &lt;span class="err">no&lt;/span> &lt;span class="err">category.&lt;/span> &lt;span class="err">Ones&lt;/span> &lt;span class="err">that&lt;/span> &lt;span class="err">fall&lt;/span> &lt;span class="err">into&lt;/span> &lt;span class="err">the&lt;/span> &lt;span class="err">yes&lt;/span> &lt;span class="err">category&lt;/span> &lt;span class="err">are&lt;/span> &lt;span class="err">included&lt;/span> &lt;span class="err">in&lt;/span> &lt;span class="err">the&lt;/span> &lt;span class="err">hits.&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="p">]&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這些bool也會跟基本查詢&lt;/p>
 &lt;ul>
-&lt;li>Term&lt;/li>
-&lt;li>Match&lt;/li>
-&lt;li>Range&lt;/li>
-&lt;li>Terms做搭配&lt;/li>
+&lt;li>
+&lt;p>Term&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Match&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Range&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Terms&lt;/p>
+&lt;/li>
 &lt;/ul>
+&lt;p>做搭配&lt;/p>
 &lt;p>比如說像這樣&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
