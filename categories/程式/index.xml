@@ -1717,7 +1717,7 @@ alt="image-20231101003947771"
 loading="lazy"
 alt="image-20231101003957441"
 >&lt;/p>
-&lt;h2 id="兩種不同的搜尋-query-aggregation">兩種不同的搜尋 Query Aggregation&lt;/h2>
+&lt;h2 id="兩種不同的搜尋-query--aggregation">兩種不同的搜尋 Query &amp;amp; Aggregation&lt;/h2>
 &lt;p>Query用來搜尋一些符合特定指標的Document&lt;/p>
 &lt;p>Aggregation是將數據總結為指標、統計數據和其他分析的過程，更接近分析數據&lt;/p>
 &lt;h3 id="使用query依照關鍵字來做搜尋">使用Query依照關鍵字來做搜尋&lt;/h3>
@@ -2411,24 +2411,20 @@ alt="image-20240429234249361"
 &lt;/span>&lt;span class="lnt">16
 &lt;/span>&lt;span class="lnt">17
 &lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="p">{&lt;/span>
-&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nt">&amp;#34;bool&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nt">&amp;#34;must&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:{&lt;/span>
+&lt;span class="nt">&amp;#34;bool&amp;#34;&lt;/span>&lt;span class="p">:{&lt;/span>
+&lt;span class="nt">&amp;#34;must&amp;#34;&lt;/span>&lt;span class="p">:[&lt;/span>
 &lt;span class="p">{&lt;/span>
-&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nt">&amp;#34;userName&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Hoxton&amp;#34;&lt;/span>
+&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:{&lt;/span>
+&lt;span class="nt">&amp;#34;userName&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;Hoxton&amp;#34;&lt;/span>
 &lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">,&lt;/span>
+&lt;span class="p">},&lt;/span>
 &lt;span class="p">{&lt;/span>
-&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nt">&amp;#34;gender&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:{&lt;/span>
+&lt;span class="nt">&amp;#34;gender&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">1&lt;/span>
 &lt;span class="p">}&lt;/span>
 &lt;span class="p">}&lt;/span>
 &lt;span class="p">]&lt;/span>
@@ -2438,6 +2434,8 @@ alt="image-20240429234249361"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="使用aggregation做搜尋">使用Aggregation做搜尋&lt;/h2>
+&lt;p>Kaggle 網址 ：&lt;a class="link" href="https://www.kaggle.com/datasets/carrie1/ecommerce-data" target="_blank" rel="noopener"
+>Kaggle E-Commerce Data&lt;/a>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -2600,6 +2598,17 @@ alt="image-20231101010340003"
 loading="lazy"
 alt="image-20231101012720758"
 >&lt;/p>
+&lt;h2 id="aggregation-實戰">Aggregation 實戰&lt;/h2>
+&lt;p>Kaggle 網址 ：&lt;a class="link" href="https://www.kaggle.com/datasets/carrie1/ecommerce-data" target="_blank" rel="noopener"
+>Kaggle E-Commerce Data&lt;/a>&lt;/p>
+&lt;p>Youtube 網址 ：&lt;a class="link" href="https://youtu.be/iGKOdep1Iss" target="_blank" rel="noopener"
+>Beginner’s Crash Course to Elastic Stack - Part 4: Aggregations&lt;/a>&lt;/p>
+&lt;h3 id="三種aggregation">三種Aggregation&lt;/h3>
+&lt;ol>
+&lt;li>Metric Aggregation&lt;/li>
+&lt;li>Bucket Aggregation&lt;/li>
+&lt;li>Combined Aggregation&lt;/li>
+&lt;/ol>
 &lt;h2 id="精確與召回precision-and-recall">精確與召回(Precision And Recall)&lt;/h2>
 &lt;p>幹，這真的好難翻，精確就有點像是AND，召回就有點像是OR，使用召回，有可能會找到不太相干的資料，比如找臘腸，卻找到臘腸狗那樣，搜尋結果較多，但較不準確&lt;/p>
 &lt;h3 id="increase-recall">Increase Recall&lt;/h3>
