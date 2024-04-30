@@ -3387,7 +3387,7 @@ alt="image-20231101012720758"
 &lt;/div>&lt;h3 id="三種aggregation">三種Aggregation&lt;/h3>
 &lt;ol>
 &lt;li>Metric Aggregation：用來計算數字型的資料，比如說計算最大值、最小值、平均值等等&lt;/li>
-&lt;li>Bucket Aggregation&lt;/li>
+&lt;li>Bucket Aggregation：想要聚合複數Subset的資料時，使用Bucket Aggregation (一桶一桶的)&lt;/li>
 &lt;li>Combined Aggregation&lt;/li>
 &lt;/ol>
 &lt;h3 id="metric-aggregation-求總和">Metric Aggregation-求總和&lt;/h3>
@@ -3560,7 +3560,47 @@ alt="image-20240430222313108"
 loading="lazy"
 alt="image-20240430222557689"
 >&lt;/p>
-&lt;h2 id="cardinality-aggregation">Cardinality Aggregation&lt;/h2>
+&lt;h3 id="使用query條件來限制aggregation的範圍">使用Query條件來限制Aggregation的範圍&lt;/h3>
+&lt;p>限制只統計Country為Germany的平均單位售價&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">ecommerce_data/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;size&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;query&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;match&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;Country&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Germany&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">},&lt;/span>
+&lt;span class="nt">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;germany_average_unit_price&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;avg&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;field&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;UnitPrice&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="cardinality-aggregation">Cardinality Aggregation&lt;/h3>
 &lt;p>關鍵字：去重複、去重&lt;/p>
 &lt;p>離散數學中的Cardinality，指的是一個集合中，不重複元素的個數，例如集合A={1,2,7,7,7}，那麼A的Cardinality就是3，寫作|A|=3。&lt;/p>
 &lt;p>在ES中的Cardinality Aggregation也是類似的概念&lt;/p>
@@ -3598,7 +3638,54 @@ alt="image-20240430222557689"
 loading="lazy"
 alt="image-20240430223830936"
 >&lt;/p>
-&lt;h2 id="精確與召回precision-and-recall">精確與召回(Precision And Recall)&lt;/h2>
+&lt;h3 id="bucket-aggregation">Bucket Aggregation&lt;/h3>
+&lt;p>四種不同的Bucket Aggregation&lt;/p>
+&lt;ol>
+&lt;li>Date Historgram Aggregation：使用時間區間來 Group 資料&lt;/li>
+&lt;li>Histogram Aggregation&lt;/li>
+&lt;li>Range Aggregation&lt;/li>
+&lt;li>Terms Aggregation&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>Historgram ：直方圖&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/8QaSeT5.png"
+loading="lazy"
+alt="image-20240430225507690"
+>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="date-historgram-aggregation">Date Historgram Aggregation&lt;/h3>
+&lt;p>按InvoiceDate，把資料每八個小時分成一桶&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="err">GET&lt;/span> &lt;span class="err">ecommerce_data/_search&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;size&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;aggs&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;transactions_by_8_hrs&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;date_histogram&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;field&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;InvoiceDate&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;fixed_interval&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;8h&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="精確與召回precision-and-recall">精確與召回(Precision And Recall)&lt;/h2>
 &lt;p>幹，這真的好難翻，精確就有點像是AND，召回就有點像是OR，使用召回，有可能會找到不太相干的資料，比如找臘腸，卻找到臘腸狗那樣，搜尋結果較多，但較不準確&lt;/p>
 &lt;h3 id="increase-recall">Increase Recall&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
