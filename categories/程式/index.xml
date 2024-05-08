@@ -2975,7 +2975,8 @@ alt="image-20240430225507690"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="精確與召回precision-and-recall">精確與召回(Precision And Recall)&lt;/h2>
+&lt;/div>&lt;p>​&lt;/p>
+&lt;h2 id="精確與召回precision-and-recall">精確與召回(Precision And Recall)&lt;/h2>
 &lt;p>幹，這真的好難翻，精確就有點像是AND，召回就有點像是OR，使用召回，有可能會找到不太相干的資料，比如找臘腸，卻找到臘腸狗那樣，搜尋結果較多，但較不準確&lt;/p>
 &lt;h3 id="increase-recall">Increase Recall&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
