@@ -1,4 +1,506 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 29 Apr 2024 18:00:50 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>SpringBoot整合ElasticSearch</title><link>https://hoxtonhsu.com/p/springboot%E6%95%B4%E5%90%88elasticsearch/</link><pubDate>Mon, 29 Apr 2024 18:00:50 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E6%95%B4%E5%90%88elasticsearch/</guid><description>&lt;img src="https://i.imgur.com/PKZTCYE.png" alt="Featured image of post SpringBoot整合ElasticSearch" />&lt;p>​&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 08 May 2024 17:43:33 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx</title><link>https://hoxtonhsu.com/p/nginx/</link><pubDate>Wed, 08 May 2024 17:43:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/nginx/</guid><description>&lt;p>做負載均衡&lt;/p>
+&lt;h1 id="安裝">安裝&lt;/h1>
+&lt;h2 id="mac-homebrew">Mac Homebrew&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">brew install nginx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="啟動與停止">啟動與停止&lt;/h1>
+&lt;h2 id="啟動">啟動&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">brew services start nginx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">ngnix
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>成功後訪問&lt;/p>
+&lt;p>http://localhost:8080/&lt;/p>
+&lt;p>就可以看到以下畫面&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/jfHRFBI.png"
+loading="lazy"
+alt="image-20240510140421056"
+>&lt;/p>
+&lt;h2 id="停止">停止&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/47Tp9W8.png"
+loading="lazy"
+alt="image-20240510144229718"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -s signal
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="優雅停止">優雅停止&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -s quit
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="立刻停止">立刻停止&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -s stop
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="重載配置文件">重載配置文件&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -s reload
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="重新打開日誌文件">重新打開日誌文件&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -s reopen
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="ngnix介紹">Ngnix介紹&lt;/h1>
+&lt;p>可以輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">ps -ef &lt;span class="p">|&lt;/span>grep nginx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">ps -ef | grep nginx 是一个用于在 macOS 或类 Unix 系统中查找正在运行的 nginx 进程的命令。它的作用如下：
+ps: 这个命令用于显示当前运行的进程列表。
+-ef: 这是 ps 命令的选项，其中 -e 用于显示所有进程，-f 用于显示全面的进程信息。
+|: 这是管道符，它将 ps -ef 命令的输出发送到下一个命令。
+grep nginx: 这个命令用于过滤包含关键字 &amp;#34;nginx&amp;#34; 的行，只显示与 nginx 相关的进程。
+因此，ps -ef | grep nginx 的作用是显示所有包含 &amp;#34;nginx&amp;#34; 关键字的进程，帮助你找出当前正在运行的 nginx 进程。
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="master-process--worker-process">Master Process &amp;amp; Worker Process&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/WIncVoM.gif"
+loading="lazy"
+alt="iShot_2024-05-10_14.32.32"
+>&lt;/p>
+&lt;p>Master負責讀取以及驗證文件、管理woker process，只有一個&lt;/p>
+&lt;p>Worker負責處理實際請求，可以有很多個&lt;/p>
+&lt;h1 id="如何更改ngnix的啟動圖">如何更改Ngnix的啟動圖&lt;/h1>
+&lt;p>輸入，找到配置檔的位置&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -t
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著輸入打開編輯&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">code /opt/homebrew/etc/nginx/nginx.conf
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這邊就是檔案配置的位置&lt;/p>
+&lt;p>![image-20240510151026498](/Users/hoxtonashes/Library/Application Support/typora-user-images/image-20240510151026498.png)&lt;/p>
+&lt;p>接著找看看Nginx的安裝目錄&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /opt/homebrew/Cellar/nginx/1.25.5
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/U2AIBiq.png"
+loading="lazy"
+alt="image-20240510152220911"
+>&lt;/p>
+&lt;p>修改這個檔案&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">code /opt/homebrew/Cellar/nginx/1.25.5/html/index.html
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/R3UMuEJ.png"
+loading="lazy"
+alt="image-20240510152842062"
+>&lt;/p>
+&lt;p>就可以了，如果要&lt;span style="color:yellow;font-size:32px">佈置自己的網頁也是放到一個的目錄底下即可&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/4nZ9Z0E.png"
+loading="lazy"
+alt="image-20240510153011985"
+>&lt;/p>
+&lt;h1 id="調整worker數量">調整Worker數量&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">code /opt/homebrew/etc/nginx/nginx.conf
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/Nvw7IBN.png"
+loading="lazy"
+alt="image-20240510153641003"
+>&lt;/p>
+&lt;p>重新加載&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nginx -s reload
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">ps -ef &lt;span class="p">|&lt;/span>grep nginx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Worker 數量跟cpu 核心數量一致會比較好，或是設置成auto&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/rDiefxO.png"
+loading="lazy"
+alt="image-20240510154041120"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/gJLjTQu.png"
+loading="lazy"
+alt="image-20240510153906333"
+>&lt;/p>
+&lt;h1 id="nginx配置文件介紹">Nginx配置文件介紹&lt;/h1>
+&lt;p>&lt;a href="https://www.bilibili.com/video/BV1mz4y1n7PQ?p=5&amp;amp;spm_id_from=pageDriver&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1mz4y1n7PQ?p=5&amp;amp;spm_id_from=pageDriver&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p>
+&lt;p>&lt;span style="color:yellow;font-size:32px">底下的每個Server塊就是一個虛擬主機&lt;/span>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/SlVDoGQ.png"
+loading="lazy"
+alt="image-20240510154309129"
+>&lt;/p>
+&lt;h1 id="何謂正向代理何謂反向代理">何謂正向代理，何謂反向代理&lt;/h1>
+&lt;h2 id="正向代理">正向代理&lt;/h2>
+&lt;p>正向代理就是類似VPN，透過一個代理節點去幫我訪問網站，例如中國的翻牆&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/QKDqpGz.png"
+loading="lazy"
+alt="image-20240510155610368"
+>&lt;/p>
+&lt;h2 id="反向代理">反向代理&lt;/h2>
+&lt;p>對外指暴露一個端口，但背後可能有好幾個端口，代理的是服務端&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/VQkrQ27.png"
+loading="lazy"
+alt="image-20240510155710024"
+>&lt;/p>
+&lt;h1 id="使用java來配置網址理解反向代理">使用Java來配置網址，理解反向代理&lt;/h1>
+&lt;p>先配置3個不同的port (8081,8082,8083)&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/oGUSIP4.png"
+loading="lazy"
+alt="image-20240510162243108"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">org.hoxton&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.sun.net.httpserver.HttpExchange&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.sun.net.httpserver.HttpHandler&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.sun.net.httpserver.HttpServer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.io.IOException&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.io.OutputStream&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Main&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">Exception&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">port&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">8081&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">HttpServer&lt;/span> &lt;span class="n">server&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">HttpServer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">create&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">java&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">net&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">InetSocketAddress&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">),&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">server&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">createContext&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;/&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">MyHandler&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">server&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setExecutor&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span> &lt;span class="c1">// 使用默认的执行器
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">server&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">start&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Server is listening on port &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">port&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">static&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">MyHandler&lt;/span> &lt;span class="kd">implements&lt;/span> &lt;span class="n">HttpHandler&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Override&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">handle&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">HttpExchange&lt;/span> &lt;span class="n">exchange&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">response&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Hello, World!&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">exchange&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">sendResponseHeaders&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">200&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">length&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">OutputStream&lt;/span> &lt;span class="n">os&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">exchange&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getResponseBody&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">write&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">close&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">org.hoxton&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.sun.net.httpserver.HttpExchange&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.sun.net.httpserver.HttpHandler&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.sun.net.httpserver.HttpServer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.io.IOException&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.io.OutputStream&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Main2&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">Exception&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">port&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">8082&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">HttpServer&lt;/span> &lt;span class="n">server&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">HttpServer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">create&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">java&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">net&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">InetSocketAddress&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">),&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">server&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">createContext&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;/&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">MyHandler&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">server&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setExecutor&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span> &lt;span class="c1">// 使用默认的执行器
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">server&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">start&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Server is listening on port &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">port&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">static&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">MyHandler&lt;/span> &lt;span class="kd">implements&lt;/span> &lt;span class="n">HttpHandler&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Override&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">handle&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">HttpExchange&lt;/span> &lt;span class="n">exchange&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">response&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Hello, World!&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">exchange&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">sendResponseHeaders&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">200&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">length&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">OutputStream&lt;/span> &lt;span class="n">os&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">exchange&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getResponseBody&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">write&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">close&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">org.hoxton&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.sun.net.httpserver.HttpExchange&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.sun.net.httpserver.HttpHandler&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.sun.net.httpserver.HttpServer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.io.IOException&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.io.OutputStream&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Main3&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">Exception&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kt">int&lt;/span> &lt;span class="n">port&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">8083&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">HttpServer&lt;/span> &lt;span class="n">server&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">HttpServer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">create&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">java&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">net&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">InetSocketAddress&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">),&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">server&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">createContext&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;/&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">MyHandler&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">server&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setExecutor&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span> &lt;span class="c1">// 使用默认的执行器
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">server&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">start&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Server is listening on port &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">port&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">static&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">MyHandler&lt;/span> &lt;span class="kd">implements&lt;/span> &lt;span class="n">HttpHandler&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Override&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">handle&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">HttpExchange&lt;/span> &lt;span class="n">exchange&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">response&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Hello, World!&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">exchange&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">sendResponseHeaders&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">200&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">length&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">OutputStream&lt;/span> &lt;span class="n">os&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">exchange&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getResponseBody&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">write&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">response&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">close&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改配置檔案，配置如下，把8081 8082 8083 設置一下，如此一來，訪問&lt;/p>
+&lt;p>http://localhost:8080/app&lt;/p>
+&lt;p>時，就會代理到這三個port號(預設是輪詢)，見下方Gif&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/XSBGeIM.png"
+loading="lazy"
+alt="image-20240510163709808"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/E2Jh8uO.gif"
+loading="lazy"
+alt="iShot_2024-05-10_16.38.15"
+>&lt;/p>
+&lt;p>也可以設置權重(weight) 來調整&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"> upstream backend_hoxton{
+server 127.0.0.1:8081 weight =3;
+server 127.0.0.1:8082;
+server 127.0.0.1:8083;
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>也可以使用ip_hash，這樣相同的請求就會被轉到一樣的port號了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"> upstream backend_hoxton{
+ip_hash;
+server 127.0.0.1:8081 weight =3;
+server 127.0.0.1:8082;
+server 127.0.0.1:8083;
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="虛擬主機">虛擬主機&lt;/h1>
+&lt;p>目的是在一台主機上面配置多個站點，&lt;/p>
+&lt;h1 id="常用命令">常用命令&lt;/h1>
+&lt;h2 id="查看nginx配置">查看Nginx配置&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nginx -V
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/k6uTAeE.jpeg"
+loading="lazy"
+alt="image-20240510145507892"
+>&lt;/p>
+&lt;h2 id="查看nginx配置文件">查看Nginx配置文件&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -t
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/qBOBC3z.png"
+loading="lazy"
+alt="image-20240510145620545"
+>&lt;/p>
+&lt;h1 id="參考網址">參考網址&lt;/h1>
+&lt;p>&lt;a href="https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p></description></item><item><title>SpringBoot整合ElasticSearch</title><link>https://hoxtonhsu.com/p/springboot%E6%95%B4%E5%90%88elasticsearch/</link><pubDate>Mon, 29 Apr 2024 18:00:50 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E6%95%B4%E5%90%88elasticsearch/</guid><description>&lt;img src="https://i.imgur.com/PKZTCYE.png" alt="Featured image of post SpringBoot整合ElasticSearch" />&lt;p>​&lt;/p>
 &lt;p>延續上一篇&lt;/p>
 &lt;p>本文會用到的連結&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=g6AmXGI0RpQ&amp;amp;pp=ygUVU3ByaW5nIEVsYXN0aWMgc2VhcmNo" target="_blank" rel="noopener"
@@ -3685,8 +4187,7 @@ alt="image-20240430225507690"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>​&lt;/p>
-&lt;h2 id="精確與召回precision-and-recall">精確與召回(Precision And Recall)&lt;/h2>
+&lt;/div>&lt;h2 id="精確與召回precision-and-recall">精確與召回(Precision And Recall)&lt;/h2>
 &lt;p>幹，這真的好難翻，精確就有點像是AND，召回就有點像是OR，使用召回，有可能會找到不太相干的資料，比如找臘腸，卻找到臘腸狗那樣，搜尋結果較多，但較不準確&lt;/p>
 &lt;h3 id="increase-recall">Increase Recall&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
