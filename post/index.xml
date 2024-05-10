@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 08 May 2024 17:43:33 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx</title><link>https://hoxtonhsu.com/p/nginx/</link><pubDate>Wed, 08 May 2024 17:43:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/nginx/</guid><description>&lt;img src="https://i.imgur.com/h4PsSxV.jpeg" alt="Featured image of post Nginx" />&lt;p>做負載均衡、反向代理、虛擬主機的一個中間件&lt;/p>
-&lt;h1 id="安裝">安裝&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 08 May 2024 17:43:33 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx</title><link>https://hoxtonhsu.com/p/nginx/</link><pubDate>Wed, 08 May 2024 17:43:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/nginx/</guid><description>&lt;img src="https://i.imgur.com/h4PsSxV.jpeg" alt="Featured image of post Nginx" />&lt;h1 id="安裝">安裝&lt;/h1>
 &lt;h2 id="mac-homebrew">Mac Homebrew&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -35,56 +34,6 @@
 loading="lazy"
 alt="image-20240510140421056"
 >&lt;/p>
-&lt;h2 id="停止">停止&lt;/h2>
-&lt;p>&lt;img src="https://i.imgur.com/47Tp9W8.png"
-loading="lazy"
-alt="image-20240510144229718"
->&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -s signal
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="優雅停止">優雅停止&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -s quit
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="立刻停止">立刻停止&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -s stop
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="重載配置文件">重載配置文件&lt;/h2>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -s reload
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="重新打開日誌文件">重新打開日誌文件&lt;/h2>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nigix -s reopen
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h1 id="ngnix介紹">Ngnix介紹&lt;/h1>
 &lt;p>可以輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -113,14 +62,104 @@ grep nginx: 这个命令用于过滤包含关键字 &amp;#34;nginx&amp;#34; 的�
 因此，ps -ef | grep nginx 的作用是显示所有包含 &amp;#34;nginx&amp;#34; 关键字的进程，帮助你找出当前正在运行的 nginx 进程。
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="master-process--worker-process">Master Process &amp;amp; Worker Process&lt;/h2>
+&lt;/div>&lt;p>看到nginx的執行狀況&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/fUuO38z.png"
+loading="lazy"
+alt="image-20240510185004533"
+>&lt;/p>
+&lt;h2 id="停止">停止&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/47Tp9W8.png"
+loading="lazy"
+alt="image-20240510144229718"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nginx -s signal
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="優雅停止">優雅停止&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nginx -s quit
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="立刻停止">立刻停止&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nginx -s stop
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="重載配置文件">重載配置文件&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nginx -s reload
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="重新打開日誌文件">重新打開日誌文件&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nginx -s reopen
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="ngnix介紹">Ngnix介紹&lt;/h1>
+&lt;p>做負載均衡、反向代理、虛擬主機的一個中間件&lt;/p>
+&lt;p>可以輸入以下指令查看進程&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">ps -ef &lt;span class="p">|&lt;/span>grep nginx
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">ps -ef | grep nginx 是一个用于在 macOS 或类 Unix 系统中查找正在运行的 nginx 进程的命令。它的作用如下：
+ps: 这个命令用于显示当前运行的进程列表。
+-ef: 这是 ps 命令的选项，其中 -e 用于显示所有进程，-f 用于显示全面的进程信息。
+|: 这是管道符，它将 ps -ef 命令的输出发送到下一个命令。
+grep nginx: 这个命令用于过滤包含关键字 &amp;#34;nginx&amp;#34; 的行，只显示与 nginx 相关的进程。
+因此，ps -ef | grep nginx 的作用是显示所有包含 &amp;#34;nginx&amp;#34; 关键字的进程，帮助你找出当前正在运行的 nginx 进程。
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/KIcJEzq.png"
+loading="lazy"
+alt="image-20240510185537496"
+>&lt;/p>
+&lt;h2 id="master-process--worker-process">Master Process &amp;amp; Worker Process&lt;/h2>
 &lt;p>&lt;img src="https://i.imgur.com/WIncVoM.gif"
 loading="lazy"
 alt="iShot_2024-05-10_14.32.32"
 >&lt;/p>
-&lt;p>Master負責讀取以及驗證文件、管理woker process，只有一個&lt;/p>
-&lt;p>Worker負責處理實際請求，可以有很多個&lt;/p>
-&lt;h1 id="如何更改ngnix的啟動圖">如何更改Ngnix的啟動圖&lt;/h1>
+&lt;h2 id="master">Master&lt;/h2>
+&lt;p>負責讀取以及驗證文件、管理woker process，只有一個&lt;/p>
+&lt;h2 id="worker">Worker&lt;/h2>
+&lt;p>負責處理實際請求，可以有很多個&lt;/p>
+&lt;h1 id="如何更改ngnix的啟動畫面配置indexhtml等靜態資源">如何更改Ngnix的啟動畫面，配置index.html等靜態資源&lt;/h1>
 &lt;p>輸入，找到配置檔的位置&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -218,7 +257,141 @@ alt="image-20240510153906333"
 loading="lazy"
 alt="image-20240510154309129"
 >&lt;/p>
-&lt;h1 id="何謂正向代理何謂反向代理">何謂正向代理，何謂反向代理&lt;/h1>
+&lt;p>我們可以先將整個配置文件清空，從頭寫一遍配置文件來學習&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/onTxEI7.png"
+loading="lazy"
+alt="image-20240510173633173"
+>&lt;/p>
+&lt;p>此時想啟動也啟動不了，會跟我們說少了event區塊&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/gmgExz9.png"
+loading="lazy"
+alt="image-20240510173741850"
+>&lt;/p>
+&lt;p>補上後就可以成功啟動&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">events{
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但啟動後會發現，我們的nginx沒有監聽任何port號&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/rpPSUMi.png"
+loading="lazy"
+alt="image-20240510174538169"
+>&lt;/p>
+&lt;p>因此我們需要再配置http 模塊&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">events{}
+http{
+# 定義的是虛擬服務器，可以配置很多server
+server {
+listen 8087;
+server_name localhost;
+}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>此時如果我們有在html/資料夾底下配置index.html 就會顯示那個html的內容，如果沒有就不顯示，顯示403這樣&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/MpfIyPj.png"
+loading="lazy"
+alt="image-20240510175301562"
+>&lt;/p>
+&lt;p>也可以配置寫死的返回值 8089&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">events{}
+http{
+# 定義的是虛擬服務器，可以配置很多server
+server {
+listen 8087;
+server_name localhost;
+}
+server {
+listen 8089;
+server_name localhost;
+return 200 &amp;#34;Hoxton Hello&amp;#34;;
+}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/2bpYadr.png"
+loading="lazy"
+alt="image-20240510175944283"
+>&lt;/p>
+&lt;h2 id="配置重定向">配置重定向&lt;/h2>
+&lt;p>可以用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"> server {
+listen 8087;
+server_name localhost;
+location /temp{
+return 307 index.html;
+}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>的方式&lt;/p>
+&lt;p>或是用rewrite&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback"> server {
+listen 8087;
+server_name localhost;
+rewrite /temp index.html
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="何謂正向代理何謂反向代理">何謂正向代理，何謂反向代理&lt;/h1>
 &lt;h2 id="正向代理">正向代理&lt;/h2>
 &lt;p>正向代理就是類似VPN，透過一個代理節點去幫我訪問網站，例如中國的翻牆&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/QKDqpGz.png"
@@ -426,7 +599,90 @@ alt="image-20240510162243108"
 &lt;/div>&lt;p>修改配置檔案，配置如下，把8081 8082 8083 設置一下，如此一來，訪問&lt;/p>
 &lt;p>http://localhost:8080/app&lt;/p>
 &lt;p>時，就會代理到這三個port號(預設是輪詢)，見下方Gif&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/XSBGeIM.png"
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">
+#user nobody;
+worker_processes 1;
+#error_log logs/error.log;
+#error_log logs/error.log notice;
+#error_log logs/error.log info;
+#pid logs/nginx.pid;
+events {
+worker_connections 1024;
+}
+http {
+include mime.types;
+default_type application/octet-stream;
+#log_format main &amp;#39;$remote_addr - $remote_user [$time_local] &amp;#34;$request&amp;#34; &amp;#39;
+# &amp;#39;$status $body_bytes_sent &amp;#34;$http_referer&amp;#34; &amp;#39;
+# &amp;#39;&amp;#34;$http_user_agent&amp;#34; &amp;#34;$http_x_forwarded_for&amp;#34;&amp;#39;;
+#access_log logs/access.log main;
+sendfile on;
+#tcp_nopush on;
+#keepalive_timeout 0;
+keepalive_timeout 65;
+upstream backend_hoxton{
+server 127.0.0.1:8081;
+server 127.0.0.1:8082;
+server 127.0.0.1:8083;
+}
+#gzip on;
+server {
+listen 8080;
+server_name localhost;
+}
+}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/XSBGeIM.png"
 loading="lazy"
 alt="image-20240510163709808"
 >&lt;/p>
@@ -451,7 +707,7 @@ server 127.0.0.1:8083;
 }
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>也可以使用ip_hash，這樣相同的請求就會被轉到一樣的port號了&lt;/p>
+&lt;/div>&lt;p>也可以使用ip_hash，這樣相同的請求就會被轉到一樣的port號了，這動作也就是讓nginx把流量導到指定的服務集群&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -470,10 +726,59 @@ server 127.0.0.1:8083;
 }
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
+&lt;/div>&lt;h2 id="配置path要注意的內容避免不當訪問">配置Path要注意的內容，避免不當訪問&lt;/h2>
+&lt;p>&lt;span style="color:yellow;font-size:32px">但這個方法非常不安全！等於說我們可以讓用戶用這樣的方式訪問我們服務器的內容。&lt;/span>&lt;/p>
+&lt;p>比如說我們可能只想暴露http://localhost:8080/app/index.html這個文件，但如果寫成&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">location /app｛
+proxy_pass http://backend_ hoxton
+｝
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>用戶可以訪問&lt;/p>
+&lt;p>http://localhost:8080/apple/index.html&lt;/p>
+&lt;p>http://localhost:8080/app/screctKey&lt;/p>
+&lt;p>等等的內容，所以我們最好用全限定的方式，限定訪問的資源，也可以使用正則表達式來限定，這邊還有很多的內容，比如說前綴配對還有什麼東西之類的，就不展開了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">location /app｛
+proxy_pass http://backend_ hoxton
+｝
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
 &lt;/div>&lt;h1 id="虛擬主機">虛擬主機&lt;/h1>
 &lt;p>目的是在一台主機上面配置多個站點，&lt;/p>
 &lt;h1 id="常用命令">常用命令&lt;/h1>
-&lt;h2 id="查看nginx配置">查看Nginx配置&lt;/h2>
+&lt;h2 id="查看版本">查看版本&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">nginx -v
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="查看運行狀態">查看運行狀態&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">service nginx status
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="查看nginx配置">查看Nginx配置&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -500,7 +805,8 @@ loading="lazy"
 alt="image-20240510145620545"
 >&lt;/p>
 &lt;h1 id="參考網址">參考網址&lt;/h1>
-&lt;p>&lt;a href="https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p></description></item><item><title>SpringBoot整合ElasticSearch</title><link>https://hoxtonhsu.com/p/springboot%E6%95%B4%E5%90%88elasticsearch/</link><pubDate>Mon, 29 Apr 2024 18:00:50 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E6%95%B4%E5%90%88elasticsearch/</guid><description>&lt;img src="https://i.imgur.com/PKZTCYE.png" alt="Featured image of post SpringBoot整合ElasticSearch" />&lt;p>​&lt;/p>
+&lt;p>&lt;a href="https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.bilibili.com/video/BV1TZ421b7SD/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1TZ421b7SD/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p></description></item><item><title>SpringBoot整合ElasticSearch</title><link>https://hoxtonhsu.com/p/springboot%E6%95%B4%E5%90%88elasticsearch/</link><pubDate>Mon, 29 Apr 2024 18:00:50 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E6%95%B4%E5%90%88elasticsearch/</guid><description>&lt;img src="https://i.imgur.com/PKZTCYE.png" alt="Featured image of post SpringBoot整合ElasticSearch" />&lt;p>​&lt;/p>
 &lt;p>延續上一篇&lt;/p>
 &lt;p>本文會用到的連結&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=g6AmXGI0RpQ&amp;amp;pp=ygUVU3ByaW5nIEVsYXN0aWMgc2VhcmNo" target="_blank" rel="noopener"

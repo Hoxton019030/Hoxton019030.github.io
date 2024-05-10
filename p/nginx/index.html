@@ -1,22 +1,12 @@
 <!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="專案被廢，百廢待興的技術學習"><title>Nginx</title><link rel=canonical href=https://hoxtonhsu.com/p/nginx/><script type=text/javascript src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel=stylesheet href=/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css><meta property="og:title" content="Nginx"><meta property="og:description" content="專案被廢，百廢待興的技術學習"><meta property="og:url" content="https://hoxtonhsu.com/p/nginx/"><meta property="og:site_name" content="Hoxton"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content><meta property="article:published_time" content="2024-05-08T17:43:33+08:00"><meta property="article:modified_time" content="2024-05-08T17:43:33+08:00"><meta property="og:image" content="https://i.imgur.com/h4PsSxV.jpeg"><meta name=twitter:title content="Nginx"><meta name=twitter:description content="專案被廢，百廢待興的技術學習"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://i.imgur.com/h4PsSxV.jpeg"><link rel="shortcut icon" href=https://cdn-icons-png.flaticon.com/512/92/92031.png><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-9N16MVLR0Q','auto');ga('send','pageview');}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','G-9N16MVLR0Q');</script></head><body class=article-page><script>(function(){const colorSchemeKey='StackColorScheme';localStorage.setItem(colorSchemeKey,"dark");})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.documentElement.dataset.scheme='dark';}else{document.documentElement.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li><li><a href=https://www.linkedin.com/in/hoxton-hsu-298b22269/ target=_blank title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/nginx/><img src=https://i.imgur.com/h4PsSxV.jpeg loading=lazy alt="Featured image of post Nginx"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%A8%8B%E5%BC%8F/ style=background-color:#2a9d8f;color:#fff>程式</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/nginx/>Nginx</a></h2><h3 class=article-subtitle>專案被廢，百廢待興的技術學習</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>May 08, 2024</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>3 minute read</time></div></footer></div></header><section class=article-content><p>做負載均衡、反向代理、虛擬主機的一個中間件</p><h1 id=安裝>安裝</h1><h2 id=mac-homebrew>Mac Homebrew</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li><li><a href=https://www.linkedin.com/in/hoxton-hsu-298b22269/ target=_blank title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/nginx/><img src=https://i.imgur.com/h4PsSxV.jpeg loading=lazy alt="Featured image of post Nginx"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%A8%8B%E5%BC%8F/ style=background-color:#2a9d8f;color:#fff>程式</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/nginx/>Nginx</a></h2><h3 class=article-subtitle>專案被廢，百廢待興的技術學習</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>May 08, 2024</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>5 minute read</time></div></footer></div></header><section class=article-content><h1 id=安裝>安裝</h1><h2 id=mac-homebrew>Mac Homebrew</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>brew install nginx
 </code></pre></td></tr></table></div></div><h1 id=啟動與停止>啟動與停止</h1><h2 id=啟動>啟動</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>brew services start nginx
 </code></pre></td></tr></table></div></div><p>或</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ngnix
-</code></pre></td></tr></table></div></div><p>成功後訪問</p><p>http://localhost:8080/</p><p>就可以看到以下畫面</p><p><img src=https://i.imgur.com/jfHRFBI.png loading=lazy alt=image-20240510140421056></p><h2 id=停止>停止</h2><p><img src=https://i.imgur.com/47Tp9W8.png loading=lazy alt=image-20240510144229718></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nigix -s signal
-</code></pre></td></tr></table></div></div><h3 id=優雅停止>優雅停止</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nigix -s quit
-</code></pre></td></tr></table></div></div><h3 id=立刻停止>立刻停止</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nigix -s stop
-</code></pre></td></tr></table></div></div><h2 id=重載配置文件>重載配置文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nigix -s reload
-</code></pre></td></tr></table></div></div><h2 id=重新打開日誌文件>重新打開日誌文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nigix -s reopen
-</code></pre></td></tr></table></div></div><h1 id=ngnix介紹>Ngnix介紹</h1><p>可以輸入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>成功後訪問</p><p>http://localhost:8080/</p><p>就可以看到以下畫面</p><p><img src=https://i.imgur.com/jfHRFBI.png loading=lazy alt=image-20240510140421056></p><p>可以輸入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ps -ef <span class=p>|</span>grep nginx
 </code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -32,7 +22,33 @@ ps: 这个命令用于显示当前运行的进程列表。
 |: 这是管道符，它将 ps -ef 命令的输出发送到下一个命令。
 grep nginx: 这个命令用于过滤包含关键字 &#34;nginx&#34; 的行，只显示与 nginx 相关的进程。
 因此，ps -ef | grep nginx 的作用是显示所有包含 &#34;nginx&#34; 关键字的进程，帮助你找出当前正在运行的 nginx 进程。
-</code></pre></td></tr></table></div></div><h2 id=master-process--worker-process>Master Process & Worker Process</h2><p><img src=https://i.imgur.com/WIncVoM.gif loading=lazy alt=iShot_2024-05-10_14.32.32></p><p>Master負責讀取以及驗證文件、管理woker process，只有一個</p><p>Worker負責處理實際請求，可以有很多個</p><h1 id=如何更改ngnix的啟動圖>如何更改Ngnix的啟動圖</h1><p>輸入，找到配置檔的位置</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>看到nginx的執行狀況</p><p><img src=https://i.imgur.com/fUuO38z.png loading=lazy alt=image-20240510185004533></p><h2 id=停止>停止</h2><p><img src=https://i.imgur.com/47Tp9W8.png loading=lazy alt=image-20240510144229718></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nginx -s signal
+</code></pre></td></tr></table></div></div><h3 id=優雅停止>優雅停止</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nginx -s quit
+</code></pre></td></tr></table></div></div><h3 id=立刻停止>立刻停止</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nginx -s stop
+</code></pre></td></tr></table></div></div><h2 id=重載配置文件>重載配置文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nginx -s reload
+</code></pre></td></tr></table></div></div><h2 id=重新打開日誌文件>重新打開日誌文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nginx -s reopen
+</code></pre></td></tr></table></div></div><h1 id=ngnix介紹>Ngnix介紹</h1><p>做負載均衡、反向代理、虛擬主機的一個中間件</p><p>可以輸入以下指令查看進程</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ps -ef <span class=p>|</span>grep nginx
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>ps -ef | grep nginx 是一个用于在 macOS 或类 Unix 系统中查找正在运行的 nginx 进程的命令。它的作用如下：
+
+ps: 这个命令用于显示当前运行的进程列表。
+-ef: 这是 ps 命令的选项，其中 -e 用于显示所有进程，-f 用于显示全面的进程信息。
+|: 这是管道符，它将 ps -ef 命令的输出发送到下一个命令。
+grep nginx: 这个命令用于过滤包含关键字 &#34;nginx&#34; 的行，只显示与 nginx 相关的进程。
+因此，ps -ef | grep nginx 的作用是显示所有包含 &#34;nginx&#34; 关键字的进程，帮助你找出当前正在运行的 nginx 进程。
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/KIcJEzq.png loading=lazy alt=image-20240510185537496></p><h2 id=master-process--worker-process>Master Process & Worker Process</h2><p><img src=https://i.imgur.com/WIncVoM.gif loading=lazy alt=iShot_2024-05-10_14.32.32></p><h2 id=master>Master</h2><p>負責讀取以及驗證文件、管理woker process，只有一個</p><h2 id=worker>Worker</h2><p>負責處理實際請求，可以有很多個</p><h1 id=如何更改ngnix的啟動畫面配置indexhtml等靜態資源>如何更改Ngnix的啟動畫面，配置index.html等靜態資源</h1><p>輸入，找到配置檔的位置</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nigix -t
 </code></pre></td></tr></table></div></div><p>接著輸入打開編輯</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>code /opt/homebrew/etc/nginx/nginx.conf
@@ -46,7 +62,83 @@ grep nginx: 这个命令用于过滤包含关键字 &#34;nginx&#34; 的行，只
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nginx -s reload
 </code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ps -ef <span class=p>|</span>grep nginx
-</code></pre></td></tr></table></div></div><p>Worker 數量跟cpu 核心數量一致會比較好，或是設置成auto</p><p><img src=https://i.imgur.com/rDiefxO.png loading=lazy alt=image-20240510154041120></p><p><img src=https://i.imgur.com/gJLjTQu.png loading=lazy alt=image-20240510153906333></p><h1 id=nginx配置文件介紹>Nginx配置文件介紹</h1><p><a href="https://www.bilibili.com/video/BV1mz4y1n7PQ?p=5&spm_id_from=pageDriver&vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1mz4y1n7PQ?p=5&spm_id_from=pageDriver&vd_source=422eafa6570139128e44a83238959fa0</a></p><p><span style=color:#ff0;font-size:32px>底下的每個Server塊就是一個虛擬主機</span></p><p><img src=https://i.imgur.com/SlVDoGQ.png loading=lazy alt=image-20240510154309129></p><h1 id=何謂正向代理何謂反向代理>何謂正向代理，何謂反向代理</h1><h2 id=正向代理>正向代理</h2><p>正向代理就是類似VPN，透過一個代理節點去幫我訪問網站，例如中國的翻牆</p><p><img src=https://i.imgur.com/QKDqpGz.png loading=lazy alt=image-20240510155610368></p><h2 id=反向代理>反向代理</h2><p>對外指暴露一個端口，但背後可能有好幾個端口，代理的是服務端</p><p><img src=https://i.imgur.com/VQkrQ27.png loading=lazy alt=image-20240510155710024></p><h1 id=使用java來配置網址理解反向代理>使用Java來配置網址，理解反向代理</h1><p>先配置3個不同的port (8081,8082,8083)</p><p><img src=https://i.imgur.com/oGUSIP4.png loading=lazy alt=image-20240510162243108></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><p>Worker 數量跟cpu 核心數量一致會比較好，或是設置成auto</p><p><img src=https://i.imgur.com/rDiefxO.png loading=lazy alt=image-20240510154041120></p><p><img src=https://i.imgur.com/gJLjTQu.png loading=lazy alt=image-20240510153906333></p><h1 id=nginx配置文件介紹>Nginx配置文件介紹</h1><p><a href="https://www.bilibili.com/video/BV1mz4y1n7PQ?p=5&spm_id_from=pageDriver&vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1mz4y1n7PQ?p=5&spm_id_from=pageDriver&vd_source=422eafa6570139128e44a83238959fa0</a></p><p><span style=color:#ff0;font-size:32px>底下的每個Server塊就是一個虛擬主機</span></p><p><img src=https://i.imgur.com/SlVDoGQ.png loading=lazy alt=image-20240510154309129></p><p>我們可以先將整個配置文件清空，從頭寫一遍配置文件來學習</p><p><img src=https://i.imgur.com/onTxEI7.png loading=lazy alt=image-20240510173633173></p><p>此時想啟動也啟動不了，會跟我們說少了event區塊</p><p><img src=https://i.imgur.com/gmgExz9.png loading=lazy alt=image-20240510173741850></p><p>補上後就可以成功啟動</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>events{
+
+}
+</code></pre></td></tr></table></div></div><p>但啟動後會發現，我們的nginx沒有監聽任何port號</p><p><img src=https://i.imgur.com/rpPSUMi.png loading=lazy alt=image-20240510174538169></p><p>因此我們需要再配置http 模塊</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>events{}
+
+http{
+    # 定義的是虛擬服務器，可以配置很多server
+    server {
+        listen 8087;
+        server_name localhost;
+    }
+}
+</code></pre></td></tr></table></div></div><p>此時如果我們有在html/資料夾底下配置index.html 就會顯示那個html的內容，如果沒有就不顯示，顯示403這樣</p><p><img src=https://i.imgur.com/MpfIyPj.png loading=lazy alt=image-20240510175301562></p><p>也可以配置寫死的返回值 8089</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>events{}
+
+http{
+    # 定義的是虛擬服務器，可以配置很多server
+    server {
+        listen 8087;
+        server_name localhost;
+    }
+    server {
+        listen 8089;
+        server_name localhost;
+        return  200 &#34;Hoxton Hello&#34;;
+    }
+}
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/2bpYadr.png loading=lazy alt=image-20240510175944283></p><h2 id=配置重定向>配置重定向</h2><p>可以用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback> server {
+        listen 8087;
+        server_name localhost;
+        location /temp{
+            return 307 index.html;
+        }
+    }
+</code></pre></td></tr></table></div></div><p>的方式</p><p>或是用rewrite</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>  server {
+        listen 8087;
+        server_name localhost;
+        rewrite /temp index.html
+    }
+</code></pre></td></tr></table></div></div><h1 id=何謂正向代理何謂反向代理>何謂正向代理，何謂反向代理</h1><h2 id=正向代理>正向代理</h2><p>正向代理就是類似VPN，透過一個代理節點去幫我訪問網站，例如中國的翻牆</p><p><img src=https://i.imgur.com/QKDqpGz.png loading=lazy alt=image-20240510155610368></p><h2 id=反向代理>反向代理</h2><p>對外指暴露一個端口，但背後可能有好幾個端口，代理的是服務端</p><p><img src=https://i.imgur.com/VQkrQ27.png loading=lazy alt=image-20240510155710024></p><h1 id=使用java來配置網址理解反向代理>使用Java來配置網址，理解反向代理</h1><p>先配置3個不同的port (8081,8082,8083)</p><p><img src=https://i.imgur.com/oGUSIP4.png loading=lazy alt=image-20240510162243108></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -226,7 +318,97 @@ grep nginx: 这个命令用于过滤包含关键字 &#34;nginx&#34; 的行，只
         <span class=o>}</span>
     <span class=o>}</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>修改配置檔案，配置如下，把8081 8082 8083 設置一下，如此一來，訪問</p><p>http://localhost:8080/app</p><p>時，就會代理到這三個port號(預設是輪詢)，見下方Gif</p><p><img src=https://i.imgur.com/XSBGeIM.png loading=lazy alt=image-20240510163709808></p><p><img src=https://i.imgur.com/E2Jh8uO.gif loading=lazy alt=iShot_2024-05-10_16.38.15></p><p>也可以設置權重(weight) 來調整</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>修改配置檔案，配置如下，把8081 8082 8083 設置一下，如此一來，訪問</p><p>http://localhost:8080/app</p><p>時，就會代理到這三個port號(預設是輪詢)，見下方Gif</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  &#39;$remote_addr - $remote_user [$time_local] &#34;$request&#34; &#39;
+    #                  &#39;$status $body_bytes_sent &#34;$http_referer&#34; &#39;
+    #                  &#39;&#34;$http_user_agent&#34; &#34;$http_x_forwarded_for&#34;&#39;;
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+    upstream backend_hoxton{
+        server 127.0.0.1:8081;
+        server 127.0.0.1:8082;
+        server 127.0.0.1:8083;
+    }
+
+    #gzip  on;
+
+    server {
+        listen       8080;
+        server_name  localhost;
+    }
+}
+
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/XSBGeIM.png loading=lazy alt=image-20240510163709808></p><p><img src=https://i.imgur.com/E2Jh8uO.gif loading=lazy alt=iShot_2024-05-10_16.38.15></p><p>也可以設置權重(weight) 來調整</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -236,7 +418,7 @@ grep nginx: 这个命令用于过滤包含关键字 &#34;nginx&#34; 的行，只
         server 127.0.0.1:8082;
         server 127.0.0.1:8083;
     }
-</code></pre></td></tr></table></div></div><p>也可以使用ip_hash，這樣相同的請求就會被轉到一樣的port號了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>也可以使用ip_hash，這樣相同的請求就會被轉到一樣的port號了，這動作也就是讓nginx把流量導到指定的服務集群</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -248,15 +430,31 @@ grep nginx: 这个命令用于过滤包含关键字 &#34;nginx&#34; 的行，只
         server 127.0.0.1:8082;
         server 127.0.0.1:8083;
     }
-</code></pre></td></tr></table></div></div><h1 id=虛擬主機>虛擬主機</h1><p>目的是在一台主機上面配置多個站點，</p><h1 id=常用命令>常用命令</h1><h2 id=查看nginx配置>查看Nginx配置</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><h2 id=配置path要注意的內容避免不當訪問>配置Path要注意的內容，避免不當訪問</h2><p><span style=color:#ff0;font-size:32px>但這個方法非常不安全！等於說我們可以讓用戶用這樣的方式訪問我們服務器的內容。</span></p><p>比如說我們可能只想暴露http://localhost:8080/app/index.html這個文件，但如果寫成</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>location /app｛
+proxy_pass http://backend_ hoxton
+｝
+</code></pre></td></tr></table></div></div><p>用戶可以訪問</p><p>http://localhost:8080/apple/index.html</p><p>http://localhost:8080/app/screctKey</p><p>等等的內容，所以我們最好用全限定的方式，限定訪問的資源，也可以使用正則表達式來限定，這邊還有很多的內容，比如說前綴配對還有什麼東西之類的，就不展開了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>location /app｛
+proxy_pass http://backend_ hoxton
+｝
+</code></pre></td></tr></table></div></div><h1 id=虛擬主機>虛擬主機</h1><p>目的是在一台主機上面配置多個站點，</p><h1 id=常用命令>常用命令</h1><h2 id=查看版本>查看版本</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nginx -v	
+</code></pre></td></tr></table></div></div><h2 id=查看運行狀態>查看運行狀態</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>service nginx status
+</code></pre></td></tr></table></div></div><h2 id=查看nginx配置>查看Nginx配置</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nginx -V
 </code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/k6uTAeE.jpeg loading=lazy alt=image-20240510145507892></p><h2 id=查看nginx配置文件>查看Nginx配置文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>nigix -t
-</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/qBOBC3z.png loading=lazy alt=image-20240510145620545></p><h1 id=參考網址>參考網址</h1><p><a href="https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&vd_source=422eafa6570139128e44a83238959fa0</a></p></section><footer class=article-footer><section class=article-tags></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/><div class=article-image><img src=https://i.imgur.com/1OBx1AG.png loading=lazy data-key data-hash=https://i.imgur.com/1OBx1AG.png></div><div class=article-details><h2 class=article-title>結合Lombok寫出更整潔的程式碼</h2></div></a></article><article class=has-image><a href=/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/rfkvgRO.png loading=lazy data-key data-hash=https://i.imgur.com/rfkvgRO.png></div><div class=article-details><h2 class=article-title>運用ArrayList與自動配置將Swich語法拆解</h2></div></a></article><article class=has-image><a href=/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/><div class=article-image><img src=https://i.imgur.com/nCGDuUc.png%20 loading=lazy data-key data-hash=https://i.imgur.com/nCGDuUc.png></div><div class=article-details><h2 class=article-title>實用的Git指令</h2></div></a></article><article class=has-image><a href=/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/><div class=article-image><img src=https://i.imgur.com/o0SuW5w.png loading=lazy data-key data-hash=https://i.imgur.com/o0SuW5w.png></div><div class=article-details><h2 class=article-title>應用codegpt快速產生commit</h2></div></a></article><article class=has-image><a href=/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/><div class=article-image><img src=https://i.imgur.com/TcbKVGe.jpeg loading=lazy data-key data-hash=https://i.imgur.com/TcbKVGe.jpeg></div><div class=article-details><h2 class=article-title>MyBatis快速配置檔</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/qBOBC3z.png loading=lazy alt=image-20240510145620545></p><h1 id=參考網址>參考網址</h1><p><a href="https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&vd_source=422eafa6570139128e44a83238959fa0</a></p><p><a href="https://www.bilibili.com/video/BV1TZ421b7SD/?spm_id_from=333.337.search-card.all.click&vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1TZ421b7SD/?spm_id_from=333.337.search-card.all.click&vd_source=422eafa6570139128e44a83238959fa0</a></p></section><footer class=article-footer><section class=article-tags></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/><div class=article-image><img src=https://i.imgur.com/1OBx1AG.png loading=lazy data-key data-hash=https://i.imgur.com/1OBx1AG.png></div><div class=article-details><h2 class=article-title>結合Lombok寫出更整潔的程式碼</h2></div></a></article><article class=has-image><a href=/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/rfkvgRO.png loading=lazy data-key data-hash=https://i.imgur.com/rfkvgRO.png></div><div class=article-details><h2 class=article-title>運用ArrayList與自動配置將Swich語法拆解</h2></div></a></article><article class=has-image><a href=/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/><div class=article-image><img src=https://i.imgur.com/nCGDuUc.png%20 loading=lazy data-key data-hash=https://i.imgur.com/nCGDuUc.png></div><div class=article-details><h2 class=article-title>實用的Git指令</h2></div></a></article><article class=has-image><a href=/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/><div class=article-image><img src=https://i.imgur.com/o0SuW5w.png loading=lazy data-key data-hash=https://i.imgur.com/o0SuW5w.png></div><div class=article-details><h2 class=article-title>應用codegpt快速產生commit</h2></div></a></article><article class=has-image><a href=/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/><div class=article-image><img src=https://i.imgur.com/TcbKVGe.jpeg loading=lazy data-key data-hash=https://i.imgur.com/TcbKVGe.jpeg></div><div class=article-details><h2 class=article-title>MyBatis快速配置檔</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
 gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
 2020 -
 2024 Hoxton</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#安裝>安裝</a><ol><li><a href=#mac-homebrew>Mac Homebrew</a></li></ol></li><li><a href=#啟動與停止>啟動與停止</a><ol><li><a href=#啟動>啟動</a></li><li><a href=#停止>停止</a><ol><li><a href=#優雅停止>優雅停止</a></li><li><a href=#立刻停止>立刻停止</a></li></ol></li><li><a href=#重載配置文件>重載配置文件</a></li><li><a href=#重新打開日誌文件>重新打開日誌文件</a></li></ol></li><li><a href=#ngnix介紹>Ngnix介紹</a><ol><li><a href=#master-process--worker-process>Master Process & Worker Process</a></li></ol></li><li><a href=#如何更改ngnix的啟動圖>如何更改Ngnix的啟動圖</a></li><li><a href=#調整worker數量>調整Worker數量</a></li><li><a href=#nginx配置文件介紹>Nginx配置文件介紹</a></li><li><a href=#何謂正向代理何謂反向代理>何謂正向代理，何謂反向代理</a><ol><li><a href=#正向代理>正向代理</a></li><li><a href=#反向代理>反向代理</a></li></ol></li><li><a href=#使用java來配置網址理解反向代理>使用Java來配置網址，理解反向代理</a></li><li><a href=#虛擬主機>虛擬主機</a></li><li><a href=#常用命令>常用命令</a><ol><li><a href=#查看nginx配置>查看Nginx配置</a></li><li><a href=#查看nginx配置文件>查看Nginx配置文件</a></li></ol></li><li><a href=#參考網址>參考網址</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#安裝>安裝</a><ol><li><a href=#mac-homebrew>Mac Homebrew</a></li></ol></li><li><a href=#啟動與停止>啟動與停止</a><ol><li><a href=#啟動>啟動</a></li><li><a href=#停止>停止</a><ol><li><a href=#優雅停止>優雅停止</a></li><li><a href=#立刻停止>立刻停止</a></li></ol></li><li><a href=#重載配置文件>重載配置文件</a></li><li><a href=#重新打開日誌文件>重新打開日誌文件</a></li></ol></li><li><a href=#ngnix介紹>Ngnix介紹</a><ol><li><a href=#master-process--worker-process>Master Process & Worker Process</a></li><li><a href=#master>Master</a></li><li><a href=#worker>Worker</a></li></ol></li><li><a href=#如何更改ngnix的啟動畫面配置indexhtml等靜態資源>如何更改Ngnix的啟動畫面，配置index.html等靜態資源</a></li><li><a href=#調整worker數量>調整Worker數量</a></li><li><a href=#nginx配置文件介紹>Nginx配置文件介紹</a><ol><li><a href=#配置重定向>配置重定向</a></li></ol></li><li><a href=#何謂正向代理何謂反向代理>何謂正向代理，何謂反向代理</a><ol><li><a href=#正向代理>正向代理</a></li><li><a href=#反向代理>反向代理</a></li></ol></li><li><a href=#使用java來配置網址理解反向代理>使用Java來配置網址，理解反向代理</a><ol><li><a href=#配置path要注意的內容避免不當訪問>配置Path要注意的內容，避免不當訪問</a></li></ol></li><li><a href=#虛擬主機>虛擬主機</a></li><li><a href=#常用命令>常用命令</a><ol><li><a href=#查看版本>查看版本</a></li><li><a href=#查看運行狀態>查看運行狀態</a></li><li><a href=#查看nginx配置>查看Nginx配置</a></li><li><a href=#查看nginx配置文件>查看Nginx配置文件</a></li></ol></li><li><a href=#參考網址>參考網址</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
