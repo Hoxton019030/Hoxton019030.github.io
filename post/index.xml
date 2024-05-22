@@ -1,7 +1,200 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 22 May 2024 23:49:06 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>為了租房子而學的GAS(Google Apps Script)</title><link>https://hoxtonhsu.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</link><pubDate>Wed, 22 May 2024 23:49:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</guid><description>&lt;img src="https://i.imgur.com/V6lmUtX.png" alt="Featured image of post 為了租房子而學的GAS(Google Apps Script)" />&lt;p>最近找房子真的找得好累，偶然間在網路上看到&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10255573" target="_blank" rel="noopener"
 >超簡單一鍵推播 591 租屋資訊完全免 Coding－透過 Google Sheet 與 LINE Notify&lt;/a>，想要拿來用卻發現好像&lt;/p>
 &lt;p>已經失效了，想要維護一下發現自己完全不懂這些東西，於是秉持著能坐就不躺，能躺就不坐的懶人心態，決定要來研究一下怎麼利用GAS跟Line Notify來達到只要有更新資料，就會發送Line通知給我的功能。&lt;/p>
-&lt;h1 id="快速上手">快速上手&lt;/h1></description></item><item><title>AWS學習筆記</title><link>https://hoxtonhsu.com/p/aws%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 11 May 2024 14:25:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/aws%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/lluhyyC.png" alt="Featured image of post AWS學習筆記" />&lt;h1 id="amazon-web-server">Amazon Web Server&lt;/h1>
+&lt;h1 id="快速上手">快速上手&lt;/h1>
+&lt;blockquote>
+&lt;p>名詞定義&lt;/p>
+&lt;p>SpreadSheet：試算表，其實就是你看得的這整個Google Excel，對應到下面的Hoxton App Script Practice&lt;/p>
+&lt;p>Sheet：工作簿，工作表，就類似分頁的東西啦&lt;/p>
+&lt;/blockquote>
+&lt;p>在Google Sheet的活頁簿中，選擇Apps Script&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/S1lS5p2.png"
+loading="lazy"
+alt="image-20240523000838281"
+>&lt;/p>
+&lt;p>在這邊，就會看到一個類似javascript的東西，但是是.gs結尾的，接下來會給幾段Code，讓你感受一下Gs這個東西是怎麼運作的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/hNwexZ7.png"
+loading="lazy"
+alt="image-20240523000919427"
+>&lt;/p>
+&lt;ul>
+&lt;li>打印出目前操作的SpreadSheet名稱&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="kd">function&lt;/span> &lt;span class="nx">myFunction&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// 獲取當前活動的電子表格
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">spreadSheet&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">SpreadsheetApp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getActiveSpreadsheet&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// 獲取當前活動的電子表格名稱
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">spreadSheetName&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">spreadSheet&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getName&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// 輸出電子表格的名稱
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">spreadSheetName&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/PgFO6BW.png"
+loading="lazy"
+alt="image-20240523001254875"
+>&lt;/p>
+&lt;ul>
+&lt;li>打印出底下分頁的名稱&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">myFunction&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// 獲取當前活動的電子表格
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">spreadSheet&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">SpreadsheetApp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getActiveSpreadsheet&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// 獲取當前活動的工作表
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">sheet&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">spreadSheet&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getActiveSheet&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// 獲取所有工作表
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">sheets&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">spreadSheet&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getSheets&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// 輸出所有工作表的名稱
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kd">var&lt;/span> &lt;span class="nx">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="nx">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="nx">sheets&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">sheets&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">i&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="nx">getName&lt;/span>&lt;span class="p">());&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/iUsks8j.png"
+loading="lazy"
+alt="image-20240523001654221"
+>&lt;/p>
+&lt;ul>
+&lt;li>把Sheet的A1欄位改成Hello World&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">myFunction&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// 獲取當前活動的電子表格
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">spreadSheet&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">SpreadsheetApp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getActiveSpreadsheet&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// 獲取當前活動的電子表格名稱
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">spreadSheetName&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">spreadSheet&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getName&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// 輸出電子表格的名稱
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">spreadSheetName&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">// 獲取當前活動的工作表
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">sheet&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">spreadSheet&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getSheetByName&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;我是第一個Sheet&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">// 在 A1 單元格中設置值為 &amp;#34;Hello World&amp;#34;
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">sheet&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getRange&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;A1&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">setValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello World&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/gr7mzrm.png"
+loading="lazy"
+alt="image-20240523002109492"
+>&lt;/p>
+&lt;ul>
+&lt;li>設置自動執行的排程器&lt;/li>
+&lt;/ul>
+&lt;p>選擇Trigger&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/dQdcI3L.png"
+loading="lazy"
+alt="image-20240523002920526"
+>&lt;/p>
+&lt;p>按照下圖的順序去執行&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/fLTTZZK.png"
+loading="lazy"
+alt="image-20240523003031176"
+>&lt;/p>
+&lt;p>這樣就可以了，接下來我們寫一段Code，把A1欄位的值改成當前時間&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">myFunction&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// 獲取當前活動的電子表格
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">spreadSheet&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">SpreadsheetApp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getActiveSpreadsheet&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// 獲取當前活動的電子表格名稱
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">spreadSheetName&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">spreadSheet&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getName&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// 輸出電子表格的名稱
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">spreadSheetName&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">// 獲取當前活動的工作表
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">sheet&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">spreadSheet&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getSheetByName&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;我是第一個Sheet&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">// 獲取當前日期
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">now&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nb">Date&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// 定義日期格式
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">formattedDate&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">Utilities&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">formatDate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">now&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">Session&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getScriptTimeZone&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="s2">&amp;#34;yyyy MM dd HH:mm:ss&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">// 在 A1 單元格中設置格式化後的日期
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">sheet&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getRange&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;A1&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">setValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">formattedDate&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/jIjanCR.png"
+loading="lazy"
+alt="image-20240523003205098"
+>&lt;/p></description></item><item><title>AWS學習筆記</title><link>https://hoxtonhsu.com/p/aws%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 11 May 2024 14:25:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/aws%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/lluhyyC.png" alt="Featured image of post AWS學習筆記" />&lt;h1 id="amazon-web-server">Amazon Web Server&lt;/h1>
 &lt;h1 id="介紹">介紹&lt;/h1>
 &lt;h2 id="amazon-ec2">Amazon EC2&lt;/h2>
 &lt;p>架伺服器的，動態擴充的VPS&lt;/p>
