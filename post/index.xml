@@ -6,11 +6,17 @@ loading="lazy"
 alt="gif"
 >&lt;/p>
 &lt;h1 id="快速上手">快速上手&lt;/h1>
-&lt;blockquote>
-&lt;p>名詞定義&lt;/p>
+&lt;h2 id="名詞定義">名詞定義&lt;/h2>
+&lt;h2 id="heading">&lt;/h2>
+&lt;ul>
+&lt;li>
 &lt;p>SpreadSheet：試算表，其實就是你看得的這整個Google Excel，對應到下面的Hoxton App Script Practice&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>Sheet：工作簿，工作表，就類似分頁的東西啦&lt;/p>
-&lt;/blockquote>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="夢開始的地方">夢開始的地方&lt;/h2>
 &lt;p>反正先隨便創個試算表吧&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/xcEWfYO.png"
 loading="lazy"
@@ -26,9 +32,7 @@ alt="image-20240523000838281"
 loading="lazy"
 alt="image-20240523000919427"
 >&lt;/p>
-&lt;ul>
-&lt;li>打印出目前操作的SpreadSheet名稱&lt;/li>
-&lt;/ul>
+&lt;h2 id="打印出目前操作的spreadsheet名稱">打印出目前操作的SpreadSheet名稱&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -58,9 +62,7 @@ alt="image-20240523000919427"
 loading="lazy"
 alt="image-20240523001254875"
 >&lt;/p>
-&lt;ul>
-&lt;li>打印出底下分頁的名稱&lt;/li>
-&lt;/ul>
+&lt;h2 id="打印出底下分頁的名稱">打印出底下分頁的名稱&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -99,9 +101,7 @@ alt="image-20240523001254875"
 loading="lazy"
 alt="image-20240523001654221"
 >&lt;/p>
-&lt;ul>
-&lt;li>把Sheet的A1欄位改成Hello World&lt;/li>
-&lt;/ul>
+&lt;h2 id="把sheet的a1欄位改成hello-world">把Sheet的A1欄位改成Hello World&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -141,9 +141,7 @@ alt="image-20240523001654221"
 loading="lazy"
 alt="image-20240523002109492"
 >&lt;/p>
-&lt;ul>
-&lt;li>設置自動執行的排程器&lt;/li>
-&lt;/ul>
+&lt;h2 id="設置自動執行的排程器">設置自動執行的排程器&lt;/h2>
 &lt;p>選擇Trigger&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/dQdcI3L.png"
 loading="lazy"
@@ -204,9 +202,7 @@ alt="image-20240523003031176"
 loading="lazy"
 alt="image-20240523003205098"
 >&lt;/p>
-&lt;ul>
-&lt;li>結合Line Notify 每分鐘跟我說現在幾時幾分&lt;/li>
-&lt;/ul>
+&lt;h2 id="結合line-notify-每分鐘跟我說現在幾時幾分">結合Line Notify 每分鐘跟我說現在幾時幾分&lt;/h2>
 &lt;p>首先到https://notify-bot.line.me/zh_TW/網站申請一個個人Token&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/ITM6tjA.png"
 loading="lazy"
