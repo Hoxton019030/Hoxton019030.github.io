@@ -11,12 +11,17 @@ alt="gif"
 &lt;p>SpreadSheet：試算表，其實就是你看得的這整個Google Excel，對應到下面的Hoxton App Script Practice&lt;/p>
 &lt;p>Sheet：工作簿，工作表，就類似分頁的東西啦&lt;/p>
 &lt;/blockquote>
-&lt;p>在Google Sheet的活頁簿中，選擇Apps Script&lt;/p>
+&lt;p>反正先隨便創個試算表吧&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xcEWfYO.png"
+loading="lazy"
+alt="image-20240523003617692"
+>&lt;/p>
+&lt;p>接著在Google Sheet的活頁簿中，選擇Apps Script&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/S1lS5p2.png"
 loading="lazy"
 alt="image-20240523000838281"
 >&lt;/p>
-&lt;p>在這邊，就會看到一個類似javascript的東西，但是是.gs結尾的，接下來會給幾段Code，讓你感受一下Gs這個東西是怎麼運作的&lt;/p>
+&lt;p>在這邊，就會看到一個類似javascript的東西，但是是.gs結尾的，接下來會給幾段Code，讓你感受一下gs這個東西是怎麼運作的&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/hNwexZ7.png"
 loading="lazy"
 alt="image-20240523000919427"
