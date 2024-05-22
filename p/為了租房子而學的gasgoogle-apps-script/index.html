@@ -105,25 +105,13 @@ gtag('js',new Date());gtag('config','G-9N16MVLR0Q');</script></head><body class=
 </span><span class=lnt>15
 </span><span class=lnt>16
 </span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=kd>function</span> <span class=nx>myFunction</span><span class=p>()</span> <span class=p>{</span>
   <span class=c1>// 獲取當前活動的電子表格
 </span><span class=c1></span>  <span class=kd>var</span> <span class=nx>spreadSheet</span> <span class=o>=</span> <span class=nx>SpreadsheetApp</span><span class=p>.</span><span class=nx>getActiveSpreadsheet</span><span class=p>();</span>
 
-  <span class=c1>// 獲取當前活動的電子表格名稱
-</span><span class=c1></span>  <span class=kd>var</span> <span class=nx>spreadSheetName</span> <span class=o>=</span> <span class=nx>spreadSheet</span><span class=p>.</span><span class=nx>getName</span><span class=p>();</span>
-  
-  <span class=c1>// 輸出電子表格的名稱
-</span><span class=c1></span>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>spreadSheetName</span><span class=p>);</span>
-
   <span class=c1>// 獲取當前活動的工作表
 </span><span class=c1></span>  <span class=kd>var</span> <span class=nx>sheet</span> <span class=o>=</span> <span class=nx>spreadSheet</span><span class=p>.</span><span class=nx>getSheetByName</span><span class=p>(</span><span class=s2>&#34;我是第一個Sheet&#34;</span><span class=p>);</span>
-  
+ 
   <span class=c1>// 獲取當前日期
 </span><span class=c1></span>  <span class=kd>var</span> <span class=nx>now</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>();</span>
   
