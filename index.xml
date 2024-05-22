@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 22 May 2024 23:49:06 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>為了租房子而學的GAS(Google Apps Script)</title><link>https://hoxtonhsu.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</link><pubDate>Wed, 22 May 2024 23:49:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</guid><description>&lt;img src="https://i.imgur.com/V6lmUtX.png" alt="Featured image of post 為了租房子而學的GAS(Google Apps Script)" />&lt;p>最近找房子真的找得好累，偶然間在網路上看到&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10255573" target="_blank" rel="noopener"
 >超簡單一鍵推播 591 租屋資訊完全免 Coding－透過 Google Sheet 與 LINE Notify&lt;/a>，想要拿來用卻發現好像&lt;/p>
 &lt;p>已經失效了，想要維護一下發現自己完全不懂這些東西，於是秉持著能坐就不躺，能躺就不坐的懶人心態，決定要來研究一下怎麼利用GAS跟Line Notify來達到只要有更新資料，就會發送Line通知給我的功能。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/u5xrFYH.gif"
+loading="lazy"
+alt="gif"
+>&lt;/p>
 &lt;h1 id="快速上手">快速上手&lt;/h1>
 &lt;blockquote>
 &lt;p>名詞定義&lt;/p>
