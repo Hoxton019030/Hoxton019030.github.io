@@ -7032,7 +7032,8 @@ alt="image-20230908142910340"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>啟動後，可以在瀏覽器中輸入&lt;/p>
-&lt;p>http://localhost:15672/&lt;/p>
+&lt;p>&lt;a class="link" href="http://localhost:15672/" target="_blank" rel="noopener"
+>http://localhost:15672/&lt;/a>&lt;/p>
 &lt;p>即可訪問rabbitMq的畫面&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/6ztm4vE.png"
 loading="lazy"
