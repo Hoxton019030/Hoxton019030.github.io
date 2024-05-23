@@ -252,7 +252,164 @@ alt="image-20240523005324295"
 &lt;h2 id="amazon-s3">Amazon S3&lt;/h2>
 &lt;p>CDN的功能，可以放圖片等等的靜態資源&lt;/p>
 &lt;h2 id="iam">IAM&lt;/h2>
-&lt;p>Identify And Access Management&lt;/p>
+&lt;p>Identify And Access Management, Global Service&lt;/p>
+&lt;p>Root Account是你創辦帳戶時就創建，而Users則是這個組織或是群組裡面的用戶&lt;/p>
+&lt;h1 id="ima">IMA&lt;/h1>
+&lt;p>在進行IMA的設定時，右上角的區域會被鎖定成「Global」，因為IAM的設定是全局生效的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/DBJPYm0.png"
+loading="lazy"
+alt="image-20240523143448865"
+>&lt;/p>
+&lt;p>進行練習時，首先先創立一個User，因為我們所創建的Aws帳號都是Root User&lt;/p>
+&lt;p>創建使用者&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xdEIkhC.png"
+loading="lazy"
+alt="image-20240523144052709"
+>&lt;/p>
+&lt;p>指定使用者的類型，密碼型態&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/COKtetL.png"
+loading="lazy"
+alt="image-20240523144507053"
+>&lt;/p>
+&lt;p>創建好之後，可以使用這邊的Url登入&lt;img src="https://i.imgur.com/hkpuWpe.png"
+loading="lazy"
+alt="image-20240523150757068"
+>&lt;/p>
+&lt;p>Account Id在這邊查看&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/aD6bE53.png"
+loading="lazy"
+alt="image-20240523150847092"
+>&lt;/p>
+&lt;p>登入畫面&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/SosIMso.png"
+loading="lazy"
+alt="image-20240523151028543"
+>&lt;/p>
+&lt;p>創建群組，創建完之後記得要勾喔，我這邊忘了截圖。創建完、加完後，這個群組的User就有Admin的權限了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Oz9NFhi.png"
+loading="lazy"
+alt="image-20240523144713427"
+>&lt;/p>
+&lt;h2 id="ima-policy">IMA Policy&lt;/h2>
+&lt;p>使用JSON來做User的Group的設定，定義了各種Permissions，範例如下&lt;/p>
+&lt;ul>
+&lt;li>Version: Policy Language的版本，通常都是2012-10-12&lt;/li>
+&lt;li>Id：一個識別碼，可填可不填&lt;/li>
+&lt;li>Statement：必填的，可以是一個或是多個&lt;/li>
+&lt;li>Sid：每個Statement的Id，選填的&lt;/li>
+&lt;li>Effect：Allow 或是 Deny&lt;/li>
+&lt;li>Principal: 這個帳戶遵循的是哪個policy&lt;/li>
+&lt;li>Action：Effect所Allow或Deny的&lt;/li>
+&lt;li>Resource：Action所使用的resouces&lt;/li>
+&lt;li>Condition：Effect生效的條件 選填&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;Version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;2012-10-17&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;Id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;S3-Account-Permissions&amp;#34;&lt;/span>
+&lt;span class="s2">&amp;#34;Statement&amp;#34;&lt;/span>&lt;span class="p">:[&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;Sid&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;1&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;Principal&amp;#34;&lt;/span>&lt;span class="p">:{&lt;/span>
+&lt;span class="nt">&amp;#34;AWS&amp;#34;&lt;/span>&lt;span class="p">:[&lt;/span>&lt;span class="s2">&amp;#34;arn:aws:iam:123456789012:root&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="p">},&lt;/span>
+&lt;span class="nt">&amp;#34;Action&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;ec2:Describe*&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;Resource&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;*&amp;#34;&lt;/span>
+&lt;span class="p">},{&lt;/span>
+&lt;span class="nt">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;Action&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;elasticloadbalncing:Describe*&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;Resouce&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;*&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;span class="err">.&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;Action&amp;#34;&lt;/span>&lt;span class="p">:[&lt;/span>
+&lt;span class="s2">&amp;#34;cloudwatch:ListMetrics&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;coludwatch:GetMetricStatistics&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;cloudwatch:Describe*&amp;#34;&lt;/span>
+&lt;span class="p">],&lt;/span>
+&lt;span class="nt">&amp;#34;Resouce&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="s2">&amp;#34;*&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">]&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="policy的詳細設定">Policy的詳細設定&lt;/h2>
+&lt;p>可以點擊右邊的Policies查看&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1jKlLHK.png"
+loading="lazy"
+alt="image-20240523163325704"
+>&lt;/p>
+&lt;p>點擊右邊的Json就會顯示出他的Json長什麼樣子&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/6HmATj7.gif"
+loading="lazy"
+alt="iShot_2024-05-23_16.35.01"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;Version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;2012-10-17&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;Statement&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;Action&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;*&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;Resource&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;*&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">]&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Json與Action的對應，可以使用WildCard來匹配&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/oUSs4Wi.png"
+loading="lazy"
+alt="image-20240523164051091"
+>&lt;/p>
+&lt;p>當然你也是可以自己Custome自己的Police啦&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vIzi1V3.png"
+loading="lazy"
+alt="image-20240523164808959"
+>&lt;/p>
 &lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1wR4y1F7YM/?spm_id_from=333.788.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >【Udemy付费课程】Ultimate AWS Certified Solutions Architect Associate AWS认证课程&lt;/a>&lt;/p>
