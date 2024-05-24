@@ -192,7 +192,10 @@ loading="lazy"
 alt="image-20240523003205098"
 >&lt;/p>
 &lt;h2 id="結合line-notify-每分鐘跟我說現在幾時幾分">結合Line Notify 每分鐘跟我說現在幾時幾分&lt;/h2>
-&lt;p>首先到https://notify-bot.line.me/zh_TW/網站申請一個個人Token&lt;/p>
+&lt;p>首先到&lt;/p>
+&lt;p>&lt;a class="link" href="https://notify-bot.line.me/zh_TW/" target="_blank" rel="noopener"
+>https://notify-bot.line.me/zh_TW/&lt;/a>&lt;/p>
+&lt;p>網站申請一個個人Token&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/ITM6tjA.png"
 loading="lazy"
 alt="image-20240523004842678"
