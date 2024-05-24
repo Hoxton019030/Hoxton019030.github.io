@@ -5839,7 +5839,11 @@ alt="image-20230914122020798"
 &lt;p>因此，若前面這幾個數字一樣，就代表這些是來自同一個網域的通訊，不需要透過Gateway，反之，若有不同，則代表是來自不同網域的請求，需要走Gateway&lt;/p>
 &lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1hd4y1q71b/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
->目前B站唯一把Gateway网关讲透的视频教程！一天即可掌握Gateway！&lt;/a>&lt;/p></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+>目前B站唯一把Gateway网关讲透的视频教程！一天即可掌握Gateway！&lt;/a>&lt;/p></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="github網址">GitHub網址&lt;/h1>
+&lt;p>&lt;a class="link" href="https://github.com/Hoxton019030/RabbitMQ_Practice/tree/prototype" target="_blank" rel="noopener"
+>https://github.com/Hoxton019030/RabbitMQ_Practice/tree/prototype&lt;/a>&lt;/p>
+&lt;p>Prototype分支是個MVP(Minimum Viable Product)，使用了RabbitMq來接收前端傳來的一個訊息並打印出來，可以藉此對MessageQueue有個認識與回顧&lt;/p>
+&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>今天是第二天，學習RabbitMQ。第一次接觸到Message Queue是在御諾的時候，當時有個同事做了一個這個東西，在Sprint的結尾展示，那時候就覺得MessageQueue這個東西也太酷了，但一直沒有機會(懶)去接觸。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/I0mlQvo.gif"
 loading="lazy"
@@ -6760,6 +6764,7 @@ spring.rabbitmq.virtual-host=test1
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>生成關於exchange、queue的，再將兩者綁在一起Bean&lt;/p>
+&lt;p>&lt;span style="color:yellow;font-size:32px">2024/5/24 回頭來看，不知道為啥下面的都沒作用了，改用Configuration篇章的Code 就可以了&lt;/span>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -6812,8 +6817,129 @@ spring.rabbitmq.virtual-host=test1
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>在配置個&lt;/p>
-&lt;h2 id="producer">Producer&lt;/h2>
+&lt;/div>&lt;h2 id="properties">Properties&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">rabbitmq.queue.name :hoxton_queue_name
+rabbitmq.exchange.name:hoxton_exchange_name
+rabbitmq.routekey.name:hoxton_queue_name
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.rabbitmq.configuration&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.rabbitmq.client.BuiltinExchangeType&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.rabbitmq.client.Channel&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.rabbitmq.client.Connection&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.rabbitmq.client.ConnectionFactory&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">jakarta.annotation.PostConstruct&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.beans.factory.annotation.Value&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.context.annotation.Bean&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.context.annotation.Configuration&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.io.IOException&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.util.concurrent.TimeoutException&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Configuration&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">RabbitMessageQueueConfiguration&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="n">ConnectionFactory&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${rabbitmq.routekey.name}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">routeKey&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${rabbitmq.exchange.name}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">exchangeName&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;rabbitmq.queue.name&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">queueName&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Bean&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">ConnectionFactory&lt;/span> &lt;span class="nf">connectionFactory&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="nd">@PostConstruct&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">setupRabbitMQ&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">TimeoutException&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="c1">// 使用 connectionFactory bean 创建连接
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">connectionFactory&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ConnectionFactory&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setHost&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;127.0.0.1&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setUsername&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;hoxton&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setPassword&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;123456&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setPort&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">5672&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Connection&lt;/span> &lt;span class="n">connection&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">connectionFactory&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">newConnection&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">Channel&lt;/span> &lt;span class="n">channel&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">connection&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">createChannel&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">exchangeDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">BuiltinExchangeType&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">DIRECT&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueDeclare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">queueBind&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queueName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">exchangeName&lt;/span>
+&lt;span class="o">,&lt;/span> &lt;span class="n">routeKey&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">message&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Rabbit Mq啟動成功&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">basicPublish&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">queueName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">channel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">close&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">connection&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">close&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在配置&lt;/p>
+&lt;p>個&lt;/p>
+&lt;h2 id="controller">Controller&lt;/h2>
 &lt;p>我們這邊用RestAPI的方式發送請求過去。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -6840,10 +6966,13 @@ spring.rabbitmq.virtual-host=test1
 &lt;/span>&lt;span class="lnt">21
 &lt;/span>&lt;span class="lnt">22
 &lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.springbootinaction.controller&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.example.springbootinaction.service.RabbitMQProducer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.rabbitmq.controller&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.example.rabbitmq.producer.RabbitMQProducer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.example.rabbitmq.service.TestService&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">lombok.RequiredArgsConstructor&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.http.ResponseEntity&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.web.bind.annotation.GetMapping&lt;/span>&lt;span class="o">;&lt;/span>
@@ -6852,17 +6981,17 @@ spring.rabbitmq.virtual-host=test1
 &lt;span class="nd">@RestController&lt;/span>
 &lt;span class="nd">@RequestMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;rabbit&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
 &lt;span class="nd">@RequiredArgsConstructor&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">MessageController&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">RabbitMQProducer&lt;/span> &lt;span class="n">rabbitMQProducer&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="nd">@GetMapping&lt;/span>&lt;span class="o">()&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">senedMessage&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="n">rabbitMQProducer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">sendMessage&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;我是來自前端的訊息&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">TestController&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">TestService&lt;/span> &lt;span class="n">testService&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@GetMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;/&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">sendMessage&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">testService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">sendMessageToRabbitMq&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;我是來自前端的訊息&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="k">return&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ok&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">body&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;完成&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>其中的rabbitTemplate是SpringBoot用來與rabbitMq交互的一個類&lt;/p>
+&lt;/div>&lt;h2 id="service">Service&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -6883,30 +7012,27 @@ spring.rabbitmq.virtual-host=test1
 &lt;/span>&lt;span class="lnt">16
 &lt;/span>&lt;span class="lnt">17
 &lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.springbootinaction.service&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.rabbitmq.service&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">com.example.rabbitmq.producer.RabbitMQProducer&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">lombok.RequiredArgsConstructor&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.amqp.rabbit.core.RabbitTemplate&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">lombok.extern.slf4j.Slf4j&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.stereotype.Service&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="kn">import static&lt;/span> &lt;span class="nn">com.example.springbootinaction.config.RabbitMQConfig.EXCHANGE_NAME&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="nd">@Service&lt;/span>
 &lt;span class="nd">@RequiredArgsConstructor&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">RabbitMQProducer&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">RabbitTemplate&lt;/span> &lt;span class="n">rabbitTemplate&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">sendMessage&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;送出訊息&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
-&lt;span class="n">rabbitTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">convertAndSend&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">EXCHANGE_NAME&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="nd">@Slf4j&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">TestService&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">RabbitMQProducer&lt;/span> &lt;span class="n">rabbitMQProducer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">sendMessageToRabbitMq&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">info&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;發送消息到Rabbit Mq:{}&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">rabbitMQProducer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">sendMessage&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>接著再寫一個&lt;/p>
-&lt;h2 id="consumer">Consumer&lt;/h2>
-&lt;p>的&lt;/p>
-&lt;h2 id="listener">Listener&lt;/h2>
+&lt;/div>&lt;h2 id="producer">Producer&lt;/h2>
+&lt;p>其中的rabbitTemplate是SpringBoot用來與rabbitMq交互的一個類&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -6932,23 +7058,88 @@ spring.rabbitmq.virtual-host=test1
 &lt;/span>&lt;span class="lnt">21
 &lt;/span>&lt;span class="lnt">22
 &lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.springbootinaction.listener&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.rabbitmq.producer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">lombok.RequiredArgsConstructor&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">lombok.extern.slf4j.Slf4j&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.amqp.rabbit.core.RabbitTemplate&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.beans.factory.annotation.Value&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.stereotype.Component&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Component&lt;/span>
+&lt;span class="nd">@RequiredArgsConstructor&lt;/span>
+&lt;span class="nd">@Slf4j&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">RabbitMQProducer&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">RabbitTemplate&lt;/span> &lt;span class="n">rabbitTemplate&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${rabbitmq.routekey.name}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">routeKey&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${rabbitmq.exchange.name}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">exchangeName&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Value&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;${rabbitmq.queue.name}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">queueName&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">sendMessage&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">info&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;呼叫到MessageQueueProducer&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">rabbitTemplate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">convertAndSend&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">exchangeName&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">routeKey&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著再寫一個&lt;/p>
+&lt;h2 id="consumer">Consumer&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">package&lt;/span> &lt;span class="nn">com.example.rabbitmq.comsumer&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">lombok.extern.slf4j.Slf4j&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.amqp.core.Message&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.amqp.rabbit.annotation.RabbitListener&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="kn">import&lt;/span> &lt;span class="nn">org.springframework.stereotype.Component&lt;/span>&lt;span class="o">;&lt;/span>
-&lt;span class="kn">import static&lt;/span> &lt;span class="nn">com.example.springbootinaction.config.RabbitMQConfig.QUEUE_NAME&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="nd">@Component&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">ConsumerListener&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Slf4j&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">RabbitConsumer&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="cm">/**
 &lt;/span>&lt;span class="cm"> * 監聽隊列：當隊列中有消息，則監聽器工作，處理接收到的訊息
 &lt;/span>&lt;span class="cm"> * @param message
 &lt;/span>&lt;span class="cm"> */&lt;/span>
-&lt;span class="nd">@RabbitListener&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queues&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">QUEUE_NAME&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="nd">@RabbitListener&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">queues&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;${rabbitmq.queue.name}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
 &lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">process&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Message&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="kt">byte&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">body&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">message&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBody&lt;/span>&lt;span class="o">();&lt;/span>
-&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;接收到的消息&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">body&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">info&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;呼叫到Consumer&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">info&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;接收到的消息&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">body&lt;/span>&lt;span class="o">));&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>

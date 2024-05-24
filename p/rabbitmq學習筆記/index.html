@@ -1,6 +1,6 @@
 <!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="努力到無能為力，拼搏到感動至極"><title>RabbitMQ學習筆記</title><link rel=canonical href=https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/><script type=text/javascript src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel=stylesheet href=/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css><meta property="og:title" content="RabbitMQ學習筆記"><meta property="og:description" content="努力到無能為力，拼搏到感動至極"><meta property="og:url" content="https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/"><meta property="og:site_name" content="Hoxton"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content><meta property="article:published_time" content="2023-09-08T03:00:58+08:00"><meta property="article:modified_time" content="2023-09-08T03:00:58+08:00"><meta property="og:image" content="https://i.imgur.com/dQTmSCl.png"><meta name=twitter:title content="RabbitMQ學習筆記"><meta name=twitter:description content="努力到無能為力，拼搏到感動至極"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://i.imgur.com/dQTmSCl.png"><link rel="shortcut icon" href=https://cdn-icons-png.flaticon.com/512/92/92031.png><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-9N16MVLR0Q','auto');ga('send','pageview');}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','G-9N16MVLR0Q');</script></head><body class=article-page><script>(function(){const colorSchemeKey='StackColorScheme';localStorage.setItem(colorSchemeKey,"dark");})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.documentElement.dataset.scheme='dark';}else{document.documentElement.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li><li><a href=https://www.linkedin.com/in/hoxton-hsu-298b22269/ target=_blank title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/><img src=https://i.imgur.com/dQTmSCl.png loading=lazy alt="Featured image of post RabbitMQ學習筆記"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%A8%8B%E5%BC%8F/ style=background-color:#2a9d8f;color:#fff>程式</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/>RabbitMQ學習筆記</a></h2><h3 class=article-subtitle>努力到無能為力，拼搏到感動至極</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Sep 08, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>8 minute read</time></div></footer></div></header><section class=article-content><h1 id=前言>前言</h1><p>今天是第二天，學習RabbitMQ。第一次接觸到Message Queue是在御諾的時候，當時有個同事做了一個這個東西，在Sprint的結尾展示，那時候就覺得MessageQueue這個東西也太酷了，但一直沒有機會(懶)去接觸。</p><p><img src=https://i.imgur.com/I0mlQvo.gif loading=lazy alt=line-up></p><h1 id=什麼是message-queue>什麼是Message Queue</h1><p><img src=https://i.imgur.com/jymb4cT.jpg loading=lazy alt="Memphis.dev - What is a message queue?"></p><p>Message Queue(訊息佇列、消息隊列)，是一種用在應用程序之間傳遞消息的通訊是，Message Queue允許應用之間<strong>異步</strong>的發送和接收消息，並且不需要直接連接到對方</p><h1 id=什麼是rabbitmq>什麼是RabbitMQ</h1><p>RabbitMQ是個基於AMQP(Advanced Message Queuing Protocal 高級消息隊列協議) ，用於應用程式之間通訊的中間層，Rabbit有四大核心</p><ol><li>生產者：發送消息的應用程式</li><li>消費者：接受消息的應用程式</li><li>佇列：訊息在Message Queue中儲存的位置</li><li>交換機：訊息路由的一個組件，會依照我們的配置，把訊息分發給特定的佇列</li></ol><p>AMQP也包含了四個核心組件</p><ol><li>消息：包括消息頭、消息體、消息屬性</li><li>交換機：消息傳遞的中間件，將消息路由到一個或多個隊列中</li><li>佇列：用來儲存消息的資料結構</li><li>綁定：交換機和隊列的綁定</li></ol><h1 id=下載與安裝>下載與安裝</h1><p>以下適用於M1、M2</p><p>使用brew安裝</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>快樂的CRUD Boy</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li><li><a href=https://www.linkedin.com/in/hoxton-hsu-298b22269/ target=_blank title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/><img src=https://i.imgur.com/dQTmSCl.png loading=lazy alt="Featured image of post RabbitMQ學習筆記"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%A8%8B%E5%BC%8F/ style=background-color:#2a9d8f;color:#fff>程式</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/>RabbitMQ學習筆記</a></h2><h3 class=article-subtitle>努力到無能為力，拼搏到感動至極</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Sep 08, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>9 minute read</time></div></footer></div></header><section class=article-content><h1 id=github網址>GitHub網址</h1><p><a class=link href=https://github.com/Hoxton019030/RabbitMQ_Practice/tree/prototype target=_blank rel=noopener>https://github.com/Hoxton019030/RabbitMQ_Practice/tree/prototype</a></p><p>Prototype分支是個MVP(Minimum Viable Product)，使用了RabbitMq來接收前端傳來的一個訊息並打印出來，可以藉此對MessageQueue有個認識與回顧</p><h1 id=前言>前言</h1><p>今天是第二天，學習RabbitMQ。第一次接觸到Message Queue是在御諾的時候，當時有個同事做了一個這個東西，在Sprint的結尾展示，那時候就覺得MessageQueue這個東西也太酷了，但一直沒有機會(懶)去接觸。</p><p><img src=https://i.imgur.com/I0mlQvo.gif loading=lazy alt=line-up></p><h1 id=什麼是message-queue>什麼是Message Queue</h1><p><img src=https://i.imgur.com/jymb4cT.jpg loading=lazy alt="Memphis.dev - What is a message queue?"></p><p>Message Queue(訊息佇列、消息隊列)，是一種用在應用程序之間傳遞消息的通訊是，Message Queue允許應用之間<strong>異步</strong>的發送和接收消息，並且不需要直接連接到對方</p><h1 id=什麼是rabbitmq>什麼是RabbitMQ</h1><p>RabbitMQ是個基於AMQP(Advanced Message Queuing Protocal 高級消息隊列協議) ，用於應用程式之間通訊的中間層，Rabbit有四大核心</p><ol><li>生產者：發送消息的應用程式</li><li>消費者：接受消息的應用程式</li><li>佇列：訊息在Message Queue中儲存的位置</li><li>交換機：訊息路由的一個組件，會依照我們的配置，把訊息分發給特定的佇列</li></ol><p>AMQP也包含了四個核心組件</p><ol><li>消息：包括消息頭、消息體、消息屬性</li><li>交換機：消息傳遞的中間件，將消息路由到一個或多個隊列中</li><li>佇列：用來儲存消息的資料結構</li><li>綁定：交換機和隊列的綁定</li></ol><h1 id=下載與安裝>下載與安裝</h1><p>以下適用於M1、M2</p><p>使用brew安裝</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>brew install rabbitmq
 </code></pre></td></tr></table></div></div><p>啟動rabbitMq</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>brew services start rabbitmq
@@ -732,7 +732,7 @@ spring.rabbitmq.port=5672
 spring.rabbitmq.username=hoxton
 spring.rabbitmq.password=123456
 spring.rabbitmq.virtual-host=test1
-</code></pre></td></tr></table></div></div><p>生成關於exchange、queue的，再將兩者綁在一起Bean</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><p>生成關於exchange、queue的，再將兩者綁在一起Bean</p><p><span style=color:#ff0;font-size:32px>2024/5/24 回頭來看，不知道為啥下面的都沒作用了，改用Configuration篇章的Code 就可以了</span></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -782,7 +782,13 @@ spring.rabbitmq.virtual-host=test1
         <span class=k>return</span> <span class=n>BindingBuilder</span><span class=o>.</span><span class=na>bind</span><span class=o>(</span><span class=n>queue</span><span class=o>).</span><span class=na>to</span><span class=o>(</span><span class=n>fanoutExchange</span><span class=o>);</span>
     <span class=o>}</span>
 <span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>在配置個</p><h2 id=producer>Producer</h2><p>我們這邊用RestAPI的方式發送請求過去。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><h2 id=properties>Properties</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>rabbitmq.queue.name :hoxton_queue_name
+rabbitmq.exchange.name:hoxton_exchange_name
+rabbitmq.routekey.name:hoxton_queue_name
+</code></pre></td></tr></table></div></div><h2 id=configuration>Configuration</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -805,9 +811,124 @@ spring.rabbitmq.virtual-host=test1
 </span><span class=lnt>21
 </span><span class=lnt>22
 </span><span class=lnt>23
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.example.springbootinaction.controller</span><span class=o>;</span>
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.example.rabbitmq.configuration</span><span class=o>;</span>
 
-<span class=kn>import</span> <span class=nn>com.example.springbootinaction.service.RabbitMQProducer</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>com.rabbitmq.client.BuiltinExchangeType</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>com.rabbitmq.client.Channel</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>com.rabbitmq.client.Connection</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>com.rabbitmq.client.ConnectionFactory</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>jakarta.annotation.PostConstruct</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.springframework.beans.factory.annotation.Value</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.springframework.context.annotation.Bean</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.springframework.context.annotation.Configuration</span><span class=o>;</span>
+
+<span class=kn>import</span> <span class=nn>java.io.IOException</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>java.util.concurrent.TimeoutException</span><span class=o>;</span>
+
+<span class=nd>@Configuration</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>RabbitMessageQueueConfiguration</span> <span class=o>{</span>
+
+    <span class=kd>private</span> <span class=n>ConnectionFactory</span> <span class=n>connectionFactory</span><span class=o>;</span>
+    <span class=nd>@Value</span><span class=o>(</span><span class=s>&#34;${rabbitmq.routekey.name}&#34;</span><span class=o>)</span>
+    <span class=n>String</span> <span class=n>routeKey</span><span class=o>;</span>
+    <span class=nd>@Value</span><span class=o>(</span><span class=s>&#34;${rabbitmq.exchange.name}&#34;</span><span class=o>)</span>
+    <span class=n>String</span> <span class=n>exchangeName</span><span class=o>;</span>
+    <span class=nd>@Value</span><span class=o>(</span><span class=s>&#34;rabbitmq.queue.name&#34;</span><span class=o>)</span>
+    <span class=n>String</span> <span class=n>queueName</span><span class=o>;</span>
+
+    <span class=nd>@Bean</span>
+    <span class=kd>public</span> <span class=n>ConnectionFactory</span> <span class=nf>connectionFactory</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=n>connectionFactory</span><span class=o>;</span>
+    <span class=o>}</span>
+
+    <span class=nd>@PostConstruct</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>setupRabbitMQ</span><span class=o>()</span> <span class=kd>throws</span> <span class=n>IOException</span><span class=o>,</span> <span class=n>TimeoutException</span> <span class=o>{</span>
+        <span class=c1>// 使用 connectionFactory bean 创建连接
+</span><span class=c1></span>        <span class=n>connectionFactory</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ConnectionFactory</span><span class=o>();</span>
+        <span class=n>connectionFactory</span><span class=o>.</span><span class=na>setHost</span><span class=o>(</span><span class=s>&#34;127.0.0.1&#34;</span><span class=o>);</span>
+        <span class=n>connectionFactory</span><span class=o>.</span><span class=na>setUsername</span><span class=o>(</span><span class=s>&#34;hoxton&#34;</span><span class=o>);</span>
+        <span class=n>connectionFactory</span><span class=o>.</span><span class=na>setPassword</span><span class=o>(</span><span class=s>&#34;123456&#34;</span><span class=o>);</span>
+        <span class=n>connectionFactory</span><span class=o>.</span><span class=na>setPort</span><span class=o>(</span><span class=n>5672</span><span class=o>);</span>
+        <span class=n>Connection</span> <span class=n>connection</span> <span class=o>=</span> <span class=n>connectionFactory</span><span class=o>.</span><span class=na>newConnection</span><span class=o>();</span>
+        <span class=n>Channel</span> <span class=n>channel</span> <span class=o>=</span> <span class=n>connection</span><span class=o>.</span><span class=na>createChannel</span><span class=o>();</span>
+
+        <span class=n>channel</span><span class=o>.</span><span class=na>exchangeDeclare</span><span class=o>(</span><span class=n>exchangeName</span><span class=o>,</span> <span class=n>BuiltinExchangeType</span><span class=o>.</span><span class=na>DIRECT</span><span class=o>,</span> <span class=kc>true</span><span class=o>,</span> <span class=kc>false</span><span class=o>,</span> <span class=kc>null</span><span class=o>);</span>
+
+        <span class=n>channel</span><span class=o>.</span><span class=na>queueDeclare</span><span class=o>(</span><span class=n>queueName</span><span class=o>,</span> <span class=kc>true</span><span class=o>,</span> <span class=kc>false</span><span class=o>,</span> <span class=kc>false</span><span class=o>,</span> <span class=kc>null</span><span class=o>);</span>
+        <span class=n>channel</span><span class=o>.</span><span class=na>queueBind</span><span class=o>(</span><span class=n>queueName</span><span class=o>,</span> <span class=n>exchangeName</span>
+                <span class=o>,</span> <span class=n>routeKey</span><span class=o>);</span>
+
+        <span class=n>String</span> <span class=n>message</span> <span class=o>=</span> <span class=s>&#34;Rabbit Mq啟動成功&#34;</span><span class=o>;</span>
+        <span class=n>channel</span><span class=o>.</span><span class=na>basicPublish</span><span class=o>(</span><span class=n>exchangeName</span><span class=o>,</span> <span class=n>queueName</span><span class=o>,</span> <span class=kc>null</span><span class=o>,</span> <span class=n>message</span><span class=o>.</span><span class=na>getBytes</span><span class=o>());</span>
+
+        <span class=n>channel</span><span class=o>.</span><span class=na>close</span><span class=o>();</span>
+        <span class=n>connection</span><span class=o>.</span><span class=na>close</span><span class=o>();</span>
+    <span class=o>}</span>
+
+<span class=o>}</span>
+
+</code></pre></td></tr></table></div></div><p>在配置</p><p>個</p><h2 id=controller>Controller</h2><p>我們這邊用RestAPI的方式發送請求過去。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.example.rabbitmq.controller</span><span class=o>;</span>
+
+<span class=kn>import</span> <span class=nn>com.example.rabbitmq.producer.RabbitMQProducer</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>com.example.rabbitmq.service.TestService</span><span class=o>;</span>
 <span class=kn>import</span> <span class=nn>lombok.RequiredArgsConstructor</span><span class=o>;</span>
 <span class=kn>import</span> <span class=nn>org.springframework.http.ResponseEntity</span><span class=o>;</span>
 <span class=kn>import</span> <span class=nn>org.springframework.web.bind.annotation.GetMapping</span><span class=o>;</span>
@@ -817,18 +938,19 @@ spring.rabbitmq.virtual-host=test1
 <span class=nd>@RestController</span>
 <span class=nd>@RequestMapping</span><span class=o>(</span><span class=s>&#34;rabbit&#34;</span><span class=o>)</span>
 <span class=nd>@RequiredArgsConstructor</span>
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>MessageController</span> <span class=o>{</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>TestController</span> <span class=o>{</span>
 
-    <span class=kd>private</span> <span class=kd>final</span> <span class=n>RabbitMQProducer</span> <span class=n>rabbitMQProducer</span><span class=o>;</span>
+    <span class=kd>private</span> <span class=kd>final</span> <span class=n>TestService</span> <span class=n>testService</span><span class=o>;</span>
 
-    <span class=nd>@GetMapping</span><span class=o>()</span>
-    <span class=kd>public</span> <span class=n>ResponseEntity</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=nf>senedMessage</span><span class=o>()</span> <span class=o>{</span>
-        <span class=n>rabbitMQProducer</span><span class=o>.</span><span class=na>sendMessage</span><span class=o>(</span><span class=s>&#34;我是來自前端的訊息&#34;</span><span class=o>);</span>
+    <span class=nd>@GetMapping</span><span class=o>(</span><span class=s>&#34;/&#34;</span><span class=o>)</span>
+    <span class=kd>public</span> <span class=n>ResponseEntity</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=nf>sendMessage</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>testService</span><span class=o>.</span><span class=na>sendMessageToRabbitMq</span><span class=o>(</span><span class=s>&#34;我是來自前端的訊息&#34;</span><span class=o>);</span>
         <span class=k>return</span> <span class=n>ResponseEntity</span><span class=o>.</span><span class=na>ok</span><span class=o>().</span><span class=na>body</span><span class=o>(</span><span class=s>&#34;完成&#34;</span><span class=o>);</span>
     <span class=o>}</span>
 <span class=o>}</span>
 
-</code></pre></td></tr></table></div></div><p>其中的rabbitTemplate是SpringBoot用來與rabbitMq交互的一個類</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+
+</code></pre></td></tr></table></div></div><h2 id=service>Service</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -846,29 +968,25 @@ spring.rabbitmq.virtual-host=test1
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.example.springbootinaction.service</span><span class=o>;</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.example.rabbitmq.service</span><span class=o>;</span>
 
+<span class=kn>import</span> <span class=nn>com.example.rabbitmq.producer.RabbitMQProducer</span><span class=o>;</span>
 <span class=kn>import</span> <span class=nn>lombok.RequiredArgsConstructor</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>org.springframework.amqp.rabbit.core.RabbitTemplate</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>lombok.extern.slf4j.Slf4j</span><span class=o>;</span>
 <span class=kn>import</span> <span class=nn>org.springframework.stereotype.Service</span><span class=o>;</span>
-
-<span class=kn>import static</span> <span class=nn>com.example.springbootinaction.config.RabbitMQConfig.EXCHANGE_NAME</span><span class=o>;</span>
 
 <span class=nd>@Service</span>
 <span class=nd>@RequiredArgsConstructor</span>
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>RabbitMQProducer</span> <span class=o>{</span>
-
-    <span class=kd>private</span> <span class=kd>final</span> <span class=n>RabbitTemplate</span> <span class=n>rabbitTemplate</span><span class=o>;</span>
-
-    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>sendMessage</span><span class=o>(</span><span class=n>String</span> <span class=n>message</span><span class=o>)</span> <span class=o>{</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;送出訊息&#34;</span><span class=o>);</span>
-        <span class=n>rabbitTemplate</span><span class=o>.</span><span class=na>convertAndSend</span><span class=o>(</span><span class=n>EXCHANGE_NAME</span><span class=o>,</span> <span class=s>&#34;&#34;</span><span class=o>,</span> <span class=n>message</span><span class=o>);</span>
+<span class=nd>@Slf4j</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>TestService</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=kd>final</span> <span class=n>RabbitMQProducer</span> <span class=n>rabbitMQProducer</span><span class=o>;</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>sendMessageToRabbitMq</span><span class=o>(</span><span class=n>String</span> <span class=n>message</span><span class=o>){</span>
+        <span class=n>log</span><span class=o>.</span><span class=na>info</span><span class=o>(</span><span class=s>&#34;發送消息到Rabbit Mq:{}&#34;</span><span class=o>,</span><span class=n>message</span><span class=o>);</span>
+        <span class=n>rabbitMQProducer</span><span class=o>.</span><span class=na>sendMessage</span><span class=o>(</span><span class=n>message</span><span class=o>);</span>
     <span class=o>}</span>
 <span class=o>}</span>
 
-</code></pre></td></tr></table></div></div><p>接著再寫一個</p><h2 id=consumer>Consumer</h2><p>的</p><h2 id=listener>Listener</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><h2 id=producer>Producer</h2><p>其中的rabbitTemplate是SpringBoot用來與rabbitMq交互的一個類</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -891,28 +1009,94 @@ spring.rabbitmq.virtual-host=test1
 </span><span class=lnt>21
 </span><span class=lnt>22
 </span><span class=lnt>23
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.example.springbootinaction.listener</span><span class=o>;</span>
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.example.rabbitmq.producer</span><span class=o>;</span>
 
+<span class=kn>import</span> <span class=nn>lombok.RequiredArgsConstructor</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>lombok.extern.slf4j.Slf4j</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.springframework.amqp.rabbit.core.RabbitTemplate</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.springframework.beans.factory.annotation.Value</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.springframework.stereotype.Component</span><span class=o>;</span>
+
+<span class=nd>@Component</span>
+<span class=nd>@RequiredArgsConstructor</span>
+<span class=nd>@Slf4j</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>RabbitMQProducer</span> <span class=o>{</span>
+
+    <span class=kd>private</span> <span class=kd>final</span> <span class=n>RabbitTemplate</span> <span class=n>rabbitTemplate</span><span class=o>;</span>
+
+    <span class=nd>@Value</span><span class=o>(</span><span class=s>&#34;${rabbitmq.routekey.name}&#34;</span><span class=o>)</span>
+    <span class=n>String</span> <span class=n>routeKey</span><span class=o>;</span>
+    <span class=nd>@Value</span><span class=o>(</span><span class=s>&#34;${rabbitmq.exchange.name}&#34;</span><span class=o>)</span>
+    <span class=n>String</span> <span class=n>exchangeName</span><span class=o>;</span>
+    <span class=nd>@Value</span><span class=o>(</span><span class=s>&#34;${rabbitmq.queue.name}&#34;</span><span class=o>)</span>
+    <span class=n>String</span> <span class=n>queueName</span><span class=o>;</span>
+
+
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>sendMessage</span><span class=o>(</span><span class=n>String</span> <span class=n>message</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>log</span><span class=o>.</span><span class=na>info</span><span class=o>(</span><span class=s>&#34;呼叫到MessageQueueProducer&#34;</span><span class=o>);</span>
+        <span class=n>rabbitTemplate</span><span class=o>.</span><span class=na>convertAndSend</span><span class=o>(</span><span class=n>exchangeName</span><span class=o>,</span> <span class=n>routeKey</span><span class=o>,</span> <span class=n>message</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+
+</code></pre></td></tr></table></div></div><p>接著再寫一個</p><h2 id=consumer>Consumer</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.example.rabbitmq.comsumer</span><span class=o>;</span>
+
+<span class=kn>import</span> <span class=nn>lombok.extern.slf4j.Slf4j</span><span class=o>;</span>
 <span class=kn>import</span> <span class=nn>org.springframework.amqp.core.Message</span><span class=o>;</span>
 <span class=kn>import</span> <span class=nn>org.springframework.amqp.rabbit.annotation.RabbitListener</span><span class=o>;</span>
 <span class=kn>import</span> <span class=nn>org.springframework.stereotype.Component</span><span class=o>;</span>
 
-<span class=kn>import static</span> <span class=nn>com.example.springbootinaction.config.RabbitMQConfig.QUEUE_NAME</span><span class=o>;</span>
 
 <span class=nd>@Component</span>
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>ConsumerListener</span> <span class=o>{</span>
+<span class=nd>@Slf4j</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>RabbitConsumer</span> <span class=o>{</span>
 
     <span class=cm>/**
 </span><span class=cm>     * 監聽隊列：當隊列中有消息，則監聽器工作，處理接收到的訊息
 </span><span class=cm>     * @param message
 </span><span class=cm>     */</span>
-    <span class=nd>@RabbitListener</span><span class=o>(</span><span class=n>queues</span> <span class=o>=</span> <span class=n>QUEUE_NAME</span><span class=o>)</span>
-    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>process</span><span class=o>(</span><span class=n>Message</span> <span class=n>message</span><span class=o>)</span> <span class=o>{</span>
-        <span class=kt>byte</span><span class=o>[]</span> <span class=n>body</span> <span class=o>=</span> <span class=n>message</span><span class=o>.</span><span class=na>getBody</span><span class=o>();</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;接收到的消息&#34;</span> <span class=o>+</span> <span class=k>new</span> <span class=n>String</span><span class=o>(</span><span class=n>body</span><span class=o>));</span>
 
+    <span class=nd>@RabbitListener</span><span class=o>(</span><span class=n>queues</span> <span class=o>=</span> <span class=s>&#34;${rabbitmq.queue.name}&#34;</span><span class=o>)</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>process</span><span class=o>(</span><span class=n>Message</span> <span class=n>message</span><span class=o>)</span>  <span class=o>{</span>
+        <span class=kt>byte</span><span class=o>[]</span> <span class=n>body</span> <span class=o>=</span> <span class=n>message</span><span class=o>.</span><span class=na>getBody</span><span class=o>();</span>
+        <span class=n>log</span><span class=o>.</span><span class=na>info</span><span class=o>(</span><span class=s>&#34;呼叫到Consumer&#34;</span><span class=o>);</span>
+        <span class=n>log</span><span class=o>.</span><span class=na>info</span><span class=o>(</span><span class=s>&#34;接收到的消息&#34;</span> <span class=o>+</span> <span class=k>new</span> <span class=n>String</span><span class=o>(</span><span class=n>body</span><span class=o>));</span>
     <span class=o>}</span>
 <span class=o>}</span>
+
+
 
 </code></pre></td></tr></table></div></div><p>這個方法會去監聽指定Queue的Messege，並且做相應的處理</p><p>目前這邊的方式就是把收到的訊息Print出來，並把那個Messege清空，請特別注意，這邊是由rabbit自動幫你ack(acknowledge)的，如果不想要的話也可以去設定把這部分關掉，這邊就不展示了。</p><p>範例圖</p><p><img src=https://i.imgur.com/MWAsnpn.gif loading=lazy alt=iShot_2023-09-09_22.28.49></p><h1 id=參考資料>參考資料</h1><p><a class=link href="https://www.bilibili.com/video/BV1Am4y1z7Tu/?p=9&spm_id_from=pageDriver&vd_source=422eafa6570139128e44a83238959fa0" target=_blank rel=noopener>1小时学会RabbitMQ！快速掌握RabbitMQ的使用与原理实战</a></p><p><a class=link href="https://www.bilibili.com/video/BV1dE411K7MG?p=14&vd_source=422eafa6570139128e44a83238959fa0" target=_blank rel=noopener>编程不良人】MQ消息中间件之RabbitMQ以及整合SpringBoot2.x实战教程,已完结!</a></p></section><footer class=article-footer><section class=article-tags></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/><div class=article-image><img src=https://i.imgur.com/1OBx1AG.png loading=lazy data-key data-hash=https://i.imgur.com/1OBx1AG.png></div><div class=article-details><h2 class=article-title>結合Lombok寫出更整潔的程式碼</h2></div></a></article><article class=has-image><a href=/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/rfkvgRO.png loading=lazy data-key data-hash=https://i.imgur.com/rfkvgRO.png></div><div class=article-details><h2 class=article-title>運用ArrayList與自動配置將Swich語法拆解</h2></div></a></article><article class=has-image><a href=/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/><div class=article-image><img src=https://i.imgur.com/nCGDuUc.png%20 loading=lazy data-key data-hash=https://i.imgur.com/nCGDuUc.png></div><div class=article-details><h2 class=article-title>實用的Git指令</h2></div></a></article><article class=has-image><a href=/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/><div class=article-image><img src=https://i.imgur.com/V6lmUtX.png loading=lazy data-key data-hash=https://i.imgur.com/V6lmUtX.png></div><div class=article-details><h2 class=article-title>為了租房子而學的GAS(Google Apps Script)</h2></div></a></article><article class=has-image><a href=/p/aws%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/><div class=article-image><img src=https://i.imgur.com/lluhyyC.png loading=lazy data-key data-hash=https://i.imgur.com/lluhyyC.png></div><div class=article-details><h2 class=article-title>AWS學習筆記</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
 gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
@@ -921,4 +1105,4 @@ gitalk.render("gitalk-container");})();</script><footer class=site-footer><secti
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前言>前言</a></li><li><a href=#什麼是message-queue>什麼是Message Queue</a></li><li><a href=#什麼是rabbitmq>什麼是RabbitMQ</a></li><li><a href=#下載與安裝>下載與安裝</a></li><li><a href=#常用指令>常用指令</a><ol><li><a href=#創建使用者>創建使用者</a></li><li><a href=#賦予使用者權限>賦予使用者權限</a></li></ol></li><li><a href=#實際使用>實際使用</a></li><li><a href=#交換機介紹>交換機介紹</a><ol><li><a href=#direct>Direct</a></li><li><a href=#fanout>Fanout</a></li><li><a href=#topic>Topic</a></li><li><a href=#headers>Headers</a></li></ol></li><li><a href=#在springboot中使用>在SpringBoot中使用</a><ol><li><a href=#producer>Producer</a></li><li><a href=#consumer>Consumer</a></li><li><a href=#listener>Listener</a></li></ol></li><li><a href=#參考資料>參考資料</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#github網址>GitHub網址</a></li><li><a href=#前言>前言</a></li><li><a href=#什麼是message-queue>什麼是Message Queue</a></li><li><a href=#什麼是rabbitmq>什麼是RabbitMQ</a></li><li><a href=#下載與安裝>下載與安裝</a></li><li><a href=#常用指令>常用指令</a><ol><li><a href=#創建使用者>創建使用者</a></li><li><a href=#賦予使用者權限>賦予使用者權限</a></li></ol></li><li><a href=#實際使用>實際使用</a></li><li><a href=#交換機介紹>交換機介紹</a><ol><li><a href=#direct>Direct</a></li><li><a href=#fanout>Fanout</a></li><li><a href=#topic>Topic</a></li><li><a href=#headers>Headers</a></li></ol></li><li><a href=#在springboot中使用>在SpringBoot中使用</a><ol><li><a href=#properties>Properties</a></li><li><a href=#configuration>Configuration</a></li><li><a href=#controller>Controller</a></li><li><a href=#service>Service</a></li><li><a href=#producer>Producer</a></li><li><a href=#consumer>Consumer</a></li></ol></li><li><a href=#參考資料>參考資料</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
