@@ -1,4 +1,99 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 22 May 2024 23:49:06 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>為了租房子而學的GAS(Google Apps Script)</title><link>https://hoxtonhsu.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</link><pubDate>Wed, 22 May 2024 23:49:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</guid><description>&lt;img src="https://i.imgur.com/V6lmUtX.png" alt="Featured image of post 為了租房子而學的GAS(Google Apps Script)" />&lt;p>最近找房子真的找得好累，偶然間在網路上看到&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10255573" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 28 May 2024 01:42:08 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>591結合Google Apps Script 自動傳送Line</title><link>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</link><pubDate>Tue, 28 May 2024 01:42:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</guid><description>&lt;img src="https://i.imgur.com/dYtFfAi.png" alt="Featured image of post 591結合Google Apps Script 自動傳送Line" />&lt;p>GitHub網址在 ：&lt;a class="link" href="https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto" target="_blank" rel="noopener"
+>https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto&lt;/a>&lt;/p>
+&lt;p>靈感來自於：&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10255573" target="_blank" rel="noopener"
+>超簡單一鍵推播 591 租屋資訊完全免 Coding－透過 Google Sheet 與 LINE Notify&lt;/a>&lt;/p>
+&lt;p>你厭倦了一直F5刷新網頁查看有沒有新的資料嗎？你厭倦了每次好的物件都被別人搶走嗎？別擔心，591自動化他來了&lt;/p>
+&lt;p>使用了Google Apps Script作為自動化的設置，並即時傳送Line通知到你的手機，讓你永遠可以領先別人一步！&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/mWaMp3q.gif"
+loading="lazy"
+alt="iShot_2024-05-28_01.10.51"
+>&lt;/p>
+&lt;h1 id="使用教學">使用教學&lt;/h1>
+&lt;ol>
+&lt;li>首先訪問這個Google Sheet頁面&lt;/li>
+&lt;/ol>
+&lt;p>&lt;a href="https://docs.google.com/spreadsheets/d/1Pngp5EAy1oElm5phF2S-I02llRuTgc8ULklcdBci2h4/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1Pngp5EAy1oElm5phF2S-I02llRuTgc8ULklcdBci2h4/edit?usp=sharing&lt;/a>&lt;/p>
+&lt;p>並選擇建立副本&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/txjtqnh.png"
+loading="lazy"
+alt="image-20240528004651897"
+>&lt;/p>
+&lt;ol start="2">
+&lt;li>訪問你剛剛的副本，並選擇Apps Script&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/gAx2dLh.png"
+loading="lazy"
+alt="image-20240528004757207"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/abFQCsW.png"
+loading="lazy"
+alt="image-20240528004933041"
+>&lt;/p>
+&lt;ol start="3">
+&lt;li>到591中選擇自己想要的租屋條件，把網址複製下來&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/V9Md2Af.png"
+loading="lazy"
+alt="image-20240528011628815"
+>&lt;/p>
+&lt;ol start="4">
+&lt;li>把網址貼上到Apps Script中&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/eneEGrJ.png"
+loading="lazy"
+alt="image-20240528011834140"
+>&lt;/p>
+&lt;ol start="5">
+&lt;li>接著申請Line Token 把Line Token塞進去，請記得這個Token不要外流，如果用不到也請記得刪掉&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/uJhsnyw.png"
+loading="lazy"
+alt="image-20240528005121328"
+>&lt;/p>
+&lt;p>點擊 &lt;a class="link" href="https://notify-bot.line.me/zh_TW/" target="_blank" rel="noopener"
+>Line Notify&lt;/a>&lt;/p>
+&lt;p>選擇登入&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/yLO6fCC.png"
+loading="lazy"
+alt="image-20240528005306509"
+>&lt;/p>
+&lt;p>選擇個人頁面&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/gPJaauH.png"
+loading="lazy"
+alt="image-20240528005359484"
+>&lt;/p>
+&lt;p>選擇發行權杖，然後命名一下，最後選擇你要推送到哪個聊天室，建議可以選擇「透過1對1聊天接收LINE NOTIFY的通知」&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/OpDmUdi.png"
+loading="lazy"
+alt="image-20240528012241743"
+>&lt;/p>
+&lt;p>複製權杖&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/kJgJoey.png"
+loading="lazy"
+alt="image-20240528005739216"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/IbKlNGH.png"
+loading="lazy"
+alt="image-20240528005928823"
+>&lt;/p>
+&lt;ol start="5">
+&lt;li>點擊觸發條件&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/Ezcrl0Z.png"
+loading="lazy"
+alt="image-20240528010024030"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/UxZHqJO.png"
+loading="lazy"
+alt="image-20240528010157677"
+>&lt;/p>
+&lt;ol start="5">
+&lt;li>結果展示&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/mWaMp3q.gif"
+loading="lazy"
+alt="iShot_2024-05-28_01.10.51"
+>&lt;/p></description></item><item><title>為了租房子而學的GAS(Google Apps Script)</title><link>https://hoxtonhsu.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</link><pubDate>Wed, 22 May 2024 23:49:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</guid><description>&lt;img src="https://i.imgur.com/V6lmUtX.png" alt="Featured image of post 為了租房子而學的GAS(Google Apps Script)" />&lt;p>最近找房子真的找得好累，偶然間在網路上看到&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10255573" target="_blank" rel="noopener"
 >超簡單一鍵推播 591 租屋資訊完全免 Coding－透過 Google Sheet 與 LINE Notify&lt;/a>，想要拿來用卻發現好像&lt;/p>
 &lt;p>已經失效了，想要維護一下發現自己完全不懂這些東西，於是秉持著能坐就不躺，能躺就不坐的懶人心態，決定要來研究一下怎麼利用GAS跟Line Notify來達到只要有更新資料，就會發送Line通知給我的功能。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/u5xrFYH.gif"
