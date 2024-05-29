@@ -595,6 +595,114 @@ alt="image-20240525174714467"
 loading="lazy"
 alt="image-20240525174845278"
 >&lt;/p>
+&lt;h1 id="為aws設置帳單提醒">為Aws設置帳單提醒&lt;/h1>
+&lt;p>記得先用Root帳號，把IAM user and role access to Billing Information&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/tVsJQkq.png"
+loading="lazy"
+alt="image-20240529150337069"
+>&lt;/p>
+&lt;p>選擇Billing And Cost Management&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/pJbMl2o.png"
+loading="lazy"
+alt="image-20240529145758200"
+>&lt;/p>
+&lt;p>就能看到這樣的畫面&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/WZJOP4I.png"
+loading="lazy"
+alt="image-20240529151506621"
+>&lt;/p>
+&lt;p>選擇Bill 可以看到目前的帳單狀況&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/gbPeOIm.png"
+loading="lazy"
+alt="image-20240529152502819"
+>&lt;/p>
+&lt;p>在最下面有個charge By service，可以查看哪些服務各自花了什麼內容&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/ccDckb2.png"
+loading="lazy"
+alt="image-20240529152822374"
+>&lt;/p>
+&lt;p>實際進入帳單警告(Alert)的部分則是從這邊&lt;/p>
+&lt;p>選擇右邊橘色的ceate a budget&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/hKgGRpI.png"
+loading="lazy"
+alt="image-20240529153251123"
+>&lt;/p>
+&lt;p>選擇Zero Spend Budget，這樣如果只要有被收到費，就會立刻寄信給我們，要我們處理&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/NoMjC0C.png"
+loading="lazy"
+alt="image-20240529154555595"
+>&lt;/p>
+&lt;p>還有這種如果月帳單超過10塊，就發通知給我們的&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/sQy4KmB.png"
+loading="lazy"
+alt="image-20240529155806328"
+>&lt;/p>
+&lt;h1 id="ec2elastic-compute-cloud-彈性雲端運算">EC2(Elastic Compute Cloud) 彈性雲端運算&lt;/h1>
+&lt;p>是個IAAS(Infrastructure as a Service)&lt;/p>
+&lt;p>EC2有什麼功能呢&lt;/p>
+&lt;ol>
+&lt;li>租用虛擬機Elastic Compute Cloud(EC2)&lt;/li>
+&lt;li>儲存資料 Elastic Block Store(EBS)&lt;/li>
+&lt;li>負載均衡Elastic Load Balance(ELB)&lt;/li>
+&lt;li>Scaling the service using an Auto-Scaling Group(ASG)&lt;/li>
+&lt;/ol>
+&lt;p>一些EC2的類型，當然不只有以下這五種，還有很多，只是列出五種作參考&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/SXQtBpA.png"
+loading="lazy"
+alt="image-20240529162020578"
+>&lt;/p>
+&lt;h2 id="創建ec2">創建EC2&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/RLyYrM2.png"
+loading="lazy"
+alt="image-20240529164008775"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Oo6xVYg.png"
+loading="lazy"
+alt="image-20240529164139789"
+>&lt;/p>
+&lt;p>選擇創建Key Pair&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/52wX8Hn.png"
+loading="lazy"
+alt="image-20240529165046890"
+>&lt;/p>
+&lt;p>還有網路的部分，要把下面的Allow Http traffic from the Internet，這樣才可以部屬Web服務&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/jmVYj97.png"
+loading="lazy"
+alt="image-20240529165336976"
+>&lt;/p>
+&lt;p>接下來拉到最底下，有個User Data，但我覺得命名的不是很好，這邊其實就是指定EC2初次啟動時的執行腳本是什麼，我們可以複製以下的內容到EC2當中&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="cp">#!/bin/bash
+&lt;/span>&lt;span class="cp">&lt;/span>&lt;span class="c1"># Use this for your user data (script from top to bottom)&lt;/span>
+&lt;span class="c1"># install httpd (Linux 2 version)&lt;/span>
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl &lt;span class="nb">enable&lt;/span> httpd
+&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;&amp;lt;h1&amp;gt;Hello World from &lt;/span>&lt;span class="k">$(&lt;/span>hostname -f&lt;span class="k">)&lt;/span>&lt;span class="s2">&amp;lt;/h1&amp;gt;&amp;#34;&lt;/span> &amp;gt; /var/www/html/index.html
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>選好了之後就可以按創建了，創建完之後點選我們剛剛創建的instance，就可以看到詳細的內容&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/FkVnLw5.png"
+loading="lazy"
+alt="image-20240529172240913"
+>&lt;/p>
+&lt;p>開啟的Port，一些security的內容&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/MdKwcyZ.png"
+loading="lazy"
+alt="image-20240529172159224"
+>&lt;/p>
 &lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1wR4y1F7YM/?spm_id_from=333.788.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >【Udemy付费课程】Ultimate AWS Certified Solutions Architect Associate AWS认证课程&lt;/a>&lt;/p>
