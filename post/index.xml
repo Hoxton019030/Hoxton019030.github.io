@@ -703,6 +703,55 @@ alt="image-20240529172240913"
 loading="lazy"
 alt="image-20240529172159224"
 >&lt;/p>
+&lt;p>你也可以通過訪問你創建的Public Ip 來看到你剛剛User Data 的內容&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/pMQO5ic.png"
+loading="lazy"
+alt="image-20240531021952950"
+>&lt;/p>
+&lt;h1 id="七種不同的ec2-instance">七種不同的EC2 Instance&lt;/h1>
+&lt;p>&lt;a href="https://aws.amazon.com/tw/ec2/instance-types/">https://aws.amazon.com/tw/ec2/instance-types/&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/qrGq4jl.png"
+loading="lazy"
+alt="image-20240531022120089"
+>&lt;/p>
+&lt;h2 id="instance的命名邏輯">Instance的命名邏輯&lt;/h2>
+&lt;blockquote>
+&lt;p>m5.2xlarge&lt;/p>
+&lt;/blockquote>
+&lt;p>m: instance class&lt;/p>
+&lt;p>5: generation 世代&lt;/p>
+&lt;p>2xlarge: size within the instance class ，通常代表了多大的記憶體、硬碟空間、CPU&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>General Purpose&lt;/p>
+&lt;p>通常用來做Web Server或是Code Repository&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Compute Optimized&lt;/p>
+&lt;p>資料處理、高計算、機器學習、遊戲伺服器的Instance&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Memory Optimized&lt;/p>
+&lt;p>可以很快地把東西放到Memory中，適合用來作為資料庫儲存的Instance，或是放一些對Real-Time即時性較高的資料&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Storage Optimzed&lt;/p>
+&lt;p>對於高讀寫很有一套，適合用在高頻交易(OLTP)系統、關聯、非關聯式資料庫&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="security-groups">Security Groups&lt;/h2>
+&lt;p>一個類似防火牆的東西，把EC2 繞起來&lt;/p>
+&lt;p>相同Security Group的Instance可以相互通訊&lt;/p>
+&lt;h2 id="常見的port">常見的Port&lt;/h2>
+&lt;ul>
+&lt;li>22: SSH連線&lt;/li>
+&lt;li>21: FTP連線&lt;/li>
+&lt;li>22：透過SSH來使用FTP上傳檔案&lt;/li>
+&lt;li>80：HTTP&lt;/li>
+&lt;li>443：HTTPS&lt;/li>
+&lt;li>3389：RDP 登入Windows Instance&lt;/li>
+&lt;li>&lt;/li>
+&lt;/ul>
 &lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1wR4y1F7YM/?spm_id_from=333.788.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >【Udemy付费课程】Ultimate AWS Certified Solutions Architect Associate AWS认证课程&lt;/a>&lt;/p>
