@@ -742,6 +742,16 @@ alt="image-20240531022120089"
 &lt;h2 id="security-groups">Security Groups&lt;/h2>
 &lt;p>一個類似防火牆的東西，把EC2 繞起來&lt;/p>
 &lt;p>相同Security Group的Instance可以相互通訊&lt;/p>
+&lt;p>所謂的Inbound Rules跟Outbound rules就是傳入規則與傳出規則&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/dS4YWtN.png"
+loading="lazy"
+alt="image-20240531151415394"
+>&lt;/p>
+&lt;p>可以按右上角的Edit Inbound Rules 編輯一下規則，向我這邊就把Http的規則加進來&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/wL68tc5.png"
+loading="lazy"
+alt="image-20240531151548835"
+>&lt;/p>
 &lt;h2 id="常見的port">常見的Port&lt;/h2>
 &lt;ul>
 &lt;li>22: SSH連線&lt;/li>
@@ -750,8 +760,33 @@ alt="image-20240531022120089"
 &lt;li>80：HTTP&lt;/li>
 &lt;li>443：HTTPS&lt;/li>
 &lt;li>3389：RDP 登入Windows Instance&lt;/li>
-&lt;li>&lt;/li>
 &lt;/ul>
+&lt;h2 id="如何ssh進去我的ec2-instance">如何SSH進去我的EC2 Instance&lt;/h2>
+&lt;p>首先電腦裡面要有你RSD的密鑰檔，並確保你的Security允許SSH連線&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/rDHJ7vy.png"
+loading="lazy"
+alt="image-20240531155614276"
+>&lt;/p>
+&lt;p>然後結合你的Public Ip&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/dRlAnkN.png"
+loading="lazy"
+alt="image-20240531155658191"
+>&lt;/p>
+&lt;h2 id="語法">語法&lt;/h2>
+&lt;p>ec2-user是創建instance時就會幫我們創建的一個user&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">ssh -i Aws-2024-05-11.pem ec2-user@43.206.215.70
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣就行囉，如果不行的話可能要用chmod調一下權限&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/cGdrXYe.png"
+loading="lazy"
+alt="image-20240531161607224"
+>&lt;/p>
 &lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1wR4y1F7YM/?spm_id_from=333.788.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >【Udemy付费课程】Ultimate AWS Certified Solutions Architect Associate AWS认证课程&lt;/a>&lt;/p>
