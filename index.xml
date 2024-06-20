@@ -1,4 +1,167 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 28 May 2024 01:42:08 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>591結合Google Apps Script 自動傳送Line</title><link>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</link><pubDate>Tue, 28 May 2024 01:42:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</guid><description>&lt;img src="https://i.imgur.com/dYtFfAi.png" alt="Featured image of post 591結合Google Apps Script 自動傳送Line" />&lt;p>GitHub網址在 ：&lt;a class="link" href="https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 20 Jun 2024 22:48:07 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Map來找真的比List還快嗎</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8map%E4%BE%86%E6%89%BE%E7%9C%9F%E7%9A%84%E6%AF%94list%E9%82%84%E5%BF%AB%E5%97%8E/</link><pubDate>Thu, 20 Jun 2024 22:48:07 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8map%E4%BE%86%E6%89%BE%E7%9C%9F%E7%9A%84%E6%AF%94list%E9%82%84%E5%BF%AB%E5%97%8E/</guid><description>&lt;img src="https://i.imgur.com/YIZjDnx.png" alt="Featured image of post 使用Map來找真的比List還快嗎" />&lt;p>這陣子工作上的時候又遇到一個要從兩個List中找出相同Id，然後 Assign 給對方的那種，正當我準備再寫個Double-ForEach來解決這個問題時，腦中突然被這種很醜的寫法給噁心到了，頓時間在想&lt;/p>
+&lt;p>「肯定有更好的方式吧」&lt;/p>
+&lt;p>於是就想到了HashMap，我知道取出Map的時間複雜度為O(1)，但這是保證都是O(1)嗎？還是說只有用index查找，例如get(1)這種才快呢？老實說我不是很清楚，另外我如果要用HashMap，我勢必要先把List的內容put到Map中，那這樣跟我直接用Double-ForEach查找來講，是不是會更慢呢？於是今天打算來研究一下，我的想法很簡單，創造10,000,000個UID，並分別放到List跟Map，最後取出最後新增的UID，來比較兩者之間的速度&lt;/p>
+&lt;p>程式碼如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;開始執行&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">HashMap&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">stringStringHashMap&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">HashMap&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">uuidList&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">theLastUid&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kt">long&lt;/span> &lt;span class="n">inputStartTime&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">currentTimeMillis&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">for&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">10_000_000&lt;/span>&lt;span class="o">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">++){&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">uid&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">UID&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">toString&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">stringStringHashMap&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">uuidList&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">theLastUid&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kt">long&lt;/span> &lt;span class="n">inputEndTime&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">currentTimeMillis&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;資料塞完耗時&amp;#34;&lt;/span> &lt;span class="o">+(&lt;/span>&lt;span class="n">inputEndTime&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">inputStartTime&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;=======&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="kt">long&lt;/span> &lt;span class="n">mapStartTime&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">currentTimeMillis&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">mapString&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">stringStringHashMap&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">theLastUid&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="kt">long&lt;/span> &lt;span class="n">mapEndTime&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">currentTimeMillis&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Map耗時 :&amp;#34;&lt;/span>&lt;span class="o">+(&lt;/span>&lt;span class="n">mapEndTime&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">mapStartTime&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Map撈出來的&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">mapString&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;=======&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="kt">long&lt;/span> &lt;span class="n">listStartTime&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">currentTimeMillis&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">finalTheLastUid&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">theLastUid&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">listString&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">uuidList&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">stream&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">filter&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">s&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">equals&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">finalTheLastUid&lt;/span>&lt;span class="o">)).&lt;/span>&lt;span class="na">findFirst&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">orElse&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="kt">long&lt;/span> &lt;span class="n">listEndTime&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">currentTimeMillis&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;List耗時 :&amp;#34;&lt;/span>&lt;span class="o">+(&lt;/span>&lt;span class="n">listEndTime&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">listStartTime&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;List撈出來的 = &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">listString&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>最後輸出的結果&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/O2yaBwu.gif"
+loading="lazy"
+alt="iShot_2024-06-20_23.08.46"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">開始執行
+&lt;span class="nv">資料塞完耗時2228&lt;/span>
+&lt;span class="o">=======&lt;/span>
+Map耗時 :0
+Map撈出來的-122815f4:190363175b6:1717
+&lt;span class="o">=======&lt;/span>
+List耗時 :103
+&lt;span class="nv">List撈出來的&lt;/span> &lt;span class="o">=&lt;/span> -122815f4:190363175b6:1717
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>沒想到Map查詢的速度居然是List的無限倍！那接下來我要驗證看看，Map雖然比較快，但是在塞資料這件事情上面，會不會Map消耗的時間比List還多，&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;開始執行&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">HashMap&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">stringStringHashMap&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">HashMap&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">uuidList&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">theLastUid&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kt">long&lt;/span> &lt;span class="n">inputStartTime&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">currentTimeMillis&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">for&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">10_000_000&lt;/span>&lt;span class="o">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">++){&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">uid&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">UID&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">toString&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">stringStringHashMap&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kt">long&lt;/span> &lt;span class="n">inputEndTime&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">currentTimeMillis&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Map資料塞完耗時&amp;#34;&lt;/span> &lt;span class="o">+(&lt;/span>&lt;span class="n">inputEndTime&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">inputStartTime&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;=======&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="kt">long&lt;/span> &lt;span class="n">inputStartTime2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">currentTimeMillis&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">for&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">10_000_000&lt;/span>&lt;span class="o">;&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">++){&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">uid&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">UID&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">toString&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">uuidList&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">theLastUid&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kt">long&lt;/span> &lt;span class="n">inputEndTime2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">currentTimeMillis&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;List資料塞完耗時&amp;#34;&lt;/span> &lt;span class="o">+(&lt;/span>&lt;span class="n">inputEndTime2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">inputStartTime2&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/3tuTCNo.gif"
+loading="lazy"
+alt="iShot_2024-06-20_23.12.53"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">開始執行
+&lt;span class="nv">Map資料塞完耗時2288&lt;/span>
+&lt;span class="o">=======&lt;/span>
+List資料塞完耗時1656
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以看到我的想法確實沒錯，塞到hashMap確實比單純塞到List耗時還要長，因為還要處理哈希碰撞的問題，但相對來說，Map跟List塞進去的性能差異並沒有到搜尋的差異那麼大，而且這只是在只需要搜尋一次的場景，如果單一方法有需要搜尋兩次的話，那麼設定成Map確實是個不錯的解法。&lt;/p></description></item><item><title>591結合Google Apps Script 自動傳送Line</title><link>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</link><pubDate>Tue, 28 May 2024 01:42:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</guid><description>&lt;img src="https://i.imgur.com/dYtFfAi.png" alt="Featured image of post 591結合Google Apps Script 自動傳送Line" />&lt;p>GitHub網址在 ：&lt;a class="link" href="https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto" target="_blank" rel="noopener"
 >https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto&lt;/a>&lt;/p>
 &lt;p>靈感來自於：&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10255573" target="_blank" rel="noopener"
 >超簡單一鍵推播 591 租屋資訊完全免 Coding－透過 Google Sheet 與 LINE Notify&lt;/a>&lt;/p>
@@ -787,6 +950,17 @@ alt="image-20240531155658191"
 loading="lazy"
 alt="image-20240531161607224"
 >&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/yL0je80.jpeg"
+loading="lazy"
+alt="image-20240601145650526"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/pJtI55e.png"
+loading="lazy"
+alt="image-20240601151936318"
+>&lt;/p>
+&lt;h1 id="ebs">EBS&lt;/h1>
+&lt;h2 id="ebs-volume">EBS Volume&lt;/h2>
+&lt;p>類似資料庫的東西，可以儲存資料的東西&lt;/p>
 &lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1wR4y1F7YM/?spm_id_from=333.788.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >【Udemy付费课程】Ultimate AWS Certified Solutions Architect Associate AWS认证课程&lt;/a>&lt;/p>
