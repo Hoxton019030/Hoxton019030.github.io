@@ -161,11 +161,7 @@ alt="iShot_2024-06-20_23.12.53"
 List資料塞完耗時1656
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>可以看到我的想法確實沒錯，塞到hashMap確實比單純塞到List耗時還要長，因為還要處理哈希碰撞的問題，但相對來說，Map跟List塞進去的性能差異並沒有到搜尋的差異那麼大，而且這只是在只需要搜尋一次的場景，如果單一方法有需要搜尋兩次的話，那麼設定成Map確實是個不錯的解法。&lt;/p>
-&lt;p>&lt;img src="https://hoxtonhsu.com/"
-loading="lazy"
-alt="image-20240620231916446"
->&lt;/p></description></item><item><title>591結合Google Apps Script 自動傳送Line</title><link>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</link><pubDate>Tue, 28 May 2024 01:42:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</guid><description>&lt;img src="https://i.imgur.com/dYtFfAi.png" alt="Featured image of post 591結合Google Apps Script 自動傳送Line" />&lt;p>GitHub網址在 ：&lt;a class="link" href="https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto" target="_blank" rel="noopener"
+&lt;/div>&lt;p>可以看到我的想法確實沒錯，塞到hashMap確實比單純塞到List耗時還要長，因為還要處理哈希碰撞的問題，但相對來說，Map跟List塞進去的性能差異並沒有到搜尋的差異那麼大，而且這只是在只需要搜尋一次的場景，如果單一方法有需要搜尋兩次的話，那麼設定成Map確實是個不錯的解法。&lt;/p></description></item><item><title>591結合Google Apps Script 自動傳送Line</title><link>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</link><pubDate>Tue, 28 May 2024 01:42:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</guid><description>&lt;img src="https://i.imgur.com/dYtFfAi.png" alt="Featured image of post 591結合Google Apps Script 自動傳送Line" />&lt;p>GitHub網址在 ：&lt;a class="link" href="https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto" target="_blank" rel="noopener"
 >https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto&lt;/a>&lt;/p>
 &lt;p>靈感來自於：&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10255573" target="_blank" rel="noopener"
 >超簡單一鍵推播 591 租屋資訊完全免 Coding－透過 Google Sheet 與 LINE Notify&lt;/a>&lt;/p>
