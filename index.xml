@@ -146,11 +146,13 @@ alt="shocked-surprised-gif"
 &lt;/span>&lt;span class="lnt">40
 &lt;/span>&lt;span class="lnt">41
 &lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="n">ResponseEntity&lt;/span> &lt;span class="nf">redirect&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">shortUrl&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Request&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">User&lt;/span> &lt;span class="n">user&lt;/span>&lt;span class="o">){&lt;/span>
 &lt;span class="n">String&lt;/span> &lt;span class="n">ip&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getIp&lt;/span>&lt;span class="o">();&lt;/span>
-&lt;span class="n">String&lt;/span> &lt;span class="n">uid&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="n">DESEncrypt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">decrypt&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">shortUrl&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ENCRYPT_KEY&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//這邊解密失敗就直接throw錯誤出去
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">uid&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="n">DESEncrypt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">decrypt&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">shortUrl&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ENCRYPT_KEY&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="c1">//這邊在用用戶的ip做判斷短連結的訪問次數
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//我設置1小時作為單次訪問的區間
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//意即相同的Ip 一小時內訪問只記錄一次
@@ -159,7 +161,7 @@ alt="shocked-surprised-gif"
 &lt;span class="n">Date&lt;/span> &lt;span class="n">date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">redisTool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">redisKey&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">);&lt;/span>
 &lt;span class="c1">//如果redis中沒有date值，代表這個Ip過去一小時內沒有訪問過，將這個Ip加入到redis中，設置一小時到期時間(60*60)
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//並將這個uid的訪問次數+1
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">date&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">date&lt;/span>&lt;span class="o">!=&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">){&lt;/span>
 &lt;span class="c1">//設置Ip key 的緩存，ttl為1小時，避免重複刷訪問次數
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//key的value設置成new Date() 其實沒啥特別意義，但懶得改了，只要放個值進去都ok
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">redisTool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">set&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">redisKey&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">(),&lt;/span>&lt;span class="n">60&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">60&lt;/span>&lt;span class="o">);&lt;/span>
