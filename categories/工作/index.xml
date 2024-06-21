@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>工作 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E5%B7%A5%E4%BD%9C/</link><description>Recent content in 工作 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 21 Jun 2024 14:08:42 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E5%B7%A5%E4%BD%9C/index.xml" rel="self" type="application/rss+xml"/><item><title>短連結開發分享</title><link>https://hoxtonhsu.com/p/%E7%9F%AD%E9%80%A3%E7%B5%90%E9%96%8B%E7%99%BC%E5%88%86%E4%BA%AB/</link><pubDate>Fri, 21 Jun 2024 14:08:42 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%9F%AD%E9%80%A3%E7%B5%90%E9%96%8B%E7%99%BC%E5%88%86%E4%BA%AB/</guid><description>&lt;img src="https://i.imgur.com/F9zafh3.png" alt="Featured image of post 短連結開發分享" />&lt;h1 id="開頭">開頭&lt;/h1>
+&lt;p>這陣子公司有個新需求，說要做一個短連結的功能，希望可以讓會員分享彼此之間的投資組合，例如我可以分享我的投資組合給別人，別人點進來後就可以看到我底下有什麼股票，然後後台要有地方紀錄每個用戶分享碼的訪問次數，然後還有QrCoed的功能，我當時心裡想&lt;/p>
+&lt;p>「喔喔喔，那大概就是寫個Get API，最後Reponse用Http Code 303做重定向，location指定到用戶的投資組合前端頁面就可以了」&lt;/p>
+&lt;p>於是我寫了一個大概這樣子的code出去&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@GetMapping&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;/portfolio/{uid}&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Void&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">redirect&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="nd">@PathVariable&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;uid&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">uid&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">URISyntaxException&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">baseUrl&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;http://yahoofinancial/user/portfolio/&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="c1">//去檢查redis中有沒有這個uid的值
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">Integer&lt;/span> &lt;span class="n">integer&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">redisTool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getkeyValue&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Integer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">integer&lt;/span>&lt;span class="o">!=&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="c1">//如果有的話就+1
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">redisTool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setkeyValue&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">integer&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">status&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">HttpStatus&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">TEMPORARY_REDIRECT&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">location&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">URI&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">baseUrl&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">)).&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="c1">//沒有的話就去查看看有沒有這個人
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">integer&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="c1">//先去檢查資料庫真的有這個user
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">User&lt;/span> &lt;span class="n">user&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="n">userService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">findByUid&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//如果有的話就+1
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="o">!=&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="c1">//為這個值+1，並放回redis中
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">redisTool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setkeyValue&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">integer&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">status&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">HttpStatus&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">TEMPORARY_REDIRECT&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">location&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">URI&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">baseUrl&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">)).&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="c1">//沒有就返回首頁給他
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">else&lt;/span>&lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">status&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">HttpStatus&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">TEMPORARY_REDIRECT&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">location&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">URI&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">baseUrl&lt;/span>&lt;span class="o">)).&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">status&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">HttpStatus&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">TEMPORARY_REDIRECT&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">location&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">URI&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">baseUrl&lt;/span>&lt;span class="o">)).&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然後在配置檔裡把這個API設成白名單，不需要登入就可以使用，接著跟前端配合，於是用戶按下了「分享我的投資組合」後，在前端頁面就會產生這樣的畫面&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/WA7XmKT.png"
+loading="lazy"
+alt="image-20240621145119460"
+>&lt;/p>
+&lt;p>然後QA過了沒問題，接著這東西就上生產了&lt;/p>
+&lt;h1 id="大佬反應">大佬反應&lt;/h1>
+&lt;p>接著上生產的隔天，我就在大群裡被Tag了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Ncfgoq0.gif"
+loading="lazy"
+alt="shocked-surprised-gif"
+>&lt;/p>
+&lt;p>「Hoxton，你寫這什麼洨？」&lt;/p>
+&lt;p>開玩笑的，大佬們不會這樣講，大意大概就是說，我這個縮網址的功能，根本沒有縮到什麼東西，還是很長，而且也沒有一個機制去處理用戶一直去洗分享碼，衝高分享次數的機制，並且邀請碼是用uid的方式去傳遞，很容易就會被用戶猜到，讓他們亂打，再加上我在第一步就去掃資料庫，並將Api設成白名單，換言之只要有人夠閒，他就可以用程式一直對我們伺服器發送I/O，一直打，打到我們崩潰。&lt;/p>
+&lt;p>於是大佬提供了幾個要求，要我去處理&lt;/p>
+&lt;ol>
+&lt;li>短網址太長，想辦法縮短&lt;/li>
+&lt;li>Api 不要直接用uid 要加密&lt;/li>
+&lt;li>不要讓用戶一直刷分享碼，衝高分享數&lt;/li>
+&lt;/ol>
+&lt;h1 id="改進方式">改進方式&lt;/h1>
+&lt;h2 id="短網址縮短">短網址縮短&lt;/h2>
+&lt;p>首先要解決的就是短網址太長這件事情，我原先是想說可以把api的prefix拆掉，但想想這方法真的有點太白癡了，我問了一下我的好同事，他建議我可以讓前端出一個頁面&lt;/p>
+&lt;p>http://financa/sharecode/XXXXX&lt;/p>
+&lt;p>短連結就是產生這個網址，當用戶訪問這個頁面時，會去打我的API，打完後再由前端轉頁面到他們投資組合的前端頁面，換言之，就是讓&lt;/p>
+&lt;p>api/finance/profolio/share/{PathVariable}&lt;/p>
+&lt;p>這個API不要再做轉網址的事情，轉網址的操作讓前端去處理，後端只需要專心去紀錄訪問量就好。&lt;/p>
+&lt;h2 id="uid加密">Uid加密&lt;/h2>
+&lt;p>這個我其實一開始不太理解為啥要特地加密，原則上來說一個uid就是對應到一個base62，那這樣還有什麼意義嗎？後來發現針對uid加密實在是好處多多&lt;/p>
+&lt;ol>
+&lt;li>可以在decrypt的時候就做參數檢查，不合規的直接reject掉，不需要經資料庫&lt;/li>
+&lt;li>因為1對1的關係，不需要再把加密後的base62存到資料庫中，如此一來也少了很多入庫檢索的操作，降低I/O開銷&lt;/li>
+&lt;/ol>
+&lt;p>由於這個加密的加入，可以說是從源頭上避免了很多惡意打API的操作&lt;/p>
+&lt;h2 id="阻擋有人一直刷分享數">阻擋有人一直刷分享數&lt;/h2>
+&lt;p>這邊我的想法是，因為我們的前端會把用戶的ip request也帶進來，所以我把ip 跟 share code 放到redis中成為一個鍵，並把存續期間設成一小時，意即這個ip一小時只能增加這個share code一次分享數，如此一來，只要是同一個ip一小時內的訪問我就不紀錄+1，避免了重複刷的可能性&lt;/p>
+&lt;p>更新完後的code長這樣&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="n">ResponseEntity&lt;/span> &lt;span class="nf">redirect&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">shortUrl&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Request&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">User&lt;/span> &lt;span class="n">user&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">ip&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getIp&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">uid&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="n">DESEncrypt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">decrypt&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">shortUrl&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ENCRYPT_KEY&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//這邊在用用戶的ip做判斷短連結的訪問次數
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//我設置1小時作為單次訪問的區間
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//意即相同的Ip 一小時內訪問只記錄一次
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ip&lt;/span> &lt;span class="o">!=&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">redisKey&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">format&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">SHARE_CODE_CACHE&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">ip&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Date&lt;/span> &lt;span class="n">date&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">redisTool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">redisKey&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//如果redis中沒有date值，代表這個Ip過去一小時內沒有訪問過，將這個Ip加入到redis中，設置一小時到期時間(60*60)
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//並將這個uid的訪問次數+1
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">date&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="c1">//設置Ip key 的緩存，ttl為1小時，避免重複刷訪問次數
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//key的value設置成new Date() 其實沒啥特別意義，但懶得改了，只要放個值進去都ok
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">redisTool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">set&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">redisKey&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">(),&lt;/span>&lt;span class="n">60&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">60&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">//判斷uid是否在redis中有紀錄訪問次數+1，如果有的話就加，沒的話就創建
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">ClcikStatisticDO&lt;/span> &lt;span class="n">clcikStatisticDO&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">redisTool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getObject&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">SHARE_CODE_CLICK&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">uid&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ClcikStatistic&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">clcikStatisticDO&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="kc">null&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">clcikStatisticDO&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setClickTime&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">clcikStatisticDO&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getClickTime&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">clcikStatisticDO&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setLastClickTime&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">redisTool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">SHARE_CODE_CLICK&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">uid&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">clcikStatisticDO&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">info&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Ip :{} 在 {}訪問了 會員 {} 的投資頁面，訪問數+1&amp;#34;&lt;/span> &lt;span class="o">,&lt;/span>&lt;span class="n">ip&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">DateUtils&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">format&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">(),&lt;/span> &lt;span class="s">&amp;#34;yyyy-MM-dd HH:mm:ss&amp;#34;&lt;/span>&lt;span class="o">),&lt;/span>&lt;span class="n">clcikStatisticDO&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getUsername&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">User&lt;/span> &lt;span class="n">User&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">glUserService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">findById&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">valueOf&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="c1">//找不到uid 那就直接回傳
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">){&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">builder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">success&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="n">ClcikStatistic&lt;/span> &lt;span class="n">ClcikStatistic&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">ClcikStatistic&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">ClcikStatistic&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setUsername&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getUsername&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">ClcikStatistic&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setShareCode&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">ClcikStatistic&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setClickTime&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">ClcikStatistic&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setCreateTime&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">ClcikStatistic&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setLastClickTime&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="n">redisTool&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">SHARE_CODE_CLICK&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">uid&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">ClcikStatistic&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">info&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Ip :{} 在 {}訪問了 會員 {} 的投資頁面，訪問數+1&amp;#34;&lt;/span> &lt;span class="o">,&lt;/span>&lt;span class="n">ip&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">DateUtils&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">format&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">(),&lt;/span> &lt;span class="s">&amp;#34;yyyy-MM-dd HH:mm:ss&amp;#34;&lt;/span>&lt;span class="o">),&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getUsername&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">info&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Ip:{} 於 {} 訪問 {}&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">ip&lt;/span>&lt;span class="o">,&lt;/span>&lt;span class="n">DateUtils&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">format&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">Date&lt;/span>&lt;span class="o">(),&lt;/span> &lt;span class="s">&amp;#34;yyyy-MM-dd HH:mm:ss&amp;#34;&lt;/span>&lt;span class="o">),&lt;/span>&lt;span class="n">uid&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">ResponseEntity&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ok&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
