@@ -362,6 +362,14 @@ loading="lazy"
 alt="image-20230907132914723"
 >&lt;/p>
 &lt;p>就可以進入到redis中了&lt;/p>
+&lt;h1 id="redis的基本資料型別">Redis的基本資料型別&lt;/h1>
+&lt;ol>
+&lt;li>String&lt;/li>
+&lt;li>List&lt;/li>
+&lt;li>Set&lt;/li>
+&lt;li>Hash&lt;/li>
+&lt;li>Stored Set&lt;/li>
+&lt;/ol>
 &lt;h1 id="基本操作">基本操作&lt;/h1>
 &lt;h2 id="連線到遠端的redis">連線到遠端的redis&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
