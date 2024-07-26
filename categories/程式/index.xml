@@ -1,4 +1,89 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 20 Jun 2024 22:48:07 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Map來找真的比List還快嗎</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8map%E4%BE%86%E6%89%BE%E7%9C%9F%E7%9A%84%E6%AF%94list%E9%82%84%E5%BF%AB%E5%97%8E/</link><pubDate>Thu, 20 Jun 2024 22:48:07 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8map%E4%BE%86%E6%89%BE%E7%9C%9F%E7%9A%84%E6%AF%94list%E9%82%84%E5%BF%AB%E5%97%8E/</guid><description>&lt;img src="https://i.imgur.com/fioKvTX.png" alt="Featured image of post 使用Map來找真的比List還快嗎" />&lt;p>這陣子工作上的時候又遇到一個要從兩個List中找出相同Id，然後 Assign 給對方的那種，正當我準備再寫個Double-ForEach來解決這個問題時，腦中突然被這種很醜的寫法給噁心到了，頓時間在想&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 26 Jul 2024 17:52:54 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>Dubbo在單元測試如何注入@DubboReferenceBean</title><link>https://hoxtonhsu.com/p/dubbo%E5%9C%A8%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%A6%82%E4%BD%95%E6%B3%A8%E5%85%A5dubboreferencebean/</link><pubDate>Fri, 26 Jul 2024 17:52:54 +0800</pubDate><guid>https://hoxtonhsu.com/p/dubbo%E5%9C%A8%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%A6%82%E4%BD%95%E6%B3%A8%E5%85%A5dubboreferencebean/</guid><description>&lt;img src="https://i.imgur.com/e12IsXC.png" alt="Featured image of post Dubbo在單元測試如何注入@DubboReferenceBean" />&lt;p>​&lt;/p>
+&lt;p>前陣子工作實在是太忙了，寫了很多很爛的code出來，然後效能很差，依賴很多，分層也不夠清晰，讓我想到之前在御諾時就有實踐過的TDD，當時我說的一口好code，說TDD可以幫助架構、重構，有助於在爛code出現時提前嗅到它的味道，但從御諾離職後我就沒再寫過單元測試了，ㄏㄏ。&lt;/p>
+&lt;p>之前在接案公司時是說寫單元測試會不統一，有人有寫有人沒寫，不好跟客戶交代，換到現在尋頂時則是專案太大，開發進度太趕，我就有點懶得寫了，再加上一開始項目其實有很多Dependency不存在我們這邊，存在伺服器那，寫單元測試的意願就直線下降了&lt;/p>
+&lt;p>直到最近寫了一坨爛code被K得滿頭包，決定要來解決一下這個問題，但在剛開始時就遇到一個問題，項目的@Dubbo無法被SpringBoot的@Mock給mock掉&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">UserController&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@DubboReference&lt;/span>
+&lt;span class="n">UserDubboService&lt;/span> &lt;span class="n">userDubboService&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@RunWith&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">MockitoJUnitRunner&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="nd">@Slf4j&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">InviteCodeHandlerTest&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@InjectMocks&lt;/span>
+&lt;span class="n">UserController&lt;/span> &lt;span class="n">userController&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Mock&lt;/span> &lt;span class="c1">//這個會拋出null point exception
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">UserDubboService&lt;/span> &lt;span class="n">userDubboService&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這問題在GitHub上也有人反映&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/apache/dubbo-spring-boot-project/issues/802" target="_blank" rel="noopener"
+>spring-boot-test @MockBean 对 dubbo-reference 失效&lt;/a>&lt;/p>
+&lt;p>後來試過很多方式，比如說把@Autowired加在UserDubboService上面，或是把DubboServiceInterface加上@Component註解都沒辦法完成，最後是使用了反射(Reflection)去反向注入這個Bean進去&lt;/p>
+&lt;p>Code如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@RunWith&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">MockitoJUnitRunner&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="nd">@Slf4j&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">InviteCodeHandlerTest&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@InjectMocks&lt;/span>
+&lt;span class="n">UserController&lt;/span> &lt;span class="n">userController&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="c1">//@Mock 不用在透過Mockito去注入測試依賴
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">UserDubboService&lt;/span> &lt;span class="n">userDubboService&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Before&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">setUp&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IllegalAccessException&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">NoSuchFieldException&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">userDubboService&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Mockito&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">mock&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">UserDubboService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">// 使用反射注入 glUserService
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">Field&lt;/span> &lt;span class="n">field&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">userController&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getClass&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">getDeclaredField&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;userDubboService&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">field&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">setAccessible&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">field&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">set&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">userController&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">userDubboService&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>就可以在呼叫userController時，去mock掉@DubboReference的bean了&lt;/p></description></item><item><title>使用Map來找真的比List還快嗎</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8map%E4%BE%86%E6%89%BE%E7%9C%9F%E7%9A%84%E6%AF%94list%E9%82%84%E5%BF%AB%E5%97%8E/</link><pubDate>Thu, 20 Jun 2024 22:48:07 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8map%E4%BE%86%E6%89%BE%E7%9C%9F%E7%9A%84%E6%AF%94list%E9%82%84%E5%BF%AB%E5%97%8E/</guid><description>&lt;img src="https://i.imgur.com/fioKvTX.png" alt="Featured image of post 使用Map來找真的比List還快嗎" />&lt;p>這陣子工作上的時候又遇到一個要從兩個List中找出相同Id，然後 Assign 給對方的那種，正當我準備再寫個Double-ForEach來解決這個問題時，腦中突然被這種很醜的寫法給噁心到了，頓時間在想&lt;/p>
 &lt;p>「肯定有更好的方式吧」&lt;/p>
 &lt;p>於是就想到了HashMap，我知道取出Map的時間複雜度為O(1)，但這是保證都是O(1)嗎？還是說只有用index查找，例如get(1)這種才快呢？老實說我不是很清楚，另外我如果要用HashMap，我勢必要先把List的內容put到Map中，那這樣跟我直接用Double-ForEach查找來講，是不是會更慢呢？於是今天打算來研究一下，我的想法很簡單，創造10,000,000個UID，並分別放到List跟Map，最後取出最後新增的UID，來比較兩者之間的速度&lt;/p>
 &lt;p>程式碼如下&lt;/p>
