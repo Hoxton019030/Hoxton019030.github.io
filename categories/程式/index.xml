@@ -31,7 +31,7 @@
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@RunWith&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">MockitoJUnitRunner&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="o">)&lt;/span>
 &lt;span class="nd">@Slf4j&lt;/span>
-&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">InviteCodeHandlerTest&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">UserControllerTest&lt;/span> &lt;span class="o">{&lt;/span>
 &lt;span class="nd">@InjectMocks&lt;/span>
 &lt;span class="n">UserController&lt;/span> &lt;span class="n">userController&lt;/span>&lt;span class="o">;&lt;/span>
 &lt;span class="nd">@Mock&lt;/span> &lt;span class="c1">//這個會拋出null point exception
