@@ -2,8 +2,45 @@
 &lt;p>紀錄一下Zookeeper安裝到底她媽多糞，以下紀錄Windows安裝，Mac的我不想處理了= =&lt;/p>
 &lt;ol>
 &lt;li>到https://zookeeper.apache.org/index.html 安裝&lt;/li>
-&lt;li>安裝完後解壓縮，裡面長這樣&lt;/li>
-&lt;/ol></description></item><item><title>Dubbo在單元測試如何注入@DubboReference 避免Null Point Exception</title><link>https://hoxtonhsu.com/p/dubbo%E5%9C%A8%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%A6%82%E4%BD%95%E6%B3%A8%E5%85%A5dubboreference-%E9%81%BF%E5%85%8Dnull-point-exception/</link><pubDate>Fri, 26 Jul 2024 17:52:54 +0800</pubDate><guid>https://hoxtonhsu.com/p/dubbo%E5%9C%A8%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%A6%82%E4%BD%95%E6%B3%A8%E5%85%A5dubboreference-%E9%81%BF%E5%85%8Dnull-point-exception/</guid><description>&lt;img src="https://i.imgur.com/e12IsXC.png" alt="Featured image of post Dubbo在單元測試如何注入@DubboReference 避免Null Point Exception" />&lt;p>​&lt;/p>
+&lt;li>安裝完後解壓縮，裡面長這樣，然後幫我創建data跟log資料夾&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/JFIO4fP.png"
+loading="lazy"
+alt="image-20240731113739647"
+>&lt;/p>
+&lt;ol start="3">
+&lt;li>接著點開conf，把zoo_sample.cfg複製，貼上，重新命名zoo.cfg&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/de0zGWm.png"
+loading="lazy"
+alt="image-20240731113858429"
+>&lt;/p>
+&lt;ol start="4">
+&lt;li>
+&lt;p>編輯zoo.cfg，編輯dataDir以及新增dataLogDir，都讓它們指向步驟2所創建的兩個資料夾&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/d7Q5BmC.png"
+loading="lazy"
+alt="image-20240731114039678"
+>&lt;/p>
+&lt;p>這邊也指定一下port號，避免佔用8080，真的是垃圾zooKeeper，問題一堆&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/9fMAw7U.png"
+loading="lazy"
+alt="image-20240731154910051"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>回到bin，點開zkServer.cmd，調整一些內容，把call JAVA改成java，然後在最底下增加一個pause，如果錯誤的話還可以看一下錯誤訊息&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/LHu22y8.png"
+loading="lazy"
+alt="image-20240731114332707"
+>&lt;/p>
+&lt;p>這樣子應該就可以了= =&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/0frPRNc.png"
+loading="lazy"
+alt="image-20240731114827416"
+>&lt;/p></description></item><item><title>Dubbo在單元測試如何注入@DubboReference 避免Null Point Exception</title><link>https://hoxtonhsu.com/p/dubbo%E5%9C%A8%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%A6%82%E4%BD%95%E6%B3%A8%E5%85%A5dubboreference-%E9%81%BF%E5%85%8Dnull-point-exception/</link><pubDate>Fri, 26 Jul 2024 17:52:54 +0800</pubDate><guid>https://hoxtonhsu.com/p/dubbo%E5%9C%A8%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%A6%82%E4%BD%95%E6%B3%A8%E5%85%A5dubboreference-%E9%81%BF%E5%85%8Dnull-point-exception/</guid><description>&lt;img src="https://i.imgur.com/e12IsXC.png" alt="Featured image of post Dubbo在單元測試如何注入@DubboReference 避免Null Point Exception" />&lt;p>​&lt;/p>
 &lt;p>前陣子工作實在是太忙了，寫了很多很爛的code出來，然後效能很差，依賴很多，分層也不夠清晰，讓我想到之前在御諾時就有實踐過的TDD，當時我說的一口好code，說TDD可以幫助架構、重構，有助於在爛code出現時提前嗅到它的味道，但從御諾離職後我就沒再寫過單元測試了，ㄏㄏ。&lt;/p>
 &lt;p>之前在接案公司時是說寫單元測試會不統一，有人有寫有人沒寫，不好跟客戶交代，換到現在尋頂時則是專案太大，開發進度太趕，我就有點懶得寫了，再加上一開始項目其實有很多Dependency不存在我們這邊，存在伺服器那，寫單元測試的意願就直線下降了&lt;/p>
 &lt;p>直到最近寫了一坨爛code被K得滿頭包，決定要來解決一下這個問題，但在剛開始時就遇到一個問題，項目的@Dubbo無法被SpringBoot的@Mock給mock掉&lt;/p>
