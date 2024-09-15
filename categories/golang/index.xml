@@ -89,7 +89,7 @@
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="java與golang的不同-未使用的變數">Java與Golang的不同-未使用的變數&lt;/h1>
+&lt;/div>&lt;h1 id="java與golang的不同-未使用的區域變數會導致編譯錯誤">Java與Golang的不同-未使用的區域變數會導致編譯錯誤&lt;/h1>
 &lt;p>在Golang中，為了程式碼的精簡，是「不允許有未使用的變數」存在於程式碼之中的，比如說在Java中，我們可能有時候在函式內部聲明了一個orderId，但久了未使用就繼續讓它存在下去。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -112,7 +112,24 @@ return void;
 loading="lazy"
 alt="image-20240915142615257"
 >&lt;/p>
-&lt;h1 id="golang的基本型態">Golang的基本型態&lt;/h1>
+&lt;p>但未被使用的常數是允許的&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="kd">const&lt;/span> &lt;span class="nx">sum&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">20&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">10&lt;/span>
+&lt;span class="kd">func&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Hello&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="golang的基本型態">Golang的基本型態&lt;/h1>
 &lt;ul>
 &lt;li>布林：主要就是True跟False，在Golang裡面這樣宣告，跟Java差不多&lt;/li>
 &lt;/ul>
@@ -189,7 +206,7 @@ alt="image-20240915142615257"
 &lt;/div>&lt;ul>
 &lt;li>複數：不可能吧，你不可能想在golang上使用複數吧，由於golang本身不支援矩陣，以及種種的一些原因，如果你想在golang裡面進行這些運算，可以考慮使用Gonum這個程式包，但在Golang上進行複數運算是個不太適合的行為，已經有人在討論會在未來的版本移除Golang對複數的支援了&lt;/li>
 &lt;/ul>
-&lt;h1 id="java與golang的不同-自動型態轉換">Java與Golang的不同-自動型態轉換&lt;/h1>
+&lt;h1 id="java與golang的不同-不允許自動型態轉換">Java與Golang的不同-不允許自動型態轉換&lt;/h1>
 &lt;p>在Java中，我們是允許不同型別的數字相加的，比如說&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -231,4 +248,20 @@ alt="image-20240915142615257"
 &lt;p>&lt;img src="https://i.imgur.com/Qrfr96a.png"
 loading="lazy"
 alt="image-20240915141300826"
->&lt;/p></description></item></channel></rss>
+>&lt;/p>
+&lt;h1 id="java與golang的不同-宣告一個final變數使用的是const關鍵字">Java與Golang的不同-宣告一個final變數使用的是const關鍵字&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="kd">func&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">const&lt;/span> &lt;span class="nx">greeting&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s">&amp;#34;hello&amp;#34;&lt;/span>
+&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">greeting&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
