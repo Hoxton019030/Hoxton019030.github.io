@@ -460,6 +460,9 @@ alt="image-20240915154823100"
 loading="lazy"
 alt="image-20240915155528731"
 >&lt;/p>
+&lt;ol start="4">
+&lt;li>slice有容量的概念，所謂容量，相較於slice的長度，就類似Java中ArrayList的自動擴容一樣。當我們宣告一個slice時，其實是在記憶體中選取一塊連續的空間來寫入這些值，而容量就是這個連續空間的大小。當你的容量等於slice長度時，golang就會去自動配置更大的容量來適配它&lt;/li>
+&lt;/ol>
 &lt;h3 id="slice的用法">Slice的用法&lt;/h3>
 &lt;ul>
 &lt;li>len：取得長度&lt;/li>
@@ -483,7 +486,7 @@ alt="image-20240915155528731"
 &lt;p>cap：取得目前slice的連續記憶體容量，很少用，通常是用來檢查slice是否大到難以容下新資料&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>append：加值進去slice，「一定會增加slice的長度」&lt;/p>
+&lt;p>append：加值進去slice，「一定會增加slice的長度」，並且會把值塞到最後一位，有可能導致前面的值全部都為0&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -510,7 +513,7 @@ alt="image-20240915155528731"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>make：宣告slice的長度&lt;/li>
+&lt;li>make：宣告slice的長度，宣告slice的容量&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -519,13 +522,31 @@ alt="image-20240915155528731"
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="kd">func&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">slice1&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="nb">make&lt;/span>&lt;span class="p">([]&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1">// 僅宣告長度，不宣告容量
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">slice1&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="nb">make&lt;/span>&lt;span class="p">([]&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;span class="nb">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">slice1&lt;/span>&lt;span class="p">))&lt;/span>
 &lt;span class="c1">//長度為5
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="c1">// 長度為5，容量為10
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">var&lt;/span> &lt;span class="nx">slice2&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="nb">make&lt;/span>&lt;span class="p">([]&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="如何很go的宣告一個slice">如何很Go的宣告一個slice&lt;/h3>
+&lt;p>核心目標就是減少slice的擴增次數，如果slice完全不需要擴增，那就使用var並且不設值來建立nil slice&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="kd">var&lt;/span> &lt;span class="nx">data&lt;/span> &lt;span class="p">[]&lt;/span> &lt;span class="kt">int&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div></description></item></channel></rss>
