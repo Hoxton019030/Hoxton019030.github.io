@@ -2,6 +2,7 @@
 &lt;p>於是我突然想到了Aws的服務，邏輯上來講我應該可以在Aws上面運行一個伺服器的終端，然後我們透過Aws的固定Ip去連線，這樣我們就解決了開房問題，並且也不需要仰賴某某人上線才能玩，查了一下發現Aws本身就有一個叫做lightsail的功能，本質就是一個更輕量化的Ec2，不支援細緻的微調，但好處就是不需要太多基礎知識，只需要稍微設置一下就能在Aws上快速部署。&lt;/p>
 &lt;h1 id="lightsail">Lightsail&lt;/h1>
 &lt;p>Lightsail是一個Aws的服務，主要是處理輕量化的需求，提供了一些固定式的雲端機器模板。坊間也有一些類似的產品，比如說Digital Ocean的Droplet，但是Digital Ocean離台灣最近的伺服器在新加坡，而Aws最近的伺服器則是在日本，一來一往之下Aws確實是更好的選擇。&lt;/p>
+&lt;p>根據所選的方案不同，lightsail的收費也不同，我選擇的是4G memory 2核Cpu，這樣一個月是24元，相當於每啟動一小時需要台幣1元&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/sabXUTf.png"
 loading="lazy"
 alt="image-20241003154142527"
