@@ -41,6 +41,7 @@ loading="lazy"
 alt="image-20241003161959265"
 >&lt;/p>
 &lt;h2 id="設置固定ip">設置固定Ip&lt;/h2>
+&lt;p>要注意的是這個固定Ip其實是會收費的，只是我們目前讓它attch在一個instance下才不收費，日後如果刪除instance時，記得也要將固定Ip給刪掉&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/HXzUMHG.png"
 loading="lazy"
 alt="image-20241003162225258"
