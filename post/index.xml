@@ -1,4 +1,208 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 27 Sep 2024 16:55:54 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Dubbo進行分布系統學習之100.64.0.1問題Debug紀錄</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8dubbo%E9%80%B2%E8%A1%8C%E5%88%86%E5%B8%83%E7%B3%BB%E7%B5%B1%E5%AD%B8%E7%BF%92%E4%B9%8B100.64.0.1%E5%95%8F%E9%A1%8Cdebug%E7%B4%80%E9%8C%84/</link><pubDate>Fri, 27 Sep 2024 16:55:54 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8dubbo%E9%80%B2%E8%A1%8C%E5%88%86%E5%B8%83%E7%B3%BB%E7%B5%B1%E5%AD%B8%E7%BF%92%E4%B9%8B100.64.0.1%E5%95%8F%E9%A1%8Cdebug%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/0TwMboK.png" alt="Featured image of post 使用Dubbo進行分布系統學習之100.64.0.1問題Debug紀錄" />&lt;p>前陣子在學習Dubbo建立分布式服務時，不知道為什麼在我的Macbook上一直啟用不了dubbo服務，每次要啟動consumer時，總是會出現&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 03 Oct 2024 14:34:43 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>如何使用Aws LightSail建立遊戲伺服器</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/</link><pubDate>Thu, 03 Oct 2024 14:34:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/</guid><description>&lt;img src="https://i.imgur.com/JKvJ1yL.png" alt="Featured image of post 如何使用Aws LightSail建立遊戲伺服器" />&lt;p>前陣子朋友揪團玩遊戲時，又陷入誰要當Host的問題，記得高中大學時，都是一個網路比較好的人當host，其他人去連，這種方式的缺點也很明顯，就是電腦必須要運行著，一但關機後我們就需要在群組Tag對方，請他上線開房。&lt;/p>
+&lt;p>於是我突然想到了Aws的服務，邏輯上來講我應該可以在Aws上面運行一個伺服器的終端，然後我們透過Aws的固定Ip去連線，這樣我們就解決了開房問題，並且也不需要仰賴某某人上線才能玩，查了一下發現Aws本身就有一個叫做lightsail的功能，本質就是一個更輕量化的Ec2，不支援細緻的微調，但好處就是不需要太多基礎知識，只需要稍微設置一下就能在Aws上快速部署。&lt;/p>
+&lt;h2 id="lightsail">Lightsail&lt;/h2>
+&lt;p>Lightsail是一個Aws的服務，主要是處理輕量化的需求，提供了一些固定式的雲端機器模板。坊間也有一些類似的產品，比如說Digital Ocean的Droplet，但是Digital Ocean離台灣最近的伺服器在新加坡，而Aws最近的伺服器則是在日本，一來一往之下Aws確實是更好的選擇。&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/sabXUTf.png"
+loading="lazy"
+alt="image-20241003154142527"
+>&lt;/p>
+&lt;h1 id="創立lightsail的instance">創立LightSail的Instance&lt;/h1>
+&lt;ul>
+&lt;li>
+&lt;p>Instance Location選日本&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>作業系統選擇Amazon Linux 2023，這是Amazon的一個LTS版本的Linux，原生支援較完整的Aws服務&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Size的話選擇4G記憶體 2核CPU 的配置，這樣總共會收$24鎂，換算台幣的話大概就是運行一小時一塊錢，如果已經玩完了，記得將這個instance snapshot備份下來，然後刪除整個instance，因為lightsail只要instance存在，不論運行與否都會收費，這點跟Ec2有差，Ec2是只要stop後就不會繼續收費了。但我Ec2跟lightsail兩邊比較了一下，同樣是2核4G的配置，Ec2的收費會略高lightsail 30%~50%左右，lightsail相較之下是個較Eco的選擇&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Identify-your instance 就是一個客製化的名稱，就是你愛叫啥就叫啥，我通常是叫OOO game server啦&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>都選好後就按下Create Instance&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/6oXFxkV.png"
+loading="lazy"
+alt="image-20241003155315665"
+>&lt;/p>
+&lt;p>可以在Dashboard的地方看到instance&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/bgnUx1f.png"
+loading="lazy"
+alt="image-20241003161253055"
+>&lt;/p>
+&lt;p>點進instance後，我們需要到networking的地方設置兩個東西&lt;/p>
+&lt;ol>
+&lt;li>固定Ip，這樣你重啟instnace後的ip會保持不變，避免Ip地址亂動，導致你朋友每次連線都有問題&lt;/li>
+&lt;li>開啟防火牆的port，讓外部的連線可以連到instane&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/WaYco7Y.png"
+loading="lazy"
+alt="image-20241003161959265"
+>&lt;/p>
+&lt;h2 id="設置固定ip">設置固定Ip&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/HXzUMHG.png"
+loading="lazy"
+alt="image-20241003162225258"
+>&lt;/p>
+&lt;h2 id="開啟防火牆port">開啟防火牆Port&lt;/h2>
+&lt;p>這部分要查一下，看你要玩的遊戲的Port是哪個Port就開啟&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Fap2hna.png"
+loading="lazy"
+alt="image-20241003162629001"
+>&lt;/p>
+&lt;p>這樣設置就完成了&lt;/p>
+&lt;h1 id="進入lightsail的instance">進入lightsail的instance&lt;/h1>
+&lt;p>點擊Connect using SSH，就會跳一個終端機&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/CCwrH8w.png"
+loading="lazy"
+alt="image-20241003162855055"
+>&lt;/p>
+&lt;p>這個就是我們建立的instance，這時候就是看每個遊戲架設伺服器的方式是怎麼架的，如果有支援linux架設伺服器的話就按照他說的做，如果沒有的話可能就要用docker來模擬windows的環境，這邊以夜族崛起Vrising這款遊戲為例&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/4m1zOjA.png"
+loading="lazy"
+alt="image-20241003162929500"
+>&lt;/p>
+&lt;h2 id="在instance安裝docker">在instance安裝docker&lt;/h2>
+&lt;p>依序執行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo yum update
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo yum install docker
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo usermod -a -G docker ec2-user
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這個命令 &lt;code>sudo usermod -a -G docker ec2-user&lt;/code> 用於將一個用戶添加到一個特定的用戶組。讓我們來詳細解析這個命令：&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>sudo&lt;/code>: 以超級用戶（root）權限執行後面的命令。&lt;/li>
+&lt;li>&lt;code>usermod&lt;/code>: 這是一個用於修改用戶帳戶屬性的命令。&lt;/li>
+&lt;li>&lt;code>-a&lt;/code>: 這個選項代表&amp;quot;append&amp;quot;（添加）。它確保用戶被添加到新組而不被從其他組中移除。&lt;/li>
+&lt;li>&lt;code>-G&lt;/code>: 指定要將用戶添加到的補充組（secondary group）。&lt;/li>
+&lt;li>&lt;code>docker&lt;/code>: 這是要將用戶添加到的組名。&lt;/li>
+&lt;li>&lt;code>ec2-user&lt;/code>: 這是要被修改的用戶名。&lt;/li>
+&lt;/ol>
+&lt;p>綜合起來，這個命令的作用是：將 &lt;code>ec2-user&lt;/code> 用戶添加到 &lt;code>docker&lt;/code> 用戶組中，同時保留該用戶原有的組成員身份。&lt;/p>
+&lt;p>這個命令通常在設置 Docker 環境時使用，特別是在 Amazon EC2 實例上。將用戶添加到 docker 組允許該用戶執行 Docker 命令而無需每次都使用 sudo。&lt;/p>
+&lt;p>執行此命令後，&lt;code>ec2-user&lt;/code> 需要登出並重新登錄，或者重新啟動系統，才能使新的組成員身份生效。&lt;/p>
+&lt;p>這個命令的使用場景通常是在設置開發或部署環境時，為了方便開發者或系統管理員使用 Docker 而不必每次都輸入 sudo。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo pip3 install docker-compose
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo systemctl &lt;span class="nb">enable&lt;/span> docker.service
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>命令 &lt;code>sudo systemctl enable docker.service&lt;/code> 用於設置 Docker 服務在系統啟動時自動啟動。讓我們詳細解析這個命令：&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>sudo&lt;/code>: 以超級用戶（root）權限執行後面的命令。&lt;/li>
+&lt;li>&lt;code>systemctl&lt;/code>: 這是 systemd 初始化系統的主要命令行工具，用於控制 systemd 系統和服務管理器。&lt;/li>
+&lt;li>&lt;code>enable&lt;/code>: 這個子命令用於啟用一個服務單元，使其在系統啟動時自動啟動。&lt;/li>
+&lt;li>&lt;code>docker.service&lt;/code>: 這是要啟用的服務單元的名稱，在這裡指的是 Docker 服務。&lt;/li>
+&lt;/ol>
+&lt;p>執行這個命令後，系統會：&lt;/p>
+&lt;ol>
+&lt;li>創建必要的符號鏈接，將 Docker 服務單元文件鏈接到 systemd 的自動啟動目錄中。&lt;/li>
+&lt;li>重新配置 systemd，使其在下次系統啟動時加載並啟動 Docker 服務。&lt;/li>
+&lt;/ol>
+&lt;p>這個命令的主要作用是確保 Docker 守護進程（Docker daemon）在系統啟動時自動運行，無需手動啟動。這對於依賴 Docker 運行的服務和應用程序來說非常重要，因為它確保了 Docker 環境在系統啟動後立即可用。&lt;/p>
+&lt;p>使用這個命令的典型場景包括：&lt;/p>
+&lt;ul>
+&lt;li>在服務器或開發機器上設置 Docker 環境&lt;/li>
+&lt;li>確保 Docker 相關的持續集成/持續部署（CI/CD）流程能夠在系統重啟後自動恢復&lt;/li>
+&lt;li>在需要持續運行 Docker 容器的生產環境中使用&lt;/li>
+&lt;/ul>
+&lt;p>需要注意的是，這個命令只是啟用了服務，並不會立即啟動 Docker。如果你想立即啟動 Docker 服務，你需要運行 &lt;code>sudo systemctl start docker.service&lt;/code>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo systemctl start docker.service
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>啟動docker服務&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo systemctl status docker.service
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>確認docker運行狀態，看到這個畫面就代表docker啟動成功了&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/4H0hzq6.png"
+loading="lazy"
+alt="image-20241003164605576"
+>&lt;/p>
+&lt;h2 id="執行伺服器docker">執行伺服器docker&lt;/h2>
+&lt;p>我這邊選用的是vrising的伺服器，使用這個人提供的docker&lt;/p>
+&lt;p>&lt;a href="https://github.com/TrueOsiris/docker-vrising">https://github.com/TrueOsiris/docker-vrising&lt;/a>&lt;/p>
+&lt;p>在instance上運行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker run -d --name&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;vrising&amp;#39;&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span>--net&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;bridge&amp;#39;&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span>--restart&lt;span class="o">=&lt;/span>unless-stopped &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span>-e &lt;span class="nv">TZ&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;Europe/Paris&amp;#34;&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span>-e &lt;span class="nv">SERVERNAME&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;trueosiris-V&amp;#34;&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span>-v &lt;span class="s1">&amp;#39;/path/on/host/server&amp;#39;&lt;/span>:&lt;span class="s1">&amp;#39;/mnt/vrising/server&amp;#39;&lt;/span>:&lt;span class="s1">&amp;#39;rw&amp;#39;&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span>-v &lt;span class="s1">&amp;#39;/path/on/host/persistentdata&amp;#39;&lt;/span>:&lt;span class="s1">&amp;#39;/mnt/vrising/persistentdata&amp;#39;&lt;/span>:&lt;span class="s1">&amp;#39;rw&amp;#39;&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span>-p 9876:9876/udp &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span>-p 9877:9877/udp &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span>&lt;span class="s1">&amp;#39;trueosiris/vrising&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣就可以囉&lt;/p>
+&lt;h1 id="備份instance">備份instance&lt;/h1>
+&lt;p>如果遊戲不玩了，可以選擇將整個instance備份起來，等到之後要用的時候再restore&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/B1DihNb.png"
+loading="lazy"
+alt="image-20241003165649683"
+>&lt;/p>
+&lt;h1 id="復原instance">復原instance&lt;/h1>
+&lt;p>選擇復原instance，會復原一個當初snapshot起來的instance，這樣就可以重新開始玩囉&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/9dA5l6T.png"
+loading="lazy"
+alt="image-20241003165734303"
+>&lt;/p></description></item><item><title>使用Dubbo進行分布系統學習之100.64.0.1問題Debug紀錄</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8dubbo%E9%80%B2%E8%A1%8C%E5%88%86%E5%B8%83%E7%B3%BB%E7%B5%B1%E5%AD%B8%E7%BF%92%E4%B9%8B100.64.0.1%E5%95%8F%E9%A1%8Cdebug%E7%B4%80%E9%8C%84/</link><pubDate>Fri, 27 Sep 2024 16:55:54 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8dubbo%E9%80%B2%E8%A1%8C%E5%88%86%E5%B8%83%E7%B3%BB%E7%B5%B1%E5%AD%B8%E7%BF%92%E4%B9%8B100.64.0.1%E5%95%8F%E9%A1%8Cdebug%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/0TwMboK.png" alt="Featured image of post 使用Dubbo進行分布系統學習之100.64.0.1問題Debug紀錄" />&lt;p>前陣子在學習Dubbo建立分布式服務時，不知道為什麼在我的Macbook上一直啟用不了dubbo服務，每次要啟動consumer時，總是會出現&lt;/p>
 &lt;p>Connection refused: /100.64.0.1:20885&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/nURsyAz.png"
 loading="lazy"
