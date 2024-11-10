@@ -1,4 +1,162 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 03 Oct 2024 14:34:43 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>如何使用Aws LightSail 結合 docker 建立遊戲伺服器</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail-%E7%B5%90%E5%90%88-docker-%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/</link><pubDate>Thu, 03 Oct 2024 14:34:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail-%E7%B5%90%E5%90%88-docker-%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/</guid><description>&lt;img src="https://i.imgur.com/JKvJ1yL.png" alt="Featured image of post 如何使用Aws LightSail 結合 docker 建立遊戲伺服器" />&lt;p>前陣子朋友揪團玩遊戲時，又陷入誰要當Host的問題，記得高中大學時，都是一個網路比較好的人當host，其他人去連，這種方式的缺點也很明顯，就是電腦必須要運行著，一但關機後我們就需要在群組Tag對方，請他上線開房。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 31 Oct 2024 10:06:03 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>關於Telegram Oauth 如何在Java中驗證Hash的正確性</title><link>https://hoxtonhsu.com/p/%E9%97%9C%E6%96%BCtelegram-oauth-%E5%A6%82%E4%BD%95%E5%9C%A8java%E4%B8%AD%E9%A9%97%E8%AD%89hash%E7%9A%84%E6%AD%A3%E7%A2%BA%E6%80%A7/</link><pubDate>Thu, 31 Oct 2024 10:06:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E9%97%9C%E6%96%BCtelegram-oauth-%E5%A6%82%E4%BD%95%E5%9C%A8java%E4%B8%AD%E9%A9%97%E8%AD%89hash%E7%9A%84%E6%AD%A3%E7%A2%BA%E6%80%A7/</guid><description>&lt;img src="https://i.imgur.com/iwVZdqj.png" alt="Featured image of post 關於Telegram Oauth 如何在Java中驗證Hash的正確性" />&lt;p>最近不知道為什麼，突然被派去做三方驗證了，說起來這種比較高技術的事情不應該交給我這種菜雞來做的說，可能是當太久的米蟲終於被抓到了吧，ㄏㄏ&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;span class="lnt">83
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java"> &lt;span class="cm">/**
+&lt;/span>&lt;span class="cm"> * 透過tgAuthResult decode出包含的Hash，與Bot Token 進行驗證，具體步驟如下
+&lt;/span>&lt;span class="cm"> * 1. 將tgAuthResult進行Base64 decode
+&lt;/span>&lt;span class="cm"> * 2. 去除掉回傳的HashCode
+&lt;/span>&lt;span class="cm"> * 3. 按照字母順序去排序這些key-value
+&lt;/span>&lt;span class="cm"> * 4. 計算Bot Token的 sha256
+&lt;/span>&lt;span class="cm"> * 5. 計算HMAC_Sha256，明文是上面Bot Token的sha256，key是Bot Token，然後將結果轉換成Hex
+&lt;/span>&lt;span class="cm"> * 6. 比較上面得到的Hex和回傳的HashCode是否一致
+&lt;/span>&lt;span class="cm"> *
+&lt;/span>&lt;span class="cm"> * @param tgAuthResult
+&lt;/span>&lt;span class="cm"> * @return
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="nd">@Slf4j&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">TestMain&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">BOT_TOKEN&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Token放這邊&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">NoSuchAlgorithmException&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">tgAuthResult&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;oauth回傳的tgAuthResult放這邊，應該會是一段base64的編碼文字&amp;#34;&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="c1">// Step 1: Parse JSON
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">decodedData&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Base64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getDecoder&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">decode&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">tgAuthResult&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="n">JsonObject&lt;/span> &lt;span class="n">jsonObject&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">JsonParser&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">parseString&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">decodedData&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">getAsJsonObject&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="c1">// Step 2: Extract hash and other fields for verification
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="n">receivedHash&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">jsonObject&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;hash&amp;#34;&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">getAsString&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">jsonObject&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">remove&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;hash&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span> &lt;span class="c1">// Remove hash from the map before verification
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="c1">// Step 3: Create data string for hashing
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">TreeMap&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">sortedData&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">TreeMap&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;();&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">Map&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">Entry&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">com&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">google&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">gson&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">JsonElement&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">entry&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">jsonObject&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">entrySet&lt;/span>&lt;span class="o">())&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(!&lt;/span>&lt;span class="n">entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getKey&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">equals&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;hash&amp;#34;&lt;/span>&lt;span class="o">))&lt;/span> &lt;span class="o">{&lt;/span> &lt;span class="c1">// Make sure &amp;#34;hash&amp;#34; is excluded from sortedData
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">sortedData&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getKey&lt;/span>&lt;span class="o">(),&lt;/span> &lt;span class="n">entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getValue&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">getAsString&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="n">StringBuilder&lt;/span> &lt;span class="n">dataString&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">StringBuilder&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">Map&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">Entry&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">entry&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">sortedData&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">entrySet&lt;/span>&lt;span class="o">())&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">dataString&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">length&lt;/span>&lt;span class="o">()&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">dataString&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">append&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;\n&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">dataString&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">append&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getKey&lt;/span>&lt;span class="o">()).&lt;/span>&lt;span class="na">append&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;=&amp;#34;&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">append&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getValue&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="c1">// Calculate HMAC
+&lt;/span>&lt;span class="c1">// String secretKey = BOT_TOKEN;
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">MessageDigest&lt;/span> &lt;span class="n">digest&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">MessageDigest&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getInstance&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;SHA-256&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="kt">byte&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">secretKey&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">digest&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">digest&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">BOT_TOKEN&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">StandardCharsets&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">UTF_8&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="n">calculatedHash&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">calculateHMAC&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">dataString&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">toString&lt;/span>&lt;span class="o">(),&lt;/span> &lt;span class="n">secretKey&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="c1">// Step 5: Verify hash
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">calculatedHash&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">equals&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">receivedHash&lt;/span>&lt;span class="o">))&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">info&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Verification successful! User authenticated.&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">log&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">warn&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Verification failed! Data may have been tampered with.&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="nf">calculateHMAC&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kt">byte&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">key&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">try&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">SecretKeySpec&lt;/span> &lt;span class="n">keySpec&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">SecretKeySpec&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;HmacSHA256&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">Mac&lt;/span> &lt;span class="n">mac&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Mac&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getInstance&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;HmacSHA256&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">mac&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">init&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">keySpec&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="kt">byte&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">hashBytes&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">mac&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">doFinal&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">toString&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">getBytes&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">StandardCharsets&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">UTF_8&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="c1">// Convert bytes to hex format using Apache Commons Codec
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="n">bytesToHex&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">hashBytes&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span> &lt;span class="k">catch&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">Exception&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">throw&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">RuntimeException&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Failed to calculate HMAC&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="nf">bytesToHex&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kt">byte&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">bytes&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">StringBuilder&lt;/span> &lt;span class="n">hexString&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">StringBuilder&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">byte&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">bytes&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">hexString&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">append&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">format&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;%02x&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">hexString&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">toString&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>如何使用Aws LightSail 結合 docker 建立遊戲伺服器</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail-%E7%B5%90%E5%90%88-docker-%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/</link><pubDate>Thu, 03 Oct 2024 14:34:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail-%E7%B5%90%E5%90%88-docker-%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/</guid><description>&lt;img src="https://i.imgur.com/JKvJ1yL.png" alt="Featured image of post 如何使用Aws LightSail 結合 docker 建立遊戲伺服器" />&lt;p>前陣子朋友揪團玩遊戲時，又陷入誰要當Host的問題，記得高中大學時，都是一個網路比較好的人當host，其他人去連，這種方式的缺點也很明顯，就是電腦必須要運行著，一但關機後我們就需要在群組Tag對方，請他上線開房。&lt;/p>
 &lt;p>於是我突然想到了Aws的服務，邏輯上來講我應該可以在Aws上面運行一個伺服器的終端，然後我們透過Aws的固定Ip去連線，這樣我們就解決了開房問題，並且也不需要仰賴某某人上線才能玩，除此之外也不用處理自己開伺服器要弄的一堆rounter設定、Http Forwarding之類的，查了一下發現Aws本身就有一個叫做lightsail的功能，本質就是一個更輕量化的Ec2，不支援細緻的微調，但好處就是不需要太多基礎知識，只需要稍微設置一下就能在Aws上快速部署。&lt;/p>
 &lt;h1 id="lightsail">Lightsail&lt;/h1>
 &lt;p>Lightsail是一個Aws的服務，主要是處理輕量化的需求，提供了一些固定式的雲端機器模板。坊間也有一些類似的產品，比如說Digital Ocean的Droplet，但是Digital Ocean離台灣最近的伺服器在新加坡，而Aws最近的伺服器則是在日本，一來一往之下Aws確實是更好的選擇。&lt;/p>
