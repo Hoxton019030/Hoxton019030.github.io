@@ -453,6 +453,7 @@ alt="messageImage_1727588144770"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>在Golang中則是有三種不同的方式去宣告一個變數&lt;/p>
+&lt;h2 id="標準變量宣告">標準變量宣告&lt;/h2>
 &lt;ol>
 &lt;li>標準變量聲明，這個最類似Java，與Java不同在於前面加了一個var，並且是先聲明變量名稱再宣告型別&lt;/li>
 &lt;/ol>
@@ -464,7 +465,8 @@ alt="messageImage_1727588144770"
 &lt;pre class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="kd">var&lt;/span> &lt;span class="nx">age&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">10&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;ol start="2">
+&lt;/div>&lt;h2 id="類型推斷宣告">類型推斷宣告&lt;/h2>
+&lt;ol start="2">
 &lt;li>類型推斷宣告，有點類似javascript的宣告，讓編譯器自己去推斷age的型別為int&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -475,8 +477,9 @@ alt="messageImage_1727588144770"
 &lt;pre class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="kd">var&lt;/span> &lt;span class="nx">age&lt;/span> &lt;span class="p">=&lt;/span>&lt;span class="mi">10&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;ol start="3">
-&lt;li>短變量聲明(簡短賦值)，golang常見的簡便聲明方式，由於var這個詞太頻繁出現了，就用:=來取代它&lt;/li>
+&lt;/div>&lt;h2 id="短變量宣告">短變量宣告&lt;/h2>
+&lt;ol start="3">
+&lt;li>短變量宣告(簡短賦值)，golang常見的簡便聲明方式，由於var這個詞太頻繁出現了，就用:=來取代它&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -595,7 +598,7 @@ alt="image-20240915142615257"
 &lt;/div>&lt;ul>
 &lt;li>
 &lt;p>整數：跟Java只有一個int不同，Golang的整數包含了int, int8, int16, int32, int 64, uint, unit8, uint16, uint32, uint 64，int開頭的就代表是signed(帶正負號)，而uint就代表unsigned(未帶正負號的)。int8就代表了 -128~127，uint8就代表0-255，以此類推。&lt;/p>
-&lt;p>通常就是先使用 int 就可以了，在不同系統上的 int 代表的範圍不一樣，如果是32位元的int範圍就是-2&lt;sup>31&lt;/sup>~+2&lt;sup>31&lt;/sup>，如果是64位元的系統則是-2&lt;sup>63&lt;/sup>~+2&lt;sup>63&lt;/sup>，&lt;/p>
+&lt;p>通常就是&lt;strong>先使用 int 就可以了&lt;/strong>，在不同系統上的 int 代表的範圍不一樣，如果是32位元的int範圍就是-2&lt;sup>31&lt;/sup>~+2&lt;sup>31&lt;/sup>，如果是64位元的系統則是-2&lt;sup>63&lt;/sup>~+2&lt;sup>63&lt;/sup>，&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -613,7 +616,7 @@ alt="image-20240915142615257"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>浮點：跟Java只有一個float的不一樣，golang分成float 32 以及 float64 ，這邊除非特殊原因也是無腦選擇使用float64，就可以了。關於精度的問題當然也跟所有的程式語言一樣，會有精度丟失的問題，進得不要使用它來表達金額&lt;/li>
+&lt;li>浮點：跟Java只有一個float的不一樣，golang分成float 32 以及 float64 ，這邊除非特殊原因也是&lt;strong>無腦選擇使用float64&lt;/strong>，就可以了。關於精度的問題當然也跟所有的程式語言一樣，會有精度丟失的問題，進得不要使用它來表達金額&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -653,7 +656,7 @@ alt="image-20240915142615257"
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>但在Golang中，這種事情是不允許的，Golang不允許變數的自動型態提升&lt;/p>
+&lt;/div>&lt;p>但在Golang中，這種事情是不允許的，&lt;strong>Golang不允許變數的自動型態提升&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -736,7 +739,7 @@ alt="image-20240915141300826"
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>Go的Array相較於Java來說非常不好用，一個最重要的概念是，Go的陣列大小是陣列型態的一部分，意味著長度為4的陣列和長度為5的陣列，雖然看起來都是陣列，但它們其實有不一樣的型態，以Java來說，我們可以寫一個方法，打印出所有的字串陣列元素&lt;/p>
+&lt;/div>&lt;p>Go的Array相較於Java來說非常不好用，一個最重要的概念是，&lt;strong>Go的陣列大小是陣列型態的一部分，意味著長度為4的陣列和長度為5的陣列，雖然看起來都是陣列，但它們其實有不一樣的型態&lt;/strong>。以Java來說，我們可以寫一個方法，打印出所有的字串陣列元素&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -755,19 +758,19 @@ alt="image-20240915141300826"
 &lt;/span>&lt;span class="lnt">14
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">public class Main {
-public static void main(String[] args) {
-String [] arr = {&amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;};
-String [] arr2 ={&amp;#34;d&amp;#34;, &amp;#34;e&amp;#34;, &amp;#34;f&amp;#34;};
-printArray(arr);
-printArray(arr2);
-}
-static public void printArray(String[] arr) {
-for (int i = 0; i &amp;lt; arr.length; i++) {
-System.out.println(arr[i]);
-}
-}
-}
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Main&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="o">[]&lt;/span> &lt;span class="n">arr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">{&lt;/span>&lt;span class="s">&amp;#34;a&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;b&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;c&amp;#34;&lt;/span>&lt;span class="o">};&lt;/span>
+&lt;span class="n">String&lt;/span> &lt;span class="o">[]&lt;/span> &lt;span class="n">arr2&lt;/span> &lt;span class="o">={&lt;/span>&lt;span class="s">&amp;#34;d&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;e&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;f&amp;#34;&lt;/span>&lt;span class="o">};&lt;/span>
+&lt;span class="n">printArray&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">arr&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">printArray&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">arr2&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">static&lt;/span> &lt;span class="kd">public&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">printArray&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">arr&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">arr&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">length&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">arr&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">]);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>但在Golang中，我們是沒辦法這樣子的&lt;/p>
@@ -1008,7 +1011,7 @@ alt="image-20240915155528731"
 &lt;/div>
 &lt;/div>&lt;ol start="2">
 &lt;li>如果「精確」的知道想要的大小，那可以指定長度，並檢索slice來設定值，但這問題的缺點在於，如果你指定了錯誤的大小，要嘛slice的結尾有許多零值，要嘛slice會存取不存在的元素觸發panic&lt;/li>
-&lt;li>最推薦的作法則是在make時，長度設定為0，並指定容量，如此一來可以使用append來將item加入slice中，這種做法比起前兩種會稍微慢一點，但它造成Bug的機率最低&lt;/li>
+&lt;li>&lt;strong>最推薦&lt;/strong>的作法則是在make時，長度設定為0，並指定容量，如此一來可以使用append來將item加入slice中，這種做法比起前兩種會稍微慢一點，但它造成Bug的機率最低&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -1085,7 +1088,7 @@ child: [1 2 3 30]&lt;/p>
 &lt;/blockquote>
 &lt;p>這其中的原因有點複雜，大意大概是，當你從一個slice中取出另一個slice時，子slice的容量是原始slice的容量減去子slice在原始slice內的位移(offset)。也就是說，原始slice未使用的容量也會與任何子slice共享。&lt;/p>
 &lt;h3 id="slice的注意事項">slice的注意事項&lt;/h3>
-&lt;p>總之，為了避免產生一些奇怪的現象，絕對不要同時使用append與子slice，要再次強調，父子slice會共用同一段記憶體，而且修改其中一個，都會影響另一個，不要在切割slice後修改它們！！！&lt;/p>
+&lt;p>總之，為了避免產生一些奇怪的現象，絕對不要同時使用append與子slice，要再次強調，父子slice會共用同一段記憶體，而且修改其中一個，都會影響另一個，&lt;strong>不要在切割slice後修改它們&lt;/strong>！！！&lt;/p>
 &lt;h3 id="slice的複製">slice的複製&lt;/h3>
 &lt;p>如果想要擁有獨立的slice，可以使用copy函數&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1309,7 +1312,51 @@ child: [1 2 3 30]&lt;/p>
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>另外&lt;/p></description></item><item><title>證明列運算不改行關係</title><link>https://hoxtonhsu.com/p/%E8%AD%89%E6%98%8E%E5%88%97%E9%81%8B%E7%AE%97%E4%B8%8D%E6%94%B9%E8%A1%8C%E9%97%9C%E4%BF%82/</link><pubDate>Sat, 17 Aug 2024 11:30:23 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%AD%89%E6%98%8E%E5%88%97%E9%81%8B%E7%AE%97%E4%B8%8D%E6%94%B9%E8%A1%8C%E9%97%9C%E4%BF%82/</guid><description>&lt;img src="https://i.imgur.com/lVeZDy5.png" alt="Featured image of post 證明列運算不改行關係" />&lt;p>資料來源：&lt;a class="link" href="https://ccjou.wordpress.com/2009/03/25/%e7%94%b1%e7%b0%a1%e7%b4%84%e5%88%97%e6%a2%af%e5%bd%a2%e5%bc%8f%e5%88%a4%e6%96%b7%e8%a1%8c%e7%a9%ba%e9%96%93%e5%9f%ba%e5%ba%95/" target="_blank" rel="noopener"
+&lt;/div>&lt;p>另外&lt;/p>
+&lt;p>Golang還支持一種特殊的變數宣告方式，就是在if中宣告變數，看起來就像這樣&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="kd">func&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">//將number宣告在if條件中，這個number將在if結束後消失
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="nx">number&lt;/span> &lt;span class="o">:=&lt;/span> &lt;span class="nx">rand&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">Intn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="nx">number&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">fmt&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">Println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">number&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34; number Is 0&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="nx">number&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="mi">5&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">fmt&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">Println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">number&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;number is greater than 5&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">fmt&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">Println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">number&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;number is less than 5 , but not 0&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="golang中的for">Golang中的For&lt;/h1>
+&lt;h1 id="創建golang的web框架-gin">創建Golang的Web框架 Gin&lt;/h1>
+&lt;ol>
+&lt;li>隨便創建一個Golang new Project 接著在終端輸入&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">go get -u github.com/gin-gonic/gin
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/Fl3CQZe.png"
+loading="lazy"
+alt="image-20241208160454848"
+>&lt;/p></description></item><item><title>證明列運算不改行關係</title><link>https://hoxtonhsu.com/p/%E8%AD%89%E6%98%8E%E5%88%97%E9%81%8B%E7%AE%97%E4%B8%8D%E6%94%B9%E8%A1%8C%E9%97%9C%E4%BF%82/</link><pubDate>Sat, 17 Aug 2024 11:30:23 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%AD%89%E6%98%8E%E5%88%97%E9%81%8B%E7%AE%97%E4%B8%8D%E6%94%B9%E8%A1%8C%E9%97%9C%E4%BF%82/</guid><description>&lt;img src="https://i.imgur.com/lVeZDy5.png" alt="Featured image of post 證明列運算不改行關係" />&lt;p>資料來源：&lt;a class="link" href="https://ccjou.wordpress.com/2009/03/25/%e7%94%b1%e7%b0%a1%e7%b4%84%e5%88%97%e6%a2%af%e5%bd%a2%e5%bc%8f%e5%88%a4%e6%96%b7%e8%a1%8c%e7%a9%ba%e9%96%93%e5%9f%ba%e5%ba%95/" target="_blank" rel="noopener"
 >由簡約列梯形式判斷行空間基底&lt;/a>&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/wbdq3jF.jpeg"
 loading="lazy"
