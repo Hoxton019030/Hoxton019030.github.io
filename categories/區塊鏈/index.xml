@@ -58,4 +58,54 @@ alt="image-20241213154851412"
 &lt;p>&lt;img src="https://i.imgur.com/65oJD8p.png"
 loading="lazy"
 alt="image-20241213155113509"
->&lt;/p></description></item></channel></rss>
+>&lt;/p>
+&lt;h1 id="keystore檔案說明">keystore檔案說明&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;address&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;016562a3a1914f81cbcef12cc660272b64a27e13&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">//這是以太坊錢包的地址（公鑰的哈希值）。&lt;/span>
+&lt;span class="nt">&amp;#34;id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;03c93764-e059-4ed7-ab9e-b5c53d4192c9&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">//一個唯一的&lt;/span> &lt;span class="err">UUID，用於標識這個&lt;/span> &lt;span class="err">Keystore&lt;/span> &lt;span class="err">文件。&lt;/span>
+&lt;span class="nt">&amp;#34;version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">//表示這是&lt;/span> &lt;span class="err">Keystore&lt;/span> &lt;span class="err">文件的&lt;/span> &lt;span class="err">V3&lt;/span> &lt;span class="err">格式，常見於現代以太坊工具。&lt;/span>
+&lt;span class="nt">&amp;#34;crypto&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;cipher&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;aes-128-ctr&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">//aes-128-ctr&lt;/span>
+&lt;span class="nt">&amp;#34;ciphertext&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;5313921d6065080a4d6b902c497902d93260ec5a63f95b2ddda7a6f810c0bcd3&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">//這是加密後的私鑰。&lt;/span>
+&lt;span class="nt">&amp;#34;cipherparams&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;iv&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;730c233b03d01746827bff6a8e1f1a60&amp;#34;&lt;/span> &lt;span class="err">//包含加密過程中的初始化向量&lt;/span> &lt;span class="err">(IV)：&lt;/span>
+&lt;span class="p">},&lt;/span>
+&lt;span class="nt">&amp;#34;kdf&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;scrypt&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">//生成加密密鑰的密鑰衍生函數&lt;/span> &lt;span class="err">(Key&lt;/span> &lt;span class="err">Derivation&lt;/span> &lt;span class="err">Function)。&lt;/span>
+&lt;span class="nt">&amp;#34;kdfparams&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;dklen&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">32&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">//衍生密鑰的長度，這裡是&lt;/span> &lt;span class="err">32&lt;/span> &lt;span class="err">字節。&lt;/span>
+&lt;span class="nt">&amp;#34;n&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">262144&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">//&lt;/span> &lt;span class="err">scrypt&lt;/span> &lt;span class="err">的參數，用於控制計算的難度，提供額外的安全性。&lt;/span>
+&lt;span class="nt">&amp;#34;p&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">//&lt;/span> &lt;span class="err">scrypt&lt;/span> &lt;span class="err">的參數，用於控制計算的難度，提供額外的安全性。&lt;/span>
+&lt;span class="nt">&amp;#34;r&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">//&lt;/span> &lt;span class="err">scrypt&lt;/span> &lt;span class="err">的參數，用於控制計算的難度，提供額外的安全性。&lt;/span>
+&lt;span class="nt">&amp;#34;salt&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;bde8a27f12dd1441bd626040f633d01f2234c6cf6a22a57e658f51d6da66c1ca&amp;#34;&lt;/span> &lt;span class="err">//加鹽值，用於防止彩虹表攻擊。彩虹表攻擊是一種針對密碼或加密資料的破解技術，利用了預先計算好的哈希值表來快速反推出原始數據。它是一種時間與空間的權衡技術，用來破解哈希函數（例如用於密碼存儲的&lt;/span> &lt;span class="err">SHA&lt;/span>&lt;span class="mi">-256&lt;/span>&lt;span class="err">、MD&lt;/span>&lt;span class="mi">5&lt;/span> &lt;span class="err">等）的結果。&lt;/span>
+&lt;span class="p">},&lt;/span>
+&lt;span class="nt">&amp;#34;mac&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;dd8cc31766ccb7c855e7b12883a86d781d4697f248c214e51c603098671fb939&amp;#34;&lt;/span> &lt;span class="err">//一個訊息驗證碼，用於驗證文件是否被篡改。&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
