@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>日常 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%97%A5%E5%B8%B8/</link><description>Recent content in 日常 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 08 Oct 2022 00:36:13 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%97%A5%E5%B8%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>從入職到離職，事務所的日子之《該進事務所嗎？》</title><link>https://hoxtonhsu.com/p/%E5%BE%9E%E5%85%A5%E8%81%B7%E5%88%B0%E9%9B%A2%E8%81%B7%E4%BA%8B%E5%8B%99%E6%89%80%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%8B%E8%A9%B2%E9%80%B2%E4%BA%8B%E5%8B%99%E6%89%80%E5%97%8E/</link><pubDate>Sat, 08 Oct 2022 00:36:13 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%BE%9E%E5%85%A5%E8%81%B7%E5%88%B0%E9%9B%A2%E8%81%B7%E4%BA%8B%E5%8B%99%E6%89%80%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%8B%E8%A9%B2%E9%80%B2%E4%BA%8B%E5%8B%99%E6%89%80%E5%97%8E/</guid><description>&lt;img src="https://i.imgur.com/aHMlhAm.png" alt="Featured image of post 從入職到離職，事務所的日子之《該進事務所嗎？》" />&lt;p>​ &lt;strong>到底要不要進事務所？&lt;/strong>&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>日常 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%97%A5%E5%B8%B8/</link><description>Recent content in 日常 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 30 Dec 2024 23:02:40 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%97%A5%E5%B8%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>回顧轉職這兩年所犯下的錯誤</title><link>https://hoxtonhsu.com/p/%E5%9B%9E%E9%A1%A7%E8%BD%89%E8%81%B7%E9%80%99%E5%85%A9%E5%B9%B4%E6%89%80%E7%8A%AF%E4%B8%8B%E7%9A%84%E9%8C%AF%E8%AA%A4/</link><pubDate>Mon, 30 Dec 2024 23:02:40 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9B%9E%E9%A1%A7%E8%BD%89%E8%81%B7%E9%80%99%E5%85%A9%E5%B9%B4%E6%89%80%E7%8A%AF%E4%B8%8B%E7%9A%84%E9%8C%AF%E8%AA%A4/</guid><description>&lt;img src="https://i.imgur.com/aERQWYn.jpeg" alt="Featured image of post 回顧轉職這兩年所犯下的錯誤" />&lt;p>我是2022年從資策會畢業的，到現在已經過了兩年了， 這兩年間做了不少事，也犯了不少錯，於是決定寫一篇文章來跟大家分享一下這兩年來我所犯下的一些比較白痴的錯誤，讓大家可以鑑往知來，&lt;/p>
+&lt;ol>
+&lt;li>在發板前一刻才整理code&lt;/li>
+&lt;/ol>
+&lt;p>在發版前一刻整理自己的程式碼我覺得是我這陣子犯下比較白痴的錯，我還蠻常在開發時間結束後不去整理、優化程式碼，比如說一些formatting的東西呀，或是一些變數的命名、if-else的優化、log的打印之類的，等到最後QA測試完之後我才去做這類型的調整。老實說其實我隱隱約約有覺得這樣不太好，但有時候開發週期比較緊湊、又或者是想偷懶的時候就會在要發布的前一天才在整理，一直以來這樣子都沒問題，直到前陣子我在發版前整理code的時候，因為某個enum類裡面有些值已經不需要了，我便自作聰明的把用不到的值刪掉，然後重新調整enum的編號，我還很聰明的去看有沒有方法去用到這一些異動的enum，但intelliJ就顯示沒有，後來發佈正式環境之後發現完蛋，東西跑不出來，回頭trace code的時候才發現我的那個enum雖然沒有直接去使用裡面的值，但出錯的那個方法有對那整個enum做for-each，使得我調整了enum的編號後，某些if是進不去的，後來又緊急發版處理這問題。&lt;/p>
+&lt;p>回頭來看發現這問題主要原因就是我手賤^_^，不去改就沒事，但更深層的原因應該是我要在程式碼進入QA階段前就把一些code做優化，而不是在QA結束後調整，等到發版前一刻才在調整code是一件很危險的事情（我的主管在每次快發版前都會說要發版了，不要再加新的東西），一來風險很高，容易出錯，二來如果上線之後出錯，QA也會被連帶咎責，結果對大家都不好。&lt;/p>
+&lt;ol start="2">
+&lt;li>Retrive資料時沒有做分頁&lt;/li>
+&lt;/ol>
+&lt;p>身為一個菜雞，做最多的事情就是花式的把資料庫的各種東西丟出來，在我做的這兩年內，我隱隱約約有感覺到，只要涉及有關list的api，除非需求上就有限制說回傳幾筆（比如說youtube的推薦影片固定就是10筆），都可以在初期就用分頁去處理。在我之前的開發迭代中，常常會遇到之前做的retrive api，發現正式環境的量級有點大，返回的資料變多了，又或者是說要適配android、ios系統，讓內容動態render，這時候常常就需要把舊的api再重新調整成分頁，一來一往前端又需要重新串接一次，後來做久了就發現與其這樣，不如在一開始就設計成分頁的形式以因應未來不同需求的擴增，做成分頁的形式也可以在參數的部分限制使用者對資料庫query的loading，不至於一次返回個好幾百筆給用戶。目前這樣操作下來都沒什麼太大的問題，唯一比較麻煩的部分大概就是分頁的內容放redis有點佔空間吧，我是用Key+page+size的方式去做這個redis快取的，目前還沒想到什麼更好的做法。&lt;/p>
+&lt;ol start="3">
+&lt;li>沒有用explain去看效能&lt;/li>
+&lt;/ol>
+&lt;p>這算是我比較菜的問題，我是一路換了好幾家公司才有人跟我說有個東西叫explain，可以在跑sql的時候看看到底這條sql會不會走到index，會不會有效能問題，像我之前就寫過一條結合模糊查詢的超慢sql，上線後直接被噴到歪頭&lt;/p>
+&lt;p>&lt;a href="https://hoxtonhsu.com/p/%E5%9C%A8sql%E4%B8%AD%E4%BD%BF%E7%94%A8or%E6%98%AF%E4%B8%80%E4%BB%B6%E9%9D%9E%E5%B8%B8%E5%8D%B1%E9%9A%AA%E7%9A%84%E4%BA%8B%E6%83%85/">https://hoxtonhsu.com/p/%E5%9C%A8sql%E4%B8%AD%E4%BD%BF%E7%94%A8or%E6%98%AF%E4%B8%80%E4%BB%B6%E9%9D%9E%E5%B8%B8%E5%8D%B1%E9%9A%AA%E7%9A%84%E4%BA%8B%E6%83%85/&lt;/a>&lt;/p>
+&lt;p>從此之後只要寫稍微比較長的sql，都會習慣性exlpain，看一下到底會不會出問題。&lt;/p>
+&lt;ol start="4">
+&lt;li>擴增需求時，去調整現有的架構&lt;/li>
+&lt;/ol>
+&lt;p>都說開發的時候最好是遵循開放封閉原則，書我有看過、面試的時候我也回答得出來，但實際操作的時候我還是犯了這個很白痴的錯，當時有個需求是希望某些新聞我們可以翻譯完後做成多語言，然後希望這些文章可以被共同管理，比如我點開新聞編號1，就會有這新聞的中文版、英文版這樣子，方便維護人員維護這些內容，當時我是負責做這個調整功能的，當時資料庫設計很單純，就一個news的table然後有自增鍵、標題、內容、語言、唯一識別碼（爬蟲下來的，避免重複爬），我當時的想法很簡單，就是讓這些被翻譯的多語言新聞和原先的新聞有共同的唯一識別碼（事後回來看這問題超大），如此一來只要傳識別碼，後端就能吐出相關的多語言新聞資料。&lt;/p>
+&lt;p>後來很快樂的做一做，寫呀寫，等到QA階段的時候，這個新加的功能沒問題，但關聯到新聞的頁面資料或多或少都出錯了，比如說觀看數、瀏覽數、文章標題點進去回傳的內容等等，因為當時的設計就是整張表是不會出現有重複的識別碼的，如果有的話，mybatis的那段就會出問題，又或者是說之前的人取資料是用get(0)的方式來取，那就會導致取出來的資料不一定是那個語系的，簡單來說就是新聞的部分幾乎都壞的差不多了，但開發也已經到尾聲，只能硬著頭皮把所有跟新聞有關的code全部都調整一遍。&lt;/p>
+&lt;p>這東西如果還有機會讓我做一遍，我應該會想要重新開張表，把多語言的文章內容、標題、識別碼放在這張表裡面，而不是對舊的表做修改= =&lt;/p>
+&lt;ol start="5">
+&lt;li>缺少log打印紀錄&lt;/li>
+&lt;/ol>
+&lt;p>在資策會還有後面工作時，其實我大部分的開發都是在自己的電腦上操作完成，甚至說還沒有正式對外的產品，因此對於打印log這件事情沒有很重視，到了現在這家公司，由於參與的好幾個專案都有上正式環境，然後debug也只能透過log紀錄來debug，因此寫log就變成一件重要的事情，我自己總結出來關於打印log的一些心得&lt;/p>
+&lt;ul>
+&lt;li>Error的部分都要打印，都先打印一下，避免到時候出問題很難追蹤，並且要把出錯時的變數、參數也打印出來，確認看看到底是什麼樣的參數才會導致這樣的問題&lt;/li>
+&lt;li>Create, Update , Delete相關的操作也可以打印一下，如果正式環境出問題，至少可以看log追蹤看看是什麼時候有人做了什麼操作所引起的&lt;/li>
+&lt;li>Retrive的操作的話我覺得打印的需求相對來講比較低，尤其Retrive是個蠻頻繁的操作，打印下去的話可能整頁的log記錄都是一些Retrive相關的內容&lt;/li>
+&lt;li>然后一些新上線的內容，比如說新增什麼紅利點數呀之類之類的，我會想要再多打印一些size相關的資料，以便我可以直接從log記錄看出目前資料增長的幅度，如果資料增長很快就代表可能是個熱點，需要多注意避免有效能瓶頸，抑或是說需要加一些快取層降低sql session 的次數&lt;/li>
+&lt;/ul>
+&lt;p>以上大概是我覺得工作這兩年比較印象深刻犯的錯，和大家分享一下！&lt;/p></description></item><item><title>從入職到離職，事務所的日子之《該進事務所嗎？》</title><link>https://hoxtonhsu.com/p/%E5%BE%9E%E5%85%A5%E8%81%B7%E5%88%B0%E9%9B%A2%E8%81%B7%E4%BA%8B%E5%8B%99%E6%89%80%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%8B%E8%A9%B2%E9%80%B2%E4%BA%8B%E5%8B%99%E6%89%80%E5%97%8E/</link><pubDate>Sat, 08 Oct 2022 00:36:13 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%BE%9E%E5%85%A5%E8%81%B7%E5%88%B0%E9%9B%A2%E8%81%B7%E4%BA%8B%E5%8B%99%E6%89%80%E7%9A%84%E6%97%A5%E5%AD%90%E4%B9%8B%E8%A9%B2%E9%80%B2%E4%BA%8B%E5%8B%99%E6%89%80%E5%97%8E/</guid><description>&lt;img src="https://i.imgur.com/aHMlhAm.png" alt="Featured image of post 從入職到離職，事務所的日子之《該進事務所嗎？》" />&lt;p>​ &lt;strong>到底要不要進事務所？&lt;/strong>&lt;/p>
 &lt;p>我想一開始就給出解答&lt;/p>
 &lt;p>&lt;strong>如果不知道做什麼就進事務所吧！&lt;/strong>&lt;/p>
 &lt;p>​ 如果是會計系的學生，在大學期間一定有想過自己到底要不要進入所謂的四大（勤業、資誠、安侯、安永），我在大學的時候對於這個問題倒是沒太多想法，只覺得進入四大事務所好像很威風，出入信義區，西裝革履的樣子，名稱也是國際上有名公司，怎麼想都覺得很穩，能出什麼問題？&lt;/p>
