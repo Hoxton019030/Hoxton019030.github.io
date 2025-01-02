@@ -30,7 +30,7 @@
 &lt;li>Retrive的操作的話我覺得打印的需求相對來講比較低，尤其Retrive是個蠻頻繁的操作，打印下去的話可能整頁的log記錄都是一些Retrive相關的內容&lt;/li>
 &lt;li>然后一些新上線的內容，比如說新增什麼紅利點數呀之類之類的，我會想要再多打印一些size相關的資料，以便我可以直接從log記錄看出目前資料增長的幅度，如果資料增長很快就代表可能是個熱點，需要多注意避免有效能瓶頸，抑或是說需要加一些快取層降低sql session 的次數&lt;/li>
 &lt;/ul>
-&lt;p>以上大概是我覺得工作這兩年比較印象深刻犯的錯，和大家分享一下！&lt;/p></description></item><item><title>Java的HashCode詳解</title><link>https://hoxtonhsu.com/p/java%E7%9A%84hashcode%E8%A9%B3%E8%A7%A3/</link><pubDate>Sat, 28 Dec 2024 14:37:57 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E7%9A%84hashcode%E8%A9%B3%E8%A7%A3/</guid><description/></item><item><title>區塊鏈技術學習</title><link>https://hoxtonhsu.com/p/%E5%8D%80%E5%A1%8A%E9%8F%88%E6%8A%80%E8%A1%93%E5%AD%B8%E7%BF%92/</link><pubDate>Fri, 13 Dec 2024 15:28:37 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%8D%80%E5%A1%8A%E9%8F%88%E6%8A%80%E8%A1%93%E5%AD%B8%E7%BF%92/</guid><description>&lt;img src="https://i.imgur.com/OYei4FW.png" alt="Featured image of post 區塊鏈技術學習" />&lt;h1 id="web3j安裝">Web3j安裝&lt;/h1>
+&lt;p>以上大概是我覺得工作這兩年比較印象深刻犯的錯，和大家分享一下！&lt;/p></description></item><item><title>區塊鏈技術學習</title><link>https://hoxtonhsu.com/p/%E5%8D%80%E5%A1%8A%E9%8F%88%E6%8A%80%E8%A1%93%E5%AD%B8%E7%BF%92/</link><pubDate>Fri, 13 Dec 2024 15:28:37 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%8D%80%E5%A1%8A%E9%8F%88%E6%8A%80%E8%A1%93%E5%AD%B8%E7%BF%92/</guid><description>&lt;img src="https://i.imgur.com/OYei4FW.png" alt="Featured image of post 區塊鏈技術學習" />&lt;h1 id="web3j安裝">Web3j安裝&lt;/h1>
 &lt;p>幹，這東西超麻煩，只支援Java17以上版本，但不知道為啥我明明都用17了還是不給我安裝，然後錯誤提示只會跳針說&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
