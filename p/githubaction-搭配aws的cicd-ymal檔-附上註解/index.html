@@ -1,0 +1,376 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="使用Github Action結合Aws部屬SpringBoot CICD"><title>GitHubAction 搭配Aws的CICD ymal檔 附上註解</title><link rel=canonical href=https://hoxtonhsu.com/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/><script type=text/javascript src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><link rel=stylesheet href=/scss/style.min.b0b89b0dd996a596c4f3b50239e7a6499c1a59da968562fa4649d097368cdb29.css><meta property="og:title" content="GitHubAction 搭配Aws的CICD ymal檔 附上註解"><meta property="og:description" content="使用Github Action結合Aws部屬SpringBoot CICD"><meta property="og:url" content="https://hoxtonhsu.com/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/"><meta property="og:site_name" content="Hoxton"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content><meta property="article:published_time" content="2025-01-02T04:08:26+08:00"><meta property="article:modified_time" content="2025-01-02T04:08:26+08:00"><meta property="og:image" content="https://i.imgur.com/Q4khHpn.png"><meta name=twitter:title content="GitHubAction 搭配Aws的CICD ymal檔 附上註解"><meta name=twitter:description content="使用Github Action結合Aws部屬SpringBoot CICD"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://i.imgur.com/Q4khHpn.png"><link rel="shortcut icon" href=https://cdn-icons-png.flaticon.com/512/92/92031.png><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','G-9N16MVLR0Q','auto');ga('send','pageview');}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-9N16MVLR0Q"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-9N16MVLR0Q');</script></head><body class=article-page><script>(function(){const colorSchemeKey='StackColorScheme';localStorage.setItem(colorSchemeKey,"dark");})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.documentElement.dataset.scheme='dark';}else{document.documentElement.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avator_hu6a42c31c76a673cb4138239719c1dd56_73650_300x0_resize_box_2.png width=300 height=301 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Hoxton</a></h1><h2 class=site-description>月薪3萬5 命比咖啡苦</h2></div></header><ol class=social-menu><li><a href=https://discordapp.com/users/840906423076782082 target=_blank title=Discord><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-discord" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M7.5 7.5c3.5-1 5.5-1 9 0"/><path d="M7 16.5c3.5 1 6.5 1 10 0"/><path d="M15.5 17c0 1 1.5 3 2 3 1.5.0 2.833-1.667 3.5-3 .667-1.667.5-5.833-1.5-11.5-1.457-1.015-3-1.34-4.5-1.5l-1 2.5"/><path d="M8.5 17c0 1-1.356 3-1.832 3-1.429.0-2.698-1.667-3.333-3-.635-1.667-.476-5.833 1.428-11.5C6.151 4.485 7.545 4.16 9 4l1 2.5"/></svg></a></li><li><a href=https://github.com/Hoxton019030 target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0c-2.4-1.6-3.5-1.3-3.5-1.3a4.2 4.2.0 00-.1 3.2 4.6 4.6.0 00-1.3 3.2c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://www.instagram.com/hoxton_8a31/ target=_blank title=Instagram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="80" height="80" viewBox="0 0 24 24" stroke-width="1.5" stroke="#6f32be" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><line x1="16.5" y1="7.5" x2="16.5" y2="7.501"/></svg></a></li><li><a href=https://www.linkedin.com/in/hoxton-hsu-298b22269/ target=_blank title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-linkedin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><div class=menu-bottom-section></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/><img src=https://i.imgur.com/Q4khHpn.png loading=lazy alt="Featured image of post GitHubAction 搭配Aws的CICD ymal檔 附上註解"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%A8%8B%E5%BC%8F/ style=background-color:#2a9d8f;color:#fff>程式</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/>GitHubAction 搭配Aws的CICD ymal檔 附上註解</a></h2><h3 class=article-subtitle>使用Github Action結合Aws部屬SpringBoot CICD</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Jan 02, 2025</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>3 minute read</time></div></footer></div></header><section class=article-content><h1 id=yaml>YAML</h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Deploy to EC2</span><span class=w>
+</span><span class=w></span><span class=c># on是用來指定哪些會觸發CICD的</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=nt>on</span><span class=p>:</span><span class=w>
+</span><span class=w></span><span class=c># 當有內容push至main時觸發</span><span class=w>
+</span><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w>
+</span><span class=w>      </span>- <span class=l>main</span><span class=w>
+</span><span class=w></span><span class=c># 當有內容合併至 main時觸發</span><span class=w>
+</span><span class=w></span><span class=c>#  pull_request:</span><span class=w>
+</span><span class=w></span><span class=c>#     branches:</span><span class=w>
+</span><span class=w></span><span class=c>#       - main</span><span class=w>
+</span><span class=w></span><span class=c>#     types:</span><span class=w>
+</span><span class=w></span><span class=c>#       - merged  # 當 PR 被合併時觸發</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=c># 加了  workflow_dispatch:才可以手動觸發CICD</span><span class=w>
+</span><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=c># 實際CICD執行的不同job</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span><span class=c># SET_UP是JOB的名稱，下面的DEPLOY同理</span><span class=w>
+</span><span class=w>  </span><span class=nt>SET_UP</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span><span class=c># runs-on 指定這個ci cd 要運行在什麼樣的環境</span><span class=w>
+</span><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span><span class=w>    </span><span class=c># 這個SET_UP job實際執行的steps</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>log before checkout</span><span class=w>
+</span><span class=w>      </span><span class=nt>runs</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span><span class=sd>        echo &#34;當前目錄 $(pwd)&#34;
+</span><span class=sd>        echo &#34;checkout之前的檔案 $(ls)&#34;</span><span class=w>        
+</span><span class=w>    </span><span class=c># 讓 GitHub Actions 執行工作流程時可以訪問並操作儲存庫中的代碼。</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Checkout Code</span><span class=w>
+</span><span class=w>    </span><span class=c># uses 相當於github action 提供的api，裡面封裝了一些操作，比如說這個actions/checkout@v3 就是執行了git clone 當前ci cd的程式碼</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v3</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>log after checkout</span><span class=w>
+</span><span class=w>      </span><span class=nt>runs</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span><span class=sd>        echo &#34;當前目錄 $(pwd)&#34;
+</span><span class=sd>        echo &#34;checkout之後的檔案 $(ls)&#34;</span><span class=w>        
+</span><span class=w>    </span><span class=c># 設定Java版本</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Set up JDK</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/setup-java@v3</span><span class=w>
+</span><span class=w>      </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>java-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;21&#39;</span><span class=w>
+</span><span class=w>        </span><span class=nt>distribution</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;temurin&#39;</span><span class=w>
+</span><span class=w>    </span><span class=c># 打包SpringBoot專案</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build with Maven</span><span class=w>
+</span><span class=w>      </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>mvn clean package -DskipTests</span><span class=w>
+</span><span class=w>    </span><span class=c>#  處理ec2 key</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Add EC2 private key</span><span class=w>
+</span><span class=w>      </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span><span class=sd>        echo &#34;${{ secrets.EC2_PRIVATE_KEY }}&#34; &gt; ec2-key.pem
+</span><span class=sd>        chmod 600 ec2-key.pem</span><span class=w>        
+</span><span class=w>    </span><span class=c># github action不同JOB之間的檔案無法共享，需要上傳到artifact才能共享</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Upload private key as artifact</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/upload-artifact@v3</span><span class=w>
+</span><span class=w>      </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ec2-key</span><span class=w>
+</span><span class=w>        </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=l>ec2-key.pem</span><span class=w>
+</span><span class=w>    </span><span class=c># github action不同JOB之間的檔案無法共享，需要上傳到artifact才能共享</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Upload JAR as artifact</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/upload-artifact@v3</span><span class=w>
+</span><span class=w>      </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>jar-file</span><span class=w>
+</span><span class=w>        </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=l>target/rentWeb-0.0.1-SNAPSHOT.jar  </span><span class=w>
+</span><span class=w>  </span><span class=c># DEPLOY是JOB的名稱，上面的SET_UP同理</span><span class=w>
+</span><span class=w>  </span><span class=nt>DEPLOY</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=c># runs-on 指定這個ci cd 要運行在什麼樣的環境</span><span class=w>
+</span><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span><span class=w>    </span><span class=c># 確保 DEPLOY 會在 SET_UP 完成後執行</span><span class=w>
+</span><span class=w>    </span><span class=nt>needs</span><span class=p>:</span><span class=w> </span><span class=l>SET_UP </span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=c># 這個DEPLOY job實際執行的steps</span><span class=w>
+</span><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=c># 從artifact下載ec2</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Download EC2 private key</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/download-artifact@v3</span><span class=w>
+</span><span class=w>      </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ec2-key</span><span class=w>
+</span><span class=w>    </span><span class=c># 設定ec2-key-pem的權限</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Set correct permissions for private key</span><span class=w>
+</span><span class=w>      </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span><span class=sd>          </span><span class=w>          </span><span class=l>chmod 600 ec2-key.pem</span><span class=w>
+</span><span class=w>    </span><span class=c># 從artifact下載JAR</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Download JAR file</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/download-artifact@v3</span><span class=w>
+</span><span class=w>      </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>jar-file</span><span class=w>
+</span><span class=w>
+</span><span class=w>    </span><span class=c># 實際連線到EC2並且部屬</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Deploy to EC2</span><span class=w>
+</span><span class=w>    </span><span class=c>#  運行時所需的環境變數，詳細的會在secrets中設置</span><span class=w>
+</span><span class=w>      </span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span><span class=w>        </span><span class=nt>AWS_IP</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.AWS_IP }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>AZURE_DB_HOST</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.AZURE_DB_HOST }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>AZURE_DB_PASSWORD</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.AZURE_DB_PASSWORD }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>AZURE_DB_USERNAME</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.AZURE_DB_USERNAME }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>CHANNEL_ID</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.CHANNEL_ID }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>CHANNEL_SECRET_KEY</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.CHANNEL_SECRET_KEY }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>CLIENT_ID</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.CLIENT_ID }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>CLIENT_SECRET</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.CLIENT_SECRET }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>GOOGLEAPIKEY</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GOOGLEAPIKEY }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>HASH_IV</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.HASH_IV }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>HASH_KEY</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.HASH_KEY }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>MERCHANT_ID</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.MERCHANT_ID }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>RECAPTCHA_SECRET_KEY</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.RECAPTCHA_SECRET_KEY }}</span><span class=w>
+</span><span class=w>        </span><span class=nt>RECAPTCHA_SITE_KEY</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.RECAPTCHA_SITE_KEY }}</span><span class=w>
+</span><span class=w>
+</span><span class=w>      </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span><span class=sd>        echo &#34;$(date):開始部屬...&#34;
+</span><span class=sd>
+</span><span class=sd>        # 檢查 Java 版本
+</span><span class=sd>        echo &#34;檢查 Java 安裝情況...&#34;
+</span><span class=sd>        # StrictHostKeyChecking=no 避免跳出是否連線的畫面
+</span><span class=sd>        # 
+</span><span class=sd>        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@${AWS_IP} &#34;java -version&#34;
+</span><span class=sd>
+</span><span class=sd>        # 複製 JAR 檔案
+</span><span class=sd>        echo &#34;$(date): 複製 JAR 檔案...&#34;
+</span><span class=sd>        echo &#34;目標的目錄 $(pwd)&#34;
+</span><span class=sd>        echo &#34;複製前的內容 $(ls)&#34;
+</span><span class=sd>        # 把檔案放到/home/ec2-user/app/並命名為rentWeb-0.0.1-SNAPSHOT.jar
+</span><span class=sd>        scp -o StrictHostKeyChecking=no -i ec2-key.pem rentWeb-0.0.1-SNAPSHOT.jar ec2-user@${AWS_IP}:/home/ec2-user/app/rentWeb-0.0.1-SNAPSHOT.jar
+</span><span class=sd>        echo &#34;複製後的內容 $(ls)&#34;
+</span><span class=sd>
+</span><span class=sd>        # 執行部署命令
+</span><span class=sd>        ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@${AWS_IP} &lt;&lt; &#39;EOF&#39;
+</span><span class=sd>          cd /home/ec2-user/app
+</span><span class=sd>          echo &#34;$(date): 準備停止當前運行的java程式...&#34;
+</span><span class=sd>          pkill -f &#39;java -jar&#39; || true
+</span><span class=sd>          sleep 5
+</span><span class=sd>
+</span><span class=sd>          # 檢查 JAR 檔案
+</span><span class=sd>          echo &#34;確認 JAR 檔案詳細內容...&#34;
+</span><span class=sd>          ls -l rentWeb-0.0.1-SNAPSHOT
+</span><span class=sd>
+</span><span class=sd>          echo &#34;$(date): 開始部屬...&#34;
+</span><span class=sd>          # 直接執行以查看錯誤訊息
+</span><span class=sd>            java -jar rentWeb-0.0.1-SNAPSHOT.jar \
+</span><span class=sd>        --azure.db.host=${{ secrets.AZURE_DB_HOST }} \
+</span><span class=sd>        --azure.db.password=${{ secrets.AZURE_DB_PASSWORD }} \
+</span><span class=sd>        --azure.db.username=${{ secrets.AZURE_DB_USERNAME }} \
+</span><span class=sd>        --channelid=${{ secrets.CHANNEL_ID }} \
+</span><span class=sd>        --channelsecretkey=${{ secrets.CHANNEL_SECRET_KEY }} \
+</span><span class=sd>        --client_id=${{ secrets.CLIENT_ID }} \
+</span><span class=sd>        --client_secret=${{ secrets.CLIENT_SECRET }} \
+</span><span class=sd>        --googleapikey=${{ secrets.GOOGLEAPIKEY }} \
+</span><span class=sd>        --hashiv=${{ secrets.HASH_IV }} \
+</span><span class=sd>        --hashkey=${{ secrets.HASH_KEY }} \
+</span><span class=sd>        --merchantid=${{ secrets.MERCHANT_ID }} \
+</span><span class=sd>        --reCaptchaSecretKey=${{ secrets.RECAPTCHA_SECRET_KEY }} \
+</span><span class=sd>        --reCaptchaSiteKey=${{ secrets.RECAPTCHA_SITE_KEY }} \
+</span><span class=sd>        --redirect_uris=http://localhost:5173/member-center \
+</span><span class=sd>        --verifyurl=https://www.google.com/recaptcha/api/siteverify &gt; rentWeb-0.0.1-SNAPSHOT.log 2&gt;&amp;1 &amp;
+</span><span class=sd>          sleep 5
+</span><span class=sd>
+</span><span class=sd>          # 檢查程序和日誌
+</span><span class=sd>          if pgrep -f &#39;java -jar&#39;; then
+</span><span class=sd>            echo &#34;部屬成功&#34;
+</span><span class=sd>            tail -n 50 rentWeb-0.0.1-SNAPSHOT.log
+</span><span class=sd>          else
+</span><span class=sd>            echo &#34;部屬失敗&#34;
+</span><span class=sd>            echo &#34;Last 50 lines of log:&#34;
+</span><span class=sd>            tail -n 50 rentWeb-0.0.1-SNAPSHOT.log
+</span><span class=sd>            exit 1
+</span><span class=sd>          fi</span><span class=w>        
+</span><span class=w>    
+</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h1 id=在github-加上環境變數-secrets>在Github 加上環境變數 Secrets</h1><p>在這邊加上環境變數(Secrets)，個人建議不建議用Variable啦</p><p><img src=https://i.imgur.com/uWAupCW.png loading=lazy alt=image-20250102113819519></p><p>其中的AWS_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID 則是在IAM user底下申請</p><p><img src=https://i.imgur.com/wBSj4Qv.png loading=lazy alt=image-20250102044456958></p><p><img src=https://i.imgur.com/4Eg8Y1U.png loading=lazy alt=image-20250102044649345></p><h1 id=github-action-實際運行狀況>Github Action 實際運行狀況</h1><p>在github action中執行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=w> </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>log before checkout</span><span class=w>
+</span><span class=w>      </span><span class=nt>runs</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span><span class=sd>        echo &#34;當前目錄 $(pwd)&#34;
+</span><span class=sd>        echo &#34;checkout之前的檔案 $(ls)&#34;</span><span class=w>        
+</span><span class=w>    </span><span class=c># 讓 GitHub Actions 執行工作流程時可以訪問並操作儲存庫中的代碼。</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Checkout Code</span><span class=w>
+</span><span class=w>    </span><span class=c># uses 相當於github action 提供的api，裡面封裝了一些操作，比如說這個actions/checkout@v3 就是執行了git clone 當前ci cd的程式碼</span><span class=w>
+</span><span class=w>      </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v3</span><span class=w>
+</span><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>log after checkout</span><span class=w>
+</span><span class=w>      </span><span class=nt>runs</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span><span class=sd>        echo &#34;當前目錄 $(pwd)&#34;
+</span><span class=sd>        echo &#34;checkout之後的檔案 $(ls)&#34;</span><span class=w>        
+</span></code></pre></td></tr></table></div></div><p>其運行狀況如下，也就是說在Github action的虛擬機，實際的目錄應該是長這樣</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>/home/runner/work/rent_BackendOfTheFrontend/rent_BackendOfTheFrontend
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/86griYE.png loading=lazy alt=image-20250102111132940></p><p>執行完成的樣子</p><p><img src=https://i.imgur.com/zEeljMS.png loading=lazy alt=image-20250102115523136></p></section><footer class=article-footer><section class=article-tags></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/><div class=article-image><img src=https://i.imgur.com/1OBx1AG.png loading=lazy data-key data-hash=https://i.imgur.com/1OBx1AG.png></div><div class=article-details><h2 class=article-title>結合Lombok寫出更整潔的程式碼</h2></div></a></article><article class=has-image><a href=/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/rfkvgRO.png loading=lazy data-key data-hash=https://i.imgur.com/rfkvgRO.png></div><div class=article-details><h2 class=article-title>運用ArrayList與自動配置將Swich語法拆解</h2></div></a></article><article class=has-image><a href=/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/><div class=article-image><img src=https://i.imgur.com/nCGDuUc.png%20 loading=lazy data-key data-hash=https://i.imgur.com/nCGDuUc.png></div><div class=article-details><h2 class=article-title>實用的Git指令</h2></div></a></article><article class=has-image><a href=/p/%E9%97%9C%E6%96%BCtelegram-oauth-%E5%A6%82%E4%BD%95%E5%9C%A8java%E4%B8%AD%E9%A9%97%E8%AD%89hash%E7%9A%84%E6%AD%A3%E7%A2%BA%E6%80%A7-%E9%99%84%E4%B8%8Ajavacode/><div class=article-image><img src=https://i.imgur.com/iwVZdqj.png loading=lazy data-key data-hash=https://i.imgur.com/iwVZdqj.png></div><div class=article-details><h2 class=article-title>關於Telegram Oauth 如何在Java中驗證Hash的正確性 (附上JavaCode)</h2></div></a></article><article class=has-image><a href=/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail-%E7%B5%90%E5%90%88-docker-%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/><div class=article-image><img src=https://i.imgur.com/JKvJ1yL.png loading=lazy data-key data-hash=https://i.imgur.com/JKvJ1yL.png></div><div class=article-details><h2 class=article-title>如何使用Aws LightSail 結合 docker 建立遊戲伺服器</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
+gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2025 Hoxton</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#yaml>YAML</a></li><li><a href=#在github-加上環境變數-secrets>在Github 加上環境變數 Secrets</a></li><li><a href=#github-action-實際運行狀況>Github Action 實際運行狀況</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>

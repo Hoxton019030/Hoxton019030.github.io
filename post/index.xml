@@ -1,4 +1,415 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 02 Jan 2025 11:58:45 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>140GitHubAction</title><link>https://hoxtonhsu.com/p/140githubaction/</link><pubDate>Thu, 02 Jan 2025 11:58:45 +0800</pubDate><guid>https://hoxtonhsu.com/p/140githubaction/</guid><description/></item><item><title>回顧轉職這兩年所犯下的錯誤</title><link>https://hoxtonhsu.com/p/%E5%9B%9E%E9%A1%A7%E8%BD%89%E8%81%B7%E9%80%99%E5%85%A9%E5%B9%B4%E6%89%80%E7%8A%AF%E4%B8%8B%E7%9A%84%E9%8C%AF%E8%AA%A4/</link><pubDate>Mon, 30 Dec 2024 23:02:40 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9B%9E%E9%A1%A7%E8%BD%89%E8%81%B7%E9%80%99%E5%85%A9%E5%B9%B4%E6%89%80%E7%8A%AF%E4%B8%8B%E7%9A%84%E9%8C%AF%E8%AA%A4/</guid><description>&lt;img src="https://i.imgur.com/aERQWYn.jpeg" alt="Featured image of post 回顧轉職這兩年所犯下的錯誤" />&lt;p>我是2022年從資策會畢業的，到現在已經過了兩年了， 這兩年間做了不少事，也犯了不少錯，於是決定寫一篇文章來跟大家分享一下這兩年來我所犯下的一些比較白痴的錯誤，讓大家可以鑑往知來，&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtonhsu.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 02 Jan 2025 04:08:26 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>GitHubAction 搭配Aws的CICD ymal檔 附上註解</title><link>https://hoxtonhsu.com/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/</link><pubDate>Thu, 02 Jan 2025 04:08:26 +0800</pubDate><guid>https://hoxtonhsu.com/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/</guid><description>&lt;img src="https://i.imgur.com/Q4khHpn.png" alt="Featured image of post GitHubAction 搭配Aws的CICD ymal檔 附上註解" />&lt;h1 id="yaml">YAML&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;span class="lnt">140
+&lt;/span>&lt;span class="lnt">141
+&lt;/span>&lt;span class="lnt">142
+&lt;/span>&lt;span class="lnt">143
+&lt;/span>&lt;span class="lnt">144
+&lt;/span>&lt;span class="lnt">145
+&lt;/span>&lt;span class="lnt">146
+&lt;/span>&lt;span class="lnt">147
+&lt;/span>&lt;span class="lnt">148
+&lt;/span>&lt;span class="lnt">149
+&lt;/span>&lt;span class="lnt">150
+&lt;/span>&lt;span class="lnt">151
+&lt;/span>&lt;span class="lnt">152
+&lt;/span>&lt;span class="lnt">153
+&lt;/span>&lt;span class="lnt">154
+&lt;/span>&lt;span class="lnt">155
+&lt;/span>&lt;span class="lnt">156
+&lt;/span>&lt;span class="lnt">157
+&lt;/span>&lt;span class="lnt">158
+&lt;/span>&lt;span class="lnt">159
+&lt;/span>&lt;span class="lnt">160
+&lt;/span>&lt;span class="lnt">161
+&lt;/span>&lt;span class="lnt">162
+&lt;/span>&lt;span class="lnt">163
+&lt;/span>&lt;span class="lnt">164
+&lt;/span>&lt;span class="lnt">165
+&lt;/span>&lt;span class="lnt">166
+&lt;/span>&lt;span class="lnt">167
+&lt;/span>&lt;span class="lnt">168
+&lt;/span>&lt;span class="lnt">169
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Deploy to EC2&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># on是用來指定哪些會觸發CICD的&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># 當有內容push至main時觸發&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">push&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">branches&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="l">main&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># 當有內容合併至 main時觸發&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># pull_request:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># branches:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># - main&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># types:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># - merged # 當 PR 被合併時觸發&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># 加了 workflow_dispatch:才可以手動觸發CICD&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">workflow_dispatch&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># 實際CICD執行的不同job&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># SET_UP是JOB的名稱，下面的DEPLOY同理&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">SET_UP&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># runs-on 指定這個ci cd 要運行在什麼樣的環境&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 這個SET_UP job實際執行的steps&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">log before checkout&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> echo &amp;#34;當前目錄 $(pwd)&amp;#34;
+&lt;/span>&lt;span class="sd"> echo &amp;#34;checkout之前的檔案 $(ls)&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 讓 GitHub Actions 執行工作流程時可以訪問並操作儲存庫中的代碼。&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Checkout Code&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># uses 相當於github action 提供的api，裡面封裝了一些操作，比如說這個actions/checkout@v3 就是執行了git clone 當前ci cd的程式碼&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/checkout@v3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">log after checkout&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> echo &amp;#34;當前目錄 $(pwd)&amp;#34;
+&lt;/span>&lt;span class="sd"> echo &amp;#34;checkout之後的檔案 $(ls)&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 設定Java版本&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Set up JDK&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/setup-java@v3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">java-version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;21&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">distribution&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;temurin&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 打包SpringBoot專案&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Build with Maven&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">mvn clean package -DskipTests&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 處理ec2 key&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Add EC2 private key&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> echo &amp;#34;${{ secrets.EC2_PRIVATE_KEY }}&amp;#34; &amp;gt; ec2-key.pem
+&lt;/span>&lt;span class="sd"> chmod 600 ec2-key.pem&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># github action不同JOB之間的檔案無法共享，需要上傳到artifact才能共享&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Upload private key as artifact&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/upload-artifact@v3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ec2-key&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ec2-key.pem&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># github action不同JOB之間的檔案無法共享，需要上傳到artifact才能共享&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Upload JAR as artifact&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/upload-artifact@v3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">jar-file&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">target/rentWeb-0.0.1-SNAPSHOT.jar &lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># DEPLOY是JOB的名稱，上面的SET_UP同理&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">DEPLOY&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># runs-on 指定這個ci cd 要運行在什麼樣的環境&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 確保 DEPLOY 會在 SET_UP 完成後執行&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">needs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">SET_UP &lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 這個DEPLOY job實際執行的steps&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 從artifact下載ec2&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Download EC2 private key&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/download-artifact@v3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ec2-key&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 設定ec2-key-pem的權限&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Set correct permissions for private key&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">chmod 600 ec2-key.pem&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 從artifact下載JAR&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Download JAR file&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/download-artifact@v3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">jar-file&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 實際連線到EC2並且部屬&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Deploy to EC2&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 運行時所需的環境變數，詳細的會在secrets中設置&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">env&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">AWS_IP&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.AWS_IP }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">AZURE_DB_HOST&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.AZURE_DB_HOST }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">AZURE_DB_PASSWORD&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.AZURE_DB_PASSWORD }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">AZURE_DB_USERNAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.AZURE_DB_USERNAME }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">CHANNEL_ID&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.CHANNEL_ID }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">CHANNEL_SECRET_KEY&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.CHANNEL_SECRET_KEY }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">CLIENT_ID&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.CLIENT_ID }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">CLIENT_SECRET&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.CLIENT_SECRET }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">GOOGLEAPIKEY&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.GOOGLEAPIKEY }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">HASH_IV&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.HASH_IV }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">HASH_KEY&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.HASH_KEY }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">MERCHANT_ID&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.MERCHANT_ID }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">RECAPTCHA_SECRET_KEY&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.RECAPTCHA_SECRET_KEY }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">RECAPTCHA_SITE_KEY&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.RECAPTCHA_SITE_KEY }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> echo &amp;#34;$(date):開始部屬...&amp;#34;
+&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> # 檢查 Java 版本
+&lt;/span>&lt;span class="sd"> echo &amp;#34;檢查 Java 安裝情況...&amp;#34;
+&lt;/span>&lt;span class="sd"> # StrictHostKeyChecking=no 避免跳出是否連線的畫面
+&lt;/span>&lt;span class="sd"> #
+&lt;/span>&lt;span class="sd"> ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@${AWS_IP} &amp;#34;java -version&amp;#34;
+&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> # 複製 JAR 檔案
+&lt;/span>&lt;span class="sd"> echo &amp;#34;$(date): 複製 JAR 檔案...&amp;#34;
+&lt;/span>&lt;span class="sd"> echo &amp;#34;目標的目錄 $(pwd)&amp;#34;
+&lt;/span>&lt;span class="sd"> echo &amp;#34;複製前的內容 $(ls)&amp;#34;
+&lt;/span>&lt;span class="sd"> # 把檔案放到/home/ec2-user/app/並命名為rentWeb-0.0.1-SNAPSHOT.jar
+&lt;/span>&lt;span class="sd"> scp -o StrictHostKeyChecking=no -i ec2-key.pem rentWeb-0.0.1-SNAPSHOT.jar ec2-user@${AWS_IP}:/home/ec2-user/app/rentWeb-0.0.1-SNAPSHOT.jar
+&lt;/span>&lt;span class="sd"> echo &amp;#34;複製後的內容 $(ls)&amp;#34;
+&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> # 執行部署命令
+&lt;/span>&lt;span class="sd"> ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@${AWS_IP} &amp;lt;&amp;lt; &amp;#39;EOF&amp;#39;
+&lt;/span>&lt;span class="sd"> cd /home/ec2-user/app
+&lt;/span>&lt;span class="sd"> echo &amp;#34;$(date): 準備停止當前運行的java程式...&amp;#34;
+&lt;/span>&lt;span class="sd"> pkill -f &amp;#39;java -jar&amp;#39; || true
+&lt;/span>&lt;span class="sd"> sleep 5
+&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> # 檢查 JAR 檔案
+&lt;/span>&lt;span class="sd"> echo &amp;#34;確認 JAR 檔案詳細內容...&amp;#34;
+&lt;/span>&lt;span class="sd"> ls -l rentWeb-0.0.1-SNAPSHOT
+&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> echo &amp;#34;$(date): 開始部屬...&amp;#34;
+&lt;/span>&lt;span class="sd"> # 直接執行以查看錯誤訊息
+&lt;/span>&lt;span class="sd"> java -jar rentWeb-0.0.1-SNAPSHOT.jar \
+&lt;/span>&lt;span class="sd"> --azure.db.host=${{ secrets.AZURE_DB_HOST }} \
+&lt;/span>&lt;span class="sd"> --azure.db.password=${{ secrets.AZURE_DB_PASSWORD }} \
+&lt;/span>&lt;span class="sd"> --azure.db.username=${{ secrets.AZURE_DB_USERNAME }} \
+&lt;/span>&lt;span class="sd"> --channelid=${{ secrets.CHANNEL_ID }} \
+&lt;/span>&lt;span class="sd"> --channelsecretkey=${{ secrets.CHANNEL_SECRET_KEY }} \
+&lt;/span>&lt;span class="sd"> --client_id=${{ secrets.CLIENT_ID }} \
+&lt;/span>&lt;span class="sd"> --client_secret=${{ secrets.CLIENT_SECRET }} \
+&lt;/span>&lt;span class="sd"> --googleapikey=${{ secrets.GOOGLEAPIKEY }} \
+&lt;/span>&lt;span class="sd"> --hashiv=${{ secrets.HASH_IV }} \
+&lt;/span>&lt;span class="sd"> --hashkey=${{ secrets.HASH_KEY }} \
+&lt;/span>&lt;span class="sd"> --merchantid=${{ secrets.MERCHANT_ID }} \
+&lt;/span>&lt;span class="sd"> --reCaptchaSecretKey=${{ secrets.RECAPTCHA_SECRET_KEY }} \
+&lt;/span>&lt;span class="sd"> --reCaptchaSiteKey=${{ secrets.RECAPTCHA_SITE_KEY }} \
+&lt;/span>&lt;span class="sd"> --redirect_uris=http://localhost:5173/member-center \
+&lt;/span>&lt;span class="sd"> --verifyurl=https://www.google.com/recaptcha/api/siteverify &amp;gt; rentWeb-0.0.1-SNAPSHOT.log 2&amp;gt;&amp;amp;1 &amp;amp;
+&lt;/span>&lt;span class="sd"> sleep 5
+&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> # 檢查程序和日誌
+&lt;/span>&lt;span class="sd"> if pgrep -f &amp;#39;java -jar&amp;#39;; then
+&lt;/span>&lt;span class="sd"> echo &amp;#34;部屬成功&amp;#34;
+&lt;/span>&lt;span class="sd"> tail -n 50 rentWeb-0.0.1-SNAPSHOT.log
+&lt;/span>&lt;span class="sd"> else
+&lt;/span>&lt;span class="sd"> echo &amp;#34;部屬失敗&amp;#34;
+&lt;/span>&lt;span class="sd"> echo &amp;#34;Last 50 lines of log:&amp;#34;
+&lt;/span>&lt;span class="sd"> tail -n 50 rentWeb-0.0.1-SNAPSHOT.log
+&lt;/span>&lt;span class="sd"> exit 1
+&lt;/span>&lt;span class="sd"> fi&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="在github-加上環境變數-secrets">在Github 加上環境變數 Secrets&lt;/h1>
+&lt;p>在這邊加上環境變數(Secrets)，個人建議不建議用Variable啦&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/uWAupCW.png"
+loading="lazy"
+alt="image-20250102113819519"
+>&lt;/p>
+&lt;p>其中的AWS_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID 則是在IAM user底下申請&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/wBSj4Qv.png"
+loading="lazy"
+alt="image-20250102044456958"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/4Eg8Y1U.png"
+loading="lazy"
+alt="image-20250102044649345"
+>&lt;/p>
+&lt;h1 id="github-action-實際運行狀況">Github Action 實際運行狀況&lt;/h1>
+&lt;p>在github action中執行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">log before checkout&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> echo &amp;#34;當前目錄 $(pwd)&amp;#34;
+&lt;/span>&lt;span class="sd"> echo &amp;#34;checkout之前的檔案 $(ls)&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 讓 GitHub Actions 執行工作流程時可以訪問並操作儲存庫中的代碼。&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Checkout Code&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># uses 相當於github action 提供的api，裡面封裝了一些操作，比如說這個actions/checkout@v3 就是執行了git clone 當前ci cd的程式碼&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/checkout@v3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">log after checkout&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;span class="sd"> echo &amp;#34;當前目錄 $(pwd)&amp;#34;
+&lt;/span>&lt;span class="sd"> echo &amp;#34;checkout之後的檔案 $(ls)&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>其運行狀況如下，也就是說在Github action的虛擬機，實際的目錄應該是長這樣&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">/home/runner/work/rent_BackendOfTheFrontend/rent_BackendOfTheFrontend
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/86griYE.png"
+loading="lazy"
+alt="image-20250102111132940"
+>&lt;/p>
+&lt;p>執行完成的樣子&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/zEeljMS.png"
+loading="lazy"
+alt="image-20250102115523136"
+>&lt;/p></description></item><item><title>回顧轉職這兩年所犯下的錯誤</title><link>https://hoxtonhsu.com/p/%E5%9B%9E%E9%A1%A7%E8%BD%89%E8%81%B7%E9%80%99%E5%85%A9%E5%B9%B4%E6%89%80%E7%8A%AF%E4%B8%8B%E7%9A%84%E9%8C%AF%E8%AA%A4/</link><pubDate>Mon, 30 Dec 2024 23:02:40 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9B%9E%E9%A1%A7%E8%BD%89%E8%81%B7%E9%80%99%E5%85%A9%E5%B9%B4%E6%89%80%E7%8A%AF%E4%B8%8B%E7%9A%84%E9%8C%AF%E8%AA%A4/</guid><description>&lt;img src="https://i.imgur.com/aERQWYn.jpeg" alt="Featured image of post 回顧轉職這兩年所犯下的錯誤" />&lt;p>我是2022年從資策會畢業的，到現在已經過了兩年了， 這兩年間做了不少事，也犯了不少錯，於是決定寫一篇文章來跟大家分享一下這兩年來我所犯下的一些比較白痴的錯誤，讓大家可以鑑往知來，&lt;/p>
 &lt;ol>
 &lt;li>在發板前一刻才整理code&lt;/li>
 &lt;/ol>
