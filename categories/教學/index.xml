@@ -1032,7 +1032,144 @@ alt=" "
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="參考資料">參考資料&lt;/h1>
+&lt;/div>&lt;h1 id="在aws環境下安裝redis">在Aws環境下安裝Redis&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> sudo yum update
+sudo yum install -y make gcc
+mkdir redis &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nb">cd&lt;/span> redis &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> wget https://download.redis.io/redis-stable.tar.gz
+tar -xzvf redis-stable.tar.gz &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nb">cd&lt;/span> redis-stable/
+make distclean &lt;span class="c1"># for clean build&lt;/span>
+make
+sudo make install
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>編輯redis.conf中的，將bind 127.0.0.1 -::1註解掉&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">預設情況下，如果沒有指定 bind 配置指令，Redis 會監聽主機上所有可用的網路接口的連接。
+可以使用 bind 配置指令指定一個或多個選定的接口進行監聽，後面接一個或多個 IP 地址。
+每個地址可以以 - 為前綴，這表示如果該地址不可用，Redis 仍然可以正常啟動。
+「不可用」僅指那些不對應任何網路接口的地址。對於已經被佔用的地址，Redis 將始終無法啟動，而對於不支援的協議，將被靜默忽略，不會報錯。
+bind 192.168.1.100 10.0.0.1 # 監聽兩個特定的 IPv4 地址
+bind 127.0.0.1 ::1 # 監聽 IPv4 和 IPv6 的回環地址
+bind * -::* # 類似預設設定，監聽所有可用的接口
+~~~ 警告 ~~~
+如果運行 Redis 的電腦直接暴露在互聯網上，將 Redis 綁定到所有接口是危險的，這會使實例暴露給互聯網上的所有用戶。
+因此，預設情況下我們取消註釋了以下的 bind 指令，這將強制 Redis 僅監聽 IPv4 和（如果可用）IPv6 的回環接口地址（這意味著 Redis 只能接受運行在同一主機上的客戶端連接）。
+如果您確定希望您的實例監聽所有接口，請註釋掉以下行。
+此外，您還需要設定密碼，除非您顯式禁用保護模式。
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/QBu7JWu.png"
+loading="lazy"
+alt="image-20250104011121571"
+>&lt;/p>
+&lt;p>調整密碼&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/lkpxtOS.png"
+loading="lazy"
+alt="image-20250104005628662"
+>&lt;/p>
+&lt;p>設定好後保存，並且重啟redis服務&lt;/p>
+&lt;p>&lt;span style="color:yellow;font-size:32px">我不知道為啥這指令都沒有用，最後是用 redis-server redis.conf &amp;amp; 才成功重新啟動&lt;/span>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo systemctl restart redis
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>開機自動啟動redis&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo systemctl &lt;span class="nb">enable&lt;/span> redis
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以先在linux環境測試看看能不能連&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-cli -a Hoxton019030
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果一直不能連的話，很可能是重新啟動的時候出問題了，可以用以下的指令來強制關閉redis，然後再重新啟動&lt;/p>
+&lt;p>關閉redis&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-cli shutdown
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>查看redis是否還在運行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bas" data-lang="bas">&lt;span class="vg">netstat&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="vg">tuln&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="vg">grep&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="il">6379&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>指定啟動redis，並且在背景執行(&amp;amp;)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-server redis.conf &lt;span class="p">&amp;amp;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/J5epDSq.png"
+loading="lazy"
+alt="image-20250104040117946"
+>&lt;/p>
+&lt;p>記得Aws防火牆也要打開&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/eYDk7ng.png"
+loading="lazy"
+alt="image-20250104011351828"
+>&lt;/p>
+&lt;p>接著回到自己的電腦測試看看，看起來是沒問題的！&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vDkkkjw.png"
+loading="lazy"
+alt="image-20250104040200413"
+>&lt;/p>
+&lt;h1 id="參考資料">參考資料&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Fd4y1T7pD/?spm_id_from=333.999.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >【趣话Redis第一弹】我是Redis，MySQL大哥被我坑惨了！&lt;/a>&lt;/p></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/8cus4pF.gif"
