@@ -9384,7 +9384,29 @@ alt="image-20230907094542350"
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h1 id="啟動">啟動&lt;/h1>
-&lt;p>使用默認配置文件啟動 Redis 服務器&lt;/p>
+&lt;p>redis相關的配置檔儲存在macbook的這個位址中的 redis.conf&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">cd&lt;/span> /opt/homebrew/etc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這邊可以調整redis的port, 密碼&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">bind 127.0.0.1 ::1
+port 6379
+# requirepass foobared
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>使用默認配置文件啟動 Redis 服務器&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -9432,6 +9454,14 @@ alt="image-20230907132424959"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">brew services info reids
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo lsof -i :6379
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
 &lt;/div>&lt;p>![image-20230907132803857](/Users/hoxtonashes/Library/Application Support/typora-user-images/image-20230907132803857.png)&lt;/p>
 &lt;p>確認被啟動起來&lt;/p>
 &lt;p>接著輸入，啟動redis客戶端&lt;/p>
@@ -9448,6 +9478,229 @@ loading="lazy"
 alt="image-20230907132914723"
 >&lt;/p>
 &lt;p>就可以進入到redis中了&lt;/p>
+&lt;h1 id="在aws環境下安裝redis">在Aws環境下安裝Redis&lt;/h1>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> sudo yum update
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> sudo yum install -y make gcc
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> mkdir redis &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nb">cd&lt;/span> redis &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> wget https://download.redis.io/redis-stable.tar.gz
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> tar -xzvf redis-stable.tar.gz &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nb">cd&lt;/span> redis-stable/
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> make distclean &lt;span class="c1"># for clean build&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> make
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> sudo make install
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>編輯redis.conf中的，將bind 127.0.0.1 -::1 調整成 bind 0.0.0.0 開放所有ip4&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">預設情況下，如果沒有指定 bind 配置指令，Redis 會監聽主機上所有可用的網路接口的連接。
+可以使用 bind 配置指令指定一個或多個選定的接口進行監聽，後面接一個或多個 IP 地址。
+每個地址可以以 - 為前綴，這表示如果該地址不可用，Redis 仍然可以正常啟動。
+「不可用」僅指那些不對應任何網路接口的地址。對於已經被佔用的地址，Redis 將始終無法啟動，而對於不支援的協議，將被靜默忽略，不會報錯。
+bind 192.168.1.100 10.0.0.1 # 監聽兩個特定的 IPv4 地址
+bind 127.0.0.1 ::1 # 監聽 IPv4 和 IPv6 的回環地址
+bind * -::* # 類似預設設定，監聽所有可用的接口
+~~~ 警告 ~~~
+如果運行 Redis 的電腦直接暴露在互聯網上，將 Redis 綁定到所有接口是危險的，這會使實例暴露給互聯網上的所有用戶。
+因此，預設情況下我們取消註釋了以下的 bind 指令，這將強制 Redis 僅監聽 IPv4 和（如果可用）IPv6 的回環接口地址（這意味著 Redis 只能接受運行在同一主機上的客戶端連接）。
+如果您確定希望您的實例監聽所有接口，請註釋掉以下行。
+此外，您還需要設定密碼，除非您顯式禁用保護模式。
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/QBu7JWu.png"
+loading="lazy"
+alt="image-20250104011121571"
+>&lt;/p>
+&lt;p>調整密碼&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/lkpxtOS.png"
+loading="lazy"
+alt="image-20250104005628662"
+>&lt;/p>
+&lt;p>設定好後保存，並且重啟redis服務&lt;/p>
+&lt;p>&lt;span style="color:yellow;font-size:32px">我不知道為啥這指令都沒有用，最後是用
+                                                                                                    redis-server redis.conf &amp;amp;                                                                  才成功重新啟動&lt;/span>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo systemctl restart redis
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果上面那個無效就用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-server redis.conf &lt;span class="p">&amp;amp;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然後輸入netstat -tuln | grep 6379來查看是否還在運行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">netstat -tuln &lt;span class="p">|&lt;/span> grep &lt;span class="m">6379&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>設定開機自動啟動redis&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo systemctl &lt;span class="nb">enable&lt;/span> redis-server
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以先在linux環境測試看看能不能連&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-cli -a Hoxton019030
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果一直不能連的話，很可能是重新啟動的時候出問題了，可以用以下的指令來強制關閉redis，然後再重新啟動&lt;/p>
+&lt;p>關閉redis&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-cli shutdown
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>有可能會要你提供密碼，這時候這樣打redis-cli 進入redis終端&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-cli
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">AUTH &amp;lt;password&amp;gt;
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>這樣就代表認證ok，接下來輸入 shutdown就可以了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">shutdown
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/sB7RJOR.png"
+loading="lazy"
+alt="image-20250104215418990"
+>&lt;/p>
+&lt;p>查看redis是否還在運行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bas" data-lang="bas">&lt;span class="vg">netstat&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="vg">tuln&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="vg">grep&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="il">6379&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>指定啟動redis，並且在背景執行(&amp;amp;)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-server redis.conf &lt;span class="p">&amp;amp;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/J5epDSq.png"
+loading="lazy"
+alt="image-20250104040117946"
+>&lt;/p>
+&lt;p>記得Aws防火牆也要打開&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/eYDk7ng.png"
+loading="lazy"
+alt="image-20250104011351828"
+>&lt;/p>
+&lt;p>接著回到自己的電腦測試看看，看起來是沒問題的！&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/vDkkkjw.png"
+loading="lazy"
+alt="image-20250104040200413"
+>&lt;/p>
 &lt;h1 id="redis的基本資料型別">Redis的基本資料型別&lt;/h1>
 &lt;ol>
 &lt;li>String&lt;/li>
@@ -10118,144 +10371,7 @@ alt=" "
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="在aws環境下安裝redis">在Aws環境下安裝Redis&lt;/h1>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash"> sudo yum update
-sudo yum install -y make gcc
-mkdir redis &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nb">cd&lt;/span> redis &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> wget https://download.redis.io/redis-stable.tar.gz
-tar -xzvf redis-stable.tar.gz &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nb">cd&lt;/span> redis-stable/
-make distclean &lt;span class="c1"># for clean build&lt;/span>
-make
-sudo make install
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>編輯redis.conf中的，將bind 127.0.0.1 -::1註解掉&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">預設情況下，如果沒有指定 bind 配置指令，Redis 會監聽主機上所有可用的網路接口的連接。
-可以使用 bind 配置指令指定一個或多個選定的接口進行監聽，後面接一個或多個 IP 地址。
-每個地址可以以 - 為前綴，這表示如果該地址不可用，Redis 仍然可以正常啟動。
-「不可用」僅指那些不對應任何網路接口的地址。對於已經被佔用的地址，Redis 將始終無法啟動，而對於不支援的協議，將被靜默忽略，不會報錯。
-bind 192.168.1.100 10.0.0.1 # 監聽兩個特定的 IPv4 地址
-bind 127.0.0.1 ::1 # 監聽 IPv4 和 IPv6 的回環地址
-bind * -::* # 類似預設設定，監聽所有可用的接口
-~~~ 警告 ~~~
-如果運行 Redis 的電腦直接暴露在互聯網上，將 Redis 綁定到所有接口是危險的，這會使實例暴露給互聯網上的所有用戶。
-因此，預設情況下我們取消註釋了以下的 bind 指令，這將強制 Redis 僅監聽 IPv4 和（如果可用）IPv6 的回環接口地址（這意味著 Redis 只能接受運行在同一主機上的客戶端連接）。
-如果您確定希望您的實例監聽所有接口，請註釋掉以下行。
-此外，您還需要設定密碼，除非您顯式禁用保護模式。
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/QBu7JWu.png"
-loading="lazy"
-alt="image-20250104011121571"
->&lt;/p>
-&lt;p>調整密碼&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/lkpxtOS.png"
-loading="lazy"
-alt="image-20250104005628662"
->&lt;/p>
-&lt;p>設定好後保存，並且重啟redis服務&lt;/p>
-&lt;p>&lt;span style="color:yellow;font-size:32px">我不知道為啥這指令都沒有用，最後是用 redis-server redis.conf &amp;amp; 才成功重新啟動&lt;/span>&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo systemctl restart redis
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>開機自動啟動redis&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">sudo systemctl &lt;span class="nb">enable&lt;/span> redis
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>可以先在linux環境測試看看能不能連&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-cli -a Hoxton019030
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>如果一直不能連的話，很可能是重新啟動的時候出問題了，可以用以下的指令來強制關閉redis，然後再重新啟動&lt;/p>
-&lt;p>關閉redis&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-cli shutdown
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>查看redis是否還在運行&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bas" data-lang="bas">&lt;span class="vg">netstat&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="vg">tuln&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="vg">grep&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="il">6379&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>指定啟動redis，並且在背景執行(&amp;amp;)&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">redis-server redis.conf &lt;span class="p">&amp;amp;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/J5epDSq.png"
-loading="lazy"
-alt="image-20250104040117946"
->&lt;/p>
-&lt;p>記得Aws防火牆也要打開&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/eYDk7ng.png"
-loading="lazy"
-alt="image-20250104011351828"
->&lt;/p>
-&lt;p>接著回到自己的電腦測試看看，看起來是沒問題的！&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/vDkkkjw.png"
-loading="lazy"
-alt="image-20250104040200413"
->&lt;/p>
-&lt;h1 id="參考資料">參考資料&lt;/h1>
+&lt;/div>&lt;h1 id="參考資料">參考資料&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Fd4y1T7pD/?spm_id_from=333.999.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >【趣话Redis第一弹】我是Redis，MySQL大哥被我坑惨了！&lt;/a>&lt;/p></description></item><item><title>使用Apache的FTP套件，storeFile()一直回傳550的問題該解決</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8apache%E7%9A%84ftp%E5%A5%97%E4%BB%B6storefile%E4%B8%80%E7%9B%B4%E5%9B%9E%E5%82%B3550%E7%9A%84%E5%95%8F%E9%A1%8C%E8%A9%B2%E8%A7%A3%E6%B1%BA/</link><pubDate>Thu, 17 Aug 2023 22:03:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8apache%E7%9A%84ftp%E5%A5%97%E4%BB%B6storefile%E4%B8%80%E7%9B%B4%E5%9B%9E%E5%82%B3550%E7%9A%84%E5%95%8F%E9%A1%8C%E8%A9%B2%E8%A7%A3%E6%B1%BA/</guid><description>&lt;img src="https://i.imgur.com/Zm0Sn6B.jpg" alt="Featured image of post 使用Apache的FTP套件，storeFile()一直回傳550的問題該解決" />&lt;h1 id="heading">&lt;/h1>
 &lt;p>這陣子到保哥的公司，過著天天被洗臉的日子，&lt;/p>
