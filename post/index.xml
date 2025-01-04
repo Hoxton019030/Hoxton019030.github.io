@@ -11957,7 +11957,7 @@ sudo spctl --master-enable
 loading="lazy"
 alt="image-20230907094542350"
 >&lt;/p>
-&lt;p>安裝Redis&lt;/p>
+&lt;h1 id="安裝redis">安裝Redis&lt;/h1>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
