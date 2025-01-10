@@ -8048,7 +8048,19 @@ alt="Memphis.dev - What is a message queue?"
 &lt;ol>
 &lt;li>削峰降流&lt;/li>
 &lt;/ol>
-&lt;p>假設再製作一個網購商城，從用戶下單到結算，中間會經歷很多過程，耗時非常長，此時可以將&lt;/p>
+&lt;p>假設再製作一個網購商城，從用戶下單到結算，中間會經歷很多過程，耗時非常長，此時可以將下單的行為放到MessageQueue中做處理，避免許多請求直接造成伺服器負擔，比如說可以設定1秒只處理5筆這樣子&lt;/p>
+&lt;ol start="2">
+&lt;li>避免請求丟失&lt;/li>
+&lt;/ol>
+&lt;p>分佈式系統中，不同模塊需要透過網路交互，如果一方的模塊網路突然出問題，那麼很多與之交互的模塊的請求送不到會發生許多問題，一樣以電商舉例，現在存貨已經扣了，要進到扣款流程，但扣款模塊壞了，導致存貨被扣，但支付卻還沒發生，並且支付模塊修好後，由於資料丟失，相關的扣款也無法繼續下去&lt;/p>
+&lt;ol start="3">
+&lt;li>服務解耦&lt;/li>
+&lt;/ol>
+&lt;p>比如說Java處理好的資料要給Python用，就可以讓Java Push 到Queue中，Python再去Consume這個消息就ok，達成服務解耦的目的&lt;/p>
+&lt;ol start="4">
+&lt;li>異步處理&lt;/li>
+&lt;/ol>
+&lt;p>沒啥特別好說的，就當一個大型異步處理來用&lt;/p>
 &lt;h1 id="什麼是rabbitmq">什麼是RabbitMQ&lt;/h1>
 &lt;p>RabbitMQ是個基於AMQP(Advanced Message Queuing Protocal 高級消息隊列協議) ，用於應用程式之間通訊的中間層，Rabbit有四大核心&lt;/p>
 &lt;ol>
@@ -8362,7 +8374,7 @@ loading="lazy"
 alt="image-20230908160203126"
 >&lt;/p>
 &lt;p>會發現已經沒有Messege在等待了&lt;/p>
-&lt;h1 id="交換機介紹">交換機介紹&lt;/h1>
+&lt;h1 id="交換機介紹exchange">交換機介紹(Exchange)&lt;/h1>
 &lt;h2 id="direct">Direct&lt;/h2>
 &lt;p>路由鍵與隊列名「完全匹配」交換機，通過與RoutingKey路由鍵將交換機與隊列進行綁定，消息被發送到exchange時，需要根據消息的RountingKey，來進行匹配，只將消息發送到&lt;strong>完全匹配到此RountingKey的隊列&lt;/strong>，如果想要模糊匹配的話要用Topic。&lt;/p>
 &lt;p>比如一個隊列綁定到交換機要求路由鍵為&amp;quot;key&amp;quot;，則只轉發RountingKey標記為&amp;quot;key&amp;quot;的消息，不會轉發&amp;quot;key1&amp;quot;、“key.&amp;quot; &amp;hellip;等等，他是完全匹配、單撥的形式&lt;/p>
