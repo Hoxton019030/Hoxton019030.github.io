@@ -10614,6 +10614,8 @@ $$&lt;/p>
 &lt;p>&lt;a class="link" href="https://github.com/Hoxton019030/RabbitMQ_Practice/tree/prototype" target="_blank" rel="noopener"
 >https://github.com/Hoxton019030/RabbitMQ_Practice/tree/prototype&lt;/a>&lt;/p>
 &lt;p>Prototype分支是個MVP(Minimum Viable Product)，使用了RabbitMq來接收前端傳來的一個訊息並打印出來，可以藉此對MessageQueue有個認識與回顧－&lt;/p>
+&lt;p>&lt;a href="https://github.com/Hoxton019030/JobTalk">https://github.com/Hoxton019030/JobTalk&lt;/a>&lt;/p>
+&lt;p>這個Job Talk則有比較詳細的MessageQueue內容&lt;/p>
 &lt;h1 id="前言">前言&lt;/h1>
 &lt;p>今天是第二天，學習RabbitMQ。第一次接觸到Message Queue是在御諾的時候，當時有個同事做了一個這個東西，在Sprint的結尾展示，那時候就覺得MessageQueue這個東西也太酷了，但一直沒有機會(懶)去接觸。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/I0mlQvo.gif"
