@@ -8043,6 +8043,12 @@ loading="lazy"
 alt="Memphis.dev - What is a message queue?"
 >&lt;/p>
 &lt;p>Message Queue(訊息佇列、消息隊列)，是一種用在應用程序之間傳遞消息的通訊是，Message Queue允許應用之間&lt;strong>異步&lt;/strong>的發送和接收消息，並且不需要直接連接到對方&lt;/p>
+&lt;p>2025/1/10 補&lt;/p>
+&lt;p>現在對Message Queue的理解是這樣&lt;/p>
+&lt;ol>
+&lt;li>削峰降流&lt;/li>
+&lt;/ol>
+&lt;p>假設再製作一個網購商城，從用戶下單到結算，中間會經歷很多過程，耗時非常長，此時可以將&lt;/p>
 &lt;h1 id="什麼是rabbitmq">什麼是RabbitMQ&lt;/h1>
 &lt;p>RabbitMQ是個基於AMQP(Advanced Message Queuing Protocal 高級消息隊列協議) ，用於應用程式之間通訊的中間層，Rabbit有四大核心&lt;/p>
 &lt;ol>
