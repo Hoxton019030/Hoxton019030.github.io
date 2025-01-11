@@ -417,20 +417,28 @@ gtag('js',new Date());gtag('config','G-9N16MVLR0Q');</script></head><body class=
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>spring.application.name=dubbo-consumer
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>spring.application.name=user
 server.port=8081
 dubbo.application.name=consumer-app
 dubbo.registry.address=zookeeper://localhost:2181
+# 指定 Dubbo 協議的服務端口號
+# 當前服務提供者會在 20881 端口上啟動，用於接收消費者的遠程調用請求
 dubbo.protocol.port=20881
-</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p><img src=https://i.imgur.com/Ei92vJv.png loading=lazy alt=image-20250111105213869></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>spring.application.name=dubbo-provider
 server.port=8082
 dubbo.application.name=provider-app
 dubbo.registry.address=zookeeper://localhost:2181
+# 指定 Dubbo 協議的服務端口號
+# 當前服務提供者會在 20880 端口上啟動，用於接收消費者的遠程調用請求
 dubbo.protocol.port=20880
 </code></pre></td></tr></table></div></div><h2 id=程式配置>程式配置</h2><p>我們首先先寫dubbo-provider的內容，寫兩個class，一個是interface，一個去實現它，會回傳一個Hello出去</p><p><img src=https://i.imgur.com/BAwq2K8.png loading=lazy alt=image-20240731165806019></p><h2 id=啟動類配置>啟動類配置</h2><p>其中@DubboService這個就相當於將這個class的調用註冊到zookeeper中(這功能等等會教)</p><p><img src=https://i.imgur.com/iNAhh2v.png loading=lazy alt=image-20240731165924881></p><p>由於是provider，所以要記得在啟動類上加上</p><p>@EnableDubbo</p><p>接著來寫dubbo-consumer，我們寫一個controller就好，用來接收helloService回傳的值，並返回出去，這樣就可以了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
