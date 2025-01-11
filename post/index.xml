@@ -2171,11 +2171,73 @@ alt="S__15130629"
 &lt;h2 id="zookeeper配置">Zookeeper配置&lt;/h2>
 &lt;p>首先安裝zoo-keeper，安裝的方式請參考&lt;a class="link" href="https://hoxtonhsu.com/p/%e5%8d%83%e8%bf%b4%e7%99%be%e8%bd%89%e7%9a%84zookeeper%e5%ae%89%e8%a3%9d/" target="_blank" rel="noopener"
 >千迴百轉的ZooKeeper安裝&lt;/a>。把zooKeeper啟動起來，會看到這樣子的畫面&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/0frPRNc.png"
+&lt;p>mac的啟動方式是到/bin底下輸入&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">./zkServer.sh start
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/0frPRNc.png"
 loading="lazy"
 alt="image-20240731114827416"
 >&lt;/p>
-&lt;p>接著開啟IDEA，建立SpringBoot專案，由於Dubbo是個分布式的RPC框架，所以我們這邊選擇創建兩個模塊，dubbo-provider dubbo-cousumer來學習，會比較貼近真實的開發情況，創建多模塊要記得將父模塊的src資料夾刪除，否則會有問題，可以參考&lt;a class="link" href="https://hoxtonhsu.com/p/sideproject%e9%96%8b%e7%99%bc2-%e5%8f%b0%e8%82%a1%e7%9b%a3%e6%8e%a7web/" target="_blank" rel="noopener"
+&lt;p>然後可以再用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">./zkCli.sh
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>進到Zookeeper中查看一些內容&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/dcjfGTZ.png"
+loading="lazy"
+alt="image-20250111102804549"
+>&lt;/p>
+&lt;p>如&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">ls /
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/WVaZsix.png"
+loading="lazy"
+alt="image-20250111102857167"
+>&lt;/p>
+&lt;p>查看zookeeper目前註冊了哪些內容，這邊的值跟dubbo.application.name 有關&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bas" data-lang="bas">&lt;span class="vg">ls&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="vg">services&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://i.imgur.com/eD7oEAd.png"
+loading="lazy"
+alt="image-20250111102932365"
+>&lt;/p>
+&lt;p>查看具體註冊了哪些@DubboService&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Xbx4GCH.png"
+loading="lazy"
+alt="image-20250111103115894"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">ls /dubbo
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>接著開啟IDEA，建立SpringBoot專案，由於Dubbo是個分布式的RPC框架，所以我們這邊選擇創建兩個模塊，dubbo-provider dubbo-cousumer來學習，會比較貼近真實的開發情況，創建多模塊要記得將父模塊的src資料夾刪除，否則會有問題，可以參考&lt;a class="link" href="https://hoxtonhsu.com/p/sideproject%e9%96%8b%e7%99%bc2-%e5%8f%b0%e8%82%a1%e7%9b%a3%e6%8e%a7web/" target="_blank" rel="noopener"
 >SideProject開發(2)-台股監控Web&lt;/a>，裡面有我血淚的教訓&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/Dt9oCXa.png"
 loading="lazy"
@@ -2630,6 +2692,7 @@ dubbo.protocol.port=20880
 loading="lazy"
 alt="image-20240731165806019"
 >&lt;/p>
+&lt;h2 id="啟動類配置">啟動類配置&lt;/h2>
 &lt;p>其中@DubboService這個就相當於將這個class的調用註冊到zookeeper中(這功能等等會教)&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/iNAhh2v.png"
 loading="lazy"
