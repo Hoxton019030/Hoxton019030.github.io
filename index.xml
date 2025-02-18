@@ -1,26 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 11 Jan 2025 17:42:18 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubeernetes學習筆記</title><link>https://hoxtonhsu.com/p/kubeernetes%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 11 Jan 2025 17:42:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/kubeernetes%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;p>&lt;img src="https://i.imgur.com/7jggw3R.png"
-loading="lazy"
-alt="image-20250205143942236"
->&lt;/p>
-&lt;h1 id="安裝">安裝&lt;/h1>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">brew install kubectl
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">kubectl version
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h1 id="常用指令">常用指令&lt;/h1>
-&lt;h1 id="與springboot整合">與SpringBoot整合&lt;/h1></description></item><item><title>如何部署SpringBoot專案與雲端資料庫在Aws上面</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</link><pubDate>Thu, 02 Jan 2025 08:05:29 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</guid><description>&lt;img src="https://i.imgur.com/whP4tpY.png" alt="Featured image of post 如何部署SpringBoot專案與雲端資料庫在Aws上面" />&lt;p>最近又回去資策會當助教了，有同學問我說怎麼部署SpringBoot 的專案到雲端上面，然後建立起雲端資料庫， 所以這篇文章打算記錄一下相關的步驟&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 02 Jan 2025 08:05:29 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>如何部署SpringBoot專案與雲端資料庫在Aws上面</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</link><pubDate>Thu, 02 Jan 2025 08:05:29 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</guid><description>&lt;img src="https://i.imgur.com/whP4tpY.png" alt="Featured image of post 如何部署SpringBoot專案與雲端資料庫在Aws上面" />&lt;p>最近又回去資策會當助教了，有同學問我說怎麼部署SpringBoot 的專案到雲端上面，然後建立起雲端資料庫， 所以這篇文章打算記錄一下相關的步驟&lt;/p>
 &lt;p>首先我們先進到AWS的DashBoard， 然後我們看到一個叫做LightSail的東西，我們點開它這邊先簡單講一下LightSail跟一般的EC2有什麼樣的差別，一般EC2跟ＬightSail差別在於他的訂製化程度比較高然後可以選擇的東西比較多，但有時候在一開始配置的話會讓人有點摸不著頭緒，所以我們這邊簡單地用LightSail來模擬一下關於雲端部署的部分 因為我們的目的只是要附上雲端，所以這部分選擇哪個具體來講都沒差&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/KWx4jF9.png"
 loading="lazy"
@@ -2171,12 +2149,7 @@ alt="image-20241209133156203"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">go get github.com/spf13/viper
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>證明列運算不改行關係</title><link>https://hoxtonhsu.com/p/%E8%AD%89%E6%98%8E%E5%88%97%E9%81%8B%E7%AE%97%E4%B8%8D%E6%94%B9%E8%A1%8C%E9%97%9C%E4%BF%82/</link><pubDate>Sat, 17 Aug 2024 11:30:23 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%AD%89%E6%98%8E%E5%88%97%E9%81%8B%E7%AE%97%E4%B8%8D%E6%94%B9%E8%A1%8C%E9%97%9C%E4%BF%82/</guid><description>&lt;img src="https://i.imgur.com/lVeZDy5.png" alt="Featured image of post 證明列運算不改行關係" />&lt;p>資料來源：&lt;a class="link" href="https://ccjou.wordpress.com/2009/03/25/%e7%94%b1%e7%b0%a1%e7%b4%84%e5%88%97%e6%a2%af%e5%bd%a2%e5%bc%8f%e5%88%a4%e6%96%b7%e8%a1%8c%e7%a9%ba%e9%96%93%e5%9f%ba%e5%ba%95/" target="_blank" rel="noopener"
->由簡約列梯形式判斷行空間基底&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/wbdq3jF.jpeg"
-loading="lazy"
-alt="S__15130629"
->&lt;/p></description></item><item><title>Dubbo快速搭建學習筆記</title><link>https://hoxtonhsu.com/p/dubbo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 31 Jul 2024 15:00:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/dubbo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1MgicUX.png" alt="Featured image of post Dubbo快速搭建學習筆記" />&lt;h1 id="學習來源">學習來源&lt;/h1>
+&lt;/div></description></item><item><title>Dubbo快速搭建學習筆記</title><link>https://hoxtonhsu.com/p/dubbo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 31 Jul 2024 15:00:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/dubbo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1MgicUX.png" alt="Featured image of post Dubbo快速搭建學習筆記" />&lt;h1 id="學習來源">學習來源&lt;/h1>
 &lt;p>本文參考至&lt;/p>
 &lt;p>【【演示】SpringBoot+Dubbo+ZooKeeper 快速搭建】 &lt;a href="https://www.bilibili.com/video/BV1XK411f7jL/?share_source=copy_web&amp;amp;vd_source=b38b089ffe2c29ef61bebcff0f458ed8">https://www.bilibili.com/video/BV1XK411f7jL/?share_source=copy_web&amp;amp;vd_source=b38b089ffe2c29ef61bebcff0f458ed8&lt;/a>&lt;/p>
 &lt;h1 id="前言">前言&lt;/h1>
@@ -6096,59 +6069,7 @@ alt="image-20240103231657137"
 &lt;p>&lt;a class="link" href="https://medium.com/%E6%95%B8%E6%93%9A%E5%88%86%E6%9E%90%E4%B8%8D%E6%98%AF%E5%80%8B%E4%BA%8B/%E4%BB%80%E9%BA%BC-%E6%88%91%E5%AF%AB%E7%9A%84%E4%B8%80%E6%A2%9Dsql%E8%AE%93%E5%85%AC%E5%8F%B8%E7%B6%B2%E7%AB%99%E7%99%B1%E7%98%93%E4%BA%86-sql%E6%85%A2%E6%9F%A5%E8%A9%A2%E6%94%B9%E5%96%84%E6%96%B9%E6%A1%88-b354b4114ce2" target="_blank" rel="noopener"
 >什麼？我寫的一條SQL讓公司網站癱瘓了…SQL慢查詢改善&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.cnblogs.com/myseries/p/11570661.html" target="_blank" rel="noopener"
->会引起全表扫描的几种SQL 以及sql优化 （转）&lt;/a>&lt;/p></description></item><item><title>快速求出三階矩陣的伴隨矩陣、反矩陣</title><link>https://hoxtonhsu.com/p/%E5%BF%AB%E9%80%9F%E6%B1%82%E5%87%BA%E4%B8%89%E9%9A%8E%E7%9F%A9%E9%99%A3%E7%9A%84%E4%BC%B4%E9%9A%A8%E7%9F%A9%E9%99%A3%E5%8F%8D%E7%9F%A9%E9%99%A3/</link><pubDate>Wed, 03 Jan 2024 01:34:46 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%BF%AB%E9%80%9F%E6%B1%82%E5%87%BA%E4%B8%89%E9%9A%8E%E7%9F%A9%E9%99%A3%E7%9A%84%E4%BC%B4%E9%9A%A8%E7%9F%A9%E9%99%A3%E5%8F%8D%E7%9F%A9%E9%99%A3/</guid><description>&lt;img src="https://i.imgur.com/spFKI2X.png" alt="Featured image of post 快速求出三階矩陣的伴隨矩陣、反矩陣" />&lt;p>接續&lt;a class="link" href="https://hoxtonhsu.com/p/%E6%87%B6%E4%BA%BA%E6%B1%82%E4%B8%89%E9%9A%8E%E7%9F%A9%E9%99%A3%E8%A1%8C%E5%88%97%E5%BC%8F%E7%9A%84%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener"
->懶人求三階矩陣行列式的方法&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/iM6UPr2.png"
-loading="lazy"
-alt="image-20240103013613305"
->&lt;/p>
-&lt;p>將C1 C2 R1 R2 擴展&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/pqFRXA4.png"
-loading="lazy"
-alt="image-20240103013737035"
->&lt;/p>
-&lt;p>C1 R1 刪去不看&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/LCumdQO.png"
-loading="lazy"
-alt="image-20240103013818344"
->&lt;/p>
-&lt;p>做這樣子的處理，記得最後的結果要轉置，轉置後的答案就是伴隨矩陣了&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/HjytdSd.png"
-loading="lazy"
-alt="image-20240103015852504"
->&lt;/p>
-&lt;p>有伴隨矩陣，也有A的行列式，那算出反矩陣就是一秒鐘的事情了，啥也不是，散會&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/sXj4Bse.jpg"
-loading="lazy"
-alt="image-20240103020055088"
->&lt;/p>
-&lt;h1 id="參考資料">參考資料&lt;/h1>
-&lt;p>&lt;a href="https://www.youtube.com/watch?v=TBlukhJNdX4&amp;amp;ab_channel=RussellKirk">https://www.youtube.com/watch?v=TBlukhJNdX4&amp;amp;ab_channel=RussellKirk&lt;/a>&lt;/p></description></item><item><title>懶人求三階矩陣行列式的方法</title><link>https://hoxtonhsu.com/p/%E6%87%B6%E4%BA%BA%E6%B1%82%E4%B8%89%E9%9A%8E%E7%9F%A9%E9%99%A3%E8%A1%8C%E5%88%97%E5%BC%8F%E7%9A%84%E6%96%B9%E6%B3%95/</link><pubDate>Wed, 03 Jan 2024 01:28:01 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%87%B6%E4%BA%BA%E6%B1%82%E4%B8%89%E9%9A%8E%E7%9F%A9%E9%99%A3%E8%A1%8C%E5%88%97%E5%BC%8F%E7%9A%84%E6%96%B9%E6%B3%95/</guid><description>&lt;img src="https://i.imgur.com/hS0CXI6.png" alt="Featured image of post 懶人求三階矩陣行列式的方法" />&lt;p>看完這篇別忘了看下篇&lt;/p>
-&lt;p>&lt;a class="link" href="https://hoxtonhsu.com/p/105-%E5%BF%AB%E9%80%9F%E6%B1%82%E5%87%BA%E4%B8%89%E9%9A%8E%E7%9F%A9%E9%99%A3%E7%9A%84%E4%BC%B4%E9%9A%A8%E7%9F%A9%E9%99%A3%E5%8F%8D%E7%9F%A9%E9%99%A3/" target="_blank" rel="noopener"
->快速求出三階矩陣的伴隨矩陣、反矩陣&lt;/a>&lt;/p>
-&lt;p>之前在學的時候林緯是教這種形式&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/TA81FOu.png"
-loading="lazy"
-alt="image-20240103012959972"
->&lt;/p>
-&lt;p>但看一看覺得真的是有夠糊，後來有一次看到有更方便的做法&lt;/p>
-&lt;h1 id="過程">過程&lt;/h1>
-&lt;p>矩陣如下&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/yFFpWop.png"
-loading="lazy"
-alt="image-20240103013043969"
->&lt;/p>
-&lt;p>我們把C1 C2 重複一遍寫在右邊&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/GZE2lcY.png"
-loading="lazy"
-alt="image-20240103013121581"
->&lt;/p>
-&lt;h1 id="結果">結果&lt;/h1>
-&lt;p>接著像這樣畫，將&lt;span style="color:red;font-size:16px">紅色&lt;/span>的和減去&lt;span style="color:green;font-size:16px">綠色&lt;/span>的和，即為所求&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/y4JgcOR.png"
-loading="lazy"
-alt="image-20240103013147284"
->&lt;/p></description></item><item><title>Django學習筆記</title><link>https://hoxtonhsu.com/p/django%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 27 Dec 2023 02:46:29 +0800</pubDate><guid>https://hoxtonhsu.com/p/django%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/fIk8FK8.jpg" alt="Featured image of post Django學習筆記" />&lt;h1 id="參考網址">參考網址&lt;/h1>
+>会引起全表扫描的几种SQL 以及sql优化 （转）&lt;/a>&lt;/p></description></item><item><title>Django學習筆記</title><link>https://hoxtonhsu.com/p/django%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 27 Dec 2023 02:46:29 +0800</pubDate><guid>https://hoxtonhsu.com/p/django%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/fIk8FK8.jpg" alt="Featured image of post Django學習筆記" />&lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a href="https://www.bilibili.com/video/BV1Sf4y1v77f?p=1">https://www.bilibili.com/video/BV1Sf4y1v77f?p=1&lt;/a>&lt;/p>
 &lt;h1 id="專案程式碼">專案程式碼&lt;/h1>
 &lt;p>&lt;a href="https://github.com/Hoxton019030/Django_pratice">https://github.com/Hoxton019030/Django_pratice&lt;/a>&lt;/p>
