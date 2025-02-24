@@ -1,4 +1,50 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 02 Jan 2025 08:05:29 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>如何部署SpringBoot專案與雲端資料庫在Aws上面</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</link><pubDate>Thu, 02 Jan 2025 08:05:29 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</guid><description>&lt;img src="https://i.imgur.com/whP4tpY.png" alt="Featured image of post 如何部署SpringBoot專案與雲端資料庫在Aws上面" />&lt;p>最近又回去資策會當助教了，有同學問我說怎麼部署SpringBoot 的專案到雲端上面，然後建立起雲端資料庫， 所以這篇文章打算記錄一下相關的步驟&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtonhsu.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 24 Feb 2025 09:52:51 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Solidity學習筆記</title><link>https://hoxtonhsu.com/p/solidity%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Mon, 24 Feb 2025 09:52:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/solidity%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/L4XH96m.jpeg" alt="Featured image of post Solidity學習筆記" />&lt;h1 id="外部合約-內部合約">外部合約 內部合約&lt;/h1>
+&lt;p>外部合約 Externaly Owned Account (EOA): 類似MetaMusk那種錢包，用於交易資金、初始化交易、部署智能合約、提領，並且擁有一個私鑰來管理帳戶&lt;/p>
+&lt;p>內部合約 Contract Account : 比較像是在區塊鏈「內」自動化運作的錢包，沒有私鑰來管理整個帳戶，程式碼決定了整個合約帳戶的運作&lt;/p>
+&lt;p>對於Contract Account 來說，只要沒有在程式碼上寫上Owner 或相關的操作定義，這個Contract Account 就會失去人為的控制，但反之只要我們寫上完善、完整的韓式之後，就可以透過「操控特定函式」這樣一個「發送交易」的行為來控制合約。&lt;/p>
+&lt;p>換句話說如果這個合約裡面有非常多供特定人士操作的合約，那麼這個合約從廣義來說便不是真正的去中心化。&lt;/p>
+&lt;p>在區塊鏈上只能用EOA 初始化交易，也就是說在任何的互動做成中，只要原點是EOA，接下來無論是Contract Account 或EOA 皆可與彼此交互運作&lt;/p>
+&lt;p>路徑為：EOA-&amp;gt; Contract Account -&amp;gt; EOA -&amp;gt; EOA&lt;/p>
+&lt;p>不可為：Contract Account -&amp;gt; &amp;hellip;&lt;/p>
+&lt;h1 id="函式與合約互動的方法">函式與合約互動的方法&lt;/h1>
+&lt;p>Balance&lt;/p>
+&lt;ol>
+&lt;li>取得當前地址的餘額，以wei為單位&lt;/li>
+&lt;li>&amp;lt;address&amp;gt;.balance()&lt;/li>
+&lt;/ol>
+&lt;p>transfer&lt;/p>
+&lt;ol>
+&lt;li>有Gas限制，最大2300，這個限制可以用來防止重送攻擊(Re-Entrancy Attacks)&lt;/li>
+&lt;li>&amp;lt;address payable&amp;gt;.transfer(uint256 account)&lt;/li>
+&lt;li>此韓式會從合約轉入帳號 amount 價值的以太幣，這邊需要注意的是，當我們沒有特別宣告單位時，uint的型態變數輸入值都是以wei為單位&lt;/li>
+&lt;li>如果執行失敗會拋出錯誤，接收對象若是合約需要注意其中是否有fallback function存在&lt;/li>
+&lt;li>從自容合約傳送相對數量(以wei為單位)的 ether給指定地址。在這裡和我們平常撰寫物件導向程式語言寫法的方向不太一樣，可以稍微注意一下&lt;/li>
+&lt;/ol>
+&lt;p>send&lt;/p>
+&lt;ol>
+&lt;li>有Gas限制，最大2300&lt;/li>
+&lt;li>&amp;lt;address payable&amp;gt;.send( uint 256 amount) returns (bool)&lt;/li>
+&lt;li>此函式會從合約轉入帳號 amount 價值，wei單位的eth&lt;/li>
+&lt;li>是一個屬於 .transfer的低階部件，如果執行.send 失敗的話不會把整個合約終止，而是會return false 不會改變任何的「狀態」&lt;/li>
+&lt;/ol>
+&lt;p>call&lt;/p>
+&lt;ol>
+&lt;li>沒有Gas限制，和send一樣，如果執行失敗不會停止而是return false&lt;/li>
+&lt;li>是較為適合轉入合約的狀況使用，因爲call 可以調整Gas，也可以註明Function Signature 來與轉入合約的Function做對接&lt;/li>
+&lt;li>&amp;lt;address&amp;gt;.call(bytes memory) returns ( bool, bytes memory)&lt;/li>
+&lt;li>&amp;lt;address&amp;gt;.calll{value: amount} (bytes memory) 功能類似 &amp;lt;address&amp;gt;.transfer 會從合約轉入帳號 amount 價值的eth&lt;/li>
+&lt;li>&amp;lt;address&amp;gt;.call{gas: amount }(byte memory)可以調整供給的Gas數量，並且return一個bool值&lt;/li>
+&lt;/ol>
+&lt;p>delegatecall&lt;/p>
+&lt;ol>
+&lt;li>和call基本一樣，只是使用delegate call時不能使用 value，但可附帶註明Gas&lt;/li>
+&lt;/ol>
+&lt;p>staticcall&lt;/p>
+&lt;ol>
+&lt;li>和call基本一樣，只是使用時不能改變contract的任何狀態(state)&lt;/li>
+&lt;/ol>
+&lt;p>為了保證匯款或是提款時的安全性，實作以上函式時，我們都必須不段地檢查回結果(Return 或 Console Window 的資訊)&lt;/p>
+&lt;p>必須要知道的是，call, delegatecall, statical 以上三者都屬於底層呼叫，可以呼叫gas參數，而且在發生錯誤時不會拋出異常，只會回傳false。此三者都是非常底層的函數，所以要勁量避免直接在我們的智能合約 hard-code gas，除非我們確定真的要這麼做&lt;/p></description></item><item><title>如何部署SpringBoot專案與雲端資料庫在Aws上面</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</link><pubDate>Thu, 02 Jan 2025 08:05:29 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</guid><description>&lt;img src="https://i.imgur.com/whP4tpY.png" alt="Featured image of post 如何部署SpringBoot專案與雲端資料庫在Aws上面" />&lt;p>最近又回去資策會當助教了，有同學問我說怎麼部署SpringBoot 的專案到雲端上面，然後建立起雲端資料庫， 所以這篇文章打算記錄一下相關的步驟&lt;/p>
 &lt;p>首先我們先進到AWS的DashBoard， 然後我們看到一個叫做LightSail的東西，我們點開它這邊先簡單講一下LightSail跟一般的EC2有什麼樣的差別，一般EC2跟ＬightSail差別在於他的訂製化程度比較高然後可以選擇的東西比較多，但有時候在一開始配置的話會讓人有點摸不著頭緒，所以我們這邊簡單地用LightSail來模擬一下關於雲端部署的部分 因為我們的目的只是要附上雲端，所以這部分選擇哪個具體來講都沒差&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/KWx4jF9.png"
 loading="lazy"
