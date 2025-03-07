@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SpringBoot on Hoxton</title><link>https://hoxtonhsu.com/categories/springboot/</link><description>Recent content in SpringBoot on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 01 Apr 2023 19:40:36 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/springboot/index.xml" rel="self" type="application/rss+xml"/><item><title>手把手教你寫SprintBoot框架</title><link>https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</link><pubDate>Sat, 01 Apr 2023 19:40:36 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</guid><description>&lt;img src="https://i.imgur.com/1G2G1o4.png" alt="Featured image of post 手把手教你寫SprintBoot框架" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SpringBoot on Hoxton</title><link>https://hoxtoncraft.com/categories/springboot/</link><description>Recent content in SpringBoot on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 01 Apr 2023 19:40:36 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/categories/springboot/index.xml" rel="self" type="application/rss+xml"/><item><title>手把手教你寫SprintBoot框架</title><link>https://hoxtoncraft.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</link><pubDate>Sat, 01 Apr 2023 19:40:36 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</guid><description>&lt;img src="https://i.imgur.com/1G2G1o4.png" alt="Featured image of post 手把手教你寫SprintBoot框架" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>連假實在有點無聊，打算來手寫一個SprintBoot專案，來加深自己對這種IoC框架的理解，我打算把這個框架叫做&lt;strong>Winter&lt;/strong>，象徵我每況愈下的人生，唉&lt;/p>
 &lt;h1 id="sprintboot-單例池">SprintBoot 單例池&lt;/h1>
 &lt;p>本章所用到的程式碼存放在這&lt;/p>
@@ -759,7 +759,7 @@ alt="demo"
 >&lt;/p>
 &lt;p>這樣就是一個基礎的SprintBoot 單例池的創建&lt;/p>
 &lt;h1 id="autowired之實現原理">Autowired之實現原理&lt;/h1>
-&lt;p>To Be Continued &amp;hellip;&lt;/p></description></item><item><title>如何將Junit的測試粒度控制在最小單元</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</link><pubDate>Wed, 30 Nov 2022 13:30:27 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</guid><description>&lt;img src="https://i.imgur.com/4qePz5L.png " alt="Featured image of post 如何將Junit的測試粒度控制在最小單元" />&lt;p>在Junit5中，有對一些Junit的測試的註解進行調整&lt;/p>
+&lt;p>To Be Continued &amp;hellip;&lt;/p></description></item><item><title>如何將Junit的測試粒度控制在最小單元</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</link><pubDate>Wed, 30 Nov 2022 13:30:27 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</guid><description>&lt;img src="https://i.imgur.com/4qePz5L.png " alt="Featured image of post 如何將Junit的測試粒度控制在最小單元" />&lt;p>在Junit5中，有對一些Junit的測試的註解進行調整&lt;/p>
 &lt;p>比如說&lt;/p>
 &lt;table>
 &lt;thead>
@@ -876,7 +876,7 @@ alt="demo"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>基礎AOP介紹-Filter Interceptor AspectJ</title><link>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link><pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</guid><description>&lt;img src="https://i.imgur.com/B7GhSw1.png" alt="Featured image of post 基礎AOP介紹-Filter Interceptor AspectJ" />&lt;h1 id="目錄">目錄&lt;/h1>
+&lt;/div></description></item><item><title>基礎AOP介紹-Filter Interceptor AspectJ</title><link>https://hoxtoncraft.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link><pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</guid><description>&lt;img src="https://i.imgur.com/B7GhSw1.png" alt="Featured image of post 基礎AOP介紹-Filter Interceptor AspectJ" />&lt;h1 id="目錄">目錄&lt;/h1>
 &lt;ul>
 &lt;li>&lt;a class="link" href="#Filter%28%e9%81%8e%e6%bf%be%e5%99%a8%29Interceptor%28%e6%94%94%e6%88%aa%e5%99%a8%29AOP%28%e5%89%96%e9%9d%a2%e5%b0%8e%e5%90%91%e7%a8%8b%e5%bc%8f%e8%a8%ad%e8%a8%88%29%e4%b9%8b%e5%b7%ae%e7%95%b0" >Filter(過濾器)Interceptor(攔截器)AOP(剖面導向程式設計)之差異&lt;/a>
 &lt;ul>
@@ -2106,7 +2106,7 @@ alt="image-20220912120043665"
 &lt;p>&lt;a class="link" href="https://www.zendei.com/article/52571.html" target="_blank" rel="noopener"
 >Spring Boot使用過濾器和攔截器分別實現REST介面簡易安全認證&lt;/a>&lt;/p>
 &lt;blockquote>
-&lt;/blockquote></description></item><item><title>Java內的排程器介紹</title><link>https://hoxtonhsu.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 06 Oct 2022 23:14:21 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/9or5BzU.png" alt="Featured image of post Java內的排程器介紹" />&lt;h1 id="springboot-scheduling">SpringBoot-Scheduling&lt;/h1>
+&lt;/blockquote></description></item><item><title>Java內的排程器介紹</title><link>https://hoxtoncraft.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 06 Oct 2022 23:14:21 +0800</pubDate><guid>https://hoxtoncraft.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/9or5BzU.png" alt="Featured image of post Java內的排程器介紹" />&lt;h1 id="springboot-scheduling">SpringBoot-Scheduling&lt;/h1>
 &lt;p>用來做定期任務的東西，有兩種&lt;/p>
 &lt;ul>
 &lt;li>Spring schedule：只適合處理簡單的計畫任務，不能處理分散式的任務，當任務太多時，可能出現阻塞、崩潰、延遲啟動等問題&lt;/li>

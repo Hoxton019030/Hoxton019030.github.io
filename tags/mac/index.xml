@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mac on Hoxton</title><link>https://hoxtonhsu.com/tags/mac/</link><description>Recent content in Mac on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 31 Aug 2023 10:19:14 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/tags/mac/index.xml" rel="self" type="application/rss+xml"/><item><title>如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 31 Aug 2023 10:19:14 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/ezUyxYS.png" alt="Featured image of post 如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mac on Hoxton</title><link>https://hoxtoncraft.com/tags/mac/</link><description>Recent content in Mac on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 31 Aug 2023 10:19:14 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/tags/mac/index.xml" rel="self" type="application/rss+xml"/><item><title>如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 31 Aug 2023 10:19:14 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E8%AE%93mac%E7%9A%84%E4%BD%BF%E7%94%A8%E9%AB%94%E9%A9%97%E6%9B%B4%E5%8A%A0%E7%B5%B2%E6%BB%91%E6%88%91%E7%9A%84mac%E5%AF%A6%E7%94%A8%E6%8F%92%E4%BB%B6%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/ezUyxYS.png" alt="Featured image of post 如何讓Mac的使用體驗更加絲滑，我的Mac實用插件介紹" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前陣子精蟲衝腦購買了Macbook，使用起來可以說是痛苦並痛苦的感覺。但在這段期間的摸索中，我確實有感受到Macbook系統某方面的好處(其實根本沒有)，也試著去將macbook調教成喜歡的模樣(其實就是windows的樣子)，以下是一些我認為必裝，不裝則根本沒辦法用的插件，有些是要付費的，但價格大約落在300之間，我認為是值得的。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/pon5NsB.gif"
 loading="lazy"
@@ -85,7 +85,7 @@ loading="lazy"
 alt="image-20230905221617214"
 >&lt;/p>
 &lt;p>底下也有些不同的功能，比如說都非常的實用，$320真的是非常的物超所值&lt;/p>
-&lt;h1 id="ｍission-control-">Ｍission Control +&lt;/h1>
+&lt;h1 id="ｍission-control">Ｍission Control&lt;/h1>
 &lt;p>Mission Control 普拉斯，顧名思義，他就只是在Mac內建的任務管理功能上多一個功能，什麼功能呢？你可以直接在MIssion Control的頁面上把頁面關掉&amp;hellip;，或是用command+w來關掉程式，對，就是一個這麼基本的功能，我不知道為什麼Mac居然沒有做，它用起來的樣子就像這樣，雖然看起來很廢，但這個功能我幾乎每五分鐘就會用到一次，我記得這個東西價錢也是300，非常的&amp;hellip;物超所值&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/RAAOW4Z.jpeg"
 loading="lazy"
@@ -119,13 +119,13 @@ alt="image-20230905225204170"
 &lt;p>&lt;img src="https://i.imgur.com/iWooOlm.gif"
 loading="lazy"
 alt="the-office-bow-gif"
->&lt;/p></description></item><item><title>實用的Macbook應用程式</title><link>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84macbook%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F/</link><pubDate>Mon, 17 Jul 2023 14:41:10 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84macbook%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F/</guid><description>&lt;img src="https://i.imgur.com/AfmJKUP.jpg" alt="Featured image of post 實用的Macbook應用程式" />&lt;ol>
+>&lt;/p></description></item><item><title>實用的Macbook應用程式</title><link>https://hoxtoncraft.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84macbook%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F/</link><pubDate>Mon, 17 Jul 2023 14:41:10 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84macbook%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F/</guid><description>&lt;img src="https://i.imgur.com/AfmJKUP.jpg" alt="Featured image of post 實用的Macbook應用程式" />&lt;ol>
 &lt;li>Raycaset&lt;/li>
 &lt;li>PicGo&lt;/li>
 &lt;li>Mission Control Plus&lt;/li>
 &lt;li>iShot&lt;/li>
 &lt;li>iBar&lt;/li>
-&lt;/ol></description></item><item><title>在Iterm2上持續顯示log, branch</title><link>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</link><pubDate>Tue, 27 Jun 2023 11:14:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</guid><description>&lt;img src="https://i.imgur.com/nivCoDF.png" alt="Featured image of post 在Iterm2上持續顯示log, branch" />&lt;h1 id="heading">&lt;/h1>
+&lt;/ol></description></item><item><title>在Iterm2上持續顯示log, branch</title><link>https://hoxtoncraft.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</link><pubDate>Tue, 27 Jun 2023 11:14:03 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</guid><description>&lt;img src="https://i.imgur.com/nivCoDF.png" alt="Featured image of post 在Iterm2上持續顯示log, branch" />&lt;h1 id="heading">&lt;/h1>
 &lt;p>Iterm2裡面，當我輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -144,7 +144,7 @@ alt="the-office-bow-gif"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --replace-all core.pager &lt;span class="s2">&amp;#34;less -F -X&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>這樣就可以持續顯示了&lt;/p></description></item><item><title>如何讓Iterm2擁有如Window Terminal般的絲滑體驗</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</link><pubDate>Thu, 15 Jun 2023 16:32:19 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</guid><description>&lt;img src="https://i.imgur.com/w12QKbR.png" alt="Featured image of post 如何讓Iterm2擁有如Window Terminal般的絲滑體驗" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;/div>&lt;p>這樣就可以持續顯示了&lt;/p></description></item><item><title>如何讓Iterm2擁有如Window Terminal般的絲滑體驗</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</link><pubDate>Thu, 15 Jun 2023 16:32:19 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</guid><description>&lt;img src="https://i.imgur.com/w12QKbR.png" alt="Featured image of post 如何讓Iterm2擁有如Window Terminal般的絲滑體驗" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前一陣子花了65,000買了一台Macbook，不得不說，使用體驗還是覺得像一坨答辯一樣，很多東西都要自己來。用了快一個月左右，還是有很多地方不適應，最直觀的體驗就是Terinal吧，Windows有一個非常強的Terminal介面叫做Window Terminal，它的畫面設計還有使用體驗，海放了Iterm不知道幾條街，尤其是window鍵+`，快速開啟Terminal的功能至今讓我難以忘懷。換到Mac上，我試著熟悉左右切換視窗的方式來模擬那熟悉的感覺，但切換的動畫的那一秒還是讓我煩躁不已。於是搜尋了一下，發現Iterm本身就有內建如同Window Terminal快速開啟Terminal的方式。｀&lt;/p>
 &lt;h1 id="設定">設定&lt;/h1>
 &lt;p>將Exculde from Dock&amp;hellip;的設定打開&lt;/p>
@@ -164,7 +164,7 @@ alt="image-20230615164011470"
 &lt;p>&lt;img src="https://i.imgur.com/BElMNec.gif"
 loading="lazy"
 alt="demo"
->&lt;/p></description></item><item><title>如何為Mac設定環境變數</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</link><pubDate>Wed, 14 Jun 2023 15:34:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/O9emCTx.png" alt="Featured image of post 如何為Mac設定環境變數" />&lt;h1 id="教學">教學&lt;/h1>
+>&lt;/p></description></item><item><title>如何為Mac設定環境變數</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</link><pubDate>Wed, 14 Jun 2023 15:34:15 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/O9emCTx.png" alt="Featured image of post 如何為Mac設定環境變數" />&lt;h1 id="教學">教學&lt;/h1>
 &lt;p>可以先輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -252,7 +252,7 @@ alt="image-20230614153937948"
 &lt;p>&lt;img src="https://i.imgur.com/IP6jUjW.gif"
 loading="lazy"
 alt="demo"
->&lt;/p></description></item><item><title>在MacBook M1環境下使用Terimnal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟IntelliJ" />&lt;h1 id="前言">前言&lt;/h1>
+>&lt;/p></description></item><item><title>在MacBook M1環境下使用Terimnal開啟IntelliJ</title><link>https://hoxtoncraft.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟IntelliJ" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前陣子買了Mac，影響我最大的應該就是不能再像Windows一樣，使用右鍵開啟專案了！因為公司的產品有兩個專案，我也常常把專案砍掉重抓，如果不能用右鍵開啟，那就得從中手動匯入，這樣子一來一往真的是靠北麻煩。&lt;/p>
 &lt;h1 id="如何使用terminal開啟">如何使用Terminal開啟&lt;/h1>
 &lt;p>其實網路上我看了很多教學，大概看了4、5天吧，到最後我才發現其實官網就有寫了，原來幸福的青鳥一直就在身邊，唉垃圾Mac&lt;/p>
@@ -442,7 +442,7 @@ alt="image-20230518213418418"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">open -na &lt;span class="s2">&amp;#34; IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>如何更改Mac terminal的預設路徑</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</link><pubDate>Sat, 13 May 2023 17:44:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</guid><description>&lt;img src="https://i.imgur.com/ieJ6kkK.png" alt="Featured image of post 如何更改Mac terminal的預設路徑" />&lt;h1 id="簡介">簡介&lt;/h1>
+&lt;/div></description></item><item><title>如何更改Mac terminal的預設路徑</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</link><pubDate>Sat, 13 May 2023 17:44:38 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</guid><description>&lt;img src="https://i.imgur.com/ieJ6kkK.png" alt="Featured image of post 如何更改Mac terminal的預設路徑" />&lt;h1 id="簡介">簡介&lt;/h1>
 &lt;p>最近要換新工作了，正好新工作的公司有電腦補助，就趁這個機會把Macbook也買了，一拿到手之後發現超級難用，難用到靠北，真的不懂為什麼一堆人說好用。&lt;/p>
 &lt;h1 id="如何更改termial預設路徑">如何更改Termial預設路徑&lt;/h1>
 &lt;p>預設情況下，Terminal路徑都是&lt;/p>

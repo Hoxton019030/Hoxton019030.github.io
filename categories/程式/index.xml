@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 02 Jan 2025 08:05:29 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>如何部署SpringBoot專案與雲端資料庫在Aws上面</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</link><pubDate>Thu, 02 Jan 2025 08:05:29 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</guid><description>&lt;img src="https://i.imgur.com/whP4tpY.png" alt="Featured image of post 如何部署SpringBoot專案與雲端資料庫在Aws上面" />&lt;p>最近又回去資策會當助教了，有同學問我說怎麼部署SpringBoot 的專案到雲端上面，然後建立起雲端資料庫， 所以這篇文章打算記錄一下相關的步驟&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>程式 on Hoxton</title><link>https://hoxtoncraft.com/categories/%E7%A8%8B%E5%BC%8F/</link><description>Recent content in 程式 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 02 Jan 2025 08:05:29 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/categories/%E7%A8%8B%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>如何部署SpringBoot專案與雲端資料庫在Aws上面</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</link><pubDate>Thu, 02 Jan 2025 08:05:29 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</guid><description>&lt;img src="https://i.imgur.com/whP4tpY.png" alt="Featured image of post 如何部署SpringBoot專案與雲端資料庫在Aws上面" />&lt;p>最近又回去資策會當助教了，有同學問我說怎麼部署SpringBoot 的專案到雲端上面，然後建立起雲端資料庫， 所以這篇文章打算記錄一下相關的步驟&lt;/p>
 &lt;p>首先我們先進到AWS的DashBoard， 然後我們看到一個叫做LightSail的東西，我們點開它這邊先簡單講一下LightSail跟一般的EC2有什麼樣的差別，一般EC2跟ＬightSail差別在於他的訂製化程度比較高然後可以選擇的東西比較多，但有時候在一開始配置的話會讓人有點摸不著頭緒，所以我們這邊簡單地用LightSail來模擬一下關於雲端部署的部分 因為我們的目的只是要附上雲端，所以這部分選擇哪個具體來講都沒差&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/KWx4jF9.png"
 loading="lazy"
@@ -79,7 +79,7 @@ alt="image-20250102163151613"
 &lt;p>&lt;img src="https://i.imgur.com/E5xjkX8.png"
 loading="lazy"
 alt="image-20241218014646997"
->&lt;/p></description></item><item><title>GitHubAction 搭配Aws的CICD ymal檔 附上註解</title><link>https://hoxtonhsu.com/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/</link><pubDate>Thu, 02 Jan 2025 04:08:26 +0800</pubDate><guid>https://hoxtonhsu.com/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/</guid><description>&lt;img src="https://i.imgur.com/Q4khHpn.png" alt="Featured image of post GitHubAction 搭配Aws的CICD ymal檔 附上註解" />&lt;p>前陣子有學生想試著部屬內容到雲服務器上，每次看他要Update內容上去就覺得好麻煩，又要打包又要scp的，我很想幫他們做CICD，但是我的CICD只會Jenkins跟Gitlab CICD，對於Github action的認知可說是少之又少。&lt;/p>
+>&lt;/p></description></item><item><title>GitHubAction 搭配Aws的CICD ymal檔 附上註解</title><link>https://hoxtoncraft.com/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/</link><pubDate>Thu, 02 Jan 2025 04:08:26 +0800</pubDate><guid>https://hoxtoncraft.com/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/</guid><description>&lt;img src="https://i.imgur.com/Q4khHpn.png" alt="Featured image of post GitHubAction 搭配Aws的CICD ymal檔 附上註解" />&lt;p>前陣子有學生想試著部屬內容到雲服務器上，每次看他要Update內容上去就覺得好麻煩，又要打包又要scp的，我很想幫他們做CICD，但是我的CICD只會Jenkins跟Gitlab CICD，對於Github action的認知可說是少之又少。&lt;/p>
 &lt;p>雖然說我這個Blog本身的更新也是用Github Action處理的啦，於是打算趁這個機會把Github Action的內容好好學習一次，Github Action本身的概念我覺得也不難，熟悉了jenkins跟Gitlab CICD後要上手也不是太困難的事情，但我覺得麻煩的點是Github Action本身的runner不能讓我Ssh連上去看狀況，有時候有些東西只能瞎子摸象，慢慢試。&lt;/p>
 &lt;p>整個Action的邏輯其實很簡單，就是在Github Runner中把專案的內容Clone下來並且用maven打包。接著用Ssh把jar檔丟到aws的服務器，之所以不用Docker的原因是因為我懶，ㄏㄏㄏ&lt;/p>
 &lt;p>&lt;img src="https://media.tenor.com/W6lSsK9WgJcAAAAC/mandark-dexter%E2%80%99s-laboratory.gif"
@@ -497,7 +497,7 @@ alt="image-20250102111132940"
 &lt;p>&lt;img src="https://i.imgur.com/zEeljMS.png"
 loading="lazy"
 alt="image-20250102115523136"
->&lt;/p></description></item><item><title>關於Telegram Oauth 如何在Java中驗證Hash的正確性 (附上JavaCode)</title><link>https://hoxtonhsu.com/p/%E9%97%9C%E6%96%BCtelegram-oauth-%E5%A6%82%E4%BD%95%E5%9C%A8java%E4%B8%AD%E9%A9%97%E8%AD%89hash%E7%9A%84%E6%AD%A3%E7%A2%BA%E6%80%A7-%E9%99%84%E4%B8%8Ajavacode/</link><pubDate>Thu, 31 Oct 2024 10:06:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E9%97%9C%E6%96%BCtelegram-oauth-%E5%A6%82%E4%BD%95%E5%9C%A8java%E4%B8%AD%E9%A9%97%E8%AD%89hash%E7%9A%84%E6%AD%A3%E7%A2%BA%E6%80%A7-%E9%99%84%E4%B8%8Ajavacode/</guid><description>&lt;img src="https://i.imgur.com/iwVZdqj.png" alt="Featured image of post 關於Telegram Oauth 如何在Java中驗證Hash的正確性 (附上JavaCode)" />&lt;h2 id="前言">前言&lt;/h2>
+>&lt;/p></description></item><item><title>關於Telegram Oauth 如何在Java中驗證Hash的正確性 (附上JavaCode)</title><link>https://hoxtoncraft.com/p/%E9%97%9C%E6%96%BCtelegram-oauth-%E5%A6%82%E4%BD%95%E5%9C%A8java%E4%B8%AD%E9%A9%97%E8%AD%89hash%E7%9A%84%E6%AD%A3%E7%A2%BA%E6%80%A7-%E9%99%84%E4%B8%8Ajavacode/</link><pubDate>Thu, 31 Oct 2024 10:06:03 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E9%97%9C%E6%96%BCtelegram-oauth-%E5%A6%82%E4%BD%95%E5%9C%A8java%E4%B8%AD%E9%A9%97%E8%AD%89hash%E7%9A%84%E6%AD%A3%E7%A2%BA%E6%80%A7-%E9%99%84%E4%B8%8Ajavacode/</guid><description>&lt;img src="https://i.imgur.com/iwVZdqj.png" alt="Featured image of post 關於Telegram Oauth 如何在Java中驗證Hash的正確性 (附上JavaCode)" />&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>最近不知道為什麼，突然被派去做三方驗證了，說起來這種比較高技術的事情不應該交給我這種菜雞來做的說，可能是當太久的米蟲終於被抓到了吧，ㄏㄏ&lt;/p>
 &lt;p>後來在做的時候發現Telegram送來的資料裡面有包含一些認證資訊，大概就像這樣，有個hashCode可以讓後端去校驗資料的完整性，我試著請ChatGPT做這部分的校驗，但跑了幾次都不太行。後來是從網路上看到有段golang的code，拿過來調整成Java相關的code才成功，具體的程式碼我附在下面&lt;/p>
 &lt;p>但下面那段程式碼我同事提醒有個問題，就是我沒有對auth_date去校驗，那個日期代表的是Oauth證書發給你的時間點，像這邊的1732760301轉成Date就是2024-11-28的日期，後端這邊其實還要去校驗說這個auth_date是否有過期，避免用戶一直拿舊的Oauth資料來登入&lt;/p>
@@ -690,7 +690,7 @@ alt="image-20241204105515533"
 &lt;p>&lt;img src="https://i.imgur.com/PynwhWS.jpeg"
 loading="lazy"
 alt="image-20241204110038544"
->&lt;/p></description></item><item><title>如何使用Aws LightSail 結合 docker 建立遊戲伺服器</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail-%E7%B5%90%E5%90%88-docker-%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/</link><pubDate>Thu, 03 Oct 2024 14:34:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail-%E7%B5%90%E5%90%88-docker-%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/</guid><description>&lt;img src="https://i.imgur.com/JKvJ1yL.png" alt="Featured image of post 如何使用Aws LightSail 結合 docker 建立遊戲伺服器" />&lt;p>前陣子朋友揪團玩遊戲時，又陷入誰要當Host的問題，記得高中大學時，都是一個網路比較好的人當host，其他人去連，這種方式的缺點也很明顯，就是電腦必須要運行著，一但關機後我們就需要在群組Tag對方，請他上線開房。&lt;/p>
+>&lt;/p></description></item><item><title>如何使用Aws LightSail 結合 docker 建立遊戲伺服器</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail-%E7%B5%90%E5%90%88-docker-%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/</link><pubDate>Thu, 03 Oct 2024 14:34:43 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8aws-lightsail-%E7%B5%90%E5%90%88-docker-%E5%BB%BA%E7%AB%8B%E9%81%8A%E6%88%B2%E4%BC%BA%E6%9C%8D%E5%99%A8/</guid><description>&lt;img src="https://i.imgur.com/JKvJ1yL.png" alt="Featured image of post 如何使用Aws LightSail 結合 docker 建立遊戲伺服器" />&lt;p>前陣子朋友揪團玩遊戲時，又陷入誰要當Host的問題，記得高中大學時，都是一個網路比較好的人當host，其他人去連，這種方式的缺點也很明顯，就是電腦必須要運行著，一但關機後我們就需要在群組Tag對方，請他上線開房。&lt;/p>
 &lt;p>於是我突然想到了Aws的服務，邏輯上來講我應該可以在Aws上面運行一個伺服器的終端，然後我們透過Aws的固定Ip去連線，這樣我們就解決了開房問題，並且也不需要仰賴某某人上線才能玩，除此之外也不用處理自己開伺服器要弄的一堆rounter設定、Http Forwarding之類的，查了一下發現Aws本身就有一個叫做lightsail的功能，本質就是一個更輕量化的Ec2，不支援細緻的微調，但好處就是不需要太多基礎知識，只需要稍微設置一下就能在Aws上快速部署。&lt;/p>
 &lt;h1 id="lightsail">Lightsail&lt;/h1>
 &lt;p>Lightsail是一個Aws的服務，主要是處理輕量化的需求，提供了一些固定式的雲端機器模板。坊間也有一些類似的產品，比如說Digital Ocean的Droplet，但是Digital Ocean離台灣最近的伺服器在新加坡，而Aws最近的伺服器則是在日本，一來一往之下Aws確實是更好的選擇。&lt;/p>
@@ -896,7 +896,7 @@ alt="image-20241003165649683"
 &lt;p>&lt;img src="https://i.imgur.com/9dA5l6T.png"
 loading="lazy"
 alt="image-20241003165734303"
->&lt;/p></description></item><item><title>使用Dubbo進行分布系統學習之100.64.0.1問題Debug紀錄</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8dubbo%E9%80%B2%E8%A1%8C%E5%88%86%E5%B8%83%E7%B3%BB%E7%B5%B1%E5%AD%B8%E7%BF%92%E4%B9%8B100.64.0.1%E5%95%8F%E9%A1%8Cdebug%E7%B4%80%E9%8C%84/</link><pubDate>Fri, 27 Sep 2024 16:55:54 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8dubbo%E9%80%B2%E8%A1%8C%E5%88%86%E5%B8%83%E7%B3%BB%E7%B5%B1%E5%AD%B8%E7%BF%92%E4%B9%8B100.64.0.1%E5%95%8F%E9%A1%8Cdebug%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/0TwMboK.png" alt="Featured image of post 使用Dubbo進行分布系統學習之100.64.0.1問題Debug紀錄" />&lt;p>前陣子在學習Dubbo建立分布式服務時，不知道為什麼在我的Macbook上一直啟用不了dubbo服務，每次要啟動consumer時，總是會出現&lt;/p>
+>&lt;/p></description></item><item><title>使用Dubbo進行分布系統學習之100.64.0.1問題Debug紀錄</title><link>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8dubbo%E9%80%B2%E8%A1%8C%E5%88%86%E5%B8%83%E7%B3%BB%E7%B5%B1%E5%AD%B8%E7%BF%92%E4%B9%8B100.64.0.1%E5%95%8F%E9%A1%8Cdebug%E7%B4%80%E9%8C%84/</link><pubDate>Fri, 27 Sep 2024 16:55:54 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8dubbo%E9%80%B2%E8%A1%8C%E5%88%86%E5%B8%83%E7%B3%BB%E7%B5%B1%E5%AD%B8%E7%BF%92%E4%B9%8B100.64.0.1%E5%95%8F%E9%A1%8Cdebug%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/0TwMboK.png" alt="Featured image of post 使用Dubbo進行分布系統學習之100.64.0.1問題Debug紀錄" />&lt;p>前陣子在學習Dubbo建立分布式服務時，不知道為什麼在我的Macbook上一直啟用不了dubbo服務，每次要啟動consumer時，總是會出現&lt;/p>
 &lt;p>Connection refused: /100.64.0.1:20885&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/nURsyAz.png"
 loading="lazy"
@@ -924,7 +924,7 @@ alt="messageImage_1727588051969"
 &lt;p>&lt;img src="https://i.imgur.com/mqktBE4.jpeg"
 loading="lazy"
 alt="messageImage_1727588144770"
->&lt;/p></description></item><item><title>Dubbo快速搭建學習筆記</title><link>https://hoxtonhsu.com/p/dubbo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 31 Jul 2024 15:00:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/dubbo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1MgicUX.png" alt="Featured image of post Dubbo快速搭建學習筆記" />&lt;h1 id="學習來源">學習來源&lt;/h1>
+>&lt;/p></description></item><item><title>Dubbo快速搭建學習筆記</title><link>https://hoxtoncraft.com/p/dubbo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 31 Jul 2024 15:00:22 +0800</pubDate><guid>https://hoxtoncraft.com/p/dubbo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1MgicUX.png" alt="Featured image of post Dubbo快速搭建學習筆記" />&lt;h1 id="學習來源">學習來源&lt;/h1>
 &lt;p>本文參考至&lt;/p>
 &lt;p>【【演示】SpringBoot+Dubbo+ZooKeeper 快速搭建】 &lt;a href="https://www.bilibili.com/video/BV1XK411f7jL/?share_source=copy_web&amp;amp;vd_source=b38b089ffe2c29ef61bebcff0f458ed8">https://www.bilibili.com/video/BV1XK411f7jL/?share_source=copy_web&amp;amp;vd_source=b38b089ffe2c29ef61bebcff0f458ed8&lt;/a>&lt;/p>
 &lt;h1 id="前言">前言&lt;/h1>
@@ -1539,7 +1539,7 @@ alt="image-20240731172505199"
 loading="lazy"
 alt="image-20240731172534989"
 >&lt;/p>
-&lt;p>就可以看到目前註冊的服務了&lt;/p></description></item><item><title>千迴百轉的ZooKeeper安裝</title><link>https://hoxtonhsu.com/p/%E5%8D%83%E8%BF%B4%E7%99%BE%E8%BD%89%E7%9A%84zookeeper%E5%AE%89%E8%A3%9D/</link><pubDate>Wed, 31 Jul 2024 11:33:29 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%8D%83%E8%BF%B4%E7%99%BE%E8%BD%89%E7%9A%84zookeeper%E5%AE%89%E8%A3%9D/</guid><description>&lt;img src="https://i.imgur.com/FQIqGZl.png" alt="Featured image of post 千迴百轉的ZooKeeper安裝" />&lt;p>媽的，奮戰了一年終於安裝成功了= =&lt;/p>
+&lt;p>就可以看到目前註冊的服務了&lt;/p></description></item><item><title>千迴百轉的ZooKeeper安裝</title><link>https://hoxtoncraft.com/p/%E5%8D%83%E8%BF%B4%E7%99%BE%E8%BD%89%E7%9A%84zookeeper%E5%AE%89%E8%A3%9D/</link><pubDate>Wed, 31 Jul 2024 11:33:29 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%8D%83%E8%BF%B4%E7%99%BE%E8%BD%89%E7%9A%84zookeeper%E5%AE%89%E8%A3%9D/</guid><description>&lt;img src="https://i.imgur.com/FQIqGZl.png" alt="Featured image of post 千迴百轉的ZooKeeper安裝" />&lt;p>媽的，奮戰了一年終於安裝成功了= =&lt;/p>
 &lt;p>紀錄一下Zookeeper安裝到底她媽多糞，以下紀錄Windows安裝，Mac的我不想處理了= =&lt;/p>
 &lt;ol>
 &lt;li>到https://zookeeper.apache.org/index.html 安裝&lt;/li>
@@ -1581,7 +1581,7 @@ alt="image-20240731114332707"
 &lt;p>&lt;img src="https://i.imgur.com/0frPRNc.png"
 loading="lazy"
 alt="image-20240731114827416"
->&lt;/p></description></item><item><title>Dubbo在單元測試如何注入@DubboReference 避免Null Point Exception</title><link>https://hoxtonhsu.com/p/dubbo%E5%9C%A8%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%A6%82%E4%BD%95%E6%B3%A8%E5%85%A5dubboreference-%E9%81%BF%E5%85%8Dnull-point-exception/</link><pubDate>Fri, 26 Jul 2024 17:52:54 +0800</pubDate><guid>https://hoxtonhsu.com/p/dubbo%E5%9C%A8%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%A6%82%E4%BD%95%E6%B3%A8%E5%85%A5dubboreference-%E9%81%BF%E5%85%8Dnull-point-exception/</guid><description>&lt;img src="https://i.imgur.com/e12IsXC.png" alt="Featured image of post Dubbo在單元測試如何注入@DubboReference 避免Null Point Exception" />&lt;p>​&lt;/p>
+>&lt;/p></description></item><item><title>Dubbo在單元測試如何注入@DubboReference 避免Null Point Exception</title><link>https://hoxtoncraft.com/p/dubbo%E5%9C%A8%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%A6%82%E4%BD%95%E6%B3%A8%E5%85%A5dubboreference-%E9%81%BF%E5%85%8Dnull-point-exception/</link><pubDate>Fri, 26 Jul 2024 17:52:54 +0800</pubDate><guid>https://hoxtoncraft.com/p/dubbo%E5%9C%A8%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%A6%82%E4%BD%95%E6%B3%A8%E5%85%A5dubboreference-%E9%81%BF%E5%85%8Dnull-point-exception/</guid><description>&lt;img src="https://i.imgur.com/e12IsXC.png" alt="Featured image of post Dubbo在單元測試如何注入@DubboReference 避免Null Point Exception" />&lt;p>​&lt;/p>
 &lt;p>前陣子工作實在是太忙了，寫了很多很爛的code出來，然後效能很差，依賴很多，分層也不夠清晰，讓我想到之前在御諾時就有實踐過的TDD，當時我說的一口好code，說TDD可以幫助架構、重構，有助於在爛code出現時提前嗅到它的味道，但從御諾離職後我就沒再寫過單元測試了，ㄏㄏ。&lt;/p>
 &lt;p>之前在接案公司時是說寫單元測試會不統一，有人有寫有人沒寫，不好跟客戶交代，換到現在尋頂時則是專案太大，開發進度太趕，我就有點懶得寫了，再加上一開始項目其實有很多Dependency不存在我們這邊，存在伺服器那，寫單元測試的意願就直線下降了&lt;/p>
 &lt;p>直到最近寫了一坨爛code被K得滿頭包，決定要來解決一下這個問題，但在剛開始時就遇到一個問題，項目的@Dubbo無法被SpringBoot的@Mock給mock掉&lt;/p>
@@ -1666,7 +1666,7 @@ alt="image-20240731114827416"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>就可以在呼叫userController時，去mock掉@DubboReference的bean了&lt;/p></description></item><item><title>使用Map來找真的比List還快嗎</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8map%E4%BE%86%E6%89%BE%E7%9C%9F%E7%9A%84%E6%AF%94list%E9%82%84%E5%BF%AB%E5%97%8E/</link><pubDate>Thu, 20 Jun 2024 22:48:07 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8map%E4%BE%86%E6%89%BE%E7%9C%9F%E7%9A%84%E6%AF%94list%E9%82%84%E5%BF%AB%E5%97%8E/</guid><description>&lt;img src="https://i.imgur.com/fioKvTX.png" alt="Featured image of post 使用Map來找真的比List還快嗎" />&lt;p>這陣子工作上的時候又遇到一個要從兩個List中找出相同Id，然後 Assign 給對方的那種，正當我準備再寫個Double-ForEach來解決這個問題時，腦中突然被這種很醜的寫法給噁心到了，頓時間在想&lt;/p>
+&lt;/div>&lt;p>就可以在呼叫userController時，去mock掉@DubboReference的bean了&lt;/p></description></item><item><title>使用Map來找真的比List還快嗎</title><link>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8map%E4%BE%86%E6%89%BE%E7%9C%9F%E7%9A%84%E6%AF%94list%E9%82%84%E5%BF%AB%E5%97%8E/</link><pubDate>Thu, 20 Jun 2024 22:48:07 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8map%E4%BE%86%E6%89%BE%E7%9C%9F%E7%9A%84%E6%AF%94list%E9%82%84%E5%BF%AB%E5%97%8E/</guid><description>&lt;img src="https://i.imgur.com/fioKvTX.png" alt="Featured image of post 使用Map來找真的比List還快嗎" />&lt;p>這陣子工作上的時候又遇到一個要從兩個List中找出相同Id，然後 Assign 給對方的那種，正當我準備再寫個Double-ForEach來解決這個問題時，腦中突然被這種很醜的寫法給噁心到了，頓時間在想&lt;/p>
 &lt;p>「肯定有更好的方式吧」&lt;/p>
 &lt;p>於是就想到了HashMap，我知道取出Map的時間複雜度為O(1)，但這是保證都是O(1)嗎？還是說只有用index查找，例如get(1)這種才快呢？老實說我不是很清楚，另外我如果要用HashMap，我勢必要先把List的內容put到Map中，那這樣跟我直接用Double-ForEach查找來講，是不是會更慢呢？於是今天打算來研究一下，我的想法很簡單，創造10,000,000個UID，並分別放到List跟Map，最後取出最後新增的UID，來比較兩者之間的速度&lt;/p>
 &lt;p>程式碼如下&lt;/p>
@@ -1829,7 +1829,7 @@ alt="iShot_2024-06-20_23.12.53"
 List資料塞完耗時1656
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>可以看到我的想法確實沒錯，塞到hashMap確實比單純塞到List耗時還要長，因為還要處理哈希碰撞的問題，但相對來說，Map跟List塞進去的性能差異並沒有到搜尋的差異那麼大，而且這只是在只需要搜尋一次的場景，如果單一方法有需要搜尋兩次的話，那麼設定成Map確實是個不錯的解法。&lt;/p></description></item><item><title>591結合Google Apps Script 自動傳送Line</title><link>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</link><pubDate>Tue, 28 May 2024 01:42:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</guid><description>&lt;img src="https://i.imgur.com/dYtFfAi.png" alt="Featured image of post 591結合Google Apps Script 自動傳送Line" />&lt;p>GitHub網址在 ：&lt;a class="link" href="https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto" target="_blank" rel="noopener"
+&lt;/div>&lt;p>可以看到我的想法確實沒錯，塞到hashMap確實比單純塞到List耗時還要長，因為還要處理哈希碰撞的問題，但相對來說，Map跟List塞進去的性能差異並沒有到搜尋的差異那麼大，而且這只是在只需要搜尋一次的場景，如果單一方法有需要搜尋兩次的話，那麼設定成Map確實是個不錯的解法。&lt;/p></description></item><item><title>591結合Google Apps Script 自動傳送Line</title><link>https://hoxtoncraft.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</link><pubDate>Tue, 28 May 2024 01:42:08 +0800</pubDate><guid>https://hoxtoncraft.com/p/591%E7%B5%90%E5%90%88google-apps-script-%E8%87%AA%E5%8B%95%E5%82%B3%E9%80%81line/</guid><description>&lt;img src="https://i.imgur.com/dYtFfAi.png" alt="Featured image of post 591結合Google Apps Script 自動傳送Line" />&lt;p>GitHub網址在 ：&lt;a class="link" href="https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto" target="_blank" rel="noopener"
 >https://github.com/Hoxton019030/591_rent_google_apps_script_fullauto&lt;/a>&lt;/p>
 &lt;p>靈感來自於：&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10255573" target="_blank" rel="noopener"
 >超簡單一鍵推播 591 租屋資訊完全免 Coding－透過 Google Sheet 與 LINE Notify&lt;/a>&lt;/p>
@@ -1924,7 +1924,7 @@ alt="image-20240528010157677"
 &lt;p>&lt;img src="https://i.imgur.com/mWaMp3q.gif"
 loading="lazy"
 alt="iShot_2024-05-28_01.10.51"
->&lt;/p></description></item><item><title>為了租房子而學的GAS(Google Apps Script)</title><link>https://hoxtonhsu.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</link><pubDate>Wed, 22 May 2024 23:49:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</guid><description>&lt;img src="https://i.imgur.com/V6lmUtX.png" alt="Featured image of post 為了租房子而學的GAS(Google Apps Script)" />&lt;p>最近找房子真的找得好累，偶然間在網路上看到&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10255573" target="_blank" rel="noopener"
+>&lt;/p></description></item><item><title>為了租房子而學的GAS(Google Apps Script)</title><link>https://hoxtoncraft.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</link><pubDate>Wed, 22 May 2024 23:49:06 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E7%82%BA%E4%BA%86%E7%A7%9F%E6%88%BF%E5%AD%90%E8%80%8C%E5%AD%B8%E7%9A%84gasgoogle-apps-script/</guid><description>&lt;img src="https://i.imgur.com/V6lmUtX.png" alt="Featured image of post 為了租房子而學的GAS(Google Apps Script)" />&lt;p>最近找房子真的找得好累，偶然間在網路上看到&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10255573" target="_blank" rel="noopener"
 >超簡單一鍵推播 591 租屋資訊完全免 Coding－透過 Google Sheet 與 LINE Notify&lt;/a>，想要拿來用卻發現好像&lt;/p>
 &lt;p>已經失效了，想要維護一下發現自己完全不懂這些東西，於是秉持著能坐就不躺，能躺就不坐的懶人心態，決定要來研究一下怎麼利用GAS跟Line Notify來達到只要有更新資料，就會發送Line通知給我的功能。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/u5xrFYH.gif"
@@ -2172,7 +2172,7 @@ alt="image-20240523004914300"
 &lt;p>&lt;img src="https://i.imgur.com/Rm8ikd1.png"
 loading="lazy"
 alt="image-20240523005324295"
->&lt;/p></description></item><item><title>AWS學習筆記</title><link>https://hoxtonhsu.com/p/aws%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 11 May 2024 14:25:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/aws%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/lluhyyC.png" alt="Featured image of post AWS學習筆記" />&lt;h1 id="amazon-web-server">Amazon Web Server&lt;/h1>
+>&lt;/p></description></item><item><title>AWS學習筆記</title><link>https://hoxtoncraft.com/p/aws%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 11 May 2024 14:25:03 +0800</pubDate><guid>https://hoxtoncraft.com/p/aws%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/lluhyyC.png" alt="Featured image of post AWS學習筆記" />&lt;h1 id="amazon-web-server">Amazon Web Server&lt;/h1>
 &lt;h1 id="介紹">介紹&lt;/h1>
 &lt;h2 id="amazon-ec2">Amazon EC2&lt;/h2>
 &lt;p>架伺服器的，動態擴充的VPS&lt;/p>
@@ -2635,7 +2635,7 @@ alt="image-20240601151936318"
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1vW411G75e?p=1" target="_blank" rel="noopener"
 >【AWS】云计算课程全集（更新中&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=roIzxMx-XHc&amp;amp;ab_channel=ProgressBar%E9%80%B2%E5%BA%A6%E6%A2%9D%E7%B7%9A%E4%B8%8A%E8%AA%B2%E7%A8%8B" target="_blank" rel="noopener"
->[AWS][教學] AWS基本使用#01. AWS免費方案介紹&lt;/a>&lt;/p></description></item><item><title>Nginx</title><link>https://hoxtonhsu.com/p/nginx/</link><pubDate>Wed, 08 May 2024 17:43:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/nginx/</guid><description>&lt;img src="https://i.imgur.com/h4PsSxV.jpeg" alt="Featured image of post Nginx" />&lt;h1 id="安裝">安裝&lt;/h1>
+>[AWS][教學] AWS基本使用#01. AWS免費方案介紹&lt;/a>&lt;/p></description></item><item><title>Nginx</title><link>https://hoxtoncraft.com/p/nginx/</link><pubDate>Wed, 08 May 2024 17:43:33 +0800</pubDate><guid>https://hoxtoncraft.com/p/nginx/</guid><description>&lt;img src="https://i.imgur.com/h4PsSxV.jpeg" alt="Featured image of post Nginx" />&lt;h1 id="安裝">安裝&lt;/h1>
 &lt;h2 id="mac-homebrew">Mac Homebrew&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -3443,7 +3443,7 @@ alt="image-20240510145620545"
 >&lt;/p>
 &lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a href="https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1mz4y1n7PQ?p=3&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.bilibili.com/video/BV1TZ421b7SD/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1TZ421b7SD/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p></description></item><item><title>應用codegpt快速產生commit</title><link>https://hoxtonhsu.com/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/</link><pubDate>Fri, 26 Apr 2024 18:20:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/</guid><description>&lt;img src="https://i.imgur.com/o0SuW5w.png" alt="Featured image of post 應用codegpt快速產生commit" />&lt;p>在新的公司裡面，對於commit 還有分支其實是沒啥規範的，如果我資策會剛畢業，應該會覺得這家公司沒有規範，但我現在會覺得不規範可能也是好事，畢竟我實際去工作時，真的會去翻commit 的次數少之又少。&lt;/p>
+&lt;p>&lt;a href="https://www.bilibili.com/video/BV1TZ421b7SD/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0">https://www.bilibili.com/video/BV1TZ421b7SD/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0&lt;/a>&lt;/p></description></item><item><title>應用codegpt快速產生commit</title><link>https://hoxtoncraft.com/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/</link><pubDate>Fri, 26 Apr 2024 18:20:02 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E6%87%89%E7%94%A8codegpt%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Fcommit/</guid><description>&lt;img src="https://i.imgur.com/o0SuW5w.png" alt="Featured image of post 應用codegpt快速產生commit" />&lt;p>在新的公司裡面，對於commit 還有分支其實是沒啥規範的，如果我資策會剛畢業，應該會覺得這家公司沒有規範，但我現在會覺得不規範可能也是好事，畢竟我實際去工作時，真的會去翻commit 的次數少之又少。&lt;/p>
 &lt;p>但時間久了發現這樣也有些問題，比如說我會有很多commit 是&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -3682,7 +3682,7 @@ alt="image-20240426222405688"
 &lt;p>&lt;img src="https://i.imgur.com/oV2UgVb.gif"
 loading="lazy"
 alt="iShot_2024-04-26_18.32.34"
->&lt;/p></description></item><item><title>MyBatis快速配置檔</title><link>https://hoxtonhsu.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</link><pubDate>Wed, 13 Mar 2024 00:34:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</guid><description>&lt;img src="https://i.imgur.com/TcbKVGe.jpeg" alt="Featured image of post MyBatis快速配置檔" />&lt;p>每次他媽用MyBatis，都他媽出一些白癡問題，真的不懂他媽一堆公司抱著MyBatis這垃圾到底是要欉三小&lt;/p>
+>&lt;/p></description></item><item><title>MyBatis快速配置檔</title><link>https://hoxtoncraft.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</link><pubDate>Wed, 13 Mar 2024 00:34:02 +0800</pubDate><guid>https://hoxtoncraft.com/p/mybatis%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E6%AA%94/</guid><description>&lt;img src="https://i.imgur.com/TcbKVGe.jpeg" alt="Featured image of post MyBatis快速配置檔" />&lt;p>每次他媽用MyBatis，都他媽出一些白癡問題，真的不懂他媽一堆公司抱著MyBatis這垃圾到底是要欉三小&lt;/p>
 &lt;h1 id="mybatis相關dependency">MyBatis相關Dependency&lt;/h1>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -3776,7 +3776,7 @@ alt="image-20240313004154323"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>在SQL中使用or是一件非常危險的事情</title><link>https://hoxtonhsu.com/p/%E5%9C%A8sql%E4%B8%AD%E4%BD%BF%E7%94%A8or%E6%98%AF%E4%B8%80%E4%BB%B6%E9%9D%9E%E5%B8%B8%E5%8D%B1%E9%9A%AA%E7%9A%84%E4%BA%8B%E6%83%85/</link><pubDate>Wed, 03 Jan 2024 18:51:54 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8sql%E4%B8%AD%E4%BD%BF%E7%94%A8or%E6%98%AF%E4%B8%80%E4%BB%B6%E9%9D%9E%E5%B8%B8%E5%8D%B1%E9%9A%AA%E7%9A%84%E4%BA%8B%E6%83%85/</guid><description>&lt;img src="https://i.imgur.com/RAhQlP7.png" alt="Featured image of post 在SQL中使用or是一件非常危險的事情" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;/div></description></item><item><title>在SQL中使用or是一件非常危險的事情</title><link>https://hoxtoncraft.com/p/%E5%9C%A8sql%E4%B8%AD%E4%BD%BF%E7%94%A8or%E6%98%AF%E4%B8%80%E4%BB%B6%E9%9D%9E%E5%B8%B8%E5%8D%B1%E9%9A%AA%E7%9A%84%E4%BA%8B%E6%83%85/</link><pubDate>Wed, 03 Jan 2024 18:51:54 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8sql%E4%B8%AD%E4%BD%BF%E7%94%A8or%E6%98%AF%E4%B8%80%E4%BB%B6%E9%9D%9E%E5%B8%B8%E5%8D%B1%E9%9A%AA%E7%9A%84%E4%BA%8B%E6%83%85/</guid><description>&lt;img src="https://i.imgur.com/RAhQlP7.png" alt="Featured image of post 在SQL中使用or是一件非常危險的事情" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>在公司一次版本迭代中，有多了新的table還有新的欄位，因此有舊資料跟新資料之間要過度，原本用來join on的欄位也要跟著換&lt;/p>
 &lt;p>原本的如下&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -3992,7 +3992,7 @@ alt="image-20240103231657137"
 &lt;p>&lt;a class="link" href="https://medium.com/%E6%95%B8%E6%93%9A%E5%88%86%E6%9E%90%E4%B8%8D%E6%98%AF%E5%80%8B%E4%BA%8B/%E4%BB%80%E9%BA%BC-%E6%88%91%E5%AF%AB%E7%9A%84%E4%B8%80%E6%A2%9Dsql%E8%AE%93%E5%85%AC%E5%8F%B8%E7%B6%B2%E7%AB%99%E7%99%B1%E7%98%93%E4%BA%86-sql%E6%85%A2%E6%9F%A5%E8%A9%A2%E6%94%B9%E5%96%84%E6%96%B9%E6%A1%88-b354b4114ce2" target="_blank" rel="noopener"
 >什麼？我寫的一條SQL讓公司網站癱瘓了…SQL慢查詢改善&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.cnblogs.com/myseries/p/11570661.html" target="_blank" rel="noopener"
->会引起全表扫描的几种SQL 以及sql优化 （转）&lt;/a>&lt;/p></description></item><item><title>Django學習筆記</title><link>https://hoxtonhsu.com/p/django%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 27 Dec 2023 02:46:29 +0800</pubDate><guid>https://hoxtonhsu.com/p/django%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/fIk8FK8.jpg" alt="Featured image of post Django學習筆記" />&lt;h1 id="參考網址">參考網址&lt;/h1>
+>会引起全表扫描的几种SQL 以及sql优化 （转）&lt;/a>&lt;/p></description></item><item><title>Django學習筆記</title><link>https://hoxtoncraft.com/p/django%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 27 Dec 2023 02:46:29 +0800</pubDate><guid>https://hoxtoncraft.com/p/django%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/fIk8FK8.jpg" alt="Featured image of post Django學習筆記" />&lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a href="https://www.bilibili.com/video/BV1Sf4y1v77f?p=1">https://www.bilibili.com/video/BV1Sf4y1v77f?p=1&lt;/a>&lt;/p>
 &lt;h1 id="專案程式碼">專案程式碼&lt;/h1>
 &lt;p>&lt;a href="https://github.com/Hoxton019030/Django_pratice">https://github.com/Hoxton019030/Django_pratice&lt;/a>&lt;/p>
@@ -4252,7 +4252,7 @@ alt="image-20231228032117075"
 &lt;p>&lt;img src="https://i.imgur.com/Wd78ebB.png"
 loading="lazy"
 alt="image-20231228032315240"
->&lt;/p></description></item><item><title>Java常用方法 將檔案讀成String</title><link>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</link><pubDate>Wed, 27 Dec 2023 00:34:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</guid><description>&lt;img src="https://i.imgur.com/RFS2LGT.png" alt="Featured image of post Java常用方法 將檔案讀成String" />&lt;div class="highlight">&lt;div class="chroma">
+>&lt;/p></description></item><item><title>Java常用方法 將檔案讀成String</title><link>https://hoxtoncraft.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</link><pubDate>Wed, 27 Dec 2023 00:34:04 +0800</pubDate><guid>https://hoxtoncraft.com/p/java%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%B0%87%E6%AA%94%E6%A1%88%E8%AE%80%E6%88%90string/</guid><description>&lt;img src="https://i.imgur.com/RFS2LGT.png" alt="Featured image of post Java常用方法 將檔案讀成String" />&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
@@ -4284,7 +4284,7 @@ alt="image-20231228032315240"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>處理 Mybatis導致的 Parameter 1 of constructor in ...required a bean of type ... that could not be found.</title><link>https://hoxtonhsu.com/p/%E8%99%95%E7%90%86-mybatis%E5%B0%8E%E8%87%B4%E7%9A%84-parameter-1-of-constructor-in-...required-a-bean-of-type-...-that-could-not-be-found./</link><pubDate>Mon, 04 Dec 2023 16:28:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%99%95%E7%90%86-mybatis%E5%B0%8E%E8%87%B4%E7%9A%84-parameter-1-of-constructor-in-...required-a-bean-of-type-...-that-could-not-be-found./</guid><description>&lt;img src="https://i.imgur.com/OXooq5i.png" alt="Featured image of post 處理 Mybatis導致的 Parameter 1 of constructor in ...required a bean of type ... that could not be found." />&lt;h1 id="省流">省流&lt;/h1>
+&lt;/div></description></item><item><title>處理 Mybatis導致的 Parameter 1 of constructor in ...required a bean of type ... that could not be found.</title><link>https://hoxtoncraft.com/p/%E8%99%95%E7%90%86-mybatis%E5%B0%8E%E8%87%B4%E7%9A%84-parameter-1-of-constructor-in-...required-a-bean-of-type-...-that-could-not-be-found./</link><pubDate>Mon, 04 Dec 2023 16:28:43 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E8%99%95%E7%90%86-mybatis%E5%B0%8E%E8%87%B4%E7%9A%84-parameter-1-of-constructor-in-...required-a-bean-of-type-...-that-could-not-be-found./</guid><description>&lt;img src="https://i.imgur.com/OXooq5i.png" alt="Featured image of post 處理 Mybatis導致的 Parameter 1 of constructor in ...required a bean of type ... that could not be found." />&lt;h1 id="省流">省流&lt;/h1>
 &lt;p>如果你是用SpringBoot 3 的話，你的Mybatis版本也要更新到3，不然會一直出現&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -4332,7 +4332,7 @@ alt="image-20231204163535485"
 &lt;p>然後順著這個線索，到我的POM裡面去看，果然看到了我的MyBatis版本還留在2.0版，接著重新找一個支援3.0的版本&lt;/p>
 &lt;p>Shift shift -&amp;gt; reload maven project&lt;/p>
 &lt;p>這樣就可以運行起來了。順便抱怨一下，3.0好像有更新過了，我記得剛出來的時候還強制要寫dockerfile = =&lt;/p>
-&lt;p>最近在創建新專案的時候就沒這個問題了&lt;/p></description></item><item><title>Java異步執行小精靈 CompletableFuture介紹</title><link>https://hoxtonhsu.com/p/java%E7%95%B0%E6%AD%A5%E5%9F%B7%E8%A1%8C%E5%B0%8F%E7%B2%BE%E9%9D%88-completablefuture%E4%BB%8B%E7%B4%B9/</link><pubDate>Sun, 03 Dec 2023 11:34:45 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E7%95%B0%E6%AD%A5%E5%9F%B7%E8%A1%8C%E5%B0%8F%E7%B2%BE%E9%9D%88-completablefuture%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/bbIoOnR.png" alt="Featured image of post Java異步執行小精靈 CompletableFuture介紹" />&lt;p>前陣子公司有個需求，是要用Elastic Search撈出四筆約20萬長度左右的List做數據處理，那時候看到同事用了這個CompletableFuture的Lambda，當時看到這個東西的時候&lt;/p>
+&lt;p>最近在創建新專案的時候就沒這個問題了&lt;/p></description></item><item><title>Java異步執行小精靈 CompletableFuture介紹</title><link>https://hoxtoncraft.com/p/java%E7%95%B0%E6%AD%A5%E5%9F%B7%E8%A1%8C%E5%B0%8F%E7%B2%BE%E9%9D%88-completablefuture%E4%BB%8B%E7%B4%B9/</link><pubDate>Sun, 03 Dec 2023 11:34:45 +0800</pubDate><guid>https://hoxtoncraft.com/p/java%E7%95%B0%E6%AD%A5%E5%9F%B7%E8%A1%8C%E5%B0%8F%E7%B2%BE%E9%9D%88-completablefuture%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/bbIoOnR.png" alt="Featured image of post Java異步執行小精靈 CompletableFuture介紹" />&lt;p>前陣子公司有個需求，是要用Elastic Search撈出四筆約20萬長度左右的List做數據處理，那時候看到同事用了這個CompletableFuture的Lambda，當時看到這個東西的時候&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/iHlPLHG.png"
 loading="lazy"
 alt="image-20231203115648801"
@@ -4348,7 +4348,7 @@ alt="image-20231203120242244"
 &lt;h1 id="實際演練">實際演練&lt;/h1>
 &lt;h1 id="推薦的外部連結">推薦的外部連結&lt;/h1>
 &lt;p>&lt;a href="https://popcornylu.gitbooks.io/java_multithread/content/async/cfuture.html">https://popcornylu.gitbooks.io/java_multithread/content/async/cfuture.html&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://www.zhihu.com/question/433003386">https://www.zhihu.com/question/433003386&lt;/a>&lt;/p></description></item><item><title>IntelliJ快速產生log模板</title><link>https://hoxtonhsu.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</link><pubDate>Wed, 22 Nov 2023 02:05:31 +0800</pubDate><guid>https://hoxtonhsu.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/oRRgTer.jpg" alt="Featured image of post IntelliJ快速產生log模板" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>&lt;a href="https://www.zhihu.com/question/433003386">https://www.zhihu.com/question/433003386&lt;/a>&lt;/p></description></item><item><title>IntelliJ快速產生log模板</title><link>https://hoxtoncraft.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</link><pubDate>Wed, 22 Nov 2023 02:05:31 +0800</pubDate><guid>https://hoxtoncraft.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/oRRgTer.jpg" alt="Featured image of post IntelliJ快速產生log模板" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>唉呀呀，最近實在是太忙了，這陣子一直在忙公司的內容，沒啥時間更新部落格，趁著今天剛洗好澡的時候來更新一下，這次想講的是IntelliJ的一個功能叫做Code Complete，這功能是啥咧？&lt;/p>
 &lt;p>IntelliJ裡面你可以透過sout快速產生System.out.println(&amp;quot;&amp;quot;)的模板對吧，這個功能就叫做Code Complete。之所以會介紹這個功能，是因為公司的Code沒有辦法在本地環境運行，只能在伺服器上跑，所以debugger這個功能是完全不行的&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/ylZaByT.gif"
@@ -4403,7 +4403,7 @@ alt="image-20231122024903804"
 &lt;p>&lt;img src="https://i.imgur.com/ACbADdQ.gif"
 loading="lazy"
 alt="iShot_2023-11-22_02.14.41"
->&lt;/p></description></item><item><title>SpringBoot與ElasticSearch的結合</title><link>https://hoxtonhsu.com/p/springboot%E8%88%87elasticsearch%E7%9A%84%E7%B5%90%E5%90%88/</link><pubDate>Wed, 01 Nov 2023 02:16:35 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E8%88%87elasticsearch%E7%9A%84%E7%B5%90%E5%90%88/</guid><description>&lt;img src="https://i.imgur.com/PKZTCYE.png" alt="Featured image of post SpringBoot與ElasticSearch的結合" />&lt;p>非常痛苦&amp;hellip;為了苟過試用期、不成為團隊的bottleneck，被迫半夜在這邊學這個shit&lt;/p>
+>&lt;/p></description></item><item><title>SpringBoot與ElasticSearch的結合</title><link>https://hoxtoncraft.com/p/springboot%E8%88%87elasticsearch%E7%9A%84%E7%B5%90%E5%90%88/</link><pubDate>Wed, 01 Nov 2023 02:16:35 +0800</pubDate><guid>https://hoxtoncraft.com/p/springboot%E8%88%87elasticsearch%E7%9A%84%E7%B5%90%E5%90%88/</guid><description>&lt;img src="https://i.imgur.com/PKZTCYE.png" alt="Featured image of post SpringBoot與ElasticSearch的結合" />&lt;p>非常痛苦&amp;hellip;為了苟過試用期、不成為團隊的bottleneck，被迫半夜在這邊學這個shit&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/nFUZYlM.gif"
 loading="lazy"
 alt="shit-leslie-jordan-gif"
@@ -4412,7 +4412,7 @@ alt="shit-leslie-jordan-gif"
 &lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=g6AmXGI0RpQ&amp;amp;pp=ygUVU3ByaW5nIEVsYXN0aWMgc2VhcmNo" target="_blank" rel="noopener"
 >How to Integrate Elastic Search With Spring Boot CRUD Project| Spring Boot | Elasticsearch| EnggAdda&lt;/a>&lt;/p>
 &lt;p>這東西的坑真的很多
-springBoot Elastic Search 還有相關的套件版本必須一致&lt;/p></description></item><item><title>ElasticSearch學習筆記</title><link>https://hoxtonhsu.com/p/elasticsearch%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 29 Oct 2023 15:28:49 +0800</pubDate><guid>https://hoxtonhsu.com/p/elasticsearch%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/IJFdjpO.png" alt="Featured image of post ElasticSearch學習筆記" />&lt;p>本文會用到的連結&lt;/p>
+springBoot Elastic Search 還有相關的套件版本必須一致&lt;/p></description></item><item><title>ElasticSearch學習筆記</title><link>https://hoxtoncraft.com/p/elasticsearch%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 29 Oct 2023 15:28:49 +0800</pubDate><guid>https://hoxtoncraft.com/p/elasticsearch%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/IJFdjpO.png" alt="Featured image of post ElasticSearch學習筆記" />&lt;p>本文會用到的連結&lt;/p>
 &lt;p>&lt;a class="link" href="https://youtu.be/gS_nHTWZEJ8?list=PL_mJOmq4zsHZYAyK606y7wjQtC0aoE6Es" target="_blank" rel="noopener"
 >Beginner&amp;rsquo;s Crash Course to Elastic Stack - Part 1: Intro to Elasticsearch and Kibana&lt;/a>&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/Z9upk2s.png"
@@ -6659,7 +6659,7 @@ alt="image-20231101015740997"
 &lt;p>&lt;img src="https://i.imgur.com/oaXPz7N.png"
 loading="lazy"
 alt="image-20231101015832703"
->&lt;/p></description></item><item><title>微服務筆記</title><link>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 26 Oct 2023 21:39:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tNdn4as.png" alt="Featured image of post 微服務筆記" />&lt;p>本文參考至&lt;/p>
+>&lt;/p></description></item><item><title>微服務筆記</title><link>https://hoxtoncraft.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 26 Oct 2023 21:39:32 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/tNdn4as.png" alt="Featured image of post 微服務筆記" />&lt;p>本文參考至&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=1aWhYEynZQw&amp;amp;t=4102s&amp;amp;ab_channel=Amigoscode" target="_blank" rel="noopener"
 >Java and Spring Boot Microservices | 10 Hour Full Course&lt;/a>&lt;/p>
 &lt;p>我使用的Repository如下&lt;/p>
@@ -6774,7 +6774,7 @@ alt="image-20231029015731883"
 &lt;p>&lt;img src="https://i.imgur.com/Mikvx8M.png"
 loading="lazy"
 alt="image-20231028183714521"
->&lt;/p></description></item><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtonhsu.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dveNGtg.png" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+>&lt;/p></description></item><item><title>Xxl-Job 分布式任務調度中心學習筆記</title><link>https://hoxtoncraft.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 19 Oct 2023 15:32:09 +0800</pubDate><guid>https://hoxtoncraft.com/p/xxl-job-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8B%99%E8%AA%BF%E5%BA%A6%E4%B8%AD%E5%BF%83%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dveNGtg.png" alt="Featured image of post Xxl-Job 分布式任務調度中心學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>最近工作上接觸到了這個套件，覺得令人歎為觀止，居然用這麼簡單的方式實現了我一直想做但不知道怎麼做的功能。&lt;/p>
 &lt;p>Xxl-Job說白話一點，就是一個中央定時任務調度平台，如果是單體式服務的話，我們可能是用Quartz或是Spring Schedule來實現，在這種情況管理這些Job(Batch)相對單純，因為所有東西都可以在單體式應用找到。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/al6dEbK.png"
@@ -7287,7 +7287,7 @@ alt="image-20231023163645992"
 loading="lazy"
 alt="iShot_2023-10-23_17.22.00"
 >&lt;/p>
-&lt;p>這樣就是Xxl-Job的一個簡單介紹&lt;/p></description></item><item><title>如何在SpringBoot中實現基礎的I18n</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</link><pubDate>Wed, 11 Oct 2023 11:58:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</guid><description>&lt;img src="https://i.imgur.com/Tb5xdM6.png" alt="Featured image of post 如何在SpringBoot中實現基礎的I18n" />&lt;h1 id="專案中i18n之實現">專案中i18n之實現&lt;/h1>
+&lt;p>這樣就是Xxl-Job的一個簡單介紹&lt;/p></description></item><item><title>如何在SpringBoot中實現基礎的I18n</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</link><pubDate>Wed, 11 Oct 2023 11:58:32 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8springboot%E4%B8%AD%E5%AF%A6%E7%8F%BE%E5%9F%BA%E7%A4%8E%E7%9A%84i18n/</guid><description>&lt;img src="https://i.imgur.com/Tb5xdM6.png" alt="Featured image of post 如何在SpringBoot中實現基礎的I18n" />&lt;h1 id="專案中i18n之實現">專案中i18n之實現&lt;/h1>
 &lt;p>i18n全名internationalization，因為中間的字母有18個，於是就用i18n來稱呼它。所謂的i18n就是根據不同的語系會有不同的Message回傳，比如說臺灣人在登入失敗時會出現「登入失敗」，美國人在登入時會出現「Login Fail」，這種因應不同地區的使用者來客製化訊息的工作，就是i18n。&lt;/p>
 &lt;h1 id="涉及到的基本知識">涉及到的基本知識&lt;/h1>
 &lt;h2 id="resourcebundle">ResourceBundle&lt;/h2>
@@ -7482,7 +7482,7 @@ alt="iShot_2023-10-11_11.54.27"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>這部分動態注入的方式，實際實現可以有很多種方式，比如說Interceptor、Filter作轉換，然後用AOP的方式轉換，都是可以行的方案。&lt;/p></description></item><item><title>簡單的聊聊SpringBoot中的非同步操作@Async</title><link>https://hoxtonhsu.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</link><pubDate>Sun, 08 Oct 2023 19:25:56 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</guid><description>&lt;img src="https://i.imgur.com/LTjIYLa.png" alt="Featured image of post 簡單的聊聊SpringBoot中的非同步操作@Async" />&lt;p>在SpringBoot中要實現非同步有很多種方式，比如說你自己手寫一個ThreadPool、或是藉由外部的RabbitMQ都可以實現非同步的方法。&lt;/p>
+&lt;/div>&lt;p>這部分動態注入的方式，實際實現可以有很多種方式，比如說Interceptor、Filter作轉換，然後用AOP的方式轉換，都是可以行的方案。&lt;/p></description></item><item><title>簡單的聊聊SpringBoot中的非同步操作@Async</title><link>https://hoxtoncraft.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</link><pubDate>Sun, 08 Oct 2023 19:25:56 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</guid><description>&lt;img src="https://i.imgur.com/LTjIYLa.png" alt="Featured image of post 簡單的聊聊SpringBoot中的非同步操作@Async" />&lt;p>在SpringBoot中要實現非同步有很多種方式，比如說你自己手寫一個ThreadPool、或是藉由外部的RabbitMQ都可以實現非同步的方法。&lt;/p>
 &lt;p>那這邊我選擇實做的方法是使用SpringBoot提供的@Async，什麼是非同步呢？&lt;/p>
 &lt;p>舉個例子假設我在做櫃檯，現在有10個客人要辦帳戶，每個客人過來我這邊，都要寫10分鐘的表格，寫完後我在幫他們登記，花兩分鐘。如果一個客人一個客人這樣過來，我需要花120分鐘才可以消化掉。但如果我可以先把表格發給全部10個人填，這樣我只要花10+10*2=30分鐘就可以。&lt;/p>
 &lt;p>這就是非同步操作，簡而言之就是&lt;strong>避免無意義的等待&lt;/strong>。&lt;/p>
@@ -7686,7 +7686,7 @@ alt="faye-wong-red-beans"
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/j8YURrx.gif"
 loading="lazy"
 alt="iShot_2023-10-08_20.01.20"
->&lt;/p></description></item><item><title>Vue學習筆記</title><link>https://hoxtonhsu.com/p/vue%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 01 Oct 2023 03:02:32 +0800</pubDate><guid>https://hoxtonhsu.com/p/vue%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/Yq1lyHE.jpg" alt="Featured image of post Vue學習筆記" />&lt;h1 id="專案網址">專案網址&lt;/h1>
+>&lt;/p></description></item><item><title>Vue學習筆記</title><link>https://hoxtoncraft.com/p/vue%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 01 Oct 2023 03:02:32 +0800</pubDate><guid>https://hoxtoncraft.com/p/vue%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/Yq1lyHE.jpg" alt="Featured image of post Vue學習筆記" />&lt;h1 id="專案網址">專案網址&lt;/h1>
 &lt;p>&lt;a href="http://hoxtonhsu.com/vue-project/">http://hoxtonhsu.com/vue-project/&lt;/a>&lt;/p>
 &lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前陣子同事跟我說，交大有一組丁組，可以用推甄的方式來面試研究所，其中一項就是要看對於程式的熱誠，於是打算把自己心裡想很久，但一直懶得做的那些project Idea拿出來做一做，希望明年可以推甄上，推甄不上就只能當考研戰士了&lt;/p>
@@ -8044,7 +8044,7 @@ alt="image-20231006022325697"
 loading="lazy"
 alt="image-20231007013059077"
 >&lt;/p>
-&lt;h1 id="slot">Slot&lt;/h1></description></item><item><title>初探微服務 何謂網關(Gateway)</title><link>https://hoxtonhsu.com/p/%E5%88%9D%E6%8E%A2%E5%BE%AE%E6%9C%8D%E5%8B%99-%E4%BD%95%E8%AC%82%E7%B6%B2%E9%97%9Cgateway/</link><pubDate>Thu, 14 Sep 2023 11:16:37 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%88%9D%E6%8E%A2%E5%BE%AE%E6%9C%8D%E5%8B%99-%E4%BD%95%E8%AC%82%E7%B6%B2%E9%97%9Cgateway/</guid><description>&lt;img src="https://i.imgur.com/VwMgRtW.png" alt="Featured image of post 初探微服務 何謂網關(Gateway)" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;h1 id="slot">Slot&lt;/h1></description></item><item><title>初探微服務 何謂網關(Gateway)</title><link>https://hoxtoncraft.com/p/%E5%88%9D%E6%8E%A2%E5%BE%AE%E6%9C%8D%E5%8B%99-%E4%BD%95%E8%AC%82%E7%B6%B2%E9%97%9Cgateway/</link><pubDate>Thu, 14 Sep 2023 11:16:37 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%88%9D%E6%8E%A2%E5%BE%AE%E6%9C%8D%E5%8B%99-%E4%BD%95%E8%AC%82%E7%B6%B2%E9%97%9Cgateway/</guid><description>&lt;img src="https://i.imgur.com/VwMgRtW.png" alt="Featured image of post 初探微服務 何謂網關(Gateway)" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>新的工作充滿著各種類型的微服務架構，讓我頓時間有點分不清南北，於是就利用這段剛入職，還很閒的時候帶薪學習吧！&lt;/p>
 &lt;h1 id="為什麼要用網關">為什麼要用網關？&lt;/h1>
 &lt;p>&lt;img src="https://i.imgur.com/DNe2sOc.gif"
@@ -8101,7 +8101,7 @@ alt="image-20230914122020798"
 &lt;p>因此，若前面這幾個數字一樣，就代表這些是來自同一個網域的通訊，不需要透過Gateway，反之，若有不同，則代表是來自不同網域的請求，需要走Gateway&lt;/p>
 &lt;h1 id="參考網址">參考網址&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1hd4y1q71b/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
->目前B站唯一把Gateway网关讲透的视频教程！一天即可掌握Gateway！&lt;/a>&lt;/p></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="github網址">GitHub網址&lt;/h1>
+>目前B站唯一把Gateway网关讲透的视频教程！一天即可掌握Gateway！&lt;/a>&lt;/p></description></item><item><title>RabbitMQ學習筆記</title><link>https://hoxtoncraft.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Fri, 08 Sep 2023 03:00:58 +0800</pubDate><guid>https://hoxtoncraft.com/p/rabbitmq%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/dQTmSCl.png" alt="Featured image of post RabbitMQ學習筆記" />&lt;h1 id="github網址">GitHub網址&lt;/h1>
 &lt;p>&lt;span style="color:yellow;font-size:32px">2024/05/24更新&lt;/span>&lt;/p>
 &lt;p>&lt;a class="link" href="https://github.com/Hoxton019030/RabbitMQ_Practice/tree/prototype" target="_blank" rel="noopener"
 >https://github.com/Hoxton019030/RabbitMQ_Practice/tree/prototype&lt;/a>&lt;/p>
@@ -9438,7 +9438,7 @@ alt="iShot_2023-09-09_22.28.49"
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Am4y1z7Tu/?p=9&amp;amp;spm_id_from=pageDriver&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >1小时学会RabbitMQ！快速掌握RabbitMQ的使用与原理实战&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1dE411K7MG?p=14&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
->编程不良人】MQ消息中间件之RabbitMQ以及整合SpringBoot2.x实战教程,已完结!&lt;/a>&lt;/p></description></item><item><title>Redis學習筆記</title><link>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/hW7HRS8.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+>编程不良人】MQ消息中间件之RabbitMQ以及整合SpringBoot2.x实战教程,已完结!&lt;/a>&lt;/p></description></item><item><title>Redis學習筆記</title><link>https://hoxtoncraft.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtoncraft.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/hW7HRS8.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前一陣子被保哥給Fire掉了，但老實說自己的工作表現真的不太好，這點也確實怪不了人，所幸很快就找到了下一份工作，新的工作有個很大的優點，就是需要學很多我之前想學，但又因為懶惰而沒有去學的技術，而Redis就是其中的一款。於是前輩就跟我說，可以利用等待帳號申請的這一兩個禮拜，把這些技術學一學&lt;/p>
 &lt;p> &lt;img src="https://i.imgur.com/R3VMXoP.gif"
 loading="lazy"
@@ -10468,7 +10468,7 @@ alt=" "
 &lt;/div>
 &lt;/div>&lt;h1 id="參考資料">參考資料&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Fd4y1T7pD/?spm_id_from=333.999.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
->【趣话Redis第一弹】我是Redis，MySQL大哥被我坑惨了！&lt;/a>&lt;/p></description></item><item><title>使用Apache的FTP套件，storeFile()一直回傳550的問題該解決</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8apache%E7%9A%84ftp%E5%A5%97%E4%BB%B6storefile%E4%B8%80%E7%9B%B4%E5%9B%9E%E5%82%B3550%E7%9A%84%E5%95%8F%E9%A1%8C%E8%A9%B2%E8%A7%A3%E6%B1%BA/</link><pubDate>Thu, 17 Aug 2023 22:03:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8apache%E7%9A%84ftp%E5%A5%97%E4%BB%B6storefile%E4%B8%80%E7%9B%B4%E5%9B%9E%E5%82%B3550%E7%9A%84%E5%95%8F%E9%A1%8C%E8%A9%B2%E8%A7%A3%E6%B1%BA/</guid><description>&lt;img src="https://i.imgur.com/Zm0Sn6B.jpg" alt="Featured image of post 使用Apache的FTP套件，storeFile()一直回傳550的問題該解決" />&lt;h1 id="heading">&lt;/h1>
+>【趣话Redis第一弹】我是Redis，MySQL大哥被我坑惨了！&lt;/a>&lt;/p></description></item><item><title>使用Apache的FTP套件，storeFile()一直回傳550的問題該解決</title><link>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8apache%E7%9A%84ftp%E5%A5%97%E4%BB%B6storefile%E4%B8%80%E7%9B%B4%E5%9B%9E%E5%82%B3550%E7%9A%84%E5%95%8F%E9%A1%8C%E8%A9%B2%E8%A7%A3%E6%B1%BA/</link><pubDate>Thu, 17 Aug 2023 22:03:06 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8apache%E7%9A%84ftp%E5%A5%97%E4%BB%B6storefile%E4%B8%80%E7%9B%B4%E5%9B%9E%E5%82%B3550%E7%9A%84%E5%95%8F%E9%A1%8C%E8%A9%B2%E8%A7%A3%E6%B1%BA/</guid><description>&lt;img src="https://i.imgur.com/Zm0Sn6B.jpg" alt="Featured image of post 使用Apache的FTP套件，storeFile()一直回傳550的問題該解決" />&lt;h1 id="heading">&lt;/h1>
 &lt;p>這陣子到保哥的公司，過著天天被洗臉的日子，&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/qSelkYR.gif"
 loading="lazy"
@@ -10490,7 +10490,7 @@ alt="annoyed-fuck-gif"
 &lt;p>&lt;img src="https://i.imgur.com/yqtbY4V.png"
 loading="lazy"
 alt="image-20230817221600465"
->&lt;/p></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
+>&lt;/p></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtoncraft.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtoncraft.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/8cus4pF.gif"
 loading="lazy"
 alt="bored-and-gif"
@@ -11102,7 +11102,7 @@ alt="demo"
 loading="lazy"
 alt="image-20230803152251360"
 >&lt;/p>
-&lt;p>這樣就可以囉！&lt;/p></description></item><item><title>對遍歷中的集合類修改，會有什麼樣的問題呢</title><link>https://hoxtonhsu.com/p/%E5%B0%8D%E9%81%8D%E6%AD%B7%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E9%A1%9E%E4%BF%AE%E6%94%B9%E6%9C%83%E6%9C%89%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E5%91%A2/</link><pubDate>Sun, 23 Jul 2023 14:59:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%8D%E9%81%8D%E6%AD%B7%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E9%A1%9E%E4%BF%AE%E6%94%B9%E6%9C%83%E6%9C%89%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/oHOBik5.png" alt="Featured image of post 對遍歷中的集合類修改，會有什麼樣的問題呢" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>這樣就可以囉！&lt;/p></description></item><item><title>對遍歷中的集合類修改，會有什麼樣的問題呢</title><link>https://hoxtoncraft.com/p/%E5%B0%8D%E9%81%8D%E6%AD%B7%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E9%A1%9E%E4%BF%AE%E6%94%B9%E6%9C%83%E6%9C%89%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E5%91%A2/</link><pubDate>Sun, 23 Jul 2023 14:59:22 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%B0%8D%E9%81%8D%E6%AD%B7%E4%B8%AD%E7%9A%84%E9%9B%86%E5%90%88%E9%A1%9E%E4%BF%AE%E6%94%B9%E6%9C%83%E6%9C%89%E4%BB%80%E9%BA%BC%E6%A8%A3%E7%9A%84%E5%95%8F%E9%A1%8C%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/oHOBik5.png" alt="Featured image of post 對遍歷中的集合類修改，會有什麼樣的問題呢" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前一陣子面試了一家博奕業，他的第一題是這樣的&lt;/p>
 &lt;p>給一整數陣列，並把陣列中的0移到最後，其餘的數字保持原來的順序。
 例如輸入陣列{0,0,0,1,2,3,4,5,6,7,8}， (你不知道index)
@@ -11176,7 +11176,7 @@ alt="image-20230723154447030"
 &lt;p>因為在remove這邊有modCount++的行為，導致兩邊值不同，因而拋出錯誤&lt;/p>
 &lt;p>​&lt;/p>
 &lt;h1 id="參考連結">參考連結&lt;/h1>
-&lt;p>&lt;a href="https://cloud.tencent.com/developer/article/1896820">https://cloud.tencent.com/developer/article/1896820&lt;/a>&lt;/p></description></item><item><title>Airflow的Dockerfile</title><link>https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/</link><pubDate>Sat, 22 Jul 2023 15:27:16 +0800</pubDate><guid>https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/</guid><description>&lt;img src="https://i.imgur.com/ib3Y4zY.png" alt="Featured image of post Airflow的Dockerfile" />&lt;div class="highlight">&lt;div class="chroma">
+&lt;p>&lt;a href="https://cloud.tencent.com/developer/article/1896820">https://cloud.tencent.com/developer/article/1896820&lt;/a>&lt;/p></description></item><item><title>Airflow的Dockerfile</title><link>https://hoxtoncraft.com/p/airflow%E7%9A%84dockerfile/</link><pubDate>Sat, 22 Jul 2023 15:27:16 +0800</pubDate><guid>https://hoxtoncraft.com/p/airflow%E7%9A%84dockerfile/</guid><description>&lt;img src="https://i.imgur.com/ib3Y4zY.png" alt="Featured image of post Airflow的Dockerfile" />&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
@@ -11726,7 +11726,7 @@ alt="image-20230723154447030"
 &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">postgres-db-volume&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>Java中回傳值前的泛型標識符是什麼意思呢</title><link>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</link><pubDate>Tue, 11 Jul 2023 00:03:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/Y9pLlYY.png" alt="Featured image of post Java中回傳值前的泛型標識符是什麼意思呢" />&lt;p>前一陣子在寫DiscordBot的時候，曾經在教學中看過這種寫法&lt;/p>
+&lt;/div></description></item><item><title>Java中回傳值前的泛型標識符是什麼意思呢</title><link>https://hoxtoncraft.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</link><pubDate>Tue, 11 Jul 2023 00:03:03 +0800</pubDate><guid>https://hoxtoncraft.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/Y9pLlYY.png" alt="Featured image of post Java中回傳值前的泛型標識符是什麼意思呢" />&lt;p>前一陣子在寫DiscordBot的時候，曾經在教學中看過這種寫法&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -11917,7 +11917,7 @@ alt="image-20230401004844813"
 loading="lazy"
 alt="image-20230401005044108"
 >&lt;/p>
-&lt;p>如此一來，addPeopleList就可以吃任何型別的參數了，以上就是所謂的泛型方法約束。&lt;/p></description></item><item><title>Maven詳細研究</title><link>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 09 Jul 2023 09:47:13 +0800</pubDate><guid>https://hoxtonhsu.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/VcZp2b7.png" alt="Featured image of post Maven詳細研究" />&lt;p>最近換了一份新工作，發現我一直以來平淡無情的Maven原來也是有很多細節的（我一直以為就只是一個拿來自動下載Jar的無情機器而已），其實Maven的pom.xml的名稱其實就已經隱含了它的功能&lt;/p>
+&lt;p>如此一來，addPeopleList就可以吃任何型別的參數了，以上就是所謂的泛型方法約束。&lt;/p></description></item><item><title>Maven詳細研究</title><link>https://hoxtoncraft.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 09 Jul 2023 09:47:13 +0800</pubDate><guid>https://hoxtoncraft.com/p/maven%E8%A9%B3%E7%B4%B0%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/VcZp2b7.png" alt="Featured image of post Maven詳細研究" />&lt;p>最近換了一份新工作，發現我一直以來平淡無情的Maven原來也是有很多細節的（我一直以為就只是一個拿來自動下載Jar的無情機器而已），其實Maven的pom.xml的名稱其實就已經隱含了它的功能&lt;/p>
 &lt;p>&lt;span style="color:yellow">P&lt;/span>roject &lt;span style="color:yellow">O&lt;/span>bject &lt;span style="color:yellow">M&lt;/span>odel（專案物件模型）&lt;/p>
 &lt;p>望文生義其實也可以感受到它就是用來管理專案、或專案與專案之間關係的一個檔案，這篇文章的主題是我想要&lt;strong>了解Maven Module管理的部分&lt;/strong>&lt;/p>
 &lt;h1 id="maven項目結構">Maven項目結構&lt;/h1>
@@ -13543,7 +13543,7 @@ alt="demo"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">mvn clean package -Plocal
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>來打包成不同的jar了&lt;/p></description></item><item><title>如何在M1,M2中安裝Airflow</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</link><pubDate>Fri, 07 Jul 2023 19:46:21 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</guid><description>&lt;img src="https://i.imgur.com/FWgJzl6.png" alt="Featured image of post 如何在M1,M2中安裝Airflow" />&lt;h1 id="參考">參考&lt;/h1>
+&lt;/div>&lt;p>來打包成不同的jar了&lt;/p></description></item><item><title>如何在M1,M2中安裝Airflow</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</link><pubDate>Fri, 07 Jul 2023 19:46:21 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</guid><description>&lt;img src="https://i.imgur.com/FWgJzl6.png" alt="Featured image of post 如何在M1,M2中安裝Airflow" />&lt;h1 id="參考">參考&lt;/h1>
 &lt;p>參考影片如下 &lt;a class="link" href="https://youtu.be/YDDMm9M6SFA" target="_blank" rel="noopener"
 >Apache Airflow for Data Science #1 - How to Install Airflow Locally in 10 Minutes&lt;/a>&lt;/p>
 &lt;h1 id="教學">教學&lt;/h1>
@@ -13690,7 +13690,7 @@ alt="image-20230707200032473"
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/IttSFOW.gif"
 loading="lazy"
 alt="demo"
->&lt;/p></description></item><item><title>在Termianl中顯示完整的Git Tree</title><link>https://hoxtonhsu.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</link><pubDate>Mon, 03 Jul 2023 16:09:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</guid><description>&lt;img src="https://i.imgur.com/eESaO42.png" alt="Featured image of post 在Termianl中顯示完整的Git Tree" />&lt;p>前一陣子在公司被保哥唸了一頓，「只看Terminal而不看SourceTreeg是錯的，Tree才是Git的精髓！」&lt;/p>
+>&lt;/p></description></item><item><title>在Termianl中顯示完整的Git Tree</title><link>https://hoxtoncraft.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</link><pubDate>Mon, 03 Jul 2023 16:09:33 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</guid><description>&lt;img src="https://i.imgur.com/eESaO42.png" alt="Featured image of post 在Termianl中顯示完整的Git Tree" />&lt;p>前一陣子在公司被保哥唸了一頓，「只看Terminal而不看SourceTreeg是錯的，Tree才是Git的精髓！」&lt;/p>
 &lt;p>於是決定來學一下如何用Terminal查看Tree。&lt;/p>
 &lt;p>雖然不多人知道，但其實Git裡面是可以查看Git Tree的&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -13746,7 +13746,7 @@ alt="image-20230703162317660"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git graph
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>來查看完整的Tree了 ！&lt;/p></description></item><item><title>在Iterm2上持續顯示log, branch</title><link>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</link><pubDate>Tue, 27 Jun 2023 11:14:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</guid><description>&lt;img src="https://i.imgur.com/nivCoDF.png" alt="Featured image of post 在Iterm2上持續顯示log, branch" />&lt;h1 id="heading">&lt;/h1>
+&lt;/div>&lt;p>來查看完整的Tree了 ！&lt;/p></description></item><item><title>在Iterm2上持續顯示log, branch</title><link>https://hoxtoncraft.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</link><pubDate>Tue, 27 Jun 2023 11:14:03 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</guid><description>&lt;img src="https://i.imgur.com/nivCoDF.png" alt="Featured image of post 在Iterm2上持續顯示log, branch" />&lt;h1 id="heading">&lt;/h1>
 &lt;p>Iterm2裡面，當我輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -13765,7 +13765,7 @@ alt="image-20230703162317660"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --replace-all core.pager &lt;span class="s2">&amp;#34;less -F -X&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>這樣就可以持續顯示了&lt;/p></description></item><item><title>如何為Mac設定環境變數</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</link><pubDate>Wed, 14 Jun 2023 15:34:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/O9emCTx.png" alt="Featured image of post 如何為Mac設定環境變數" />&lt;h1 id="教學">教學&lt;/h1>
+&lt;/div>&lt;p>這樣就可以持續顯示了&lt;/p></description></item><item><title>如何為Mac設定環境變數</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</link><pubDate>Wed, 14 Jun 2023 15:34:15 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/O9emCTx.png" alt="Featured image of post 如何為Mac設定環境變數" />&lt;h1 id="教學">教學&lt;/h1>
 &lt;p>可以先輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -13853,7 +13853,7 @@ alt="image-20230614153937948"
 &lt;p>&lt;img src="https://i.imgur.com/IP6jUjW.gif"
 loading="lazy"
 alt="demo"
->&lt;/p></description></item><item><title>ARM架構與x86架構下，Docker啟動問題</title><link>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 13 May 2023 19:09:41 +0800</pubDate><guid>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/8XJ9XWE.png" alt="Featured image of post ARM架構與x86架構下，Docker啟動問題" />&lt;h1 id="導因">導因&lt;/h1>
+>&lt;/p></description></item><item><title>ARM架構與x86架構下，Docker啟動問題</title><link>https://hoxtoncraft.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 13 May 2023 19:09:41 +0800</pubDate><guid>https://hoxtoncraft.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/8XJ9XWE.png" alt="Featured image of post ARM架構與x86架構下，Docker啟動問題" />&lt;h1 id="導因">導因&lt;/h1>
 &lt;p>M1的CPU是使用ARM架構，而有些電腦則是使用x86架構，並且因Docker是Run在OS上方，所以在執行Image時也要考慮作業系統的問題&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -13883,7 +13883,7 @@ alt="demo"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker build . --platform linux/x86_64
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>Git-rerere之介紹</title><link>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</link><pubDate>Fri, 12 May 2023 11:05:10 +0800</pubDate><guid>https://hoxtonhsu.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/FJcgPVI.png" alt="Featured image of post Git-rerere之介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
+&lt;/div></description></item><item><title>Git-rerere之介紹</title><link>https://hoxtoncraft.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</link><pubDate>Fri, 12 May 2023 11:05:10 +0800</pubDate><guid>https://hoxtoncraft.com/p/git-rerere%E4%B9%8B%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/FJcgPVI.png" alt="Featured image of post Git-rerere之介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
 &lt;p>最近公司提倡使用rebase而非merge來合併分支，但在rebase的情況下，常常出現多種commit會有重複confict的情形發生，往往可能要解個2,30個conflict，一來一往可能會耗費許多時間，於是上網查了一下，發現有&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -13913,7 +13913,7 @@ alt="demo"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --unset rerere.enabled
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>H2Database之配置檔紀錄</title><link>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</link><pubDate>Sat, 06 May 2023 00:13:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/xYmsInY.png" alt="Featured image of post H2Database之配置檔紀錄" />&lt;p>依賴如下&lt;/p>
+&lt;/div></description></item><item><title>H2Database之配置檔紀錄</title><link>https://hoxtoncraft.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</link><pubDate>Sat, 06 May 2023 00:13:33 +0800</pubDate><guid>https://hoxtoncraft.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/xYmsInY.png" alt="Featured image of post H2Database之配置檔紀錄" />&lt;p>依賴如下&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -14003,7 +14003,7 @@ spring.jpa.hibernate.ddl-auto=update
 &lt;/span>&lt;span class="w">
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>在IntelliJ設定環境變數，並讓Application.properties讀取</title><link>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E4%B8%A6%E8%AE%93application.properties%E8%AE%80%E5%8F%96/</link><pubDate>Sat, 06 May 2023 00:07:44 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E4%B8%A6%E8%AE%93application.properties%E8%AE%80%E5%8F%96/</guid><description>&lt;img src="https://i.imgur.com/lRrDIvY.png" alt="Featured image of post 在IntelliJ設定環境變數，並讓Application.properties讀取" />&lt;h1 id="設定環境變數">設定環境變數&lt;/h1>
+&lt;/div></description></item><item><title>在IntelliJ設定環境變數，並讓Application.properties讀取</title><link>https://hoxtoncraft.com/p/%E5%9C%A8intellij%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E4%B8%A6%E8%AE%93application.properties%E8%AE%80%E5%8F%96/</link><pubDate>Sat, 06 May 2023 00:07:44 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8intellij%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E4%B8%A6%E8%AE%93application.properties%E8%AE%80%E5%8F%96/</guid><description>&lt;img src="https://i.imgur.com/lRrDIvY.png" alt="Featured image of post 在IntelliJ設定環境變數，並讓Application.properties讀取" />&lt;h1 id="設定環境變數">設定環境變數&lt;/h1>
 &lt;p>&lt;img src="https://i.imgur.com/tmeUJwW.png"
 loading="lazy"
 alt="image-20230506000906709"
@@ -14029,7 +14029,7 @@ alt="demo"
 loading="lazy"
 alt="image-20230506001229397"
 >&lt;/p>
-&lt;p>即可在專案中配置環境變數，並讓配置檔讀取&lt;/p></description></item><item><title>Git筆記</title><link>https://hoxtonhsu.com/p/git%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 03 May 2023 14:01:35 +0800</pubDate><guid>https://hoxtonhsu.com/p/git%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/v0TYB05.png" alt="Featured image of post Git筆記" />&lt;ol>
+&lt;p>即可在專案中配置環境變數，並讓配置檔讀取&lt;/p></description></item><item><title>Git筆記</title><link>https://hoxtoncraft.com/p/git%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 03 May 2023 14:01:35 +0800</pubDate><guid>https://hoxtoncraft.com/p/git%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/v0TYB05.png" alt="Featured image of post Git筆記" />&lt;ol>
 &lt;li>拆掉上次Commit&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -14040,7 +14040,7 @@ alt="image-20230506001229397"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git reset HEAD^
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>結合Lombok寫出更整潔的程式碼</title><link>https://hoxtonhsu.com/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/</link><pubDate>Sun, 30 Apr 2023 02:39:36 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/</guid><description>&lt;img src="https://i.imgur.com/1OBx1AG.png" alt="Featured image of post 結合Lombok寫出更整潔的程式碼" />&lt;p>SpringBoot的Bean有三種注入方式&lt;/p>
+&lt;/div></description></item><item><title>結合Lombok寫出更整潔的程式碼</title><link>https://hoxtoncraft.com/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/</link><pubDate>Sun, 30 Apr 2023 02:39:36 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/</guid><description>&lt;img src="https://i.imgur.com/1OBx1AG.png" alt="Featured image of post 結合Lombok寫出更整潔的程式碼" />&lt;p>SpringBoot的Bean有三種注入方式&lt;/p>
 &lt;ol>
 &lt;li>@Autowired&lt;/li>
 &lt;li>Constructor Injection&lt;/li>
@@ -14065,7 +14065,7 @@ alt="image-20230430025235556"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>這樣一來我們的Service層跟Controller層就會更簡潔，當新的依賴進入後，不需要再重新寫一個建構子，只要將其宣告成final後，Lombok就會幫我們創建了&lt;/p></description></item><item><title>Spring中的Clean Architecture</title><link>https://hoxtonhsu.com/p/spring%E4%B8%AD%E7%9A%84clean-architecture/</link><pubDate>Tue, 25 Apr 2023 10:24:57 +0800</pubDate><guid>https://hoxtonhsu.com/p/spring%E4%B8%AD%E7%9A%84clean-architecture/</guid><description>&lt;img src="https://i.imgur.com/wlAKij1.jpg" alt="Featured image of post Spring中的Clean Architecture" />&lt;p>參考影片：&lt;a class="link" href="https://www.youtube.com/watch?v=cPH5AiqLQTo&amp;amp;ab_channel=SpringI%2FO" target="_blank" rel="noopener"
+&lt;/div>&lt;p>這樣一來我們的Service層跟Controller層就會更簡潔，當新的依賴進入後，不需要再重新寫一個建構子，只要將其宣告成final後，Lombok就會幫我們創建了&lt;/p></description></item><item><title>Spring中的Clean Architecture</title><link>https://hoxtoncraft.com/p/spring%E4%B8%AD%E7%9A%84clean-architecture/</link><pubDate>Tue, 25 Apr 2023 10:24:57 +0800</pubDate><guid>https://hoxtoncraft.com/p/spring%E4%B8%AD%E7%9A%84clean-architecture/</guid><description>&lt;img src="https://i.imgur.com/wlAKij1.jpg" alt="Featured image of post Spring中的Clean Architecture" />&lt;p>參考影片：&lt;a class="link" href="https://www.youtube.com/watch?v=cPH5AiqLQTo&amp;amp;ab_channel=SpringI%2FO" target="_blank" rel="noopener"
 >Clean Architecture with Spring by Tom Hombergs @ Spring I/O 2019&lt;/a>&lt;/p>
 &lt;h1 id="架構的目標">架構的目標&lt;/h1>
 &lt;ul>
@@ -14211,7 +14211,7 @@ alt="image-20230425143656605"
 &lt;p>&lt;img src="https://i.imgur.com/LwiBx8b.png"
 loading="lazy"
 alt="image-20230425143713734"
->&lt;/p></description></item><item><title>Cherry Pick的一點研究</title><link>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/n1qX6TQ.gif" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章，並且這個指令常常與Rebase, Merge兩者來對比，目前感覺如下&lt;/p>
+>&lt;/p></description></item><item><title>Cherry Pick的一點研究</title><link>https://hoxtoncraft.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtoncraft.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/n1qX6TQ.gif" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章，並且這個指令常常與Rebase, Merge兩者來對比，目前感覺如下&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -14413,7 +14413,7 @@ alt="image-20230416190945774"
 &lt;p>&lt;img src="https://i.imgur.com/3K4v8s3.png"
 loading="lazy"
 alt="image-20230416191527528"
->&lt;/p></description></item><item><title>MyBatis學習筆記</title><link>https://hoxtonhsu.com/p/mybatis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 16 Apr 2023 16:01:05 +0800</pubDate><guid>https://hoxtonhsu.com/p/mybatis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/wG62XWP.jpg" alt="Featured image of post MyBatis學習筆記" />&lt;p>本文參考至&lt;a class="link" href="https://www.bilibili.com/video/BV1Z3411E7QD/?spm_id_from=333.999.0.0&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
+>&lt;/p></description></item><item><title>MyBatis學習筆記</title><link>https://hoxtoncraft.com/p/mybatis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Sun, 16 Apr 2023 16:01:05 +0800</pubDate><guid>https://hoxtoncraft.com/p/mybatis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/wG62XWP.jpg" alt="Featured image of post MyBatis學習筆記" />&lt;p>本文參考至&lt;a class="link" href="https://www.bilibili.com/video/BV1Z3411E7QD/?spm_id_from=333.999.0.0&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
 >MyBatis入門教學&lt;/a>&lt;/p>
 &lt;p>以及&lt;a class="link" href="https://mybatis.org/mybatis-3/zh/getting-started.html" target="_blank" rel="noopener"
 >my-batis官方文件&lt;/a>&lt;/p>
@@ -14561,10 +14561,10 @@ select * from Blog where id = #{id}
 &lt;span class="nt">&amp;lt;/mapper&amp;gt;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>SpringBoot啟動時，出現Missing table hibernate sequence之解決方法</title><link>https://hoxtonhsu.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</link><pubDate>Sun, 16 Apr 2023 03:55:44 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</guid><description>&lt;img src="https://i.imgur.com/kdTSaSC.png" alt="Featured image of post SpringBoot啟動時，出現Missing table hibernate sequence之解決方法" />&lt;h1 id="導因">導因&lt;/h1>
+&lt;/div></description></item><item><title>SpringBoot啟動時，出現Missing table hibernate sequence之解決方法</title><link>https://hoxtoncraft.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</link><pubDate>Sun, 16 Apr 2023 03:55:44 +0800</pubDate><guid>https://hoxtoncraft.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</guid><description>&lt;img src="https://i.imgur.com/kdTSaSC.png" alt="Featured image of post SpringBoot啟動時，出現Missing table hibernate sequence之解決方法" />&lt;h1 id="導因">導因&lt;/h1>
 &lt;p>通常是因為在JPA的地方使用了&lt;code>@GeneratedValue(strategy = GenerationType.AUTO)&lt;/code>這個註解，這個註解會由資料庫自動(AUTO)去配置，如果資料庫有就沒問題，但有些資料庫可能會沒有，比如說我用的資料庫是PostgresSQL就會出現這個問題&lt;/p>
 &lt;p>解決方式&lt;/p>
-&lt;p>將@GeneratedValue(strategy = GenerationType.AUTO)更改，更改為@GeneratedValue(strategy = GenerationType.IDENTITY)即可&lt;/p></description></item><item><title>手把手教你寫SprintBoot框架</title><link>https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</link><pubDate>Sat, 01 Apr 2023 19:40:36 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</guid><description>&lt;img src="https://i.imgur.com/1G2G1o4.png" alt="Featured image of post 手把手教你寫SprintBoot框架" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>將@GeneratedValue(strategy = GenerationType.AUTO)更改，更改為@GeneratedValue(strategy = GenerationType.IDENTITY)即可&lt;/p></description></item><item><title>手把手教你寫SprintBoot框架</title><link>https://hoxtoncraft.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</link><pubDate>Sat, 01 Apr 2023 19:40:36 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</guid><description>&lt;img src="https://i.imgur.com/1G2G1o4.png" alt="Featured image of post 手把手教你寫SprintBoot框架" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>連假實在有點無聊，打算來手寫一個SprintBoot專案，來加深自己對這種IoC框架的理解，我打算把這個框架叫做&lt;strong>Winter&lt;/strong>，象徵我每況愈下的人生，唉&lt;/p>
 &lt;h1 id="sprintboot-單例池">SprintBoot 單例池&lt;/h1>
 &lt;p>本章所用到的程式碼存放在這&lt;/p>
@@ -15325,7 +15325,7 @@ alt="demo"
 >&lt;/p>
 &lt;p>這樣就是一個基礎的SprintBoot 單例池的創建&lt;/p>
 &lt;h1 id="autowired之實現原理">Autowired之實現原理&lt;/h1>
-&lt;p>To Be Continued &amp;hellip;&lt;/p></description></item><item><title>論@Value與Environment之優劣</title><link>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link><pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid><description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" />&lt;p>&lt;img src="https://i.imgur.com/JQHz275.png"
+&lt;p>To Be Continued &amp;hellip;&lt;/p></description></item><item><title>論@Value與Environment之優劣</title><link>https://hoxtoncraft.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link><pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate><guid>https://hoxtoncraft.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid><description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" />&lt;p>&lt;img src="https://i.imgur.com/JQHz275.png"
 loading="lazy"
 >&lt;/p>
 &lt;p>SpringBoot中想要從Application.properties中取的值，有兩種常見的方式，其中一種是利用@Value的方式&lt;/p>
@@ -15470,7 +15470,7 @@ loading="lazy"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>大概Guy4這樣&lt;/p></description></item><item><title>運用ArrayList與自動配置將Swich語法拆解</title><link>https://hoxtonhsu.com/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/</link><pubDate>Tue, 14 Mar 2023 00:31:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/</guid><description>&lt;img src="https://i.imgur.com/rfkvgRO.png" alt="Featured image of post 運用ArrayList與自動配置將Swich語法拆解" />&lt;p>如果依照存在即合理的說法來看，Switch的存在確實是有解決一些問題，比如說一些要依照不同情況來回傳不同結果的Function，相較於用冗長的if-else，選擇用Switch確實是個不錯的解法。但當今天的Switch Case會增長的情況，在選擇使用它就會違反了OCP(開放擴充、封閉修改)的原則，亦即每次有新的情況出現，我們就得回頭去改Switch語法，新增不同的case，一來一往增加了維護的負擔，這邊分享一個我把switch語法拆解的方式，以供紀錄這樣子。&lt;/p>
+&lt;/div>&lt;p>大概Guy4這樣&lt;/p></description></item><item><title>運用ArrayList與自動配置將Swich語法拆解</title><link>https://hoxtoncraft.com/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/</link><pubDate>Tue, 14 Mar 2023 00:31:03 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/</guid><description>&lt;img src="https://i.imgur.com/rfkvgRO.png" alt="Featured image of post 運用ArrayList與自動配置將Swich語法拆解" />&lt;p>如果依照存在即合理的說法來看，Switch的存在確實是有解決一些問題，比如說一些要依照不同情況來回傳不同結果的Function，相較於用冗長的if-else，選擇用Switch確實是個不錯的解法。但當今天的Switch Case會增長的情況，在選擇使用它就會違反了OCP(開放擴充、封閉修改)的原則，亦即每次有新的情況出現，我們就得回頭去改Switch語法，新增不同的case，一來一往增加了維護的負擔，這邊分享一個我把switch語法拆解的方式，以供紀錄這樣子。&lt;/p>
 &lt;h1 id="情境">情境&lt;/h1>
 &lt;p>我在設計一款可以連結不同SQL Engine的程式，當用戶選擇了不同的SQL Engine，我能夠執行不同資料庫的語法來返回結果，圖示如下&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/h00lO8z.png"
@@ -15677,7 +15677,7 @@ alt="image-20230314004011166"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>將原本的&lt;code>DatabaseDao databaseDao;&lt;/code>修改為，&lt;code>List&amp;lt;DatabaseEngineDao&amp;gt; databaseDaoList;&lt;/code>，在SpringBoot啟動時，將所有的DatabaseEngineDao類配置進databaseDaoList中，讓springBoot控制object的創建，並且將&lt;code>getDatabaseDao&lt;/code>改寫，改成去for-each databaseDaoList，尋找List中是否有名稱符合的SQL Engine。並在DatabaseEngineDao Interface處新增getDatabaseEngineName，讓每個實作它的Impl都必須去完成這個method，完成了OCP的原則。&lt;/p></description></item><item><title>Zabbix的一些筆記</title><link>https://hoxtonhsu.com/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/</link><pubDate>Mon, 13 Mar 2023 05:40:02 +0000</pubDate><guid>https://hoxtonhsu.com/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/7g77ZiN.png" alt="Featured image of post Zabbix的一些筆記" />&lt;p>參考網址：&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10263907" target="_blank" rel="noopener"
+&lt;/div>&lt;p>將原本的&lt;code>DatabaseDao databaseDao;&lt;/code>修改為，&lt;code>List&amp;lt;DatabaseEngineDao&amp;gt; databaseDaoList;&lt;/code>，在SpringBoot啟動時，將所有的DatabaseEngineDao類配置進databaseDaoList中，讓springBoot控制object的創建，並且將&lt;code>getDatabaseDao&lt;/code>改寫，改成去for-each databaseDaoList，尋找List中是否有名稱符合的SQL Engine。並在DatabaseEngineDao Interface處新增getDatabaseEngineName，讓每個實作它的Impl都必須去完成這個method，完成了OCP的原則。&lt;/p></description></item><item><title>Zabbix的一些筆記</title><link>https://hoxtoncraft.com/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/</link><pubDate>Mon, 13 Mar 2023 05:40:02 +0000</pubDate><guid>https://hoxtoncraft.com/p/zabbix%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/7g77ZiN.png" alt="Featured image of post Zabbix的一些筆記" />&lt;p>參考網址：&lt;a class="link" href="https://ithelp.ithome.com.tw/articles/10263907" target="_blank" rel="noopener"
 >監控大挑戰 - 以 Zabbix 為例&lt;/a>&lt;/p>
 &lt;h1 id="為什麼選擇zabbix">為什麼選擇Zabbix?&lt;/h1>
 &lt;p>目前常見的監控軟體有三者&lt;/p>
@@ -16684,7 +16684,7 @@ loading="lazy"
 &lt;p>將URL改成正確地之後就能正常訪問了&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/1OlT37p.gif"
 loading="lazy"
->&lt;/p></description></item><item><title>StoreProcedure跟PSQL的筆記</title><link>https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 01 Mar 2023 09:45:17 +0800</pubDate><guid>https://hoxtonhsu.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1BTtOUL.png" alt="Featured image of post StoreProcedure跟PSQL的筆記" />&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=yLR1w4tZ36I&amp;amp;ab_channel=techTFQ" target="_blank" rel="noopener"
+>&lt;/p></description></item><item><title>StoreProcedure跟PSQL的筆記</title><link>https://hoxtoncraft.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 01 Mar 2023 09:45:17 +0800</pubDate><guid>https://hoxtoncraft.com/p/storeprocedure%E8%B7%9Fpsql%E7%9A%84%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/1BTtOUL.png" alt="Featured image of post StoreProcedure跟PSQL的筆記" />&lt;p>&lt;a class="link" href="https://www.youtube.com/watch?v=yLR1w4tZ36I&amp;amp;ab_channel=techTFQ" target="_blank" rel="noopener"
 >參考網站&lt;/a>&lt;/p>
 &lt;p>&lt;strong>這篇文章是以Postgres SQL的語法為主，其他RDB的語法略有不同&lt;/strong>&lt;/p>
 &lt;h1 id="什麼是store-procedure">什麼是Store Procedure&lt;/h1>
@@ -17223,7 +17223,7 @@ alt="demo"
 &lt;span class="err">$$&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>GitLab-CI/CD筆記</title><link>https://hoxtonhsu.com/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/</link><pubDate>Mon, 06 Feb 2023 19:50:08 +0800</pubDate><guid>https://hoxtonhsu.com/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/b9bWXWs.jpg" alt="Featured image of post GitLab-CI/CD筆記" />&lt;p>&lt;a class="link" href="https://youtu.be/-4XT8-znkuc?list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title>GitLab-CI/CD筆記</title><link>https://hoxtoncraft.com/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/</link><pubDate>Mon, 06 Feb 2023 19:50:08 +0800</pubDate><guid>https://hoxtoncraft.com/p/gitlab-ci/cd%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/b9bWXWs.jpg" alt="Featured image of post GitLab-CI/CD筆記" />&lt;p>&lt;a class="link" href="https://youtu.be/-4XT8-znkuc?list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu" target="_blank" rel="noopener"
 >參考影片：為你自己學GitLab CICD&lt;/a>&lt;/p>
 &lt;h1 id="為何選擇jenkins">為何選擇Jenkins？&lt;/h1>
 &lt;p>目前市面上有三種CI/CD的工具，分別是&lt;/p>
@@ -17601,7 +17601,7 @@ paths:
 - temp/*.jar
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>這樣就代表在下一次Job時，這個目錄底下的東西並不會被刪除&lt;/p></description></item><item><title>使用SSH來連動GITSCM</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</link><pubDate>Sun, 05 Feb 2023 21:06:21 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</guid><description>&lt;img src="https://i.imgur.com/8ocM55M.png " alt="Featured image of post 使用SSH來連動GITSCM" />&lt;h1 id="步驟">步驟&lt;/h1>
+&lt;/div>&lt;p>這樣就代表在下一次Job時，這個目錄底下的東西並不會被刪除&lt;/p></description></item><item><title>使用SSH來連動GITSCM</title><link>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</link><pubDate>Sun, 05 Feb 2023 21:06:21 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8ssh%E4%BE%86%E9%80%A3%E5%8B%95gitscm/</guid><description>&lt;img src="https://i.imgur.com/8ocM55M.png " alt="Featured image of post 使用SSH來連動GITSCM" />&lt;h1 id="步驟">步驟&lt;/h1>
 &lt;h2 id="產生key的方式">產生key的方式&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -17655,12 +17655,12 @@ alt="image-20230205211814078"
 loading="lazy"
 alt="image-20230205213904945"
 >&lt;/p>
-&lt;p>接著只要上傳是使用SSH方式上傳，就不需要再登入github了&lt;/p></description></item><item><title>Docker_Desktop_Starting問題解決</title><link>https://hoxtonhsu.com/p/docker_desktop_starting%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA/</link><pubDate>Sat, 21 Jan 2023 00:52:36 +0800</pubDate><guid>https://hoxtonhsu.com/p/docker_desktop_starting%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA/</guid><description>&lt;img src="https://i.imgur.com/xgUpP8O.png)" alt="Featured image of post Docker_Desktop_Starting問題解決" />&lt;p>最近在新電腦上安裝了Docker結果發現一直卡在這個畫面&lt;/p>
+&lt;p>接著只要上傳是使用SSH方式上傳，就不需要再登入github了&lt;/p></description></item><item><title>Docker_Desktop_Starting問題解決</title><link>https://hoxtoncraft.com/p/docker_desktop_starting%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA/</link><pubDate>Sat, 21 Jan 2023 00:52:36 +0800</pubDate><guid>https://hoxtoncraft.com/p/docker_desktop_starting%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA/</guid><description>&lt;img src="https://i.imgur.com/xgUpP8O.png)" alt="Featured image of post Docker_Desktop_Starting問題解決" />&lt;p>最近在新電腦上安裝了Docker結果發現一直卡在這個畫面&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/cw9mdiw.png"
 loading="lazy"
 alt="image-20230121005427135"
 >&lt;/p>
-&lt;p>後來研究了一下發現應該是wsl沒有裝好的原因，後來安裝好之後，在把Window Update要我Update的東西全部更新一次，就可以執行成功了，推測應該是window版本沒更新，導致不支援wsl的關係。&lt;/p></description></item><item><title>Docker學習筆記</title><link>https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 18 Jan 2023 21:47:50 +0800</pubDate><guid>https://hoxtonhsu.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/JdDwgHn.png " alt="Featured image of post Docker學習筆記" />&lt;h1 id="名詞解釋">名詞解釋&lt;/h1>
+&lt;p>後來研究了一下發現應該是wsl沒有裝好的原因，後來安裝好之後，在把Window Update要我Update的東西全部更新一次，就可以執行成功了，推測應該是window版本沒更新，導致不支援wsl的關係。&lt;/p></description></item><item><title>Docker學習筆記</title><link>https://hoxtoncraft.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Wed, 18 Jan 2023 21:47:50 +0800</pubDate><guid>https://hoxtoncraft.com/p/docker%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/JdDwgHn.png " alt="Featured image of post Docker學習筆記" />&lt;h1 id="名詞解釋">名詞解釋&lt;/h1>
 &lt;h2 id="container">Container&lt;/h2>
 &lt;p>Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。它使用操作系統級別的虛擬化，可以在單一的物理主機上運行多個容器，並且每個容器都有自己的運行環境和資源。&lt;/p>
 &lt;p>Docker Container 是一種軟體容器，它可以在其中運行應用程式和其他服務。容器具有輕量級、可移植性和隔離性等特點。容器是通過在操作系統內核中運行的容器引擎來實現的。&lt;/p>
@@ -18733,13 +18733,13 @@ alt="image-20230131000230558"
 &lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">docker compose down
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>你知道嗎?現在Github上也可以使用Vscode喔！</title><link>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</link><pubDate>Wed, 11 Jan 2023 23:27:27 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</guid><description>&lt;img src="https://i.imgur.com/Gckim1N.png" alt="Featured image of post 你知道嗎?現在Github上也可以使用Vscode喔！" />&lt;p>前陣子在網路上找看看有沒有什麼實用的Git指令，無意間看到這個功能。&lt;/p>
+&lt;/div></description></item><item><title>你知道嗎?現在Github上也可以使用Vscode喔！</title><link>https://hoxtoncraft.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</link><pubDate>Wed, 11 Jan 2023 23:27:27 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</guid><description>&lt;img src="https://i.imgur.com/Gckim1N.png" alt="Featured image of post 你知道嗎?現在Github上也可以使用Vscode喔！" />&lt;p>前陣子在網路上找看看有沒有什麼實用的Git指令，無意間看到這個功能。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/NltXKuw.gif"
 loading="lazy"
 alt="demo"
 >&lt;/p>
 &lt;p>只要在Github的頁面按下 &amp;gt; ，就可以開啟網頁版的Vscode囉，不過有個小缺點就是，Vscode開啟時介面語言是依據你瀏覽器的語言所決定，所以如果想要使用英文版的Vscode就要把Chrome的語言設定成英文喔。&lt;/p>
-&lt;p>這樣開啟後最直觀的好處就是可以直接在Github上以Vscode編輯程式碼，做快速的修改，瀏覽起來也比較快，不然原本網頁在看的話速度非常的慢！並且也可以在上面做衝突的處理。&lt;/p></description></item><item><title>實用的Git指令</title><link>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/</link><pubDate>Fri, 06 Jan 2023 14:15:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/</guid><description>&lt;img src="https://i.imgur.com/nCGDuUc.png " alt="Featured image of post 實用的Git指令" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>這樣開啟後最直觀的好處就是可以直接在Github上以Vscode編輯程式碼，做快速的修改，瀏覽起來也比較快，不然原本網頁在看的話速度非常的慢！並且也可以在上面做衝突的處理。&lt;/p></description></item><item><title>實用的Git指令</title><link>https://hoxtoncraft.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/</link><pubDate>Fri, 06 Jan 2023 14:15:51 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/</guid><description>&lt;img src="https://i.imgur.com/nCGDuUc.png " alt="Featured image of post 實用的Git指令" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>整理一下工作上有用過，並覺得實用、比較少人提過的一些Git指令。&lt;/p>
 &lt;h1 id="git指令">Git指令&lt;/h1>
 &lt;ol>
@@ -18783,7 +18783,7 @@ alt="demo2"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git commit --amend --no-edit
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>Java中的throw,throws,try...catch，受檢例外與非受檢例外</title><link>https://hoxtonhsu.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</link><pubDate>Tue, 27 Dec 2022 15:12:58 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</guid><description>&lt;img src="https://i.imgur.com/dwbYvaF.png" alt="Featured image of post Java中的throw,throws,try...catch，受檢例外與非受檢例外" />&lt;h1 id="開頭">開頭&lt;/h1>
+&lt;/div></description></item><item><title>Java中的throw,throws,try...catch，受檢例外與非受檢例外</title><link>https://hoxtoncraft.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</link><pubDate>Tue, 27 Dec 2022 15:12:58 +0800</pubDate><guid>https://hoxtoncraft.com/p/java%E4%B8%AD%E7%9A%84throwthrowstry...catch%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96%E8%88%87%E9%9D%9E%E5%8F%97%E6%AA%A2%E4%BE%8B%E5%A4%96/</guid><description>&lt;img src="https://i.imgur.com/dwbYvaF.png" alt="Featured image of post Java中的throw,throws,try...catch，受檢例外與非受檢例外" />&lt;h1 id="開頭">開頭&lt;/h1>
 &lt;p>Java中的例外分為受檢例外與非受檢例外(RuntimeExcetption)兩大類，可以先看到這張圖。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/apUx0mu.png"
 loading="lazy"
@@ -18815,7 +18815,7 @@ loading="lazy"
 alt="image-20221227165544804"
 >&lt;/p>
 &lt;p>右邊的方法實際上不會拋出IOException，所以會顯示為灰色的，這邊只是作為Demo先寫上去。可以看到畫面左邊的地方，此時IDE跟我們報錯，說這個方法會拋出一個IOException，要我們進行處理，&lt;strong>因為IOException是一個受檢例外&lt;/strong>，JVM本身沒有能力可以進行處理。&lt;/p>
-&lt;p>大概先這樣，其他想到後補。&lt;/p></description></item><item><title>淺談測試驅動開發</title><link>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</link><pubDate>Sun, 04 Dec 2022 22:22:06 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</guid><description>&lt;img src="https://i.imgur.com/2xteh3C.png" alt="Featured image of post 淺談測試驅動開發" />&lt;h1 id="序言">序言&lt;/h1>
+&lt;p>大概先這樣，其他想到後補。&lt;/p></description></item><item><title>淺談測試驅動開發</title><link>https://hoxtoncraft.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</link><pubDate>Sun, 04 Dec 2022 22:22:06 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E6%B7%BA%E8%AB%87%E6%B8%AC%E8%A9%A6%E9%A9%85%E5%8B%95%E9%96%8B%E7%99%BC/</guid><description>&lt;img src="https://i.imgur.com/2xteh3C.png" alt="Featured image of post 淺談測試驅動開發" />&lt;h1 id="序言">序言&lt;/h1>
 &lt;p>參考資料：&lt;/p>
 &lt;p>&lt;a class="link" href="https://youtu.be/t4D6GW2c8G8?list=LL" target="_blank" rel="noopener"
 >Agile Hsinchu 2022.11 - 〈你就是不寫測試，才會沒時間〉線上導讀&lt;/a>&lt;/p>
@@ -18883,7 +18883,7 @@ alt="image-20221207000519492"
 &lt;/ul>
 &lt;p>​ 這三者循環，對應Winston Royce對瀑布模型提出的弊端，也就是&lt;strong>測試、修改程式、確認需求&lt;/strong>，也因此TDD是一個可以讓&lt;strong>問題早期浮上水面的開發方式&lt;/strong>，為什麼？因為這樣的開發方式要求我們對業務邏輯的需求有充分的了解，這樣我們才可以寫測試，一旦需求明確了，那麼寫出程式就只是時間的問題了。&lt;/p>
 &lt;p>​ 另一方面，也是因為TDD的開發模式，我們每一個Code都有單元測試的保護，我們可以&lt;strong>隨時重構&lt;/strong>我們的程式碼而毋須擔心程式被我們改錯，是的，沒錯，TDD的一個核心概念就在於&lt;strong>任何時候都可以重構我們的程式碼&lt;/strong>，因為人對於系統的了解，會隨著開發時間的增加而了解的越深刻，半年前的Code到了現在可能越看越不順眼，另一方面，隨著業務規模的提升，我們早期的設計可能也會越不敷使用，若沒有單元測試的保護，我們重構的成本會隨著產品的規模的提升而提升，而發展到一定規模的情況下，&lt;strong>重構變成遙不可及的夢想&lt;/strong>。&lt;/p>
-&lt;p>​ 也是因為有單元測試的保護，我們才可以&lt;strong>真正的去設計我們的程式&lt;/strong>，常見的S.O.L.I.D，以及23種設計模式的使用，如何根據不同的情境套用不同的設計模式，這就是工程師有價值的地方，可以說單元測試的撰寫完整了整個物件導向的程式設計。&lt;/p></description></item><item><title>如何將Junit的測試粒度控制在最小單元</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</link><pubDate>Wed, 30 Nov 2022 13:30:27 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</guid><description>&lt;img src="https://i.imgur.com/4qePz5L.png " alt="Featured image of post 如何將Junit的測試粒度控制在最小單元" />&lt;p>在Junit5中，有對一些Junit的測試的註解進行調整&lt;/p>
+&lt;p>​ 也是因為有單元測試的保護，我們才可以&lt;strong>真正的去設計我們的程式&lt;/strong>，常見的S.O.L.I.D，以及23種設計模式的使用，如何根據不同的情境套用不同的設計模式，這就是工程師有價值的地方，可以說單元測試的撰寫完整了整個物件導向的程式設計。&lt;/p></description></item><item><title>如何將Junit的測試粒度控制在最小單元</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</link><pubDate>Wed, 30 Nov 2022 13:30:27 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E5%B0%87junit%E7%9A%84%E6%B8%AC%E8%A9%A6%E7%B2%92%E5%BA%A6%E6%8E%A7%E5%88%B6%E5%9C%A8%E6%9C%80%E5%B0%8F%E5%96%AE%E5%85%83/</guid><description>&lt;img src="https://i.imgur.com/4qePz5L.png " alt="Featured image of post 如何將Junit的測試粒度控制在最小單元" />&lt;p>在Junit5中，有對一些Junit的測試的註解進行調整&lt;/p>
 &lt;p>比如說&lt;/p>
 &lt;table>
 &lt;thead>
@@ -19000,7 +19000,7 @@ alt="image-20221207000519492"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>IntelliJ介紹</title><link>https://hoxtonhsu.com/p/intellij%E4%BB%8B%E7%B4%B9/</link><pubDate>Sun, 23 Oct 2022 20:40:49 +0800</pubDate><guid>https://hoxtonhsu.com/p/intellij%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/Fx9nanx.png" alt="Featured image of post IntelliJ介紹" />&lt;h2 id="推薦的plugin">推薦的Plugin&lt;/h2>
+&lt;/div></description></item><item><title>IntelliJ介紹</title><link>https://hoxtoncraft.com/p/intellij%E4%BB%8B%E7%B4%B9/</link><pubDate>Sun, 23 Oct 2022 20:40:49 +0800</pubDate><guid>https://hoxtoncraft.com/p/intellij%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/Fx9nanx.png" alt="Featured image of post IntelliJ介紹" />&lt;h2 id="推薦的plugin">推薦的Plugin&lt;/h2>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -19167,7 +19167,7 @@ alt="GitBlame"
 >&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>CLion的MutilMain</title><link>https://hoxtonhsu.com/p/clion%E7%9A%84mutilmain/</link><pubDate>Mon, 17 Oct 2022 18:09:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/clion%E7%9A%84mutilmain/</guid><description>&lt;img src="https://i.imgur.com/aGwtINt.png" alt="Featured image of post CLion的MutilMain" />&lt;p>最近在研究C++，但發現我的CLion不知道為什麼只能有一個Main方法，後來網路上查了一下之後發現好像是因為CMake的關係。&lt;/p>
+&lt;/table></description></item><item><title>CLion的MutilMain</title><link>https://hoxtoncraft.com/p/clion%E7%9A%84mutilmain/</link><pubDate>Mon, 17 Oct 2022 18:09:43 +0800</pubDate><guid>https://hoxtoncraft.com/p/clion%E7%9A%84mutilmain/</guid><description>&lt;img src="https://i.imgur.com/aGwtINt.png" alt="Featured image of post CLion的MutilMain" />&lt;p>最近在研究C++，但發現我的CLion不知道為什麼只能有一個Main方法，後來網路上查了一下之後發現好像是因為CMake的關係。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/F5hZpXH.png"
 loading="lazy"
 alt="image-20221017181210022"
@@ -19205,7 +19205,7 @@ alt="image-20221017181342487"
 &lt;p>&lt;img src="https://i.imgur.com/DrQHwR8.png"
 loading="lazy"
 alt="image-20221017181404785"
->&lt;/p></description></item><item><title>作業系統筆記</title><link>https://hoxtonhsu.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/HJLk11O.png" alt="Featured image of post 作業系統筆記" />&lt;p>[058]&lt;/p>
+>&lt;/p></description></item><item><title>作業系統筆記</title><link>https://hoxtoncraft.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/HJLk11O.png" alt="Featured image of post 作業系統筆記" />&lt;p>[058]&lt;/p>
 &lt;p>作業系統怎麼念？筆記看熟，蓋起來唸，念架構，可以自己把章節結構畫出來&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/i3FOjym.png"
 loading="lazy"
@@ -22386,7 +22386,7 @@ alt="image-20221225000043643"
 &lt;/li>
 &lt;/ul>
 &lt;h3 id="real-time-system之dispatch-latency-組成">Real-time system之Dispatch Latency 組成&lt;/h3>
-&lt;p>&lt;img src="https://hoxtonhsu.com/C:%5cUsers%5cza546%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20221225005405637.png"
+&lt;p>&lt;img src="https://hoxtoncraft.com/C:%5cUsers%5cza546%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20221225005405637.png"
 loading="lazy"
 alt="image-20221225005405637"
 >&lt;/p>
@@ -27747,7 +27747,7 @@ alt="image-20230329231152261"
 &lt;h3 id="multilevels-paging">Multilevels Paging&lt;/h3>
 &lt;p>考的頻率較高&lt;/p>
 &lt;p>定義：並不是把分頁表縮小，而是縮減抓進來的分頁表的內容，只抓有需要的區間，不需要將整個Page Table 載入進memory中，而是&lt;span style='color:yellow'>載入部分需要的內容就好&lt;/span>，因此提出多層次的Paging的做法，例：&lt;strong>以2-level paging 為例&lt;/strong>，當然你想要分3, 4 ,5 層都可以，你爽就好&lt;/p>
-&lt;p>&lt;img src="https://hoxtonhsu.com/C:%5cUsers%5cza546%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230330003135347.png"
+&lt;p>&lt;img src="https://hoxtoncraft.com/C:%5cUsers%5cza546%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230330003135347.png"
 loading="lazy"
 alt="image-20230330003135347"
 >&lt;/p>
@@ -29794,7 +29794,7 @@ alt="image-20230416021307561"
 &lt;p>&lt;span style='color:yellow;font-size:16px;'>&lt;/span>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
 &lt;p>&lt;u>&lt;/u>&lt;/p>
-&lt;p>&lt;u>&lt;/u>&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
+&lt;p>&lt;u>&lt;/u>&lt;/p></description></item><item><title>資料結構筆記</title><link>https://hoxtoncraft.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</link><pubDate>Sat, 08 Oct 2022 03:02:43 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/NiqSvey.png" alt="Featured image of post 資料結構筆記" />&lt;p>[ToC]&lt;/p>
 &lt;h1 id="學習路線">學習路線&lt;/h1>
 &lt;h2 id="ch1algorithm-recursion-and-performance-analysisspace--time">Ch1Algorithm, Recursion and Performance Analysis(space + Time)&lt;/h2>
 &lt;h2 id="ch3-stack--queue">Ch3 Stack &amp;amp; Queue&lt;/h2>
@@ -32497,7 +32497,7 @@ return item
 &lt;p>&lt;img src="https://p.ipic.vip/v29x8u.png"
 loading="lazy"
 alt="image-20230510002315303"
->&lt;/p></description></item><item><title>基礎AOP介紹-Filter Interceptor AspectJ</title><link>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link><pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</guid><description>&lt;img src="https://i.imgur.com/B7GhSw1.png" alt="Featured image of post 基礎AOP介紹-Filter Interceptor AspectJ" />&lt;h1 id="目錄">目錄&lt;/h1>
+>&lt;/p></description></item><item><title>基礎AOP介紹-Filter Interceptor AspectJ</title><link>https://hoxtoncraft.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</link><pubDate>Fri, 07 Oct 2022 22:41:52 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9F%BA%E7%A4%8Eaop%E4%BB%8B%E7%B4%B9-filter-interceptor-aspectj/</guid><description>&lt;img src="https://i.imgur.com/B7GhSw1.png" alt="Featured image of post 基礎AOP介紹-Filter Interceptor AspectJ" />&lt;h1 id="目錄">目錄&lt;/h1>
 &lt;ul>
 &lt;li>&lt;a class="link" href="#Filter%28%e9%81%8e%e6%bf%be%e5%99%a8%29Interceptor%28%e6%94%94%e6%88%aa%e5%99%a8%29AOP%28%e5%89%96%e9%9d%a2%e5%b0%8e%e5%90%91%e7%a8%8b%e5%bc%8f%e8%a8%ad%e8%a8%88%29%e4%b9%8b%e5%b7%ae%e7%95%b0" >Filter(過濾器)Interceptor(攔截器)AOP(剖面導向程式設計)之差異&lt;/a>
 &lt;ul>
@@ -33727,7 +33727,7 @@ alt="image-20220912120043665"
 &lt;p>&lt;a class="link" href="https://www.zendei.com/article/52571.html" target="_blank" rel="noopener"
 >Spring Boot使用過濾器和攔截器分別實現REST介面簡易安全認證&lt;/a>&lt;/p>
 &lt;blockquote>
-&lt;/blockquote></description></item><item><title>Java內的排程器介紹</title><link>https://hoxtonhsu.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 06 Oct 2022 23:14:21 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/9or5BzU.png" alt="Featured image of post Java內的排程器介紹" />&lt;h1 id="springboot-scheduling">SpringBoot-Scheduling&lt;/h1>
+&lt;/blockquote></description></item><item><title>Java內的排程器介紹</title><link>https://hoxtoncraft.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</link><pubDate>Thu, 06 Oct 2022 23:14:21 +0800</pubDate><guid>https://hoxtoncraft.com/p/java%E5%85%A7%E7%9A%84%E6%8E%92%E7%A8%8B%E5%99%A8%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/9or5BzU.png" alt="Featured image of post Java內的排程器介紹" />&lt;h1 id="springboot-scheduling">SpringBoot-Scheduling&lt;/h1>
 &lt;p>用來做定期任務的東西，有兩種&lt;/p>
 &lt;ul>
 &lt;li>Spring schedule：只適合處理簡單的計畫任務，不能處理分散式的任務，當任務太多時，可能出現阻塞、崩潰、延遲啟動等問題&lt;/li>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 22 Nov 2023 02:05:31 +0800</lastBuildDate><atom:link href="https://hoxtonhsu.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>IntelliJ快速產生log模板</title><link>https://hoxtonhsu.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</link><pubDate>Wed, 22 Nov 2023 02:05:31 +0800</pubDate><guid>https://hoxtonhsu.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/oRRgTer.jpg" alt="Featured image of post IntelliJ快速產生log模板" />&lt;h1 id="前言">前言&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教學 on Hoxton</title><link>https://hoxtoncraft.com/categories/%E6%95%99%E5%AD%B8/</link><description>Recent content in 教學 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 22 Nov 2023 02:05:31 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/categories/%E6%95%99%E5%AD%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>IntelliJ快速產生log模板</title><link>https://hoxtoncraft.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</link><pubDate>Wed, 22 Nov 2023 02:05:31 +0800</pubDate><guid>https://hoxtoncraft.com/p/intellij%E5%BF%AB%E9%80%9F%E7%94%A2%E7%94%9Flog%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/oRRgTer.jpg" alt="Featured image of post IntelliJ快速產生log模板" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>唉呀呀，最近實在是太忙了，這陣子一直在忙公司的內容，沒啥時間更新部落格，趁著今天剛洗好澡的時候來更新一下，這次想講的是IntelliJ的一個功能叫做Code Complete，這功能是啥咧？&lt;/p>
 &lt;p>IntelliJ裡面你可以透過sout快速產生System.out.println(&amp;quot;&amp;quot;)的模板對吧，這個功能就叫做Code Complete。之所以會介紹這個功能，是因為公司的Code沒有辦法在本地環境運行，只能在伺服器上跑，所以debugger這個功能是完全不行的&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/ylZaByT.gif"
@@ -53,7 +53,7 @@ alt="image-20231122024903804"
 &lt;p>&lt;img src="https://i.imgur.com/ACbADdQ.gif"
 loading="lazy"
 alt="iShot_2023-11-22_02.14.41"
->&lt;/p></description></item><item><title>簡單的聊聊SpringBoot中的非同步操作@Async</title><link>https://hoxtonhsu.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</link><pubDate>Sun, 08 Oct 2023 19:25:56 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</guid><description>&lt;img src="https://i.imgur.com/LTjIYLa.png" alt="Featured image of post 簡單的聊聊SpringBoot中的非同步操作@Async" />&lt;p>在SpringBoot中要實現非同步有很多種方式，比如說你自己手寫一個ThreadPool、或是藉由外部的RabbitMQ都可以實現非同步的方法。&lt;/p>
+>&lt;/p></description></item><item><title>簡單的聊聊SpringBoot中的非同步操作@Async</title><link>https://hoxtoncraft.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</link><pubDate>Sun, 08 Oct 2023 19:25:56 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E7%B0%A1%E5%96%AE%E7%9A%84%E8%81%8A%E8%81%8Aspringboot%E4%B8%AD%E7%9A%84%E9%9D%9E%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9Casync/</guid><description>&lt;img src="https://i.imgur.com/LTjIYLa.png" alt="Featured image of post 簡單的聊聊SpringBoot中的非同步操作@Async" />&lt;p>在SpringBoot中要實現非同步有很多種方式，比如說你自己手寫一個ThreadPool、或是藉由外部的RabbitMQ都可以實現非同步的方法。&lt;/p>
 &lt;p>那這邊我選擇實做的方法是使用SpringBoot提供的@Async，什麼是非同步呢？&lt;/p>
 &lt;p>舉個例子假設我在做櫃檯，現在有10個客人要辦帳戶，每個客人過來我這邊，都要寫10分鐘的表格，寫完後我在幫他們登記，花兩分鐘。如果一個客人一個客人這樣過來，我需要花120分鐘才可以消化掉。但如果我可以先把表格發給全部10個人填，這樣我只要花10+10*2=30分鐘就可以。&lt;/p>
 &lt;p>這就是非同步操作，簡而言之就是&lt;strong>避免無意義的等待&lt;/strong>。&lt;/p>
@@ -257,7 +257,7 @@ alt="faye-wong-red-beans"
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/j8YURrx.gif"
 loading="lazy"
 alt="iShot_2023-10-08_20.01.20"
->&lt;/p></description></item><item><title>Redis學習筆記</title><link>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/hW7HRS8.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
+>&lt;/p></description></item><item><title>Redis學習筆記</title><link>https://hoxtoncraft.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</link><pubDate>Thu, 07 Sep 2023 09:32:15 +0800</pubDate><guid>https://hoxtoncraft.com/p/redis%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/</guid><description>&lt;img src="https://i.imgur.com/hW7HRS8.png" alt="Featured image of post Redis學習筆記" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前一陣子被保哥給Fire掉了，但老實說自己的工作表現真的不太好，這點也確實怪不了人，所幸很快就找到了下一份工作，新的工作有個很大的優點，就是需要學很多我之前想學，但又因為懶惰而沒有去學的技術，而Redis就是其中的一款。於是前輩就跟我說，可以利用等待帳號申請的這一兩個禮拜，把這些技術學一學&lt;/p>
 &lt;p> &lt;img src="https://i.imgur.com/R3VMXoP.gif"
 loading="lazy"
@@ -1287,7 +1287,7 @@ alt=" "
 &lt;/div>
 &lt;/div>&lt;h1 id="參考資料">參考資料&lt;/h1>
 &lt;p>&lt;a class="link" href="https://www.bilibili.com/video/BV1Fd4y1T7pD/?spm_id_from=333.999.top_right_bar_window_history.content.click&amp;amp;vd_source=422eafa6570139128e44a83238959fa0" target="_blank" rel="noopener"
->【趣话Redis第一弹】我是Redis，MySQL大哥被我坑惨了！&lt;/a>&lt;/p></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtonhsu.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
+>【趣话Redis第一弹】我是Redis，MySQL大哥被我坑惨了！&lt;/a>&lt;/p></description></item><item><title>Selenium學習筆記-以104人力銀行為例</title><link>https://hoxtoncraft.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</link><pubDate>Thu, 03 Aug 2023 00:15:02 +0800</pubDate><guid>https://hoxtoncraft.com/p/selenium%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%BB%A5104%E4%BA%BA%E5%8A%9B%E9%8A%80%E8%A1%8C%E7%82%BA%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/tsAfSod.png" alt="Featured image of post Selenium學習筆記-以104人力銀行為例" />&lt;p>前陣子被公司抓去當了QA，不得不說QA真的很無聊，就是一直在按一些button，大概就是一些重複性高，又沒什麼產值的工作，剛好想到之前在前前公司有聽過Selenium這個東西，於是來研究一下。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/8cus4pF.gif"
 loading="lazy"
 alt="bored-and-gif"
@@ -1899,7 +1899,7 @@ alt="demo"
 loading="lazy"
 alt="image-20230803152251360"
 >&lt;/p>
-&lt;p>這樣就可以囉！&lt;/p></description></item><item><title>Hugo中如何解決mathjax跑版問題</title><link>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 11:51:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/nnX2rBK.jpg" alt="Featured image of post Hugo中如何解決mathjax跑版問題" />&lt;p>最近很常在Hugo內寫一些數學式，比如說聯立方程，或是矩陣，微積分之類的，有時候會遇到Hugo中無法正確顯示畫面的情況，在這之前已經有參考很多人的文章了，比如說&lt;/p>
+&lt;p>這樣就可以囉！&lt;/p></description></item><item><title>Hugo中如何解決mathjax跑版問題</title><link>https://hoxtoncraft.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 27 Jul 2023 11:51:18 +0800</pubDate><guid>https://hoxtoncraft.com/p/hugo%E4%B8%AD%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BAmathjax%E8%B7%91%E7%89%88%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/nnX2rBK.jpg" alt="Featured image of post Hugo中如何解決mathjax跑版問題" />&lt;p>最近很常在Hugo內寫一些數學式，比如說聯立方程，或是矩陣，微積分之類的，有時候會遇到Hugo中無法正確顯示畫面的情況，在這之前已經有參考很多人的文章了，比如說&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.vincentthh35.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8-hugo-%E5%85%A7%E5%B5%8C-latex-%E6%95%B8%E5%AD%B8%E5%BC%8F/" target="_blank" rel="noopener"
 >如何在 Hugo 內嵌 Latex 數學式&lt;/a>&lt;/p>
 &lt;p>&lt;a class="link" href="https://www.gohugo.org/doc/tutorials/mathjax/" target="_blank" rel="noopener"
@@ -1966,7 +1966,7 @@ $$
 &lt;p>&lt;img src="https://i.imgur.com/k9zLUyu.png"
 loading="lazy"
 alt="image-20230727115915003"
->&lt;/p></description></item><item><title>Airflow的Dockerfile</title><link>https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/</link><pubDate>Sat, 22 Jul 2023 15:27:16 +0800</pubDate><guid>https://hoxtonhsu.com/p/airflow%E7%9A%84dockerfile/</guid><description>&lt;img src="https://i.imgur.com/ib3Y4zY.png" alt="Featured image of post Airflow的Dockerfile" />&lt;div class="highlight">&lt;div class="chroma">
+>&lt;/p></description></item><item><title>Airflow的Dockerfile</title><link>https://hoxtoncraft.com/p/airflow%E7%9A%84dockerfile/</link><pubDate>Sat, 22 Jul 2023 15:27:16 +0800</pubDate><guid>https://hoxtoncraft.com/p/airflow%E7%9A%84dockerfile/</guid><description>&lt;img src="https://i.imgur.com/ib3Y4zY.png" alt="Featured image of post Airflow的Dockerfile" />&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
@@ -2516,7 +2516,7 @@ alt="image-20230727115915003"
 &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">postgres-db-volume&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>Java中回傳值前的泛型標識符是什麼意思呢</title><link>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</link><pubDate>Tue, 11 Jul 2023 00:03:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/Y9pLlYY.png" alt="Featured image of post Java中回傳值前的泛型標識符是什麼意思呢" />&lt;p>前一陣子在寫DiscordBot的時候，曾經在教學中看過這種寫法&lt;/p>
+&lt;/div></description></item><item><title>Java中回傳值前的泛型標識符是什麼意思呢</title><link>https://hoxtoncraft.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</link><pubDate>Tue, 11 Jul 2023 00:03:03 +0800</pubDate><guid>https://hoxtoncraft.com/p/java%E4%B8%AD%E5%9B%9E%E5%82%B3%E5%80%BC%E5%89%8D%E7%9A%84%E6%B3%9B%E5%9E%8B%E6%A8%99%E8%AD%98%E7%AC%A6%E6%98%AF%E4%BB%80%E9%BA%BC%E6%84%8F%E6%80%9D%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/Y9pLlYY.png" alt="Featured image of post Java中回傳值前的泛型標識符是什麼意思呢" />&lt;p>前一陣子在寫DiscordBot的時候，曾經在教學中看過這種寫法&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -2707,7 +2707,7 @@ alt="image-20230401004844813"
 loading="lazy"
 alt="image-20230401005044108"
 >&lt;/p>
-&lt;p>如此一來，addPeopleList就可以吃任何型別的參數了，以上就是所謂的泛型方法約束。&lt;/p></description></item><item><title>如何在M1,M2中安裝Airflow</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</link><pubDate>Fri, 07 Jul 2023 19:46:21 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</guid><description>&lt;img src="https://i.imgur.com/FWgJzl6.png" alt="Featured image of post 如何在M1,M2中安裝Airflow" />&lt;h1 id="參考">參考&lt;/h1>
+&lt;p>如此一來，addPeopleList就可以吃任何型別的參數了，以上就是所謂的泛型方法約束。&lt;/p></description></item><item><title>如何在M1,M2中安裝Airflow</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</link><pubDate>Fri, 07 Jul 2023 19:46:21 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E5%9C%A8m1m2%E4%B8%AD%E5%AE%89%E8%A3%9Dairflow/</guid><description>&lt;img src="https://i.imgur.com/FWgJzl6.png" alt="Featured image of post 如何在M1,M2中安裝Airflow" />&lt;h1 id="參考">參考&lt;/h1>
 &lt;p>參考影片如下 &lt;a class="link" href="https://youtu.be/YDDMm9M6SFA" target="_blank" rel="noopener"
 >Apache Airflow for Data Science #1 - How to Install Airflow Locally in 10 Minutes&lt;/a>&lt;/p>
 &lt;h1 id="教學">教學&lt;/h1>
@@ -2854,7 +2854,7 @@ alt="image-20230707200032473"
 &lt;/div>&lt;p>&lt;img src="https://i.imgur.com/IttSFOW.gif"
 loading="lazy"
 alt="demo"
->&lt;/p></description></item><item><title>在Termianl中顯示完整的Git Tree</title><link>https://hoxtonhsu.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</link><pubDate>Mon, 03 Jul 2023 16:09:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</guid><description>&lt;img src="https://i.imgur.com/eESaO42.png" alt="Featured image of post 在Termianl中顯示完整的Git Tree" />&lt;p>前一陣子在公司被保哥唸了一頓，「只看Terminal而不看SourceTreeg是錯的，Tree才是Git的精髓！」&lt;/p>
+>&lt;/p></description></item><item><title>在Termianl中顯示完整的Git Tree</title><link>https://hoxtoncraft.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</link><pubDate>Mon, 03 Jul 2023 16:09:33 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8termianl%E4%B8%AD%E9%A1%AF%E7%A4%BA%E5%AE%8C%E6%95%B4%E7%9A%84git-tree/</guid><description>&lt;img src="https://i.imgur.com/eESaO42.png" alt="Featured image of post 在Termianl中顯示完整的Git Tree" />&lt;p>前一陣子在公司被保哥唸了一頓，「只看Terminal而不看SourceTreeg是錯的，Tree才是Git的精髓！」&lt;/p>
 &lt;p>於是決定來學一下如何用Terminal查看Tree。&lt;/p>
 &lt;p>雖然不多人知道，但其實Git裡面是可以查看Git Tree的&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -2910,7 +2910,7 @@ alt="image-20230703162317660"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git graph
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>來查看完整的Tree了 ！&lt;/p></description></item><item><title>在Iterm2上持續顯示log, branch</title><link>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</link><pubDate>Tue, 27 Jun 2023 11:14:03 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</guid><description>&lt;img src="https://i.imgur.com/nivCoDF.png" alt="Featured image of post 在Iterm2上持續顯示log, branch" />&lt;h1 id="heading">&lt;/h1>
+&lt;/div>&lt;p>來查看完整的Tree了 ！&lt;/p></description></item><item><title>在Iterm2上持續顯示log, branch</title><link>https://hoxtoncraft.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</link><pubDate>Tue, 27 Jun 2023 11:14:03 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8iterm2%E4%B8%8A%E6%8C%81%E7%BA%8C%E9%A1%AF%E7%A4%BAlog-branch/</guid><description>&lt;img src="https://i.imgur.com/nivCoDF.png" alt="Featured image of post 在Iterm2上持續顯示log, branch" />&lt;h1 id="heading">&lt;/h1>
 &lt;p>Iterm2裡面，當我輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -2929,7 +2929,7 @@ alt="image-20230703162317660"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">git config --global --replace-all core.pager &lt;span class="s2">&amp;#34;less -F -X&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>這樣就可以持續顯示了&lt;/p></description></item><item><title>如何讓Iterm2擁有如Window Terminal般的絲滑體驗</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</link><pubDate>Thu, 15 Jun 2023 16:32:19 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</guid><description>&lt;img src="https://i.imgur.com/w12QKbR.png" alt="Featured image of post 如何讓Iterm2擁有如Window Terminal般的絲滑體驗" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;/div>&lt;p>這樣就可以持續顯示了&lt;/p></description></item><item><title>如何讓Iterm2擁有如Window Terminal般的絲滑體驗</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</link><pubDate>Thu, 15 Jun 2023 16:32:19 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E8%AE%93iterm2%E6%93%81%E6%9C%89%E5%A6%82window-terminal%E8%88%AC%E7%9A%84%E7%B5%B2%E6%BB%91%E9%AB%94%E9%A9%97/</guid><description>&lt;img src="https://i.imgur.com/w12QKbR.png" alt="Featured image of post 如何讓Iterm2擁有如Window Terminal般的絲滑體驗" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前一陣子花了65,000買了一台Macbook，不得不說，使用體驗還是覺得像一坨答辯一樣，很多東西都要自己來。用了快一個月左右，還是有很多地方不適應，最直觀的體驗就是Terinal吧，Windows有一個非常強的Terminal介面叫做Window Terminal，它的畫面設計還有使用體驗，海放了Iterm不知道幾條街，尤其是window鍵+`，快速開啟Terminal的功能至今讓我難以忘懷。換到Mac上，我試著熟悉左右切換視窗的方式來模擬那熟悉的感覺，但切換的動畫的那一秒還是讓我煩躁不已。於是搜尋了一下，發現Iterm本身就有內建如同Window Terminal快速開啟Terminal的方式。｀&lt;/p>
 &lt;h1 id="設定">設定&lt;/h1>
 &lt;p>將Exculde from Dock&amp;hellip;的設定打開&lt;/p>
@@ -2949,7 +2949,7 @@ alt="image-20230615164011470"
 &lt;p>&lt;img src="https://i.imgur.com/BElMNec.gif"
 loading="lazy"
 alt="demo"
->&lt;/p></description></item><item><title>如何為Mac設定環境變數</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</link><pubDate>Wed, 14 Jun 2023 15:34:15 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/O9emCTx.png" alt="Featured image of post 如何為Mac設定環境變數" />&lt;h1 id="教學">教學&lt;/h1>
+>&lt;/p></description></item><item><title>如何為Mac設定環境變數</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</link><pubDate>Wed, 14 Jun 2023 15:34:15 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E7%82%BAmac%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/O9emCTx.png" alt="Featured image of post 如何為Mac設定環境變數" />&lt;h1 id="教學">教學&lt;/h1>
 &lt;p>可以先輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -3037,7 +3037,7 @@ alt="image-20230614153937948"
 &lt;p>&lt;img src="https://i.imgur.com/IP6jUjW.gif"
 loading="lazy"
 alt="demo"
->&lt;/p></description></item><item><title>將Linux的Port打開，讓外部可以訪問</title><link>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</link><pubDate>Sat, 20 May 2023 11:40:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</guid><description>&lt;img src="https://i.imgur.com/qKt7ANw.png" alt="Featured image of post 將Linux的Port打開，讓外部可以訪問" />&lt;p>在遠端的電腦上輸入&lt;/p>
+>&lt;/p></description></item><item><title>將Linux的Port打開，讓外部可以訪問</title><link>https://hoxtoncraft.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</link><pubDate>Sat, 20 May 2023 11:40:25 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%B0%87linux%E7%9A%84port%E6%89%93%E9%96%8B%E8%AE%93%E5%A4%96%E9%83%A8%E5%8F%AF%E4%BB%A5%E8%A8%AA%E5%95%8F/</guid><description>&lt;img src="https://i.imgur.com/qKt7ANw.png" alt="Featured image of post 將Linux的Port打開，讓外部可以訪問" />&lt;p>在遠端的電腦上輸入&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3049,7 +3049,7 @@ alt="demo"
 &lt;/div>&lt;p>將8081 Port曝露出來&lt;/p>
 &lt;p>這樣外部就可以透過&lt;/p>
 &lt;p>http://{ip-address}:8081/&lt;/p>
-&lt;p>來訪問網站了&lt;/p></description></item><item><title>Windows系統中，使用Terminal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/windows%E7%B3%BB%E7%B5%B1%E4%B8%AD%E4%BD%BF%E7%94%A8terminal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Fri, 19 May 2023 20:56:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/windows%E7%B3%BB%E7%B5%B1%E4%B8%AD%E4%BD%BF%E7%94%A8terminal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/fkzGuEX.jpg" alt="Featured image of post Windows系統中，使用Terminal開啟IntelliJ" />&lt;p>前一陣子買了Mac，讓Mac可以用Terminal開啟IntelliJ，關於Mac的設定可以查看&lt;a class="link" href="https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/" target="_blank" rel="noopener"
+&lt;p>來訪問網站了&lt;/p></description></item><item><title>Windows系統中，使用Terminal開啟IntelliJ</title><link>https://hoxtoncraft.com/p/windows%E7%B3%BB%E7%B5%B1%E4%B8%AD%E4%BD%BF%E7%94%A8terminal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Fri, 19 May 2023 20:56:38 +0800</pubDate><guid>https://hoxtoncraft.com/p/windows%E7%B3%BB%E7%B5%B1%E4%B8%AD%E4%BD%BF%E7%94%A8terminal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/fkzGuEX.jpg" alt="Featured image of post Windows系統中，使用Terminal開啟IntelliJ" />&lt;p>前一陣子買了Mac，讓Mac可以用Terminal開啟IntelliJ，關於Mac的設定可以查看&lt;a class="link" href="https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/" target="_blank" rel="noopener"
 >這篇文章&lt;/a>，但這是一直遲遲沒有把windows也設定起來，但今天它來啦！&lt;/p>
 &lt;h1 id="實際演示">實際演示&lt;/h1>
 &lt;p>&lt;img src="https://i.imgur.com/ds4v65X.gif"
@@ -3121,7 +3121,7 @@ alt="demo"
 &lt;/blockquote>
 &lt;p>這樣就可以用idea .來 開啟檔案了&lt;/p>
 &lt;h1 id="注意事項">注意事項&lt;/h1>
-&lt;p>這樣的修改會導致桌面的捷徑出現問題，因為我們把啟動的程式從idea64.exe重新命名成idea.exe了，所以需要重新建立一個新的桌面捷徑&lt;/p></description></item><item><title>使用shellScript讀取資料夾中的檔案個數</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</link><pubDate>Fri, 19 May 2023 15:06:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/mdbKbaT.png" alt="Featured image of post 使用shellScript讀取資料夾中的檔案個數" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>這樣的修改會導致桌面的捷徑出現問題，因為我們把啟動的程式從idea64.exe重新命名成idea.exe了，所以需要重新建立一個新的桌面捷徑&lt;/p></description></item><item><title>使用shellScript讀取資料夾中的檔案個數</title><link>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</link><pubDate>Fri, 19 May 2023 15:06:55 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8shellscript%E8%AE%80%E5%8F%96%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E5%80%8B%E6%95%B8/</guid><description>&lt;img src="https://i.imgur.com/mdbKbaT.png" alt="Featured image of post 使用shellScript讀取資料夾中的檔案個數" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>一直以來都覺得要在資料夾內搜尋是一件很麻煩的事情，原因是這樣的，我文章的資料夾長這樣&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/c8GWeMt.png"
 loading="lazy"
@@ -3171,7 +3171,7 @@ open index.md
 &lt;p>&lt;img src="https://i.imgur.com/tEKouqD.png"
 loading="lazy"
 alt="image-20230611151534546"
->&lt;/p></description></item><item><title>在MacBook M1環境下使用Terimnal開啟IntelliJ</title><link>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟IntelliJ" />&lt;h1 id="前言">前言&lt;/h1>
+>&lt;/p></description></item><item><title>在MacBook M1環境下使用Terimnal開啟IntelliJ</title><link>https://hoxtoncraft.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</link><pubDate>Thu, 18 May 2023 21:22:51 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8macbook-m1%E7%92%B0%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8terimnal%E9%96%8B%E5%95%9Fintellij/</guid><description>&lt;img src="https://i.imgur.com/AEhodYS.png" alt="Featured image of post 在MacBook M1環境下使用Terimnal開啟IntelliJ" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>前陣子買了Mac，影響我最大的應該就是不能再像Windows一樣，使用右鍵開啟專案了！因為公司的產品有兩個專案，我也常常把專案砍掉重抓，如果不能用右鍵開啟，那就得從中手動匯入，這樣子一來一往真的是靠北麻煩。&lt;/p>
 &lt;h1 id="如何使用terminal開啟">如何使用Terminal開啟&lt;/h1>
 &lt;p>其實網路上我看了很多教學，大概看了4、5天吧，到最後我才發現其實官網就有寫了，原來幸福的青鳥一直就在身邊，唉垃圾Mac&lt;/p>
@@ -3361,7 +3361,7 @@ alt="image-20230518213418418"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">open -na &lt;span class="s2">&amp;#34; IDEA.app&amp;#34;&lt;/span> --args &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$@&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>ARM架構與x86架構下，Docker啟動問題</title><link>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 13 May 2023 19:09:41 +0800</pubDate><guid>https://hoxtonhsu.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/8XJ9XWE.png" alt="Featured image of post ARM架構與x86架構下，Docker啟動問題" />&lt;h1 id="導因">導因&lt;/h1>
+&lt;/div></description></item><item><title>ARM架構與x86架構下，Docker啟動問題</title><link>https://hoxtoncraft.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</link><pubDate>Sat, 13 May 2023 19:09:41 +0800</pubDate><guid>https://hoxtoncraft.com/p/arm%E6%9E%B6%E6%A7%8B%E8%88%87x86%E6%9E%B6%E6%A7%8B%E4%B8%8Bdocker%E5%95%9F%E5%8B%95%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/8XJ9XWE.png" alt="Featured image of post ARM架構與x86架構下，Docker啟動問題" />&lt;h1 id="導因">導因&lt;/h1>
 &lt;p>M1的CPU是使用ARM架構，而有些電腦則是使用x86架構，並且因Docker是Run在OS上方，所以在執行Image時也要考慮作業系統的問題&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -3391,7 +3391,7 @@ alt="image-20230518213418418"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">docker build . --platform linux/x86_64
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>如何更改Mac terminal的預設路徑</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</link><pubDate>Sat, 13 May 2023 17:44:38 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</guid><description>&lt;img src="https://i.imgur.com/ieJ6kkK.png" alt="Featured image of post 如何更改Mac terminal的預設路徑" />&lt;h1 id="簡介">簡介&lt;/h1>
+&lt;/div></description></item><item><title>如何更改Mac terminal的預設路徑</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</link><pubDate>Sat, 13 May 2023 17:44:38 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%94%B9mac-terminal%E7%9A%84%E9%A0%90%E8%A8%AD%E8%B7%AF%E5%BE%91/</guid><description>&lt;img src="https://i.imgur.com/ieJ6kkK.png" alt="Featured image of post 如何更改Mac terminal的預設路徑" />&lt;h1 id="簡介">簡介&lt;/h1>
 &lt;p>最近要換新工作了，正好新工作的公司有電腦補助，就趁這個機會把Macbook也買了，一拿到手之後發現超級難用，難用到靠北，真的不懂為什麼一堆人說好用。&lt;/p>
 &lt;h1 id="如何更改termial預設路徑">如何更改Termial預設路徑&lt;/h1>
 &lt;p>預設情況下，Terminal路徑都是&lt;/p>
@@ -3432,7 +3432,7 @@ alt="image-20230513180010374"
 &lt;p>&lt;img src="https://i.imgur.com/Q14Iy0n.gif"
 loading="lazy"
 alt="demo"
->&lt;/p></description></item><item><title>在IntelliJ中設定Class模板</title><link>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</link><pubDate>Fri, 12 May 2023 15:41:07 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/dEvsZm3.png" alt="Featured image of post 在IntelliJ中設定Class模板" />&lt;p>在IntelliJ開啟以下的路徑&lt;/p>
+>&lt;/p></description></item><item><title>在IntelliJ中設定Class模板</title><link>https://hoxtoncraft.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</link><pubDate>Fri, 12 May 2023 15:41:07 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8intellij%E4%B8%AD%E8%A8%AD%E5%AE%9Aclass%E6%A8%A1%E6%9D%BF/</guid><description>&lt;img src="https://i.imgur.com/dEvsZm3.png" alt="Featured image of post 在IntelliJ中設定Class模板" />&lt;p>在IntelliJ開啟以下的路徑&lt;/p>
 &lt;p>&lt;code>Setting &amp;gt; Editor &amp;gt; File and Code Templates &amp;gt; Includes &amp;gt; File Header&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/sOjF3Yb.png"
 loading="lazy"
@@ -3442,7 +3442,7 @@ alt="image-20230512154419942"
 &lt;p>&lt;img src="https://i.imgur.com/TWmvl80.png"
 loading="lazy"
 alt="image-20230512154507522"
->&lt;/p></description></item><item><title>H2Database之配置檔紀錄</title><link>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</link><pubDate>Sat, 06 May 2023 00:13:33 +0800</pubDate><guid>https://hoxtonhsu.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/xYmsInY.png" alt="Featured image of post H2Database之配置檔紀錄" />&lt;p>依賴如下&lt;/p>
+>&lt;/p></description></item><item><title>H2Database之配置檔紀錄</title><link>https://hoxtoncraft.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</link><pubDate>Sat, 06 May 2023 00:13:33 +0800</pubDate><guid>https://hoxtoncraft.com/p/h2database%E4%B9%8B%E9%85%8D%E7%BD%AE%E6%AA%94%E7%B4%80%E9%8C%84/</guid><description>&lt;img src="https://i.imgur.com/xYmsInY.png" alt="Featured image of post H2Database之配置檔紀錄" />&lt;p>依賴如下&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
@@ -3532,7 +3532,7 @@ spring.jpa.hibernate.ddl-auto=update
 &lt;/span>&lt;span class="w">
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>在IntelliJ設定環境變數，並讓Application.properties讀取</title><link>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E4%B8%A6%E8%AE%93application.properties%E8%AE%80%E5%8F%96/</link><pubDate>Sat, 06 May 2023 00:07:44 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8intellij%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E4%B8%A6%E8%AE%93application.properties%E8%AE%80%E5%8F%96/</guid><description>&lt;img src="https://i.imgur.com/lRrDIvY.png" alt="Featured image of post 在IntelliJ設定環境變數，並讓Application.properties讀取" />&lt;h1 id="設定環境變數">設定環境變數&lt;/h1>
+&lt;/div></description></item><item><title>在IntelliJ設定環境變數，並讓Application.properties讀取</title><link>https://hoxtoncraft.com/p/%E5%9C%A8intellij%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E4%B8%A6%E8%AE%93application.properties%E8%AE%80%E5%8F%96/</link><pubDate>Sat, 06 May 2023 00:07:44 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8intellij%E8%A8%AD%E5%AE%9A%E7%92%B0%E5%A2%83%E8%AE%8A%E6%95%B8%E4%B8%A6%E8%AE%93application.properties%E8%AE%80%E5%8F%96/</guid><description>&lt;img src="https://i.imgur.com/lRrDIvY.png" alt="Featured image of post 在IntelliJ設定環境變數，並讓Application.properties讀取" />&lt;h1 id="設定環境變數">設定環境變數&lt;/h1>
 &lt;p>&lt;img src="https://i.imgur.com/tmeUJwW.png"
 loading="lazy"
 alt="image-20230506000906709"
@@ -3558,7 +3558,7 @@ alt="demo"
 loading="lazy"
 alt="image-20230506001229397"
 >&lt;/p>
-&lt;p>即可在專案中配置環境變數，並讓配置檔讀取&lt;/p></description></item><item><title>MacOS如何終止port,process</title><link>https://hoxtonhsu.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</link><pubDate>Wed, 03 May 2023 16:25:22 +0800</pubDate><guid>https://hoxtonhsu.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</guid><description>&lt;img src="https://i.imgur.com/m3Lr6uG.png" alt="Featured image of post MacOS如何終止port,process" />&lt;div class="highlight">&lt;div class="chroma">
+&lt;p>即可在專案中配置環境變數，並讓配置檔讀取&lt;/p></description></item><item><title>MacOS如何終止port,process</title><link>https://hoxtoncraft.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</link><pubDate>Wed, 03 May 2023 16:25:22 +0800</pubDate><guid>https://hoxtoncraft.com/p/macos%E5%A6%82%E4%BD%95%E7%B5%82%E6%AD%A2portprocess/</guid><description>&lt;img src="https://i.imgur.com/m3Lr6uG.png" alt="Featured image of post MacOS如何終止port,process" />&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
@@ -3579,7 +3579,7 @@ alt="image-20230530162755091"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="nb">kill&lt;/span> &lt;span class="m">31128&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>就可以了&lt;/p></description></item><item><title>Cherry Pick的一點研究</title><link>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtonhsu.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/n1qX6TQ.gif" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章，並且這個指令常常與Rebase, Merge兩者來對比，目前感覺如下&lt;/p>
+&lt;/div>&lt;p>就可以了&lt;/p></description></item><item><title>Cherry Pick的一點研究</title><link>https://hoxtoncraft.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</link><pubDate>Sun, 16 Apr 2023 17:30:28 +0800</pubDate><guid>https://hoxtoncraft.com/p/cherry-pick%E7%9A%84%E4%B8%80%E9%BB%9E%E7%A0%94%E7%A9%B6/</guid><description>&lt;img src="https://i.imgur.com/n1qX6TQ.gif" alt="Featured image of post Cherry Pick的一點研究" />&lt;p>利用一個下午，把對Cherry Pick的一些問題整理成一篇文章，並且這個指令常常與Rebase, Merge兩者來對比，目前感覺如下&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -3781,10 +3781,10 @@ alt="image-20230416190945774"
 &lt;p>&lt;img src="https://i.imgur.com/3K4v8s3.png"
 loading="lazy"
 alt="image-20230416191527528"
->&lt;/p></description></item><item><title>SpringBoot啟動時，出現Missing table hibernate sequence之解決方法</title><link>https://hoxtonhsu.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</link><pubDate>Sun, 16 Apr 2023 03:55:44 +0800</pubDate><guid>https://hoxtonhsu.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</guid><description>&lt;img src="https://i.imgur.com/kdTSaSC.png" alt="Featured image of post SpringBoot啟動時，出現Missing table hibernate sequence之解決方法" />&lt;h1 id="導因">導因&lt;/h1>
+>&lt;/p></description></item><item><title>SpringBoot啟動時，出現Missing table hibernate sequence之解決方法</title><link>https://hoxtoncraft.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</link><pubDate>Sun, 16 Apr 2023 03:55:44 +0800</pubDate><guid>https://hoxtoncraft.com/p/springboot%E5%95%9F%E5%8B%95%E6%99%82%E5%87%BA%E7%8F%BEmissing-table-hibernate-sequence%E4%B9%8B%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95/</guid><description>&lt;img src="https://i.imgur.com/kdTSaSC.png" alt="Featured image of post SpringBoot啟動時，出現Missing table hibernate sequence之解決方法" />&lt;h1 id="導因">導因&lt;/h1>
 &lt;p>通常是因為在JPA的地方使用了&lt;code>@GeneratedValue(strategy = GenerationType.AUTO)&lt;/code>這個註解，這個註解會由資料庫自動(AUTO)去配置，如果資料庫有就沒問題，但有些資料庫可能會沒有，比如說我用的資料庫是PostgresSQL就會出現這個問題&lt;/p>
 &lt;p>解決方式&lt;/p>
-&lt;p>將@GeneratedValue(strategy = GenerationType.AUTO)更改，更改為@GeneratedValue(strategy = GenerationType.IDENTITY)即可&lt;/p></description></item><item><title>手把手教你寫SprintBoot框架</title><link>https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</link><pubDate>Sat, 01 Apr 2023 19:40:36 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</guid><description>&lt;img src="https://i.imgur.com/1G2G1o4.png" alt="Featured image of post 手把手教你寫SprintBoot框架" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>將@GeneratedValue(strategy = GenerationType.AUTO)更改，更改為@GeneratedValue(strategy = GenerationType.IDENTITY)即可&lt;/p></description></item><item><title>手把手教你寫SprintBoot框架</title><link>https://hoxtoncraft.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</link><pubDate>Sat, 01 Apr 2023 19:40:36 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%AF%ABsprintboot%E6%A1%86%E6%9E%B6/</guid><description>&lt;img src="https://i.imgur.com/1G2G1o4.png" alt="Featured image of post 手把手教你寫SprintBoot框架" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>連假實在有點無聊，打算來手寫一個SprintBoot專案，來加深自己對這種IoC框架的理解，我打算把這個框架叫做&lt;strong>Winter&lt;/strong>，象徵我每況愈下的人生，唉&lt;/p>
 &lt;h1 id="sprintboot-單例池">SprintBoot 單例池&lt;/h1>
 &lt;p>本章所用到的程式碼存放在這&lt;/p>
@@ -4545,7 +4545,7 @@ alt="demo"
 >&lt;/p>
 &lt;p>這樣就是一個基礎的SprintBoot 單例池的創建&lt;/p>
 &lt;h1 id="autowired之實現原理">Autowired之實現原理&lt;/h1>
-&lt;p>To Be Continued &amp;hellip;&lt;/p></description></item><item><title>論@Value與Environment之優劣</title><link>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link><pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid><description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" />&lt;p>&lt;img src="https://i.imgur.com/JQHz275.png"
+&lt;p>To Be Continued &amp;hellip;&lt;/p></description></item><item><title>論@Value與Environment之優劣</title><link>https://hoxtoncraft.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</link><pubDate>Fri, 24 Mar 2023 01:41:57 +0000</pubDate><guid>https://hoxtoncraft.com/p/%E8%AB%96value%E8%88%87environment%E4%B9%8B%E5%84%AA%E5%8A%A3/</guid><description>&lt;img src="https://i.imgur.com/UDvSvgw.png" alt="Featured image of post 論@Value與Environment之優劣" />&lt;p>&lt;img src="https://i.imgur.com/JQHz275.png"
 loading="lazy"
 >&lt;/p>
 &lt;p>SpringBoot中想要從Application.properties中取的值，有兩種常見的方式，其中一種是利用@Value的方式&lt;/p>
@@ -4690,7 +4690,7 @@ loading="lazy"
 &lt;span class="o">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>大概Guy4這樣&lt;/p></description></item><item><title>在window Terminal中使用Cmder</title><link>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</link><pubDate>Tue, 21 Mar 2023 10:40:57 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</guid><description>&lt;img src="https://i.imgur.com/l3t70N4.png" alt="Featured image of post 在window Terminal中使用Cmder" />&lt;h1 id="安裝window-terminal">安裝window terminal&lt;/h1>
+&lt;/div>&lt;p>大概Guy4這樣&lt;/p></description></item><item><title>在window Terminal中使用Cmder</title><link>https://hoxtoncraft.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</link><pubDate>Tue, 21 Mar 2023 10:40:57 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%9C%A8window-terminal%E4%B8%AD%E4%BD%BF%E7%94%A8cmder/</guid><description>&lt;img src="https://i.imgur.com/l3t70N4.png" alt="Featured image of post 在window Terminal中使用Cmder" />&lt;h1 id="安裝window-terminal">安裝window terminal&lt;/h1>
 &lt;p>至Microsoft Store安裝window terminal&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/QHkfcK2.png"
 loading="lazy"
@@ -4785,7 +4785,7 @@ alt="image-20230321105210480"
 loading="lazy"
 alt="image-20230321105524196"
 >&lt;/p>
-&lt;p>接著&lt;strong>重開&lt;/strong>window terminal就可以囉~&lt;/p></description></item><item><title>使用Docker在window會出現的File Not Found問題</title><link>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 16 Mar 2023 06:41:23 +0000</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/AP3wJLN.png" alt="Featured image of post 使用Docker在window會出現的File Not Found問題" />&lt;h1 id="前情提要">前情提要&lt;/h1>
+&lt;p>接著&lt;strong>重開&lt;/strong>window terminal就可以囉~&lt;/p></description></item><item><title>使用Docker在window會出現的File Not Found問題</title><link>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</link><pubDate>Thu, 16 Mar 2023 06:41:23 +0000</pubDate><guid>https://hoxtoncraft.com/p/%E4%BD%BF%E7%94%A8docker%E5%9C%A8window%E6%9C%83%E5%87%BA%E7%8F%BE%E7%9A%84file-not-found%E5%95%8F%E9%A1%8C/</guid><description>&lt;img src="https://i.imgur.com/AP3wJLN.png" alt="Featured image of post 使用Docker在window會出現的File Not Found問題" />&lt;h1 id="前情提要">前情提要&lt;/h1>
 &lt;p>最近在學習zabbix時，安裝在Linux系統下時，透過Postman是可以正常取得資料的&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/DX2FgEJ.png"
 loading="lazy"
@@ -4819,7 +4819,7 @@ loading="lazy"
 &lt;p>將URL改成正確地之後就能正常訪問了&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/1OlT37p.gif"
 loading="lazy"
->&lt;/p></description></item><item><title>只要按個鍵，圖片立刻上傳至雲端 PicGo介紹</title><link>https://hoxtonhsu.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</link><pubDate>Wed, 08 Mar 2023 20:56:55 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/teYQFXk.png" alt="Featured image of post 只要按個鍵，圖片立刻上傳至雲端 PicGo介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
+>&lt;/p></description></item><item><title>只要按個鍵，圖片立刻上傳至雲端 PicGo介紹</title><link>https://hoxtoncraft.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</link><pubDate>Wed, 08 Mar 2023 20:56:55 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%8F%AA%E8%A6%81%E6%8C%89%E5%80%8B%E9%8D%B5%E5%9C%96%E7%89%87%E7%AB%8B%E5%88%BB%E4%B8%8A%E5%82%B3%E8%87%B3%E9%9B%B2%E7%AB%AF-picgo%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/teYQFXk.png" alt="Featured image of post 只要按個鍵，圖片立刻上傳至雲端 PicGo介紹" />&lt;h1 id="介紹">介紹&lt;/h1>
 &lt;p>PicGo是個開源的圖片上傳程式(並非平台)，由於設定快速，效果簡單而深受我的喜愛，決定寫一篇文章來介紹這東西該怎麼使用&lt;/p>
 &lt;h1 id="安裝">安裝&lt;/h1>
 &lt;p>我們使用Choco來安裝，Choco是一個Window系統的檔案下載工具，可以做類似npm的功能，以下是它的安裝方式。&lt;/p>
@@ -4877,7 +4877,7 @@ alt="image-20230308210959190"
 &lt;p>&lt;img src="https://i.imgur.com/UejcWoE.png"
 loading="lazy"
 alt="image-20230308211104660"
->&lt;/p></description></item><item><title>Git在第一次使用的credentialhelperselector該怎麼設定呢</title><link>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</link><pubDate>Wed, 08 Mar 2023 20:48:18 +0800</pubDate><guid>https://hoxtonhsu.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/PFJUZO4.png" alt="Featured image of post Git在第一次使用的credentialhelperselector該怎麼設定呢" />&lt;h1 id="前言">前言&lt;/h1>
+>&lt;/p></description></item><item><title>Git在第一次使用的credentialhelperselector該怎麼設定呢</title><link>https://hoxtoncraft.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</link><pubDate>Wed, 08 Mar 2023 20:48:18 +0800</pubDate><guid>https://hoxtoncraft.com/p/git%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E7%9A%84credentialhelperselector%E8%A9%B2%E6%80%8E%E9%BA%BC%E8%A8%AD%E5%AE%9A%E5%91%A2/</guid><description>&lt;img src="https://i.imgur.com/PFJUZO4.png" alt="Featured image of post Git在第一次使用的credentialhelperselector該怎麼設定呢" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>每次在新電腦上使用Git的時候都會跳這個東西出來，但一直不知道這是啥，這次來研究一下&lt;/p>
 &lt;h1 id="總結">總結&lt;/h1>
 &lt;p>這東西其實是因為如果要推東西上去或是拉Private專案下來的話，會需要做認證(Credential)的部分，而這個視窗其實就是在問你，你所提供的這些登入資訊想存在哪邊?&lt;/p>
@@ -4909,7 +4909,7 @@ alt="image-20230308211104660"
 &lt;/div>&lt;ul>
 &lt;li>設定帳號密碼&lt;/li>
 &lt;/ul>
-&lt;p>由於自2021年後，GitHub不在提供使用帳號密碼的認證方式，要使用Token進行認證，帳號輸入自己的Github帳號，而密碼則是輸入自己的Token，這樣就設定成功囉！&lt;/p></description></item><item><title>淺談一些實用的快捷鍵</title><link>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E4%B8%80%E4%BA%9B%E5%AF%A6%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/</link><pubDate>Thu, 26 Jan 2023 00:31:43 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E6%B7%BA%E8%AB%87%E4%B8%80%E4%BA%9B%E5%AF%A6%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/</guid><description>&lt;img src="https://i.imgur.com/Ln2xqzT.png" alt="Featured image of post 淺談一些實用的快捷鍵" />&lt;p>想講一些實用的，但卻很少人知道的一些電腦使用的功能，知道這些對做底稿、翻憑證不會有太大的幫助，但會用的話我個人覺得可以節省很多時間，供大家參考。&lt;/p>
+&lt;p>由於自2021年後，GitHub不在提供使用帳號密碼的認證方式，要使用Token進行認證，帳號輸入自己的Github帳號，而密碼則是輸入自己的Token，這樣就設定成功囉！&lt;/p></description></item><item><title>淺談一些實用的快捷鍵</title><link>https://hoxtoncraft.com/p/%E6%B7%BA%E8%AB%87%E4%B8%80%E4%BA%9B%E5%AF%A6%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/</link><pubDate>Thu, 26 Jan 2023 00:31:43 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E6%B7%BA%E8%AB%87%E4%B8%80%E4%BA%9B%E5%AF%A6%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/</guid><description>&lt;img src="https://i.imgur.com/Ln2xqzT.png" alt="Featured image of post 淺談一些實用的快捷鍵" />&lt;p>想講一些實用的，但卻很少人知道的一些電腦使用的功能，知道這些對做底稿、翻憑證不會有太大的幫助，但會用的話我個人覺得可以節省很多時間，供大家參考。&lt;/p>
 &lt;h1 id="快速關機">快速關機&lt;/h1>
 &lt;p>window+D：回到桌面&lt;/p>
 &lt;p>在桌面Alt+F4即可跳出關機選項&lt;/p>
@@ -4940,7 +4940,7 @@ alt="demo"
 &lt;p>可以打開工作列的第二個應用，以此類推&amp;hellip;&lt;/p>
 &lt;p>這個指令我大部分都是用來開Chrome，或是Excel之類的東西&lt;/p>
 &lt;h1 id="瀏覽器快速選擇搜尋列">瀏覽器快速選擇搜尋列&lt;/h1>
-&lt;p>打開Chrorm後，打alt+D就可以定位到搜尋列，並且在這邊按Ctrl+1,2,3&amp;hellip;即可切換至不同的頁面，通常是我拿來打混摸魚的時候用的，Ctrl+T則可以打開新的分頁，所以兩個和再一起就是，開啟一個新分頁並搜尋，如果旁邊有人過來就立刻Ctrl+w關閉當前頁面，避免摸魚被抓包。&lt;/p></description></item><item><title>如何製作會計的電子筆記？Markdown的介紹</title><link>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</link><pubDate>Sun, 22 Jan 2023 23:15:25 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/c968Ywa.png" alt="Featured image of post 如何製作會計的電子筆記？Markdown的介紹" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>打開Chrorm後，打alt+D就可以定位到搜尋列，並且在這邊按Ctrl+1,2,3&amp;hellip;即可切換至不同的頁面，通常是我拿來打混摸魚的時候用的，Ctrl+T則可以打開新的分頁，所以兩個和再一起就是，開啟一個新分頁並搜尋，如果旁邊有人過來就立刻Ctrl+w關閉當前頁面，避免摸魚被抓包。&lt;/p></description></item><item><title>如何製作會計的電子筆記？Markdown的介紹</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</link><pubDate>Sun, 22 Jan 2023 23:15:25 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E8%A3%BD%E4%BD%9C%E6%9C%83%E8%A8%88%E7%9A%84%E9%9B%BB%E5%AD%90%E7%AD%86%E8%A8%98markdown%E7%9A%84%E4%BB%8B%E7%B4%B9/</guid><description>&lt;img src="https://i.imgur.com/c968Ywa.png" alt="Featured image of post 如何製作會計的電子筆記？Markdown的介紹" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>年假回老家實在是太無聊了，想把這幾年學到的東西分享一下，希望可以幫助一些莘莘學子，能用更有效率的方式來整理筆記。&lt;/p>
 &lt;p>記得大二或是大三的時候很沉迷於作筆記這件事情，最喜歡做的事情，就是用一兩個下午把那個禮拜所上的成會或是中會整理成筆記，以利後面的複習。不得不說當時這樣做的回饋還不錯，當時中會跟成會的成績都還算不錯。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/CFebBUe.png"
@@ -5162,13 +5162,13 @@ alt="image-20230123004611873"
 >&lt;/p>
 &lt;h1 id="結語">結語&lt;/h1>
 &lt;p>當然還有不只這些，我沒記錯的話Notion本身也有支援(但我不熟)以及obsidian也是一個寫Markdown的工具，我之所以會選Typora只是因為我喜歡有更大的空間，不喜歡畫面被分成左右兩邊而已。&lt;/p>
-&lt;p>作筆記的方法有很多，不做的、用紙寫的、用平板寫的，都可以，沒有誰優誰劣，Markdown也有它的限制在，比如說它就&lt;strong>不能寫資產負債表、也不能寫T字帳&lt;/strong>，沒有一個方法是最佳解的，只要找到自己喜歡的方式都可以，這篇文章只是拋磚引玉，希望提供自己的一些想法供大家參考，也歡迎各位一起討論，祝大家新年快樂，忙季加油！&lt;/p></description></item><item><title>你知道嗎?現在Github上也可以使用Vscode喔！</title><link>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</link><pubDate>Wed, 11 Jan 2023 23:27:27 +0800</pubDate><guid>https://hoxtonhsu.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</guid><description>&lt;img src="https://i.imgur.com/Gckim1N.png" alt="Featured image of post 你知道嗎?現在Github上也可以使用Vscode喔！" />&lt;p>前陣子在網路上找看看有沒有什麼實用的Git指令，無意間看到這個功能。&lt;/p>
+&lt;p>作筆記的方法有很多，不做的、用紙寫的、用平板寫的，都可以，沒有誰優誰劣，Markdown也有它的限制在，比如說它就&lt;strong>不能寫資產負債表、也不能寫T字帳&lt;/strong>，沒有一個方法是最佳解的，只要找到自己喜歡的方式都可以，這篇文章只是拋磚引玉，希望提供自己的一些想法供大家參考，也歡迎各位一起討論，祝大家新年快樂，忙季加油！&lt;/p></description></item><item><title>你知道嗎?現在Github上也可以使用Vscode喔！</title><link>https://hoxtoncraft.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</link><pubDate>Wed, 11 Jan 2023 23:27:27 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BD%A0%E7%9F%A5%E9%81%93%E5%97%8E%E7%8F%BE%E5%9C%A8github%E4%B8%8A%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8vscode%E5%96%94/</guid><description>&lt;img src="https://i.imgur.com/Gckim1N.png" alt="Featured image of post 你知道嗎?現在Github上也可以使用Vscode喔！" />&lt;p>前陣子在網路上找看看有沒有什麼實用的Git指令，無意間看到這個功能。&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/NltXKuw.gif"
 loading="lazy"
 alt="demo"
 >&lt;/p>
 &lt;p>只要在Github的頁面按下 &amp;gt; ，就可以開啟網頁版的Vscode囉，不過有個小缺點就是，Vscode開啟時介面語言是依據你瀏覽器的語言所決定，所以如果想要使用英文版的Vscode就要把Chrome的語言設定成英文喔。&lt;/p>
-&lt;p>這樣開啟後最直觀的好處就是可以直接在Github上以Vscode編輯程式碼，做快速的修改，瀏覽起來也比較快，不然原本網頁在看的話速度非常的慢！並且也可以在上面做衝突的處理。&lt;/p></description></item><item><title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title><link>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link><pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate><guid>https://hoxtonhsu.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid><description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" />&lt;p>最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p>
+&lt;p>這樣開啟後最直觀的好處就是可以直接在Github上以Vscode編輯程式碼，做快速的修改，瀏覽起來也比較快，不然原本網頁在看的話速度非常的慢！並且也可以在上面做衝突的處理。&lt;/p></description></item><item><title>TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)</title><link>https://hoxtoncraft.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</link><pubDate>Sat, 08 Oct 2022 01:02:04 +0800</pubDate><guid>https://hoxtoncraft.com/p/typora-%E5%A6%82%E4%BD%95%E4%B8%8A%E5%82%B3%E5%9C%96%E7%89%87%E6%95%99%E5%AD%B8-%E4%BD%BF%E7%94%A8github-imagur%E4%BD%9C%E7%82%BA%E5%9C%96%E7%89%87%E7%A9%BA%E9%96%93/</guid><description>&lt;img src="https://i.imgur.com/W6FAkN1.png" alt="Featured image of post TYPORA 如何上傳圖片(教學 使用Github , imagur作為圖片空間)" />&lt;p>最近領到薪水後買了TYPORA後，想找如何上傳圖片的教學，發現網路上的教學蠻少的，台灣好像只有一篇，還是For mac的教學，剩下的都是中國的教學，但他們用的圖床，台灣也很多不能用，後來研究了幾天終於搞懂，所以決定寫一篇看看&lt;/p>
 &lt;p>圖片空間有Github跟imgur，就看你想要用哪個就用哪個吧，其實沒差太多，但imgur會稍微簡單一點點點點點點，以下是步驟&lt;/p>
 &lt;h2 id="開始">開始&lt;/h2>
 &lt;ul>
