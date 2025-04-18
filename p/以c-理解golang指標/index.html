@@ -9,7 +9,9 @@ gtag('js',new Date());gtag('config','G-9N16MVLR0Q');</script></head><body class=
   <span class=n>Value</span> <span class=n>value</span><span class=p>;</span>
 <span class=p>}</span>
 </code></pre></td></tr></table></div></div><h1 id=解引用運算符dereference-operator>*（解引用運算符，Dereference operator）</h1><p>* 在等號右邊：取得指標所指的記憶體的值</p><p>*在等號左邊：宣告一個記憶體，其值為右邊的記憶體位址</p><ul><li>當作為變數宣告時，代表a的資料型別是個指針型別，a存的是一個記憶體位址</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c++ data-lang=c++><span class=kt>int</span> <span class=o>*</span><span class=n>a</span> <span class=o>=</span> <span class=k>new</span> <span class=kt>int</span> <span class=p>(</span><span class=mi>10</span><span class=p>)</span> <span class=c1>//a本身的地址為0x0001，其儲存的值為0x0010 相當於這樣 Memory(0x0001,0x0010)
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c++ data-lang=c++><span class=kt>int</span> <span class=o>*</span><span class=n>a</span> <span class=o>=</span> <span class=k>new</span> <span class=kt>int</span> <span class=p>(</span><span class=mi>10</span><span class=p>)</span>
+  <span class=c1>//a本身的地址為0x0001，其儲存的值為0x0010 相當於這樣 Memory(0x0001,0x0010)
 </span></code></pre></td></tr></table></div></div><ul><li><strong>當 <code>*</code> 用於指標前面時</strong>，它代表的是 <strong>解引用</strong>，也就是取得指標所指向的記憶體位置的值。</li><li>例如，<code>*a</code> 會返回指標 <code>a</code> 所指向位置的值。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c++ data-lang=c++><span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>a</span> <span class=p>;</span> <span class=c1>//a的值是 0x0010
