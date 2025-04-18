@@ -14,7 +14,7 @@
 &lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h1 id="解引用運算符dereference-operator">*****（解引用運算符，Dereference operator）&lt;/h1>
+&lt;/div>&lt;h1 id="解引用運算符dereference-operator">*（解引用運算符，Dereference operator）&lt;/h1>
 &lt;p>* 在等號右邊：取得指標所指的記憶體的值&lt;/p>
 &lt;p>*在等號左邊：宣告一個記憶體，其值為右邊的記憶體位址&lt;/p>
 &lt;ul>
@@ -45,7 +45,7 @@
 &lt;/div>&lt;h1 id="取地址運算符address-of-operator">&lt;strong>&amp;amp;&lt;/strong>（取地址運算符，Address-of operator）&lt;/h1>
 &lt;p>&amp;amp;在等號右邊：拿到變數在記憶體的位址&lt;/p>
 &lt;p>&amp;amp;在等號左邊：宣告引用，幫某個變數取別名，不佔用新記憶體&lt;/p>
-&lt;h4 id="取得變數的記憶體地址a">取得變數的記憶體地址（&amp;amp;a）&lt;/h4>
+&lt;p>取得變數的記憶體地址（&amp;amp;a）&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>當 &lt;code>&amp;amp;&lt;/code> 用在變數前面&lt;/strong>，它表示取得該變數的記憶體地址。&lt;/li>
 &lt;li>這是 &lt;strong>取址運算子&lt;/strong>，其作用是返回變數的地址。&lt;/li>
