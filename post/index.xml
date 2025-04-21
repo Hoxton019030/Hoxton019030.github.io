@@ -1,4 +1,63 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtoncraft.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 15 Mar 2025 19:25:55 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>以C++理解Golang指標</title><link>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</link><pubDate>Sat, 15 Mar 2025 19:25:55 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/QMDUdXZ.png" alt="Featured image of post 以C++理解Golang指標" />&lt;p>Golang是個允許操作Pointer(指標)的程式語言，常用的用法跟C、C++類似，如下兩種&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtoncraft.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 21 Apr 2025 09:13:16 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>微積分常用公式與範例</title><link>https://hoxtoncraft.com/p/%E5%BE%AE%E7%A9%8D%E5%88%86%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</link><pubDate>Mon, 21 Apr 2025 09:13:16 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%BE%AE%E7%A9%8D%E5%88%86%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/U5RCdgF.png" alt="Featured image of post 微積分常用公式與範例" />&lt;h1 id="微分常用公式">微分常用公式&lt;/h1>
+&lt;ol>
+&lt;li>
+&lt;p>$$(f(x) + g(x))' = f'(x) + g'(x)$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$(f(x) - g(x))' = f'(x) - g'(x)$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$(cf(x))' = c f'(x) \quad \text{（c為常數）}$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$(f(x)g(x))' = f'(x)g(x) + f(x)g'(x) \quad \text{（乘法法則）}$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\left(\frac{f(x)}{g(x)}\right)' = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2} \quad \text{（除法法則）}$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$(f(g(x)))' = f'(g(x)) \cdot g'(x) \quad \text{（鏈式法則）}$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(x^n) = nx^{n-1}$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(\sin x) = \cos x$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(\cos x) = -\sin x$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(\tan x) = \sec^2 x$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(e^x) = e^x$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(\ln x) = \frac{1}{x}$$&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h1 id="積分常用公式">積分常用公式&lt;/h1>
+&lt;ol>
+&lt;li>
+&lt;p>$$\int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\int \frac{1}{x} dx = \ln|x| + C$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\int e^x dx = e^x + C$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\int \sin x , dx = -\cos x + C$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\int \cos x , dx = \sin x + C$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\int \sec^2 x , dx = \tan x + C$$&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>以C++理解Golang指標</title><link>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</link><pubDate>Sat, 15 Mar 2025 19:25:55 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/QMDUdXZ.png" alt="Featured image of post 以C++理解Golang指標" />&lt;p>Golang是個允許操作Pointer(指標)的程式語言，常用的用法跟C、C++類似，如下兩種&lt;/p>
 &lt;p>＊與＆，在了解之前要先知道一件事情，就是以下要討論的都是記憶體的位址與其儲存的值，我們用資料結構來表示，大概就是這樣&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
