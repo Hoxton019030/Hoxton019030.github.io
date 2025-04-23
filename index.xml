@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtoncraft.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 21 Apr 2025 09:13:16 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/index.xml" rel="self" type="application/rss+xml"/><item><title>微積分常用公式與範例</title><link>https://hoxtoncraft.com/p/%E5%BE%AE%E7%A9%8D%E5%88%86%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</link><pubDate>Mon, 21 Apr 2025 09:13:16 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%BE%AE%E7%A9%8D%E5%88%86%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/U5RCdgF.png" alt="Featured image of post 微積分常用公式與範例" />&lt;h1 id="微分常用公式">微分常用公式&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtoncraft.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 21 Apr 2025 09:13:16 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/index.xml" rel="self" type="application/rss+xml"/><item><title>考研常用公式與範例</title><link>https://hoxtoncraft.com/p/%E8%80%83%E7%A0%94%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</link><pubDate>Mon, 21 Apr 2025 09:13:16 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E8%80%83%E7%A0%94%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/U5RCdgF.png" alt="Featured image of post 考研常用公式與範例" />&lt;h1 id="微分常用公式">微分常用公式&lt;/h1>
 &lt;ol>
 &lt;li>
 &lt;p>$$(f(x) + g(x))' = f'(x) + g'(x)$$&lt;/p>
@@ -57,7 +57,32 @@
 &lt;li>
 &lt;p>$$\int \sec^2 x , dx = \tan x + C$$&lt;/p>
 &lt;/li>
-&lt;/ol></description></item><item><title>以C++理解Golang指標</title><link>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</link><pubDate>Sat, 15 Mar 2025 19:25:55 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/QMDUdXZ.png" alt="Featured image of post 以C++理解Golang指標" />&lt;p>Golang是個允許操作Pointer(指標)的程式語言，常用的用法跟C、C++類似，如下兩種&lt;/p>
+&lt;/ol>
+&lt;h1 id="泰勒展開式">泰勒展開式&lt;/h1>
+&lt;p>【给我俩分钟，还你泰勒公式记忆一片天空】 &lt;a href="https://www.bilibili.com/video/BV1bC4y1H7cp/?share_source=copy_web&amp;amp;vd_source=b38b089ffe2c29ef61bebcff0f458ed8">https://www.bilibili.com/video/BV1bC4y1H7cp/?share_source=copy_web&amp;amp;vd_source=b38b089ffe2c29ef61bebcff0f458ed8&lt;/a>&lt;/p>
+&lt;p>其實只需要記住&lt;/p>
+&lt;p>$e^x$&lt;/p>
+&lt;p>$sin x$&lt;/p>
+&lt;p>$ln(1+x)$&lt;/p>
+&lt;p>這三個就可以&lt;/p>
+&lt;p>$$
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots + \frac{x^n}{n!} + o(x^n)
+$$&lt;/p>
+&lt;p>$$
+\sin x = x - \frac{x^3}{3!} + \cdots + \frac{(-1)^n}{(2n+1)!} x^{2n+1} + o(x^{2n+1})
+$$&lt;/p>
+&lt;p>$$
+\cos x = 1 - \frac{x^2}{2!} + \cdots + \frac{(-1)^n}{(2n)!} x^{2n} + o(x^{2n})
+$$&lt;/p>
+&lt;p>$$
+\frac{1}{1 - x} = 1 + x + x^2 + x^3 + \cdots + x^n + o(x^n)
+$$&lt;/p>
+&lt;p>$$
+\frac{1}{1 + x} = 1 - x + x^2 - x^3 + \cdots + (-1)^n x^n + o(x^n)
+$$&lt;/p>
+&lt;p>$$
+\ln(1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots + \frac{(-1)^{n-1}}{n} x^n + o(x^n)
+$$&lt;/p></description></item><item><title>以C++理解Golang指標</title><link>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</link><pubDate>Sat, 15 Mar 2025 19:25:55 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/QMDUdXZ.png" alt="Featured image of post 以C++理解Golang指標" />&lt;p>Golang是個允許操作Pointer(指標)的程式語言，常用的用法跟C、C++類似，如下兩種&lt;/p>
 &lt;p>＊與＆，在了解之前要先知道一件事情，就是以下要討論的都是記憶體的位址與其儲存的值，我們用資料結構來表示，大概就是這樣&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
