@@ -18,6 +18,12 @@
 &lt;li>
 &lt;p>$$(f(g(x)))' = f'(g(x)) \cdot g'(x) \quad \text{（鏈式法則）}$$&lt;/p>
 &lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/5VRWS2G.png"
+loading="lazy"
+alt="image-20250427071506366"
+>&lt;/p>
+&lt;ol>
 &lt;li>
 &lt;p>$$\frac{d}{dx}(x^n) = nx^{n-1}$$&lt;/p>
 &lt;/li>
