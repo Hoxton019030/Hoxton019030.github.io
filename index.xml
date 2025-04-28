@@ -18,9 +18,13 @@
 &lt;li>
 &lt;p>$$\left(\frac{f(x)}{g(x)}\right)' = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2} \quad \text{（除法法則）}$$&lt;/p>
 &lt;/li>
-&lt;li>
-&lt;p>$$(f(g(x)))' = f'(g(x)) \cdot g'(x) \quad \text{（鏈式法則）}$$&lt;/p>
-&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/yhzgEJ0.png"
+loading="lazy"
+alt="image-20250428192016503"
+>&lt;/p>
+&lt;ol>
+&lt;li>$$(f(g(x)))' = f'(g(x)) \cdot g'(x) \quad \text{（鏈式法則）}$$&lt;/li>
 &lt;/ol>
 &lt;p>&lt;img src="https://i.imgur.com/5VRWS2G.png"
 loading="lazy"
