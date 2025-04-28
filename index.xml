@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtoncraft.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 21 Apr 2025 09:13:16 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/index.xml" rel="self" type="application/rss+xml"/><item><title>考研常用公式與範例</title><link>https://hoxtoncraft.com/p/%E8%80%83%E7%A0%94%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</link><pubDate>Mon, 21 Apr 2025 09:13:16 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E8%80%83%E7%A0%94%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/U5RCdgF.png" alt="Featured image of post 考研常用公式與範例" />&lt;h1 id="微分常用公式">微分常用公式&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hoxton</title><link>https://hoxtoncraft.com/</link><description>Recent content on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 21 Apr 2025 09:13:16 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/index.xml" rel="self" type="application/rss+xml"/><item><title>考研常用公式與範例</title><link>https://hoxtoncraft.com/p/%E8%80%83%E7%A0%94%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</link><pubDate>Mon, 21 Apr 2025 09:13:16 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E8%80%83%E7%A0%94%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/U5RCdgF.png" alt="Featured image of post 考研常用公式與範例" />&lt;p>推薦的微積分線上計算機
+&lt;a href="https://zs.symbolab.com/solver/pre-calculus-calculator">https://zs.symbolab.com/solver/pre-calculus-calculator&lt;/a>&lt;/p>
+&lt;h1 id="微分常用公式">微分常用公式&lt;/h1>
 &lt;ol>
 &lt;li>
 &lt;p>$$(f(x) + g(x))' = f'(x) + g'(x)$$&lt;/p>
@@ -12,6 +14,7 @@
 &lt;li>
 &lt;p>$$(f(x)g(x))' = f'(x)g(x) + f(x)g'(x) \quad \text{（乘法法則）}$$&lt;/p>
 &lt;/li>
+&lt;li>&lt;/li>
 &lt;li>
 &lt;p>$$\left(\frac{f(x)}{g(x)}\right)' = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2} \quad \text{（除法法則）}$$&lt;/p>
 &lt;/li>
