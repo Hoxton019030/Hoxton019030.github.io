@@ -1,150 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtoncraft.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Mon, 21 Apr 2025 09:13:16 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>考研常用公式與範例</title><link>https://hoxtoncraft.com/p/%E8%80%83%E7%A0%94%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</link><pubDate>Mon, 21 Apr 2025 09:13:16 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E8%80%83%E7%A0%94%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/U5RCdgF.png" alt="Featured image of post 考研常用公式與範例" />&lt;p>推薦的微積分線上計算機
-&lt;a href="https://zs.symbolab.com/solver/pre-calculus-calculator">https://zs.symbolab.com/solver/pre-calculus-calculator&lt;/a>&lt;/p>
-&lt;h1 id="微分常用公式">微分常用公式&lt;/h1>
-&lt;ol>
-&lt;li>
-&lt;p>$$(f(x) + g(x))' = f'(x) + g'(x)$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$(f(x) - g(x))' = f'(x) - g'(x)$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$(cf(x))' = c f'(x) \quad \text{（c為常數）}$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$(f(x)g(x))' = f'(x)g(x) + f(x)g'(x) \quad \text{（乘法法則）}$$&lt;/p>
-&lt;/li>
-&lt;li>&lt;/li>
-&lt;li>
-&lt;p>$$\left(\frac{f(x)}{g(x)}\right)' = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2} \quad \text{（除法法則）}$$&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="https://i.imgur.com/yhzgEJ0.png"
-loading="lazy"
-alt="image-20250428192016503"
->&lt;/p>
-&lt;ol>
-&lt;li>$$(f(g(x)))' = f'(g(x)) \cdot g'(x) \quad \text{（鏈式法則）}$$&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="https://i.imgur.com/5VRWS2G.png"
-loading="lazy"
-alt="image-20250427071506366"
->&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>$$\frac{d}{dx}(x^n) = nx^{n-1}$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$\frac{d}{dx}(\sin x) = \cos x$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$\frac{d}{dx}(\cos x) = -\sin x$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$\frac{d}{dx}(\tan x) = \sec^2 x$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$\frac{d}{dx}(e^x) = e^x$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$\frac{d}{dx}(\ln x) = \frac{1}{x}$$&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;h1 id="積分常用公式">積分常用公式&lt;/h1>
-&lt;p>&lt;a href="https://youtu.be/yvr4kjsqFFM?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog">https://youtu.be/yvr4kjsqFFM?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog&lt;/a>&lt;/p>
-&lt;p>反導數(Anti Derivatives)&lt;/p>
-&lt;p>定義：若F'(x) = f(x)&lt;/p>
-&lt;p>稱F(x)為f(x)的反(導數)微分&lt;/p>
-&lt;p>$$\int f(x) dx = F(x) + C$$&lt;/p>
-&lt;p>一個函數先積分在微分會等同於自己&lt;/p>
-&lt;p>$$ \frac{d}{dx} \int f(x) dx = f(x)$$&lt;/p>
-&lt;p>先微分在積分也是一樣的道理，會等同於自己&lt;/p>
-&lt;p>$$ \int f'(x) dx = f(x)+C$$&lt;/p>
-&lt;ul>
-&lt;li>例題&lt;/li>
-&lt;/ul>
-&lt;p>$$ \int x^3 dx = \frac{1}{4}\ x^4+C $$&lt;/p>
-&lt;p>左邊$x^3$，是右邊多少微分過去的呢？想要微出$x^3$，那右邊想必就是 $$\frac{1}{4}\ x^4+C $$ 才會有這個答案&lt;/p>
-&lt;ul>
-&lt;li>例題&lt;/li>
-&lt;/ul>
-&lt;p>$$ \int e^x dx = e^x+C $$&lt;/p>
-&lt;ul>
-&lt;li>例題&lt;/li>
-&lt;/ul>
-&lt;p>$$ \int cos x dx = sinx+C $$&lt;/p>
-&lt;p>基本性質&lt;/p>
-&lt;p>&lt;a href="https://youtu.be/8Ccx-dYWm9k?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog">https://youtu.be/8Ccx-dYWm9k?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog&lt;/a>&lt;/p>
-&lt;p>$$ \int k dx = kx+C $$&lt;/p>
-&lt;p>$$ \int kf(x) dx = k \int f(x) dx $$&lt;/p>
-&lt;p>$$ ∫[f(x)±g(x)]dx=∫f(x)dx±∫g(x)dx $$&lt;/p>
-&lt;p>$$ \int x^n dx = k \int f(x) dx $$&lt;/p>
-&lt;p>$$&lt;br>
-\int x^n , dx =
-\begin{cases}
-\frac{1}{n+1} x^{n+1} + C &amp;amp; \text{if } n \ne -1 \&lt;br>
-\ln |x| + C &amp;amp; \text{if } n = -1
-\end{cases}
-\ $$&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/xVDFIDV.png"
-loading="lazy"
-alt="image-20250501044214465"
->&lt;/p>
-&lt;h2 id="變數變換法">變數變換法&lt;/h2>
-&lt;p>把多項式先用某個變數替代，之後解出答案後再還原，如下&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/D8dWzNZ.png"
-loading="lazy"
-alt="image-20250501045559250"
->&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/R0PIUlH.png"
-loading="lazy"
-alt="image-20250501050135499"
->&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>$$\int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$\int \frac{1}{x} dx = \ln|x| + C$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$\int e^x dx = e^x + C$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$\int \sin x , dx = -\cos x + C$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$\int \cos x , dx = \sin x + C$$&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>$$\int \sec^2 x , dx = \tan x + C$$&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;h1 id="泰勒展開式">泰勒展開式&lt;/h1>
-&lt;p>【给我俩分钟，还你泰勒公式记忆一片天空】 &lt;a href="https://www.bilibili.com/video/BV1bC4y1H7cp/?share_source=copy_web&amp;amp;vd_source=b38b089ffe2c29ef61bebcff0f458ed8">https://www.bilibili.com/video/BV1bC4y1H7cp/?share_source=copy_web&amp;amp;vd_source=b38b089ffe2c29ef61bebcff0f458ed8&lt;/a>&lt;/p>
-&lt;p>其實只需要記住&lt;/p>
-&lt;p>$e^x$&lt;/p>
-&lt;p>$sin x$&lt;/p>
-&lt;p>$ln(1+x)$&lt;/p>
-&lt;p>這三個就可以&lt;/p>
-&lt;p>$$
-e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots + \frac{x^n}{n!} + o(x^n)
-$$&lt;/p>
-&lt;p>$$
-\sin x = x - \frac{x^3}{3!} + \cdots + \frac{(-1)^n}{(2n+1)!} x^{2n+1} + o(x^{2n+1})
-$$&lt;/p>
-&lt;p>$$
-\cos x = 1 - \frac{x^2}{2!} + \cdots + \frac{(-1)^n}{(2n)!} x^{2n} + o(x^{2n})
-$$&lt;/p>
-&lt;p>$$
-\frac{1}{1 - x} = 1 + x + x^2 + x^3 + \cdots + x^n + o(x^n)
-$$&lt;/p>
-&lt;p>$$
-\frac{1}{1 + x} = 1 - x + x^2 - x^3 + \cdots + (-1)^n x^n + o(x^n)
-$$&lt;/p>
-&lt;p>$$
-\ln(1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots + \frac{(-1)^{n-1}}{n} x^n + o(x^n)
-$$&lt;/p></description></item><item><title>以C++理解Golang指標</title><link>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</link><pubDate>Sat, 15 Mar 2025 19:25:55 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/QMDUdXZ.png" alt="Featured image of post 以C++理解Golang指標" />&lt;p>Golang是個允許操作Pointer(指標)的程式語言，常用的用法跟C、C++類似，如下兩種&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtoncraft.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 15 Mar 2025 19:25:55 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>以C++理解Golang指標</title><link>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</link><pubDate>Sat, 15 Mar 2025 19:25:55 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/QMDUdXZ.png" alt="Featured image of post 以C++理解Golang指標" />&lt;p>Golang是個允許操作Pointer(指標)的程式語言，常用的用法跟C、C++類似，如下兩種&lt;/p>
 &lt;p>＊與＆，在了解之前要先知道一件事情，就是以下要討論的都是記憶體的位址與其儲存的值，我們用資料結構來表示，大概就是這樣&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -264,7 +118,158 @@ $$&lt;/p></description></item><item><title>以C++理解Golang指標</title><link
 &lt;li>和call基本一樣，只是使用時不能改變contract的任何狀態(state)&lt;/li>
 &lt;/ol>
 &lt;p>為了保證匯款或是提款時的安全性，實作以上函式時，我們都必須不段地檢查回結果(Return 或 Console Window 的資訊)&lt;/p>
-&lt;p>必須要知道的是，call, delegatecall, statical 以上三者都屬於底層呼叫，可以呼叫gas參數，而且在發生錯誤時不會拋出異常，只會回傳false。此三者都是非常底層的函數，所以要勁量避免直接在我們的智能合約 hard-code gas，除非我們確定真的要這麼做&lt;/p></description></item><item><title>如何部署SpringBoot專案與雲端資料庫在Aws上面</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</link><pubDate>Thu, 02 Jan 2025 08:05:29 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</guid><description>&lt;img src="https://i.imgur.com/whP4tpY.png" alt="Featured image of post 如何部署SpringBoot專案與雲端資料庫在Aws上面" />&lt;p>最近又回去資策會當助教了，有同學問我說怎麼部署SpringBoot 的專案到雲端上面，然後建立起雲端資料庫， 所以這篇文章打算記錄一下相關的步驟&lt;/p>
+&lt;p>必須要知道的是，call, delegatecall, statical 以上三者都屬於底層呼叫，可以呼叫gas參數，而且在發生錯誤時不會拋出異常，只會回傳false。此三者都是非常底層的函數，所以要勁量避免直接在我們的智能合約 hard-code gas，除非我們確定真的要這麼做&lt;/p></description></item><item><title>考研常用公式與範例</title><link>https://hoxtoncraft.com/p/%E8%80%83%E7%A0%94%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</link><pubDate>Fri, 21 Feb 2025 09:13:16 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E8%80%83%E7%A0%94%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E8%88%87%E7%AF%84%E4%BE%8B/</guid><description>&lt;img src="https://i.imgur.com/U5RCdgF.png" alt="Featured image of post 考研常用公式與範例" />&lt;p>推薦的微積分線上計算機
+&lt;a href="https://zs.symbolab.com/solver/pre-calculus-calculator">https://zs.symbolab.com/solver/pre-calculus-calculator&lt;/a>&lt;/p>
+&lt;h1 id="微分常用公式">微分常用公式&lt;/h1>
+&lt;ol>
+&lt;li>
+&lt;p>$$(f(x) + g(x))' = f'(x) + g'(x)$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$(f(x) - g(x))' = f'(x) - g'(x)$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$(cf(x))' = c f'(x) \quad \text{（c為常數）}$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$(f(x)g(x))' = f'(x)g(x) + f(x)g'(x) \quad \text{（乘法法則）}$$&lt;/p>
+&lt;/li>
+&lt;li>&lt;/li>
+&lt;li>
+&lt;p>$$\left(\frac{f(x)}{g(x)}\right)' = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2} \quad \text{（除法法則）}$$&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/yhzgEJ0.png"
+loading="lazy"
+alt="image-20250428192016503"
+>&lt;/p>
+&lt;ol>
+&lt;li>$$(f(g(x)))' = f'(g(x)) \cdot g'(x) \quad \text{（鏈式法則）}$$&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="https://i.imgur.com/5VRWS2G.png"
+loading="lazy"
+alt="image-20250427071506366"
+>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(x^n) = nx^{n-1}$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(\sin x) = \cos x$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(\cos x) = -\sin x$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(\tan x) = \sec^2 x$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(e^x) = e^x$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\frac{d}{dx}(\ln x) = \frac{1}{x}$$&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h1 id="積分常用公式">積分常用公式&lt;/h1>
+&lt;p>&lt;a href="https://youtu.be/yvr4kjsqFFM?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog">https://youtu.be/yvr4kjsqFFM?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog&lt;/a>&lt;/p>
+&lt;p>反導數(Anti Derivatives)&lt;/p>
+&lt;p>定義：若F'(x) = f(x)&lt;/p>
+&lt;p>稱F(x)為f(x)的反(導數)微分&lt;/p>
+&lt;p>$$\int f(x) dx = F(x) + C$$&lt;/p>
+&lt;p>一個函數先積分在微分會等同於自己&lt;/p>
+&lt;p>$$ \frac{d}{dx} \int f(x) dx = f(x)$$&lt;/p>
+&lt;p>先微分在積分也是一樣的道理，會等同於自己&lt;/p>
+&lt;p>$$ \int f'(x) dx = f(x)+C$$&lt;/p>
+&lt;ul>
+&lt;li>例題&lt;/li>
+&lt;/ul>
+&lt;p>$$ \int x^3 dx = \frac{1}{4}\ x^4+C $$&lt;/p>
+&lt;p>左邊$x^3$，是右邊多少微分過去的呢？想要微出$x^3$，那右邊想必就是 $$\frac{1}{4}\ x^4+C $$ 才會有這個答案&lt;/p>
+&lt;ul>
+&lt;li>例題&lt;/li>
+&lt;/ul>
+&lt;p>$$ \int e^x dx = e^x+C $$&lt;/p>
+&lt;ul>
+&lt;li>例題&lt;/li>
+&lt;/ul>
+&lt;p>$$ \int cos x dx = sinx+C $$&lt;/p>
+&lt;p>基本性質&lt;/p>
+&lt;p>&lt;a href="https://youtu.be/8Ccx-dYWm9k?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog">https://youtu.be/8Ccx-dYWm9k?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog&lt;/a>&lt;/p>
+&lt;p>$$ \int k dx = kx+C $$&lt;/p>
+&lt;p>$$ \int kf(x) dx = k \int f(x) dx $$&lt;/p>
+&lt;p>$$ ∫[f(x)±g(x)]dx=∫f(x)dx±∫g(x)dx $$&lt;/p>
+&lt;p>$$ \int x^n dx = k \int f(x) dx $$&lt;/p>
+&lt;p>$$&lt;br>
+\int x^n , dx =
+\begin{cases}
+\frac{1}{n+1} x^{n+1} + C &amp;amp; \text{if } n \ne -1 \&lt;br>
+\ln |x| + C &amp;amp; \text{if } n = -1
+\end{cases}
+\ $$&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xVDFIDV.png"
+loading="lazy"
+alt="image-20250501044214465"
+>&lt;/p>
+&lt;h2 id="變數變換法">變數變換法&lt;/h2>
+&lt;p>把多項式先用某個變數替代，之後解出答案後再還原，如下&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/D8dWzNZ.png"
+loading="lazy"
+alt="image-20250501045559250"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/R0PIUlH.png"
+loading="lazy"
+alt="image-20250501050135499"
+>&lt;/p>
+&lt;h2 id="進階變數變換法">進階變數變換法&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/6qGMdNA.png"
+loading="lazy"
+alt="image-20250501051455729"
+>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>$$\int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\int \frac{1}{x} dx = \ln|x| + C$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\int e^x dx = e^x + C$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\int \sin x , dx = -\cos x + C$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\int \cos x , dx = \sin x + C$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>$$\int \sec^2 x , dx = \tan x + C$$&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h1 id="泰勒展開式">泰勒展開式&lt;/h1>
+&lt;p>【给我俩分钟，还你泰勒公式记忆一片天空】 &lt;a href="https://www.bilibili.com/video/BV1bC4y1H7cp/?share_source=copy_web&amp;amp;vd_source=b38b089ffe2c29ef61bebcff0f458ed8">https://www.bilibili.com/video/BV1bC4y1H7cp/?share_source=copy_web&amp;amp;vd_source=b38b089ffe2c29ef61bebcff0f458ed8&lt;/a>&lt;/p>
+&lt;p>其實只需要記住&lt;/p>
+&lt;p>$e^x$&lt;/p>
+&lt;p>$sin x$&lt;/p>
+&lt;p>$ln(1+x)$&lt;/p>
+&lt;p>這三個就可以&lt;/p>
+&lt;p>$$
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots + \frac{x^n}{n!} + o(x^n)
+$$&lt;/p>
+&lt;p>$$
+\sin x = x - \frac{x^3}{3!} + \cdots + \frac{(-1)^n}{(2n+1)!} x^{2n+1} + o(x^{2n+1})
+$$&lt;/p>
+&lt;p>$$
+\cos x = 1 - \frac{x^2}{2!} + \cdots + \frac{(-1)^n}{(2n)!} x^{2n} + o(x^{2n})
+$$&lt;/p>
+&lt;p>$$
+\frac{1}{1 - x} = 1 + x + x^2 + x^3 + \cdots + x^n + o(x^n)
+$$&lt;/p>
+&lt;p>$$
+\frac{1}{1 + x} = 1 - x + x^2 - x^3 + \cdots + (-1)^n x^n + o(x^n)
+$$&lt;/p>
+&lt;p>$$
+\ln(1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots + \frac{(-1)^{n-1}}{n} x^n + o(x^n)
+$$&lt;/p></description></item><item><title>如何部署SpringBoot專案與雲端資料庫在Aws上面</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</link><pubDate>Thu, 02 Jan 2025 08:05:29 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</guid><description>&lt;img src="https://i.imgur.com/whP4tpY.png" alt="Featured image of post 如何部署SpringBoot專案與雲端資料庫在Aws上面" />&lt;p>最近又回去資策會當助教了，有同學問我說怎麼部署SpringBoot 的專案到雲端上面，然後建立起雲端資料庫， 所以這篇文章打算記錄一下相關的步驟&lt;/p>
 &lt;p>首先我們先進到AWS的DashBoard， 然後我們看到一個叫做LightSail的東西，我們點開它這邊先簡單講一下LightSail跟一般的EC2有什麼樣的差別，一般EC2跟ＬightSail差別在於他的訂製化程度比較高然後可以選擇的東西比較多，但有時候在一開始配置的話會讓人有點摸不著頭緒，所以我們這邊簡單地用LightSail來模擬一下關於雲端部署的部分 因為我們的目的只是要附上雲端，所以這部分選擇哪個具體來講都沒差&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/KWx4jF9.png"
 loading="lazy"
