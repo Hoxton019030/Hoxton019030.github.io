@@ -51,6 +51,55 @@ alt="image-20250427071506366"
 &lt;/li>
 &lt;/ol>
 &lt;h1 id="積分常用公式">積分常用公式&lt;/h1>
+&lt;p>&lt;a href="https://youtu.be/yvr4kjsqFFM?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog">https://youtu.be/yvr4kjsqFFM?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog&lt;/a>&lt;/p>
+&lt;p>反導數(Anti Derivatives)&lt;/p>
+&lt;p>定義：若F'(x) = f(x)&lt;/p>
+&lt;p>稱F(x)為f(x)的反(導數)微分&lt;/p>
+&lt;p>$$\int f(x) dx = F(x) + C$$&lt;/p>
+&lt;p>一個函數先積分在微分會等同於自己&lt;/p>
+&lt;p>$$ \frac{d}{dx} \int f(x) dx = f(x)$$&lt;/p>
+&lt;p>先微分在積分也是一樣的道理，會等同於自己&lt;/p>
+&lt;p>$$ \int f'(x) dx = f(x)+C$$&lt;/p>
+&lt;ul>
+&lt;li>例題&lt;/li>
+&lt;/ul>
+&lt;p>$$ \int x^3 dx = \frac{1}{4}\ x^4+C $$&lt;/p>
+&lt;p>左邊$x^3$，是右邊多少微分過去的呢？想要微出$x^3$，那右邊想必就是 $$\frac{1}{4}\ x^4+C $$ 才會有這個答案&lt;/p>
+&lt;ul>
+&lt;li>例題&lt;/li>
+&lt;/ul>
+&lt;p>$$ \int e^x dx = e^x+C $$&lt;/p>
+&lt;ul>
+&lt;li>例題&lt;/li>
+&lt;/ul>
+&lt;p>$$ \int cos x dx = sinx+C $$&lt;/p>
+&lt;p>基本性質&lt;/p>
+&lt;p>&lt;a href="https://youtu.be/8Ccx-dYWm9k?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog">https://youtu.be/8Ccx-dYWm9k?list=PLP1Ynr8cs97utEQe5VP3cv_iscJVuwbog&lt;/a>&lt;/p>
+&lt;p>$$ \int k dx = kx+C $$&lt;/p>
+&lt;p>$$ \int kf(x) dx = k \int f(x) dx $$&lt;/p>
+&lt;p>$$ ∫[f(x)±g(x)]dx=∫f(x)dx±∫g(x)dx $$&lt;/p>
+&lt;p>$$ \int x^n dx = k \int f(x) dx $$&lt;/p>
+&lt;p>$$&lt;br>
+\int x^n , dx =
+\begin{cases}
+\frac{1}{n+1} x^{n+1} + C &amp;amp; \text{if } n \ne -1 \&lt;br>
+\ln |x| + C &amp;amp; \text{if } n = -1
+\end{cases}
+\ $$&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/xVDFIDV.png"
+loading="lazy"
+alt="image-20250501044214465"
+>&lt;/p>
+&lt;h2 id="變數變換法">變數變換法&lt;/h2>
+&lt;p>把多項式先用某個變數替代，之後解出答案後再還原，如下&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/D8dWzNZ.png"
+loading="lazy"
+alt="image-20250501045559250"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/R0PIUlH.png"
+loading="lazy"
+alt="image-20250501050135499"
+>&lt;/p>
 &lt;ol>
 &lt;li>
 &lt;p>$$\int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)$$&lt;/p>
