@@ -225,6 +225,22 @@ alt="image-20250501050135499"
 loading="lazy"
 alt="image-20250501051455729"
 >&lt;/p>
+&lt;h2 id="定積分公式">定積分公式&lt;/h2>
+&lt;p>&lt;img src="https://i.imgur.com/vDbM3cM.png"
+loading="lazy"
+alt="image-20250501054101175"
+>
+$$
+\begin{aligned}
+&amp;amp;\text{計算 } \int_1^3 (2x + 1),dx \\&lt;br>
+&amp;amp;\textbf{步驟 1：} \text{先對 } 2x + 1 \text{ 做不定積分} \\&lt;br>
+&amp;amp;\int (2x + 1),dx = x^2 + x + C \\&lt;br>
+&amp;amp;\textbf{步驟 2：} \text{代入上下限} \\&lt;br>
+&amp;amp;\left[ x^2 + x \right]_1^3 = (3^2 + 3) - (1^2 + 1) \\&lt;br>
+&amp;amp;= (9 + 3) - (1 + 1) = 12 - 2 = 10 \\&lt;br>
+&amp;amp;\therefore \int_1^3 (2x + 1),dx = \boxed{10}
+\end{aligned}
+$$&lt;/p>
 &lt;ol>
 &lt;li>
 &lt;p>$$\int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)$$&lt;/p>
