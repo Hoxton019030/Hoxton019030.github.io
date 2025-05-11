@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>線性代數 on Hoxton</title><link>https://hoxtoncraft.com/categories/%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</link><description>Recent content in 線性代數 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 10 Oct 2023 18:00:19 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/categories/%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>視覺化的理解特徵向量(Eigenvector)、特徵根(Eigenvalue)</title><link>https://hoxtoncraft.com/p/%E8%A6%96%E8%A6%BA%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3%E7%89%B9%E5%BE%B5%E5%90%91%E9%87%8Feigenvector%E7%89%B9%E5%BE%B5%E6%A0%B9eigenvalue/</link><pubDate>Tue, 10 Oct 2023 18:00:19 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E8%A6%96%E8%A6%BA%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3%E7%89%B9%E5%BE%B5%E5%90%91%E9%87%8Feigenvector%E7%89%B9%E5%BE%B5%E6%A0%B9eigenvalue/</guid><description>&lt;img src="https://i.imgur.com/Rv7zjbh.jpg" alt="Featured image of post 視覺化的理解特徵向量(Eigenvector)、特徵根(Eigenvalue)" />&lt;p>使用網站 &lt;a href="https://www.geogebra.org/m/JP2XZpzV">https://www.geogebra.org/m/JP2XZpzV&lt;/a>&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>線性代數 on Hoxton</title><link>https://hoxtoncraft.com/categories/%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/</link><description>Recent content in 線性代數 on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Sat, 17 Aug 2024 11:30:23 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/categories/%E7%B7%9A%E6%80%A7%E4%BB%A3%E6%95%B8/index.xml" rel="self" type="application/rss+xml"/><item><title>證明列運算不改行關係</title><link>https://hoxtoncraft.com/p/%E8%AD%89%E6%98%8E%E5%88%97%E9%81%8B%E7%AE%97%E4%B8%8D%E6%94%B9%E8%A1%8C%E9%97%9C%E4%BF%82/</link><pubDate>Sat, 17 Aug 2024 11:30:23 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E8%AD%89%E6%98%8E%E5%88%97%E9%81%8B%E7%AE%97%E4%B8%8D%E6%94%B9%E8%A1%8C%E9%97%9C%E4%BF%82/</guid><description>&lt;img src="https://i.imgur.com/lVeZDy5.png" alt="Featured image of post 證明列運算不改行關係" />&lt;p>資料來源：&lt;a class="link" href="https://ccjou.wordpress.com/2009/03/25/%e7%94%b1%e7%b0%a1%e7%b4%84%e5%88%97%e6%a2%af%e5%bd%a2%e5%bc%8f%e5%88%a4%e6%96%b7%e8%a1%8c%e7%a9%ba%e9%96%93%e5%9f%ba%e5%ba%95/" target="_blank" rel="noopener"
+>由簡約列梯形式判斷行空間基底&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/wbdq3jF.jpeg"
+loading="lazy"
+alt="S__15130629"
+>&lt;/p></description></item><item><title>懶人求三階矩陣行列式的方法</title><link>https://hoxtoncraft.com/p/%E6%87%B6%E4%BA%BA%E6%B1%82%E4%B8%89%E9%9A%8E%E7%9F%A9%E9%99%A3%E8%A1%8C%E5%88%97%E5%BC%8F%E7%9A%84%E6%96%B9%E6%B3%95/</link><pubDate>Wed, 03 Jan 2024 01:28:01 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E6%87%B6%E4%BA%BA%E6%B1%82%E4%B8%89%E9%9A%8E%E7%9F%A9%E9%99%A3%E8%A1%8C%E5%88%97%E5%BC%8F%E7%9A%84%E6%96%B9%E6%B3%95/</guid><description>&lt;img src="https://i.imgur.com/hS0CXI6.png" alt="Featured image of post 懶人求三階矩陣行列式的方法" />&lt;p>看完這篇別忘了看下篇&lt;/p>
+&lt;p>&lt;a class="link" href="https://hoxtonhsu.com/p/105-%E5%BF%AB%E9%80%9F%E6%B1%82%E5%87%BA%E4%B8%89%E9%9A%8E%E7%9F%A9%E9%99%A3%E7%9A%84%E4%BC%B4%E9%9A%A8%E7%9F%A9%E9%99%A3%E5%8F%8D%E7%9F%A9%E9%99%A3/" target="_blank" rel="noopener"
+>快速求出三階矩陣的伴隨矩陣、反矩陣&lt;/a>&lt;/p>
+&lt;p>之前在學的時候林緯是教這種形式&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/TA81FOu.png"
+loading="lazy"
+alt="image-20240103012959972"
+>&lt;/p>
+&lt;p>但看一看覺得真的是有夠糊，後來有一次看到有更方便的做法&lt;/p>
+&lt;h1 id="過程">過程&lt;/h1>
+&lt;p>矩陣如下&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/yFFpWop.png"
+loading="lazy"
+alt="image-20240103013043969"
+>&lt;/p>
+&lt;p>我們把C1 C2 重複一遍寫在右邊&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/GZE2lcY.png"
+loading="lazy"
+alt="image-20240103013121581"
+>&lt;/p>
+&lt;h1 id="結果">結果&lt;/h1>
+&lt;p>接著像這樣畫，將&lt;span style="color:red;font-size:16px">紅色&lt;/span>的和減去&lt;span style="color:green;font-size:16px">綠色&lt;/span>的和，即為所求&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/y4JgcOR.png"
+loading="lazy"
+alt="image-20240103013147284"
+>&lt;/p></description></item><item><title>視覺化的理解特徵向量(Eigenvector)、特徵根(Eigenvalue)</title><link>https://hoxtoncraft.com/p/%E8%A6%96%E8%A6%BA%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3%E7%89%B9%E5%BE%B5%E5%90%91%E9%87%8Feigenvector%E7%89%B9%E5%BE%B5%E6%A0%B9eigenvalue/</link><pubDate>Tue, 10 Oct 2023 18:00:19 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E8%A6%96%E8%A6%BA%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3%E7%89%B9%E5%BE%B5%E5%90%91%E9%87%8Feigenvector%E7%89%B9%E5%BE%B5%E6%A0%B9eigenvalue/</guid><description>&lt;img src="https://i.imgur.com/Rv7zjbh.jpg" alt="Featured image of post 視覺化的理解特徵向量(Eigenvector)、特徵根(Eigenvalue)" />&lt;p>使用網站 &lt;a href="https://www.geogebra.org/m/JP2XZpzV">https://www.geogebra.org/m/JP2XZpzV&lt;/a>&lt;/p>
 &lt;h1 id="何謂特徵根特徵向量">何謂特徵根、特徵向量&lt;/h1>
 &lt;p>Eigen是德文的一個詞彙，意即「自己的」，而中文翻譯成特徵根、特徵向量確實有點摸不著頭腦。所謂特徵根以及特徵向量，代表的是一個向量，經過線性轉換(Linear Transformation)後，向量的方向不會改變，可以看這張圖&lt;/p>
 &lt;p>這張圖相當於是說，將向量(0.71,0.71)與矩陣
