@@ -359,7 +359,8 @@ print(f&amp;#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，
 merge_transcripts(playlist_transcript_dir)
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>以C++理解Golang指標</title><link>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</link><pubDate>Sat, 15 Mar 2025 19:25:55 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/QMDUdXZ.png" alt="Featured image of post 以C++理解Golang指標" />&lt;p>Golang是個允許操作Pointer(指標)的程式語言，常用的用法跟C、C++類似，如下兩種&lt;/p>
+&lt;/div>&lt;h1 id="心得">心得&lt;/h1>
+&lt;p>不得不說現在有這個真的好方便，也是我第一次嘗試用這種語音辨識的模型，之前最多就只有用過Premiere的語音辨識而已，效果雖然還行，但總是有點一言難盡。這次使用下來結果算是非常滿意，沒想到當年買的3060 ti以及為了魔物獵人換的CPU居然在這邊派上用場^_^&lt;/p></description></item><item><title>以C++理解Golang指標</title><link>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</link><pubDate>Sat, 15 Mar 2025 19:25:55 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E4%BB%A5c-%E7%90%86%E8%A7%A3golang%E6%8C%87%E6%A8%99/</guid><description>&lt;img src="https://i.imgur.com/QMDUdXZ.png" alt="Featured image of post 以C++理解Golang指標" />&lt;p>Golang是個允許操作Pointer(指標)的程式語言，常用的用法跟C、C++類似，如下兩種&lt;/p>
 &lt;p>＊與＆，在了解之前要先知道一件事情，就是以下要討論的都是記憶體的位址與其儲存的值，我們用資料結構來表示，大概就是這樣&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
