@@ -55,147 +55,309 @@ alt="image-20250706013438651"
 &lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">brew install ffmpeg
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;!-- ```bash
-choco install ffmpeg
-``` -->
-&lt;p>import os
+&lt;/div>&lt;h1 id="code">Code&lt;/h1>
+&lt;p>不得不說，現在有AI真的是蠻方便的，不然難想像這東西要自己手刻出來要花我多久時間&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;span class="lnt">140
+&lt;/span>&lt;span class="lnt">141
+&lt;/span>&lt;span class="lnt">142
+&lt;/span>&lt;span class="lnt">143
+&lt;/span>&lt;span class="lnt">144
+&lt;/span>&lt;span class="lnt">145
+&lt;/span>&lt;span class="lnt">146
+&lt;/span>&lt;span class="lnt">147
+&lt;/span>&lt;span class="lnt">148
+&lt;/span>&lt;span class="lnt">149
+&lt;/span>&lt;span class="lnt">150
+&lt;/span>&lt;span class="lnt">151
+&lt;/span>&lt;span class="lnt">152
+&lt;/span>&lt;span class="lnt">153
+&lt;/span>&lt;span class="lnt">154
+&lt;/span>&lt;span class="lnt">155
+&lt;/span>&lt;span class="lnt">156
+&lt;/span>&lt;span class="lnt">157
+&lt;/span>&lt;span class="lnt">158
+&lt;/span>&lt;span class="lnt">159
+&lt;/span>&lt;span class="lnt">160
+&lt;/span>&lt;span class="lnt">161
+&lt;/span>&lt;span class="lnt">162
+&lt;/span>&lt;span class="lnt">163
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">
 import subprocess
+import os
 import time
 import threading
 import re
 from faster_whisper import WhisperModel
-import ctranslate2&lt;/p>
-&lt;h1 id="嘗試用-cuda如果失敗就用-cpu">嘗試用 CUDA，如果失敗就用 CPU&lt;/h1>
-&lt;p>try:
-model = WhisperModel(&amp;ldquo;medium&amp;rdquo;, device=&amp;ldquo;cuda&amp;rdquo;, compute_type=&amp;ldquo;float16&amp;rdquo;)
-device = &amp;ldquo;cuda&amp;rdquo;
-compute_type = &amp;ldquo;float16&amp;rdquo;
-except Exception as e:
-print(f&amp;quot;⚠️ 無法使用 CUDA，改用 CPU（錯誤訊息：{e}）&amp;quot;)
-model = WhisperModel(&amp;ldquo;medium&amp;rdquo;, device=&amp;ldquo;cpu&amp;rdquo;, compute_type=&amp;ldquo;int8&amp;rdquo;)
-device = &amp;ldquo;cpu&amp;rdquo;
-compute_type = &amp;ldquo;int8&amp;rdquo;&lt;/p>
-&lt;p>print(f&amp;quot;✅ 目前使用裝置：{device}&amp;quot;)
-print(f&amp;quot;✅ 使用精度模式：{compute_type}&amp;quot;)&lt;/p>
-&lt;h1 id="載入模型">載入模型&lt;/h1>
-&lt;p>model = WhisperModel(&amp;ldquo;medium&amp;rdquo;, device=device, compute_type=compute_type)&lt;/p>
-&lt;h1 id="合法化檔名">合法化檔名&lt;/h1>
-&lt;p>def sanitize_filename(name):
-name = re.sub(r'[\/:*?&amp;quot;&amp;lt;&amp;gt;|]', &amp;lsquo;_&amp;rsquo;, name)
-name = name.strip().rstrip('.')
-return name[:100]&lt;/p>
-&lt;h1 id="找出下一個-playlist_x-編號">找出下一個 playlist_X 編號&lt;/h1>
-&lt;p>def get_next_playlist_index(base_dir=&amp;ldquo;downloads&amp;rdquo;):
+# 設定使用裝置
+device = &amp;#34;cuda&amp;#34; if os.environ.get(&amp;#34;CUDA_VISIBLE_DEVICES&amp;#34;) != &amp;#34;-1&amp;#34; else &amp;#34;cpu&amp;#34;
+print(f&amp;#34;目前使用裝置: {device}&amp;#34;)
+# 載入模型
+model = WhisperModel(&amp;#34;medium&amp;#34;, device=device, compute_type=&amp;#34;float16&amp;#34; if device == &amp;#34;cuda&amp;#34; else &amp;#34;int8&amp;#34;)
+# 合法化檔名
+def sanitize_filename(name):
+name = re.sub(r&amp;#39;[\\/:*?&amp;#34;&amp;lt;&amp;gt;|]&amp;#39;, &amp;#39;_&amp;#39;, name)
+name = name.strip().rstrip(&amp;#39;.&amp;#39;)
+return name[:100]
+# 找出下一個 playlist_X 編號
+def get_next_playlist_index(base_dir=&amp;#34;downloads&amp;#34;):
 index = 1
-while os.path.exists(os.path.join(base_dir, f&amp;quot;playlist_{index}&amp;quot;)):
+while os.path.exists(os.path.join(base_dir, f&amp;#34;playlist_{index}&amp;#34;)):
 index += 1
-return index&lt;/p>
-&lt;h1 id="取得影片標題">取得影片標題&lt;/h1>
-&lt;p>def get_video_title(video_url):
-result = subprocess.run([&amp;ldquo;yt-dlp&amp;rdquo;, &amp;ldquo;&amp;ndash;get-title&amp;rdquo;, video_url], capture_output=True, text=True)
-return result.stdout.strip()&lt;/p>
-&lt;h1 id="取得影片秒數">取得影片秒數&lt;/h1>
-&lt;p>def get_video_duration(video_url):
-result = subprocess.run([&amp;ldquo;yt-dlp&amp;rdquo;, &amp;ldquo;&amp;ndash;print&amp;rdquo;, &amp;ldquo;duration&amp;rdquo;, video_url], capture_output=True, text=True)
+return index
+# 取得影片標題
+def get_video_title(video_url):
 try:
+result = subprocess.run([&amp;#34;yt-dlp&amp;#34;, &amp;#34;--get-title&amp;#34;, video_url], capture_output=True, text=True)
+return result.stdout.strip()
+except Exception as e:
+print(f&amp;#34;⚠️ 無法取得標題：{e}&amp;#34;)
+return &amp;#34;unknown_title&amp;#34;
+# 取得影片秒數
+def get_video_duration(video_url):
+try:
+result = subprocess.run([&amp;#34;yt-dlp&amp;#34;, &amp;#34;--print&amp;#34;, &amp;#34;duration&amp;#34;, video_url], capture_output=True, text=True)
 return int(result.stdout.strip())
 except:
-return 0&lt;/p>
-&lt;h1 id="下載音訊">下載音訊&lt;/h1>
-&lt;p>def download_audio(url, output_path):
+return 0
+# 下載音訊
+def download_audio(url, output_path):
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
-print(f&amp;quot;🎧 下載音訊中：{url}&amp;quot;)
+print(f&amp;#34;下載音訊中：{url}&amp;#34;)
 result = subprocess.run([
-&amp;ldquo;yt-dlp&amp;rdquo;, &amp;ldquo;-x&amp;rdquo;, &amp;ldquo;&amp;ndash;audio-format&amp;rdquo;, &amp;ldquo;mp3&amp;rdquo;, &amp;ldquo;-o&amp;rdquo;, output_path, url
+&amp;#34;yt-dlp&amp;#34;, &amp;#34;-x&amp;#34;, &amp;#34;--audio-format&amp;#34;, &amp;#34;mp3&amp;#34;, &amp;#34;-o&amp;#34;, output_path, url
 ], capture_output=True, text=True)
 print(result.stdout)
-print(result.stderr)&lt;/p>
-&lt;h1 id="轉錄--進度顯示">轉錄 + 進度顯示&lt;/h1>
-&lt;p>def transcribe_with_progress(file_path, language=&amp;lsquo;zh&amp;rsquo;):
+print(result.stderr)
+if result.returncode != 0:
+print(f&amp;#34;[錯誤] 下載失敗：{url}&amp;#34;)
+return False
+return True
+# 轉錄 + 進度顯示
+def transcribe_with_progress(file_path, language=&amp;#39;zh&amp;#39;):
 stop_flag = threading.Event()
-start_time = time.time()&lt;/p>
-&lt;pre>&lt;code>def progress_timer():
+start_time = time.time()
+def progress_timer():
 while not stop_flag.is_set():
 elapsed = time.time() - start_time
-print(f&amp;quot;[進度] 轉錄中... 已進行 {int(elapsed)} 秒&amp;quot;)
+print(f&amp;#34;[進度] 轉錄中... 已進行 {int(elapsed)} 秒&amp;#34;)
 time.sleep(5)
-print(f&amp;quot;📝 開始轉錄：{file_path}&amp;quot;)
+print(f&amp;#34;開始轉錄：{file_path}&amp;#34;)
 timer_thread = threading.Thread(target=progress_timer)
 timer_thread.start()
 try:
 segments_gen, info = model.transcribe(file_path, language=language)
 segments = list(segments_gen)
-print(f&amp;quot;✅ 轉錄完成，共取得 {len(segments)} 個語句段落&amp;quot;)
+print(f&amp;#34;轉錄完成！共取得 {len(segments)} 個語句段落&amp;#34;)
 except Exception as e:
-print(f&amp;quot;[錯誤] 轉錄失敗：{e}&amp;quot;)
+print(f&amp;#34;[錯誤] 轉錄失敗：{e}&amp;#34;)
 segments, info = [], {}
 finally:
 stop_flag.set()
 timer_thread.join()
 return segments, info
-&lt;/code>&lt;/pre>
-&lt;h1 id="寫入逐字稿">寫入逐字稿&lt;/h1>
-&lt;p>def transcribe_audio(file_path, output_path):
-segments, info = transcribe_with_progress(file_path, language=&amp;lsquo;zh&amp;rsquo;)
+# 寫入逐字稿
+def transcribe_audio(file_path, output_path):
+segments, info = transcribe_with_progress(file_path, language=&amp;#39;zh&amp;#39;)
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
-with open(output_path, &amp;ldquo;w&amp;rdquo;, encoding=&amp;ldquo;utf-8&amp;rdquo;) as f:
+with open(output_path, &amp;#34;w&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as f:
 for segment in segments:
-f.write(f&amp;quot;[{round(segment.start, 2)}-{round(segment.end, 2)}] {segment.text}\n&amp;quot;)
+f.write(f&amp;#34;[{round(segment.start, 2)}-{round(segment.end, 2)}] {segment.text}\n&amp;#34;)
 if segments:
 total_audio_time = round(segments[-1].end, 2)
-print(f&amp;quot;🎤 語音總長度：{total_audio_time} 秒&amp;quot;)&lt;/p>
-&lt;h1 id="合併逐字稿成一個檔案">合併逐字稿成一個檔案&lt;/h1>
-&lt;p>def merge_transcripts(transcript_dir, output_path):
-files = sorted([f for f in os.listdir(transcript_dir) if f.endswith(&amp;quot;.txt&amp;quot;)])
-with open(output_path, &amp;ldquo;w&amp;rdquo;, encoding=&amp;ldquo;utf-8&amp;rdquo;) as out:
-for f_name in files:
-with open(os.path.join(transcript_dir, f_name), &amp;ldquo;r&amp;rdquo;, encoding=&amp;ldquo;utf-8&amp;rdquo;) as f:
-out.write(f&amp;quot;\n===== {f_name} =====\n&amp;quot;)
-out.write(f.read())
-out.write(&amp;quot;\n&amp;quot;)
-print(f&amp;quot;📄 合併逐字稿完成：{output_path}&amp;quot;)&lt;/p>
-&lt;h1 id="取得播放清單中的所有影片-id">取得播放清單中的所有影片 ID&lt;/h1>
-&lt;p>def get_playlist_video_ids(playlist_url):
-result = subprocess.run([&amp;ldquo;yt-dlp&amp;rdquo;, &amp;ldquo;&amp;ndash;flat-playlist&amp;rdquo;, &amp;ldquo;&amp;ndash;print&amp;rdquo;, &amp;ldquo;id&amp;rdquo;, playlist_url], capture_output=True, text=True)
-return result.stdout.strip().split('\n')&lt;/p>
-&lt;h1 id="主程式開始">主程式開始&lt;/h1>
-&lt;p>os.makedirs(&amp;ldquo;downloads&amp;rdquo;, exist_ok=True)
-os.makedirs(&amp;ldquo;transcripts&amp;rdquo;, exist_ok=True)&lt;/p>
-&lt;p>with open(&amp;ldquo;video_playlist.txt&amp;rdquo;, &amp;ldquo;r&amp;rdquo;, encoding=&amp;ldquo;utf-8&amp;rdquo;) as f:
-playlist_urls = [line.strip() for line in f if line.strip()]&lt;/p>
-&lt;p>for playlist_url in playlist_urls:
-playlist_index = get_next_playlist_index()
-print(f&amp;quot;\n📂 開始處理播放清單 playlist_{playlist_index}: {playlist_url}&amp;quot;)&lt;/p>
-&lt;pre>&lt;code>playlist_download_dir = f&amp;quot;downloads/playlist_{playlist_index}&amp;quot;
-playlist_transcript_dir = f&amp;quot;transcripts/playlist_{playlist_index}&amp;quot;
+print(f&amp;#34;語音總長度（實際轉錄）：{total_audio_time} 秒&amp;#34;)
+# 取得播放清單中的所有影片 ID
+def get_playlist_video_ids(playlist_url):
+result = subprocess.run([&amp;#34;yt-dlp&amp;#34;, &amp;#34;--flat-playlist&amp;#34;, &amp;#34;--print&amp;#34;, &amp;#34;id&amp;#34;, playlist_url], capture_output=True, text=True)
+return result.stdout.strip().split(&amp;#39;\n&amp;#39;)
+# 合併同播放清單所有逐字稿成一個檔案
+def merge_transcripts(transcript_dir, merged_filename=&amp;#34;merged_transcript.txt&amp;#34;):
+merged_path = os.path.join(transcript_dir, merged_filename)
+with open(merged_path, &amp;#34;w&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as merged:
+transcript_files = sorted(f for f in os.listdir(transcript_dir) if f.endswith(&amp;#34;.txt&amp;#34;) and f != merged_filename)
+for fname in transcript_files:
+merged.write(f&amp;#34;\n\n===== {fname} =====\n&amp;#34;)
+with open(os.path.join(transcript_dir, fname), &amp;#34;r&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as f:
+merged.write(f.read())
+print(f&amp;#34;✅ 合併逐字稿已完成，檔案路徑：{merged_path}&amp;#34;)
+# 主程式開始
+os.makedirs(&amp;#34;downloads&amp;#34;, exist_ok=True)
+os.makedirs(&amp;#34;transcripts&amp;#34;, exist_ok=True)
+with open(&amp;#34;video_playlist.txt&amp;#34;, &amp;#34;r&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as f:
+playlist_urls = [line.strip() for line in f if line.strip()]
+next_playlist_index = get_next_playlist_index()
+for playlist_url in playlist_urls:
+playlist_index = next_playlist_index
+next_playlist_index += 1
+print(f&amp;#34;\n📂 開始處理播放清單 {playlist_index}: {playlist_url}&amp;#34;)
+playlist_download_dir = f&amp;#34;downloads/playlist_{playlist_index}&amp;#34;
+playlist_transcript_dir = f&amp;#34;transcripts/playlist_{playlist_index}&amp;#34;
 os.makedirs(playlist_download_dir, exist_ok=True)
 os.makedirs(playlist_transcript_dir, exist_ok=True)
 video_ids = get_playlist_video_ids(playlist_url)
 for idx, vid in enumerate(video_ids, 1):
-video_url = f&amp;quot;https://youtu.be/{vid}&amp;quot;
-print(f&amp;quot;\n🎞️ ({idx}/{len(video_ids)}) 處理影片：{video_url}&amp;quot;)
+video_url = f&amp;#34;https://youtu.be/{vid}&amp;#34;
+print(f&amp;#34;\n🎞️ ({idx}/{len(video_ids)}) 處理影片：{video_url}&amp;#34;)
 start_time = time.time()
 title = get_video_title(video_url)
 safe_title = sanitize_filename(title)
 duration = get_video_duration(video_url)
-mp3_path = os.path.join(playlist_download_dir, f&amp;quot;{safe_title}.mp3&amp;quot;)
+mp3_path = os.path.join(playlist_download_dir, f&amp;#34;{safe_title}.mp3&amp;#34;)
 if not os.path.exists(mp3_path):
-download_audio(video_url, output_path=mp3_path)
-output_file = os.path.join(playlist_transcript_dir, f&amp;quot;{safe_title}.txt&amp;quot;)
+if not download_audio(video_url, output_path=mp3_path):
+print(f&amp;#34;跳過影片 {video_url}，下載失敗&amp;#34;)
+continue
+output_file = os.path.join(playlist_transcript_dir, f&amp;#34;{safe_title}.txt&amp;#34;)
 transcribe_audio(mp3_path, output_file)
 elapsed = time.time() - start_time
 speed_ratio = duration / elapsed if elapsed &amp;gt; 0 else 0
-print(f&amp;quot;✅ 完成：{output_file}&amp;quot;)
-print(f&amp;quot;⏱️ 耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉錄速度比：約 {speed_ratio:.2f}x&amp;quot;)
+print(f&amp;#34;✅ 完成：{output_file}&amp;#34;)
+print(f&amp;#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&amp;#34;)
 # 播放清單處理完後合併逐字稿
-merged_path = os.path.join(playlist_transcript_dir, f&amp;quot;playlist_{playlist_index}_merged.txt&amp;quot;)
-merge_transcripts(playlist_transcript_dir, merged_path)
-&lt;/code>&lt;/pre>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+merge_transcripts(playlist_transcript_dir)
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div></description></item><item><title>如何部署SpringBoot專案與雲端資料庫在Aws上面</title><link>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</link><pubDate>Thu, 02 Jan 2025 08:05:29 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/</guid><description>&lt;img src="https://i.imgur.com/whP4tpY.png" alt="Featured image of post 如何部署SpringBoot專案與雲端資料庫在Aws上面" />&lt;p>最近又回去資策會當助教了，有同學問我說怎麼部署SpringBoot 的專案到雲端上面，然後建立起雲端資料庫， 所以這篇文章打算記錄一下相關的步驟&lt;/p>
 &lt;p>首先我們先進到AWS的DashBoard， 然後我們看到一個叫做LightSail的東西，我們點開它這邊先簡單講一下LightSail跟一般的EC2有什麼樣的差別，一般EC2跟ＬightSail差別在於他的訂製化程度比較高然後可以選擇的東西比較多，但有時候在一開始配置的話會讓人有點摸不著頭緒，所以我們這邊簡單地用LightSail來模擬一下關於雲端部署的部分 因為我們的目的只是要附上雲端，所以這部分選擇哪個具體來講都沒差&lt;/p>
