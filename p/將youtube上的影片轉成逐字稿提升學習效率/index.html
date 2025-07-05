@@ -6,337 +6,125 @@ gtag('js',new Date());gtag('config','G-9N16MVLR0Q');</script></head><body class=
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>py -m pip install yt-dlp
 </code></pre></td></tr></table></div></div><h2 id=ffmpeg>ffmpeg</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>brew install ffmpeg
-</code></pre></td></tr></table></div></div><h1 id=code>Code</h1><p>不得不說，現在有AI真的是蠻方便的，不然難想像這東西要自己手刻出來要花我多久時間</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
-</span><span class=lnt>  2
-</span><span class=lnt>  3
-</span><span class=lnt>  4
-</span><span class=lnt>  5
-</span><span class=lnt>  6
-</span><span class=lnt>  7
-</span><span class=lnt>  8
-</span><span class=lnt>  9
-</span><span class=lnt> 10
-</span><span class=lnt> 11
-</span><span class=lnt> 12
-</span><span class=lnt> 13
-</span><span class=lnt> 14
-</span><span class=lnt> 15
-</span><span class=lnt> 16
-</span><span class=lnt> 17
-</span><span class=lnt> 18
-</span><span class=lnt> 19
-</span><span class=lnt> 20
-</span><span class=lnt> 21
-</span><span class=lnt> 22
-</span><span class=lnt> 23
-</span><span class=lnt> 24
-</span><span class=lnt> 25
-</span><span class=lnt> 26
-</span><span class=lnt> 27
-</span><span class=lnt> 28
-</span><span class=lnt> 29
-</span><span class=lnt> 30
-</span><span class=lnt> 31
-</span><span class=lnt> 32
-</span><span class=lnt> 33
-</span><span class=lnt> 34
-</span><span class=lnt> 35
-</span><span class=lnt> 36
-</span><span class=lnt> 37
-</span><span class=lnt> 38
-</span><span class=lnt> 39
-</span><span class=lnt> 40
-</span><span class=lnt> 41
-</span><span class=lnt> 42
-</span><span class=lnt> 43
-</span><span class=lnt> 44
-</span><span class=lnt> 45
-</span><span class=lnt> 46
-</span><span class=lnt> 47
-</span><span class=lnt> 48
-</span><span class=lnt> 49
-</span><span class=lnt> 50
-</span><span class=lnt> 51
-</span><span class=lnt> 52
-</span><span class=lnt> 53
-</span><span class=lnt> 54
-</span><span class=lnt> 55
-</span><span class=lnt> 56
-</span><span class=lnt> 57
-</span><span class=lnt> 58
-</span><span class=lnt> 59
-</span><span class=lnt> 60
-</span><span class=lnt> 61
-</span><span class=lnt> 62
-</span><span class=lnt> 63
-</span><span class=lnt> 64
-</span><span class=lnt> 65
-</span><span class=lnt> 66
-</span><span class=lnt> 67
-</span><span class=lnt> 68
-</span><span class=lnt> 69
-</span><span class=lnt> 70
-</span><span class=lnt> 71
-</span><span class=lnt> 72
-</span><span class=lnt> 73
-</span><span class=lnt> 74
-</span><span class=lnt> 75
-</span><span class=lnt> 76
-</span><span class=lnt> 77
-</span><span class=lnt> 78
-</span><span class=lnt> 79
-</span><span class=lnt> 80
-</span><span class=lnt> 81
-</span><span class=lnt> 82
-</span><span class=lnt> 83
-</span><span class=lnt> 84
-</span><span class=lnt> 85
-</span><span class=lnt> 86
-</span><span class=lnt> 87
-</span><span class=lnt> 88
-</span><span class=lnt> 89
-</span><span class=lnt> 90
-</span><span class=lnt> 91
-</span><span class=lnt> 92
-</span><span class=lnt> 93
-</span><span class=lnt> 94
-</span><span class=lnt> 95
-</span><span class=lnt> 96
-</span><span class=lnt> 97
-</span><span class=lnt> 98
-</span><span class=lnt> 99
-</span><span class=lnt>100
-</span><span class=lnt>101
-</span><span class=lnt>102
-</span><span class=lnt>103
-</span><span class=lnt>104
-</span><span class=lnt>105
-</span><span class=lnt>106
-</span><span class=lnt>107
-</span><span class=lnt>108
-</span><span class=lnt>109
-</span><span class=lnt>110
-</span><span class=lnt>111
-</span><span class=lnt>112
-</span><span class=lnt>113
-</span><span class=lnt>114
-</span><span class=lnt>115
-</span><span class=lnt>116
-</span><span class=lnt>117
-</span><span class=lnt>118
-</span><span class=lnt>119
-</span><span class=lnt>120
-</span><span class=lnt>121
-</span><span class=lnt>122
-</span><span class=lnt>123
-</span><span class=lnt>124
-</span><span class=lnt>125
-</span><span class=lnt>126
-</span><span class=lnt>127
-</span><span class=lnt>128
-</span><span class=lnt>129
-</span><span class=lnt>130
-</span><span class=lnt>131
-</span><span class=lnt>132
-</span><span class=lnt>133
-</span><span class=lnt>134
-</span><span class=lnt>135
-</span><span class=lnt>136
-</span><span class=lnt>137
-</span><span class=lnt>138
-</span><span class=lnt>139
-</span><span class=lnt>140
-</span><span class=lnt>141
-</span><span class=lnt>142
-</span><span class=lnt>143
-</span><span class=lnt>144
-</span><span class=lnt>145
-</span><span class=lnt>146
-</span><span class=lnt>147
-</span><span class=lnt>148
-</span><span class=lnt>149
-</span><span class=lnt>150
-</span><span class=lnt>151
-</span><span class=lnt>152
-</span><span class=lnt>153
-</span><span class=lnt>154
-</span><span class=lnt>155
-</span><span class=lnt>156
-</span><span class=lnt>157
-</span><span class=lnt>158
-</span><span class=lnt>159
-</span><span class=lnt>160
-</span><span class=lnt>161
-</span><span class=lnt>162
-</span><span class=lnt>163
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python>
-<span class=kn>import</span> <span class=nn>subprocess</span>
-<span class=kn>import</span> <span class=nn>os</span>
-<span class=kn>import</span> <span class=nn>time</span>
-<span class=kn>import</span> <span class=nn>threading</span>
-<span class=kn>import</span> <span class=nn>re</span>
-<span class=kn>from</span> <span class=nn>faster_whisper</span> <span class=kn>import</span> <span class=n>WhisperModel</span>
+</code></pre></td></tr></table></div></div><p>import os
+import subprocess
+import time
+import threading
+import re
+from faster_whisper import WhisperModel
+import ctranslate2</p><h1 id=嘗試用-cuda如果失敗就用-cpu>嘗試用 CUDA，如果失敗就用 CPU</h1><p>try:
+model = WhisperModel(&ldquo;medium&rdquo;, device=&ldquo;cuda&rdquo;, compute_type=&ldquo;float16&rdquo;)
+device = &ldquo;cuda&rdquo;
+compute_type = &ldquo;float16&rdquo;
+except Exception as e:
+print(f"⚠️ 無法使用 CUDA，改用 CPU（錯誤訊息：{e}）")
+model = WhisperModel(&ldquo;medium&rdquo;, device=&ldquo;cpu&rdquo;, compute_type=&ldquo;int8&rdquo;)
+device = &ldquo;cpu&rdquo;
+compute_type = &ldquo;int8&rdquo;</p><p>print(f"✅ 目前使用裝置：{device}")
+print(f"✅ 使用精度模式：{compute_type}")</p><h1 id=載入模型>載入模型</h1><p>model = WhisperModel(&ldquo;medium&rdquo;, device=device, compute_type=compute_type)</p><h1 id=合法化檔名>合法化檔名</h1><p>def sanitize_filename(name):
+name = re.sub(r'[\/:*?"&lt;>|]', &lsquo;_&rsquo;, name)
+name = name.strip().rstrip('.')
+return name[:100]</p><h1 id=找出下一個-playlist_x-編號>找出下一個 playlist_X 編號</h1><p>def get_next_playlist_index(base_dir=&ldquo;downloads&rdquo;):
+index = 1
+while os.path.exists(os.path.join(base_dir, f"playlist_{index}")):
+index += 1
+return index</p><h1 id=取得影片標題>取得影片標題</h1><p>def get_video_title(video_url):
+result = subprocess.run([&ldquo;yt-dlp&rdquo;, &ldquo;&ndash;get-title&rdquo;, video_url], capture_output=True, text=True)
+return result.stdout.strip()</p><h1 id=取得影片秒數>取得影片秒數</h1><p>def get_video_duration(video_url):
+result = subprocess.run([&ldquo;yt-dlp&rdquo;, &ldquo;&ndash;print&rdquo;, &ldquo;duration&rdquo;, video_url], capture_output=True, text=True)
+try:
+return int(result.stdout.strip())
+except:
+return 0</p><h1 id=下載音訊>下載音訊</h1><p>def download_audio(url, output_path):
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+print(f"🎧 下載音訊中：{url}")
+result = subprocess.run([
+&ldquo;yt-dlp&rdquo;, &ldquo;-x&rdquo;, &ldquo;&ndash;audio-format&rdquo;, &ldquo;mp3&rdquo;, &ldquo;-o&rdquo;, output_path, url
+], capture_output=True, text=True)
+print(result.stdout)
+print(result.stderr)</p><h1 id=轉錄--進度顯示>轉錄 + 進度顯示</h1><p>def transcribe_with_progress(file_path, language=&lsquo;zh&rsquo;):
+stop_flag = threading.Event()
+start_time = time.time()</p><pre><code>def progress_timer():
+    while not stop_flag.is_set():
+        elapsed = time.time() - start_time
+        print(f&quot;[進度] 轉錄中... 已進行 {int(elapsed)} 秒&quot;)
+        time.sleep(5)
 
-<span class=c1># 設定使用裝置</span>
-<span class=n>device</span> <span class=o>=</span> <span class=s2>&#34;cuda&#34;</span> <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;CUDA_VISIBLE_DEVICES&#34;</span><span class=p>)</span> <span class=o>!=</span> <span class=s2>&#34;-1&#34;</span> <span class=k>else</span> <span class=s2>&#34;cpu&#34;</span>
-<span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;目前使用裝置: {device}&#34;</span><span class=p>)</span>
+print(f&quot;📝 開始轉錄：{file_path}&quot;)
+timer_thread = threading.Thread(target=progress_timer)
+timer_thread.start()
 
-<span class=c1># 載入模型</span>
-<span class=n>model</span> <span class=o>=</span> <span class=n>WhisperModel</span><span class=p>(</span><span class=s2>&#34;medium&#34;</span><span class=p>,</span> <span class=n>device</span><span class=o>=</span><span class=n>device</span><span class=p>,</span> <span class=n>compute_type</span><span class=o>=</span><span class=s2>&#34;float16&#34;</span> <span class=k>if</span> <span class=n>device</span> <span class=o>==</span> <span class=s2>&#34;cuda&#34;</span> <span class=k>else</span> <span class=s2>&#34;int8&#34;</span><span class=p>)</span>
+try:
+    segments_gen, info = model.transcribe(file_path, language=language)
+    segments = list(segments_gen)
+    print(f&quot;✅ 轉錄完成，共取得 {len(segments)} 個語句段落&quot;)
+except Exception as e:
+    print(f&quot;[錯誤] 轉錄失敗：{e}&quot;)
+    segments, info = [], {}
+finally:
+    stop_flag.set()
+    timer_thread.join()
 
-<span class=c1># 合法化檔名</span>
-<span class=k>def</span> <span class=nf>sanitize_filename</span><span class=p>(</span><span class=n>name</span><span class=p>):</span>
-    <span class=n>name</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;[</span><span class=se>\\</span><span class=s1>/:*?&#34;&lt;&gt;|]&#39;</span><span class=p>,</span> <span class=s1>&#39;_&#39;</span><span class=p>,</span> <span class=n>name</span><span class=p>)</span>
-    <span class=n>name</span> <span class=o>=</span> <span class=n>name</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span><span class=o>.</span><span class=n>rstrip</span><span class=p>(</span><span class=s1>&#39;.&#39;</span><span class=p>)</span>
-    <span class=k>return</span> <span class=n>name</span><span class=p>[:</span><span class=mi>100</span><span class=p>]</span>
+return segments, info
+</code></pre><h1 id=寫入逐字稿>寫入逐字稿</h1><p>def transcribe_audio(file_path, output_path):
+segments, info = transcribe_with_progress(file_path, language=&lsquo;zh&rsquo;)
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+with open(output_path, &ldquo;w&rdquo;, encoding=&ldquo;utf-8&rdquo;) as f:
+for segment in segments:
+f.write(f"[{round(segment.start, 2)}-{round(segment.end, 2)}] {segment.text}\n")
+if segments:
+total_audio_time = round(segments[-1].end, 2)
+print(f"🎤 語音總長度：{total_audio_time} 秒")</p><h1 id=合併逐字稿成一個檔案>合併逐字稿成一個檔案</h1><p>def merge_transcripts(transcript_dir, output_path):
+files = sorted([f for f in os.listdir(transcript_dir) if f.endswith(".txt")])
+with open(output_path, &ldquo;w&rdquo;, encoding=&ldquo;utf-8&rdquo;) as out:
+for f_name in files:
+with open(os.path.join(transcript_dir, f_name), &ldquo;r&rdquo;, encoding=&ldquo;utf-8&rdquo;) as f:
+out.write(f"\n===== {f_name} =====\n")
+out.write(f.read())
+out.write("\n")
+print(f"📄 合併逐字稿完成：{output_path}")</p><h1 id=取得播放清單中的所有影片-id>取得播放清單中的所有影片 ID</h1><p>def get_playlist_video_ids(playlist_url):
+result = subprocess.run([&ldquo;yt-dlp&rdquo;, &ldquo;&ndash;flat-playlist&rdquo;, &ldquo;&ndash;print&rdquo;, &ldquo;id&rdquo;, playlist_url], capture_output=True, text=True)
+return result.stdout.strip().split('\n')</p><h1 id=主程式開始>主程式開始</h1><p>os.makedirs(&ldquo;downloads&rdquo;, exist_ok=True)
+os.makedirs(&ldquo;transcripts&rdquo;, exist_ok=True)</p><p>with open(&ldquo;video_playlist.txt&rdquo;, &ldquo;r&rdquo;, encoding=&ldquo;utf-8&rdquo;) as f:
+playlist_urls = [line.strip() for line in f if line.strip()]</p><p>for playlist_url in playlist_urls:
+playlist_index = get_next_playlist_index()
+print(f"\n📂 開始處理播放清單 playlist_{playlist_index}: {playlist_url}")</p><pre><code>playlist_download_dir = f&quot;downloads/playlist_{playlist_index}&quot;
+playlist_transcript_dir = f&quot;transcripts/playlist_{playlist_index}&quot;
+os.makedirs(playlist_download_dir, exist_ok=True)
+os.makedirs(playlist_transcript_dir, exist_ok=True)
 
-<span class=c1># 找出下一個 playlist_X 編號</span>
-<span class=k>def</span> <span class=nf>get_next_playlist_index</span><span class=p>(</span><span class=n>base_dir</span><span class=o>=</span><span class=s2>&#34;downloads&#34;</span><span class=p>):</span>
-    <span class=n>index</span> <span class=o>=</span> <span class=mi>1</span>
-    <span class=k>while</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>base_dir</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;playlist_{index}&#34;</span><span class=p>)):</span>
-        <span class=n>index</span> <span class=o>+=</span> <span class=mi>1</span>
-    <span class=k>return</span> <span class=n>index</span>
+video_ids = get_playlist_video_ids(playlist_url)
 
-<span class=c1># 取得影片標題</span>
-<span class=k>def</span> <span class=nf>get_video_title</span><span class=p>(</span><span class=n>video_url</span><span class=p>):</span>
-    <span class=k>try</span><span class=p>:</span>
-        <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span><span class=s2>&#34;yt-dlp&#34;</span><span class=p>,</span> <span class=s2>&#34;--get-title&#34;</span><span class=p>,</span> <span class=n>video_url</span><span class=p>],</span> <span class=n>capture_output</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
-        <span class=k>return</span> <span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
-    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
-        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;⚠️ 無法取得標題：{e}&#34;</span><span class=p>)</span>
-        <span class=k>return</span> <span class=s2>&#34;unknown_title&#34;</span>
+for idx, vid in enumerate(video_ids, 1):
+    video_url = f&quot;https://youtu.be/{vid}&quot;
+    print(f&quot;\n🎞️ ({idx}/{len(video_ids)}) 處理影片：{video_url}&quot;)
+    start_time = time.time()
 
-<span class=c1># 取得影片秒數</span>
-<span class=k>def</span> <span class=nf>get_video_duration</span><span class=p>(</span><span class=n>video_url</span><span class=p>):</span>
-    <span class=k>try</span><span class=p>:</span>
-        <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span><span class=s2>&#34;yt-dlp&#34;</span><span class=p>,</span> <span class=s2>&#34;--print&#34;</span><span class=p>,</span> <span class=s2>&#34;duration&#34;</span><span class=p>,</span> <span class=n>video_url</span><span class=p>],</span> <span class=n>capture_output</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
-        <span class=k>return</span> <span class=nb>int</span><span class=p>(</span><span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>strip</span><span class=p>())</span>
-    <span class=k>except</span><span class=p>:</span>
-        <span class=k>return</span> <span class=mi>0</span>
+    title = get_video_title(video_url)
+    safe_title = sanitize_filename(title)
+    duration = get_video_duration(video_url)
 
-<span class=c1># 下載音訊</span>
-<span class=k>def</span> <span class=nf>download_audio</span><span class=p>(</span><span class=n>url</span><span class=p>,</span> <span class=n>output_path</span><span class=p>):</span>
-    <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=n>output_path</span><span class=p>),</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
-    <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;下載音訊中：{url}&#34;</span><span class=p>)</span>
-    <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span>
-        <span class=s2>&#34;yt-dlp&#34;</span><span class=p>,</span> <span class=s2>&#34;-x&#34;</span><span class=p>,</span> <span class=s2>&#34;--audio-format&#34;</span><span class=p>,</span> <span class=s2>&#34;mp3&#34;</span><span class=p>,</span> <span class=s2>&#34;-o&#34;</span><span class=p>,</span> <span class=n>output_path</span><span class=p>,</span> <span class=n>url</span>
-    <span class=p>],</span> <span class=n>capture_output</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
-    <span class=k>print</span><span class=p>(</span><span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=p>)</span>
-    <span class=k>print</span><span class=p>(</span><span class=n>result</span><span class=o>.</span><span class=n>stderr</span><span class=p>)</span>
-    <span class=k>if</span> <span class=n>result</span><span class=o>.</span><span class=n>returncode</span> <span class=o>!=</span> <span class=mi>0</span><span class=p>:</span>
-        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;[錯誤] 下載失敗：{url}&#34;</span><span class=p>)</span>
-        <span class=k>return</span> <span class=bp>False</span>
-    <span class=k>return</span> <span class=bp>True</span>
+    mp3_path = os.path.join(playlist_download_dir, f&quot;{safe_title}.mp3&quot;)
+    if not os.path.exists(mp3_path):
+        download_audio(video_url, output_path=mp3_path)
 
-<span class=c1># 轉錄 + 進度顯示</span>
-<span class=k>def</span> <span class=nf>transcribe_with_progress</span><span class=p>(</span><span class=n>file_path</span><span class=p>,</span> <span class=n>language</span><span class=o>=</span><span class=s1>&#39;zh&#39;</span><span class=p>):</span>
-    <span class=n>stop_flag</span> <span class=o>=</span> <span class=n>threading</span><span class=o>.</span><span class=n>Event</span><span class=p>()</span>
-    <span class=n>start_time</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
+    output_file = os.path.join(playlist_transcript_dir, f&quot;{safe_title}.txt&quot;)
+    transcribe_audio(mp3_path, output_file)
 
-    <span class=k>def</span> <span class=nf>progress_timer</span><span class=p>():</span>
-        <span class=k>while</span> <span class=ow>not</span> <span class=n>stop_flag</span><span class=o>.</span><span class=n>is_set</span><span class=p>():</span>
-            <span class=n>elapsed</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span> <span class=o>-</span> <span class=n>start_time</span>
-            <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;[進度] 轉錄中... 已進行 {int(elapsed)} 秒&#34;</span><span class=p>)</span>
-            <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>5</span><span class=p>)</span>
+    elapsed = time.time() - start_time
+    speed_ratio = duration / elapsed if elapsed &gt; 0 else 0
 
-    <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;開始轉錄：{file_path}&#34;</span><span class=p>)</span>
-    <span class=n>timer_thread</span> <span class=o>=</span> <span class=n>threading</span><span class=o>.</span><span class=n>Thread</span><span class=p>(</span><span class=n>target</span><span class=o>=</span><span class=n>progress_timer</span><span class=p>)</span>
-    <span class=n>timer_thread</span><span class=o>.</span><span class=n>start</span><span class=p>()</span>
+    print(f&quot;✅ 完成：{output_file}&quot;)
+    print(f&quot;⏱️ 耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉錄速度比：約 {speed_ratio:.2f}x&quot;)
 
-    <span class=k>try</span><span class=p>:</span>
-        <span class=n>segments_gen</span><span class=p>,</span> <span class=n>info</span> <span class=o>=</span> <span class=n>model</span><span class=o>.</span><span class=n>transcribe</span><span class=p>(</span><span class=n>file_path</span><span class=p>,</span> <span class=n>language</span><span class=o>=</span><span class=n>language</span><span class=p>)</span>
-        <span class=n>segments</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=n>segments_gen</span><span class=p>)</span>
-        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;轉錄完成！共取得 {len(segments)} 個語句段落&#34;</span><span class=p>)</span>
-    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
-        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;[錯誤] 轉錄失敗：{e}&#34;</span><span class=p>)</span>
-        <span class=n>segments</span><span class=p>,</span> <span class=n>info</span> <span class=o>=</span> <span class=p>[],</span> <span class=p>{}</span>
-    <span class=k>finally</span><span class=p>:</span>
-        <span class=n>stop_flag</span><span class=o>.</span><span class=n>set</span><span class=p>()</span>
-        <span class=n>timer_thread</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
-
-    <span class=k>return</span> <span class=n>segments</span><span class=p>,</span> <span class=n>info</span>
-
-<span class=c1># 寫入逐字稿</span>
-<span class=k>def</span> <span class=nf>transcribe_audio</span><span class=p>(</span><span class=n>file_path</span><span class=p>,</span> <span class=n>output_path</span><span class=p>):</span>
-    <span class=n>segments</span><span class=p>,</span> <span class=n>info</span> <span class=o>=</span> <span class=n>transcribe_with_progress</span><span class=p>(</span><span class=n>file_path</span><span class=p>,</span> <span class=n>language</span><span class=o>=</span><span class=s1>&#39;zh&#39;</span><span class=p>)</span>
-    <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=n>output_path</span><span class=p>),</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
-    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>output_path</span><span class=p>,</span> <span class=s2>&#34;w&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
-        <span class=k>for</span> <span class=n>segment</span> <span class=ow>in</span> <span class=n>segments</span><span class=p>:</span>
-            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;[{round(segment.start, 2)}-{round(segment.end, 2)}] {segment.text}</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
-    <span class=k>if</span> <span class=n>segments</span><span class=p>:</span>
-        <span class=n>total_audio_time</span> <span class=o>=</span> <span class=nb>round</span><span class=p>(</span><span class=n>segments</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>end</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span>
-        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;語音總長度（實際轉錄）：{total_audio_time} 秒&#34;</span><span class=p>)</span>
-
-<span class=c1># 取得播放清單中的所有影片 ID</span>
-<span class=k>def</span> <span class=nf>get_playlist_video_ids</span><span class=p>(</span><span class=n>playlist_url</span><span class=p>):</span>
-    <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span><span class=s2>&#34;yt-dlp&#34;</span><span class=p>,</span> <span class=s2>&#34;--flat-playlist&#34;</span><span class=p>,</span> <span class=s2>&#34;--print&#34;</span><span class=p>,</span> <span class=s2>&#34;id&#34;</span><span class=p>,</span> <span class=n>playlist_url</span><span class=p>],</span> <span class=n>capture_output</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
-    <span class=k>return</span> <span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
-
-<span class=c1># 合併同播放清單所有逐字稿成一個檔案</span>
-<span class=k>def</span> <span class=nf>merge_transcripts</span><span class=p>(</span><span class=n>transcript_dir</span><span class=p>,</span> <span class=n>merged_filename</span><span class=o>=</span><span class=s2>&#34;merged_transcript.txt&#34;</span><span class=p>):</span>
-    <span class=n>merged_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>transcript_dir</span><span class=p>,</span> <span class=n>merged_filename</span><span class=p>)</span>
-    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>merged_path</span><span class=p>,</span> <span class=s2>&#34;w&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>merged</span><span class=p>:</span>
-        <span class=n>transcript_files</span> <span class=o>=</span> <span class=nb>sorted</span><span class=p>(</span><span class=n>f</span> <span class=k>for</span> <span class=n>f</span> <span class=ow>in</span> <span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>(</span><span class=n>transcript_dir</span><span class=p>)</span> <span class=k>if</span> <span class=n>f</span><span class=o>.</span><span class=n>endswith</span><span class=p>(</span><span class=s2>&#34;.txt&#34;</span><span class=p>)</span> <span class=ow>and</span> <span class=n>f</span> <span class=o>!=</span> <span class=n>merged_filename</span><span class=p>)</span>
-        <span class=k>for</span> <span class=n>fname</span> <span class=ow>in</span> <span class=n>transcript_files</span><span class=p>:</span>
-            <span class=n>merged</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;</span><span class=se>\n\n</span><span class=s2>===== {fname} =====</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
-            <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>transcript_dir</span><span class=p>,</span> <span class=n>fname</span><span class=p>),</span> <span class=s2>&#34;r&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
-                <span class=n>merged</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>())</span>
-    <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;✅ 合併逐字稿已完成，檔案路徑：{merged_path}&#34;</span><span class=p>)</span>
-
-<span class=c1># 主程式開始</span>
-<span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=s2>&#34;downloads&#34;</span><span class=p>,</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
-<span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=s2>&#34;transcripts&#34;</span><span class=p>,</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
-
-<span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;video_playlist.txt&#34;</span><span class=p>,</span> <span class=s2>&#34;r&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
-    <span class=n>playlist_urls</span> <span class=o>=</span> <span class=p>[</span><span class=n>line</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>f</span> <span class=k>if</span> <span class=n>line</span><span class=o>.</span><span class=n>strip</span><span class=p>()]</span>
-
-<span class=n>next_playlist_index</span> <span class=o>=</span> <span class=n>get_next_playlist_index</span><span class=p>()</span>
-
-<span class=k>for</span> <span class=n>playlist_url</span> <span class=ow>in</span> <span class=n>playlist_urls</span><span class=p>:</span>
-    <span class=n>playlist_index</span> <span class=o>=</span> <span class=n>next_playlist_index</span>
-    <span class=n>next_playlist_index</span> <span class=o>+=</span> <span class=mi>1</span>
-
-    <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>📂 開始處理播放清單 {playlist_index}: {playlist_url}&#34;</span><span class=p>)</span>
-
-    <span class=n>playlist_download_dir</span> <span class=o>=</span> <span class=n>f</span><span class=s2>&#34;downloads/playlist_{playlist_index}&#34;</span>
-    <span class=n>playlist_transcript_dir</span> <span class=o>=</span> <span class=n>f</span><span class=s2>&#34;transcripts/playlist_{playlist_index}&#34;</span>
-    <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>playlist_download_dir</span><span class=p>,</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
-    <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>playlist_transcript_dir</span><span class=p>,</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
-
-    <span class=n>video_ids</span> <span class=o>=</span> <span class=n>get_playlist_video_ids</span><span class=p>(</span><span class=n>playlist_url</span><span class=p>)</span>
-
-    <span class=k>for</span> <span class=n>idx</span><span class=p>,</span> <span class=n>vid</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>video_ids</span><span class=p>,</span> <span class=mi>1</span><span class=p>):</span>
-        <span class=n>video_url</span> <span class=o>=</span> <span class=n>f</span><span class=s2>&#34;https://youtu.be/{vid}&#34;</span>
-        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>🎞️ ({idx}/{len(video_ids)}) 處理影片：{video_url}&#34;</span><span class=p>)</span>
-        <span class=n>start_time</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
-
-        <span class=n>title</span> <span class=o>=</span> <span class=n>get_video_title</span><span class=p>(</span><span class=n>video_url</span><span class=p>)</span>
-        <span class=n>safe_title</span> <span class=o>=</span> <span class=n>sanitize_filename</span><span class=p>(</span><span class=n>title</span><span class=p>)</span>
-        <span class=n>duration</span> <span class=o>=</span> <span class=n>get_video_duration</span><span class=p>(</span><span class=n>video_url</span><span class=p>)</span>
-
-        <span class=n>mp3_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>playlist_download_dir</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;{safe_title}.mp3&#34;</span><span class=p>)</span>
-        <span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>mp3_path</span><span class=p>):</span>
-            <span class=k>if</span> <span class=ow>not</span> <span class=n>download_audio</span><span class=p>(</span><span class=n>video_url</span><span class=p>,</span> <span class=n>output_path</span><span class=o>=</span><span class=n>mp3_path</span><span class=p>):</span>
-                <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;跳過影片 {video_url}，下載失敗&#34;</span><span class=p>)</span>
-                <span class=k>continue</span>
-
-        <span class=n>output_file</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>playlist_transcript_dir</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;{safe_title}.txt&#34;</span><span class=p>)</span>
-        <span class=n>transcribe_audio</span><span class=p>(</span><span class=n>mp3_path</span><span class=p>,</span> <span class=n>output_file</span><span class=p>)</span>
-
-        <span class=n>elapsed</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span> <span class=o>-</span> <span class=n>start_time</span>
-        <span class=n>speed_ratio</span> <span class=o>=</span> <span class=n>duration</span> <span class=o>/</span> <span class=n>elapsed</span> <span class=k>if</span> <span class=n>elapsed</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=k>else</span> <span class=mi>0</span>
-
-        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;✅ 完成：{output_file}&#34;</span><span class=p>)</span>
-        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&#34;</span><span class=p>)</span>
-
-    <span class=c1># 播放清單處理完後合併逐字稿</span>
-    <span class=n>merge_transcripts</span><span class=p>(</span><span class=n>playlist_transcript_dir</span><span class=p>)</span>
-
-</code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/><div class=article-image><img src=https://i.imgur.com/1OBx1AG.png loading=lazy data-key data-hash=https://i.imgur.com/1OBx1AG.png></div><div class=article-details><h2 class=article-title>結合Lombok寫出更整潔的程式碼</h2></div></a></article><article class=has-image><a href=/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/rfkvgRO.png loading=lazy data-key data-hash=https://i.imgur.com/rfkvgRO.png></div><div class=article-details><h2 class=article-title>運用ArrayList與自動配置將Swich語法拆解</h2></div></a></article><article class=has-image><a href=/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/><div class=article-image><img src=https://i.imgur.com/nCGDuUc.png%20 loading=lazy data-key data-hash=https://i.imgur.com/nCGDuUc.png></div><div class=article-details><h2 class=article-title>實用的Git指令</h2></div></a></article><article class=has-image><a href=/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/><div class=article-image><img src=https://i.imgur.com/whP4tpY.png loading=lazy data-key data-hash=https://i.imgur.com/whP4tpY.png></div><div class=article-details><h2 class=article-title>如何部署SpringBoot專案與雲端資料庫在Aws上面</h2></div></a></article><article class=has-image><a href=/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/Q4khHpn.png loading=lazy data-key data-hash=https://i.imgur.com/Q4khHpn.png></div><div class=article-details><h2 class=article-title>GitHubAction 搭配Aws的CICD ymal檔 附上註解</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
+# 播放清單處理完後合併逐字稿
+merged_path = os.path.join(playlist_transcript_dir, f&quot;playlist_{playlist_index}_merged.txt&quot;)
+merge_transcripts(playlist_transcript_dir, merged_path)
+</code></pre><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/><div class=article-image><img src=https://i.imgur.com/1OBx1AG.png loading=lazy data-key data-hash=https://i.imgur.com/1OBx1AG.png></div><div class=article-details><h2 class=article-title>結合Lombok寫出更整潔的程式碼</h2></div></a></article><article class=has-image><a href=/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/rfkvgRO.png loading=lazy data-key data-hash=https://i.imgur.com/rfkvgRO.png></div><div class=article-details><h2 class=article-title>運用ArrayList與自動配置將Swich語法拆解</h2></div></a></article><article class=has-image><a href=/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/><div class=article-image><img src=https://i.imgur.com/nCGDuUc.png%20 loading=lazy data-key data-hash=https://i.imgur.com/nCGDuUc.png></div><div class=article-details><h2 class=article-title>實用的Git指令</h2></div></a></article><article class=has-image><a href=/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/><div class=article-image><img src=https://i.imgur.com/whP4tpY.png loading=lazy data-key data-hash=https://i.imgur.com/whP4tpY.png></div><div class=article-details><h2 class=article-title>如何部署SpringBoot專案與雲端資料庫在Aws上面</h2></div></a></article><article class=has-image><a href=/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/Q4khHpn.png loading=lazy data-key data-hash=https://i.imgur.com/Q4khHpn.png></div><div class=article-details><h2 class=article-title>GitHubAction 搭配Aws的CICD ymal檔 附上註解</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
 gitalk.render("gitalk-container");})();</script><footer class=site-footer><section class=copyright>&copy;
 2020 -
 2025 Hoxton</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.14.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#緣起>緣起</a></li><li><a href=#結論>結論</a></li><li><a href=#使用的工具與環境>使用的工具與環境</a></li><li><a href=#安裝相關套件>安裝相關套件</a><ol><li><a href=#faster-whisper>faster-whisper</a></li><li><a href=#yt-dlp>yt-dlp</a></li><li><a href=#ffmpeg>ffmpeg</a></li></ol></li><li><a href=#code>Code</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#緣起>緣起</a></li><li><a href=#結論>結論</a></li><li><a href=#使用的工具與環境>使用的工具與環境</a></li><li><a href=#安裝相關套件>安裝相關套件</a><ol><li><a href=#faster-whisper>faster-whisper</a></li><li><a href=#yt-dlp>yt-dlp</a></li><li><a href=#ffmpeg>ffmpeg</a></li></ol></li><li><a href=#嘗試用-cuda如果失敗就用-cpu>嘗試用 CUDA，如果失敗就用 CPU</a></li><li><a href=#載入模型>載入模型</a></li><li><a href=#合法化檔名>合法化檔名</a></li><li><a href=#找出下一個-playlist_x-編號>找出下一個 playlist_X 編號</a></li><li><a href=#取得影片標題>取得影片標題</a></li><li><a href=#取得影片秒數>取得影片秒數</a></li><li><a href=#下載音訊>下載音訊</a></li><li><a href=#轉錄--進度顯示>轉錄 + 進度顯示</a></li><li><a href=#寫入逐字稿>寫入逐字稿</a></li><li><a href=#合併逐字稿成一個檔案>合併逐字稿成一個檔案</a></li><li><a href=#取得播放清單中的所有影片-id>取得播放清單中的所有影片 ID</a></li><li><a href=#主程式開始>主程式開始</a></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
