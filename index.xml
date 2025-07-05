@@ -220,22 +220,29 @@ alt="image-20250706013438651"
 &lt;/span>&lt;span class="lnt">159
 &lt;/span>&lt;span class="lnt">160
 &lt;/span>&lt;span class="lnt">161
-&lt;/span>&lt;span class="lnt">162
-&lt;/span>&lt;span class="lnt">163
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">
+&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">import os
 import subprocess
-import os
 import time
 import threading
 import re
 from faster_whisper import WhisperModel
-# 設定使用裝置
-device = &amp;#34;cuda&amp;#34; if os.environ.get(&amp;#34;CUDA_VISIBLE_DEVICES&amp;#34;) != &amp;#34;-1&amp;#34; else &amp;#34;cpu&amp;#34;
-print(f&amp;#34;目前使用裝置: {device}&amp;#34;)
+import ctranslate2
+# 嘗試用 CUDA，如果失敗就用 CPU
+try:
+model = WhisperModel(&amp;#34;medium&amp;#34;, device=&amp;#34;cuda&amp;#34;, compute_type=&amp;#34;float16&amp;#34;)
+device = &amp;#34;cuda&amp;#34;
+compute_type = &amp;#34;float16&amp;#34;
+except Exception as e:
+print(f&amp;#34;⚠️ 無法使用 CUDA，改用 CPU（錯誤訊息：{e}）&amp;#34;)
+model = WhisperModel(&amp;#34;medium&amp;#34;, device=&amp;#34;cpu&amp;#34;, compute_type=&amp;#34;int8&amp;#34;)
+device = &amp;#34;cpu&amp;#34;
+compute_type = &amp;#34;int8&amp;#34;
+print(f&amp;#34;✅ 目前使用裝置：{device}&amp;#34;)
+print(f&amp;#34;✅ 使用精度模式：{compute_type}&amp;#34;)
 # 載入模型
-model = WhisperModel(&amp;#34;medium&amp;#34;, device=device, compute_type=&amp;#34;float16&amp;#34; if device == &amp;#34;cuda&amp;#34; else &amp;#34;int8&amp;#34;)
+model = WhisperModel(&amp;#34;medium&amp;#34;, device=device, compute_type=compute_type)
 # 合法化檔名
 def sanitize_filename(name):
 name = re.sub(r&amp;#39;[\\/:*?&amp;#34;&amp;lt;&amp;gt;|]&amp;#39;, &amp;#39;_&amp;#39;, name)
@@ -249,32 +256,24 @@ index += 1
 return index
 # 取得影片標題
 def get_video_title(video_url):
-try:
 result = subprocess.run([&amp;#34;yt-dlp&amp;#34;, &amp;#34;--get-title&amp;#34;, video_url], capture_output=True, text=True)
 return result.stdout.strip()
-except Exception as e:
-print(f&amp;#34;⚠️ 無法取得標題：{e}&amp;#34;)
-return &amp;#34;unknown_title&amp;#34;
 # 取得影片秒數
 def get_video_duration(video_url):
-try:
 result = subprocess.run([&amp;#34;yt-dlp&amp;#34;, &amp;#34;--print&amp;#34;, &amp;#34;duration&amp;#34;, video_url], capture_output=True, text=True)
+try:
 return int(result.stdout.strip())
 except:
 return 0
 # 下載音訊
 def download_audio(url, output_path):
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
-print(f&amp;#34;下載音訊中：{url}&amp;#34;)
+print(f&amp;#34;🎧 下載音訊中：{url}&amp;#34;)
 result = subprocess.run([
 &amp;#34;yt-dlp&amp;#34;, &amp;#34;-x&amp;#34;, &amp;#34;--audio-format&amp;#34;, &amp;#34;mp3&amp;#34;, &amp;#34;-o&amp;#34;, output_path, url
 ], capture_output=True, text=True)
 print(result.stdout)
 print(result.stderr)
-if result.returncode != 0:
-print(f&amp;#34;[錯誤] 下載失敗：{url}&amp;#34;)
-return False
-return True
 # 轉錄 + 進度顯示
 def transcribe_with_progress(file_path, language=&amp;#39;zh&amp;#39;):
 stop_flag = threading.Event()
@@ -284,13 +283,13 @@ while not stop_flag.is_set():
 elapsed = time.time() - start_time
 print(f&amp;#34;[進度] 轉錄中... 已進行 {int(elapsed)} 秒&amp;#34;)
 time.sleep(5)
-print(f&amp;#34;開始轉錄：{file_path}&amp;#34;)
+print(f&amp;#34;📝 開始轉錄：{file_path}&amp;#34;)
 timer_thread = threading.Thread(target=progress_timer)
 timer_thread.start()
 try:
 segments_gen, info = model.transcribe(file_path, language=language)
 segments = list(segments_gen)
-print(f&amp;#34;轉錄完成！共取得 {len(segments)} 個語句段落&amp;#34;)
+print(f&amp;#34;✅ 轉錄完成，共取得 {len(segments)} 個語句段落&amp;#34;)
 except Exception as e:
 print(f&amp;#34;[錯誤] 轉錄失敗：{e}&amp;#34;)
 segments, info = [], {}
@@ -307,31 +306,29 @@ for segment in segments:
 f.write(f&amp;#34;[{round(segment.start, 2)}-{round(segment.end, 2)}] {segment.text}\n&amp;#34;)
 if segments:
 total_audio_time = round(segments[-1].end, 2)
-print(f&amp;#34;語音總長度（實際轉錄）：{total_audio_time} 秒&amp;#34;)
+print(f&amp;#34;🎤 語音總長度：{total_audio_time} 秒&amp;#34;)
+# 合併逐字稿成一個檔案
+def merge_transcripts(transcript_dir, output_path):
+files = sorted([f for f in os.listdir(transcript_dir) if f.endswith(&amp;#34;.txt&amp;#34;)])
+with open(output_path, &amp;#34;w&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as out:
+for f_name in files:
+with open(os.path.join(transcript_dir, f_name), &amp;#34;r&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as f:
+out.write(f&amp;#34;\n===== {f_name} =====\n&amp;#34;)
+out.write(f.read())
+out.write(&amp;#34;\n&amp;#34;)
+print(f&amp;#34;📄 合併逐字稿完成：{output_path}&amp;#34;)
 # 取得播放清單中的所有影片 ID
 def get_playlist_video_ids(playlist_url):
 result = subprocess.run([&amp;#34;yt-dlp&amp;#34;, &amp;#34;--flat-playlist&amp;#34;, &amp;#34;--print&amp;#34;, &amp;#34;id&amp;#34;, playlist_url], capture_output=True, text=True)
 return result.stdout.strip().split(&amp;#39;\n&amp;#39;)
-# 合併同播放清單所有逐字稿成一個檔案
-def merge_transcripts(transcript_dir, merged_filename=&amp;#34;merged_transcript.txt&amp;#34;):
-merged_path = os.path.join(transcript_dir, merged_filename)
-with open(merged_path, &amp;#34;w&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as merged:
-transcript_files = sorted(f for f in os.listdir(transcript_dir) if f.endswith(&amp;#34;.txt&amp;#34;) and f != merged_filename)
-for fname in transcript_files:
-merged.write(f&amp;#34;\n\n===== {fname} =====\n&amp;#34;)
-with open(os.path.join(transcript_dir, fname), &amp;#34;r&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as f:
-merged.write(f.read())
-print(f&amp;#34;✅ 合併逐字稿已完成，檔案路徑：{merged_path}&amp;#34;)
 # 主程式開始
 os.makedirs(&amp;#34;downloads&amp;#34;, exist_ok=True)
 os.makedirs(&amp;#34;transcripts&amp;#34;, exist_ok=True)
 with open(&amp;#34;video_playlist.txt&amp;#34;, &amp;#34;r&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as f:
 playlist_urls = [line.strip() for line in f if line.strip()]
-next_playlist_index = get_next_playlist_index()
 for playlist_url in playlist_urls:
-playlist_index = next_playlist_index
-next_playlist_index += 1
-print(f&amp;#34;\n📂 開始處理播放清單 {playlist_index}: {playlist_url}&amp;#34;)
+playlist_index = get_next_playlist_index()
+print(f&amp;#34;\n📂 開始處理播放清單 playlist_{playlist_index}: {playlist_url}&amp;#34;)
 playlist_download_dir = f&amp;#34;downloads/playlist_{playlist_index}&amp;#34;
 playlist_transcript_dir = f&amp;#34;transcripts/playlist_{playlist_index}&amp;#34;
 os.makedirs(playlist_download_dir, exist_ok=True)
@@ -346,17 +343,16 @@ safe_title = sanitize_filename(title)
 duration = get_video_duration(video_url)
 mp3_path = os.path.join(playlist_download_dir, f&amp;#34;{safe_title}.mp3&amp;#34;)
 if not os.path.exists(mp3_path):
-if not download_audio(video_url, output_path=mp3_path):
-print(f&amp;#34;跳過影片 {video_url}，下載失敗&amp;#34;)
-continue
+download_audio(video_url, output_path=mp3_path)
 output_file = os.path.join(playlist_transcript_dir, f&amp;#34;{safe_title}.txt&amp;#34;)
 transcribe_audio(mp3_path, output_file)
 elapsed = time.time() - start_time
 speed_ratio = duration / elapsed if elapsed &amp;gt; 0 else 0
 print(f&amp;#34;✅ 完成：{output_file}&amp;#34;)
-print(f&amp;#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&amp;#34;)
+print(f&amp;#34;⏱️ 耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉錄速度比：約 {speed_ratio:.2f}x&amp;#34;)
 # 播放清單處理完後合併逐字稿
-merge_transcripts(playlist_transcript_dir)
+merged_path = os.path.join(playlist_transcript_dir, f&amp;#34;playlist_{playlist_index}_merged.txt&amp;#34;)
+merge_transcripts(playlist_transcript_dir, merged_path)
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h1 id="心得">心得&lt;/h1>
