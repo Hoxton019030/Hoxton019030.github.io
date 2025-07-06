@@ -282,187 +282,187 @@ alt="image-20250706013438651"
 &lt;/span>&lt;span class="lnt">221
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">import subprocess
-import os
-import time
-import threading
-import re
-from faster_whisper import WhisperModel
-# 設定使用裝置
-device = &amp;#34;cuda&amp;#34; if os.environ.get(&amp;#34;CUDA_VISIBLE_DEVICES&amp;#34;) != &amp;#34;-1&amp;#34; else &amp;#34;cpu&amp;#34;
-print(f&amp;#34;目前使用裝置: {device}&amp;#34;)
-# 載入模型
-model = WhisperModel(&amp;#34;medium&amp;#34;, device=device, compute_type=&amp;#34;float16&amp;#34; if device == &amp;#34;cuda&amp;#34; else &amp;#34;int8&amp;#34;)
-# 合法化檔名
-def sanitize_filename(name):
-name = re.sub(r&amp;#39;[\\/:*?&amp;#34;&amp;lt;&amp;gt;|\n\r]&amp;#39;, &amp;#39;_&amp;#39;, name)
-name = name.strip().rstrip(&amp;#39;.&amp;#39;)
-return name[:100]
-def get_playlist_title(playlist_url):
-try:
-result = subprocess.run([
-&amp;#34;yt-dlp&amp;#34;,
-&amp;#34;--skip-download&amp;#34;,
-&amp;#34;--no-warning&amp;#34;,
-&amp;#34;--print&amp;#34;, &amp;#34;playlist_title&amp;#34;,
-playlist_url
-], capture_output=True, text=True)
-lines = result.stdout.strip().splitlines()
-if lines:
-title = lines[0].strip()
-else:
-title = &amp;#34;playlist&amp;#34;
-print(f&amp;#34;DEBUG 播放清單標題：{repr(title)}&amp;#34;)
-return title
-except Exception as e:
-print(f&amp;#34;⚠️ 無法取得播放清單標題：{e}&amp;#34;)
-return &amp;#34;playlist&amp;#34;
-def is_playlist_url(url):
-# yt-dlp 支援的判斷方法之一：用 --flat-playlist 抓 id，沒東西就是非播放清單
-result = subprocess.run([&amp;#34;yt-dlp&amp;#34;, &amp;#34;--flat-playlist&amp;#34;, &amp;#34;--print&amp;#34;, &amp;#34;id&amp;#34;, url], capture_output=True, text=True)
-lines = result.stdout.strip().split(&amp;#39;\n&amp;#39;)
-# 如果有多筆影片id，代表是播放清單；只有一筆可能是影片或空
-# 單一影片時會直接是影片id
-# 判斷方法：如果能抓到多筆id且不只有一個，當作播放清單
-# 如果沒抓到id，非播放清單
-if len(lines) &amp;gt; 1:
-return True
-else:
-return False
-# 取得影片標題
-def get_video_title(video_url):
-try:
-result = subprocess.run([&amp;#34;yt-dlp&amp;#34;, &amp;#34;--get-title&amp;#34;, video_url], capture_output=True, text=True)
-return result.stdout.strip()
-except Exception as e:
-print(f&amp;#34;⚠️ 無法取得標題：{e}&amp;#34;)
-return &amp;#34;unknown_title&amp;#34;
-# 取得影片秒數
-def get_video_duration(video_url):
-try:
-result = subprocess.run([&amp;#34;yt-dlp&amp;#34;, &amp;#34;--print&amp;#34;, &amp;#34;duration&amp;#34;, video_url], capture_output=True, text=True)
-return int(result.stdout.strip())
-except:
-return 0
-# 下載音訊
-def download_audio(url, output_path):
-os.makedirs(os.path.dirname(output_path), exist_ok=True)
-print(f&amp;#34;下載音訊中：{url}&amp;#34;)
-result = subprocess.run([
-&amp;#34;yt-dlp&amp;#34;, &amp;#34;-x&amp;#34;, &amp;#34;--audio-format&amp;#34;, &amp;#34;mp3&amp;#34;, &amp;#34;-o&amp;#34;, output_path, url
-], capture_output=True, text=True)
-print(result.stdout)
-print(result.stderr)
-if result.returncode != 0:
-print(f&amp;#34;[錯誤] 下載失敗：{url}&amp;#34;)
-return False
-return True
-# 轉錄 + 進度顯示
-def transcribe_with_progress(file_path, language=&amp;#39;zh&amp;#39;):
-stop_flag = threading.Event()
-start_time = time.time()
-def progress_timer():
-while not stop_flag.is_set():
-elapsed = time.time() - start_time
-print(f&amp;#34;[進度] 轉錄中... 已進行 {int(elapsed)} 秒&amp;#34;)
-time.sleep(5)
-print(f&amp;#34;開始轉錄：{file_path}&amp;#34;)
-timer_thread = threading.Thread(target=progress_timer)
-timer_thread.start()
-try:
-segments_gen, info = model.transcribe(file_path, language=language)
-segments = list(segments_gen)
-print(f&amp;#34;轉錄完成！共取得 {len(segments)} 個語句段落&amp;#34;)
-except Exception as e:
-print(f&amp;#34;[錯誤] 轉錄失敗：{e}&amp;#34;)
-segments, info = [], {}
-finally:
-stop_flag.set()
-timer_thread.join()
-return segments, info
-# 寫入逐字稿
-def transcribe_audio(file_path, output_path):
-segments, info = transcribe_with_progress(file_path, language=&amp;#39;zh&amp;#39;)
-os.makedirs(os.path.dirname(output_path), exist_ok=True)
-with open(output_path, &amp;#34;w&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as f:
-for segment in segments:
-f.write(f&amp;#34;[{round(segment.start, 2)}-{round(segment.end, 2)}] {segment.text}\n&amp;#34;)
-if segments:
-total_audio_time = round(segments[-1].end, 2)
-print(f&amp;#34;語音總長度（實際轉錄）：{total_audio_time} 秒&amp;#34;)
-# 取得播放清單中的所有影片 ID
-def get_playlist_video_ids(playlist_url):
-result = subprocess.run([&amp;#34;yt-dlp&amp;#34;, &amp;#34;--flat-playlist&amp;#34;, &amp;#34;--print&amp;#34;, &amp;#34;id&amp;#34;, playlist_url], capture_output=True, text=True)
-return result.stdout.strip().split(&amp;#39;\n&amp;#39;)
-# 合併逐字稿
-def merge_transcripts(transcript_dir, merged_filename=&amp;#34;merged_transcript.txt&amp;#34;):
-merged_path = os.path.join(transcript_dir, merged_filename)
-with open(merged_path, &amp;#34;w&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as merged:
-transcript_files = sorted(f for f in os.listdir(transcript_dir) if f.endswith(&amp;#34;.txt&amp;#34;) and f != merged_filename)
-for fname in transcript_files:
-merged.write(f&amp;#34;\n\n===== {fname} =====\n&amp;#34;)
-with open(os.path.join(transcript_dir, fname), &amp;#34;r&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as f:
-merged.write(f.read())
-print(f&amp;#34;✅ 合併逐字稿已完成，檔案路徑：{merged_path}&amp;#34;)
-# 主程式
-os.makedirs(&amp;#34;downloads&amp;#34;, exist_ok=True)
-os.makedirs(&amp;#34;transcripts&amp;#34;, exist_ok=True)
-with open(&amp;#34;video_playlist.txt&amp;#34;, &amp;#34;r&amp;#34;, encoding=&amp;#34;utf-8&amp;#34;) as f:
-urls = [line.strip() for line in f if line.strip()]
-for url in urls:
-if is_playlist_url(url):
-raw_title = get_playlist_title(url)
-safe_title = sanitize_filename(raw_title)
-print(f&amp;#34;\n📂 開始處理播放清單：{raw_title} ({url})&amp;#34;)
-playlist_download_dir = f&amp;#34;downloads/{safe_title}&amp;#34;
-playlist_transcript_dir = f&amp;#34;transcripts/{safe_title}&amp;#34;
-os.makedirs(playlist_download_dir, exist_ok=True)
-os.makedirs(playlist_transcript_dir, exist_ok=True)
-video_ids = get_playlist_video_ids(url)
-for idx, vid in enumerate(video_ids, 1):
-video_url = f&amp;#34;https://youtu.be/{vid}&amp;#34;
-print(f&amp;#34;\n🎞️ ({idx}/{len(video_ids)}) 處理影片：{video_url}&amp;#34;)
-start_time = time.time()
-title = get_video_title(video_url)
-safe_video_title = sanitize_filename(title)
-output_file = os.path.join(playlist_transcript_dir, f&amp;#34;{safe_video_title}.txt&amp;#34;)
-if os.path.exists(output_file):
-print(f&amp;#34;⚠️ 逐字稿已存在，跳過影片：{safe_video_title}&amp;#34;)
-continue # 跳過下載及轉錄
-duration = get_video_duration(video_url)
-mp3_path = os.path.join(playlist_download_dir, f&amp;#34;{safe_video_title}.mp3&amp;#34;)
-if not os.path.exists(mp3_path):
-if not download_audio(video_url, output_path=mp3_path):
-print(f&amp;#34;跳過影片 {video_url}，下載失敗&amp;#34;)
-continue
-transcribe_audio(mp3_path, output_file)
-elapsed = time.time() - start_time
-speed_ratio = duration / elapsed if elapsed &amp;gt; 0 else 0
-print(f&amp;#34;✅ 完成：{output_file}&amp;#34;)
-print(f&amp;#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&amp;#34;)
-# 播放清單處理完後合併逐字稿
-merge_transcripts(playlist_transcript_dir)
-else:
-# 單支影片處理
-print(f&amp;#34;\n🎞️ 單支影片處理：{url}&amp;#34;)
-start_time = time.time()
-title = get_video_title(url)
-safe_video_title = sanitize_filename(title)
-output_file = os.path.join(&amp;#34;transcripts&amp;#34;, f&amp;#34;{safe_video_title}.txt&amp;#34;)
-if os.path.exists(output_file):
-print(f&amp;#34;⚠️ 逐字稿已存在，跳過影片：{safe_video_title}&amp;#34;)
-continue
-duration = get_video_duration(url)
-mp3_path = os.path.join(&amp;#34;downloads&amp;#34;, f&amp;#34;{safe_video_title}.mp3&amp;#34;)
-if not os.path.exists(mp3_path):
-if not download_audio(url, output_path=mp3_path):
-print(f&amp;#34;跳過影片 {url}，下載失敗&amp;#34;)
-continue
-transcribe_audio(mp3_path, output_file)
-elapsed = time.time() - start_time
-speed_ratio = duration / elapsed if elapsed &amp;gt; 0 else 0
-print(f&amp;#34;✅ 完成：{output_file}&amp;#34;)
-print(f&amp;#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&amp;#34;)
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">subprocess&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">os&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">threading&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">re&lt;/span>
+&lt;span class="kn">from&lt;/span> &lt;span class="nn">faster_whisper&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">WhisperModel&lt;/span>
+&lt;span class="c1"># 設定使用裝置&lt;/span>
+&lt;span class="n">device&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;cuda&amp;#34;&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">environ&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;CUDA_VISIBLE_DEVICES&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="s2">&amp;#34;-1&amp;#34;&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="s2">&amp;#34;cpu&amp;#34;&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;目前使用裝置: {device}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># 載入模型&lt;/span>
+&lt;span class="n">model&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">WhisperModel&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;medium&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">device&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">device&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">compute_type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;float16&amp;#34;&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="n">device&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;cuda&amp;#34;&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="s2">&amp;#34;int8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># 合法化檔名&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">sanitize_filename&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">re&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sub&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">r&lt;/span>&lt;span class="s1">&amp;#39;[&lt;/span>&lt;span class="se">\\&lt;/span>&lt;span class="s1">/:*?&amp;#34;&amp;lt;&amp;gt;|\n\r]&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;_&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">rstrip&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;.&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">[:&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">get_playlist_title&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playlist_url&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">result&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">subprocess&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">([&lt;/span>
+&lt;span class="s2">&amp;#34;yt-dlp&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;--skip-download&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;--no-warning&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;--print&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;playlist_title&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="n">playlist_url&lt;/span>
+&lt;span class="p">],&lt;/span> &lt;span class="n">capture_output&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">text&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">lines&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">stdout&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">splitlines&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">lines&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lines&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;playlist&amp;#34;&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;DEBUG 播放清單標題：{repr(title)}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">title&lt;/span>
+&lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;⚠️ 無法取得播放清單標題：{e}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s2">&amp;#34;playlist&amp;#34;&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">is_playlist_url&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="c1"># yt-dlp 支援的判斷方法之一：用 --flat-playlist 抓 id，沒東西就是非播放清單&lt;/span>
+&lt;span class="n">result&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">subprocess&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="s2">&amp;#34;yt-dlp&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;--flat-playlist&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;--print&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;id&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">url&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">capture_output&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">text&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">lines&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">stdout&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># 如果有多筆影片id，代表是播放清單；只有一筆可能是影片或空&lt;/span>
+&lt;span class="c1"># 單一影片時會直接是影片id&lt;/span>
+&lt;span class="c1"># 判斷方法：如果能抓到多筆id且不只有一個，當作播放清單&lt;/span>
+&lt;span class="c1"># 如果沒抓到id，非播放清單&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lines&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="bp">True&lt;/span>
+&lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="bp">False&lt;/span>
+&lt;span class="c1"># 取得影片標題&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">get_video_title&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">video_url&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">result&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">subprocess&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="s2">&amp;#34;yt-dlp&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;--get-title&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">video_url&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">capture_output&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">text&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">stdout&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;⚠️ 無法取得標題：{e}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="s2">&amp;#34;unknown_title&amp;#34;&lt;/span>
+&lt;span class="c1"># 取得影片秒數&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">get_video_duration&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">video_url&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">result&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">subprocess&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="s2">&amp;#34;yt-dlp&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;--print&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;duration&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">video_url&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">capture_output&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">text&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">result&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">stdout&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;span class="k">except&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="c1"># 下載音訊&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">download_audio&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_path&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">makedirs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">dirname&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_path&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">exist_ok&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;下載音訊中：{url}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">result&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">subprocess&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">([&lt;/span>
+&lt;span class="s2">&amp;#34;yt-dlp&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-x&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;--audio-format&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;mp3&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;-o&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">url&lt;/span>
+&lt;span class="p">],&lt;/span> &lt;span class="n">capture_output&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">text&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">result&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">stdout&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">result&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">stderr&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">returncode&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;[錯誤] 下載失敗：{url}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="bp">False&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="bp">True&lt;/span>
+&lt;span class="c1"># 轉錄 + 進度顯示&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">transcribe_with_progress&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">language&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;zh&amp;#39;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">stop_flag&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">threading&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Event&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">start_time&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">progress_timer&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;span class="k">while&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">stop_flag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">is_set&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;span class="n">elapsed&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start_time&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;[進度] 轉錄中... 已進行 {int(elapsed)} 秒&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;開始轉錄：{file_path}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">timer_thread&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">threading&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">progress_timer&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">timer_thread&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">segments_gen&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">info&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">model&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">transcribe&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">language&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">language&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">segments&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">list&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">segments_gen&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;轉錄完成！共取得 {len(segments)} 個語句段落&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;[錯誤] 轉錄失敗：{e}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">segments&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">info&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[],&lt;/span> &lt;span class="p">{}&lt;/span>
+&lt;span class="k">finally&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">stop_flag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">timer_thread&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">segments&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">info&lt;/span>
+&lt;span class="c1"># 寫入逐字稿&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">transcribe_audio&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_path&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">segments&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">info&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">transcribe_with_progress&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">file_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">language&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;zh&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">makedirs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">dirname&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_path&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">exist_ok&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;w&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">segment&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">segments&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;[{round(segment.start, 2)}-{round(segment.end, 2)}] {segment.text}&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">segments&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">total_audio_time&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">round&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">segments&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;語音總長度（實際轉錄）：{total_audio_time} 秒&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># 取得播放清單中的所有影片 ID&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">get_playlist_video_ids&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playlist_url&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">result&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">subprocess&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="s2">&amp;#34;yt-dlp&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;--flat-playlist&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;--print&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;id&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">playlist_url&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">capture_output&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">text&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">stdout&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># 合併逐字稿&lt;/span>
+&lt;span class="k">def&lt;/span> &lt;span class="nf">merge_transcripts&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">transcript_dir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">merged_filename&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;merged_transcript.txt&amp;#34;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">merged_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">transcript_dir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">merged_filename&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">merged_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;w&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">merged&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">transcript_files&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">sorted&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">listdir&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">transcript_dir&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">endswith&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.txt&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="n">merged_filename&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">fname&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">transcript_files&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">merged&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n\n&lt;/span>&lt;span class="s2">===== {fname} =====&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">transcript_dir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">fname&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s2">&amp;#34;r&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">merged&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">write&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">read&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;✅ 合併逐字稿已完成，檔案路徑：{merged_path}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># 主程式&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">makedirs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;downloads&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">exist_ok&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">makedirs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;transcripts&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">exist_ok&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">with&lt;/span> &lt;span class="nb">open&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;video_playlist.txt&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;r&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">encoding&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="n">urls&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">line&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">line&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="n">line&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strip&lt;/span>&lt;span class="p">()]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">urls&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">is_playlist_url&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">raw_title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">get_playlist_title&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">safe_title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">sanitize_filename&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">raw_title&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">📂 開始處理播放清單：{raw_title} ({url})&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">playlist_download_dir&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;downloads/{safe_title}&amp;#34;&lt;/span>
+&lt;span class="n">playlist_transcript_dir&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;transcripts/{safe_title}&amp;#34;&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">makedirs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playlist_download_dir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">exist_ok&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">makedirs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playlist_transcript_dir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">exist_ok&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="bp">True&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">video_ids&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">get_playlist_video_ids&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="n">idx&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">vid&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">enumerate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">video_ids&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="n">video_url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;https://youtu.be/{vid}&amp;#34;&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">🎞️ ({idx}/{len(video_ids)}) 處理影片：{video_url}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">start_time&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">get_video_title&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">video_url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">safe_video_title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">sanitize_filename&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">output_file&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playlist_transcript_dir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;{safe_video_title}.txt&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exists&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_file&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;⚠️ 逐字稿已存在，跳過影片：{safe_video_title}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">continue&lt;/span> &lt;span class="c1"># 跳過下載及轉錄&lt;/span>
+&lt;span class="n">duration&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">get_video_duration&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">video_url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">mp3_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playlist_download_dir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;{safe_video_title}.mp3&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exists&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mp3_path&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">download_audio&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">video_url&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_path&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">mp3_path&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;跳過影片 {video_url}，下載失敗&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">continue&lt;/span>
+&lt;span class="n">transcribe_audio&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mp3_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_file&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">elapsed&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start_time&lt;/span>
+&lt;span class="n">speed_ratio&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">duration&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">elapsed&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="n">elapsed&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;✅ 完成：{output_file}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># 播放清單處理完後合併逐字稿&lt;/span>
+&lt;span class="n">merge_transcripts&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">playlist_transcript_dir&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;span class="c1"># 單支影片處理&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">🎞️ 單支影片處理：{url}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">start_time&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">get_video_title&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">safe_video_title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">sanitize_filename&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">output_file&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;transcripts&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;{safe_video_title}.txt&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exists&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output_file&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;⚠️ 逐字稿已存在，跳過影片：{safe_video_title}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">continue&lt;/span>
+&lt;span class="n">duration&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">get_video_duration&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">mp3_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;downloads&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;{safe_video_title}.mp3&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exists&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mp3_path&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">download_audio&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_path&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">mp3_path&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;跳過影片 {url}，下載失敗&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">continue&lt;/span>
+&lt;span class="n">transcribe_audio&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mp3_path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">output_file&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">elapsed&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start_time&lt;/span>
+&lt;span class="n">speed_ratio&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">duration&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">elapsed&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="n">elapsed&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;✅ 完成：{output_file}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="s2">&amp;#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h1 id="心得">心得&lt;/h1>

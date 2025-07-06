@@ -227,225 +227,225 @@ gtag('js',new Date());gtag('config','G-9N16MVLR0Q');</script></head><body class=
 </span><span class=lnt>219
 </span><span class=lnt>220
 </span><span class=lnt>221
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>import subprocess
-import os
-import time
-import threading
-import re
-from faster_whisper import WhisperModel
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>subprocess</span>
+<span class=kn>import</span> <span class=nn>os</span>
+<span class=kn>import</span> <span class=nn>time</span>
+<span class=kn>import</span> <span class=nn>threading</span>
+<span class=kn>import</span> <span class=nn>re</span>
+<span class=kn>from</span> <span class=nn>faster_whisper</span> <span class=kn>import</span> <span class=n>WhisperModel</span>
 
-# 設定使用裝置
-device = &#34;cuda&#34; if os.environ.get(&#34;CUDA_VISIBLE_DEVICES&#34;) != &#34;-1&#34; else &#34;cpu&#34;
-print(f&#34;目前使用裝置: {device}&#34;)
+<span class=c1># 設定使用裝置</span>
+<span class=n>device</span> <span class=o>=</span> <span class=s2>&#34;cuda&#34;</span> <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>environ</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&#34;CUDA_VISIBLE_DEVICES&#34;</span><span class=p>)</span> <span class=o>!=</span> <span class=s2>&#34;-1&#34;</span> <span class=k>else</span> <span class=s2>&#34;cpu&#34;</span>
+<span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;目前使用裝置: {device}&#34;</span><span class=p>)</span>
 
-# 載入模型
-model = WhisperModel(&#34;medium&#34;, device=device, compute_type=&#34;float16&#34; if device == &#34;cuda&#34; else &#34;int8&#34;)
+<span class=c1># 載入模型</span>
+<span class=n>model</span> <span class=o>=</span> <span class=n>WhisperModel</span><span class=p>(</span><span class=s2>&#34;medium&#34;</span><span class=p>,</span> <span class=n>device</span><span class=o>=</span><span class=n>device</span><span class=p>,</span> <span class=n>compute_type</span><span class=o>=</span><span class=s2>&#34;float16&#34;</span> <span class=k>if</span> <span class=n>device</span> <span class=o>==</span> <span class=s2>&#34;cuda&#34;</span> <span class=k>else</span> <span class=s2>&#34;int8&#34;</span><span class=p>)</span>
 
-# 合法化檔名
-def sanitize_filename(name):
-    name = re.sub(r&#39;[\\/:*?&#34;&lt;&gt;|\n\r]&#39;, &#39;_&#39;, name)
-    name = name.strip().rstrip(&#39;.&#39;)
-    return name[:100]
+<span class=c1># 合法化檔名</span>
+<span class=k>def</span> <span class=nf>sanitize_filename</span><span class=p>(</span><span class=n>name</span><span class=p>):</span>
+    <span class=n>name</span> <span class=o>=</span> <span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=sa>r</span><span class=s1>&#39;[</span><span class=se>\\</span><span class=s1>/:*?&#34;&lt;&gt;|\n\r]&#39;</span><span class=p>,</span> <span class=s1>&#39;_&#39;</span><span class=p>,</span> <span class=n>name</span><span class=p>)</span>
+    <span class=n>name</span> <span class=o>=</span> <span class=n>name</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span><span class=o>.</span><span class=n>rstrip</span><span class=p>(</span><span class=s1>&#39;.&#39;</span><span class=p>)</span>
+    <span class=k>return</span> <span class=n>name</span><span class=p>[:</span><span class=mi>100</span><span class=p>]</span>
 
-def get_playlist_title(playlist_url):
-    try:
-        result = subprocess.run([
-            &#34;yt-dlp&#34;,
-            &#34;--skip-download&#34;,
-            &#34;--no-warning&#34;,
-            &#34;--print&#34;, &#34;playlist_title&#34;,
-            playlist_url
-        ], capture_output=True, text=True)
-        lines = result.stdout.strip().splitlines()
-        if lines:
-            title = lines[0].strip()
-        else:
-            title = &#34;playlist&#34;
-        print(f&#34;DEBUG 播放清單標題：{repr(title)}&#34;)
-        return title
-    except Exception as e:
-        print(f&#34;⚠️ 無法取得播放清單標題：{e}&#34;)
-        return &#34;playlist&#34;
+<span class=k>def</span> <span class=nf>get_playlist_title</span><span class=p>(</span><span class=n>playlist_url</span><span class=p>):</span>
+    <span class=k>try</span><span class=p>:</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span>
+            <span class=s2>&#34;yt-dlp&#34;</span><span class=p>,</span>
+            <span class=s2>&#34;--skip-download&#34;</span><span class=p>,</span>
+            <span class=s2>&#34;--no-warning&#34;</span><span class=p>,</span>
+            <span class=s2>&#34;--print&#34;</span><span class=p>,</span> <span class=s2>&#34;playlist_title&#34;</span><span class=p>,</span>
+            <span class=n>playlist_url</span>
+        <span class=p>],</span> <span class=n>capture_output</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+        <span class=n>lines</span> <span class=o>=</span> <span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span><span class=o>.</span><span class=n>splitlines</span><span class=p>()</span>
+        <span class=k>if</span> <span class=n>lines</span><span class=p>:</span>
+            <span class=n>title</span> <span class=o>=</span> <span class=n>lines</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+        <span class=k>else</span><span class=p>:</span>
+            <span class=n>title</span> <span class=o>=</span> <span class=s2>&#34;playlist&#34;</span>
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;DEBUG 播放清單標題：{repr(title)}&#34;</span><span class=p>)</span>
+        <span class=k>return</span> <span class=n>title</span>
+    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;⚠️ 無法取得播放清單標題：{e}&#34;</span><span class=p>)</span>
+        <span class=k>return</span> <span class=s2>&#34;playlist&#34;</span>
 
-def is_playlist_url(url):
-    # yt-dlp 支援的判斷方法之一：用 --flat-playlist 抓 id，沒東西就是非播放清單
-    result = subprocess.run([&#34;yt-dlp&#34;, &#34;--flat-playlist&#34;, &#34;--print&#34;, &#34;id&#34;, url], capture_output=True, text=True)
-    lines = result.stdout.strip().split(&#39;\n&#39;)
-    # 如果有多筆影片id，代表是播放清單；只有一筆可能是影片或空
-    # 單一影片時會直接是影片id
-    # 判斷方法：如果能抓到多筆id且不只有一個，當作播放清單
-    # 如果沒抓到id，非播放清單
-    if len(lines) &gt; 1:
-        return True
-    else:
-        return False
+<span class=k>def</span> <span class=nf>is_playlist_url</span><span class=p>(</span><span class=n>url</span><span class=p>):</span>
+    <span class=c1># yt-dlp 支援的判斷方法之一：用 --flat-playlist 抓 id，沒東西就是非播放清單</span>
+    <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span><span class=s2>&#34;yt-dlp&#34;</span><span class=p>,</span> <span class=s2>&#34;--flat-playlist&#34;</span><span class=p>,</span> <span class=s2>&#34;--print&#34;</span><span class=p>,</span> <span class=s2>&#34;id&#34;</span><span class=p>,</span> <span class=n>url</span><span class=p>],</span> <span class=n>capture_output</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+    <span class=n>lines</span> <span class=o>=</span> <span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+    <span class=c1># 如果有多筆影片id，代表是播放清單；只有一筆可能是影片或空</span>
+    <span class=c1># 單一影片時會直接是影片id</span>
+    <span class=c1># 判斷方法：如果能抓到多筆id且不只有一個，當作播放清單</span>
+    <span class=c1># 如果沒抓到id，非播放清單</span>
+    <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>lines</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>:</span>
+        <span class=k>return</span> <span class=bp>True</span>
+    <span class=k>else</span><span class=p>:</span>
+        <span class=k>return</span> <span class=bp>False</span>
 
-# 取得影片標題
-def get_video_title(video_url):
-    try:
-        result = subprocess.run([&#34;yt-dlp&#34;, &#34;--get-title&#34;, video_url], capture_output=True, text=True)
-        return result.stdout.strip()
-    except Exception as e:
-        print(f&#34;⚠️ 無法取得標題：{e}&#34;)
-        return &#34;unknown_title&#34;
+<span class=c1># 取得影片標題</span>
+<span class=k>def</span> <span class=nf>get_video_title</span><span class=p>(</span><span class=n>video_url</span><span class=p>):</span>
+    <span class=k>try</span><span class=p>:</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span><span class=s2>&#34;yt-dlp&#34;</span><span class=p>,</span> <span class=s2>&#34;--get-title&#34;</span><span class=p>,</span> <span class=n>video_url</span><span class=p>],</span> <span class=n>capture_output</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+        <span class=k>return</span> <span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;⚠️ 無法取得標題：{e}&#34;</span><span class=p>)</span>
+        <span class=k>return</span> <span class=s2>&#34;unknown_title&#34;</span>
 
-# 取得影片秒數
-def get_video_duration(video_url):
-    try:
-        result = subprocess.run([&#34;yt-dlp&#34;, &#34;--print&#34;, &#34;duration&#34;, video_url], capture_output=True, text=True)
-        return int(result.stdout.strip())
-    except:
-        return 0
+<span class=c1># 取得影片秒數</span>
+<span class=k>def</span> <span class=nf>get_video_duration</span><span class=p>(</span><span class=n>video_url</span><span class=p>):</span>
+    <span class=k>try</span><span class=p>:</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span><span class=s2>&#34;yt-dlp&#34;</span><span class=p>,</span> <span class=s2>&#34;--print&#34;</span><span class=p>,</span> <span class=s2>&#34;duration&#34;</span><span class=p>,</span> <span class=n>video_url</span><span class=p>],</span> <span class=n>capture_output</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+        <span class=k>return</span> <span class=nb>int</span><span class=p>(</span><span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>strip</span><span class=p>())</span>
+    <span class=k>except</span><span class=p>:</span>
+        <span class=k>return</span> <span class=mi>0</span>
 
-# 下載音訊
-def download_audio(url, output_path):
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    print(f&#34;下載音訊中：{url}&#34;)
-    result = subprocess.run([
-        &#34;yt-dlp&#34;, &#34;-x&#34;, &#34;--audio-format&#34;, &#34;mp3&#34;, &#34;-o&#34;, output_path, url
-    ], capture_output=True, text=True)
-    print(result.stdout)
-    print(result.stderr)
-    if result.returncode != 0:
-        print(f&#34;[錯誤] 下載失敗：{url}&#34;)
-        return False
-    return True
+<span class=c1># 下載音訊</span>
+<span class=k>def</span> <span class=nf>download_audio</span><span class=p>(</span><span class=n>url</span><span class=p>,</span> <span class=n>output_path</span><span class=p>):</span>
+    <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=n>output_path</span><span class=p>),</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+    <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;下載音訊中：{url}&#34;</span><span class=p>)</span>
+    <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span>
+        <span class=s2>&#34;yt-dlp&#34;</span><span class=p>,</span> <span class=s2>&#34;-x&#34;</span><span class=p>,</span> <span class=s2>&#34;--audio-format&#34;</span><span class=p>,</span> <span class=s2>&#34;mp3&#34;</span><span class=p>,</span> <span class=s2>&#34;-o&#34;</span><span class=p>,</span> <span class=n>output_path</span><span class=p>,</span> <span class=n>url</span>
+    <span class=p>],</span> <span class=n>capture_output</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+    <span class=k>print</span><span class=p>(</span><span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=p>)</span>
+    <span class=k>print</span><span class=p>(</span><span class=n>result</span><span class=o>.</span><span class=n>stderr</span><span class=p>)</span>
+    <span class=k>if</span> <span class=n>result</span><span class=o>.</span><span class=n>returncode</span> <span class=o>!=</span> <span class=mi>0</span><span class=p>:</span>
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;[錯誤] 下載失敗：{url}&#34;</span><span class=p>)</span>
+        <span class=k>return</span> <span class=bp>False</span>
+    <span class=k>return</span> <span class=bp>True</span>
 
-# 轉錄 + 進度顯示
-def transcribe_with_progress(file_path, language=&#39;zh&#39;):
-    stop_flag = threading.Event()
-    start_time = time.time()
+<span class=c1># 轉錄 + 進度顯示</span>
+<span class=k>def</span> <span class=nf>transcribe_with_progress</span><span class=p>(</span><span class=n>file_path</span><span class=p>,</span> <span class=n>language</span><span class=o>=</span><span class=s1>&#39;zh&#39;</span><span class=p>):</span>
+    <span class=n>stop_flag</span> <span class=o>=</span> <span class=n>threading</span><span class=o>.</span><span class=n>Event</span><span class=p>()</span>
+    <span class=n>start_time</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
 
-    def progress_timer():
-        while not stop_flag.is_set():
-            elapsed = time.time() - start_time
-            print(f&#34;[進度] 轉錄中... 已進行 {int(elapsed)} 秒&#34;)
-            time.sleep(5)
+    <span class=k>def</span> <span class=nf>progress_timer</span><span class=p>():</span>
+        <span class=k>while</span> <span class=ow>not</span> <span class=n>stop_flag</span><span class=o>.</span><span class=n>is_set</span><span class=p>():</span>
+            <span class=n>elapsed</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span> <span class=o>-</span> <span class=n>start_time</span>
+            <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;[進度] 轉錄中... 已進行 {int(elapsed)} 秒&#34;</span><span class=p>)</span>
+            <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>5</span><span class=p>)</span>
 
-    print(f&#34;開始轉錄：{file_path}&#34;)
-    timer_thread = threading.Thread(target=progress_timer)
-    timer_thread.start()
+    <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;開始轉錄：{file_path}&#34;</span><span class=p>)</span>
+    <span class=n>timer_thread</span> <span class=o>=</span> <span class=n>threading</span><span class=o>.</span><span class=n>Thread</span><span class=p>(</span><span class=n>target</span><span class=o>=</span><span class=n>progress_timer</span><span class=p>)</span>
+    <span class=n>timer_thread</span><span class=o>.</span><span class=n>start</span><span class=p>()</span>
 
-    try:
-        segments_gen, info = model.transcribe(file_path, language=language)
-        segments = list(segments_gen)
-        print(f&#34;轉錄完成！共取得 {len(segments)} 個語句段落&#34;)
-    except Exception as e:
-        print(f&#34;[錯誤] 轉錄失敗：{e}&#34;)
-        segments, info = [], {}
-    finally:
-        stop_flag.set()
-        timer_thread.join()
+    <span class=k>try</span><span class=p>:</span>
+        <span class=n>segments_gen</span><span class=p>,</span> <span class=n>info</span> <span class=o>=</span> <span class=n>model</span><span class=o>.</span><span class=n>transcribe</span><span class=p>(</span><span class=n>file_path</span><span class=p>,</span> <span class=n>language</span><span class=o>=</span><span class=n>language</span><span class=p>)</span>
+        <span class=n>segments</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=n>segments_gen</span><span class=p>)</span>
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;轉錄完成！共取得 {len(segments)} 個語句段落&#34;</span><span class=p>)</span>
+    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;[錯誤] 轉錄失敗：{e}&#34;</span><span class=p>)</span>
+        <span class=n>segments</span><span class=p>,</span> <span class=n>info</span> <span class=o>=</span> <span class=p>[],</span> <span class=p>{}</span>
+    <span class=k>finally</span><span class=p>:</span>
+        <span class=n>stop_flag</span><span class=o>.</span><span class=n>set</span><span class=p>()</span>
+        <span class=n>timer_thread</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
 
-    return segments, info
+    <span class=k>return</span> <span class=n>segments</span><span class=p>,</span> <span class=n>info</span>
 
-# 寫入逐字稿
-def transcribe_audio(file_path, output_path):
-    segments, info = transcribe_with_progress(file_path, language=&#39;zh&#39;)
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as f:
-        for segment in segments:
-            f.write(f&#34;[{round(segment.start, 2)}-{round(segment.end, 2)}] {segment.text}\n&#34;)
-    if segments:
-        total_audio_time = round(segments[-1].end, 2)
-        print(f&#34;語音總長度（實際轉錄）：{total_audio_time} 秒&#34;)
+<span class=c1># 寫入逐字稿</span>
+<span class=k>def</span> <span class=nf>transcribe_audio</span><span class=p>(</span><span class=n>file_path</span><span class=p>,</span> <span class=n>output_path</span><span class=p>):</span>
+    <span class=n>segments</span><span class=p>,</span> <span class=n>info</span> <span class=o>=</span> <span class=n>transcribe_with_progress</span><span class=p>(</span><span class=n>file_path</span><span class=p>,</span> <span class=n>language</span><span class=o>=</span><span class=s1>&#39;zh&#39;</span><span class=p>)</span>
+    <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=n>output_path</span><span class=p>),</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>output_path</span><span class=p>,</span> <span class=s2>&#34;w&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+        <span class=k>for</span> <span class=n>segment</span> <span class=ow>in</span> <span class=n>segments</span><span class=p>:</span>
+            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;[{round(segment.start, 2)}-{round(segment.end, 2)}] {segment.text}</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+    <span class=k>if</span> <span class=n>segments</span><span class=p>:</span>
+        <span class=n>total_audio_time</span> <span class=o>=</span> <span class=nb>round</span><span class=p>(</span><span class=n>segments</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>end</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span>
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;語音總長度（實際轉錄）：{total_audio_time} 秒&#34;</span><span class=p>)</span>
 
-# 取得播放清單中的所有影片 ID
-def get_playlist_video_ids(playlist_url):
-    result = subprocess.run([&#34;yt-dlp&#34;, &#34;--flat-playlist&#34;, &#34;--print&#34;, &#34;id&#34;, playlist_url], capture_output=True, text=True)
-    return result.stdout.strip().split(&#39;\n&#39;)
+<span class=c1># 取得播放清單中的所有影片 ID</span>
+<span class=k>def</span> <span class=nf>get_playlist_video_ids</span><span class=p>(</span><span class=n>playlist_url</span><span class=p>):</span>
+    <span class=n>result</span> <span class=o>=</span> <span class=n>subprocess</span><span class=o>.</span><span class=n>run</span><span class=p>([</span><span class=s2>&#34;yt-dlp&#34;</span><span class=p>,</span> <span class=s2>&#34;--flat-playlist&#34;</span><span class=p>,</span> <span class=s2>&#34;--print&#34;</span><span class=p>,</span> <span class=s2>&#34;id&#34;</span><span class=p>,</span> <span class=n>playlist_url</span><span class=p>],</span> <span class=n>capture_output</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span> <span class=n>text</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+    <span class=k>return</span> <span class=n>result</span><span class=o>.</span><span class=n>stdout</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
 
-# 合併逐字稿
-def merge_transcripts(transcript_dir, merged_filename=&#34;merged_transcript.txt&#34;):
-    merged_path = os.path.join(transcript_dir, merged_filename)
-    with open(merged_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as merged:
-        transcript_files = sorted(f for f in os.listdir(transcript_dir) if f.endswith(&#34;.txt&#34;) and f != merged_filename)
-        for fname in transcript_files:
-            merged.write(f&#34;\n\n===== {fname} =====\n&#34;)
-            with open(os.path.join(transcript_dir, fname), &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
-                merged.write(f.read())
-    print(f&#34;✅ 合併逐字稿已完成，檔案路徑：{merged_path}&#34;)
+<span class=c1># 合併逐字稿</span>
+<span class=k>def</span> <span class=nf>merge_transcripts</span><span class=p>(</span><span class=n>transcript_dir</span><span class=p>,</span> <span class=n>merged_filename</span><span class=o>=</span><span class=s2>&#34;merged_transcript.txt&#34;</span><span class=p>):</span>
+    <span class=n>merged_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>transcript_dir</span><span class=p>,</span> <span class=n>merged_filename</span><span class=p>)</span>
+    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>merged_path</span><span class=p>,</span> <span class=s2>&#34;w&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>merged</span><span class=p>:</span>
+        <span class=n>transcript_files</span> <span class=o>=</span> <span class=nb>sorted</span><span class=p>(</span><span class=n>f</span> <span class=k>for</span> <span class=n>f</span> <span class=ow>in</span> <span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>(</span><span class=n>transcript_dir</span><span class=p>)</span> <span class=k>if</span> <span class=n>f</span><span class=o>.</span><span class=n>endswith</span><span class=p>(</span><span class=s2>&#34;.txt&#34;</span><span class=p>)</span> <span class=ow>and</span> <span class=n>f</span> <span class=o>!=</span> <span class=n>merged_filename</span><span class=p>)</span>
+        <span class=k>for</span> <span class=n>fname</span> <span class=ow>in</span> <span class=n>transcript_files</span><span class=p>:</span>
+            <span class=n>merged</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;</span><span class=se>\n\n</span><span class=s2>===== {fname} =====</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+            <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>transcript_dir</span><span class=p>,</span> <span class=n>fname</span><span class=p>),</span> <span class=s2>&#34;r&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+                <span class=n>merged</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>())</span>
+    <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;✅ 合併逐字稿已完成，檔案路徑：{merged_path}&#34;</span><span class=p>)</span>
 
-# 主程式
-os.makedirs(&#34;downloads&#34;, exist_ok=True)
-os.makedirs(&#34;transcripts&#34;, exist_ok=True)
+<span class=c1># 主程式</span>
+<span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=s2>&#34;downloads&#34;</span><span class=p>,</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+<span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=s2>&#34;transcripts&#34;</span><span class=p>,</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
 
-with open(&#34;video_playlist.txt&#34;, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
-    urls = [line.strip() for line in f if line.strip()]
+<span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&#34;video_playlist.txt&#34;</span><span class=p>,</span> <span class=s2>&#34;r&#34;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+    <span class=n>urls</span> <span class=o>=</span> <span class=p>[</span><span class=n>line</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>f</span> <span class=k>if</span> <span class=n>line</span><span class=o>.</span><span class=n>strip</span><span class=p>()]</span>
 
-for url in urls:
-    if is_playlist_url(url):
-        raw_title = get_playlist_title(url)
-        safe_title = sanitize_filename(raw_title)
-        print(f&#34;\n📂 開始處理播放清單：{raw_title} ({url})&#34;)
+<span class=k>for</span> <span class=n>url</span> <span class=ow>in</span> <span class=n>urls</span><span class=p>:</span>
+    <span class=k>if</span> <span class=n>is_playlist_url</span><span class=p>(</span><span class=n>url</span><span class=p>):</span>
+        <span class=n>raw_title</span> <span class=o>=</span> <span class=n>get_playlist_title</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+        <span class=n>safe_title</span> <span class=o>=</span> <span class=n>sanitize_filename</span><span class=p>(</span><span class=n>raw_title</span><span class=p>)</span>
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>📂 開始處理播放清單：{raw_title} ({url})&#34;</span><span class=p>)</span>
 
-        playlist_download_dir = f&#34;downloads/{safe_title}&#34;
-        playlist_transcript_dir = f&#34;transcripts/{safe_title}&#34;
-        os.makedirs(playlist_download_dir, exist_ok=True)
-        os.makedirs(playlist_transcript_dir, exist_ok=True)
+        <span class=n>playlist_download_dir</span> <span class=o>=</span> <span class=n>f</span><span class=s2>&#34;downloads/{safe_title}&#34;</span>
+        <span class=n>playlist_transcript_dir</span> <span class=o>=</span> <span class=n>f</span><span class=s2>&#34;transcripts/{safe_title}&#34;</span>
+        <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>playlist_download_dir</span><span class=p>,</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
+        <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>playlist_transcript_dir</span><span class=p>,</span> <span class=n>exist_ok</span><span class=o>=</span><span class=bp>True</span><span class=p>)</span>
 
-        video_ids = get_playlist_video_ids(url)
+        <span class=n>video_ids</span> <span class=o>=</span> <span class=n>get_playlist_video_ids</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
 
-        for idx, vid in enumerate(video_ids, 1):
-            video_url = f&#34;https://youtu.be/{vid}&#34;
-            print(f&#34;\n🎞️ ({idx}/{len(video_ids)}) 處理影片：{video_url}&#34;)
-            start_time = time.time()
+        <span class=k>for</span> <span class=n>idx</span><span class=p>,</span> <span class=n>vid</span> <span class=ow>in</span> <span class=nb>enumerate</span><span class=p>(</span><span class=n>video_ids</span><span class=p>,</span> <span class=mi>1</span><span class=p>):</span>
+            <span class=n>video_url</span> <span class=o>=</span> <span class=n>f</span><span class=s2>&#34;https://youtu.be/{vid}&#34;</span>
+            <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>🎞️ ({idx}/{len(video_ids)}) 處理影片：{video_url}&#34;</span><span class=p>)</span>
+            <span class=n>start_time</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
 
-            title = get_video_title(video_url)
-            safe_video_title = sanitize_filename(title)
+            <span class=n>title</span> <span class=o>=</span> <span class=n>get_video_title</span><span class=p>(</span><span class=n>video_url</span><span class=p>)</span>
+            <span class=n>safe_video_title</span> <span class=o>=</span> <span class=n>sanitize_filename</span><span class=p>(</span><span class=n>title</span><span class=p>)</span>
 
-            output_file = os.path.join(playlist_transcript_dir, f&#34;{safe_video_title}.txt&#34;)
+            <span class=n>output_file</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>playlist_transcript_dir</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;{safe_video_title}.txt&#34;</span><span class=p>)</span>
 
-            if os.path.exists(output_file):
-                print(f&#34;⚠️ 逐字稿已存在，跳過影片：{safe_video_title}&#34;)
-                continue  # 跳過下載及轉錄
+            <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>output_file</span><span class=p>):</span>
+                <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;⚠️ 逐字稿已存在，跳過影片：{safe_video_title}&#34;</span><span class=p>)</span>
+                <span class=k>continue</span>  <span class=c1># 跳過下載及轉錄</span>
 
-            duration = get_video_duration(video_url)
+            <span class=n>duration</span> <span class=o>=</span> <span class=n>get_video_duration</span><span class=p>(</span><span class=n>video_url</span><span class=p>)</span>
 
-            mp3_path = os.path.join(playlist_download_dir, f&#34;{safe_video_title}.mp3&#34;)
-            if not os.path.exists(mp3_path):
-                if not download_audio(video_url, output_path=mp3_path):
-                    print(f&#34;跳過影片 {video_url}，下載失敗&#34;)
-                    continue
+            <span class=n>mp3_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>playlist_download_dir</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;{safe_video_title}.mp3&#34;</span><span class=p>)</span>
+            <span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>mp3_path</span><span class=p>):</span>
+                <span class=k>if</span> <span class=ow>not</span> <span class=n>download_audio</span><span class=p>(</span><span class=n>video_url</span><span class=p>,</span> <span class=n>output_path</span><span class=o>=</span><span class=n>mp3_path</span><span class=p>):</span>
+                    <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;跳過影片 {video_url}，下載失敗&#34;</span><span class=p>)</span>
+                    <span class=k>continue</span>
 
-            transcribe_audio(mp3_path, output_file)
+            <span class=n>transcribe_audio</span><span class=p>(</span><span class=n>mp3_path</span><span class=p>,</span> <span class=n>output_file</span><span class=p>)</span>
 
-            elapsed = time.time() - start_time
-            speed_ratio = duration / elapsed if elapsed &gt; 0 else 0
+            <span class=n>elapsed</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span> <span class=o>-</span> <span class=n>start_time</span>
+            <span class=n>speed_ratio</span> <span class=o>=</span> <span class=n>duration</span> <span class=o>/</span> <span class=n>elapsed</span> <span class=k>if</span> <span class=n>elapsed</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=k>else</span> <span class=mi>0</span>
 
-            print(f&#34;✅ 完成：{output_file}&#34;)
-            print(f&#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&#34;)
+            <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;✅ 完成：{output_file}&#34;</span><span class=p>)</span>
+            <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&#34;</span><span class=p>)</span>
 
-        # 播放清單處理完後合併逐字稿
-        merge_transcripts(playlist_transcript_dir)
+        <span class=c1># 播放清單處理完後合併逐字稿</span>
+        <span class=n>merge_transcripts</span><span class=p>(</span><span class=n>playlist_transcript_dir</span><span class=p>)</span>
 
-    else:
-        # 單支影片處理
-        print(f&#34;\n🎞️ 單支影片處理：{url}&#34;)
-        start_time = time.time()
+    <span class=k>else</span><span class=p>:</span>
+        <span class=c1># 單支影片處理</span>
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>🎞️ 單支影片處理：{url}&#34;</span><span class=p>)</span>
+        <span class=n>start_time</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
 
-        title = get_video_title(url)
-        safe_video_title = sanitize_filename(title)
+        <span class=n>title</span> <span class=o>=</span> <span class=n>get_video_title</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+        <span class=n>safe_video_title</span> <span class=o>=</span> <span class=n>sanitize_filename</span><span class=p>(</span><span class=n>title</span><span class=p>)</span>
 
-        output_file = os.path.join(&#34;transcripts&#34;, f&#34;{safe_video_title}.txt&#34;)
-        if os.path.exists(output_file):
-            print(f&#34;⚠️ 逐字稿已存在，跳過影片：{safe_video_title}&#34;)
-            continue
+        <span class=n>output_file</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=s2>&#34;transcripts&#34;</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;{safe_video_title}.txt&#34;</span><span class=p>)</span>
+        <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>output_file</span><span class=p>):</span>
+            <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;⚠️ 逐字稿已存在，跳過影片：{safe_video_title}&#34;</span><span class=p>)</span>
+            <span class=k>continue</span>
 
-        duration = get_video_duration(url)
-        mp3_path = os.path.join(&#34;downloads&#34;, f&#34;{safe_video_title}.mp3&#34;)
-        if not os.path.exists(mp3_path):
-            if not download_audio(url, output_path=mp3_path):
-                print(f&#34;跳過影片 {url}，下載失敗&#34;)
-                continue
+        <span class=n>duration</span> <span class=o>=</span> <span class=n>get_video_duration</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+        <span class=n>mp3_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=s2>&#34;downloads&#34;</span><span class=p>,</span> <span class=n>f</span><span class=s2>&#34;{safe_video_title}.mp3&#34;</span><span class=p>)</span>
+        <span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>mp3_path</span><span class=p>):</span>
+            <span class=k>if</span> <span class=ow>not</span> <span class=n>download_audio</span><span class=p>(</span><span class=n>url</span><span class=p>,</span> <span class=n>output_path</span><span class=o>=</span><span class=n>mp3_path</span><span class=p>):</span>
+                <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;跳過影片 {url}，下載失敗&#34;</span><span class=p>)</span>
+                <span class=k>continue</span>
 
-        transcribe_audio(mp3_path, output_file)
+        <span class=n>transcribe_audio</span><span class=p>(</span><span class=n>mp3_path</span><span class=p>,</span> <span class=n>output_file</span><span class=p>)</span>
 
-        elapsed = time.time() - start_time
-        speed_ratio = duration / elapsed if elapsed &gt; 0 else 0
+        <span class=n>elapsed</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span> <span class=o>-</span> <span class=n>start_time</span>
+        <span class=n>speed_ratio</span> <span class=o>=</span> <span class=n>duration</span> <span class=o>/</span> <span class=n>elapsed</span> <span class=k>if</span> <span class=n>elapsed</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=k>else</span> <span class=mi>0</span>
 
-        print(f&#34;✅ 完成：{output_file}&#34;)
-        print(f&#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&#34;)
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;✅ 完成：{output_file}&#34;</span><span class=p>)</span>
+        <span class=k>print</span><span class=p>(</span><span class=n>f</span><span class=s2>&#34;總耗時：{elapsed:.2f} 秒，影片長度：{duration} 秒，轉換速度比：約 {speed_ratio:.2f}x&#34;</span><span class=p>)</span>
 
 
 </code></pre></td></tr></table></div></div><h1 id=心得>心得</h1><p>不得不說現在有這個真的好方便，也是我第一次嘗試用這種語音辨識的模型，之前最多就只有用過Premiere的語音辨識而已，效果雖然還行，但總是有點一言難盡。這次使用下來結果算是非常滿意，沒想到當年買的3060 ti以及為了魔物獵人換的CPU居然在這邊派上用場^_^</p></section><footer class=article-footer><section class=article-tags></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}]});})</script></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/%E7%B5%90%E5%90%88lombok%E5%AF%AB%E5%87%BA%E6%9B%B4%E6%95%B4%E6%BD%94%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%A2%BC/><div class=article-image><img src=https://i.imgur.com/1OBx1AG.png loading=lazy data-key data-hash=https://i.imgur.com/1OBx1AG.png></div><div class=article-details><h2 class=article-title>結合Lombok寫出更整潔的程式碼</h2></div></a></article><article class=has-image><a href=/p/%E9%81%8B%E7%94%A8arraylist%E8%88%87%E8%87%AA%E5%8B%95%E9%85%8D%E7%BD%AE%E5%B0%87swich%E8%AA%9E%E6%B3%95%E6%8B%86%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/rfkvgRO.png loading=lazy data-key data-hash=https://i.imgur.com/rfkvgRO.png></div><div class=article-details><h2 class=article-title>運用ArrayList與自動配置將Swich語法拆解</h2></div></a></article><article class=has-image><a href=/p/%E5%AF%A6%E7%94%A8%E7%9A%84git%E6%8C%87%E4%BB%A4/><div class=article-image><img src=https://i.imgur.com/nCGDuUc.png%20 loading=lazy data-key data-hash=https://i.imgur.com/nCGDuUc.png></div><div class=article-details><h2 class=article-title>實用的Git指令</h2></div></a></article><article class=has-image><a href=/p/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2springboot%E5%B0%88%E6%A1%88%E8%88%87%E9%9B%B2%E7%AB%AF%E8%B3%87%E6%96%99%E5%BA%AB%E5%9C%A8aws%E4%B8%8A%E9%9D%A2/><div class=article-image><img src=https://i.imgur.com/whP4tpY.png loading=lazy data-key data-hash=https://i.imgur.com/whP4tpY.png></div><div class=article-details><h2 class=article-title>如何部署SpringBoot專案與雲端資料庫在Aws上面</h2></div></a></article><article class=has-image><a href=/p/githubaction-%E6%90%AD%E9%85%8Daws%E7%9A%84cicd-ymal%E6%AA%94-%E9%99%84%E4%B8%8A%E8%A8%BB%E8%A7%A3/><div class=article-image><img src=https://i.imgur.com/Q4khHpn.png loading=lazy data-key data-hash=https://i.imgur.com/Q4khHpn.png></div><div class=article-details><h2 class=article-title>GitHubAction 搭配Aws的CICD ymal檔 附上註解</h2></div></a></article></div></div></aside><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css><script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script><script src=https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js></script><script>const gitalk=new Gitalk({clientID:"bf152013e92e48c1495f",clientSecret:"bed32f8438cb1e00d8628d9b6d148003bb4bf25d",repo:"comment",owner:"Hoxton019030",admin:["Hoxton019030"],distractionFreeMode:false,id:md5(location.pathname),});(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("gitalk-container").innerHTML="Gitalk comments not available by default when the website is previewed locally.";return;}
