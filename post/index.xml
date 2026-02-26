@@ -1,4 +1,114 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtoncraft.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 26 Feb 2026 05:46:09 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>148Pandas學習</title><link>https://hoxtoncraft.com/p/148pandas%E5%AD%B8%E7%BF%92/</link><pubDate>Thu, 26 Feb 2026 05:46:09 +0800</pubDate><guid>https://hoxtoncraft.com/p/148pandas%E5%AD%B8%E7%BF%92/</guid><description/></item><item><title>牙套紀錄&lt;四></title><link>https://hoxtoncraft.com/p/%E7%89%99%E5%A5%97%E7%B4%80%E9%8C%84%E5%9B%9B/</link><pubDate>Sun, 27 Jul 2025 19:31:15 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E7%89%99%E5%A5%97%E7%B4%80%E9%8C%84%E5%9B%9B/</guid><description>&lt;img src="https://i.imgur.com/9Po80VH.png" alt="Featured image of post 牙套紀錄&lt;四>" />&lt;p>前陣子回診的時候突然想到這系列好久沒更新，上次更新已經是快一年了，想了想大概知道為什麼，主要是從那次打完骨釘後其實就沒什麼特別的變化，是真的沒什麼肉眼可見的變化那種，要寫其實也寫不出個啥，直到最近比較多東西可以寫，於是來記錄一下。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Hoxton</title><link>https://hoxtoncraft.com/post/</link><description>Recent content in Posts on Hoxton</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Thu, 26 Feb 2026 05:46:09 +0800</lastBuildDate><atom:link href="https://hoxtoncraft.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>148Pandas學習</title><link>https://hoxtoncraft.com/p/148pandas%E5%AD%B8%E7%BF%92/</link><pubDate>Thu, 26 Feb 2026 05:46:09 +0800</pubDate><guid>https://hoxtoncraft.com/p/148pandas%E5%AD%B8%E7%BF%92/</guid><description>&lt;img src="https://i.imgur.com/JwTRyPF.png" alt="Featured image of post 148Pandas學習" />&lt;p>&lt;a href="https://youtu.be/5QZqzKCDCQ4">https://youtu.be/5QZqzKCDCQ4&lt;/a>&lt;/p>
+&lt;h1 id="單維度資料-series">單維度資料 Series&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/VszSWy3.png"
+loading="lazy"
+alt="image-20260226065815358"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/kYUJajN.png"
+loading="lazy"
+alt="image-20260226065942575"
+>&lt;/p>
+&lt;p>&lt;a href="https://youtu.be/5QZqzKCDCQ4?t=668">https://youtu.be/5QZqzKCDCQ4?t=668&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://youtu.be/175ZZC3Hr0Y?list=PL-g0fdC5RMbpGg95LuBz8laqJ8L9X5J2a">https://youtu.be/175ZZC3Hr0Y?list=PL-g0fdC5RMbpGg95LuBz8laqJ8L9X5J2a&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">pandas&lt;/span> &lt;span class="kn">as&lt;/span> &lt;span class="nn">pd&lt;/span>
+&lt;span class="n">data&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">pd&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Series&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">15&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">mean&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">max&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;span class="n">data&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">2&lt;/span> &lt;span class="c1"># 全部資料乘2&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># 0 40&lt;/span>
+&lt;span class="c1"># 1 20&lt;/span>
+&lt;span class="c1"># 2 30&lt;/span>
+&lt;span class="n">data&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="mi">20&lt;/span> &lt;span class="c1">#把Series中的每個資料都和20做比較&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># 0 False&lt;/span>
+&lt;span class="c1"># 1 True&lt;/span>
+&lt;span class="c1"># 2 False&lt;/span>
+&lt;span class="c1"># dtype: bool&lt;/span>
+&lt;span class="n">data&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">pd&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">DataFrame&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;span class="s2">&amp;#34;name&amp;#34;&lt;/span>&lt;span class="p">:[&lt;/span>&lt;span class="s2">&amp;#34;Amy&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s2">&amp;#34;John&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s2">&amp;#34;Bob&amp;#34;&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;span class="s2">&amp;#34;Salary&amp;#34;&lt;/span>&lt;span class="p">:[&lt;/span>&lt;span class="mi">30000&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">50000&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">40000&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="p">})&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1"># name Salary&lt;/span>
+&lt;span class="c1"># 0 Amy 30000&lt;/span>
+&lt;span class="c1"># 1 John 50000&lt;/span>
+&lt;span class="c1"># 2 Bob 40000&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;打印name內容&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;name&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="c1">#打印欄位內容&lt;/span>
+&lt;span class="c1"># 0 Amy&lt;/span>
+&lt;span class="c1"># 1 John&lt;/span>
+&lt;span class="c1"># 2 Bob&lt;/span>
+&lt;span class="c1"># Name: name, dtype: object&lt;/span>
+&lt;span class="k">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;第0 Row&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">iloc&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="c1">#打印第0 Row&lt;/span>
+&lt;span class="c1">#name Amy&lt;/span>
+&lt;span class="c1">#Salary 30000&lt;/span>
+&lt;span class="c1">#Name: 0, dtype: object&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h1 id="雙維度資料-dataframe">雙維度資料 DataFrame&lt;/h1>
+&lt;p>&lt;img src="https://i.imgur.com/5qNTEgU.png"
+loading="lazy"
+alt="image-20260226170808698"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/R12RKwq.png"
+loading="lazy"
+alt="image-20260226170848091"
+>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/tJkz3En.png"
+loading="lazy"
+alt="image-20260226170935780"
+>&lt;/p></description></item><item><title>牙套紀錄&lt;四></title><link>https://hoxtoncraft.com/p/%E7%89%99%E5%A5%97%E7%B4%80%E9%8C%84%E5%9B%9B/</link><pubDate>Sun, 27 Jul 2025 19:31:15 +0800</pubDate><guid>https://hoxtoncraft.com/p/%E7%89%99%E5%A5%97%E7%B4%80%E9%8C%84%E5%9B%9B/</guid><description>&lt;img src="https://i.imgur.com/9Po80VH.png" alt="Featured image of post 牙套紀錄&lt;四>" />&lt;p>前陣子回診的時候突然想到這系列好久沒更新，上次更新已經是快一年了，想了想大概知道為什麼，主要是從那次打完骨釘後其實就沒什麼特別的變化，是真的沒什麼肉眼可見的變化那種，要寫其實也寫不出個啥，直到最近比較多東西可以寫，於是來記錄一下。&lt;/p>
 &lt;p>大概是五月初的時候我發現我的下排骨釘鬆脫了，就是搖著搖著發現「咦？怎麼好像可以拔出來了」當下心裡浮現的第一個想法就是&lt;/p>
 &lt;p>「完蛋，該不會還要再打一次骨釘吧」&lt;/p>
 &lt;p>所幸下次回診的時候，廖醫師看了看跟我說先不用打沒關係，等到日後有需要再補就好，當下頓時覺得有點僥倖，但這種僥倖的心情很快又急轉直下，廖醫師隨後便在我的門牙內側黏上了兩顆障礙物，讓我上下牙完全咬合不起來，黏完的當下連話都說不好，任何要發 th 音的字基本上都是會撈風的狀態，老實說廖醫師可能也有點心理變態吧，還沒黏的時候都沒啥跟我聊天，我黏完墊高物後就開始跟我聊&lt;/p>
